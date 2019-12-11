@@ -1,11 +1,14 @@
 package by.epam.learn.inclass.domain;
 
+import by.epam.learn.inclass.controller.LeaptYearAdapter;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Date {
 
     public static List<Month> months;
+    LeaptYearAdapter leaptYearAdapter;
 
     static {
         months = new ArrayList<>();
@@ -32,9 +35,11 @@ public class Date {
         this.year = year;
         this.month = month;
         this.day = day;
+        leaptYearAdapter = new LeaptYearAdapter();
     }
 
     public Date() {
+        leaptYearAdapter = new LeaptYearAdapter();
     }
 
     public int getYear() {
@@ -60,19 +65,19 @@ public class Date {
     public void setDay(int day) {
         this.day = day;
     }
-
-    private boolean isLeap(Date date) {
-        if (date.year % 400 == 0)
-            return false;
-        if (date.year % 4 == 0)
-            return true;
-        return false;
-    }
+//
+//    private boolean isLeap(Date date) {
+//        if (date.year % 400 == 0)
+//            return false;
+//        if (date.year % 4 == 0)
+//            return true;
+//        return false;
+//    }
 
     public Date nextDay(Date date) {
         date.day++;
         if (date.day > months.get(date.month - 1).getDayCount()) {
-            if (isLeap(date) && date.month == 2) {
+            if (leaptYearAdapter.isLeap(date.year) && date.month == 2) {
                 if (date.day > 29) {
                     date.day = 1;
                     date = nextMonth(date);

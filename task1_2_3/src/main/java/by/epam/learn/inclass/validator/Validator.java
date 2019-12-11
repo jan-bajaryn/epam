@@ -1,8 +1,17 @@
 package by.epam.learn.inclass.validator;
 
+import by.epam.learn.inclass.controller.LeaptYearAdapter;
 import by.epam.learn.inclass.domain.Date;
 
 public class Validator {
+
+
+    LeaptYearAdapter leaptYearAdapter;
+
+    public Validator() {
+        leaptYearAdapter = new LeaptYearAdapter();
+    }
+
     public boolean isValid(String[] data) {
         int year = 0;
         int month = 0;
@@ -14,8 +23,8 @@ public class Validator {
         } catch (Exception e) {
             return false;
         }
-        if (year > 0 || month > 0 && month < 13 && day > 0) {
-            if (month == 2 && year % 4 == 0 && year % 400 != 0 && day < 30) {
+        if (year > 0 && month > 0 && month < 13 && day > 0) {
+            if (month == 2 && leaptYearAdapter.isLeap(year) && day < 30) {
                 return true;
             }
             return Date.months.get(month - 1).getDayCount() >= day;
