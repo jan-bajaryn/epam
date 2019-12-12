@@ -1,4 +1,4 @@
-package by.epam.learn.inclass.domain;
+package by.epam.inclassactivity.domain;
 
 public class Month {
     int number;

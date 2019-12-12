@@ -1,4 +1,4 @@
-package by.epam.learn.inclass.exception;
+package by.epam.inclassactivity.exception;
 
 public class IncorrectParametersException extends Exception {
 }

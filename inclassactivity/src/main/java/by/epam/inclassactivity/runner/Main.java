@@ -1,11 +1,11 @@
-package by.epam.learn.inclass.runner;
+package by.epam.inclassactivity.runner;
 
-import by.epam.learn.inclass.controller.DateCreator;
-import by.epam.learn.inclass.controller.NextDay;
-import by.epam.learn.inclass.exception.IncorrectParametersException;
-import by.epam.learn.inclass.reader.Reader;
-import by.epam.learn.inclass.validator.Validator;
-import by.epam.learn.inclass.domain.Date;
+
+import by.epam.inclassactivity.controller.DateCreator;
+import by.epam.inclassactivity.controller.NextDay;
+import by.epam.inclassactivity.domain.Date;
+import by.epam.inclassactivity.exception.IncorrectParametersException;
+import by.epam.inclassactivity.reader.Reader;
 
 public class Main {
     public static void main(String[] args) {

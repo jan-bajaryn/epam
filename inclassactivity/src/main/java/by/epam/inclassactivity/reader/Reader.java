@@ -1,4 +1,4 @@
-package by.epam.learn.inclass.reader;
+package by.epam.inclassactivity.reader;
 
 import java.util.Scanner;
 

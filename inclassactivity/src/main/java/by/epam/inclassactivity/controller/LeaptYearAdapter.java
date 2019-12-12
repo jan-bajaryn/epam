@@ -1,4 +1,4 @@
-package by.epam.learn.inclass.controller;
+package by.epam.inclassactivity.controller;
 
 public class LeaptYearAdapter {
     public LeaptYearAdapter() {

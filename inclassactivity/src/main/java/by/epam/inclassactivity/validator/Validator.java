@@ -1,7 +1,8 @@
-package by.epam.learn.inclass.validator;
+package by.epam.inclassactivity.validator;
 
-import by.epam.learn.inclass.controller.LeaptYearAdapter;
-import by.epam.learn.inclass.domain.Date;
+
+import by.epam.inclassactivity.controller.LeaptYearAdapter;
+import by.epam.inclassactivity.domain.Date;
 
 public class Validator {
 

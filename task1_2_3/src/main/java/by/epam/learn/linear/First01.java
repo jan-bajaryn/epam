@@ -15,6 +15,8 @@ public class First01 {
         return x * y;
     }
 
+    //может быть проблема с точностью
+    // маленькие цифры могут быть равны
     private double divide(double x, double y) {
         if (y == 0)
             throw new ArithmeticException("division by zero");

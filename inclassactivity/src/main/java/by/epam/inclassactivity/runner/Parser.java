@@ -1,4 +1,4 @@
-package by.epam.learn.inclass.runner;
+package by.epam.inclassactivity.runner;
 
 public class Parser {
     public int[] parseStrArrToIntArr(String [] strArr){

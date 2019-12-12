@@ -1,9 +1,10 @@
-package by.epam.learn.inclass.controller;
+package by.epam.inclassactivity.controller;
 
-import by.epam.learn.inclass.domain.Date;
-import by.epam.learn.inclass.exception.IncorrectParametersException;
-import by.epam.learn.inclass.runner.Parser;
-import by.epam.learn.inclass.validator.Validator;
+
+import by.epam.inclassactivity.domain.Date;
+import by.epam.inclassactivity.exception.IncorrectParametersException;
+import by.epam.inclassactivity.runner.Parser;
+import by.epam.inclassactivity.validator.Validator;
 
 public class DateCreator {
 

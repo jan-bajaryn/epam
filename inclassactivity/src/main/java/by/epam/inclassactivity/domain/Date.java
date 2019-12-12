@@ -1,6 +1,6 @@
-package by.epam.learn.inclass.domain;
+package by.epam.inclassactivity.domain;
 
-import by.epam.learn.inclass.controller.LeaptYearAdapter;
+import by.epam.inclassactivity.controller.LeaptYearAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -14,8 +14,8 @@ public class Fourth40 {
 
     public static void main(String[] args) {
         Fourth40 fourth40 = new Fourth40();
-        System.out.println(fourth40.first(25));
-        System.out.println(fourth40.second(25));
+        System.out.println(fourth40.first(1));
+        System.out.println(fourth40.second(1));
 
     }
 }

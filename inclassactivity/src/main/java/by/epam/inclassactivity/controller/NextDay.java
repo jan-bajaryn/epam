@@ -1,8 +1,7 @@
-package by.epam.learn.inclass.controller;
+package by.epam.inclassactivity.controller;
 
-import by.epam.learn.inclass.domain.Date;
 
-import java.util.Map;
+import by.epam.inclassactivity.domain.Date;
 
 public class NextDay {
     private Date date;
