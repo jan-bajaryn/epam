@@ -3,7 +3,7 @@ package by.epam.inclassactivity.controller;
 
 import by.epam.inclassactivity.domain.Date;
 import by.epam.inclassactivity.exception.IncorrectParametersException;
-import by.epam.inclassactivity.runner.Parser;
+import by.epam.inclassactivity.parser.Parser;
 import by.epam.inclassactivity.validator.Validator;
 
 public class DateCreator {

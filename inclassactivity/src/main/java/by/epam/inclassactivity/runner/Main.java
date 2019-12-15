@@ -17,7 +17,8 @@ public class Main {
         Reader reader = new Reader();
         DateCreator dateCreator = new DateCreator();
 
-        while (true) {
+        boolean isExit = false;
+        while (!isExit) {
             switch (reader.isContinue()) {
                 case "y":
                     String[] input = reader.command();
@@ -34,12 +35,11 @@ public class Main {
                         NextDay nextDay = new NextDay(date1);
                         System.out.println("Next date after that is: " + nextDay.execute());
                     } catch (IncorrectParametersException e) {
-//                        e.printStackTrace();
                         System.out.println("Incorrect input. Try again.");
                     }
                     break;
                 case "n":
-                    System.exit(0);
+                    isExit = true;
                     break;
                 default:
                     System.out.println("Try again.");
