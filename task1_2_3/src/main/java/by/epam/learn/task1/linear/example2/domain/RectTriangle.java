@@ -1,8 +1,16 @@
-package by.epam.learn.task1.linear.example2;
+package by.epam.learn.task1.linear.example2.domain;
 
 public class RectTriangle {
     private double cathet1;
     private double cathet2;
+
+    public double getCathet1() {
+        return cathet1;
+    }
+
+    public double getCathet2() {
+        return cathet2;
+    }
 
     public RectTriangle(double cathet1, double cathet2) {
         this.cathet1 = cathet1;
