@@ -1,7 +1,7 @@
 package by.epam.task2.monthByName.controller;
 
 public enum Season {
-    SPRING("Winter"),
+    SPRING("Spring"),
     SUMMER("Summer"),
     AUTUMN("Autumn"),
     WINTER("Winter"),

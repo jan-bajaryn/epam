@@ -37,7 +37,7 @@ public class Runner {
 
     public static void main(String[] args) throws IllegalInputNumberMonthException {
         Runner runner = new Runner();
-        runner.getSeasonByNum(3);
+        System.out.println(runner.getSeasonByNum(3));
     }
     String getSeasonByNum(int month) throws IllegalInputNumberMonthException {
 //        Season[] values = Season.values();
