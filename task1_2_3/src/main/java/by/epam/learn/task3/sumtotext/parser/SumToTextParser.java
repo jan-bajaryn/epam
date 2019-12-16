@@ -1,5 +1,7 @@
 package by.epam.learn.task3.sumtotext.parser;
 
+import by.epam.learn.task3.sumtotext.exception.IllegalInputSumTextException;
+
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -62,7 +64,13 @@ public class SumToTextParser {
     }
 
 
-    public String parseText(int n) {
+    public String parseText(int n) throws IllegalInputSumTextException {
+
+        if (n > 99_999 || n < 0) {
+            throw new IllegalInputSumTextException();
+        }
+
+
         char[] arr = Integer.toString(n).toCharArray();
         StringBuilder sb = new StringBuilder();
         if (arr.length == 5) {
