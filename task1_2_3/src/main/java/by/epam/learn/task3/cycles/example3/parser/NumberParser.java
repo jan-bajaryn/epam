@@ -1,5 +1,7 @@
 package by.epam.learn.task3.cycles.example3.parser;
 
+import by.epam.learn.task3.cycles.example3.parser.exception.IllegalRomanExpressionException;
+
 import java.util.*;
 
 public class NumberParser {
@@ -16,12 +18,18 @@ public class NumberParser {
         voc.put('M', 1000);
     }
 
-    public int toArabian(String roman) {
+    public int toArabian(String roman) throws IllegalRomanExpressionException {
+
+        if (roman == null) {
+            throw new IllegalRomanExpressionException();
+        }
+
+
         int result = 0;
         char[] arr = roman.toCharArray();
 
         if (!isValid(arr)) {
-            throw new IllegalArgumentException();
+            throw new IllegalRomanExpressionException();
         }
 
         for (int i = 0; i < arr.length; i++) {
@@ -50,7 +58,7 @@ public class NumberParser {
 
     private boolean isValid(char[] arr) {
 
-        if (arr == null || arr.length==0)
+        if (arr == null || arr.length == 0)
             return false;
 
         int prev = arr[0];
