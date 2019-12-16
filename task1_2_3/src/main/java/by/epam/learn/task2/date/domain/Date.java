@@ -42,6 +42,34 @@ public class Date {
         leaptYearAdapter = new LeaptYearAdapter();
     }
 
+    public Date nextDay(Date date) {
+        date.day++;
+        if (date.day > months.get(date.month - 1).getDayCount()) {
+            if (leaptYearAdapter.isLeap(date.year) && date.month == 2) {
+                if (date.day > 29) {
+                    date.day = 1;
+                    nextMonth(date);
+                }
+            } else {
+                date.day = 1;
+                nextMonth(date);
+            }
+        }
+        return date;
+    }
+
+    private void nextMonth(Date date) {
+        date.month++;
+        if (date.month > months.size()) {
+            nextYear(date);
+            date.month = 1;
+        }
+    }
+
+    private void nextYear(Date date) {
+        date.year++;
+    }
+
     public int getYear() {
         return year;
     }
@@ -66,35 +94,6 @@ public class Date {
         this.day = day;
     }
 
-    public Date nextDay(Date date) {
-        date.day++;
-        if (date.day > months.get(date.month - 1).getDayCount()) {
-            if (leaptYearAdapter.isLeap(date.year) && date.month == 2) {
-                if (date.day > 29) {
-                    date.day = 1;
-                    date = nextMonth(date);
-                }
-            } else {
-                date.day = 1;
-                date = nextMonth(date);
-            }
-        }
-        return date;
-    }
-
-    public Date nextMonth(Date date) {
-        date.month++;
-        if (date.month > months.size()) {
-            date = nextYear(date);
-            date.month = 1;
-        }
-        return date;
-    }
-
-    public Date nextYear(Date date) {
-        date.year++;
-        return date;
-    }
 
     @Override
     public String toString() {
@@ -104,4 +103,5 @@ public class Date {
                 ", day=" + day +
                 '}';
     }
+
 }

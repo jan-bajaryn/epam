@@ -10,6 +10,8 @@ public class Runner {
     public static void main(String[] args) {
         NumberParser numberParser = new NumberParser();
         System.out.println(numberParser.toArabian("CCXLIX"));
+        System.out.println(numberParser.toArabian("CCCXXXVII"));
+
 
     }
 }

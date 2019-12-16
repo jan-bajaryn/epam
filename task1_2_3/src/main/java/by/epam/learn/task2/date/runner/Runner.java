@@ -18,8 +18,8 @@ public class Runner {
                 case "y":
                     String[] input = reader.command();
                     try {
-                        Date date1 = dateCreator.createDate(input);
-                        NextDay nextDay = new NextDay(date1);
+                        Date date = dateCreator.createDate(input);
+                        NextDay nextDay = new NextDay(date);
                         System.out.println("Next date after that is: " + nextDay.execute());
                     } catch (IncorrectParametersException e) {
                         System.out.println("Incorrect input. Try again.");
