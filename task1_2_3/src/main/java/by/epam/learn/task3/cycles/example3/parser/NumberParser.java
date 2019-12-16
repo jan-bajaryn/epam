@@ -1,7 +1,6 @@
 package by.epam.learn.task3.cycles.example3.parser;
 
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 public class NumberParser {
 
@@ -19,18 +18,31 @@ public class NumberParser {
 
     public int toArabian(String roman) {
         int result = 0;
-        for (int i = 0; i < roman.length(); i++) {
-//            int current = voc.get(roman.charAt(i));
-            int temp = voc.get(roman.charAt(i));
-            char current = (char) temp;
-            int next = voc.get(roman.charAt(i + 1));
-            if (i < roman.length() - 1 && current < next) {
-                result -= voc.get(current);
+        char[] arr = roman.toCharArray();
+
+        for (int i = 0; i < arr.length; i++) {
+
+            int f = voc.get(arr[i]);
+
+            if (i < arr.length - 1) {
+                int s = voc.get(arr[i + 1]);
+
+                if (f >= s) {
+                    result += f;
+                } else {
+                    result += s;
+                    result -= f;
+                    i++;
+                }
             } else {
-                result += voc.get(current);
+                result += f;
+                i++;
             }
+
         }
+
         return result;
     }
+
 
 }
