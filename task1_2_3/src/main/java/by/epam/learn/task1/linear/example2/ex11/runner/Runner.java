@@ -1,4 +1,4 @@
-package by.epam.learn.task1.linear.example2.ex11.controller;
+package by.epam.learn.task1.linear.example2.ex11.runner;
 
 import by.epam.learn.task1.linear.example2.ex11.creator.RectTriangleCreator;
 import by.epam.learn.task1.linear.example2.ex11.domain.RectTriangle;
