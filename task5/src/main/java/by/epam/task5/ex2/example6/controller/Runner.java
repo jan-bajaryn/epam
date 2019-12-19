@@ -9,7 +9,5 @@ public class Runner {
         numericAxisCommand.execute(arr);
         arr = new int[]{1};
         numericAxisCommand.execute(arr);
-
-
     }
 }
