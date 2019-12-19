@@ -1,4 +1,4 @@
-package by.epam.task5.shiftarr.controller;
+package by.epam.task5.shiftarr.service;
 
 import by.epam.task5.shiftarr.exceptiion.IllegalCountException;
 import by.epam.task5.shiftarr.exceptiion.NullShiftArrayException;
@@ -26,5 +26,4 @@ public class ArrayShifter {
         }
         arr[0] = temp;
     }
-//    4,4,5,3,4,5,3,4,5
 }

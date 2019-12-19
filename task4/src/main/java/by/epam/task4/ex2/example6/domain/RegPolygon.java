@@ -6,6 +6,6 @@ public interface RegPolygon {
     int getNumberSide();
 
     default double square() {
-        return (((getNumberSide() / (double) 4) * (getSide() * 2)) * (1 / Math.tan(Math.PI / getNumberSide())));
+        return (((getNumberSide() /(double) 4) * (getSide() * 2)) * (1 / Math.tan(Math.PI / getNumberSide())));
     }
 }

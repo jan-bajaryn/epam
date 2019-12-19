@@ -11,7 +11,7 @@ public class ArrayFiller {
         if (size < 0)
             throw new IllegalArgumentSizeException();
 
-        if (from>to)
+        if (from > to)
             throw new IllegalInputParameterException();
         Random random = new Random();
         int[] arr = new int[size];

@@ -4,8 +4,9 @@ public class ArrayReverser {
 
     public int[] reverseArr(int[] arr) {
 
-        if (arr == null || arr.length < 1)
+        if (arr == null || arr.length < 1){
             return arr;
+        }
 
         int[] bufArr = new int[arr.length];
 

@@ -4,7 +4,6 @@ import by.epam.task4.ex1.exapmle1.domain.Triangle;
 
 public class SquareTriangle {
     public double square(Triangle triangle) {
-        // S=0,5*[(x1-x3)(y2-y3)-(x2-x3)(y1-y3)].
         double x1 = triangle.getF().getX();
         double x2 = triangle.getS().getX();
         double x3 = triangle.getT().getX();

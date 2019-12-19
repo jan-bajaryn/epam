@@ -7,18 +7,18 @@ import java.util.Arrays;
 public class Runner {
 
     public static void main(String[] args) throws IllegalInputArrayException {
-        int[] arr = {1, 5, 3, 2, 3, 4, 5, 6, 7};
-        selectSort(arr);
+        int[] arr = {1, 5, 3, 2, 3, 4, 5, 6, 7, 2};
+        twoSelectSort(arr);
         System.out.println(Arrays.toString(arr));
         arr = new int[]{1};
-        selectSort(arr);
+        twoSelectSort(arr);
         System.out.println(Arrays.toString(arr));
         arr = new int[]{};
-        selectSort(arr);
+        twoSelectSort(arr);
         System.out.println(Arrays.toString(arr));
     }
 
-    private static void selectSort(int[] arr) throws IllegalInputArrayException {
+    private static void twoSelectSort(int[] arr) throws IllegalInputArrayException {
 
         if (arr == null) {
             throw new IllegalInputArrayException();
@@ -27,8 +27,8 @@ public class Runner {
         int lastIndex = arr.length - 1;
         for (int i = 0; i <= lastIndex; i++) {
             int iMin = i;
-            int iMax = i;
-            for (int j = i + 1; j < arr.length; j++) {
+            int iMax = lastIndex;
+            for (int j = i + 1; j <= lastIndex; j++) {
                 if (arr[j] < arr[iMin]) {
                     iMin = j;
                 }
@@ -36,8 +36,12 @@ public class Runner {
                     iMax = j;
                 }
             }
-            swap(arr, i, iMin);
-            swap(arr, lastIndex, iMax);
+            if (arr[i] != arr[iMin]) {
+                swap(arr, i, iMin);
+            }
+            if (arr[lastIndex] != arr[iMax]) {
+                swap(arr, lastIndex, iMax);
+            }
             lastIndex--;
         }
     }
@@ -47,5 +51,4 @@ public class Runner {
         arr[f] = arr[s];
         arr[s] = temp;
     }
-
 }
