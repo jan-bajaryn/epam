@@ -12,8 +12,7 @@ public class Runner {
                 new SelectSort(),
                 new SelectTwoSideSort(),
                 new ShakerSort(),
-                new MergeSort(),
-                new QuickSort()
+                new MergeSort()
         };
         DisplayTestSortsCommand displayTestSortsCommand = new DisplayTestSortsCommand();
         displayTestSortsCommand.execute(sorts);
