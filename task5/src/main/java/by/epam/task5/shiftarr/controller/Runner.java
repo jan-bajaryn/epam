@@ -1,4 +1,4 @@
-package by.epam.task5.shiftarr.controller.runner;
+package by.epam.task5.shiftarr.controller;
 
 import by.epam.task5.shiftarr.controller.ArrayShifterCommand;
 
