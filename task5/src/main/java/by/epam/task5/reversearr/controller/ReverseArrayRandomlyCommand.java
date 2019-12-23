@@ -1,15 +1,17 @@
-package by.epam.task5.reversearr.service;
+package by.epam.task5.reversearr.controller;
 
 import by.epam.task5.reversearr.exception.IllegalArgumentSizeException;
 import by.epam.task5.reversearr.exception.IllegalInputParameterException;
+import by.epam.task5.reversearr.service.ArrayFiller;
+import by.epam.task5.reversearr.service.ArrayReverser;
 
 import java.util.Arrays;
 
-public class ReverseArrayRandomly {
+public class ReverseArrayRandomlyCommand {
     private ArrayFiller arrayFiller;
     private ArrayReverser arrayReverser;
 
-    public ReverseArrayRandomly() {
+    public ReverseArrayRandomlyCommand() {
         arrayFiller = new ArrayFiller();
         arrayReverser = new ArrayReverser();
     }
