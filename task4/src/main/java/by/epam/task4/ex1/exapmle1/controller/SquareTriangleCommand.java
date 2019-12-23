@@ -2,9 +2,10 @@ package by.epam.task4.ex1.exapmle1.controller;
 
 import by.epam.task4.ex1.exapmle1.creator.PointCreator;
 import by.epam.task4.ex1.exapmle1.creator.TriangleCreator;
-import by.epam.task4.ex1.exapmle1.domain.Point;
-import by.epam.task4.ex1.exapmle1.domain.Triangle;
+import by.epam.task4.ex1.exapmle1.dao.Point;
+import by.epam.task4.ex1.exapmle1.dao.Triangle;
 import by.epam.task4.ex1.exapmle1.exception.IllegalPointsTriangleException;
+import by.epam.task4.ex1.exapmle1.service.SquareTriangle;
 
 public class SquareTriangleCommand {
     SquareTriangle squareTriangle;

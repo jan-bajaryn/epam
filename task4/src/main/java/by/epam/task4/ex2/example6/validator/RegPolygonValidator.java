@@ -1,7 +1,6 @@
 package by.epam.task4.ex2.example6.validator;
 
-import by.epam.task4.ex2.example6.domain.RegHexagon;
-import by.epam.task4.ex2.example6.domain.RegPolygon;
+import by.epam.task4.ex2.example6.dao.RegPolygon;
 
 public class RegPolygonValidator {
     public boolean isValid(RegPolygon regPolygon) {
