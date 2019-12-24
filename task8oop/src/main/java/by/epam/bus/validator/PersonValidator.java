@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 
 public class PersonValidator implements Validator<Person> {
 
-    public static final String REG_VALID = "[А-Яа-я+]";
+    public static final String REG_VALID = "^[a-ЯА-Я]*$";
 
     @Override
     public boolean isValid(Person person) {
@@ -18,14 +18,9 @@ public class PersonValidator implements Validator<Person> {
         String name = person.getName();
         String surname = person.getSurname();
         String fatherName = person.getFatherName();
-//        Pattern pattern = Pattern.compile(REG_VALID, Pattern.UNICODE_CHARACTER_CLASS);
-//        return pattern.matcher(name).matches()
-//                && pattern.matcher(surname).matches()
-//                && pattern.matcher(fatherName).matches();
-
-//        return Pattern.compile(REG_VALID, Pattern.UNICODE_CHARACTER_CLASS).matcher(name).matches()
-//                && Pattern.compile(REG_VALID, Pattern.UNICODE_CHARACTER_CLASS).matcher(surname).matches()
-//                && Pattern.compile(REG_VALID, Pattern.UNICODE_CHARACTER_CLASS).matcher(fatherName).matches();
-        return true;
+        Pattern pattern = Pattern.compile(REG_VALID, Pattern.UNICODE_CASE | Pattern.CASE_INSENSITIVE);
+        return pattern.matcher(name).matches()
+                && pattern.matcher(surname).matches()
+                && pattern.matcher(fatherName).matches();
     }
 }
