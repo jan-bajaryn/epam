@@ -1,7 +1,11 @@
 package by.epam.bus.parser;
 
 import by.epam.bus.dao.Bus;
-import by.epam.bus.exception.IllegalInputException;
+import by.epam.bus.dao.Person;
+import by.epam.bus.factory.BusFactory;
+import by.epam.bus.factory.PersonFactory;
+import by.epam.bus.factory.exception.IllegalBusInputException;
+import by.epam.bus.factory.exception.IllegalPersonParamsException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,37 +13,68 @@ import java.util.List;
 public class BusParser {
 
     public static final String SPLITER = "---";
-    public static final int ATTRIBUTE_COUNT = 6;
-    public static final int SURNAME_NUMBER = 0;
-    public static final int BUS_NUMBER_NUMBER = 1;
-    public static final int TRACK_NUMBER = 2;
-    public static final int STAMP_NUMBER = 3;
-    public static final int BEGIN_YEAR_NUMBER = 4;
-    public static final int MILLAGE_NUMBER = 5;
 
-    public List<Bus> parseBusArray(String[] data) throws IllegalInputException {
+//    public static final int NAME_NUMBER = 0;
+//    public static final int SURNAME_NUMBER = 1;
+//    public static final int FAT_NAME_NUMBER = 2;
+//    public static final int BUS_NUMBER_NUMBER = 3;
+//    public static final int TRACK_NUMBER = 4;
+//    public static final int STAMP_NUMBER = 5;
+//    public static final int BEGIN_YEAR_NUMBER = 6;
+//    public static final int MILLAGE_NUMBER = 7;
+//    public static final int ATTRIBUTE_COUNT = 8;
+
+
+    private PersonFactory personFactory;
+    private BusFactory busFactory;
+
+    public BusParser() {
+        personFactory = new PersonFactory();
+        busFactory = new BusFactory();
+    }
+
+    public List<Bus> parseBusArray(String[] dataArr) throws IllegalInputCountException,
+            IllegalBusInputException,
+            IllegalPersonParamsException {
+
         List<Bus> list = new ArrayList<>();
-        for (String data1 : data) {
-            Bus bus = parseBus(data1);
+        for (String data : dataArr) {
+            Bus bus = stringToBus(data);
             list.add(bus);
         }
         return list;
 
     }
 
-    public Bus parseBus(String data) throws IllegalInputException {
+    public Bus stringToBus(String data) throws IllegalInputCountException, IllegalPersonParamsException, IllegalBusInputException {
         String[] splitData = data.split(SPLITER);
-        if (splitData.length != ATTRIBUTE_COUNT) {
-            throw new IllegalInputException();
+        if (splitData.length != BusParams.values().length) {
+            throw new IllegalInputCountException();
         }
-        String surname = splitData[SURNAME_NUMBER];
-        int busNumber = Integer.parseInt(splitData[BUS_NUMBER_NUMBER]);
-        int trackNumber = Integer.parseInt(splitData[TRACK_NUMBER]);
-        String stamp = splitData[STAMP_NUMBER];
-        int beginYear = Integer.parseInt(splitData[BEGIN_YEAR_NUMBER]);
-        int millage = Integer.parseInt(splitData[MILLAGE_NUMBER]);
+        String name = splitData[BusParams.NAME.getNumber()];
+        String surname = splitData[BusParams.SURNAME.getNumber()];
+        String fatherName = splitData[BusParams.FATHER_NAME.getNumber()];
+        int busNumber = Integer.parseInt(splitData[BusParams.BUS_NUMBER.getNumber()]);
+        int trackNumber = Integer.parseInt(splitData[BusParams.TRACK_NUMBER.getNumber()]);
+        String stamp = splitData[BusParams.STAMP.getNumber()];
+        int beginYear = Integer.parseInt(splitData[BusParams.BEGIN_YEAR.getNumber()]);
+        int millage = Integer.parseInt(splitData[BusParams.MILLAGE.getNumber()]);
 
-        return new Bus(surname, busNumber, trackNumber, stamp, beginYear, millage);
+        Person driver = personFactory.create(name, surname, fatherName);
+        return busFactory.create(driver, busNumber, trackNumber, stamp, beginYear, millage);
+    }
 
+    public String busToString(Bus bus) {
+        return bus.getDriver() +
+                SPLITER +
+                bus.getBusNumber() +
+                SPLITER +
+                bus.getTrackNumber() +
+                SPLITER +
+                bus.getStamp() +
+                SPLITER +
+                bus.getBeginYear() +
+                SPLITER +
+                bus.getMillage();
     }
 }

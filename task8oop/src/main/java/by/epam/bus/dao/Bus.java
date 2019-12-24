@@ -1,15 +1,15 @@
 package by.epam.bus.dao;
 
 public class Bus {
-    private String surname;
+    private Person driver;
     private int busNumber;
     private int trackNumber;
     private String stamp;
     private int beginYear;
     private int millage;
 
-    public Bus(String surname, int busNumber, int trackNumber, String stamp, int beginYear, int millage) {
-        this.surname = surname;
+    public Bus(Person driver, int busNumber, int trackNumber, String stamp, int beginYear, int millage) {
+        this.driver = driver;
         this.busNumber = busNumber;
         this.trackNumber = trackNumber;
         this.stamp = stamp;
@@ -17,12 +17,12 @@ public class Bus {
         this.millage = millage;
     }
 
-    public String getSurname() {
-        return surname;
+    public Person getDriver() {
+        return driver;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setDriver(Person driver) {
+        this.driver = driver;
     }
 
     public int getBusNumber() {
@@ -68,7 +68,7 @@ public class Bus {
     @Override
     public String toString() {
         return "Bus{" +
-                "surname='" + surname + '\'' +
+                "driver=" + driver +
                 ", busNumber=" + busNumber +
                 ", trackNumber=" + trackNumber +
                 ", stamp='" + stamp + '\'' +
