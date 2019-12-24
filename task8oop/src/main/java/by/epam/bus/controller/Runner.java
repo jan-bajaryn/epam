@@ -10,6 +10,6 @@ public class Runner {
         BusReaderCommandd busReaderCommandd = new BusReaderCommandd();
         List<Bus> buses = busReaderCommandd.execute();
         BusStation busStation = new BusStation(buses);
-        busStation.printBusList();
+        System.out.println(busStation.retBusesForPrint());
     }
 }

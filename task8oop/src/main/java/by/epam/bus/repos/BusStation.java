@@ -11,11 +11,13 @@ public class BusStation {
         this.busList = busList;
     }
 
-    public void printBusList() {
+    public String retBusesForPrint() {
+        StringBuilder sb = new StringBuilder();
         for (Bus bus : busList) {
-            System.out.println(bus);
+            sb.append(bus.toString());
+            sb.append("\n");
         }
-
+        return sb.toString();
     }
 
 }
