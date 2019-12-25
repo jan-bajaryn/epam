@@ -1,7 +1,9 @@
 package by.epam.bus.parser;
 
 import by.epam.bus.dao.Bus;
+import by.epam.bus.dao.BusParams;
 import by.epam.bus.dao.Person;
+import by.epam.bus.dao.PersonParams;
 import by.epam.bus.factory.BusFactory;
 import by.epam.bus.factory.PersonFactory;
 import by.epam.bus.factory.exception.IllegalBusInputException;
@@ -48,12 +50,15 @@ public class BusParser {
 
     public Bus stringToBus(String data) throws IllegalInputCountException, IllegalPersonParamsException, IllegalBusInputException {
         String[] splitData = data.split(SPLITER);
-        if (splitData.length != BusParams.values().length) {
+        if (splitData.length != BusParams.values().length + PersonParams.values().length) {
             throw new IllegalInputCountException();
         }
-        String name = splitData[BusParams.NAME.getNumber()];
-        String surname = splitData[BusParams.SURNAME.getNumber()];
-        String fatherName = splitData[BusParams.FATHER_NAME.getNumber()];
+
+        String name = splitData[PersonParams.NAME.getNumber()];
+        String surname = splitData[PersonParams.SURNAME.getNumber()];
+        String fatherName = splitData[PersonParams.FATHER_NAME.getNumber()];
+
+
         int busNumber = Integer.parseInt(splitData[BusParams.BUS_NUMBER.getNumber()]);
         int trackNumber = Integer.parseInt(splitData[BusParams.TRACK_NUMBER.getNumber()]);
         String stamp = splitData[BusParams.STAMP.getNumber()];

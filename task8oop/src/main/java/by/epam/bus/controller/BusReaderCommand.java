@@ -11,11 +11,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BusReaderCommandd {
+public class BusReaderCommand {
     private BusReader busReader;
     private BusParser busParser;
 
-    public BusReaderCommandd() {
+    public BusReaderCommand() {
         busReader = new BusReader();
         busParser = new BusParser();
     }
