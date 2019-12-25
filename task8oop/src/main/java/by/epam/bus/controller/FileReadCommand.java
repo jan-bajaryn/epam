@@ -29,9 +29,11 @@ public class FileReadCommand {
 
 
             List<Bus> buses = busReaderCommand.execute();
-            BusStation busStation = new BusStation(buses);
-            if (buses.isEmpty()){
-                isDone=true;
+//            BusStation busStation = new BusStation(buses);
+            BusStation busStation = BusStation.getInstance();
+            busStation.setBase(buses);
+            if (buses.isEmpty()) {
+                isDone = true;
             } else {
                 chooseOperations.execute(busStation);
             }

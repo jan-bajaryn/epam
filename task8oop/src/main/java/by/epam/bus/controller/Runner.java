@@ -9,7 +9,9 @@ public class Runner {
     public static void main(String[] args) {
         BusReaderCommand busReaderCommand = new BusReaderCommand();
         List<Bus> buses = busReaderCommand.execute();
-        BusStation busStation = new BusStation(buses);
+//        BusStation busStation = new BusStation(buses);
+        BusStation busStation = BusStation.getInstance();
+        busStation.setBase(buses);
         System.out.println(busStation.retBusesForPrint());
     }
 }

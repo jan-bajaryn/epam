@@ -11,9 +11,20 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class BusStation {
-    List<Bus> busList;
 
-    public BusStation(List<Bus> busList) {
+    private static BusStation busStation;
+
+    static {
+        busStation = new BusStation(new ArrayList<>());
+    }
+
+    public static BusStation getInstance() {
+        return busStation;
+    }
+
+    private List<Bus> busList;
+
+    private BusStation(List<Bus> busList) {
         this.busList = busList;
     }
 
@@ -63,6 +74,14 @@ public class BusStation {
                 .filter(bus -> driver.equals(bus.getDriver()))
                 .collect(Collectors.toList());
 
+    }
+
+    public void removeAll() {
+        busList = new ArrayList<>();
+    }
+
+    public void setBase(List<Bus> busList) {
+        this.busList = busList;
     }
 
 }
