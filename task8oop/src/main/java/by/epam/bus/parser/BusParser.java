@@ -1,13 +1,14 @@
 package by.epam.bus.parser;
 
-import by.epam.bus.dao.Bus;
+import by.epam.bus.entity.Bus;
 import by.epam.bus.dao.BusParams;
-import by.epam.bus.dao.Person;
+import by.epam.bus.entity.Person;
 import by.epam.bus.dao.PersonParams;
 import by.epam.bus.factory.BusFactory;
 import by.epam.bus.factory.PersonFactory;
 import by.epam.bus.factory.exception.IllegalBusInputException;
 import by.epam.bus.factory.exception.IllegalPersonParamsException;
+import by.epam.bus.parser.exception.IllegalInputCountException;
 
 import java.util.ArrayList;
 import java.util.List;

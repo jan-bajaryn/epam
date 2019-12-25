@@ -1,7 +1,6 @@
 package by.epam.bus.controller;
 
-import by.epam.bus.reader.CommandsConsoleReader;
-import by.epam.bus.view.BusListPrinter;
+import by.epam.bus.dao.reader.CommandsConsoleReader;
 import by.epam.bus.view.ConsolePrinter;
 
 import java.util.Scanner;

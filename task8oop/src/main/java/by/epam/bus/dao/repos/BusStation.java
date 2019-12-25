@@ -1,9 +1,9 @@
-package by.epam.bus.repos;
+package by.epam.bus.dao.repos;
 
-import by.epam.bus.dao.Bus;
-import by.epam.bus.dao.Person;
-import by.epam.bus.repos.exception.IllegalMillageInputException;
-import by.epam.bus.repos.exception.IllegalYearCountInputException;
+import by.epam.bus.entity.Bus;
+import by.epam.bus.entity.Person;
+import by.epam.bus.dao.repos.exception.IllegalMillageInputException;
+import by.epam.bus.dao.repos.exception.IllegalYearCountInputException;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

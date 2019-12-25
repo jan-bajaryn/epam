@@ -1,4 +1,4 @@
-package by.epam.bus.repos.exception;
+package by.epam.bus.dao.repos.exception;
 
 public class IllegalYearCountInputException extends Exception {
     public IllegalYearCountInputException() {

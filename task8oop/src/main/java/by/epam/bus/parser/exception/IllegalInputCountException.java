@@ -1,4 +1,4 @@
-package by.epam.bus.parser;
+package by.epam.bus.parser.exception;
 
 public class IllegalInputCountException extends Exception {
     public IllegalInputCountException() {

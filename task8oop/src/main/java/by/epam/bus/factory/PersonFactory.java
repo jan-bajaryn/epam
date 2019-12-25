@@ -1,6 +1,6 @@
 package by.epam.bus.factory;
 
-import by.epam.bus.dao.Person;
+import by.epam.bus.entity.Person;
 import by.epam.bus.factory.exception.IllegalPersonParamsException;
 import by.epam.bus.validator.PersonValidator;
 

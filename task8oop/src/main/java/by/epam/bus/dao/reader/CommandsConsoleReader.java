@@ -1,4 +1,4 @@
-package by.epam.bus.reader;
+package by.epam.bus.dao.reader;
 
 import java.util.Scanner;
 
@@ -36,6 +36,26 @@ public class CommandsConsoleReader {
         System.out.println("Get Buses that have more millage years than input: " + MORE_MILLAGE);
         System.out.println("Get Buses by driver with so name, surname and father name: " + DRIVER);
         System.out.println("Exit: " + EXIT);
+        return sc.nextLine();
+    }
+
+    public String busesByTrack() {
+        System.out.println("Write track number.");
+        return sc.nextLine();
+    }
+
+    public String readFileName() {
+        System.out.println("Write fileName.");
+        return sc.nextLine();
+    }
+
+    public String moreExpluitation() {
+        System.out.println("Write year number.");
+        return sc.nextLine();
+    }
+
+    public String moreMillage() {
+        System.out.println("Write millage count.");
         return sc.nextLine();
     }
 }

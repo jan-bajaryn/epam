@@ -1,7 +1,7 @@
 package by.epam.bus.validator;
 
 
-import by.epam.bus.dao.Bus;
+import by.epam.bus.entity.Bus;
 
 public class BusValidator implements Validator<Bus> {
 

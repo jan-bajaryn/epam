@@ -1,4 +1,4 @@
-package by.epam.bus.reader;
+package by.epam.bus.dao.reader;
 
 import java.io.IOException;
 import java.nio.file.Files;

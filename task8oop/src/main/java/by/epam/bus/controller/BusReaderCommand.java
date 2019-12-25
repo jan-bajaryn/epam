@@ -1,11 +1,11 @@
 package by.epam.bus.controller;
 
-import by.epam.bus.dao.Bus;
+import by.epam.bus.entity.Bus;
 import by.epam.bus.factory.exception.IllegalBusInputException;
 import by.epam.bus.factory.exception.IllegalPersonParamsException;
-import by.epam.bus.parser.IllegalInputCountException;
+import by.epam.bus.parser.exception.IllegalInputCountException;
 import by.epam.bus.parser.BusParser;
-import by.epam.bus.reader.BusReader;
+import by.epam.bus.dao.reader.BusReader;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,16 +20,18 @@ public class BusReaderCommand {
         busParser = new BusParser();
     }
 
-    public List<Bus> execute() {
+    public List<Bus> execute(String fileName) {
         try {
-            String[] strings = busReader.readBusesLines("buses.txt");
+            String[] strings = busReader.readBusesLines(fileName);
             return busParser.parseBusArray(strings);
-        } catch (IOException | IllegalInputCountException e) {
-            e.printStackTrace();
+        } catch (IOException e) {
+            System.out.println("No such file found.");
+        } catch (IllegalInputCountException e) {
+            System.out.println("Error in line signature.");
         } catch (IllegalBusInputException e) {
-            e.printStackTrace();
+            System.out.println("Wrong parameters for bus");
         } catch (IllegalPersonParamsException e) {
-            e.printStackTrace();
+            System.out.println("Wrong parameters for person");
         }
         return new ArrayList<>();
     }

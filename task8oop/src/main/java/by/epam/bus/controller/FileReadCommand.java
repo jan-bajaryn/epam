@@ -1,8 +1,8 @@
 package by.epam.bus.controller;
 
-import by.epam.bus.dao.Bus;
-import by.epam.bus.reader.CommandsConsoleReader;
-import by.epam.bus.repos.BusStation;
+import by.epam.bus.entity.Bus;
+import by.epam.bus.dao.reader.CommandsConsoleReader;
+import by.epam.bus.dao.repos.BusStation;
 import by.epam.bus.view.ConsolePrinter;
 
 import java.util.List;
@@ -21,24 +21,13 @@ public class FileReadCommand {
     }
 
     public void execute() {
-        boolean isDone = false;
+        String fileName = commandsConsoleReader.queryFileName();
 
-        while (!isDone) {
-
-            String fileName = commandsConsoleReader.chooseCommandBegin();
-
-
-            List<Bus> buses = busReaderCommand.execute();
-//            BusStation busStation = new BusStation(buses);
-            BusStation busStation = BusStation.getInstance();
-            busStation.setBase(buses);
-            if (buses.isEmpty()) {
-                isDone = true;
-            } else {
-                chooseOperations.execute(busStation);
-            }
-
-
+        List<Bus> buses = busReaderCommand.execute(fileName);
+        BusStation busStation = BusStation.getInstance();
+        busStation.setBase(buses);
+        if (!buses.isEmpty()) {
+            chooseOperations.execute(busStation);
         }
     }
 }

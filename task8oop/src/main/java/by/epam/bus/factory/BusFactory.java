@@ -1,7 +1,7 @@
 package by.epam.bus.factory;
 
-import by.epam.bus.dao.Bus;
-import by.epam.bus.dao.Person;
+import by.epam.bus.entity.Bus;
+import by.epam.bus.entity.Person;
 import by.epam.bus.factory.exception.IllegalBusInputException;
 import by.epam.bus.validator.BusValidator;
 

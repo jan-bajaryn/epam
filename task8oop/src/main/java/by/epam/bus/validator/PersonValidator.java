@@ -1,6 +1,6 @@
 package by.epam.bus.validator;
 
-import by.epam.bus.dao.Person;
+import by.epam.bus.entity.Person;
 
 import java.util.regex.Pattern;
 

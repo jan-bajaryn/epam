@@ -1,4 +1,4 @@
-package by.epam.bus.dao;
+package by.epam.bus.entity;
 
 public class Person {
     private String name;

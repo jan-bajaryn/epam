@@ -1,8 +1,8 @@
 package by.epam.bus.view;
 
-import by.epam.bus.dao.Bus;
+import by.epam.bus.entity.Bus;
 import by.epam.bus.dao.BusParams;
-import by.epam.bus.dao.Person;
+import by.epam.bus.entity.Person;
 import by.epam.bus.dao.PersonParams;
 
 import java.io.IOException;
@@ -37,6 +37,16 @@ public class BusListPrinter {
         sb.append("\n");
         sb.append(postfixMessage);
         Files.write(Paths.get(fileName), sb.toString().getBytes());
+    }
+
+    public void printToFile(List<Bus> list, String fileName, Person person, String prefixMessage, String postfixMessage) throws IOException {
+
+        StringBuilder sb = new StringBuilder(prefixMessage);
+        sb.append(PersonParams.NAME.getTitle()).append(": ").append(person.getName()).append("\n");
+        sb.append(PersonParams.SURNAME.getTitle()).append(": ").append(person.getSurname()).append("\n");
+        sb.append(PersonParams.FATHER_NAME.getTitle()).append(": ").append(person.getFatherName()).append("\n");
+        sb.append(":\n");
+        printToFile(list, fileName, sb.toString(), postfixMessage);
     }
 
 }
