@@ -1,8 +1,14 @@
 package by.epam.bus.repos;
 
 import by.epam.bus.dao.Bus;
+import by.epam.bus.dao.Person;
+import by.epam.bus.repos.exception.IllegalMillageInputException;
+import by.epam.bus.repos.exception.IllegalYearCountInputException;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class BusStation {
     List<Bus> busList;
@@ -18,6 +24,45 @@ public class BusStation {
             sb.append("\n");
         }
         return sb.toString();
+    }
+
+    public List<Bus> busesByTrackNumber(int track) {
+        return busList.stream()
+                .filter(bus -> bus.getTrackNumber() == track)
+                .collect(Collectors.toList());
+    }
+
+    public List<Bus> busesMoreExploitation(int yearCount) throws IllegalYearCountInputException {
+
+        if (yearCount < 0) {
+            throw new IllegalYearCountInputException();
+        }
+
+        final LocalDate localDate = LocalDate.now();
+        return busList.stream()
+                .filter(bus -> bus.getBeginYear() + yearCount > localDate.getYear())
+                .collect(Collectors.toList());
+    }
+
+    public List<Bus> busesMoreMillage(int millage) throws IllegalMillageInputException {
+        if (millage < 0) {
+            throw new IllegalMillageInputException();
+        }
+
+        return busList.stream()
+                .filter(bus -> bus.getMillage() > millage)
+                .collect(Collectors.toList());
+
+    }
+
+    public List<Bus> busesByDriver(Person driver) {
+        if (driver == null) {
+            return new ArrayList<>();
+        }
+        return busList.stream()
+                .filter(bus -> driver.equals(bus.getDriver()))
+                .collect(Collectors.toList());
+
     }
 
 }

@@ -37,6 +37,26 @@ public class Person {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Person person = (Person) o;
+
+        if (name != null ? !name.equals(person.name) : person.name != null) return false;
+        if (surname != null ? !surname.equals(person.surname) : person.surname != null) return false;
+        return fatherName != null ? fatherName.equals(person.fatherName) : person.fatherName == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name != null ? name.hashCode() : 0;
+        result = 31 * result + (surname != null ? surname.hashCode() : 0);
+        result = 31 * result + (fatherName != null ? fatherName.hashCode() : 0);
+        return result;
+    }
+
+    @Override
     public String toString() {
         return "Person{" +
                 "name='" + name + '\'' +
