@@ -13,20 +13,18 @@ import by.epam.bus.parser.exception.IllegalFormatIntegerException;
 import by.epam.bus.view.BusListPrinter;
 import by.epam.bus.view.ConsolePrinter;
 
-import java.io.IOException;
 import java.util.List;
 
 public class ChooseOperations {
     private CommandsConsoleReader commandsConsoleReader;
     private ConsolePrinter consolePrinter;
-    private BusListPrinter busListPrinter;
     private TrackBusParser trackBusParser;
     private PersonConsoleReader personConsoleReader;
+    private BusSaverCommand busSaverCommand = new BusSaverCommand();
 
     public ChooseOperations() {
         commandsConsoleReader = new CommandsConsoleReader();
         consolePrinter = new ConsolePrinter();
-        busListPrinter = new BusListPrinter();
         trackBusParser = new TrackBusParser();
         personConsoleReader = new PersonConsoleReader();
     }
@@ -43,10 +41,7 @@ public class ChooseOperations {
                         String trackSt = commandsConsoleReader.busesByTrack();
                         int track = trackBusParser.parseTrackValue(trackSt);
                         List<Bus> buses = busStation.busesByTrackNumber(track);
-                        String fileName = commandsConsoleReader.readFileName();
-                        busListPrinter.printToFile(buses, fileName, "Список автобусов по маршруту :" + track, "");
-                    } catch (IOException e) {
-                        System.out.println("Illegal format for the file");
+                        busSaverCommand.write(buses, "Список автобусов по маршруту :" + track, "", null);
                     } catch (IllegalFormatIntegerException e) {
                         System.out.println("Illegal input integer.");
                     }
@@ -56,11 +51,8 @@ public class ChooseOperations {
                         String yearSt = commandsConsoleReader.moreExpluitation();
                         int year = trackBusParser.parseYear(yearSt);
                         List<Bus> buses = busStation.busesMoreExploitation(year);
-                        String fileName = commandsConsoleReader.readFileName();
-                        busListPrinter.printToFile(buses, fileName,
-                                "Список автобусов привысивших  :" + year + " лет экспуотации", "");
-                    } catch (IOException e) {
-                        System.out.println("Illegal format for the file");
+                        busSaverCommand.write(buses, "Список автобусов привысивших  :" + year + " лет экспуотации",
+                                "", null);
                     } catch (IllegalFormatIntegerException e) {
                         System.out.println("Illegal input integer.");
                     } catch (IllegalYearCountInputException e) {
@@ -72,11 +64,8 @@ public class ChooseOperations {
                         String millageSt = commandsConsoleReader.moreMillage();
                         int millage = trackBusParser.parseMillage(millageSt);
                         List<Bus> buses = busStation.busesMoreMillage(millage);
-                        String fileName = commandsConsoleReader.readFileName();
-                        busListPrinter.printToFile(buses, fileName,
-                                "Список автобусов пробег :" + millage, "");
-                    } catch (IOException e) {
-                        System.out.println("Illegal format for the file");
+                        busSaverCommand.write(buses, "Список автобусов пробег которых выше: " + millage,
+                                "", null);
                     } catch (IllegalFormatIntegerException e) {
                         System.out.println("Illegal input integer.");
                     } catch (IllegalMillageInputException e) {
@@ -86,17 +75,15 @@ public class ChooseOperations {
                 case CommandsConsoleReader.DRIVER:
                     try {
                         Person driver = personConsoleReader.readPerson();
-
                         List<Bus> buses = busStation.busesByDriver(driver);
-                        String fileName = commandsConsoleReader.readFileName();
-                        busListPrinter.printToFile(buses, fileName, driver,
-                                "Список автобусов с водителем: \n", "");
-                    } catch (IOException e) {
-                        System.out.println("Illegal format for the file");
+                        busSaverCommand.write(buses, "Список автобусов с водителем: \n",
+                                "", driver);
+
                     } catch (IllegalPersonParamsException e) {
                         System.out.println("Incorrect input for driver parameters.");
                     }
                     break;
+
                 case CommandsConsoleReader.EXIT:
                     isDone = true;
                     break;

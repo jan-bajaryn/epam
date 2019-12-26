@@ -10,6 +10,9 @@ public class CommandsConsoleReader {
     public static final String MORE_EXPLOITATION = "ME";
     public static final String MORE_MILLAGE = "M";
     public static final String DRIVER = "D";
+    public static final String GENERATE_COLLECTION = "G";
+    public static final String FROM_FILE = "F";
+    public static final String YES = "Y";
 
     private Scanner sc;
 
@@ -56,6 +59,25 @@ public class CommandsConsoleReader {
 
     public String moreMillage() {
         System.out.println("Write millage count.");
+        return sc.nextLine();
+    }
+
+    public String readFileChoose() {
+        System.out.println("Choose variant:");
+        System.out.println("You want to generate random buses - " + GENERATE_COLLECTION);
+        System.out.println("You want to choose input file - " + FROM_FILE);
+        return sc.nextLine();
+    }
+
+    public String chooseSizeGenerate() {
+        System.out.println("Choose size to generate.");
+        return sc.nextLine();
+    }
+
+    public String writeEditable() {
+        System.out.println("Do you want to write editable version to file?");
+        System.out.println("yes - " + YES);
+        System.out.println("other - anything");
         return sc.nextLine();
     }
 }

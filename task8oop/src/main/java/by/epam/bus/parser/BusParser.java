@@ -70,8 +70,14 @@ public class BusParser {
         return busFactory.create(driver, busNumber, trackNumber, stamp, beginYear, millage);
     }
 
+    public String[] busesToStringArr(List<Bus> list) {
+        return list.stream()
+                .map(this::busToString)
+                .toArray(String[]::new);
+    }
+
     public String busToString(Bus bus) {
-        return bus.getDriver() +
+        return personToString(bus.getDriver()) +
                 SPLITER +
                 bus.getBusNumber() +
                 SPLITER +
@@ -82,5 +88,13 @@ public class BusParser {
                 bus.getBeginYear() +
                 SPLITER +
                 bus.getMillage();
+    }
+
+    public String personToString(Person person) {
+        return person.getName() +
+                SPLITER +
+                person.getSurname() +
+                SPLITER +
+                person.getFatherName();
     }
 }

@@ -7,13 +7,11 @@ import java.util.Scanner;
 
 public class BeginOperations {
     private CommandsConsoleReader commandsConsoleReader;
-    private Scanner sc;
     private ConsolePrinter consolePrinter;
     private FileReadCommand fileReadCommand;
 
     public BeginOperations() {
         commandsConsoleReader = new CommandsConsoleReader();
-        sc = new Scanner(System.in);
         consolePrinter = new ConsolePrinter();
         fileReadCommand = new FileReadCommand();
     }

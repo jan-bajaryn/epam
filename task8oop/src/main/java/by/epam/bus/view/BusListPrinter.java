@@ -4,13 +4,22 @@ import by.epam.bus.entity.Bus;
 import by.epam.bus.dao.BusParams;
 import by.epam.bus.entity.Person;
 import by.epam.bus.dao.PersonParams;
+import by.epam.bus.parser.BusParser;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 public class BusListPrinter {
+
+    private BusParser busParser;
+
+    public BusListPrinter() {
+        busParser = new BusParser();
+    }
 
     public void printToFile(List<Bus> list, String fileName, String prefixMessage, String postfixMessage) throws IOException {
 
@@ -49,4 +58,13 @@ public class BusListPrinter {
         printToFile(list, fileName, sb.toString(), postfixMessage);
     }
 
+    public void printEditable(List<Bus> buses, String fileName) throws IOException {
+        Optional<String> reduce = Arrays.stream(busParser.busesToStringArr(buses))
+                .reduce((s, str) -> s.concat("\n").concat(str));
+        if (reduce.isPresent()) {
+
+            String s = reduce.get();
+            Files.write(Paths.get(fileName), s.getBytes());
+        }
+    }
 }
