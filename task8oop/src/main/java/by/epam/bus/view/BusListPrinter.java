@@ -1,9 +1,9 @@
 package by.epam.bus.view;
 
-import by.epam.bus.entity.Bus;
 import by.epam.bus.dao.BusParams;
-import by.epam.bus.entity.Person;
 import by.epam.bus.dao.PersonParams;
+import by.epam.bus.entity.Bus;
+import by.epam.bus.entity.Person;
 import by.epam.bus.parser.BusParser;
 
 import java.io.IOException;
@@ -15,11 +15,7 @@ import java.util.Optional;
 
 public class BusListPrinter {
 
-    private BusParser busParser;
-
-    public BusListPrinter() {
-        busParser = new BusParser();
-    }
+    private BusParser busParser = new BusParser();
 
     public void printToFile(List<Bus> list, String fileName, String prefixMessage, String postfixMessage) throws IOException {
 

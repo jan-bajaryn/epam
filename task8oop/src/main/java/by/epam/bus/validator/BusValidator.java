@@ -5,11 +5,7 @@ import by.epam.bus.entity.Bus;
 
 public class BusValidator implements Validator<Bus> {
 
-    private PersonValidator personValidator;
-
-    public BusValidator() {
-        personValidator = new PersonValidator();
-    }
+    private PersonValidator personValidator = new PersonValidator();
 
     @Override
     public boolean isValid(Bus bus) {

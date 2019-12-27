@@ -25,14 +25,9 @@ public class RandomBusGenerator {
     public static final int BEGIN_YEAR_MIN = 1960;
     public static final int MILLAGE_MAX = 40;
 
-    private PersonGenerator personGenerator;
+    private PersonGenerator personGenerator = new PersonGenerator();
 
-    private BusFactory busFactory;
-
-    public RandomBusGenerator() {
-        busFactory = new BusFactory();
-        personGenerator = new PersonGenerator();
-    }
+    private BusFactory busFactory = new BusFactory();
 
     public List<Bus> generate(int size) throws IOException, IllegalPersonParamsException, IllegalBusInputException {
         if (size < 1) {

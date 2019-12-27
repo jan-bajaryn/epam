@@ -22,7 +22,7 @@ public class BusSaverCommand {
             switch (busSaverReader.readCommand()) {
                 case BusSaverReader.EDITABLE:
                     try {
-                        String fileName = commandsConsoleReader.readFileName();
+                        String fileName = commandsConsoleReader.readFileNameToWrite();
                         busListPrinter.printEditable(list, fileName);
                         isDone = true;
                     } catch (IOException e) {
@@ -31,7 +31,7 @@ public class BusSaverCommand {
                     break;
                 case BusSaverReader.READABLE:
                     try {
-                        String fileName = commandsConsoleReader.readFileName();
+                        String fileName = commandsConsoleReader.readFileNameToWrite();
                         if (person != null) {
                             busListPrinter.printToFile(list, fileName, person, prefix, postfix);
                         } else {

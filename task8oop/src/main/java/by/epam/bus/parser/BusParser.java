@@ -17,24 +17,10 @@ public class BusParser {
 
     public static final String SPLITER = "---";
 
-//    public static final int NAME_NUMBER = 0;
-//    public static final int SURNAME_NUMBER = 1;
-//    public static final int FAT_NAME_NUMBER = 2;
-//    public static final int BUS_NUMBER_NUMBER = 3;
-//    public static final int TRACK_NUMBER = 4;
-//    public static final int STAMP_NUMBER = 5;
-//    public static final int BEGIN_YEAR_NUMBER = 6;
-//    public static final int MILLAGE_NUMBER = 7;
-//    public static final int ATTRIBUTE_COUNT = 8;
 
+    private PersonFactory personFactory = new PersonFactory();
+    private BusFactory busFactory = new BusFactory();
 
-    private PersonFactory personFactory;
-    private BusFactory busFactory;
-
-    public BusParser() {
-        personFactory = new PersonFactory();
-        busFactory = new BusFactory();
-    }
 
     public List<Bus> parseBusArray(String[] dataArr) throws IllegalInputCountException,
             IllegalBusInputException,

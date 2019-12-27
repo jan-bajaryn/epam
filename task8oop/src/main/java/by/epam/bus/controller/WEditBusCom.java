@@ -6,24 +6,21 @@ import by.epam.bus.view.BusListPrinter;
 
 import java.io.IOException;
 import java.util.List;
+import static java.lang.System.out;
 
 public class WEditBusCom {
-    private CommandsConsoleReader commandsConsoleReader;
-    private BusListPrinter busListPrinter;
+    private CommandsConsoleReader commandsConsoleReader = new CommandsConsoleReader();
+    private BusListPrinter busListPrinter = new BusListPrinter();
 
-    public WEditBusCom() {
-        commandsConsoleReader = new CommandsConsoleReader();
-        busListPrinter = new BusListPrinter();
-    }
 
     public void execute(List<Bus> buses) {
         String answer = commandsConsoleReader.writeEditable();
         if (CommandsConsoleReader.YES.equals(answer)) {
-            String fileName = commandsConsoleReader.readFileName();
+            String fileName = commandsConsoleReader.readFileNameToWrite();
             try {
                 busListPrinter.printEditable(buses, fileName);
             } catch (IOException e) {
-                System.out.println("Wrong name to file in input.");
+                out.println("Wrong name to file in input.");
             }
         }
     }

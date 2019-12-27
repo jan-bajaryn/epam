@@ -7,11 +7,8 @@ import by.epam.bus.validator.BusValidator;
 
 public class BusFactory {
 
-    private BusValidator busValidator;
+    private BusValidator busValidator = new BusValidator();
 
-    public BusFactory() {
-        busValidator = new BusValidator();
-    }
 
     public Bus create(Person driver,
                       int busNumber,
@@ -20,7 +17,7 @@ public class BusFactory {
                       int beginYear,
                       int millage) throws IllegalBusInputException {
         Bus bus = new Bus(driver, busNumber, trackNumber, stamp, beginYear, millage);
-        if (busValidator.isValid(bus)){
+        if (busValidator.isValid(bus)) {
             return bus;
         } else {
             throw new IllegalBusInputException();

@@ -6,11 +6,7 @@ import by.epam.bus.validator.PersonValidator;
 
 public class PersonFactory {
 
-    private PersonValidator personValidator;
-
-    public PersonFactory() {
-        personValidator = new PersonValidator();
-    }
+    private PersonValidator personValidator=new PersonValidator();
 
     public Person create(String name, String surname, String fatherName) throws IllegalPersonParamsException {
         Person person = new Person(name, surname, fatherName);

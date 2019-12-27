@@ -8,21 +8,16 @@ import by.epam.bus.factory.exception.IllegalPersonParamsException;
 import by.epam.bus.parser.SizeParser;
 import by.epam.bus.parser.exception.IllegalFormatIntegerException;
 import by.epam.bus.service.RandomBusGenerator;
-import by.epam.bus.view.ConsolePrinter;
 
+import static java.lang.System.out;
 import java.io.IOException;
 import java.util.List;
 
 public class FileReadCommand {
-    private CommandsConsoleReader commandsConsoleReader;
-    private BusReaderCommand busReaderCommand;
-    private ChooseOperations chooseOperations;
+    private CommandsConsoleReader commandsConsoleReader = new CommandsConsoleReader();
+    private BusReaderCommand busReaderCommand = new BusReaderCommand();
+    private ChooseOperations chooseOperations = new ChooseOperations();
 
-    public FileReadCommand() {
-        commandsConsoleReader = new CommandsConsoleReader();
-        busReaderCommand = new BusReaderCommand();
-        chooseOperations = new ChooseOperations();
-    }
 
     public void execute() {
         String choose = commandsConsoleReader.readFileChoose();
@@ -44,13 +39,13 @@ public class FileReadCommand {
                         chooseOperations.execute(busStation);
                     }
                 } catch (IllegalFormatIntegerException e) {
-                    System.out.println("Format of size in the input is incorrect.");
+                    out.println("Format of size in the input is incorrect.");
                 } catch (IOException e) {
-                    System.out.println("Problems in reading files.");
+                    out.println("Problems in reading files.");
                 } catch (IllegalBusInputException e) {
-                    System.out.println("Illegal arguments in bus files.");
+                    out.println("Illegal arguments in bus files.");
                 } catch (IllegalPersonParamsException e) {
-                    System.out.println("Illegal arguments in person files.");
+                    out.println("Illegal arguments in person files.");
                 }
                 break;
             case CommandsConsoleReader.FROM_FILE:

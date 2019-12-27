@@ -10,24 +10,18 @@ import by.epam.bus.entity.Person;
 import by.epam.bus.factory.exception.IllegalPersonParamsException;
 import by.epam.bus.parser.TrackBusParser;
 import by.epam.bus.parser.exception.IllegalFormatIntegerException;
-import by.epam.bus.view.BusListPrinter;
 import by.epam.bus.view.ConsolePrinter;
+import static java.lang.System.out;
 
 import java.util.List;
 
 public class ChooseOperations {
-    private CommandsConsoleReader commandsConsoleReader;
-    private ConsolePrinter consolePrinter;
-    private TrackBusParser trackBusParser;
-    private PersonConsoleReader personConsoleReader;
+    private CommandsConsoleReader commandsConsoleReader = new CommandsConsoleReader();
+    private ConsolePrinter consolePrinter = new ConsolePrinter();
+    private TrackBusParser trackBusParser = new TrackBusParser();
+    private PersonConsoleReader personConsoleReader = new PersonConsoleReader();
     private BusSaverCommand busSaverCommand = new BusSaverCommand();
 
-    public ChooseOperations() {
-        commandsConsoleReader = new CommandsConsoleReader();
-        consolePrinter = new ConsolePrinter();
-        trackBusParser = new TrackBusParser();
-        personConsoleReader = new PersonConsoleReader();
-    }
 
     public void execute(BusStation busStation) {
         boolean isDone = false;
@@ -43,7 +37,7 @@ public class ChooseOperations {
                         List<Bus> buses = busStation.busesByTrackNumber(track);
                         busSaverCommand.write(buses, "Список автобусов по маршруту :" + track, "", null);
                     } catch (IllegalFormatIntegerException e) {
-                        System.out.println("Illegal input integer.");
+                        out.println("Illegal input integer.");
                     }
                     break;
                 case CommandsConsoleReader.MORE_EXPLOITATION:
@@ -54,9 +48,9 @@ public class ChooseOperations {
                         busSaverCommand.write(buses, "Список автобусов привысивших  :" + year + " лет экспуотации",
                                 "", null);
                     } catch (IllegalFormatIntegerException e) {
-                        System.out.println("Illegal input integer.");
+                        out.println("Illegal input integer.");
                     } catch (IllegalYearCountInputException e) {
-                        System.out.println("You wrought wrong count of years.");
+                        out.println("You wrought wrong count of years.");
                     }
                     break;
                 case CommandsConsoleReader.MORE_MILLAGE:
@@ -67,9 +61,9 @@ public class ChooseOperations {
                         busSaverCommand.write(buses, "Список автобусов пробег которых выше: " + millage,
                                 "", null);
                     } catch (IllegalFormatIntegerException e) {
-                        System.out.println("Illegal input integer.");
+                        out.println("Illegal input integer.");
                     } catch (IllegalMillageInputException e) {
-                        System.out.println("You wrote illegal millage.");
+                        out.println("You wrote illegal millage.");
                     }
                     break;
                 case CommandsConsoleReader.DRIVER:
@@ -80,7 +74,7 @@ public class ChooseOperations {
                                 "", driver);
 
                     } catch (IllegalPersonParamsException e) {
-                        System.out.println("Incorrect input for driver parameters.");
+                        out.println("Incorrect input for driver parameters.");
                     }
                     break;
 

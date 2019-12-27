@@ -8,11 +8,7 @@ import java.util.List;
 import java.util.Random;
 
 public class PersonGenerator {
-    private PersonFactory personFactory;
-
-    public PersonGenerator() {
-        personFactory = new PersonFactory();
-    }
+    private PersonFactory personFactory=new PersonFactory();
 
 
     public Person generatePerson(List<String> names, List<String> surnames, List<String> fatherNames) throws IllegalPersonParamsException {
