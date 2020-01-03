@@ -1,60 +1,56 @@
 package by.epam.task7.twodemesionalarrays.entity;
 
+import java.util.Arrays;
+
 public class Matrix {
-    private int[][] a;
-    private int n;
-    private int m;
+    private int[][] arr;
 
-    public Matrix(int nn, int mm) {
-        n = nn;
-        m = mm;
-        // создание и заполнение случайными значениями
-        a = new int[n][m];
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j++) {
-                a[i][j] = (int) (Math.random() * 5);
-            }
-        }
-        show();
+    public Matrix(int rows, int columns) {
+        arr = new int[rows][columns];
     }
 
-    public Matrix(int nn, int mm, int k) {
-        n = nn;
-        m = mm;
-        a = new int[n][m];
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j++) {
-                a[i][j] = k;
-            }
-        }
-        if (k != 0) {
-            show();
+
+    public int calcRows() {
+        return arr == null ? 0 : arr.length;
+    }
+
+    public int calcColumns() {
+        if (arr == null || arr.length == 0 || arr[0] == null) {
+            return 0;
+        } else {
+            return arr[0].length;
         }
     }
 
-    public void show() {
-        System.out.println("Maтрица : " + a.length + " на " + a[0].length);
-        for (int i = 0; i < a.length; i++) {
-            for (int j = 0; j < a[0].length; j++) {
-                System.out.print(a[i][j] + " ");
-            }
-            System.out.println();
+    public void setElement(int row, int column, int value) {
+        if (checkParams(row, column)) {
+            return;
         }
+        arr[row][column] = value;
     }
 
-    public static void main(String[] args) {
-        int n = 2, m = 3, l = 4;
-        Matrix p = new Matrix(n, m);
-        Matrix q = new Matrix(m, l);
-        Matrix r = new Matrix(n, l, 0);
-        for (int i = 0; i < p.a.length; i++) {
-            for (int j = 0; j < q.a[0].length; j++) {
-                for (int k = 0; k < p.a[0].length; k++) {
-                    r.a[i][j] += p.a[i][k] * q.a[k][j];
-                }
-            }
+    /*
+    @throws IllegalParamsException if there no so row or column in the matrix,
+    need to check dimensions before use this method
+    */
+    public int calcElem(int row, int column) {
+        if (checkParams(row, column)) {
+            throw new IllegalParamsException();
         }
-        System.out.println("Произведение матриц: ");
-        r.show();
+        return arr[row][column];
+    }
+
+    private boolean checkParams(int row, int column) {
+        return row < 0 || row > (calcRows() - 1) || column < 0 || column > (calcColumns() - 1);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder("Matrix{\n");
+        for (int i = 0; i < arr.length; i++) {
+            sb.append(i).append(". ->").append(Arrays.toString(arr[i])).append('\n');
+        }
+        sb.append('}');
+        return sb.toString();
     }
 }

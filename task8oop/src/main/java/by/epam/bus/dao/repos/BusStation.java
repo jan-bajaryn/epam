@@ -1,5 +1,6 @@
 package by.epam.bus.dao.repos;
 
+import by.epam.bus.dao.BusParams;
 import by.epam.bus.entity.Bus;
 import by.epam.bus.entity.Person;
 import by.epam.bus.dao.repos.exception.IllegalMillageInputException;
