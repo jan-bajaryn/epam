@@ -32,13 +32,13 @@ public class MagicSquareFiller {
     }
 
     private void dividedByFor(SquareMatrix squareMatrix) {
-        int lastIndex = squareMatrix.calcRows() - 1;
-        int middle = squareMatrix.calcRows() / 2;
-        fillDiagonals(squareMatrix, 0, 0,
-                middle - 1, -1);
-        fillDiagonals(squareMatrix, 0, middle, lastIndex, -1);
-        fillDiagonals(squareMatrix, middle, 0, middle - 1, -1);
-        fillDiagonals(squareMatrix, middle, middle, lastIndex, -1);
+
+
+        for (int i = 0; i < squareMatrix.calcRows(); i += 4) {
+            for (int j = 0; j < squareMatrix.calcRows(); j += 4) {
+                fillDiagonals(squareMatrix, i, j, j + 3, -1);
+            }
+        }
 
         List<Integer> list = fillSymbolStraight(squareMatrix, 0);
 

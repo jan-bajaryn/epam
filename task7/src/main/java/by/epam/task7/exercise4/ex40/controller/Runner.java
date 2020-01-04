@@ -14,7 +14,7 @@ public class Runner {
         ShowMatrix showMatrix = new ShowMatrix();
         MagicSquareValidator magicSquareValidator = new MagicSquareValidator();
         try {
-            SquareMatrix squareMatrix = squareMatrixFactory.create(8);
+            SquareMatrix squareMatrix = squareMatrixFactory.create(100);
             showMatrix.show(squareMatrix);
             magicSquareFiller.fill(squareMatrix);
             showMatrix.show(squareMatrix);
