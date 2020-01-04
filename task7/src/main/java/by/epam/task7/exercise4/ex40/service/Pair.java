@@ -1,8 +1,8 @@
 package by.epam.task7.exercise4.ex40.service;
 
 public class Pair {
-    Integer fst;
-    Integer sec;
+    private Integer fst;
+    private Integer sec;
 
     public Pair(Integer fst, Integer sec) {
         this.fst = fst;
