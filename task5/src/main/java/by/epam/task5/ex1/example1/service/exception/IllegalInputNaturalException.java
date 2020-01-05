@@ -1,4 +1,4 @@
-package by.epam.task5.ex1.example1.exception;
+package by.epam.task5.ex1.example1.service.exception;
 
 public class IllegalInputNaturalException extends Exception {
     public IllegalInputNaturalException() {

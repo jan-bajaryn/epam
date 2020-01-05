@@ -1,4 +1,4 @@
-package by.epam.task5.shiftarr.exceptiion;
+package by.epam.task5.shiftarr.service.exceptiion;
 
 public class IllegalCountException extends Exception {
     public IllegalCountException() {
@@ -17,7 +17,4 @@ public class IllegalCountException extends Exception {
         super(cause);
     }
 
-    protected IllegalCountException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-        super(message, cause, enableSuppression, writableStackTrace);
-    }
 }

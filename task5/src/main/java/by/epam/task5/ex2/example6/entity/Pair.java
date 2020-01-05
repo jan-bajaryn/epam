@@ -1,4 +1,4 @@
-package by.epam.task5.ex2.example6.dao;
+package by.epam.task5.ex2.example6.entity;
 
 public class Pair {
     private Integer f;

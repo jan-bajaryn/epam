@@ -1,8 +1,8 @@
 package by.epam.task5.reversearr.service;
 
 
-import by.epam.task5.reversearr.exception.IllegalArgumentSizeException;
-import by.epam.task5.reversearr.exception.IllegalInputParameterException;
+import by.epam.task5.reversearr.service.exception.IllegalArgumentSizeException;
+import by.epam.task5.reversearr.service.exception.IllegalInputParameterException;
 
 import java.util.Random;
 

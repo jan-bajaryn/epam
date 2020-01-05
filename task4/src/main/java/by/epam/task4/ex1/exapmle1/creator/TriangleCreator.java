@@ -1,8 +1,8 @@
 package by.epam.task4.ex1.exapmle1.creator;
 
-import by.epam.task4.ex1.exapmle1.dao.Point;
-import by.epam.task4.ex1.exapmle1.dao.Triangle;
-import by.epam.task4.ex1.exapmle1.exception.IllegalPointsTriangleException;
+import by.epam.task4.ex1.exapmle1.entity.Point;
+import by.epam.task4.ex1.exapmle1.entity.Triangle;
+import by.epam.task4.ex1.exapmle1.creator.exception.IllegalPointsTriangleException;
 import by.epam.task4.ex1.exapmle1.validator.TriangleValidator;
 
 public class TriangleCreator {

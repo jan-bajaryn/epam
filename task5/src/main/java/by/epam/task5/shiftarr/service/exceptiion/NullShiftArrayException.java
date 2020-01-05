@@ -1,4 +1,4 @@
-package by.epam.task5.shiftarr.exceptiion;
+package by.epam.task5.shiftarr.service.exceptiion;
 
 public class NullShiftArrayException extends Exception {
     public NullShiftArrayException() {
@@ -17,7 +17,4 @@ public class NullShiftArrayException extends Exception {
         super(cause);
     }
 
-    protected NullShiftArrayException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-        super(message, cause, enableSuppression, writableStackTrace);
-    }
 }

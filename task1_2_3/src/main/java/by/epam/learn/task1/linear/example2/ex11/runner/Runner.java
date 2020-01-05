@@ -2,7 +2,7 @@ package by.epam.learn.task1.linear.example2.ex11.runner;
 
 import by.epam.learn.task1.linear.example2.ex11.creator.RectTriangleCreator;
 import by.epam.learn.task1.linear.example2.ex11.domain.RectTriangle;
-import by.epam.learn.task1.linear.example2.ex11.exception.WrongCathetException;
+import by.epam.learn.task1.linear.example2.ex11.creator.exception.WrongCathetException;
 
 public class Runner {
 

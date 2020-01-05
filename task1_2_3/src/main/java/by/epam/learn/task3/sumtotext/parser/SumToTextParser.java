@@ -1,6 +1,6 @@
 package by.epam.learn.task3.sumtotext.parser;
 
-import by.epam.learn.task3.sumtotext.exception.IllegalInputSumTextException;
+import by.epam.learn.task3.sumtotext.parser.exception.IllegalInputSumTextException;
 
 import java.util.Map;
 import java.util.TreeMap;

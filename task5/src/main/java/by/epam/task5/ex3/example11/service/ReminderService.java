@@ -1,7 +1,7 @@
 package by.epam.task5.ex3.example11.service;
 
-import by.epam.task5.ex3.example11.exception.IllegalInputArgumentException;
-import by.epam.task5.ex3.example11.exception.NullArrayException;
+import by.epam.task5.ex3.example11.service.exception.IllegalInputArgumentException;
+import by.epam.task5.ex3.example11.service.exception.NullArrayException;
 
 import java.util.ArrayList;
 import java.util.List;

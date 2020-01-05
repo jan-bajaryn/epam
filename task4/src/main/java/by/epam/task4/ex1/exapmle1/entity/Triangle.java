@@ -1,4 +1,4 @@
-package by.epam.task4.ex1.exapmle1.dao;
+package by.epam.task4.ex1.exapmle1.entity;
 
 public class Triangle {
     private Point f;

@@ -1,6 +1,6 @@
 package by.epam.task4.ex1.exapmle1.validator;
 
-import by.epam.task4.ex1.exapmle1.dao.Triangle;
+import by.epam.task4.ex1.exapmle1.entity.Triangle;
 
 public class TriangleValidator {
     public boolean isValid(Triangle triangle) {

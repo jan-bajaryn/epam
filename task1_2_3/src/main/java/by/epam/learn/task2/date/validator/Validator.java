@@ -2,7 +2,7 @@ package by.epam.learn.task2.date.validator;
 
 
 import by.epam.learn.task2.date.controller.LeaptYearAdapter;
-import by.epam.learn.task2.date.domain.Date;
+import by.epam.learn.task2.date.entity.Date;
 
 public class Validator {
 

@@ -1,4 +1,4 @@
-package by.epam.task5.ex3.example11.exception;
+package by.epam.task5.ex3.example11.service.exception;
 
 public class NullArrayException extends Exception {
     public NullArrayException() {
@@ -17,7 +17,4 @@ public class NullArrayException extends Exception {
         super(cause);
     }
 
-    protected NullArrayException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-        super(message, cause, enableSuppression, writableStackTrace);
-    }
 }

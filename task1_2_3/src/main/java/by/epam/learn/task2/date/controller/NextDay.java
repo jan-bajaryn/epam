@@ -1,7 +1,7 @@
 package by.epam.learn.task2.date.controller;
 
 
-import by.epam.learn.task2.date.domain.Date;
+import by.epam.learn.task2.date.entity.Date;
 
 public class NextDay {
     private Date date;

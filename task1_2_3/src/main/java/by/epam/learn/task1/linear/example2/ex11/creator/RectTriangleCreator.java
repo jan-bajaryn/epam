@@ -1,7 +1,7 @@
 package by.epam.learn.task1.linear.example2.ex11.creator;
 
 import by.epam.learn.task1.linear.example2.ex11.domain.RectTriangle;
-import by.epam.learn.task1.linear.example2.ex11.exception.WrongCathetException;
+import by.epam.learn.task1.linear.example2.ex11.creator.exception.WrongCathetException;
 import by.epam.learn.task1.linear.example2.ex11.validator.RectTriangleValidator;
 
 public class RectTriangleCreator {

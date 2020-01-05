@@ -1,8 +1,8 @@
 package by.epam.task5.ex4.example16.controller;
 
-import by.epam.task5.ex4.example16.exception.ArrayEmptyException;
-import by.epam.task5.ex4.example16.exception.ArrayNotEvenException;
-import by.epam.task5.ex4.example16.exception.ArrayNullException;
+import by.epam.task5.ex4.example16.service.exception.ArrayEmptyException;
+import by.epam.task5.ex4.example16.service.exception.ArrayNotEvenException;
+import by.epam.task5.ex4.example16.service.exception.ArrayNullException;
 import by.epam.task5.ex4.example16.service.FindMaxForm;
 
 public class FindMaxFormCommand {

@@ -1,4 +1,4 @@
-package by.epam.task5.ex4.example16.exception;
+package by.epam.task5.ex4.example16.service.exception;
 
 public class ArrayNotEvenException extends Exception {
     public ArrayNotEvenException() {
@@ -17,7 +17,4 @@ public class ArrayNotEvenException extends Exception {
         super(cause);
     }
 
-    protected ArrayNotEvenException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-        super(message, cause, enableSuppression, writableStackTrace);
-    }
 }

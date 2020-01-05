@@ -1,7 +1,7 @@
 package by.epam.task4.ex3.example11.service;
 
-import by.epam.task4.ex3.example11.exception.IllegalCountException;
-import by.epam.task4.ex3.example11.exception.NullArrayException;
+import by.epam.task4.ex3.example11.service.exception.IllegalCountException;
+import by.epam.task4.ex3.example11.service.exception.NullArrayException;
 
 public class SumElemArr {
     public int sum(int[] arr, int begin, int count) throws NullArrayException, IllegalCountException {

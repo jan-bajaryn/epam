@@ -1,4 +1,4 @@
-package by.epam.task5.ex3.example11.exception;
+package by.epam.task5.ex3.example11.service.exception;
 
 public class IllegalInputArgumentException extends Exception {
     public IllegalInputArgumentException() {
@@ -17,7 +17,4 @@ public class IllegalInputArgumentException extends Exception {
         super(cause);
     }
 
-    protected IllegalInputArgumentException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-        super(message, cause, enableSuppression, writableStackTrace);
-    }
 }

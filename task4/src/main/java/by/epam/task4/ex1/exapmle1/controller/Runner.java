@@ -1,7 +1,6 @@
 package by.epam.task4.ex1.exapmle1.controller;
 
-import by.epam.task4.ex1.exapmle1.controller.SquareTriangleCommand;
-import by.epam.task4.ex1.exapmle1.exception.IllegalPointsTriangleException;
+import by.epam.task4.ex1.exapmle1.creator.exception.IllegalPointsTriangleException;
 
 public class Runner {
     public static void main(String[] args) throws IllegalPointsTriangleException {

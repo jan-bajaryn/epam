@@ -1,6 +1,6 @@
 package by.epam.learn.task3.sumtotext.runner;
 
-import by.epam.learn.task3.sumtotext.exception.IllegalInputSumTextException;
+import by.epam.learn.task3.sumtotext.parser.exception.IllegalInputSumTextException;
 import by.epam.learn.task3.sumtotext.parser.SumToTextParser;
 
 public class Runner {

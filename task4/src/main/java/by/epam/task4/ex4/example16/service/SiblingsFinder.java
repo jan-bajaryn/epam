@@ -1,7 +1,7 @@
 package by.epam.task4.ex4.example16.service;
 
-import by.epam.task4.ex4.example16.dao.Pair;
-import by.epam.task4.ex4.example16.exceptiion.IllegalInputMinMaxException;
+import by.epam.task4.ex4.example16.entity.Pair;
+import by.epam.task4.ex4.example16.service.exceptiion.IllegalInputMinMaxException;
 
 import java.util.ArrayList;
 import java.util.List;

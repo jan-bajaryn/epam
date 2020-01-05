@@ -1,7 +1,7 @@
 package by.epam.task5.reversearr.controller;
 
-import by.epam.task5.reversearr.exception.IllegalArgumentSizeException;
-import by.epam.task5.reversearr.exception.IllegalInputParameterException;
+import by.epam.task5.reversearr.service.exception.IllegalArgumentSizeException;
+import by.epam.task5.reversearr.service.exception.IllegalInputParameterException;
 import by.epam.task5.reversearr.service.ArrayFiller;
 import by.epam.task5.reversearr.service.ArrayReverser;
 

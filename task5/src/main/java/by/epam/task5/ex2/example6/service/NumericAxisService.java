@@ -1,8 +1,8 @@
 package by.epam.task5.ex2.example6.service;
 
-import by.epam.task5.ex2.example6.dao.Pair;
-import by.epam.task5.ex2.example6.exception.ArrayEmptyException;
-import by.epam.task5.ex2.example6.exception.ArrayNullException;
+import by.epam.task5.ex2.example6.entity.Pair;
+import by.epam.task5.ex2.example6.service.exception.ArrayEmptyException;
+import by.epam.task5.ex2.example6.service.exception.ArrayNullException;
 
 public class NumericAxisService {
     public Pair findMinMax(int[] arr) throws ArrayNullException, ArrayEmptyException {

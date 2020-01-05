@@ -1,6 +1,6 @@
 package by.epam.task5.ex1.example1.service;
 
-import by.epam.task5.ex1.example1.exception.IllegalInputNaturalException;
+import by.epam.task5.ex1.example1.service.exception.IllegalInputNaturalException;
 
 public class DivisibleService {
 

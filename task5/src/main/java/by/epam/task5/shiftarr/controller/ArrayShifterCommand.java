@@ -1,7 +1,7 @@
 package by.epam.task5.shiftarr.controller;
 
-import by.epam.task5.shiftarr.exceptiion.IllegalCountException;
-import by.epam.task5.shiftarr.exceptiion.NullShiftArrayException;
+import by.epam.task5.shiftarr.service.exceptiion.IllegalCountException;
+import by.epam.task5.shiftarr.service.exceptiion.NullShiftArrayException;
 import by.epam.task5.shiftarr.service.ArrayShifter;
 
 import java.util.Arrays;

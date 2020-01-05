@@ -1,4 +1,4 @@
-package by.epam.task5.reversearr.exception;
+package by.epam.task5.reversearr.service.exception;
 
 public class IllegalArgumentSizeException extends Exception {
     public IllegalArgumentSizeException() {
@@ -17,7 +17,4 @@ public class IllegalArgumentSizeException extends Exception {
         super(cause);
     }
 
-    protected IllegalArgumentSizeException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-        super(message, cause, enableSuppression, writableStackTrace);
-    }
 }

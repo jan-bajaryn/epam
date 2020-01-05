@@ -1,6 +1,6 @@
 package by.epam.task4.ex1.exapmle1.service;
 
-import by.epam.task4.ex1.exapmle1.dao.Triangle;
+import by.epam.task4.ex1.exapmle1.entity.Triangle;
 
 public class SquareTriangle {
     public double square(Triangle triangle) {

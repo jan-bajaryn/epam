@@ -5,9 +5,13 @@ import by.epam.learn.task2.monthByName.exception.IllegalInputNumberMonthExceptio
 
 public class Runner {
 
-    public static void main(String[] args) throws IllegalInputNumberMonthException {
+    public static void main(String[] args) {
         Runner runner = new Runner();
-        System.out.println(runner.getSeasonByNum(3));
+        try {
+            System.out.println(runner.getSeasonByNum(3));
+        } catch (IllegalInputNumberMonthException e) {
+            System.out.println("There no so month.");
+        }
     }
     String getSeasonByNum(int month) throws IllegalInputNumberMonthException {
         switch (month){

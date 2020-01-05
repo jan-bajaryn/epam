@@ -1,4 +1,4 @@
-package by.epam.task5.reversearr.exception;
+package by.epam.task5.reversearr.service.exception;
 
 public class IllegalInputParameterException extends Exception {
     public IllegalInputParameterException() {
@@ -17,7 +17,4 @@ public class IllegalInputParameterException extends Exception {
         super(cause);
     }
 
-    protected IllegalInputParameterException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-        super(message, cause, enableSuppression, writableStackTrace);
-    }
 }

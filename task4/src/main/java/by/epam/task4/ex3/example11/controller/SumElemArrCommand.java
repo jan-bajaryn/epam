@@ -1,7 +1,7 @@
 package by.epam.task4.ex3.example11.controller;
 
-import by.epam.task4.ex3.example11.exception.IllegalCountException;
-import by.epam.task4.ex3.example11.exception.NullArrayException;
+import by.epam.task4.ex3.example11.service.exception.IllegalCountException;
+import by.epam.task4.ex3.example11.service.exception.NullArrayException;
 import by.epam.task4.ex3.example11.service.SumElemArr;
 
 import java.util.Arrays;

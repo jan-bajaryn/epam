@@ -1,7 +1,7 @@
 package by.epam.task5.shiftarr.service;
 
-import by.epam.task5.shiftarr.exceptiion.IllegalCountException;
-import by.epam.task5.shiftarr.exceptiion.NullShiftArrayException;
+import by.epam.task5.shiftarr.service.exceptiion.IllegalCountException;
+import by.epam.task5.shiftarr.service.exceptiion.NullShiftArrayException;
 
 public class ArrayShifter {
 

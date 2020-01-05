@@ -1,8 +1,8 @@
 package by.epam.task5.ex4.example16.service;
 
-import by.epam.task5.ex4.example16.exception.ArrayEmptyException;
-import by.epam.task5.ex4.example16.exception.ArrayNotEvenException;
-import by.epam.task5.ex4.example16.exception.ArrayNullException;
+import by.epam.task5.ex4.example16.service.exception.ArrayEmptyException;
+import by.epam.task5.ex4.example16.service.exception.ArrayNotEvenException;
+import by.epam.task5.ex4.example16.service.exception.ArrayNullException;
 
 public class FindMaxForm {
     public double find(double[] arr) throws ArrayNullException, ArrayEmptyException, ArrayNotEvenException {

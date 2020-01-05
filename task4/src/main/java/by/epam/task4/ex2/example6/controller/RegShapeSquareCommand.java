@@ -1,8 +1,8 @@
 package by.epam.task4.ex2.example6.controller;
 
 import by.epam.task4.ex2.example6.creator.RegHexagonCreator;
-import by.epam.task4.ex2.example6.dao.RegPolygon;
-import by.epam.task4.ex2.example6.exception.InvalidRegHexagonException;
+import by.epam.task4.ex2.example6.entity.RegPolygon;
+import by.epam.task4.ex2.example6.creator.exception.InvalidRegHexagonException;
 import by.epam.task4.ex2.example6.service.RegShapeSquare;
 
 public class RegShapeSquareCommand {

@@ -1,4 +1,4 @@
-package by.epam.task5.ex2.example6.exception;
+package by.epam.task5.ex2.example6.service.exception;
 
 public class ArrayEmptyException extends Exception {
     public ArrayEmptyException() {
@@ -17,7 +17,4 @@ public class ArrayEmptyException extends Exception {
         super(cause);
     }
 
-    protected ArrayEmptyException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-        super(message, cause, enableSuppression, writableStackTrace);
-    }
 }
