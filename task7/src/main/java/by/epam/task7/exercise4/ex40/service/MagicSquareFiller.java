@@ -50,6 +50,7 @@ public class MagicSquareFiller {
             elementSwapperMatrix.swap(squareMatrix, middle, 0, rows - 1, 0);
             int columnSwapCount = ((rows / 2) - 3) / 2;
             swapColumns(squareMatrix, columnSwapCount, rows);
+            swapColumnMiddle(squareMatrix, rows);
         }
     }
 
@@ -63,10 +64,15 @@ public class MagicSquareFiller {
         }
     }
 
+    private void swapColumnMiddle(SquareMatrix squareMatrix, int rows) {
+        int middle = rows / 2 - 1;
+        for (int i = 1; i < middle; i++) {
+            elementSwapperMatrix.swap(squareMatrix, i, 1, middle + i + 1, 1);
+        }
+    }
+
 
     private void dividedByFor(SquareMatrix squareMatrix) {
-
-
         for (int i = 0; i < squareMatrix.calcRows(); i += 4) {
             for (int j = 0; j < squareMatrix.calcRows(); j += 4) {
                 fillDiagonals(squareMatrix, i, j, j + 3, -1);

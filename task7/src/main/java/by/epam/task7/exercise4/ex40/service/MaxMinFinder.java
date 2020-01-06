@@ -13,7 +13,7 @@ public class MaxMinFinder {
                 }
             }
         }
-        System.out.println("max = " + max);
+//        System.out.println("max = " + max);
         return max;
     }
 
@@ -27,7 +27,7 @@ public class MaxMinFinder {
                 }
             }
         }
-        System.out.println("min = " + min);
+//        System.out.println("min = " + min);
         return min;
     }
 }

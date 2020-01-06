@@ -13,18 +13,18 @@ public class MagicSquareValidator {
         int rows = matrix.calcRows();
         if (maxMinFinder.findMaximum(matrix) > Math.pow(rows, 2)
                 || maxMinFinder.findMinimum(matrix) < 1) {
-            System.out.println("maximum or minimum");
+//            System.out.println("maximum or minimum");
             return false;
         }
 
         if (rows > 400 && rows < 2000) {
             if (duplicateFinderImpl.isDuplicatedMagicSquare(matrix)) {
-                System.out.println("duplication");
+//                System.out.println("duplication");
                 return false;
             }
         } else {
             if (duplicateFinderImpl.isDuplicatedValues(matrix)) {
-                System.out.println("duplication");
+//                System.out.println("duplication");
                 return false;
             }
         }
@@ -32,14 +32,14 @@ public class MagicSquareValidator {
 
         int sum = sumDiagonalFirst(matrix, rows);
         if (sum != sumDiagonalSecond(matrix, rows)) {
-            System.out.println("sum diagonals");
-            System.out.println("first diagonal = " + sum);
-            System.out.println("second diagonal = " + sumDiagonalSecond(matrix, rows));
+//            System.out.println("sum diagonals");
+//            System.out.println("first diagonal = " + sum);
+//            System.out.println("second diagonal = " + sumDiagonalSecond(matrix, rows));
             return false;
         }
         for (int i = 0; i < rows; i++) {
             if (sum != sumColumn(i, matrix, rows) || sum != sumRow(i, matrix, rows)) {
-                System.out.println("sum columns or rows");
+//                System.out.println("sum columns or rows");
                 return false;
             }
         }
