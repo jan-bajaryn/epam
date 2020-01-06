@@ -28,7 +28,8 @@ public class MagicSquareFiller {
     }
 
     private void dividedByTwo(SquareMatrix squareMatrix) {
-        System.out.println("not implemented");
+//        System.out.println("not implemented");
+
     }
 
     private void dividedByFor(SquareMatrix squareMatrix) {

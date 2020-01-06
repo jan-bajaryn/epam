@@ -1,28 +1,40 @@
 package by.epam.task7.exercise4.ex40.validator;
 
 import by.epam.task7.exercise4.ex40.entity.SquareMatrix;
-import by.epam.task7.exercise4.ex40.service.DuplicateFinder;
+import by.epam.task7.exercise4.ex40.service.DuplicateFinderImpl;
 import by.epam.task7.exercise4.ex40.service.MaxMinFinder;
 
 public class MagicSquareValidator {
 
-    private DuplicateFinder duplicateFinder = new DuplicateFinder();
+    private DuplicateFinderImpl duplicateFinderImpl = new DuplicateFinderImpl();
     private MaxMinFinder maxMinFinder = new MaxMinFinder();
 
     public boolean isValid(SquareMatrix matrix) {
         int rows = matrix.calcRows();
-        if (duplicateFinder.isDuplicatedValues(matrix)
-                || maxMinFinder.findMaximum(matrix) > Math.pow(rows, 2)
+        if (maxMinFinder.findMaximum(matrix) > Math.pow(rows, 2)
                 || maxMinFinder.findMinimum(matrix) < 1) {
-            System.out.println("duplicate or maximum or minimum");
+            System.out.println("maximum or minimum");
             return false;
         }
+
+        if (rows > 400 && rows < 2000) {
+            if (duplicateFinderImpl.isDuplicatedMagicSquare(matrix)) {
+                System.out.println("duplication");
+                return false;
+            }
+        } else {
+            if (duplicateFinderImpl.isDuplicatedValues(matrix)) {
+                System.out.println("duplication");
+                return false;
+            }
+        }
+
 
         int sum = sumDiagonalFirst(matrix, rows);
         if (sum != sumDiagonalSecond(matrix, rows)) {
             System.out.println("sum diagonals");
-            System.out.println("first diagonal = "+sum);
-            System.out.println("second diagonal = "+sumDiagonalSecond(matrix,rows));
+            System.out.println("first diagonal = " + sum);
+            System.out.println("second diagonal = " + sumDiagonalSecond(matrix, rows));
             return false;
         }
         for (int i = 0; i < rows; i++) {
