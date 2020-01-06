@@ -9,7 +9,7 @@ import java.util.List;
 public class MagicSquareFiller {
 
     private FillWithIntegerMatrix fillWithIntegerMatrix = new FillWithIntegerMatrix();
-
+    private ElementSwapperMatrix elementSwapperMatrix = new ElementSwapperMatrix();
 
     public void fill(SquareMatrix matrix) throws UnresolvableException {
         if (matrix.calcRows() % 2 == 0) {
@@ -20,7 +20,7 @@ public class MagicSquareFiller {
     }
 
     public void fillEvenSquare(SquareMatrix squareMatrix) throws UnresolvableException {
-        if (squareMatrix.calcRows() == 4) {
+        if (squareMatrix.calcRows() == 2) {
             throw new UnresolvableException();
         }
 
@@ -37,16 +37,32 @@ public class MagicSquareFiller {
         int count = (middle + 1) * (middle + 1);
 
         fillOddSquare(squareMatrix, 0, 0, middle, middle, 1);
-
         fillOddSquare(squareMatrix, middle + 1, middle + 1, rows - 1, rows - 1, 1 + count);
-
-
         fillOddSquare(squareMatrix, 0, middle + 1, middle, rows - 1, 1 + 2 * count);
-
-
         fillOddSquare(squareMatrix, middle + 1, 0, rows - 1, middle, 1 + 3 * count);
 
+        if (rows == 6) {
+            elementSwapperMatrix.swap(squareMatrix, 0, 0, middle + 1, 0);
+            elementSwapperMatrix.swap(squareMatrix, middle, 0, rows - 1, 0);
+            elementSwapperMatrix.swap(squareMatrix, 1, 1, rows - 2, 1);
+        } else {
+            elementSwapperMatrix.swap(squareMatrix, 0, 0, middle + 1, 0);
+            elementSwapperMatrix.swap(squareMatrix, middle, 0, rows - 1, 0);
+            int columnSwapCount = ((rows / 2) - 3) / 2;
+            swapColumns(squareMatrix, columnSwapCount, rows);
+        }
     }
+
+    private void swapColumns(SquareMatrix squareMatrix, int count, int rows) {
+        int middle = rows / 2 - 1;
+        for (int i = 0; i < count; i++) {
+            for (int j = 0; j <= middle; j++) {
+                elementSwapperMatrix.swap(squareMatrix, j, middle - i, middle + j + 1, middle - i);
+                elementSwapperMatrix.swap(squareMatrix, j, middle + i + 1, middle + j + 1, middle + i + 1);
+            }
+        }
+    }
+
 
     private void dividedByFor(SquareMatrix squareMatrix) {
 
@@ -121,15 +137,7 @@ public class MagicSquareFiller {
         }
 
 
-//        int begin = ((eCol - bCol) / 2) + 1;
-
         int count = rows * rows;
-//        int curRow = begin - 1;
-//        int curCol = begin;
-
-//        int curRow = ((eRow - bRow) / 2) + 1;
-//        int curCol = ((eCol - bCol) / 2) + 2;
-
 
         int curRow = bRow + ((eRow - bRow) / 2);
         int curCol = bCol + ((eCol - bCol) / 2) + 1;
@@ -164,4 +172,5 @@ public class MagicSquareFiller {
 
         return new Pair(row, col);
     }
+
 }
