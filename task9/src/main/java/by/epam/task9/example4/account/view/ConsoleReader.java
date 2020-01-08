@@ -1,4 +1,4 @@
-package by.epam.task9.example4.account.dao.reader;
+package by.epam.task9.example4.account.view;
 
 import java.util.Scanner;
 

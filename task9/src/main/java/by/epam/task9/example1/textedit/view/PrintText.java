@@ -10,5 +10,7 @@ public class PrintText {
         System.out.println(textParser.textParseString(text));
     }
 
-
+    public void printHeader(Text text) {
+        System.out.println(text.getHead());
+    }
 }

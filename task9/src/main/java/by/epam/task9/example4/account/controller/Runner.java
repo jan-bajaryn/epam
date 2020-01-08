@@ -2,7 +2,7 @@ package by.epam.task9.example4.account.controller;
 
 import by.epam.task9.example4.account.dao.AccountRepo;
 import by.epam.task9.example4.account.dao.UserRepo;
-import by.epam.task9.example4.account.dao.reader.ConsoleReader;
+import by.epam.task9.example4.account.view.ConsoleReader;
 import by.epam.task9.example4.account.dao.reader.TextFileReader;
 import by.epam.task9.example4.account.entity.Account;
 import by.epam.task9.example4.account.entity.Pair;

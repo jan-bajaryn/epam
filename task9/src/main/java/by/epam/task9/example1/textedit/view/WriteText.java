@@ -13,6 +13,5 @@ public class WriteText {
 
     public void write(String fileName, Text text) throws IOException {
         Files.write(Paths.get(fileName), textParser.textParseString(text).getBytes());
-
     }
 }
