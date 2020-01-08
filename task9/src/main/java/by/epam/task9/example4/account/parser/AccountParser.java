@@ -24,7 +24,7 @@ public class AccountParser {
                 .append("\n");
         sb.append("Number:").append(account.getNumber()).append("\n");
         sb.append("Amount:").append(account.getAmount()).append("\n");
-        sb.append("IsActive:").append(account.isActive()).append("\n");
+        sb.append("IsActive:").append(account.isActive());
         return sb.toString();
     }
 
@@ -42,8 +42,6 @@ public class AccountParser {
         String[] splitUser = split[1].split(SPLITER);
         int userId = Integer.parseInt(splitUser[0].substring(5, splitUser[0].length()));
         User user = new User(userId, splitUser[1], splitUser[2]);
-//        System.out.println("split[2] = "+split[2]);
-//        System.out.println(split[2].substring("Number:".length()));
         int number = Integer.parseInt(split[2].substring("Number:".length()));
         int amount = Integer.parseInt(split[3].substring("Amount:".length()));
         boolean isActive = Boolean.parseBoolean(split[4].substring("IsActive:".length()));
@@ -53,25 +51,28 @@ public class AccountParser {
 
     public List<Pair> stringToAccountList(String[] data) throws WrongDataException {
         List<Pair> pairs = new ArrayList<>();
-//        int begin = 0;
-//        int counter = 0;
-//        char[] chars = data.toCharArray();
-//        for (int i = 0; i < chars.length; i++) {
-//            if (chars[i] == '\n') {
-//                if (++counter == 5) {
-//                    pairs.add(stringToAccount(data.substring(begin, i)));
-//                    begin = i + 2;
-//                }
-//            }
-//        }
         String string = "";
         for (int i = 0; i < data.length; i += 5) {
             for (int j = 0; j < 5; j++) {
-                string += data[i + j]+"\n";
+                string += data[i + j] + "\n";
             }
             pairs.add(stringToAccount(string));
             string = "";
         }
         return pairs;
+    }
+
+    public Pair paramsToAccountPair(String[] params) throws WrongDataException {
+        try {
+            int userId = Integer.parseInt(params[0]);
+            User user = new User(userId, params[1], params[2]);
+            int number = Integer.parseInt(params[3]);
+            int amount = Integer.parseInt(params[4]);
+            boolean isActive = Boolean.parseBoolean(params[5]);
+            Account account = new Account(number, user.getId(), amount, isActive);
+            return new Pair(user, account);
+        } catch (NumberFormatException e) {
+            throw new WrongDataException();
+        }
     }
 }
