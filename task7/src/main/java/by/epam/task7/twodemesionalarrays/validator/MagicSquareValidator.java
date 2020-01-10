@@ -1,8 +1,8 @@
-package by.epam.task7.exercise4.ex40.validator;
+package by.epam.task7.twodemesionalarrays.validator;
 
-import by.epam.task7.exercise4.ex40.entity.SquareMatrix;
-import by.epam.task7.exercise4.ex40.service.DuplicateFinderImpl;
-import by.epam.task7.exercise4.ex40.service.MaxMinFinder;
+import by.epam.task7.twodemesionalarrays.entity.SquareMatrix;
+import by.epam.task7.twodemesionalarrays.service.DuplicateFinderImpl;
+import by.epam.task7.twodemesionalarrays.service.MaxMinFinder;
 
 public class MagicSquareValidator {
 

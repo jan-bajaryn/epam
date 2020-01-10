@@ -48,7 +48,12 @@ public class Matrix {
     public String toString() {
         StringBuilder sb = new StringBuilder("Matrix{\n");
         for (int i = 0; i < arr.length; i++) {
-            sb.append(i).append(". ->\t").append(Arrays.toString(arr[i])).append('\n');
+            int[] ints = arr[i];
+            sb.append(i).append(". ->\t");
+            for (int current : ints) {
+                sb.append(current).append("\t");
+            }
+            sb.append("\n");
         }
         sb.append('}');
         return sb.toString();

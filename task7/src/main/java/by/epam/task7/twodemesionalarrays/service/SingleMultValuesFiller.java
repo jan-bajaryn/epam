@@ -1,6 +1,7 @@
-package by.epam.task7.exercise1.ex1.service;
+package by.epam.task7.twodemesionalarrays.service;
 
 import by.epam.task7.twodemesionalarrays.entity.Matrix;
+import by.epam.task7.twodemesionalarrays.service.exception.NullMatrixException;
 
 public class SingleMultValuesFiller {
     public void fill(Matrix matrix, int valueSingle, int valueMultiple) throws NullMatrixException {

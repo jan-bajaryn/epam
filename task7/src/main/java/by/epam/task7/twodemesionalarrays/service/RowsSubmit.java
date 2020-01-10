@@ -1,4 +1,4 @@
-package by.epam.task7.exercise3.ex30.service;
+package by.epam.task7.twodemesionalarrays.service;
 
 import by.epam.task7.twodemesionalarrays.entity.Matrix;
 

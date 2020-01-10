@@ -1,4 +1,4 @@
-package by.epam.task7.exercise4.ex40.entity;
+package by.epam.task7.twodemesionalarrays.entity;
 
 import by.epam.task7.twodemesionalarrays.entity.Matrix;
 
@@ -17,8 +17,4 @@ public class SquareMatrix extends Matrix {
         return calcRows();
     }
 
-    @Override
-    public String toString() {
-        return super.toString();
-    }
 }

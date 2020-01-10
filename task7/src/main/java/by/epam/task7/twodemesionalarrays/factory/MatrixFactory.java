@@ -1,6 +1,7 @@
 package by.epam.task7.twodemesionalarrays.factory;
 
 import by.epam.task7.twodemesionalarrays.entity.Matrix;
+import by.epam.task7.twodemesionalarrays.factory.exception.IllegalArgsMatrixException;
 import by.epam.task7.twodemesionalarrays.validator.MatrixValidator;
 
 public class MatrixFactory {

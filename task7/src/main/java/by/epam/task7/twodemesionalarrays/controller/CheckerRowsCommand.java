@@ -1,6 +1,6 @@
-package by.epam.task7.exercise3.ex30.controller;
+package by.epam.task7.twodemesionalarrays.controller;
 
-import by.epam.task7.exercise3.ex30.service.RowsSubmit;
+import by.epam.task7.twodemesionalarrays.service.RowsSubmit;
 import by.epam.task7.twodemesionalarrays.entity.Matrix;
 
 import java.util.List;

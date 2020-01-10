@@ -1,4 +1,4 @@
-package by.epam.task7.exercise4.ex40.service;
+package by.epam.task7.twodemesionalarrays.service;
 
 public class Pair {
     private Integer fst;
@@ -33,5 +33,13 @@ public class Pair {
         int result = fst != null ? fst.hashCode() : 0;
         result = 31 * result + (sec != null ? sec.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Pair{" +
+                "fst=" + fst +
+                ", sec=" + sec +
+                '}';
     }
 }

@@ -1,9 +1,9 @@
-package by.epam.task7.exercise4.ex40.factory;
+package by.epam.task7.twodemesionalarrays.factory;
 
-import by.epam.task7.exercise4.ex40.entity.SquareMatrix;
-import by.epam.task7.exercise4.ex40.validator.SquareMatrixValidator;
-import by.epam.task7.twodemesionalarrays.factory.IllegalArgsMatrixException;
-import by.epam.task7.twodemesionalarrays.factory.MatrixFactory;
+import by.epam.task7.twodemesionalarrays.entity.SquareMatrix;
+import by.epam.task7.twodemesionalarrays.factory.exception.IllegalArgsMatrixException;
+import by.epam.task7.twodemesionalarrays.factory.exception.IllegalArgsSquareMatrixException;
+import by.epam.task7.twodemesionalarrays.validator.SquareMatrixValidator;
 
 public class SquareMatrixFactory extends MatrixFactory {
     private SquareMatrixValidator squareMatrixValidator = new SquareMatrixValidator();

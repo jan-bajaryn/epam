@@ -1,4 +1,4 @@
-package by.epam.task7.exercise4.ex40.validator;
+package by.epam.task7.twodemesionalarrays.validator;
 
 import by.epam.task7.twodemesionalarrays.validator.MatrixValidator;
 

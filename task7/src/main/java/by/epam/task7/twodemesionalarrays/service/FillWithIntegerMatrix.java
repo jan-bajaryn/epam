@@ -1,6 +1,5 @@
 package by.epam.task7.twodemesionalarrays.service;
 
-import by.epam.task7.exercise4.ex40.entity.SquareMatrix;
 import by.epam.task7.twodemesionalarrays.entity.Matrix;
 
 public class FillWithIntegerMatrix {
