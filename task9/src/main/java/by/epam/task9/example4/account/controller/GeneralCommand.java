@@ -14,6 +14,7 @@ public class GeneralCommand {
     private WriteOrPrint writeOrPrint = new WriteOrPrint();
     private ConsoleCommander consoleCommander = new ConsoleCommander();
     private AccountRepo accountRepo = AccountRepo.getInstance();
+    private UserRepo userRepo = UserRepo.getInstance();
     private AmountPrinter amountPrinter = new AmountPrinter();
 
     public void execute() {
@@ -58,6 +59,8 @@ public class GeneralCommand {
                     amountPrinter.print(accountRepo.sumAmountLessThanZero());
                     break;
                 case ConsoleCommander.EXIT:
+                    accountRepo.clear();
+                    userRepo.clear();
                     isDone = true;
                     break;
                 default:

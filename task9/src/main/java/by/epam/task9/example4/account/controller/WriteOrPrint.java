@@ -20,6 +20,7 @@ public class WriteOrPrint {
                 case ConsoleCommander.WRITE:
                     try {
                         writeAccountListToFile.write(consoleCommander.readFileName(), list);
+                        System.out.println("\n");
                         isDone = true;
                     } catch (IOException e) {
                         System.out.println("Problems with writing in file.");

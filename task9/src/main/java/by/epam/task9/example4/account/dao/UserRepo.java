@@ -40,10 +40,14 @@ public class UserRepo {
 
     }
 
-    public int lastId(){
+    public int lastId() {
         return users.stream()
                 .map(user -> user.getId())
                 .max(Integer::compareTo)
                 .orElse(null);
+    }
+
+    public void clear() {
+        users.clear();
     }
 }

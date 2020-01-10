@@ -50,6 +50,10 @@ public class AccountParser {
     }
 
     public List<Pair> stringToAccountList(String[] data) throws WrongDataException {
+        if (data == null || data.length % 5 != 0) {
+            throw new WrongDataException("Wrong count of rows.");
+        }
+
         List<Pair> pairs = new ArrayList<>();
         String string = "";
         for (int i = 0; i < data.length; i += 5) {

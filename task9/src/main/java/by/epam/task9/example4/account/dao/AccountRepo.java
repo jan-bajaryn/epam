@@ -121,4 +121,8 @@ public class AccountRepo {
                 .max(Integer::compareTo)
                 .orElse(null);
     }
+
+    public void clear() {
+        accounts.clear();
+    }
 }
