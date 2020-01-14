@@ -1,4 +1,4 @@
-package by.epam.task10.example3.factory;
+package by.epam.task10.example3.entity.factory;
 
 public class IllegalCalendarParamsException extends Exception {
     public IllegalCalendarParamsException() {

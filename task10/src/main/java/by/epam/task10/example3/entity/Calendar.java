@@ -14,7 +14,7 @@ public class Calendar {
         this.irregularDays = irregularDays;
     }
 
-    public class SpecDate extends FreeCelebrity {
+    public static class SpecDate extends FreeCelebrity {
         private Date date;
         public SpecDate(boolean selebrity, boolean free, Date date) {
             super(selebrity, free);

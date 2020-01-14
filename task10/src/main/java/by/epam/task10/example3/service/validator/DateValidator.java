@@ -1,4 +1,4 @@
-package by.epam.task10.example3.validator;
+package by.epam.task10.example3.service.validator;
 
 import by.epam.task10.example3.entity.Date;
 import by.epam.task10.example3.entity.Month;
