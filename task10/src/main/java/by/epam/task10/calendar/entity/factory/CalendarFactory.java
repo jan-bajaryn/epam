@@ -14,7 +14,7 @@ public class CalendarFactory {
     public Calendar create(List<SpecDate> regularDays,
                            List<SpecDate> specificDates,
                            List<IrregularDay> irregularDays) throws IllegalCalendarParamsException {
-        Calendar calendar = new Calendar(regularDays, specificDates, irregularDays);
+        Calendar calendar = new Calendar();
         if (calendarValidator.isValid(calendar)) {
             return calendar;
         }

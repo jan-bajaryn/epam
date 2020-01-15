@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="11.0.1" class="java.beans.XMLDecoder">
+ <object class="by.epam.task10.calendar.dao.Calendar" id="Calendar0">
+  <void id="Calendar$FreeCelebrityManager0" property="manager">
+   <void property="specificDays">
+    <void method="add">
+     <object class="by.epam.task10.calendar.entity.SpecDate">
+      <void property="celebrity">
+       <boolean>true</boolean>
+      </void>
+      <void property="date">
+       <object class="java.time.LocalDate" method="parse">
+        <string>2020-01-15</string>
+       </object>
+      </void>
+      <void property="description">
+       <string>this is very good selebrity</string>
+      </void>
+      <void property="free">
+       <boolean>true</boolean>
+      </void>
+      <void property="name">
+       <string></string>
+      </void>
+     </object>
+    </void>
+   </void>
+  </void>
+ </object>
+</java>

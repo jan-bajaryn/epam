@@ -2,10 +2,11 @@ package by.epam.task10.calendar.entity;
 
 import by.epam.task10.calendar.entity.factory.RegularDayBuilder;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Period;
 
-public class RegularDay extends RepeatedDays {
+public class RegularDay extends RepeatedDays implements Serializable {
 
     private LocalDate beginDate;
     private Period delta;
@@ -26,6 +27,10 @@ public class RegularDay extends RepeatedDays {
         this.beginDate = beginDate;
         this.delta = delta;
         this.direction = direction;
+    }
+
+    public RegularDay(boolean celebrity, boolean free, String description, String name) {
+        super(celebrity, free, description, name);
     }
 
 
@@ -114,4 +119,26 @@ public class RegularDay extends RepeatedDays {
         result = 31 * result + (direction != null ? direction.hashCode() : 0);
         return result;
     }
+
+    public void setBeginDate(LocalDate beginDate) {
+        this.beginDate = beginDate;
+    }
+
+    public Period getDelta() {
+        return delta;
+    }
+
+    public void setDelta(Period delta) {
+        this.delta = delta;
+    }
+
+    public Direction getDirection() {
+        return direction;
+    }
+
+    public void setDirection(Direction direction) {
+        this.direction = direction;
+    }
+
+
 }

@@ -1,9 +1,10 @@
 package by.epam.task10.calendar.entity;
 
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public abstract class FreeCelebrity {
+public abstract class FreeCelebrity implements Serializable {
     public static final String NONE = "";
 
     private boolean celebrity;
@@ -18,6 +19,8 @@ public abstract class FreeCelebrity {
         this.name = name;
     }
 
+    public FreeCelebrity() {
+    }
 
     public abstract boolean isThatDay(LocalDate localDate);
 
@@ -35,6 +38,22 @@ public abstract class FreeCelebrity {
 
     public String getName() {
         return name;
+    }
+
+    public void setCelebrity(boolean celebrity) {
+        this.celebrity = celebrity;
+    }
+
+    public void setFree(boolean free) {
+        this.free = free;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
 }
