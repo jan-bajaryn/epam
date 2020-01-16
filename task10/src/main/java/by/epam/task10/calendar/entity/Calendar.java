@@ -1,10 +1,4 @@
-package by.epam.task10.calendar.dao;
-
-import by.epam.task10.calendar.entity.FreeCelebrity;
-import by.epam.task10.calendar.entity.IrregularDay;
-import by.epam.task10.calendar.entity.RegularDay;
-import by.epam.task10.calendar.entity.SpecDate;
-import by.epam.task10.calendar.entity.dto.RegularDayDTO;
+package by.epam.task10.calendar.entity;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -14,23 +8,25 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
+import static java.time.temporal.ChronoUnit.DAYS;
+
 public class Calendar implements Serializable {
     private String name;
     private FreeCelebrityManager manager = new FreeCelebrityManager();
 
     public static class FreeCelebrityManager implements Serializable {
-        private Set<RegularDay> regularDays = new HashSet<>();
+        private Set<RegularFreeCelebrity> regularDays = new HashSet<>();
         private Set<SpecDate> specificDays = new HashSet<>();
-        private Set<IrregularDay> irregularDays = new HashSet<>();
+        private Set<IrregularFreeCelebrity> irregularDays = new HashSet<>();
 
         public FreeCelebrityManager() {
         }
 
-        public Set<RegularDay> getRegularDays() {
+        public Set<RegularFreeCelebrity> getRegularDays() {
             return regularDays;
         }
 
-        public void setRegularDays(Set<RegularDay> regularDays) {
+        public void setRegularDays(Set<RegularFreeCelebrity> regularDays) {
             this.regularDays = regularDays;
         }
 
@@ -42,11 +38,11 @@ public class Calendar implements Serializable {
             this.specificDays = specificDays;
         }
 
-        public Set<IrregularDay> getIrregularDays() {
+        public Set<IrregularFreeCelebrity> getIrregularDays() {
             return irregularDays;
         }
 
-        public void setIrregularDays(Set<IrregularDay> irregularDays) {
+        public void setIrregularDays(Set<IrregularFreeCelebrity> irregularDays) {
             this.irregularDays = irregularDays;
         }
     }
@@ -62,13 +58,14 @@ public class Calendar implements Serializable {
         if (minimum.compareTo(maximum) > 0) {
             new TreeMap<>();
         }
-        int diff = Period.between(minimum, maximum).getDays();
+
+        int diff = (int) DAYS.between(minimum, maximum);
         return new TreeMap<>(IntStream.range(0, diff)
                 .mapToObj(minimum::plusDays)
                 .collect(Collectors.toMap(d -> d, this::calcFreeCelebritiesForDate)));
     }
 
-    public boolean addRegularDay(RegularDay regularDay) {
+    public boolean addRegularDay(RegularFreeCelebrity regularDay) {
         return manager.regularDays.add(regularDay);
     }
 
@@ -76,7 +73,7 @@ public class Calendar implements Serializable {
         return manager.specificDays.add(specDate);
     }
 
-    public boolean addIrregularDay(IrregularDay irregularDay) {
+    public boolean addIrregularDay(IrregularFreeCelebrity irregularDay) {
         return manager.irregularDays.add(irregularDay);
     }
 

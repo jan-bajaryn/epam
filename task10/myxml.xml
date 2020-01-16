@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <java version="11.0.1" class="java.beans.XMLDecoder">
- <object class="by.epam.task10.calendar.dao.Calendar" id="Calendar0">
+ <object class="by.epam.task10.calendar.entity.Calendar" id="Calendar0">
   <void id="Calendar$FreeCelebrityManager0" property="manager">
    <void property="specificDays">
     <void method="add">
@@ -10,11 +10,11 @@
       </void>
       <void property="date">
        <object class="java.time.LocalDate" method="parse">
-        <string>2020-01-15</string>
+        <string>2020-01-16</string>
        </object>
       </void>
       <void property="description">
-       <string>this is very good selebrity</string>
+       <string>My boss make me celebrate that day</string>
       </void>
       <void property="free">
        <boolean>true</boolean>

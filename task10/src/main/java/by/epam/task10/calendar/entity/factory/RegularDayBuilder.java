@@ -1,7 +1,7 @@
 package by.epam.task10.calendar.entity.factory;
 
 import by.epam.task10.calendar.entity.FreeCelebrity;
-import by.epam.task10.calendar.entity.RegularDay;
+import by.epam.task10.calendar.entity.RegularFreeCelebrity;
 import by.epam.task10.calendar.entity.factory.exception.IllegalRegularDayParamsException;
 import by.epam.task10.calendar.service.validator.RegularDayValidator;
 
@@ -18,7 +18,7 @@ public class RegularDayBuilder {
     private String name = FreeCelebrity.NONE;
     private LocalDate beginDate;
     private Period delta;
-    private RegularDay.Direction direction;
+    private RegularFreeCelebrity.Direction direction;
 
     private RegularDayBuilder() {
     }
@@ -27,8 +27,8 @@ public class RegularDayBuilder {
         return new RegularDayBuilder();
     }
 
-    public RegularDay build() throws IllegalRegularDayParamsException {
-        RegularDay regularDay = new RegularDay(celebrity, free, description, name, beginDate, delta, direction);
+    public RegularFreeCelebrity build() throws IllegalRegularDayParamsException {
+        RegularFreeCelebrity regularDay = new RegularFreeCelebrity(celebrity, free, description, name, beginDate, delta, direction);
         if (regularDayValidator.isValid(regularDay)) {
             return regularDay;
         }
@@ -65,7 +65,7 @@ public class RegularDayBuilder {
         return this;
     }
 
-    public RegularDayBuilder direction(RegularDay.Direction direction) {
+    public RegularDayBuilder direction(RegularFreeCelebrity.Direction direction) {
         this.direction = direction;
         return this;
     }

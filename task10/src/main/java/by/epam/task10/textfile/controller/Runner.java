@@ -12,7 +12,6 @@ import java.util.Scanner;
 
 public class Runner {
     public static void main(String[] args) throws IOException {
-//        FFile FFile = new FFile("myName.txt", new Directory("D:\\where\\my\\enemy"));
 
         try {
             Scanner scanner = new Scanner(System.in);
@@ -24,7 +23,6 @@ public class Runner {
             FileWriter fileWriter = new FileWriter(file);
 
             fileWriter.create();
-//            scanner.nextLine();
             System.out.println("rename to:");
             fileWriter.rename(scanner.nextLine());
             System.out.println("append text:");
@@ -41,15 +39,7 @@ public class Runner {
         } catch (IllegalPathException e) {
             e.printStackTrace();
         }
-//        System.out.println(Paths.get("D:\\notexist)3%*#&^$#*%$#&%s"));
 
 
-//        DirectoryValidator directoryValidator = new DirectoryValidator();
-//        System.out.println(directoryValidator.isValid(new Directory("E:\\hahaha")));
-//        System.out.println(directoryValidator.isValid(new Directory("D:\\hahaha")));
-//        FileValidator fileValidator = new FileValidator();
-//        System.out.println("fileValidator.isValid() = " +
-//                fileValidator.isValid(new FFile("myverygood.txt",
-//                        new Directory("D:\\abc\\dtf"))));
     }
 }

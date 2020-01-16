@@ -1,5 +1,7 @@
 package by.epam.task10.calendar.dao;
 
+import by.epam.task10.calendar.entity.Calendar;
+
 import java.beans.Encoder;
 import java.beans.Expression;
 import java.beans.PersistenceDelegate;
@@ -8,10 +10,9 @@ import java.io.BufferedOutputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.time.LocalDate;
-import java.util.List;
 
 public class XMLFileWriter {
-    public void writeCalendarToXML(Calendar calendar,String fileName) {
+    public void writeCalendarToXML(Calendar calendar, String fileName) {
         try (XMLEncoder e = new XMLEncoder(new BufferedOutputStream(new FileOutputStream(fileName)))) {
             e.setPersistenceDelegate(LocalDate.class,
                     new PersistenceDelegate() {

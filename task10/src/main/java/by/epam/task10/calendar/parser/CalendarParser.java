@@ -1,6 +1,6 @@
 package by.epam.task10.calendar.parser;
 
-import by.epam.task10.calendar.dao.Calendar;
+import by.epam.task10.calendar.entity.Calendar;
 
 public class CalendarParser {
     public Calendar stringToCalendar(String data) {

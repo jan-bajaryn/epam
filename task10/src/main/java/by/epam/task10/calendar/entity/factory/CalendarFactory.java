@@ -1,7 +1,7 @@
 package by.epam.task10.calendar.entity.factory;
 
-import by.epam.task10.calendar.dao.Calendar;
-import by.epam.task10.calendar.entity.IrregularDay;
+import by.epam.task10.calendar.entity.Calendar;
+import by.epam.task10.calendar.entity.IrregularFreeCelebrity;
 import by.epam.task10.calendar.entity.SpecDate;
 import by.epam.task10.calendar.entity.factory.exception.IllegalCalendarParamsException;
 import by.epam.task10.calendar.service.validator.CalendarValidator;
@@ -13,7 +13,7 @@ public class CalendarFactory {
 
     public Calendar create(List<SpecDate> regularDays,
                            List<SpecDate> specificDates,
-                           List<IrregularDay> irregularDays) throws IllegalCalendarParamsException {
+                           List<IrregularFreeCelebrity> irregularDays) throws IllegalCalendarParamsException {
         Calendar calendar = new Calendar();
         if (calendarValidator.isValid(calendar)) {
             return calendar;

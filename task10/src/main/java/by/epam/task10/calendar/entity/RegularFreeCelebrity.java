@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Period;
 
-public class RegularDay extends RepeatedDays implements Serializable {
+public class RegularFreeCelebrity extends RepeatedFreeCelebrity implements Serializable {
 
     private LocalDate beginDate;
     private Period delta;
@@ -16,20 +16,20 @@ public class RegularDay extends RepeatedDays implements Serializable {
         return RegularDayBuilder.prototype();
     }
 
-    public RegularDay(boolean celebrity,
-                      boolean free,
-                      String description,
-                      String name,
-                      LocalDate beginDate,
-                      Period delta,
-                      Direction direction) {
+    public RegularFreeCelebrity(boolean celebrity,
+                                boolean free,
+                                String description,
+                                String name,
+                                LocalDate beginDate,
+                                Period delta,
+                                Direction direction) {
         super(celebrity, free, description, name);
         this.beginDate = beginDate;
         this.delta = delta;
         this.direction = direction;
     }
 
-    public RegularDay(boolean celebrity, boolean free, String description, String name) {
+    public RegularFreeCelebrity(boolean celebrity, boolean free, String description, String name) {
         super(celebrity, free, description, name);
     }
 
@@ -64,17 +64,21 @@ public class RegularDay extends RepeatedDays implements Serializable {
     }
 
     private LocalDate findBeforeBegin(LocalDate localDate) {
-        LocalDate temp = localDate;
+        LocalDate temp = this.beginDate;
+        Period period = this.delta;
         while (temp.compareTo(localDate) > 0) {
-            temp = temp.minus(this.delta);
+            temp = temp.minus(period);
+            period = period.plus(this.delta);
         }
         return temp;
     }
 
     private LocalDate findAfterBeginDate(LocalDate localDate) {
         LocalDate temp = this.beginDate;
+        Period tempPeriod = this.delta;
         while (temp.compareTo(localDate) < 0) {
-            temp = temp.plus(this.delta);
+            temp = beginDate.plus(tempPeriod);
+            tempPeriod = tempPeriod.plus(delta);
         }
         return temp;
     }
@@ -84,7 +88,7 @@ public class RegularDay extends RepeatedDays implements Serializable {
         int compare = this.beginDate.compareTo(localDate);
         if (compare == 0) {
             return true;
-        } else if (compare > 0) {
+        } else if (compare < 0) {
             return findAfterBeginDate(localDate).equals(localDate);
         } else {
             return findBeforeBegin(localDate).equals(localDate);
@@ -105,7 +109,7 @@ public class RegularDay extends RepeatedDays implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        RegularDay that = (RegularDay) o;
+        RegularFreeCelebrity that = (RegularFreeCelebrity) o;
 
         if (beginDate != null ? !beginDate.equals(that.beginDate) : that.beginDate != null) return false;
         if (delta != null ? !delta.equals(that.delta) : that.delta != null) return false;

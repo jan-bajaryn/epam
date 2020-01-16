@@ -1,6 +1,6 @@
 package by.epam.task10.calendar.service.validator;
 
-import by.epam.task10.calendar.dao.Calendar;
+import by.epam.task10.calendar.entity.Calendar;
 
 public class CalendarValidator {
 

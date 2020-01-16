@@ -1,5 +1,7 @@
 package by.epam.task10.calendar.dao;
 
+import by.epam.task10.calendar.entity.Calendar;
+
 import java.beans.XMLDecoder;
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
