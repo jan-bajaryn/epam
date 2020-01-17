@@ -1,14 +1,13 @@
-package by.epam.task10.calendar.service;
+package by.epam.task10.calendar.parser;
 
 import by.epam.task10.calendar.entity.FreeCelebrity;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public class FormatRespList {
-    public String format(Map<LocalDate, List<FreeCelebrity>> map) {
+    public String parse(Map<LocalDate, List<FreeCelebrity>> map) {
         return map.entrySet().stream()
                 .map(e -> {
                     StringBuilder sb = new StringBuilder(e.getKey().toString() + "->\t");

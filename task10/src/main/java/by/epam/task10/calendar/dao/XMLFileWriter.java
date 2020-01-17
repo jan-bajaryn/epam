@@ -10,9 +10,10 @@ import java.io.BufferedOutputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.time.LocalDate;
+import java.time.Period;
 
 public class XMLFileWriter {
-    public void writeCalendarToXML(Calendar calendar, String fileName) {
+    public void writeCalendarToXML(Calendar calendar, String fileName) throws FileNotFoundException {
         try (XMLEncoder e = new XMLEncoder(new BufferedOutputStream(new FileOutputStream(fileName)))) {
             e.setPersistenceDelegate(LocalDate.class,
                     new PersistenceDelegate() {
@@ -24,9 +25,17 @@ public class XMLFileWriter {
                                     new Object[]{localDate.toString()});
                         }
                     });
+            e.setPersistenceDelegate(Period.class,
+                    new PersistenceDelegate() {
+                        @Override
+                        protected Expression instantiate(Object period, Encoder out) {
+                            return new Expression(period,
+                                    Period.class,
+                                    "parse",
+                                    new Object[]{period.toString()});
+                        }
+                    });
             e.writeObject(calendar);
-        } catch (FileNotFoundException fileNotFound) {
-            System.out.println("ERROR: While Creating or Opening the File dvd.xml");
         }
     }
 }

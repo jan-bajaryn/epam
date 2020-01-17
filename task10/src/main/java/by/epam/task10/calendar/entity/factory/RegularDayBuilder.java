@@ -1,8 +1,9 @@
 package by.epam.task10.calendar.entity.factory;
 
 import by.epam.task10.calendar.entity.FreeCelebrity;
-import by.epam.task10.calendar.entity.RegularFreeCelebrity;
+import by.epam.task10.calendar.entity.impl.RegularFreeCelebrity;
 import by.epam.task10.calendar.entity.factory.exception.IllegalRegularDayParamsException;
+import by.epam.task10.calendar.service.formatter.StringFormatter;
 import by.epam.task10.calendar.service.validator.RegularDayValidator;
 
 import java.time.LocalDate;
@@ -12,6 +13,7 @@ public class RegularDayBuilder {
 
     private RegularDayValidator regularDayValidator = new RegularDayValidator();
 
+    private StringFormatter stringFormatter = new StringFormatter();
     private boolean celebrity;
     private boolean free;
     private String description = FreeCelebrity.NONE;
@@ -28,11 +30,22 @@ public class RegularDayBuilder {
     }
 
     public RegularFreeCelebrity build() throws IllegalRegularDayParamsException {
+        format();
+
         RegularFreeCelebrity regularDay = new RegularFreeCelebrity(celebrity, free, description, name, beginDate, delta, direction);
         if (regularDayValidator.isValid(regularDay)) {
             return regularDay;
         }
         throw new IllegalRegularDayParamsException("Parameters of regular day are illegal.");
+    }
+
+    private void format() {
+        if (name != null) {
+            name = stringFormatter.formatNamDesc(name);
+        }
+        if (description != null) {
+            description = stringFormatter.formatNamDesc(description);
+        }
     }
 
     public RegularDayBuilder celebrity(boolean celebrity) {

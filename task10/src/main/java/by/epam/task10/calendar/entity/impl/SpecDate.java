@@ -1,4 +1,6 @@
-package by.epam.task10.calendar.entity;
+package by.epam.task10.calendar.entity.impl;
+
+import by.epam.task10.calendar.entity.FreeCelebrity;
 
 import java.io.Serializable;
 import java.time.LocalDate;

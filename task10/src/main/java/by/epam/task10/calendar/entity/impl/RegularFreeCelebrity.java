@@ -1,12 +1,13 @@
-package by.epam.task10.calendar.entity;
+package by.epam.task10.calendar.entity.impl;
 
+import by.epam.task10.calendar.entity.FreeCelebrity;
 import by.epam.task10.calendar.entity.factory.RegularDayBuilder;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Period;
 
-public class RegularFreeCelebrity extends RepeatedFreeCelebrity implements Serializable {
+public class RegularFreeCelebrity extends FreeCelebrity implements Serializable {
 
     private LocalDate beginDate;
     private Period delta;
@@ -33,8 +34,9 @@ public class RegularFreeCelebrity extends RepeatedFreeCelebrity implements Seria
         super(celebrity, free, description, name);
     }
 
+    public RegularFreeCelebrity() {
+    }
 
-    @Override
     public LocalDate nextDate(LocalDate localDate) {
         switch (this.direction) {
             case FORWARD:
@@ -67,7 +69,7 @@ public class RegularFreeCelebrity extends RepeatedFreeCelebrity implements Seria
         LocalDate temp = this.beginDate;
         Period period = this.delta;
         while (temp.compareTo(localDate) > 0) {
-            temp = temp.minus(period);
+            temp = this.beginDate.minus(period);
             period = period.plus(this.delta);
         }
         return temp;
