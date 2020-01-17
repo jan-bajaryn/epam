@@ -3,15 +3,26 @@ package by.epam.task10.calendar.controller;
 import by.epam.task10.calendar.controller.command.*;
 import by.epam.task10.calendar.controller.command.communication.*;
 import by.epam.task10.calendar.controller.command.ShowThisMonth;
+import by.epam.task10.calendar.entity.IrregularFreeCelebrity;
+import by.epam.task10.calendar.entity.impl.CatholicEaster;
 import by.epam.task10.calendar.view.communication.Request;
 import by.epam.task10.calendar.view.communication.Response;
 import by.epam.task10.calendar.view.reader.UserCommandReader;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Controller {
+    public static List<IrregularFreeCelebrity> irregularDates;
+
+    {
+        irregularDates = new ArrayList<>();
+        irregularDates.add(new CatholicEaster());
+    }
+
     private UserCommandReader userCommandReader = new UserCommandReader();
 
     public void run() {
@@ -38,6 +49,18 @@ public class Controller {
 
         comunCommands.put("writeXML", new SerializeCommandComun());
         commandMap.put("writeXML", new SerializeCommand());
+
+        comunCommands.put("createEmpty", new CreateEmptyCalendarCommandComun());
+        commandMap.put("createEmpty", new CreateEmptyCalendarCommand());
+
+        comunCommands.put("addSpec", new AddSpecDateComun());
+        commandMap.put("addSpec", new AddSpecDateCommand());
+
+        comunCommands.put("addReg", new AddRegularDateComun());
+        commandMap.put("addReg", new AddRegularDateCommand());
+
+        comunCommands.put("addIrregular", new AddIrregularDateComun());
+        commandMap.put("addIrregular", new AddIrregularDateCommand());
 
 
         Map<String, String> commandsDefinitions = commandMap.entrySet().stream()
