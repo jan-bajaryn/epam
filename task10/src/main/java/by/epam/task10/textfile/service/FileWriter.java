@@ -10,15 +10,10 @@ import java.nio.file.StandardOpenOption;
 
 public class FileWriter {
     public static final String ILLEGAL_PATH_TO_FILE = "Illegal path to file.";
-    private FFile fFile;
 
-    public FileWriter(FFile fFile) {
-        this.fFile = fFile;
-    }
-
-    public void create() throws InOutException {
+    public void create(FFile fFile) throws InOutException {
         try {
-            File newFile = new File(this.fFile.calcFullPath());
+            File newFile = new File(fFile.calcFullPath());
 
             File parentFile = newFile.getAbsoluteFile().getParentFile();
             if (!parentFile.exists()) {
@@ -35,9 +30,9 @@ public class FileWriter {
 
     }
 
-    public void rename(String newName) throws InOutException {
-        File oldFile = new File(this.fFile.calcFullPath());
-        File newFile = new File(this.fFile.getDirectory().getPath() + File.separator + newName + fFile.getExtension());
+    public void rename(FFile fFile, String newName) throws InOutException {
+        File oldFile = new File(fFile.calcFullPath());
+        File newFile = new File(fFile.getDirectory().getPath() + File.separator + newName + fFile.getExtension());
         if (!oldFile.renameTo(newFile)) {
             throw new InOutException("File with so name is already exists.");
         }
@@ -49,18 +44,18 @@ public class FileWriter {
     }
 
 
-    public void append(String data) throws InOutException {
+    public void append(FFile fFile, String data) throws InOutException {
         try {
 //            System.out.println("this.file.getDirectory().getPath() = " + this.file.getDirectory().getPath());
 //            System.out.println("this.file.calcFullPath() = " + this.file.calcFullPath());
-            Files.write(Paths.get(this.fFile.calcFullPath()), data.getBytes(), StandardOpenOption.APPEND);
+            Files.write(Paths.get(fFile.calcFullPath()), data.getBytes(), StandardOpenOption.APPEND);
         } catch (IOException e) {
             throw new InOutException(ILLEGAL_PATH_TO_FILE, e);
         }
     }
 
-    public void delete() throws InOutException {
-        File file = new File(this.fFile.calcFullPath());
+    public void delete(FFile fFile) throws InOutException {
+        File file = new File(fFile.calcFullPath());
 //        boolean isDelete = file.delete();
         try {
             Files.delete(Paths.get(file.getAbsolutePath()));

@@ -7,13 +7,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class FileReader {
-    private FFile fFile;
 
-    public FileReader(FFile fFile) {
-        this.fFile = fFile;
-    }
-
-    public String getTextData() throws InOutException {
+    public String getTextData(FFile fFile) throws InOutException {
         try {
             return new String(Files.readAllBytes(Paths.get(fFile.calcFullPath())));
         } catch (IOException e) {
