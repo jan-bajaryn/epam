@@ -36,9 +36,6 @@ public class FileWriter {
         if (!oldFile.renameTo(newFile)) {
             throw new InOutException("File with so name is already exists.");
         }
-//        System.out.println("newFile.getName() = " + newFile.getName());
-//        System.out.println("newFile.getParent() = " + newFile.getAbsoluteFile().getParent());
-//        return new File(newFile.getName(), new Directory(newFile.getAbsoluteFile().getParent()));
         fFile.setName(newName);
         fFile.getDirectory().setPath(newFile.getAbsoluteFile().getParent());
     }
@@ -46,8 +43,6 @@ public class FileWriter {
 
     public void append(FFile fFile, String data) throws InOutException {
         try {
-//            System.out.println("this.file.getDirectory().getPath() = " + this.file.getDirectory().getPath());
-//            System.out.println("this.file.calcFullPath() = " + this.file.calcFullPath());
             Files.write(Paths.get(fFile.calcFullPath()), data.getBytes(), StandardOpenOption.APPEND);
         } catch (IOException e) {
             throw new InOutException(ILLEGAL_PATH_TO_FILE, e);
@@ -56,7 +51,6 @@ public class FileWriter {
 
     public void delete(FFile fFile) throws InOutException {
         File file = new File(fFile.calcFullPath());
-//        boolean isDelete = file.delete();
         try {
             Files.delete(Paths.get(file.getAbsolutePath()));
         } catch (IOException e) {

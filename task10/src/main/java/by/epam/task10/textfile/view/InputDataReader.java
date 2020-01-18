@@ -12,9 +12,9 @@ public class InputDataReader {
         List<Object> list = new ArrayList<>();
         System.out.println("Please enter 'true' if you want to create TextFile, or 'false' if you want to create Ffile.");
         Boolean isTextFile;
-        try{
+        try {
             isTextFile = sc.nextBoolean();
-        }finally {
+        } finally {
             sc.nextLine();
         }
         System.out.println("Please enter path to file. Or leave epmty if you want to create file in project directory.");
@@ -31,5 +31,15 @@ public class InputDataReader {
         list.add(fileName);
         list.add(extension);
         return list;
+    }
+
+    public String readAppendData() {
+        System.out.println("Please enter a line to append.");
+        return sc.nextLine();
+    }
+
+    public String readFileName() {
+        System.out.println("Please enter a new fileName for this file.");
+        return sc.nextLine();
     }
 }

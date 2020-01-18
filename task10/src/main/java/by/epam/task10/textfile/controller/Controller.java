@@ -2,8 +2,10 @@ package by.epam.task10.textfile.controller;
 
 
 import by.epam.task10.textfile.controller.command.*;
+import by.epam.task10.textfile.controller.command.communication.AppendFileComun;
 import by.epam.task10.textfile.controller.command.communication.CommunicationCommand;
 import by.epam.task10.textfile.controller.command.communication.ChangeSignatureComun;
+import by.epam.task10.textfile.controller.command.communication.RenameFileComun;
 import by.epam.task10.textfile.entity.Request;
 import by.epam.task10.textfile.entity.Response;
 import by.epam.task10.textfile.view.UserCommandReader;
@@ -31,6 +33,12 @@ public class Controller {
         commandMap.put("delete", new DeleteFileCommand());
 
         commandMap.put("read", new ReadInformationCommand());
+
+        comunCommands.put("append", new AppendFileComun());
+        commandMap.put("append", new AppendDataCommand());
+
+        comunCommands.put("rename", new RenameFileComun());
+        commandMap.put("rename", new RenameFileCommand());
 
 
         Map<String, String> commandsDefinitions = commandMap.entrySet().stream()

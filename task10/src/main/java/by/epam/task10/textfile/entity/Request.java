@@ -5,6 +5,7 @@ import java.util.List;
 public class Request {
     private FFile fFile;
     private List<Object> data;
+    private String stringData;
 
     public FFile getfFile() {
         return fFile;
@@ -20,5 +21,13 @@ public class Request {
 
     public List<Object> getData() {
         return data;
+    }
+
+    public void setStringData(String stringData) {
+        this.stringData = stringData;
+    }
+
+    public String getStringData() {
+        return stringData;
     }
 }
