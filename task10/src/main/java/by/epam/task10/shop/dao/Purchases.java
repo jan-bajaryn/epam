@@ -13,7 +13,8 @@ public class Purchases {
     private List<Gift> gifts = new ArrayList<>();
     private Gift toAdd = giftFactory.create();
 
-    private Purchases() {}
+    private Purchases() {
+    }
 
     private static Purchases instance = new Purchases();
 
@@ -40,16 +41,30 @@ public class Purchases {
     public void setToAdd(Gift toAdd) {
         this.toAdd = toAdd;
     }
-    public boolean isEmptySweetsToAdd(){
+
+    public boolean isEmptySweetsToAdd() {
         List<Sweet> sweets = toAdd.getSweets();
         if (sweets.isEmpty()) {
             return true;
         }
         for (Sweet sweet : sweets) {
-            if (sweet.getCount()!=0){
+            if (sweet.getCount() != 0) {
                 return false;
             }
         }
         return true;
+    }
+
+    public void takeGift() {
+        gifts.add(toAdd);
+        toAdd = giftFactory.create();
+    }
+
+    public boolean isEmptyGiftList() {
+        return gifts.isEmpty();
+    }
+
+    public void clear() {
+        gifts = new ArrayList<>();
     }
 }

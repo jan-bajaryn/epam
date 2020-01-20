@@ -2,10 +2,7 @@ package by.epam.task10.shop.controller;
 
 
 import by.epam.task10.shop.controller.command.*;
-import by.epam.task10.shop.controller.command.communication.ChangePackagingComun;
-import by.epam.task10.shop.controller.command.communication.CommunicationCommand;
-import by.epam.task10.shop.controller.command.communication.GiveSweetComun;
-import by.epam.task10.shop.controller.command.communication.TakeSweetComun;
+import by.epam.task10.shop.controller.command.communication.*;
 import by.epam.task10.shop.controller.command.dialog.Request;
 import by.epam.task10.shop.controller.command.dialog.Response;
 import by.epam.task10.shop.view.UserCommandReader;
@@ -37,12 +34,12 @@ public class Controller {
         commandMap.put("giveSweet", new GiveSweetCommand());
 //
 //
-//        commandMap.put("ready", new ReadyCommand());
+        commandMap.put("ready", new TakeGiftCommand());
 //
-//        comunCommands.put("printParagon", new PrintParagonComun());
-//        commandMap.put("printParagon", new PrintParagonCommand());
+        comunCommands.put("printParagon", new PrintParagonComun());
+        commandMap.put("printParagon", new PrintParagonCommand());
 
-//        commandMap.put("printState", new PrintStateCommand());
+        commandMap.put("printState", new PrintStateCommand());
 
 
 

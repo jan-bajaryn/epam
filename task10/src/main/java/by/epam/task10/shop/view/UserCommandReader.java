@@ -68,4 +68,9 @@ public class UserCommandReader {
         }
         return result;
     }
+
+    public String readFileName() {
+        System.out.println("Please enter file name where do you want to print paragon.");
+        return sc.nextLine();
+    }
 }
