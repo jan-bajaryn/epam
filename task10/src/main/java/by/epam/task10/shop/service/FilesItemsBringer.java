@@ -1,14 +1,13 @@
 package by.epam.task10.shop.service;
 
 import by.epam.task10.shop.dao.Shop;
-import by.epam.task10.shop.parser.exception.IllegalParamsPackingException;
+import by.epam.task10.shop.dao.reader.LinesReader;
 import by.epam.task10.shop.parser.PackageParser;
 import by.epam.task10.shop.parser.SweetParser;
+import by.epam.task10.shop.parser.exception.IllegalParamsPackingException;
 import by.epam.task10.shop.parser.exception.WrongSweetParamsCountException;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.Arrays;
 
 public class FilesItemsBringer {
@@ -22,13 +21,34 @@ public class FilesItemsBringer {
     private SweetParser sweetParser = new SweetParser();
     private PackageParser packageParser = new PackageParser();
 
+    private LinesReader linesReader = new LinesReader();
+
     public void bring(String fileName) throws IOException {
 
+        String[] fromFile = linesReader.readFile(fileName);
 
-        String[][] strings = Files.lines(Paths.get(fileName))
+        String[][] strings = Arrays.stream(fromFile)
                 .map(s -> s.split(SPLITERATOR))
                 .toArray(String[][]::new);
 
+        sweetBring(strings);
+        packBring(strings);
+    }
+
+    private void packBring(String[][] strings) {
+        Arrays.stream(strings)
+                .filter(s -> s.length == PACK_PARAMS_COUNT)
+                .map(s -> {
+                    try {
+                        return packageParser.parseStringToPackaging(s);
+                    } catch (IllegalParamsPackingException e) {
+                        return null;
+                    }
+                })
+                .forEach(p -> shop.putPackaging(p));
+    }
+
+    private void sweetBring(String[][] strings) {
         Arrays.stream(strings)
                 .filter(s -> s.length == SWEET_PARAMS_COUNT)
                 .map(s -> {
@@ -43,15 +63,5 @@ public class FilesItemsBringer {
                         shop.putSweet(s);
                     }
                 });
-        Arrays.stream(strings)
-                .filter(s -> s.length == PACK_PARAMS_COUNT)
-                .map(s -> {
-                    try {
-                        return packageParser.parseStringToPackaging(s);
-                    } catch (IllegalParamsPackingException e) {
-                        return null;
-                    }
-                })
-                .forEach(p -> shop.putPackaging(p));
     }
 }
