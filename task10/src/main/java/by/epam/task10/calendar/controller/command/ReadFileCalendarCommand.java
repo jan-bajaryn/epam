@@ -1,15 +1,13 @@
 package by.epam.task10.calendar.controller.command;
 
 import by.epam.task10.calendar.controller.ExecCommand;
+import by.epam.task10.calendar.controller.command.dialog.Request;
+import by.epam.task10.calendar.controller.command.dialog.Response;
 import by.epam.task10.calendar.dao.XMLFileReader;
 import by.epam.task10.calendar.entity.Calendar;
-import by.epam.task10.calendar.entity.factory.exception.IllegalCalendarParamsException;
 import by.epam.task10.calendar.service.validator.CalendarValidator;
-import by.epam.task10.calendar.view.InputDataReader;
-import by.epam.task10.calendar.view.communication.*;
 
 import java.io.FileNotFoundException;
-import java.util.HashSet;
 
 public class ReadFileCalendarCommand implements ExecCommand {
     private XMLFileReader xmlFileReader = new XMLFileReader();
@@ -22,7 +20,7 @@ public class ReadFileCalendarCommand implements ExecCommand {
 
         String fileName = request.getFileName();
         if (fileName == null) {
-            response.setWrongInput(new NullFileNameWrongInput());
+            response.setDisplayInformation("File name can't be null.");
             return response;
         }
         try {
@@ -30,13 +28,11 @@ public class ReadFileCalendarCommand implements ExecCommand {
             if (calendarValidator.isValid(calendar)) {
                 request.setCalendar(calendar);
             } else {
-                System.err.println("not valid calendar from xml");
-                response.setWrongInput(new WrongDataCalendar());
+                response.setDisplayInformation("Format of data in this file is illegal. Please choose another file.");
             }
             return response;
         } catch (FileNotFoundException e) {
-            System.err.println("exception thrown");
-            response.setWrongInput(new FileNotFoundWrongInput());
+            response.setDisplayInformation("There not so file found. Please choose another file name.");
             return response;
         }
 

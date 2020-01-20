@@ -19,8 +19,6 @@ public class TakeSweetService {
     private SweetFactory sweetFactory = new SweetFactory();
 
     public void takeSweet(int index) throws IllegalIndexSweetException, NoSweetFoundException, IllegalFactParamSweetException, NotContainsPackagingException, NotEnoughSizeException {
-        //TODO make realization
-
         Gift toAdd = purchases.getToAdd();
         List<Sweet> allSweets = shop.findAllSweets();
         checkParams(index, toAdd, allSweets);

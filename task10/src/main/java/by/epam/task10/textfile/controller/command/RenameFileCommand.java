@@ -5,9 +5,6 @@ import by.epam.task10.textfile.entity.Request;
 import by.epam.task10.textfile.entity.Response;
 import by.epam.task10.textfile.service.FileWriter;
 import by.epam.task10.textfile.service.InOutException;
-import by.epam.task10.textfile.view.communication.FileExistsWrongInput;
-import by.epam.task10.textfile.view.communication.NullFFileWrongInput;
-import by.epam.task10.textfile.view.communication.NullFileNameWrongInput;
 
 public class RenameFileCommand implements ExecCommand {
     private FileWriter fileWriter = new FileWriter();
@@ -21,17 +18,18 @@ public class RenameFileCommand implements ExecCommand {
         String fileName = request.getStringData();
 
         if (fFile == null) {
-            response.setWrongInput(new NullFFileWrongInput());
+            response.setDisplayInformation("You must make signature for this file at first. Choose 'change signature' for that");
             return response;
         }
         if (fileName == null) {
-            response.setWrongInput(new NullFileNameWrongInput());
+            response.setDisplayInformation("File name can't be null.");
+            return response;
         }
 
         try {
             fileWriter.rename(fFile, fileName);
         } catch (InOutException e) {
-            response.setWrongInput(new FileExistsWrongInput());
+            response.setDisplayInformation("File already exists.");
         }
         return response;
     }

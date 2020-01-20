@@ -70,14 +70,10 @@ public class Controller {
                 }
 
 
-                if (response.getWrongInput() != null) {
-                    response.getWrongInput().displayMessage();
-                } else {
-                    String displayInformation = response.getDisplayInformation();
-                    if (displayInformation != null) {
-                        userCommandReader.printDisplayInformation(displayInformation);
-                        request = response.getNextRequest();
-                    }
+                String displayInformation = response.getDisplayInformation();
+                if (displayInformation != null) {
+                    userCommandReader.printDisplayInformation(displayInformation);
+                    request = response.getNextRequest();
                 }
             }
 

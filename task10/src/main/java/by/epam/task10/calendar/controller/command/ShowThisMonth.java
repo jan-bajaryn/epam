@@ -1,13 +1,12 @@
 package by.epam.task10.calendar.controller.command;
 
 import by.epam.task10.calendar.controller.ExecCommand;
+import by.epam.task10.calendar.controller.command.dialog.Request;
+import by.epam.task10.calendar.controller.command.dialog.Response;
 import by.epam.task10.calendar.entity.Calendar;
 import by.epam.task10.calendar.entity.FreeCelebrity;
 import by.epam.task10.calendar.parser.FormatRespList;
 import by.epam.task10.calendar.service.CalendarService;
-import by.epam.task10.calendar.view.communication.NullCalendarWrongImput;
-import by.epam.task10.calendar.view.communication.Request;
-import by.epam.task10.calendar.view.communication.Response;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -27,7 +26,7 @@ public class ShowThisMonth implements ExecCommand {
         Calendar calendar = request.getCalendar();
 
         if (calendar == null) {
-            response.setWrongInput(new NullCalendarWrongImput());
+            response.setDisplayInformation("For this command you need to create or read calendar at first.");
             return response;
         }
         LocalDate now = LocalDate.now();

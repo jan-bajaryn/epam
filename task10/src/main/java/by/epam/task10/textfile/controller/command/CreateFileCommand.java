@@ -5,8 +5,6 @@ import by.epam.task10.textfile.entity.Request;
 import by.epam.task10.textfile.entity.Response;
 import by.epam.task10.textfile.service.FileWriter;
 import by.epam.task10.textfile.service.InOutException;
-import by.epam.task10.textfile.view.communication.FileExistsWrongInput;
-import by.epam.task10.textfile.view.communication.NullFFileWrongInput;
 
 public class CreateFileCommand implements ExecCommand {
     private FileWriter fileWriter = new FileWriter();
@@ -17,13 +15,13 @@ public class CreateFileCommand implements ExecCommand {
         response.setNextRequest(request);
         FFile fFile = request.getfFile();
         if (fFile == null) {
-            response.setWrongInput(new NullFFileWrongInput());
+            response.setDisplayInformation("You must make signature for this file at first. Choose 'change signature' for that");
             return response;
         }
         try {
             fileWriter.create(fFile);
         } catch (InOutException e) {
-            response.setWrongInput(new FileExistsWrongInput());
+            response.setDisplayInformation("File already exists.");
         }
         return response;
     }

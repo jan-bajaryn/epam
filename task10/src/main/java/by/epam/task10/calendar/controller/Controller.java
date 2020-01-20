@@ -2,11 +2,10 @@ package by.epam.task10.calendar.controller;
 
 import by.epam.task10.calendar.controller.command.*;
 import by.epam.task10.calendar.controller.command.communication.*;
-import by.epam.task10.calendar.controller.command.ShowThisMonth;
+import by.epam.task10.calendar.controller.command.dialog.Request;
+import by.epam.task10.calendar.controller.command.dialog.Response;
 import by.epam.task10.calendar.entity.IrregularFreeCelebrity;
 import by.epam.task10.calendar.entity.impl.CatholicEaster;
-import by.epam.task10.calendar.view.communication.Request;
-import by.epam.task10.calendar.view.communication.Response;
 import by.epam.task10.calendar.view.reader.UserCommandReader;
 
 import java.util.ArrayList;
@@ -85,21 +84,15 @@ public class Controller {
 
                 response = execCommand.execute(request);
 
-                if (response.getStatus() != null) {
-                    if (response.getStatus().equals(Response.EXIT)) {
-                        isExit = true;
-                    }
+                if (response.getStatus() != null && response.getStatus().equals(Response.EXIT)) {
+                    isExit = true;
                 }
 
 
-                if (response.getWrongInput() != null) {
-                    response.getWrongInput().displayMessage();
-                } else {
-                    String displayInformation = response.getDisplayInformation();
-                    if (displayInformation != null) {
-                        userCommandReader.printDisplayInformation(displayInformation);
-                        request = response.getNextRequest();
-                    }
+                String displayInformation = response.getDisplayInformation();
+                if (displayInformation != null) {
+                    userCommandReader.printDisplayInformation(displayInformation);
+                    request = response.getNextRequest();
                 }
             }
 

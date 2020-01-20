@@ -5,9 +5,6 @@ import by.epam.task10.textfile.entity.Request;
 import by.epam.task10.textfile.entity.Response;
 import by.epam.task10.textfile.service.FileWriter;
 import by.epam.task10.textfile.service.InOutException;
-import by.epam.task10.textfile.view.communication.FileNotExistsWrongInput;
-import by.epam.task10.textfile.view.communication.NullAppendDataWrongInput;
-import by.epam.task10.textfile.view.communication.NullFFileWrongInput;
 
 public class AppendDataCommand implements ExecCommand {
     private FileWriter fileWriter = new FileWriter();
@@ -20,18 +17,18 @@ public class AppendDataCommand implements ExecCommand {
         String data = request.getStringData();
         FFile fFile = request.getfFile();
         if (fFile == null) {
-            response.setWrongInput(new NullFFileWrongInput());
+            response.setDisplayInformation("You must make signature for this file at first. Choose 'change signature' for that");
             return response;
         }
         if (data == null) {
-            response.setWrongInput(new NullAppendDataWrongInput());
+            response.setDisplayInformation("Input data can't be null");
             return response;
         }
 
         try {
             fileWriter.append(fFile, "\n" + data);
         } catch (InOutException e) {
-            response.setWrongInput(new FileNotExistsWrongInput());
+            response.setDisplayInformation("File already not exists. Change signature to work further.");
         }
 
         return response;

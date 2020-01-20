@@ -1,13 +1,9 @@
 package by.epam.task10.calendar.controller.command;
 
 import by.epam.task10.calendar.controller.ExecCommand;
-import by.epam.task10.calendar.entity.factory.exception.IllegalParamsSpecDateException;
-import by.epam.task10.calendar.entity.factory.exception.IllegalRegularDayParamsException;
+import by.epam.task10.calendar.controller.command.dialog.Request;
+import by.epam.task10.calendar.controller.command.dialog.Response;
 import by.epam.task10.calendar.entity.impl.RegularFreeCelebrity;
-import by.epam.task10.calendar.view.communication.NullCalendarWrongImput;
-import by.epam.task10.calendar.view.communication.Request;
-import by.epam.task10.calendar.view.communication.Response;
-import by.epam.task10.calendar.view.communication.WrongINputRegularParams;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -21,7 +17,7 @@ public class AddRegularDateCommand implements ExecCommand {
         List<Object> params = request.getParams();
 
         if (request.getCalendar() == null) {
-            response.setWrongInput(new NullCalendarWrongImput());
+            response.setDisplayInformation("For this command you need to create or read calendar at first.");
         }
 
         try {
@@ -37,7 +33,7 @@ public class AddRegularDateCommand implements ExecCommand {
                     .build();
             request.getCalendar().getManager().getRegularDays().add(build);
         } catch (Exception e) {
-            response.setWrongInput(new WrongINputRegularParams());
+            response.setDisplayInformation("Wrong input for regular date.");
         }
         return response;
     }

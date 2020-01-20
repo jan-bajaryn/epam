@@ -1,12 +1,11 @@
 package by.epam.task10.calendar.controller.command;
 
 import by.epam.task10.calendar.controller.ExecCommand;
+import by.epam.task10.calendar.controller.command.dialog.Request;
+import by.epam.task10.calendar.controller.command.dialog.Response;
 import by.epam.task10.calendar.entity.Calendar;
 import by.epam.task10.calendar.entity.factory.CalendarFactory;
 import by.epam.task10.calendar.entity.factory.exception.IllegalCalendarParamsException;
-import by.epam.task10.calendar.view.communication.IllegalCalendarNameWrongInput;
-import by.epam.task10.calendar.view.communication.Request;
-import by.epam.task10.calendar.view.communication.Response;
 
 import java.util.HashSet;
 
@@ -24,7 +23,7 @@ public class CreateEmptyCalendarCommand implements ExecCommand {
             Calendar calendar = calendarFactory.create(calendarName, new HashSet<>(), new HashSet<>(), new HashSet<>());
             request.setCalendar(calendar);
         } catch (IllegalCalendarParamsException e) {
-            response.setWrongInput(new IllegalCalendarNameWrongInput());
+            response.setDisplayInformation("You need to write only letters, numbers or spaces.");
         }
         return response;
     }

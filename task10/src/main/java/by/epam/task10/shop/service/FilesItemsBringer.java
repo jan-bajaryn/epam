@@ -24,7 +24,6 @@ public class FilesItemsBringer {
 
     public void bring(String fileName) throws IOException {
 
-        //TODO перенести чтение из файла в dao
 
         String[][] strings = Files.lines(Paths.get(fileName))
                 .map(s -> s.split(SPLITERATOR))
@@ -44,7 +43,6 @@ public class FilesItemsBringer {
                         shop.putSweet(s);
                     }
                 });
-        // TODO ДОБАВИТЬ В ФАКТОРКИ СОЗДАНИЕЯ С ПОМОЩЬЮ СТРОК
         Arrays.stream(strings)
                 .filter(s -> s.length == PACK_PARAMS_COUNT)
                 .map(s -> {

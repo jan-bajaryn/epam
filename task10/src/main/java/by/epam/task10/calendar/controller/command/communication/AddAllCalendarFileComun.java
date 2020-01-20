@@ -1,7 +1,7 @@
 package by.epam.task10.calendar.controller.command.communication;
 
-import by.epam.task10.calendar.view.communication.Request;
-import by.epam.task10.calendar.view.communication.Response;
+import by.epam.task10.calendar.controller.command.dialog.Request;
+import by.epam.task10.calendar.controller.command.dialog.Response;
 import by.epam.task10.calendar.view.InputDataReader;
 
 public class AddAllCalendarFileComun implements CommunicationCommand {

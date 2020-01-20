@@ -1,15 +1,12 @@
 package by.epam.task10.calendar.controller.command;
 
 import by.epam.task10.calendar.controller.ExecCommand;
+import by.epam.task10.calendar.controller.command.dialog.Request;
+import by.epam.task10.calendar.controller.command.dialog.Response;
 import by.epam.task10.calendar.dao.XMLFileReader;
-import by.epam.task10.calendar.entity.*;
+import by.epam.task10.calendar.entity.Calendar;
 import by.epam.task10.calendar.entity.factory.CalendarFactory;
 import by.epam.task10.calendar.entity.factory.exception.IllegalCalendarParamsException;
-import by.epam.task10.calendar.view.communication.FileNotFoundWrongInput;
-import by.epam.task10.calendar.view.communication.Request;
-import by.epam.task10.calendar.view.communication.Response;
-import by.epam.task10.calendar.view.communication.WrongDataCalendar;
-import by.epam.task10.calendar.view.communication.NullFileNameWrongInput;
 import by.epam.task10.calendar.service.CalendarService;
 import by.epam.task10.calendar.service.validator.CalendarValidator;
 
@@ -30,7 +27,7 @@ public class AddAllCalendarFile implements ExecCommand {
         Calendar calendar = request.getCalendar();
         String fileName = request.getFileName();
         if (fileName == null) {
-            response.setWrongInput(new NullFileNameWrongInput());
+            response.setDisplayInformation("File name can't be null.");
             return response;
         }
         try {
@@ -45,12 +42,12 @@ public class AddAllCalendarFile implements ExecCommand {
             } else {
                 System.err.println("not valid calendar from xml");
                 response.setNextRequest(request);
-                response.setWrongInput(new WrongDataCalendar());
+                response.setDisplayInformation("Format of data in this file is illegal. Please choose another file.");
             }
             return response;
         } catch (FileNotFoundException e) {
             System.err.println("exception thrown");
-            response.setWrongInput(new FileNotFoundWrongInput());
+            response.setDisplayInformation("There not so file found. Please choose another file name.");
             return response;
         } catch (IllegalCalendarParamsException e) {
             return response;

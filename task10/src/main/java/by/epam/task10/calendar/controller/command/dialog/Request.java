@@ -1,4 +1,4 @@
-package by.epam.task10.calendar.view.communication;
+package by.epam.task10.calendar.controller.command.dialog;
 
 import by.epam.task10.calendar.entity.Calendar;
 

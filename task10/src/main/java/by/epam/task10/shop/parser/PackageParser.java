@@ -10,7 +10,6 @@ import static by.epam.task10.shop.service.FilesItemsBringer.PACK_PARAMS_COUNT;
 public class PackageParser {
 
     private PackagingFactory packagingFactory = new PackagingFactory();
-// TODO ВОЗВРАЩАТЬ ДОЛЖЕН ТОЛЬКО СТРОКИ
     public Packaging parseStringToPackaging(String[] s) throws IllegalParamsPackingException {
         if (s == null || s.length != PACK_PARAMS_COUNT) {
             throw new IllegalParamsPackingException();

@@ -2,11 +2,9 @@ package by.epam.task10.calendar.controller.command;
 
 import by.epam.task10.calendar.controller.ExecCommand;
 import by.epam.task10.calendar.entity.factory.SpecDateFactory;
-import by.epam.task10.calendar.entity.factory.exception.IllegalParamsSpecDateException;
 import by.epam.task10.calendar.entity.impl.SpecDate;
-import by.epam.task10.calendar.view.communication.Request;
-import by.epam.task10.calendar.view.communication.Response;
-import by.epam.task10.calendar.view.communication.WrongSpecDateParamsInput;
+import by.epam.task10.calendar.controller.command.dialog.Request;
+import by.epam.task10.calendar.controller.command.dialog.Response;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -28,7 +26,7 @@ public class AddSpecDateCommand implements ExecCommand {
                     LocalDate.of((Integer) params.get(4), (Integer) params.get(5), (Integer) params.get(6)));
             request.getCalendar().getManager().getSpecificDays().add(specDate);
         } catch (Exception e) {
-            response.setWrongInput(new WrongSpecDateParamsInput());
+            response.setDisplayInformation("Not right name, description or date.");
             return response;
         }
         response.setDisplayInformation("Added successfully.");

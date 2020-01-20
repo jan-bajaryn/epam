@@ -9,7 +9,6 @@ import by.epam.task10.shop.service.exception.NoElementsToExchangeException;
 import java.util.List;
 
 public class RemoveSweetService {
-    //TODO realize this method
     private Shop shop = Shop.getInstance();
     private Purchases purchases = Purchases.getInstance();
 

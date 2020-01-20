@@ -25,7 +25,6 @@ public class GiveSweetCommand implements ExecCommand {
             response.setDisplayInformation("Index can't be less or more than existing or typed not like integer.");
             return response;
         }
-//TODO realize this method too
         try {
             removeSweetService.remove(index);
         } catch (IllegalSizeException e) {

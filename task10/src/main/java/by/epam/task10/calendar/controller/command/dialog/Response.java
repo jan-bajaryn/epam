@@ -1,6 +1,4 @@
-package by.epam.task10.calendar.view.communication;
-
-import by.epam.task10.calendar.view.WrongInput;
+package by.epam.task10.calendar.controller.command.dialog;
 
 public class Response {
     public static final String EXIT = "EXIT";
@@ -8,15 +6,6 @@ public class Response {
     private Request nextRequest;
     private String displayInformation;
     private String fileName;
-    private WrongInput wrongInput;
-
-    public WrongInput getWrongInput() {
-        return wrongInput;
-    }
-
-    public void setWrongInput(WrongInput wrongInput) {
-        this.wrongInput = wrongInput;
-    }
 
     public String getFileName() {
         return fileName;
