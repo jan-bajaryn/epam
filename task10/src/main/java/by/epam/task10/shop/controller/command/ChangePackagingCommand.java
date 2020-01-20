@@ -1,22 +1,31 @@
 package by.epam.task10.shop.controller.command;
 
+import by.epam.task10.shop.dao.Purchases;
 import by.epam.task10.shop.dao.Shop;
-import by.epam.task10.shop.entity.Gift;
 import by.epam.task10.shop.entity.dialog.Request;
 import by.epam.task10.shop.entity.dialog.Response;
-import by.epam.task10.shop.entity.factory.GiftFactory;
 import by.epam.task10.shop.service.ChangeOrGetPackaging;
+import by.epam.task10.shop.service.InvalidIndexCountException;
+import by.epam.task10.shop.service.NoElementsToExchangeException;
 import by.epam.task10.shop.view.communication.IndexWrongInput;
+import by.epam.task10.shop.view.communication.InvalidIndexWrongInput;
+import by.epam.task10.shop.view.communication.NotEmptyGiftWrongInput;
 
 public class ChangePackagingCommand implements ExecCommand {
     private Shop shop = Shop.getInstance();
-    private GiftFactory giftFactory = new GiftFactory();
-    private ChangeOrGetPackaging PackagingService = new ChangeOrGetPackaging();
+    private ChangeOrGetPackaging packagingService = new ChangeOrGetPackaging();
+    private Purchases purchases = Purchases.getInstance();
 
     @Override
     public Response execute(Request request) {
         Response response = new Response();
         response.setNextRequest(request);
+
+        if (!purchases.isEmptyToAdd()) {
+            response.setWrongInput(new NotEmptyGiftWrongInput());
+            return response;
+        }
+
         if (shop.findAllPackaging().isEmpty()) {
             response.setDisplayInformation("There nothing to choose. Exit if you collected your purchase.");
             return response;
@@ -25,12 +34,13 @@ public class ChangePackagingCommand implements ExecCommand {
         if (index == null || index < 0) {
             response.setWrongInput(new IndexWrongInput());
         }
-        Gift gift = request.getGift();
-        if (gift == null) {
-            gift = giftFactory.createEmpty();
+        try {
+            packagingService.changeOrGetPackagin(index);
+        } catch (InvalidIndexCountException e) {
+            response.setWrongInput(new InvalidIndexWrongInput());
+        } catch (NoElementsToExchangeException e) {
+            response.setDisplayInformation("There no packaging in the shop this type to get(count = 0).");
         }
-        PackagingService.changeOrGetPackagin(gift, index);
-        request.setGift(gift);
 
         return response;
     }

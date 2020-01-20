@@ -30,18 +30,19 @@ public class Shop {
     public void putPackaging(Packaging p) {
         if (packages.containsKey(p)) {
             packages.put(p, packages.get(p) + 1);
+        } else {
+            packages.put(p, 1);
         }
-        packages.put(p, 1);
     }
 
 
     //change to another collection
-    public Packaging findByIndex(int index) {
+    public Map.Entry<Packaging, Integer> findPackEntrByIndex(int index) {
         Set<Map.Entry<Packaging, Integer>> entries = packages.entrySet();
         int counter = 0;
         for (Map.Entry<Packaging, Integer> entry : entries) {
-            if (counter == index) {
-                return entry.getKey();
+            if (counter++ == index) {
+                return entry;
             }
         }
         return null;
@@ -55,5 +56,20 @@ public class Shop {
         if (packages.containsKey(byIndex)) {
             packages.put(byIndex, packages.get(byIndex) - 1);
         }
+    }
+
+    public List<Sweet> findAllSweets() {
+        return sweets;
+    }
+
+    public Sweet findSweetByIndex(int index) {
+        if (index < 0 || index > sweets.size()) {
+            return null;
+        }
+        Sweet byIndex = sweets.get(index);
+        if (byIndex.getCount() < 1) {
+            return null;
+        }
+        return byIndex;
     }
 }

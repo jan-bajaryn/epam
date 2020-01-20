@@ -1,12 +1,19 @@
 package by.epam.task10.shop.dao;
 
 import by.epam.task10.shop.entity.Gift;
+import by.epam.task10.shop.entity.Sweet;
+import by.epam.task10.shop.entity.factory.GiftFactory;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Purchases {
+    private GiftFactory giftFactory = new GiftFactory();
+
     private List<Gift> gifts = new ArrayList<>();
+    private Gift toAdd = giftFactory.createEmpty();
+
+    private Purchases() {}
 
     private static Purchases instance = new Purchases();
 
@@ -26,4 +33,23 @@ public class Purchases {
         gifts.remove(index);
     }
 
+    public Gift getToAdd() {
+        return toAdd;
+    }
+
+    public void setToAdd(Gift toAdd) {
+        this.toAdd = toAdd;
+    }
+    public boolean isEmptyToAdd(){
+        List<Sweet> sweets = toAdd.getSweets();
+        if (sweets.isEmpty()) {
+            return true;
+        }
+        for (Sweet sweet : sweets) {
+            if (sweet.getCount()!=0){
+                return false;
+            }
+        }
+        return true;
+    }
 }

@@ -11,13 +11,17 @@ public class Packaging {
     }
 
 
-
     public enum PackageSize {
         SMALL(25), MIDDLE(50), BIG(100);
-        private int size;
 
-        PackageSize(int size) {
-            this.size = size;
+        int maxSize;
+
+        PackageSize(int maxSize) {
+            this.maxSize = maxSize;
+        }
+
+        public int getMaxSize() {
+            return maxSize;
         }
     }
 

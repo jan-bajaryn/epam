@@ -14,6 +14,13 @@ public class Gift {
     public Gift() {
     }
 
+    public Packaging changePackaging(Packaging newPack) {
+        Packaging thisPackaging = this.packaging;
+        this.packaging = newPack;
+        return thisPackaging;
+    }
+
+
     public List<Sweet> getSweets() {
         return sweets;
     }

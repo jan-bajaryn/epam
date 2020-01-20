@@ -1,12 +1,10 @@
 package by.epam.task10.shop.controller;
 
 
-import by.epam.task10.shop.controller.command.BringCommand;
-import by.epam.task10.shop.controller.command.ChangePackagingCommand;
-import by.epam.task10.shop.controller.command.ExecCommand;
-import by.epam.task10.shop.controller.command.ExitExecCommand;
+import by.epam.task10.shop.controller.command.*;
 import by.epam.task10.shop.controller.command.communication.ChangePackagingComun;
 import by.epam.task10.shop.controller.command.communication.CommunicationCommand;
+import by.epam.task10.shop.controller.command.communication.TakeSweetComun;
 import by.epam.task10.shop.entity.dialog.Request;
 import by.epam.task10.shop.entity.dialog.Response;
 import by.epam.task10.shop.view.UserCommandReader;
@@ -30,18 +28,20 @@ public class Controller {
         comunCommands.put("changePackage", new ChangePackagingComun());
         commandMap.put("changePackage", new ChangePackagingCommand());
 
-//        comunCommands.put("takeSweet", new TakeSweetComun());
-//        commandMap.put("bring", new TakeSweetCommand());
+        comunCommands.put("takeSweet", new TakeSweetComun());
+        commandMap.put("takeSweet", new TakeSweetCommand());
 //
 //        comunCommands.put("giveSweet", new GiveSweetComun());
-//        commandMap.put("bring", new GiveSweetCommand());
+//        commandMap.put("giveSweet", new GiveSweetCommand());
 //
 //
-//        comunCommands.put("ready", new ReadyComun());
 //        commandMap.put("ready", new ReadyCommand());
 //
 //        comunCommands.put("printParagon", new PrintParagonComun());
-//        commandMap.put("ready", new PrintParagonCommand());
+//        commandMap.put("printParagon", new PrintParagonCommand());
+
+//        commandMap.put("printState", new PrintStateCommand());
+
 
 
 

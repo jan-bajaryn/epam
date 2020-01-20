@@ -46,7 +46,6 @@ public class Sweet {
         Sweet sweet = (Sweet) o;
 
         if (size != sweet.size) return false;
-        if (count != sweet.count) return false;
         return name != null ? name.equals(sweet.name) : sweet.name == null;
     }
 
@@ -54,7 +53,6 @@ public class Sweet {
     public int hashCode() {
         int result = name != null ? name.hashCode() : 0;
         result = 31 * result + size;
-        result = 31 * result + count;
         return result;
     }
 
@@ -66,4 +64,5 @@ public class Sweet {
                 ", count=" + count +
                 '}';
     }
+
 }
