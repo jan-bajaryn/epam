@@ -1,13 +1,10 @@
 package by.epam.task10.shop.controller.command.dialog;
 
-import by.epam.task10.shop.view.WrongInput;
-
 public class Response {
     public static final String EXIT = "EXIT";
 
     private Request nextRequest;
     private String status;
-    private WrongInput wrongInput;
     private String displayInformation;
 
     public Request getNextRequest() {
@@ -26,13 +23,6 @@ public class Response {
         return status;
     }
 
-    public WrongInput getWrongInput() {
-        return wrongInput;
-    }
-
-    public void setWrongInput(WrongInput wrongInput) {
-        this.wrongInput = wrongInput;
-    }
 
     public String getDisplayInformation() {
         return displayInformation;

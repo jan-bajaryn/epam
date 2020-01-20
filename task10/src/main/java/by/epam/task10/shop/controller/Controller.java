@@ -42,10 +42,8 @@ public class Controller {
         commandMap.put("printState", new PrintStateCommand());
 
 
-
-
         Map<String, String> commandsDefinitions = commandMap.entrySet().stream()
-                .collect(Collectors.toMap(c -> c.getKey(), c -> c.getValue().definition()));
+                .collect(Collectors.toMap(Map.Entry::getKey, c -> c.getValue().definition()));
         Response response = new Response();
         Request request = new Request();
 
@@ -66,21 +64,15 @@ public class Controller {
 
                 response = execCommand.execute(request);
 
-                if (response.getStatus() != null) {
-                    if (response.getStatus().equals(Response.EXIT)) {
-                        isExit = true;
-                    }
+                if (response.getStatus() != null && response.getStatus().equals(Response.EXIT)) {
+                    isExit = true;
                 }
 
 
-                if (response.getWrongInput() != null) {
-                    response.getWrongInput().displayMessage();
-                } else {
-                    String displayInformation = response.getDisplayInformation();
-                    if (displayInformation != null) {
-                        userCommandReader.printDisplayInformation(displayInformation);
-                        request = response.getNextRequest();
-                    }
+                String displayInformation = response.getDisplayInformation();
+                if (displayInformation != null) {
+                    userCommandReader.printDisplayInformation(displayInformation);
+                    request = response.getNextRequest();
                 }
             }
 

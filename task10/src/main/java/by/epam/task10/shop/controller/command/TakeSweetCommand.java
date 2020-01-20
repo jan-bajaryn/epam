@@ -11,10 +11,6 @@ import by.epam.task10.shop.service.exception.IllegalIndexSweetException;
 import by.epam.task10.shop.service.exception.NoSweetFoundException;
 import by.epam.task10.shop.service.exception.NotContainsPackagingException;
 import by.epam.task10.shop.service.exception.NotEnoughSizeException;
-import by.epam.task10.shop.view.communication.IndexWrongInput;
-import by.epam.task10.shop.view.communication.InvalidIndexWrongInput;
-import by.epam.task10.shop.view.communication.NoPackagingWrongInput;
-import by.epam.task10.shop.view.communication.NotEnoughSizeWrongInput;
 
 import java.util.Map;
 
@@ -30,7 +26,7 @@ public class TakeSweetCommand implements ExecCommand {
 
 
         if (purchases.getToAdd().getPackaging() == null) {
-            response.setWrongInput(new NoPackagingWrongInput());
+            response.setDisplayInformation("You must choose packaging before adding sweets.");
             return response;
         }
 
@@ -42,21 +38,19 @@ public class TakeSweetCommand implements ExecCommand {
 
         Integer index = request.getIndex();
         if (index == null || index < 0) {
-            response.setWrongInput(new IndexWrongInput());
+            response.setDisplayInformation("Index can't be less or more than existing or typed not like integer.");
             return response;
         }
         try {
             takeSweetService.takeSweet(index);
         } catch (IllegalIndexSweetException e) {
-            response.setWrongInput(new InvalidIndexWrongInput());
+            response.setDisplayInformation("Please choose index from the list.");
         } catch (IllegalFactParamSweetException | NoSweetFoundException e) {
             response.setDisplayInformation("There not any sweet of that type in the shop(count=0)");
         } catch (NotContainsPackagingException e) {
-            response.setWrongInput(new NoPackagingWrongInput());
-            return response;
+            response.setDisplayInformation("You must choose packaging before adding sweets.");
         } catch (NotEnoughSizeException e) {
-            response.setWrongInput(new NotEnoughSizeWrongInput());
-            return response;
+            response.setDisplayInformation("Not enough size for this sweet.");
         }
 
         return response;
