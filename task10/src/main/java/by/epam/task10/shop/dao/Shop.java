@@ -18,12 +18,13 @@ public class Shop {
 
     public void putSweet(Sweet s) {
         Sweet toAdd = sweets.stream()
-                .filter(sweet -> s.getName().equals(sweet.getName()) && s.getSize() == sweet.getSize())
+                .filter(sweet -> s.getName().equals(sweet.getName()))
                 .findAny().orElse(null);
         if (toAdd == null) {
             sweets.add(s);
         } else {
-            toAdd.setCount(toAdd.getCount() + s.getCount());
+            int index = sweets.indexOf(toAdd);
+            sweets.set(index, toAdd.setCount(toAdd.getCount() + s.getCount()));
         }
     }
 

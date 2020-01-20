@@ -4,6 +4,8 @@ import by.epam.task10.shop.dao.Purchases;
 import by.epam.task10.shop.dao.Shop;
 import by.epam.task10.shop.entity.Gift;
 import by.epam.task10.shop.entity.Packaging;
+import by.epam.task10.shop.service.exception.InvalidIndexCountException;
+import by.epam.task10.shop.service.exception.NoElementsToExchangeException;
 
 import java.util.Map;
 

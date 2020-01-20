@@ -4,9 +4,10 @@ package by.epam.task10.shop.controller;
 import by.epam.task10.shop.controller.command.*;
 import by.epam.task10.shop.controller.command.communication.ChangePackagingComun;
 import by.epam.task10.shop.controller.command.communication.CommunicationCommand;
+import by.epam.task10.shop.controller.command.communication.GiveSweetComun;
 import by.epam.task10.shop.controller.command.communication.TakeSweetComun;
-import by.epam.task10.shop.entity.dialog.Request;
-import by.epam.task10.shop.entity.dialog.Response;
+import by.epam.task10.shop.controller.command.dialog.Request;
+import by.epam.task10.shop.controller.command.dialog.Response;
 import by.epam.task10.shop.view.UserCommandReader;
 
 import java.util.HashMap;
@@ -25,14 +26,15 @@ public class Controller {
         commandMap.put(Response.EXIT, new ExitExecCommand());
 
         commandMap.put("bring", new BringCommand());
+
         comunCommands.put("changePackage", new ChangePackagingComun());
         commandMap.put("changePackage", new ChangePackagingCommand());
 
         comunCommands.put("takeSweet", new TakeSweetComun());
         commandMap.put("takeSweet", new TakeSweetCommand());
 //
-//        comunCommands.put("giveSweet", new GiveSweetComun());
-//        commandMap.put("giveSweet", new GiveSweetCommand());
+        comunCommands.put("giveSweet", new GiveSweetComun());
+        commandMap.put("giveSweet", new GiveSweetCommand());
 //
 //
 //        commandMap.put("ready", new ReadyCommand());

@@ -11,7 +11,7 @@ public class Purchases {
     private GiftFactory giftFactory = new GiftFactory();
 
     private List<Gift> gifts = new ArrayList<>();
-    private Gift toAdd = giftFactory.createEmpty();
+    private Gift toAdd = giftFactory.create();
 
     private Purchases() {}
 
@@ -40,7 +40,7 @@ public class Purchases {
     public void setToAdd(Gift toAdd) {
         this.toAdd = toAdd;
     }
-    public boolean isEmptyToAdd(){
+    public boolean isEmptySweetsToAdd(){
         List<Sweet> sweets = toAdd.getSweets();
         if (sweets.isEmpty()) {
             return true;

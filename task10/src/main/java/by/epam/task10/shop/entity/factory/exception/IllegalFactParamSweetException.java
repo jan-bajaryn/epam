@@ -1,4 +1,4 @@
-package by.epam.task10.shop.entity.factory;
+package by.epam.task10.shop.entity.factory.exception;
 
 public class IllegalFactParamSweetException extends Exception {
     public IllegalFactParamSweetException() {

@@ -7,6 +7,6 @@ public class SweetValidator {
         if (sweet == null || sweet.getName() == null || !sweet.getName().matches("[^\n]+")) {
             return false;
         }
-        return sweet.getCount() >= 0 && sweet.getSize() >= 0;
+        return sweet.getCount() >= 0;
     }
 }

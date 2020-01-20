@@ -1,8 +1,8 @@
 package by.epam.task10.shop.controller.command;
 
 
-import by.epam.task10.shop.entity.dialog.Request;
-import by.epam.task10.shop.entity.dialog.Response;
+import by.epam.task10.shop.controller.command.dialog.Request;
+import by.epam.task10.shop.controller.command.dialog.Response;
 
 public class ExitExecCommand implements ExecCommand {
     @Override

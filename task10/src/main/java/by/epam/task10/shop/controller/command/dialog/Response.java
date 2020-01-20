@@ -1,4 +1,4 @@
-package by.epam.task10.shop.entity.dialog;
+package by.epam.task10.shop.controller.command.dialog;
 
 import by.epam.task10.shop.view.WrongInput;
 

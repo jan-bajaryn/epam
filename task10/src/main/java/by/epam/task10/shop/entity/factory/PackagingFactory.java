@@ -1,6 +1,7 @@
 package by.epam.task10.shop.entity.factory;
 
 import by.epam.task10.shop.entity.Packaging;
+import by.epam.task10.shop.entity.factory.exception.IllegalParamsFactPackagingException;
 import by.epam.task10.shop.service.validator.PackagingValidator;
 
 public class PackagingFactory {

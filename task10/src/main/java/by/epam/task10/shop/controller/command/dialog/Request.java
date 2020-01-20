@@ -1,6 +1,4 @@
-package by.epam.task10.shop.entity.dialog;
-
-import by.epam.task10.shop.entity.Gift;
+package by.epam.task10.shop.controller.command.dialog;
 
 public class Request {
     private Integer index;

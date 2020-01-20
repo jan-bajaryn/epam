@@ -2,11 +2,11 @@ package by.epam.task10.shop.controller.command;
 
 import by.epam.task10.shop.dao.Purchases;
 import by.epam.task10.shop.dao.Shop;
-import by.epam.task10.shop.entity.dialog.Request;
-import by.epam.task10.shop.entity.dialog.Response;
+import by.epam.task10.shop.controller.command.dialog.Request;
+import by.epam.task10.shop.controller.command.dialog.Response;
 import by.epam.task10.shop.service.ChangeOrGetPackaging;
-import by.epam.task10.shop.service.InvalidIndexCountException;
-import by.epam.task10.shop.service.NoElementsToExchangeException;
+import by.epam.task10.shop.service.exception.InvalidIndexCountException;
+import by.epam.task10.shop.service.exception.NoElementsToExchangeException;
 import by.epam.task10.shop.view.communication.IndexWrongInput;
 import by.epam.task10.shop.view.communication.InvalidIndexWrongInput;
 import by.epam.task10.shop.view.communication.NotEmptyGiftWrongInput;
@@ -21,7 +21,7 @@ public class ChangePackagingCommand implements ExecCommand {
         Response response = new Response();
         response.setNextRequest(request);
 
-        if (!purchases.isEmptyToAdd()) {
+        if (!purchases.isEmptySweetsToAdd()) {
             response.setWrongInput(new NotEmptyGiftWrongInput());
             return response;
         }

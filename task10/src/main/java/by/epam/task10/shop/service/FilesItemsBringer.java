@@ -1,17 +1,17 @@
 package by.epam.task10.shop.service;
 
 import by.epam.task10.shop.dao.Shop;
-import by.epam.task10.shop.parser.IllegalParamsPackingException;
+import by.epam.task10.shop.parser.exception.IllegalParamsPackingException;
 import by.epam.task10.shop.parser.PackageParser;
 import by.epam.task10.shop.parser.SweetParser;
-import by.epam.task10.shop.parser.WrongSweetParamsCountException;
+import by.epam.task10.shop.parser.exception.WrongSweetParamsCountException;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
 
-public class ItemsBringer {
+public class FilesItemsBringer {
 
     public static final String SPLITERATOR = "---";
     public static final int SWEET_PARAMS_COUNT = 3;
@@ -23,6 +23,9 @@ public class ItemsBringer {
     private PackageParser packageParser = new PackageParser();
 
     public void bring(String fileName) throws IOException {
+
+        //TODO перенести чтение из файла в dao
+
         String[][] strings = Files.lines(Paths.get(fileName))
                 .map(s -> s.split(SPLITERATOR))
                 .toArray(String[][]::new);
@@ -41,6 +44,7 @@ public class ItemsBringer {
                         shop.putSweet(s);
                     }
                 });
+        // TODO ДОБАВИТЬ В ФАКТОРКИ СОЗДАНИЕЯ С ПОМОЩЬЮ СТРОК
         Arrays.stream(strings)
                 .filter(s -> s.length == PACK_PARAMS_COUNT)
                 .map(s -> {

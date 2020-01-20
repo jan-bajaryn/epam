@@ -1,4 +1,4 @@
-package by.epam.task10.shop.service;
+package by.epam.task10.shop.service.exception;
 
 public class NotContainsPackagingException extends Exception {
     public NotContainsPackagingException() {

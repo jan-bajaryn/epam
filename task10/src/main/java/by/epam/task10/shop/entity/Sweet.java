@@ -2,12 +2,10 @@ package by.epam.task10.shop.entity;
 
 public class Sweet {
     private String name;
-    private int size;
     private int count;
 
-    public Sweet(String name, int size, int count) {
+    public Sweet(String name, int count) {
         this.name = name;
-        this.size = size;
         this.count = count;
     }
 
@@ -18,24 +16,12 @@ public class Sweet {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getSize() {
-        return size;
-    }
-
-    public void setSize(int size) {
-        this.size = size;
-    }
-
     public int getCount() {
         return count;
     }
 
-    public void setCount(int count) {
-        this.count = count;
+    public Sweet setCount(int count) {
+        return new Sweet(this.name, count);
     }
 
     @Override
@@ -44,23 +30,18 @@ public class Sweet {
         if (o == null || getClass() != o.getClass()) return false;
 
         Sweet sweet = (Sweet) o;
-
-        if (size != sweet.size) return false;
         return name != null ? name.equals(sweet.name) : sweet.name == null;
     }
 
     @Override
     public int hashCode() {
-        int result = name != null ? name.hashCode() : 0;
-        result = 31 * result + size;
-        return result;
+        return name != null ? name.hashCode() : 0;
     }
 
     @Override
     public String toString() {
         return "Sweet{" +
                 "name='" + name + '\'' +
-                ", size=" + size +
                 ", count=" + count +
                 '}';
     }

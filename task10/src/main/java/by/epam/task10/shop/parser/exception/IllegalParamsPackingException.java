@@ -1,4 +1,4 @@
-package by.epam.task10.shop.parser;
+package by.epam.task10.shop.parser.exception;
 
 public class IllegalParamsPackingException extends Exception {
     public IllegalParamsPackingException() {

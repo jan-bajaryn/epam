@@ -55,7 +55,7 @@ public class UserCommandReader {
         for (int i = 0; i < allSweets.size(); i++) {
             Sweet sweet = allSweets.get(i);
             System.out.println(i + ". " + "name: " + sweet.getName() +
-                    ", size: " + sweet.getSize() + ", count in the shop -->" + sweet.getCount());
+                    ", count in the shop -->" + sweet.getCount());
         }
 
         System.out.println("Please enter index of sweet what you want to add to your gift.");
