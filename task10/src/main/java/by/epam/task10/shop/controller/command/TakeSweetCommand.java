@@ -1,12 +1,12 @@
 package by.epam.task10.shop.controller.command;
 
-import by.epam.task10.shop.dao.Purchases;
-import by.epam.task10.shop.dao.Shop;
-import by.epam.task10.shop.entity.Packaging;
 import by.epam.task10.shop.controller.command.dialog.Request;
 import by.epam.task10.shop.controller.command.dialog.Response;
+import by.epam.task10.shop.entity.Packaging;
 import by.epam.task10.shop.entity.factory.exception.IllegalFactParamSweetException;
-import by.epam.task10.shop.service.*;
+import by.epam.task10.shop.service.PurchasesService;
+import by.epam.task10.shop.service.ShopService;
+import by.epam.task10.shop.service.TakeSweetService;
 import by.epam.task10.shop.service.exception.IllegalIndexSweetException;
 import by.epam.task10.shop.service.exception.NoSweetFoundException;
 import by.epam.task10.shop.service.exception.NotContainsPackagingException;
@@ -15,9 +15,9 @@ import by.epam.task10.shop.service.exception.NotEnoughSizeException;
 import java.util.Map;
 
 public class TakeSweetCommand implements ExecCommand {
-    private Shop shop = Shop.getInstance();
-    private Purchases purchases = Purchases.getInstance();
     private TakeSweetService takeSweetService = new TakeSweetService();
+    private ShopService shopService = new ShopService();
+    private PurchasesService purchasesService = new PurchasesService();
 
     @Override
     public Response execute(Request request) {
@@ -25,12 +25,12 @@ public class TakeSweetCommand implements ExecCommand {
         response.setNextRequest(request);
 
 
-        if (purchases.getToAdd().getPackaging() == null) {
+        if (purchasesService.isNullPackaging()) {
             response.setDisplayInformation("You must choose packaging before adding sweets.");
             return response;
         }
 
-        Map<Packaging, Integer> allPackaging = shop.findAllPackaging();
+        Map<Packaging, Integer> allPackaging = shopService.findAllPackaging();
         if (allPackaging == null || allPackaging.isEmpty()) {
             response.setDisplayInformation("There no any sweets in shop. You can please to bring more sweets.");
             return response;

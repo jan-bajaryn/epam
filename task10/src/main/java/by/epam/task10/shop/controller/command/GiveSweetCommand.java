@@ -1,22 +1,23 @@
 package by.epam.task10.shop.controller.command;
 
-import by.epam.task10.shop.dao.Purchases;
 import by.epam.task10.shop.controller.command.dialog.Request;
 import by.epam.task10.shop.controller.command.dialog.Response;
+import by.epam.task10.shop.service.PurchasesService;
+import by.epam.task10.shop.service.RemoveSweetService;
 import by.epam.task10.shop.service.exception.IllegalSizeException;
 import by.epam.task10.shop.service.exception.NoElementsToExchangeException;
-import by.epam.task10.shop.service.RemoveSweetService;
 
 public class GiveSweetCommand implements ExecCommand {
-    private Purchases purchases = Purchases.getInstance();
     private RemoveSweetService removeSweetService = new RemoveSweetService();
+    private PurchasesService purchasesService = new PurchasesService();
+
 
     @Override
     public Response execute(Request request) {
         Response response = new Response();
         response.setNextRequest(request);
 
-        if (purchases.isEmptySweetsToAdd()) {
+        if (purchasesService.isEmptySweetsToAdd()) {
             response.setDisplayInformation("There nothing to remove.");
             return response;
         }

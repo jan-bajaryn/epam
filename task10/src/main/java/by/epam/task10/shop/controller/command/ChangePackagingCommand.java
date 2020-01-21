@@ -2,28 +2,28 @@ package by.epam.task10.shop.controller.command;
 
 import by.epam.task10.shop.controller.command.dialog.Request;
 import by.epam.task10.shop.controller.command.dialog.Response;
-import by.epam.task10.shop.dao.Purchases;
-import by.epam.task10.shop.dao.Shop;
 import by.epam.task10.shop.service.ChangeOrGetPackaging;
+import by.epam.task10.shop.service.PurchasesService;
+import by.epam.task10.shop.service.ShopService;
 import by.epam.task10.shop.service.exception.InvalidIndexCountException;
 import by.epam.task10.shop.service.exception.NoElementsToExchangeException;
 
 public class ChangePackagingCommand implements ExecCommand {
-    private Shop shop = Shop.getInstance();
     private ChangeOrGetPackaging packagingService = new ChangeOrGetPackaging();
-    private Purchases purchases = Purchases.getInstance();
+    private ShopService shopService = new ShopService();
+    private PurchasesService purchasesService = new PurchasesService();
 
     @Override
     public Response execute(Request request) {
         Response response = new Response();
         response.setNextRequest(request);
 
-        if (!purchases.isEmptySweetsToAdd()) {
+        if (!purchasesService.isEmptySweetsToAdd()) {
             response.setDisplayInformation("Your gift not empty. Delete all sweets and than change packaging.");
             return response;
         }
 
-        if (shop.findAllPackaging().isEmpty()) {
+        if (shopService.isEmptyPackages()) {
             response.setDisplayInformation("There nothing to choose. Exit if you collected your purchase.");
             return response;
         }

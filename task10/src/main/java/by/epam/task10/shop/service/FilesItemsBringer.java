@@ -12,7 +12,7 @@ import java.util.Arrays;
 
 public class FilesItemsBringer {
 
-    public static final String SPLITERATOR = "---";
+    public static final String DELIMITER = "---";
     public static final int SWEET_PARAMS_COUNT = 3;
     public static final int PACK_PARAMS_COUNT = 2;
 
@@ -28,7 +28,7 @@ public class FilesItemsBringer {
         String[] fromFile = linesReader.readFile(fileName);
 
         String[][] strings = Arrays.stream(fromFile)
-                .map(s -> s.split(SPLITERATOR))
+                .map(s -> s.split(DELIMITER))
                 .toArray(String[][]::new);
 
         sweetBring(strings);
