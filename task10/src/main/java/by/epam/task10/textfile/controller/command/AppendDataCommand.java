@@ -1,13 +1,13 @@
 package by.epam.task10.textfile.controller.command;
 
+import by.epam.task10.textfile.dao.InOutException;
 import by.epam.task10.textfile.entity.FFile;
 import by.epam.task10.textfile.entity.Request;
 import by.epam.task10.textfile.entity.Response;
-import by.epam.task10.textfile.service.FileWriter;
-import by.epam.task10.textfile.service.InOutException;
+import by.epam.task10.textfile.service.FileWriterService;
 
 public class AppendDataCommand implements ExecCommand {
-    private FileWriter fileWriter = new FileWriter();
+    private FileWriterService fileWriterService = new FileWriterService();
 
     @Override
     public Response execute(Request request) {
@@ -26,7 +26,7 @@ public class AppendDataCommand implements ExecCommand {
         }
 
         try {
-            fileWriter.append(fFile, "\n" + data);
+            fileWriterService.append(data, fFile);
         } catch (InOutException e) {
             response.setDisplayInformation("File already not exists. Change signature to work further.");
         }

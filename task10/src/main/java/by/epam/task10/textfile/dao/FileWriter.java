@@ -1,4 +1,4 @@
-package by.epam.task10.textfile.service;
+package by.epam.task10.textfile.dao;
 
 import by.epam.task10.textfile.entity.FFile;
 

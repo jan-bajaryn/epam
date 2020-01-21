@@ -1,14 +1,13 @@
 package by.epam.task10.textfile.controller.command;
 
+import by.epam.task10.textfile.dao.InOutException;
 import by.epam.task10.textfile.entity.FFile;
 import by.epam.task10.textfile.entity.Request;
 import by.epam.task10.textfile.entity.Response;
-import by.epam.task10.textfile.service.FileReader;
-import by.epam.task10.textfile.service.InOutException;
+import by.epam.task10.textfile.service.FileReaderService;
 
 public class ReadInformationCommand implements ExecCommand {
-    private FileReader fileReader = new FileReader();
-
+    private FileReaderService fileReaderService = new FileReaderService();
     @Override
     public Response execute(Request request) {
         Response response = new Response();
@@ -19,7 +18,7 @@ public class ReadInformationCommand implements ExecCommand {
             return response;
         }
         try {
-            String textData = fileReader.getTextData(fFile);
+            String textData = fileReaderService.getTextData(fFile);
             response.setDisplayInformation(textData);
         } catch (InOutException e) {
             response.setDisplayInformation("There no so file. Change signature to work with another file.");

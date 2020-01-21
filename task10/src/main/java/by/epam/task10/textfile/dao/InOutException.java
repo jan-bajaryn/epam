@@ -1,4 +1,4 @@
-package by.epam.task10.textfile.service;
+package by.epam.task10.textfile.dao;
 
 public class InOutException extends Exception {
     public InOutException() {
