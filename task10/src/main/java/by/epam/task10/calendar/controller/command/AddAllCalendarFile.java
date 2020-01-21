@@ -3,11 +3,11 @@ package by.epam.task10.calendar.controller.command;
 import by.epam.task10.calendar.controller.ExecCommand;
 import by.epam.task10.calendar.controller.command.dialog.Request;
 import by.epam.task10.calendar.controller.command.dialog.Response;
-import by.epam.task10.calendar.dao.XMLFileReader;
 import by.epam.task10.calendar.entity.Calendar;
 import by.epam.task10.calendar.entity.factory.CalendarFactory;
 import by.epam.task10.calendar.entity.factory.exception.IllegalCalendarParamsException;
 import by.epam.task10.calendar.service.CalendarService;
+import by.epam.task10.calendar.service.XMLFileReaderService;
 import by.epam.task10.calendar.service.validator.CalendarValidator;
 
 import java.io.FileNotFoundException;
@@ -15,10 +15,10 @@ import java.util.HashSet;
 
 public class AddAllCalendarFile implements ExecCommand {
 
-    private XMLFileReader xmlFileReader = new XMLFileReader();
     private CalendarService calendarService = new CalendarService();
     private CalendarValidator calendarValidator = new CalendarValidator();
     private CalendarFactory calendarFactory = new CalendarFactory();
+    private XMLFileReaderService xmlFileReaderService = new XMLFileReaderService();
 
     @Override
     public Response execute(Request request) {
@@ -34,7 +34,7 @@ public class AddAllCalendarFile implements ExecCommand {
             if (calendar == null) {
                 calendar = calendarFactory.create("", new HashSet<>(), new HashSet<>(), new HashSet<>());
             }
-            Calendar calToAppend = xmlFileReader.xmlToCalendar(fileName);
+            Calendar calToAppend = xmlFileReaderService.read(fileName);
             if (calendarValidator.isValid(calToAppend)) {
                 calendarService.appendCalendar(calendar, calToAppend);
                 request.setCalendar(calendar);

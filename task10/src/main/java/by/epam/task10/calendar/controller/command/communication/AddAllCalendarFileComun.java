@@ -6,7 +6,7 @@ import by.epam.task10.calendar.view.InputDataReader;
 
 public class AddAllCalendarFileComun implements CommunicationCommand {
 
-    InputDataReader inputDataReader = new InputDataReader();
+    private InputDataReader inputDataReader = new InputDataReader();
 
     @Override
     public Response execute(Request request) {

@@ -17,7 +17,7 @@ import java.util.Map;
 public class PrintYearReportToFileCommand implements ExecCommand {
 
     private ReportWriter reportWriter = new ReportWriter();
-    CalendarService calendarService = new CalendarService();
+    private CalendarService calendarService = new CalendarService();
     private FormatRespList formatRespList = new FormatRespList();
 
 

@@ -3,15 +3,15 @@ package by.epam.task10.calendar.controller.command;
 import by.epam.task10.calendar.controller.ExecCommand;
 import by.epam.task10.calendar.controller.command.dialog.Request;
 import by.epam.task10.calendar.controller.command.dialog.Response;
-import by.epam.task10.calendar.dao.XMLFileReader;
 import by.epam.task10.calendar.entity.Calendar;
+import by.epam.task10.calendar.service.XMLFileReaderService;
 import by.epam.task10.calendar.service.validator.CalendarValidator;
 
 import java.io.FileNotFoundException;
 
 public class ReadFileCalendarCommand implements ExecCommand {
-    private XMLFileReader xmlFileReader = new XMLFileReader();
     private CalendarValidator calendarValidator = new CalendarValidator();
+    private XMLFileReaderService xmlFileReaderService = new XMLFileReaderService();
 
     @Override
     public Response execute(Request request) {
@@ -24,7 +24,7 @@ public class ReadFileCalendarCommand implements ExecCommand {
             return response;
         }
         try {
-            Calendar calendar = xmlFileReader.xmlToCalendar(fileName);
+            Calendar calendar = xmlFileReaderService.read(fileName);
             if (calendarValidator.isValid(calendar)) {
                 request.setCalendar(calendar);
             } else {

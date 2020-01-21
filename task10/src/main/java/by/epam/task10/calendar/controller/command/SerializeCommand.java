@@ -5,12 +5,13 @@ import by.epam.task10.calendar.controller.command.dialog.Request;
 import by.epam.task10.calendar.controller.command.dialog.Response;
 import by.epam.task10.calendar.dao.XMLFileWriter;
 import by.epam.task10.calendar.entity.Calendar;
+import by.epam.task10.calendar.service.XMLFileWriterService;
 
 import java.io.FileNotFoundException;
 
 public class SerializeCommand implements ExecCommand {
 
-    private XMLFileWriter xmlFileWriter = new XMLFileWriter();
+    private XMLFileWriterService xmlFileWriterService = new XMLFileWriterService();
 
     @Override
     public Response execute(Request request) {
@@ -33,7 +34,7 @@ public class SerializeCommand implements ExecCommand {
 
 
         try {
-            xmlFileWriter.writeCalendarToXML(calendar, fileName);
+            xmlFileWriterService.write(calendar, fileName);
             response.setDisplayInformation("File is ready.");
         } catch (FileNotFoundException e) {
             response.setDisplayInformation("There not so file found. Please choose another file name.");
