@@ -1,7 +1,7 @@
 package by.epam.task10.textfile.controller.command.communication;
 
-import by.epam.task10.textfile.entity.Request;
-import by.epam.task10.textfile.entity.Response;
+import by.epam.task10.textfile.controller.command.dialog.Request;
+import by.epam.task10.textfile.controller.command.dialog.Response;
 import by.epam.task10.textfile.view.InputDataReader;
 
 public class AppendFileComun implements CommunicationCommand {

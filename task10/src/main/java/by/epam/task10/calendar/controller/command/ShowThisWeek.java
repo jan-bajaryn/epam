@@ -30,8 +30,8 @@ public class ShowThisWeek implements ExecCommand {
         }
         LocalDate now = LocalDate.now();
         DayOfWeek dayOfWeek = now.getDayOfWeek();
-        LocalDate first = now.minusDays(7 - (dayOfWeek.getValue() - 2));
-        LocalDate second = now.plusDays(7 - dayOfWeek.getValue()+1);
+        LocalDate first = now.minusDays(dayOfWeek.getValue());
+        LocalDate second = now.plusDays(7 - dayOfWeek.getValue());
         Map<LocalDate, List<FreeCelebrity>> localDateListMap =
                 calendarService.calcDays(calendar, first,
                         second);

@@ -1,4 +1,6 @@
-package by.epam.task10.textfile.entity;
+package by.epam.task10.textfile.controller.command.dialog;
+
+import by.epam.task10.textfile.entity.FFile;
 
 import java.util.List;
 

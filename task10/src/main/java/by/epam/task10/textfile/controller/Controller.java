@@ -6,8 +6,8 @@ import by.epam.task10.textfile.controller.command.communication.AppendFileComun;
 import by.epam.task10.textfile.controller.command.communication.CommunicationCommand;
 import by.epam.task10.textfile.controller.command.communication.ChangeSignatureComun;
 import by.epam.task10.textfile.controller.command.communication.RenameFileComun;
-import by.epam.task10.textfile.entity.Request;
-import by.epam.task10.textfile.entity.Response;
+import by.epam.task10.textfile.controller.command.dialog.Request;
+import by.epam.task10.textfile.controller.command.dialog.Response;
 import by.epam.task10.textfile.view.UserCommandReader;
 
 import java.util.HashMap;

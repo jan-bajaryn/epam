@@ -1,4 +1,4 @@
-package by.epam.task10.textfile.entity;
+package by.epam.task10.textfile.controller.command.dialog;
 
 
 public class Response {

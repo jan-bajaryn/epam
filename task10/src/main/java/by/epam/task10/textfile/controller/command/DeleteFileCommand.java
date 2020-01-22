@@ -1,9 +1,8 @@
 package by.epam.task10.textfile.controller.command;
 
 import by.epam.task10.textfile.entity.FFile;
-import by.epam.task10.textfile.entity.Request;
-import by.epam.task10.textfile.entity.Response;
-import by.epam.task10.textfile.dao.FileWriter;
+import by.epam.task10.textfile.controller.command.dialog.Request;
+import by.epam.task10.textfile.controller.command.dialog.Response;
 import by.epam.task10.textfile.dao.InOutException;
 import by.epam.task10.textfile.service.FileWriterService;
 
