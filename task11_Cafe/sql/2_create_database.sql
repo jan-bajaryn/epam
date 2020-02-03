@@ -1,7 +1,5 @@
-CREATE DATABASE pizzeria DEFAULT CHARACTER SET utf8;
+CREATE DATABASE IF NOT EXISTS pizzeria DEFAULT CHARACTER SET utf8;
 
-GRANT SELECT, INSERT, UPDATE, DELETE
-    ON pizzeria.*
-    TO pizzer@localhost
-    IDENTIFIED BY 'abcdefg';
+CREATE USER IF NOT EXISTS 'pizza_worker'@'localhost' IDENTIFIED BY 'abcde';
 
+GRANT SELECT, INSERT, UPDATE, DELETE ON pizzeria.* TO 'pizza_worker'@'localhost';
