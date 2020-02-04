@@ -1,13 +1,5 @@
 use pizzeria;
 
-CREATE TABLE role
-(
-    id   bigint auto_increment,
-    name varchar(9),
-
-    CONSTRAINT pk_role PRIMARY KEY (id)
-);
-
 CREATE TABLE user
 (
     id            bigint auto_increment,
@@ -25,21 +17,6 @@ CREATE TABLE user
     CONSTRAINT fk_user_role FOREIGN KEY (role_id) REFERENCES role (id)
 );
 
-CREATE TABLE order_status
-(
-    id   bigint auto_increment,
-    name varchar(20),
-    CONSTRAINT pk_order_status PRIMARY KEY (id),
-    CONSTRAINT unique_order_status_name UNIQUE (name)
-);
-
-CREATE TABLE payment_type
-(
-    id   bigint auto_increment,
-    name varchar(20),
-    CONSTRAINT pk_payment_type PRIMARY KEY (id),
-    CONSTRAINT unique_payment_type_name UNIQUE (name)
-);
 
 
 CREATE TABLE pizz_order
@@ -66,13 +43,6 @@ CREATE TABLE delivery_inf
     CONSTRAINT pk_delivery_inf PRIMARY KEY (id),
     CONSTRAINT fk_delivery_inf_pizz_order FOREIGN KEY (order_id) references pizz_order (id),
     CONSTRAINT unique_order_id UNIQUE (order_id)
-);
-
-CREATE TABLE product_type
-(
-    id   bigint auto_increment,
-    name varchar(20),
-    CONSTRAINT pk_product_type PRIMARY KEY (id)
 );
 
 CREATE TABLE product
