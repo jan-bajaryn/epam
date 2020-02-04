@@ -1,49 +1,75 @@
 use pizzeria;
 
+# Roles:
+#  1 - admin
+# 2 - operator
+# 3 - client
+
 CREATE TABLE user
 (
-    id            bigint auto_increment,
-    username      varchar(20),
-    password      varchar(100),
-    role_id       bigint,
-    name          varchar(100),
-    surname       varchar(100),
-    birth_date    date,
-    creation_date date,
-    address       varchar(100),
-    phone         varchar(100),
+    id         bigint auto_increment,
+    username   varchar(20),
+    password   varchar(100),
+    role       tinyint,
+    name       varchar(100),
+    surname    varchar(100),
+    birth_date date,
+    creation   datetime,
+    address    varchar(100),
+    phone      varchar(100),
 
-    CONSTRAINT pk_user PRIMARY KEY (id),
-    CONSTRAINT fk_user_role FOREIGN KEY (role_id) REFERENCES role (id)
+    CONSTRAINT pk_user PRIMARY KEY (id)
 );
 
 
+# Order statuses:
+# 1 - Waiting
+# 2- Ready
+# 3 - Delivering
+# 4 - Done
 
-CREATE TABLE pizz_order
+# Payment types:
+# 1 - Cash
+# 2 - Credit Card
+
+CREATE TABLE p_order
 (
-    id              bigint auto_increment,
-    creation        date,
-    price           int,
-    order_status_id bigint,
-    payment_type_id bigint,
-    CONSTRAINT pk_order PRIMARY KEY (id),
-    FOREIGN KEY (order_status_id) REFERENCES order_status (id),
-    FOREIGN KEY (payment_type_id) REFERENCES payment_type (id)
+    id           bigint auto_increment,
+    creation     datetime,
+    price        int,
+    order_status tinyint,
+    payment_type tinyint,
+    CONSTRAINT pk_order PRIMARY KEY (id)
 );
 
 CREATE TABLE delivery_inf
 (
     id            bigint auto_increment,
-    delivery_time date,
+    delivery_time datetime,
     client_name   varchar(100),
     address       varchar(100),
     phone         varchar(100),
     email         varchar(100),
     order_id      bigint,
     CONSTRAINT pk_delivery_inf PRIMARY KEY (id),
-    CONSTRAINT fk_delivery_inf_pizz_order FOREIGN KEY (order_id) references pizz_order (id),
+    CONSTRAINT fk_delivery_inf_p_order FOREIGN KEY (order_id) references p_order (id),
     CONSTRAINT unique_order_id UNIQUE (order_id)
 );
+
+CREATE TABLE product_type
+(
+    id   int auto_increment,
+    name varchar(50),
+    CONSTRAINT pk_product_type PRIMARY KEY (id),
+    CONSTRAINT unique_product_type_name UNIQUE (name)
+);
+
+# Product sizes:
+# null - not measured
+# 1- small
+# 2 - middle
+# 3 - big
+# 4 - extra big
 
 CREATE TABLE product
 (
@@ -52,7 +78,8 @@ CREATE TABLE product
     description     text(500),
     photo_name      varchar(200),
     price           int,
-    product_type_id bigint,
+    product_type_id int,
+    product_size    tinyint,
     CONSTRAINT pk_product PRIMARY KEY (id),
     CONSTRAINT fk_product_product_type FOREIGN KEY (product_type_id) REFERENCES product_type (id)
 );
