@@ -4,10 +4,14 @@ package by.epam.task11.controller;
 import by.epam.task11.controller.command.ExitExecCommand;
 import by.epam.task11.controller.command.PrintCommand;
 import by.epam.task11.controller.command.PutCommand;
+import by.epam.task11.controller.command.SortParagraphsBySentences;
 import by.epam.task11.controller.command.communication.CommunicationCommand;
 import by.epam.task11.controller.command.communication.PutComunCommand;
 import by.epam.task11.controller.command.dialog.Request;
 import by.epam.task11.controller.command.dialog.Response;
+import by.epam.task11.service.impl.ParagraphHandler;
+import by.epam.task11.service.impl.SentenceHandler;
+import by.epam.task11.service.impl.TokenHandler;
 import by.epam.task11.view.UserCommandReader;
 
 import java.util.HashMap;
@@ -31,13 +35,21 @@ public class Controller {
         comunCommands.put("put", new PutComunCommand());
         commandMap.put("put", new PutCommand());
 
-        commandMap.put("print", new PrintCommand());
 
+        commandMap.put("sort_par_s_c", new SortParagraphsBySentences());
 
         Map<String, String> commandsDefinitions = commandMap.entrySet().stream()
                 .collect(Collectors.toMap(c -> c.getKey(), c -> c.getValue().definition()));
         Response response = new Response();
         Request request = new Request();
+
+        ParagraphHandler abstractHandler = new ParagraphHandler();
+        SentenceHandler sentenceHandler = new SentenceHandler();
+        TokenHandler tokenHandler = new TokenHandler();
+        abstractHandler.setNextHandler(sentenceHandler);
+        sentenceHandler.setNextHandler(tokenHandler);
+
+        request.setAbstractHandler(abstractHandler);
 
 
         boolean isExit = false;
