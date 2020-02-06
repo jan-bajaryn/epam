@@ -1,23 +1,12 @@
-package by.epam.task11.entities.impl;
-
-import by.epam.task11.entities.CompType;
-import by.epam.task11.entities.Component;
+package by.epam.task11.entities;
 
 import java.util.ArrayList;
 
-public class Composite implements Component {
+public abstract class Composite implements Component {
 
-    private final CompType type;
     private ArrayList<Component> components = new ArrayList<>();
 
-    public Composite(CompType type) {
-        this.type = type;
-    }
-
-    @Override
-    public CompType calcType() {
-        return type;
-    }
+    public abstract String format(String data);
 
     @Override
     public void add(Component c) {
@@ -31,8 +20,8 @@ public class Composite implements Component {
 
     @Override
     public String operation() {
-        return components.stream()
-                .reduce("", (a, b) -> a + b.operation(), (a, b) -> a + b);
+        return format(components.stream()
+                .reduce("", (a, b) -> a + b.operation(), (a, b) -> a + b));
     }
 
     @Override

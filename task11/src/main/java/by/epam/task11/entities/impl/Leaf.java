@@ -7,6 +7,10 @@ public class Leaf implements Component {
 
     private Character element;
 
+    public Leaf(Character element) {
+        this.element = element;
+    }
+
     public Character getElement() {
         return element;
     }
@@ -38,8 +42,4 @@ public class Leaf implements Component {
         return 0;
     }
 
-    @Override
-    public CompType calcType() {
-        return CompType.LETTER;
-    }
 }
