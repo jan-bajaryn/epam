@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: by.epam.task11.service.impl.finder.ComponentsByTypeFinderImplTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.429 sec
