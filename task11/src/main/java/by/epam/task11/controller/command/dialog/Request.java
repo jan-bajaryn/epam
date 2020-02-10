@@ -2,7 +2,7 @@ package by.epam.task11.controller.command.dialog;
 
 
 import by.epam.task11.entities.Composite;
-import by.epam.task11.service.impl.ParagraphHandler;
+import by.epam.task11.service.impl.chain.impl.ParagraphHandler;
 
 public class Request {
 

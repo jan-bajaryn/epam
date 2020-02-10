@@ -3,10 +3,9 @@ package by.epam.task11.controller.command;
 import by.epam.task11.controller.command.dialog.Request;
 import by.epam.task11.controller.command.dialog.Response;
 import by.epam.task11.entities.Composite;
-import by.epam.task11.service.FileInformationReader;
+import by.epam.task11.service.impl.FileInformationReader;
 
 import java.io.IOException;
-import java.util.List;
 
 public class PutCommand implements by.epam.task11.controller.ExecCommand {
 

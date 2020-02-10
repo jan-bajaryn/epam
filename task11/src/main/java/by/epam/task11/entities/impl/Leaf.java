@@ -42,4 +42,9 @@ public class Leaf implements Component {
         return 0;
     }
 
+    @Override
+    public CompType type() {
+        return CompType.LEAF;
+    }
+
 }

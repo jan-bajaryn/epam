@@ -11,4 +11,6 @@ public interface Component {
     void remove(Component c);
 
     int size();
+
+    CompType type();
 }

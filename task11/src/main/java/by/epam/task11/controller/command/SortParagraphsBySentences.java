@@ -2,7 +2,7 @@ package by.epam.task11.controller.command;
 
 import by.epam.task11.controller.command.dialog.Request;
 import by.epam.task11.controller.command.dialog.Response;
-import by.epam.task11.service.SortParagraphsBySentService;
+import by.epam.task11.service.impl.sorting.impl.SortParagraphsBySentService;
 
 public class SortParagraphsBySentences implements by.epam.task11.controller.ExecCommand {
 

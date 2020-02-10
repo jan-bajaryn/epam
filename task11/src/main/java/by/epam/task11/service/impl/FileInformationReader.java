@@ -1,4 +1,4 @@
-package by.epam.task11.service;
+package by.epam.task11.service.impl;
 
 import by.epam.task11.dao.FileReaderDao;
 

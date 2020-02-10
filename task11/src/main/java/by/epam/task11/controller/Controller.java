@@ -1,17 +1,14 @@
 package by.epam.task11.controller;
 
 
-import by.epam.task11.controller.command.ExitExecCommand;
-import by.epam.task11.controller.command.PrintCommand;
-import by.epam.task11.controller.command.PutCommand;
-import by.epam.task11.controller.command.SortParagraphsBySentences;
+import by.epam.task11.controller.command.*;
 import by.epam.task11.controller.command.communication.CommunicationCommand;
 import by.epam.task11.controller.command.communication.PutComunCommand;
 import by.epam.task11.controller.command.dialog.Request;
 import by.epam.task11.controller.command.dialog.Response;
-import by.epam.task11.service.impl.ParagraphHandler;
-import by.epam.task11.service.impl.SentenceHandler;
-import by.epam.task11.service.impl.TokenHandler;
+import by.epam.task11.service.impl.chain.impl.ParagraphHandler;
+import by.epam.task11.service.impl.chain.impl.SentenceHandler;
+import by.epam.task11.service.impl.chain.impl.TokenHandler;
 import by.epam.task11.view.UserCommandReader;
 
 import java.util.HashMap;
@@ -37,6 +34,7 @@ public class Controller {
 
 
         commandMap.put("sort_par_s_c", new SortParagraphsBySentences());
+        commandMap.put("sort_sentences_by_word_size", new SortSentencesByWordSize());
 
         Map<String, String> commandsDefinitions = commandMap.entrySet().stream()
                 .collect(Collectors.toMap(c -> c.getKey(), c -> c.getValue().definition()));

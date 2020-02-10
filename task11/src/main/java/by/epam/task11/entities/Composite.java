@@ -33,4 +33,7 @@ public abstract class Composite implements Component {
     public int size() {
         return components.size();
     }
+
+    public abstract CompType type();
+
 }
