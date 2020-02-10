@@ -1,4 +1,4 @@
-package by.epam.task11.service;
+package by.epam.task11.service.impl.chain;
 
 import by.epam.task11.entities.CompType;
 import by.epam.task11.entities.Composite;
