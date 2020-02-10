@@ -1,5 +1,7 @@
 package by.epam.task11.service.impl.finder;
 
+import by.epam.task11.entities.CompType;
+import by.epam.task11.entities.Component;
 import by.epam.task11.entities.Composite;
 import by.epam.task11.service.impl.chain.AbstractHandler;
 import by.epam.task11.service.impl.chain.impl.ParagraphHandler;
@@ -7,6 +9,8 @@ import by.epam.task11.service.impl.chain.impl.SentenceHandler;
 import by.epam.task11.service.impl.chain.impl.TokenHandler;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
+import java.util.List;
 
 import static org.testng.Assert.*;
 
@@ -20,14 +24,23 @@ public class ComponentsByTypeFinderImplTest {
     private AbstractHandler abstractHandler;
 
     private Composite composite;
+    private ComponentsByTypeFinder componentsByTypeFinder = new ComponentsByTypeFinderImpl();
 
     @BeforeClass
     public void before() {
         abstractHandler = new ParagraphHandler(new SentenceHandler(new TokenHandler()));
+        composite = abstractHandler.chain(TEST_DATA);
     }
 
     @Test
     public void testFind() {
+        List<Component> components = componentsByTypeFinder.find(CompType.PARAGRAPH, composite);
+        assertEquals(components.size(), 1);
+    }
 
+    @Test
+    public void testFind2() {
+        List<Component> components = componentsByTypeFinder.find(CompType.SENTENCE, composite);
+        assertEquals(components.size(), 4);
     }
 }

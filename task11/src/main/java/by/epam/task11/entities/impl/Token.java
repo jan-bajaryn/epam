@@ -11,6 +11,6 @@ public class Token extends Composite {
 
     @Override
     public CompType type() {
-        return CompType.TOKEN;
+        return CompType.LETTER;
     }
 }

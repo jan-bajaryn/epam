@@ -11,6 +11,6 @@ public class Sentence extends Composite {
 
     @Override
     public CompType type() {
-        return CompType.SENTENCE;
+        return CompType.TOKEN;
     }
 }

@@ -11,6 +11,6 @@ public class Paragraph extends Composite {
 
     @Override
     public CompType type() {
-        return CompType.PARAGRAPH;
+        return CompType.SENTENCE;
     }
 }

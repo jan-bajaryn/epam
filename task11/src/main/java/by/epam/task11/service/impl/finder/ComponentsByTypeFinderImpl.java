@@ -9,6 +9,9 @@ import java.util.Collections;
 import java.util.List;
 
 public class ComponentsByTypeFinderImpl implements ComponentsByTypeFinder {
+
+    ChildFinder childFinder = new ChildFinder();
+
     @Override
     public List<Component> find(CompType type, Composite composite) {
         List<Component> x = check(type, composite);
@@ -21,7 +24,7 @@ public class ComponentsByTypeFinderImpl implements ComponentsByTypeFinder {
 
     private List<Component> findAllByType(Component component, CompType compType) {
         List<Component> temp = new ArrayList<>();
-        List<Component> components = childList(component);
+        List<Component> components = childFinder.childList(component);
         for (Component current : components) {
             int compare = compareTypes(current.type(), compType);
             if (compare == 0) {
@@ -51,11 +54,4 @@ public class ComponentsByTypeFinderImpl implements ComponentsByTypeFinder {
         return Integer.compare(first.ordinal(), second.ordinal());
     }
 
-    private List<Component> childList(Component composite) {
-        List<Component> components = new ArrayList<>();
-        for (int i = 0; i < composite.size(); i++) {
-            components.add(composite.getChild(i));
-        }
-        return components;
-    }
 }

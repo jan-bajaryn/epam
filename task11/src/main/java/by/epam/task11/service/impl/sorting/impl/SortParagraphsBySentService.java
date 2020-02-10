@@ -8,8 +8,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class SortParagraphsBySentService implements CompositeSort {
-    @Override
+public class SortParagraphsBySentService {
     public void sort(Composite composite) {
         List<Component> components = new ArrayList<>();
         takeParagraphs(composite, components);
