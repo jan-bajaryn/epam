@@ -8,6 +8,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class SentenceHandler extends AbstractHandler {
+    public SentenceHandler(AbstractHandler nextHandler) {
+        super(nextHandler);
+    }
+
+    public SentenceHandler() {
+    }
+
     @Override
     public List<String> handleRequest(String text) {
         return Arrays.stream(text.split("(?<=(\\.{3}|[.?!]))"))

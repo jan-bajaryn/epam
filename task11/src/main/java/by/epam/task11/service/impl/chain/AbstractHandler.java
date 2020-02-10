@@ -11,6 +11,14 @@ import java.util.stream.Collectors;
 
 
 public abstract class AbstractHandler {
+
+    public AbstractHandler(AbstractHandler nextHandler) {
+        this.nextHandler = nextHandler;
+    }
+
+    public AbstractHandler() {
+    }
+
     private CompositeFactory compositeFactory = new CompositeFactory();
 
     private AbstractHandler nextHandler = DefaultHandler.getDefaultHandler();

@@ -8,6 +8,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class TokenHandler extends AbstractHandler {
+    public TokenHandler(AbstractHandler nextHandler) {
+        super(nextHandler);
+    }
+
+    public TokenHandler() {
+    }
+
     @Override
     public List<String> handleRequest(String text) {
         return Arrays.stream(text.split("\\s+"))

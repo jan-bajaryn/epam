@@ -8,6 +8,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class ParagraphHandler extends AbstractHandler {
+    public ParagraphHandler(AbstractHandler nextHandler) {
+        super(nextHandler);
+    }
+
+    public ParagraphHandler() {
+    }
+
     @Override
     public List<String> handleRequest(String text) {
         return Arrays.stream(text.trim().split("[\n\r]+\\s{2}"))
