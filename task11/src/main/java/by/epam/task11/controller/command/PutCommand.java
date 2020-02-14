@@ -3,7 +3,7 @@ package by.epam.task11.controller.command;
 import by.epam.task11.controller.command.dialog.Request;
 import by.epam.task11.controller.command.dialog.Response;
 import by.epam.task11.entities.Composite;
-import by.epam.task11.service.impl.FileInformationReader;
+import by.epam.task11.service.FileInformationReader;
 
 import java.io.IOException;
 

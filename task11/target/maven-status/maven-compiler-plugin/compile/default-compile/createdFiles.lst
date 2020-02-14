@@ -1,7 +1,6 @@
 by\epam\task11\service\impl\sorting\impl\SortByChildSize.class
-by\epam\task11\service\impl\sorting\impl\SortSentencesByWordSizeService.class
+by\epam\task11\service\impl\sorting\SortParagraphsBySentService.class
 by\epam\task11\entities\impl\Paragraph.class
-by\epam\task11\service\impl\sorting\impl\SortParagraphsBySentService.class
 by\epam\task11\controller\ExecCommand.class
 by\epam\task11\service\impl\finder\ComponentsByTypeFinder.class
 by\epam\task11\service\impl\chain\impl\TokenHandler.class
@@ -10,6 +9,7 @@ by\epam\task11\controller\Runner.class
 by\epam\task11\controller\command\dialog\Response.class
 by\epam\task11\controller\Controller.class
 by\epam\task11\view\InputDataReader.class
+by\epam\task11\service\impl\sorting\SortSentencesByWordSizeService.class
 by\epam\task11\view\ReportWriter.class
 by\epam\task11\controller\command\PrintCommand.class
 by\epam\task11\entities\impl\Leaf.class
@@ -17,6 +17,7 @@ by\epam\task11\service\impl\chain\AbstractHandler.class
 by\epam\task11\entities\impl\Sentence.class
 by\epam\task11\dao\FileReaderDao.class
 by\epam\task11\service\impl\chain\impl\ParagraphHandler.class
+by\epam\task11\service\impl\finder\ChildFinder.class
 by\epam\task11\entities\Component.class
 by\epam\task11\entities\factory\CompositeFactory.class
 by\epam\task11\service\impl\chain\impl\SentenceHandler.class

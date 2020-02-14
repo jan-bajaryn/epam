@@ -6,9 +6,9 @@ import by.epam.task11.controller.command.communication.CommunicationCommand;
 import by.epam.task11.controller.command.communication.PutComunCommand;
 import by.epam.task11.controller.command.dialog.Request;
 import by.epam.task11.controller.command.dialog.Response;
-import by.epam.task11.service.impl.chain.impl.ParagraphHandler;
-import by.epam.task11.service.impl.chain.impl.SentenceHandler;
-import by.epam.task11.service.impl.chain.impl.TokenHandler;
+import by.epam.task11.service.chain.impl.ParagraphHandler;
+import by.epam.task11.service.chain.impl.SentenceHandler;
+import by.epam.task11.service.chain.impl.TokenHandler;
 import by.epam.task11.view.UserCommandReader;
 
 import java.util.HashMap;

@@ -1,5 +1,7 @@
+D:\Programming\epam\epam\task11\src\main\java\by\epam\task11\service\impl\finder\ChildFinder.java
 D:\Programming\epam\epam\task11\src\main\java\by\epam\task11\service\impl\sorting\CompositeSort.java
 D:\Programming\epam\epam\task11\src\main\java\by\epam\task11\entities\impl\Token.java
+D:\Programming\epam\epam\task11\src\main\java\by\epam\task11\service\impl\sorting\SortSentencesByWordSizeService.java
 D:\Programming\epam\epam\task11\src\main\java\by\epam\task11\service\impl\finder\ComponentsByTypeFinder.java
 D:\Programming\epam\epam\task11\src\main\java\by\epam\task11\entities\impl\Leaf.java
 D:\Programming\epam\epam\task11\src\main\java\by\epam\task11\controller\command\ExitExecCommand.java
@@ -11,6 +13,7 @@ D:\Programming\epam\epam\task11\src\main\java\by\epam\task11\service\impl\finder
 D:\Programming\epam\epam\task11\src\main\java\by\epam\task11\view\UserCommandReader.java
 D:\Programming\epam\epam\task11\src\main\java\by\epam\task11\view\InputDataReader.java
 D:\Programming\epam\epam\task11\src\main\java\by\epam\task11\service\impl\chain\impl\SentenceHandler.java
+D:\Programming\epam\epam\task11\src\main\java\by\epam\task11\service\impl\sorting\SortParagraphsBySentService.java
 D:\Programming\epam\epam\task11\src\main\java\by\epam\task11\view\ReportWriter.java
 D:\Programming\epam\epam\task11\src\main\java\by\epam\task11\controller\command\dialog\Response.java
 D:\Programming\epam\epam\task11\src\main\java\by\epam\task11\entities\impl\Sentence.java
@@ -22,12 +25,10 @@ D:\Programming\epam\epam\task11\src\main\java\by\epam\task11\service\impl\chain\
 D:\Programming\epam\epam\task11\src\main\java\by\epam\task11\service\impl\chain\AbstractHandler.java
 D:\Programming\epam\epam\task11\src\main\java\by\epam\task11\service\impl\sorting\impl\SortByChildSize.java
 D:\Programming\epam\epam\task11\src\main\java\by\epam\task11\entities\impl\Text.java
-D:\Programming\epam\epam\task11\src\main\java\by\epam\task11\service\impl\sorting\impl\SortSentencesByWordSizeService.java
 D:\Programming\epam\epam\task11\src\main\java\by\epam\task11\entities\Composite.java
 D:\Programming\epam\epam\task11\src\main\java\by\epam\task11\entities\Component.java
 D:\Programming\epam\epam\task11\src\main\java\by\epam\task11\controller1\Runner.java
 D:\Programming\epam\epam\task11\src\main\java\by\epam\task11\entities\factory\CompositeFactory.java
-D:\Programming\epam\epam\task11\src\main\java\by\epam\task11\service\impl\sorting\impl\SortParagraphsBySentService.java
 D:\Programming\epam\epam\task11\src\main\java\by\epam\task11\controller\command\communication\CommunicationCommand.java
 D:\Programming\epam\epam\task11\src\main\java\by\epam\task11\controller\ExecCommand.java
 D:\Programming\epam\epam\task11\src\main\java\by\epam\task11\dao\FileReaderDao.java

@@ -1,9 +1,9 @@
 package by.epam.task11.controller1;
 
 import by.epam.task11.entities.Composite;
-import by.epam.task11.service.impl.chain.impl.ParagraphHandler;
-import by.epam.task11.service.impl.chain.impl.SentenceHandler;
-import by.epam.task11.service.impl.chain.impl.TokenHandler;
+import by.epam.task11.service.chain.impl.ParagraphHandler;
+import by.epam.task11.service.chain.impl.SentenceHandler;
+import by.epam.task11.service.chain.impl.TokenHandler;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
