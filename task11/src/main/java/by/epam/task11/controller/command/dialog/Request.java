@@ -9,6 +9,7 @@ public class Request {
     private String fileName;
     private ParagraphHandler abstractHandler;
     private Composite composite;
+    private Character letter;
 
     public void setFileName(String fileName) {
         this.fileName = fileName;
@@ -32,5 +33,13 @@ public class Request {
 
     public Composite getComposite() {
         return composite;
+    }
+
+    public void setLetter(Character letter) {
+        this.letter = letter;
+    }
+
+    public Character getLetter() {
+        return letter;
     }
 }

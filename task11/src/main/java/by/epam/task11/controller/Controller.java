@@ -4,6 +4,7 @@ package by.epam.task11.controller;
 import by.epam.task11.controller.command.*;
 import by.epam.task11.controller.command.communication.CommunicationCommand;
 import by.epam.task11.controller.command.communication.PutComunCommand;
+import by.epam.task11.controller.command.communication.SortTokenByLetterContainsComun;
 import by.epam.task11.controller.command.dialog.Request;
 import by.epam.task11.controller.command.dialog.Response;
 import by.epam.task11.service.chain.impl.ParagraphHandler;
@@ -32,12 +33,16 @@ public class Controller {
         comunCommands.put("put", new PutComunCommand());
         commandMap.put("put", new PutCommand());
 
+        comunCommands.put("sort_tokens", new SortTokenByLetterContainsComun());
+        commandMap.put("sort_tokens", new SortTokenByLetterContainsCommand());
+
 
         commandMap.put("sort_par_s_c", new SortParagraphsBySentences());
         commandMap.put("sort_sentences_by_word_size", new SortSentencesByWordSize());
 
+
         Map<String, String> commandsDefinitions = commandMap.entrySet().stream()
-                .collect(Collectors.toMap(c -> c.getKey(), c -> c.getValue().definition()));
+                .collect(Collectors.toMap(Map.Entry::getKey, c -> c.getValue().definition()));
         Response response = new Response();
         Request request = new Request();
 

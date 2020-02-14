@@ -11,4 +11,12 @@ public class InputDataReader {
         return sc.nextLine();
     }
 
+    public Character readLetter() {
+        System.out.println("Please enter letter using what you want to sort the text");
+        String s = sc.nextLine();
+        if (s.length() != 1) {
+            return null;
+        }
+        return s.charAt(0);
+    }
 }
