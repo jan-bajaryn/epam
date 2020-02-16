@@ -8,6 +8,7 @@ import by.epam.task11.service.chain.impl.ParagraphHandler;
 import by.epam.task11.service.chain.impl.SentenceHandler;
 import by.epam.task11.service.chain.impl.TokenHandler;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.util.List;
@@ -20,6 +21,7 @@ public class ComponentsByTypeFinderImplTest {
             "  It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.\n" +
             "  It is a established fact that a reader will be of a page when looking at its layout.\n" +
             "  Bye.";
+    public static final String EMPTY = "";
 
     private AbstractHandler abstractHandler;
 
@@ -32,15 +34,37 @@ public class ComponentsByTypeFinderImplTest {
         composite = abstractHandler.chain(TEST_DATA);
     }
 
-    @Test
-    public void testFind() {
-        List<Component> components = componentsByTypeFinder.find(CompType.PARAGRAPH, composite);
-        assertEquals(components.size(), 1);
+
+    @DataProvider(name = "checkData")
+    public Object[][] positiveData() {
+        return new Object[][]{
+                {CompType.PARAGRAPH, 1},
+                {CompType.SENTENCE, 4},
+                {CompType.LETTER, 121},
+                {CompType.LEAF, 594},
+                {CompType.TOKEN, 6},
+        };
+    }
+
+
+    @Test(
+            description = "Positive scenario for finder",
+            dataProvider = "checkData")
+    public void testFind(CompType type, int size) {
+        List<Component> components = componentsByTypeFinder.find(type, composite);
+        assertEquals(components.size(), size);
+    }
+
+    @Test(description = "Null input in CompType parameter")
+    public void testNull() {
+        List<Component> components = componentsByTypeFinder.find(null, composite);
+        assertEquals(components.size(), 0);
     }
 
     @Test
-    public void testFind2() {
-        List<Component> components = componentsByTypeFinder.find(CompType.SENTENCE, composite);
-        assertEquals(components.size(), 4);
+    public void emptyTest() {
+        Composite chain = abstractHandler.chain(EMPTY);
+        List<Component> components = componentsByTypeFinder.find(CompType.LEAF, chain);
+        assertEquals(components.size(), 0);
     }
 }
