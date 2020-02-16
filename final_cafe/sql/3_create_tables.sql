@@ -64,12 +64,12 @@ CREATE TABLE product_type
     CONSTRAINT unique_product_type_name UNIQUE (name)
 );
 
-# Product sizes:
-# null - not measured
-# 1- small
-# 2 - middle
-# 3 - big
-# 4 - extra big
+-- Product sizes:
+-- null - not measured
+-- 1- small
+-- 2 - middle
+-- 3 - big
+-- 4 - extra big
 
 CREATE TABLE product
 (

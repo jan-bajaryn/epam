@@ -34,6 +34,10 @@ public abstract class Composite implements Component {
         return components.size();
     }
 
-    public abstract CompType type();
-
+    @Override
+    public String toString() {
+        return "Composite{" +
+                "components=" + components +
+                '}';
+    }
 }

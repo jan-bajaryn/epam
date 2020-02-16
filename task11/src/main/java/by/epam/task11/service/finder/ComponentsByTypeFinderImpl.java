@@ -3,6 +3,8 @@ package by.epam.task11.service.finder;
 import by.epam.task11.entities.CompType;
 import by.epam.task11.entities.Component;
 import by.epam.task11.entities.Composite;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -10,11 +12,17 @@ import java.util.List;
 
 public class ComponentsByTypeFinderImpl implements ComponentsByTypeFinder {
 
+    private static final Logger log = LogManager.getLogger(ComponentsByTypeFinderImpl.class);
+
+
     ChildFinder childFinder = new ChildFinder();
 
     @Override
     public List<Component> find(CompType type, Composite composite) {
+
+        log.info("type = {}, composite = {}", type, composite);
         List<Component> x = check(type, composite);
+        log.info("x = {}", x);
         if (x != null) {
             return x;
         }
@@ -34,6 +42,7 @@ public class ComponentsByTypeFinderImpl implements ComponentsByTypeFinder {
                 temp.addAll(findAllByType(current, compType));
             }
         }
+        log.info("temp.size = {}", temp.size());
         return temp;
     }
 

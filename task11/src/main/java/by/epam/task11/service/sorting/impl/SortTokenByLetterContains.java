@@ -4,9 +4,12 @@ import by.epam.task11.entities.CompType;
 import by.epam.task11.entities.Component;
 import by.epam.task11.entities.Composite;
 import by.epam.task11.entities.impl.Leaf;
+import by.epam.task11.service.FileInformationReader;
 import by.epam.task11.service.finder.ChildFinder;
 import by.epam.task11.service.finder.ComponentsByTypeFinder;
 import by.epam.task11.service.finder.ComponentsByTypeFinderImpl;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -14,10 +17,15 @@ import java.util.List;
 
 public class SortTokenByLetterContains {
 
+    private static final Logger log = LogManager.getLogger(SortTokenByLetterContains.class);
+
     private ComponentsByTypeFinder componentsByTypeFinder = new ComponentsByTypeFinderImpl();
     private ChildFinder childFinder = new ChildFinder();
 
     public void sort(Composite composite, Character element) {
+
+        log.info("composite = {}, element = {}", composite, element);
+
         List<Component> components = componentsByTypeFinder.find(CompType.TOKEN, composite);
         int[] arr = new int[components.size()];
         List<Component> children = new ArrayList<>();

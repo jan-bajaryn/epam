@@ -6,9 +6,18 @@ import by.epam.task11.entities.impl.Paragraph;
 import by.epam.task11.entities.impl.Sentence;
 import by.epam.task11.entities.impl.Text;
 import by.epam.task11.entities.impl.Token;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class CompositeFactory {
+
+    private static final Logger log = LogManager.getLogger(CompositeFactory.class);
+
+
     public Composite create(CompType type) {
+
+        log.info("create with: type = {}", type);
+
         switch (type) {
             case SENTENCE:
                 return new Paragraph();
