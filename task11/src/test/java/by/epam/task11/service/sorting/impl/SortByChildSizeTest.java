@@ -116,4 +116,44 @@ public class SortByChildSizeTest {
     }
 
 
+    @DataProvider(name = "checkDataTokens")
+    public Object[][] positiveDataTokens() {
+        return new Object[][]{
+                {
+                        "  Bye.\n" +
+                                "  Aaa bb ccc. Abc de dfgdfg, dft.\n" +
+                                "  Acd. Bfd. Abd.\n" +
+                                "  Aaa. Aaa. Aaa. Bcd.",
+
+                        "  Bye. \n" +
+                                "  bb Aaa ccc.  de Abc dft. dfgdfg, \n" +
+                                "  Acd.  Bfd.  Abd. \n" +
+                                "  Aaa.  Aaa.  Aaa.  Bcd. "},
+                {
+                        "  Ccc aaa.\n" +
+                                "  Oo i.",
+                        "  Ccc aaa. \n" +
+                                "  Oo i. "
+                },
+                {
+                        "  Abc ddfgd.", "  Abc ddfgd. "
+                },
+                {
+                        "  Bbb bbb cccvvvv aaa kkk. Adbc abc abc, abc?\n" +
+                                "  Ppp Qdgf.",
+                        "  Bbb bbb aaa kkk. cccvvvv  abc Adbc abc, abc? \n" +
+                                "  Ppp Qdgf. "
+                }
+        };
+    }
+
+    @Test(description = "test for tokens",
+            dataProvider = "checkDataTokens")
+    public void testTokens(String testData, String finalData) {
+        composite = abstractHandler.chain(testData);
+        compositeSort.sort(composite, CompType.TOKEN);
+        assertEquals(composite.operation(), finalData);
+    }
+
+
 }
