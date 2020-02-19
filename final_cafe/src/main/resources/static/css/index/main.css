@@ -1,6 +1,16 @@
-nav {
+.main-container{
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+}
+
+nav {
+    align-self: center;
+    /*display: flex;*/
+    /*justify-content: center;*/
+    display: block;
+    position: fixed;
+    top: 0;
+    width: 100%;
 }
 
 
@@ -54,7 +64,8 @@ nav {
     display: flex;
     flex-wrap: wrap;
 }
-.p_card-image img{
+
+.p_card-image img {
     height: 233px;
     width: 233px;
 }
@@ -116,7 +127,7 @@ footer a:first-child {
 }
 
 
-.p_card-footer button:hover{
+.p_card-footer button:hover {
     background: #ff6900;
     color: #ffffff;
 }

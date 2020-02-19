@@ -1,4 +1,4 @@
-package by.epam.demo_threads.example12;
+package by.epam.demo_threads.test.example12;
 
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;

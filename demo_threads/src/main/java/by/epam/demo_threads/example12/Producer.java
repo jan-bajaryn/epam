@@ -1,4 +1,4 @@
-package by.epam.demo_threads.example10a;
+package by.epam.demo_threads.example12;
 
 public class Producer extends Thread {
 
@@ -13,6 +13,7 @@ public class Producer extends Thread {
         this.name = name;
     }
 
+    @Override
     public void run() {
         for (int i = 1; i < countProducts; i++) {
             store.put(this);

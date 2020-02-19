@@ -1,4 +1,4 @@
-package by.epam.demo_threads.example10;
+package by.epam.demo_threads.example10a;
 
 public class Runner {
     public static void main(String[] args) {

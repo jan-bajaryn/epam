@@ -1,8 +1,8 @@
-package by.epam.demo_threads.example10;
+package by.epam.demo_threads.example10a;
 
 public class Producer extends Thread {
 
-    Store store;
+    private Store store;
 
     private int countProducts;
     private String name;
@@ -15,9 +15,12 @@ public class Producer extends Thread {
 
     public void run() {
         for (int i = 1; i < countProducts; i++) {
-            store.put();
+            store.put(this);
         }
     }
 
+    public String calcName() {
+        return name;
+    }
 }
 

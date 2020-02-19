@@ -1,4 +1,4 @@
-package by.epam.demo_threads.example12;
+package by.epam.demo_threads.test.example12;
 
 class Producer implements Runnable{
 

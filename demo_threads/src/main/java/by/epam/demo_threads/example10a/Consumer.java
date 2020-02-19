@@ -1,4 +1,4 @@
-package by.epam.demo_threads.example10;
+package by.epam.demo_threads.example10a;
 
 public class Consumer extends Thread {
 
@@ -14,9 +14,12 @@ public class Consumer extends Thread {
 
     public void run() {
         for (int i = 1; i < countProducts; i++) {
-            store.get();
+            store.get(this);
         }
     }
 
+    public String calcName() {
+        return name;
+    }
 }
 

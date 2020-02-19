@@ -1,6 +1,4 @@
-package by.epam.demo_threads.example12;
-
-import java.util.concurrent.locks.ReentrantLock;
+package by.epam.demo_threads.test.example12;
 
 public class Runner {
     public static void main(String[] args) {

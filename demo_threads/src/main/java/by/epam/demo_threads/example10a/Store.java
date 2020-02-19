@@ -1,9 +1,9 @@
-package by.epam.demo_threads.example10;
+package by.epam.demo_threads.example10a;
 
 public class Store {
     private int product = 0;
 
-    public synchronized void put() {
+    public synchronized void put(Producer producer) {
         while (product >= 5) {
             try {
                 wait();
@@ -11,12 +11,12 @@ public class Store {
             }
         }
         product++;
-        System.out.println("Производитель добавил 1 товар");
+        System.out.println("Производитель " + producer.calcName() + " добавил 1 товар");
         System.out.println("Товаров на складе: " + product);
         notifyAll();
     }
 
-    public synchronized void get() {
+    public synchronized void get(Consumer consumer) {
         while (product < 1) {
             try {
                 wait();
@@ -24,7 +24,7 @@ public class Store {
             }
         }
         product--;
-        System.out.println("Покупатель купил 1 товар");
+        System.out.println("Покупатель " + consumer.calcName() + " купил 1 товар");
         System.out.println("Товаров на складе: " + product);
         notifyAll();
     }
