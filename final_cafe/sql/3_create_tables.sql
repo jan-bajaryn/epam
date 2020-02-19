@@ -1,9 +1,9 @@
 use pizzeria;
 
-# Roles:
-#  1 - admin
-# 2 - operator
-# 3 - client
+--  Roles:
+--   1 - admin
+--  2 - operator
+--  3 - client
 
 CREATE TABLE user
 (
@@ -22,15 +22,15 @@ CREATE TABLE user
 );
 
 
-# Order statuses:
-# 1 - Waiting
-# 2- Ready
-# 3 - Delivering
-# 4 - Done
+--  Order statuses:
+--  1 - Waiting
+--  2- Ready
+--  3 - Delivering
+--  4 - Done
 
-# Payment types:
-# 1 - Cash
-# 2 - Credit Card
+--  Payment types:
+--  1 - Cash
+--  2 - Credit Card
 
 CREATE TABLE p_order
 (
@@ -101,3 +101,13 @@ CREATE TABLE product_ingredient
     CONSTRAINT fk_product_id FOREIGN KEY (product_id) REFERENCES product (id),
     CONSTRAINT fk_ingredient_id FOREIGN KEY (ingredient_id) REFERENCES ingredient (id)
 );
+
+CREATE TABLE p_order_product
+(
+    id         bigint not null auto_increment,
+    product_id bigint,
+    order_id   bigint,
+    CONSTRAINT pk_p_order_product PRIMARY KEY (id),
+    CONSTRAINT fk_p_order_product_product FOREIGN KEY (product_id) REFERENCES product (id),
+    CONSTRAINT fk_p_order_product_p_order FOREIGN KEY (order_id) REFERENCES p_order (id)
+)
