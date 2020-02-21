@@ -1,62 +1,19 @@
+@import "../nav__bar.css";
+@import "../footer.css";
+
 .main-container{
     display: flex;
     flex-direction: column;
 }
 
-nav {
-    align-self: center;
-    /*display: flex;*/
-    /*justify-content: center;*/
-    display: block;
-    position: fixed;
-    top: 0;
-    width: 100%;
-}
 
-
-.nav-container {
-    background: #ffffff;
-    /*margin: 11px 160px;*/
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    max-width: 1600px;
-}
-
-.nav-container a {
-    text-decoration: none;
-    color: #000;
-}
-
-.nav-container a:hover {
-    color: #ff6900;
-}
-
-.list-nav {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-}
-
-.list-nav li {
-    display: inline;
-    margin-right: 26px;
-}
-
-.nav-container i {
-    color: #ff6900;
-    font-size: 55px;
-}
-
-.border-right {
-    border-right: 1px solid #ffa566;
-    padding-right: 15px;
-    margin-right: 15px;
-}
-
-.nav-container button {
-    background: #ff6900;
-    color: #ffffff;
+.title-container {
+    margin-left: 40px;
+    margin-top: 50px;
+    padding-top: 50px;
+    margin-bottom: 50px;
+    font-size: 36px;
+    font-variant: small-caps;
 }
 
 .p_card-list {
@@ -73,8 +30,6 @@ nav {
 .p_card {
     display: flex;
     flex-direction: column;
-    /*height: 340px;*/
-    /*width: 290px;*/
     width: 233px;
     margin: 15px;
 }
@@ -99,35 +54,6 @@ nav {
 .p_card-footer button {
     background: #ffffff;
     border: 1px solid #ff6900;
-}
-
-.title-container {
-    margin-left: 40px;
-    margin-top: 50px;
-    padding-top: 50px;
-    margin-bottom: 50px;
-    font-size: 36px;
-    font-variant: small-caps;
-}
-
-footer {
-    min-height: 300px;
-}
-
-footer a {
-    display: block;
-    margin: 10px;
-    color: #b9b8b8;
-}
-
-footer a:hover {
-    color: #ffffff;
-    text-decoration: none;
-}
-
-
-footer a:first-child {
-    padding-top: 20px;
 }
 
 

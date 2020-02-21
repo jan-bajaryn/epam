@@ -1,0 +1,53 @@
+nav {
+    align-self: center;
+    display: block;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+
+.nav-container {
+    background: #ffffff;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    max-width: 1600px;
+    border-bottom: 1px solid #e1e3eb;
+}
+
+.nav-container a {
+    text-decoration: none;
+    color: #000;
+}
+
+.nav-container a:hover {
+    color: #ff6900;
+}
+
+.list-nav {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.list-nav li {
+    display: inline;
+    margin-right: 26px;
+}
+
+.nav-container i {
+    color: #ff6900;
+    font-size: 55px;
+}
+
+.border-right {
+    border-right: 1px solid #ffa566;
+    padding-right: 15px;
+    margin-right: 15px;
+}
+
+.nav-container button {
+    background: #ff6900;
+    color: #ffffff;
+}

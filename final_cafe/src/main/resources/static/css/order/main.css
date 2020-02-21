@@ -1,10 +1,12 @@
+@import "../footer.css";
+@import "../buttons.css";
+
 main {
     display: flex;
     justify-content: center;
 }
 
 .main-container {
-    /*max-width: 865px;*/
     max-width: 865px;
     width: 865px;
 }
@@ -17,17 +19,6 @@ main {
 
 .main-container .promo form label {
     visibility: hidden;
-}
-
-.promo button {
-    background: #ffffff;
-    color: #ff6900;
-    border: 1px solid #ff6900;
-    /*background: #ff6900;*/
-}
-.promo button:hover {
-    background: #ff6900;
-    color: #ffffff;
 }
 
 .promo-group {
@@ -73,83 +64,63 @@ main {
     justify-content: space-between;
     align-items: center;
 }
-.flex-part button{
+
+.white__bg__black {
     background: #fff;
     border: 1px solid #ff6900;
 }
-.flex-part button:hover{
+
+.white__bg__black:hover {
     background: #ff6900;
     color: #fff;
 }
-.flex-part i:hover{
+
+.flex-part i:hover {
     color: #ff6900;
 }
-.grid-part .product-name{
+
+.grid-part .product-name {
     font-size: 22px;
     line-height: 22px;
     margin-left: 5px;
 }
-.grid-part .product-type{
+
+.grid-part .product-type {
     margin: 4px 0 0 5px;
     padding-bottom: 5px;
     font-size: 12px;
 }
 
 
-.sum{
+.sum {
     display: flex;
     justify-content: flex-end;
     align-items: center;
 }
-.sum .sum-text{
+
+.sum .sum-text {
     font-size: 21px;
     padding: 15px;
 }
-.sum .sum-price{
+
+.sum .sum-price {
     font-size: 26px;
     color: #ff6900;
 }
 
-.decision{
+.decision {
     display: flex;
     justify-content: space-between;
 }
-.decision button{
+
+.decision button {
     padding: 18px;
 }
-.return{
-    background: #ffffff;
-    border: 1px solid #e1e3eb;
-}
-.return:hover{
-    border-color: #ff6900;
-    color: #ff6900;
-}
-.accept{
-    background: #ff6900;
-    color: #ffffff;
-}
-.accept:hover{
-    background: #d96334;
-}
 
-
-footer {
-    min-height: 300px;
-}
-
-footer a {
-    display: block;
-    margin: 10px;
-    color: #b9b8b8;
-}
-
-footer a:hover {
-    color: #ffffff;
-    text-decoration: none;
-}
-
-
-footer a:first-child {
-    padding-top: 20px;
-}
+/*.accept{*/
+/*    background: #ff6900;*/
+/*    color: #ffffff;*/
+/*}*/
+/*.accept:hover{*/
+/*    background: #d96334;*/
+/*}*/
