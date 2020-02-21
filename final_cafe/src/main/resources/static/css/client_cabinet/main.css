@@ -50,6 +50,7 @@ main {
 .input_name {
     color: #ff6c05;
     text-decoration: none;
+    margin-left: 10px;
 }
 
 .input_name:hover {
@@ -62,13 +63,13 @@ main {
     color: #e2deda;
 }
 
-.subscribe__form {
+.subscribe__container {
     display: flex;
     align-items: center;
     align-content: center;
 }
 
-.subscribe__form > * {
+.subscribe__container > * {
     margin-right: 15px;
 }
 
@@ -77,7 +78,7 @@ input[type="checkbox"] {
     height: 19px;
 }
 
-.subscribe__form > label {
+.subscribe__container > label {
     display: block;
     margin-bottom: 0;
 }
@@ -102,3 +103,12 @@ input[type="checkbox"] {
     width: 100%;
 }
 
+.subscribe__container {
+    margin-top: 20px;
+    margin-left: 5px;
+    padding-left: 8px;
+}
+
+.log__out {
+    margin-top: 20px;
+}
