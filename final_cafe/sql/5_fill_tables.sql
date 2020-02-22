@@ -52,9 +52,9 @@ VALUES (3, 7, 60);
 
 
 
-INSERT INTO p_order (id, creation, price, order_status, payment_type)
+INSERT INTO `order` (id, creation, price, status, payment_type)
 VALUES (1, NOW(), 25, 1, 1);
-INSERT INTO p_order(id, creation, price, order_status, payment_type)
+INSERT INTO `order`(id, creation, price, status, payment_type)
 VALUES (2, NOW(), 30, 3, 2);
-INSERT INTO p_order(id, creation, price, order_status, payment_type)
+INSERT INTO `order`(id, creation, price, status, payment_type)
 VALUES (3, NOW(), 30, 3, 1);

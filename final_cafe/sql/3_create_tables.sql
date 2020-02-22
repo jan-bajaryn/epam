@@ -32,12 +32,12 @@ CREATE TABLE user
 --  1 - Cash
 --  2 - Credit Card
 
-CREATE TABLE p_order
+CREATE TABLE `order`
 (
     id           bigint auto_increment,
     creation     datetime,
     price        int,
-    order_status tinyint,
+    status tinyint,
     payment_type tinyint,
     CONSTRAINT pk_order PRIMARY KEY (id)
 );
@@ -52,7 +52,7 @@ CREATE TABLE delivery_inf
     email         varchar(100),
     order_id      bigint,
     CONSTRAINT pk_delivery_inf PRIMARY KEY (id),
-    CONSTRAINT fk_delivery_inf_p_order FOREIGN KEY (order_id) references p_order (id),
+    CONSTRAINT fk_delivery_inf_order FOREIGN KEY (order_id) references `order` (id),
     CONSTRAINT unique_order_id UNIQUE (order_id)
 );
 
@@ -102,12 +102,12 @@ CREATE TABLE product_ingredient
     CONSTRAINT fk_ingredient_id FOREIGN KEY (ingredient_id) REFERENCES ingredient (id)
 );
 
-CREATE TABLE p_order_product
+CREATE TABLE order_product
 (
     id         bigint not null auto_increment,
     product_id bigint,
     order_id   bigint,
-    CONSTRAINT pk_p_order_product PRIMARY KEY (id),
-    CONSTRAINT fk_p_order_product_product FOREIGN KEY (product_id) REFERENCES product (id),
-    CONSTRAINT fk_p_order_product_p_order FOREIGN KEY (order_id) REFERENCES p_order (id)
+    CONSTRAINT pk_order_product PRIMARY KEY (id),
+    CONSTRAINT fk_order_product_product FOREIGN KEY (product_id) REFERENCES product (id),
+    CONSTRAINT fk_order_product_order FOREIGN KEY (order_id) REFERENCES `order` (id)
 )

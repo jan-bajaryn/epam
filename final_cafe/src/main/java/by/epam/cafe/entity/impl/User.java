@@ -17,6 +17,9 @@ public class User implements Entity {
     private String address;
     private String phone;
 
+    public User() {
+    }
+
     public User(Long id,
                 String username,
                 String password,

@@ -4,17 +4,35 @@ import by.epam.cafe.dao.AbstractDao;
 import by.epam.cafe.entity.impl.User;
 
 import java.sql.*;
-import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 
 public class UserDao implements AbstractDao<Long, User> {
 
-    public static final String SQL = "SELECT " +
+    public static final String FIND_ALL_SQL = "SELECT " +
             "id, username, password, role, name, surname," +
             " birth_date, creation, address, phone FROM user;";
+
     public static final ZoneId DEFAULT_ZONE = ZoneId.systemDefault();
+
+    public static final String FIND_ENTITY_BY_ID_SQL = "SELECT " +
+            "id, username, password, role, name, surname," +
+            " birth_date, creation, address, phone FROM user" +
+            " WHERE id = ";
+
+    public static final String DELETE_BY_ID_SQL = "DELETE FROM user WHERE id = ";
+
+    public static final String CREATE_SQL = "INSERT INTO user " +
+            "(username, password, role, name, surname, birth_date, creation, address, phone) " +
+            "VALUES (?,?,?,?,?,?,?,?,?)";
+
+    public static final String UPDATE_SQL = "UPDATE user " +
+            "SET username = ?, password = ?, role = ?, name = ?, surname = ?," +
+            " birth_date = ?, creation = ?, address = ?, phone = ? " +
+            "WHERE id = ?;";
+
+
     private Connection cn;
 
     public UserDao(Connection cn) {
@@ -25,7 +43,7 @@ public class UserDao implements AbstractDao<Long, User> {
     public List<User> findAll() {
         List<User> users = new ArrayList<>();
         try (Statement statement = cn.createStatement()) {
-            ResultSet resultSet = statement.executeQuery(SQL);
+            ResultSet resultSet = statement.executeQuery(FIND_ALL_SQL);
             while (resultSet.next()) {
                 User user = findUser(resultSet);
                 users.add(user);
@@ -55,11 +73,8 @@ public class UserDao implements AbstractDao<Long, User> {
     public User findEntityById(Long id) {
         User user = null;
         try (Statement statement = cn.createStatement()) {
-            ResultSet resultSet = statement.executeQuery("SELECT " +
-                    "id, username, password, role, name, surname," +
-                    " birth_date, creation, address, phone FROM user" +
-                    " WHERE id = " + id.toString() + ";");
-            while (resultSet.next()) {
+            ResultSet resultSet = statement.executeQuery(FIND_ENTITY_BY_ID_SQL + id.toString() + ";");
+            if (resultSet.next()) {
                 user = findUser(resultSet);
             }
         } catch (SQLException e) {
@@ -71,7 +86,7 @@ public class UserDao implements AbstractDao<Long, User> {
     @Override
     public boolean delete(Long id) {
         try (Statement statement = cn.createStatement()) {
-            return statement.execute("DELETE FROM user WHERE id = "
+            return statement.execute(DELETE_BY_ID_SQL
                     + id.toString());
         } catch (SQLException e) {
             e.printStackTrace();
@@ -82,7 +97,7 @@ public class UserDao implements AbstractDao<Long, User> {
     @Override
     public boolean delete(User entity) {
         try (Statement statement = cn.createStatement()) {
-            return statement.execute("DELETE FROM user WHERE id = "
+            return statement.execute(DELETE_BY_ID_SQL
                     + entity.getId());
         } catch (SQLException e) {
             e.printStackTrace();
@@ -93,9 +108,7 @@ public class UserDao implements AbstractDao<Long, User> {
     @Override
     public boolean create(User entity) {
         try (PreparedStatement statement =
-                     cn.prepareStatement("INSERT INTO user " +
-                             "(username, password, role, name, surname, birth_date, creation, address, phone) " +
-                             "VALUES (?,?,?,?,?,?,?,?,?)")) {
+                     cn.prepareStatement(CREATE_SQL)) {
 
             createParams(entity, statement);
             return statement.execute();
@@ -121,14 +134,10 @@ public class UserDao implements AbstractDao<Long, User> {
     // TODO ask question about what I must return in that method
     @Override
     public User update(User entity) {
-        User user = null;
         try (PreparedStatement statement =
-                     cn.prepareStatement("UPDATE user " +
-                             "SET username = ?, password = ?, role = ?, name = ?, surname = ?," +
-                             " birth_date = ?, creation = ?, address = ?, phone = ? " +
-                             "WHERE id = ?;")) {
+                     cn.prepareStatement(UPDATE_SQL)) {
 
-            createParams(entity, statement);
+            updateParams(entity, statement);
             if (statement.execute()) {
                 return entity;
             } else {
