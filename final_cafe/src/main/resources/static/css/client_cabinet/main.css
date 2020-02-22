@@ -89,7 +89,6 @@ input[type="checkbox"] {
 
 .max__width__fixed {
     max-width: 278px;
-    /*width: 278px;*/
     width: 100%;
 }
 
@@ -111,4 +110,19 @@ input[type="checkbox"] {
 
 .log__out {
     margin-top: 20px;
+}
+
+@media screen and (max-width: 600px) {
+    .title-container {
+        font-size: 20px;
+    }
+    .data__input{
+        grid-template-columns: auto;
+    }
+    @media screen and (max-width: 350px){
+        .birth___data, .email___data{
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+    }
 }
