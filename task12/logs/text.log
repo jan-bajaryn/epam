@@ -1,0 +1,628 @@
+2020-02-23 17:55:57.797 [Thread-4] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 8, maxIndex = 9
+2020-02-23 17:55:57.797 [Thread-5] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 10, maxIndex = 11
+2020-02-23 17:55:57.797 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 2, maxIndex = 3
+2020-02-23 17:55:57.797 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 0, maxIndex = 1
+2020-02-23 17:55:57.797 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 4, maxIndex = 5
+2020-02-23 17:55:57.797 [Thread-9] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 18, maxIndex = 19
+2020-02-23 17:55:57.797 [Thread-8] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 16, maxIndex = 17
+2020-02-23 17:55:57.797 [Thread-7] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 14, maxIndex = 15
+2020-02-23 17:55:57.797 [Thread-6] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 12, maxIndex = 13
+2020-02-23 17:55:57.797 [Thread-3] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 6, maxIndex = 7
+2020-02-23 17:55:57.804 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 2
+2020-02-23 17:55:57.804 [Thread-8] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 16
+2020-02-23 17:55:57.804 [Thread-4] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 8
+2020-02-23 17:55:57.804 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 4
+2020-02-23 17:55:57.804 [Thread-6] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 12
+2020-02-23 17:55:57.804 [Thread-4] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 9
+2020-02-23 17:55:57.804 [Thread-9] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 18
+2020-02-23 17:55:57.804 [Thread-3] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 6
+2020-02-23 17:55:57.804 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 3
+2020-02-23 17:55:57.804 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 0
+2020-02-23 17:55:57.804 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 5
+2020-02-23 17:55:57.804 [Thread-7] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 14
+2020-02-23 17:55:57.804 [Thread-3] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 7
+2020-02-23 17:55:57.805 [Thread-5] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 10
+2020-02-23 17:55:57.805 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 1
+2020-02-23 18:02:16.922 [main] INFO  by.epam.task12.service.ThreadDiagonalFiller - ints = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+2020-02-23 18:02:16.926 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 2, maxIndex = 3
+2020-02-23 18:02:16.926 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 4, maxIndex = 5
+2020-02-23 18:02:16.926 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 0, maxIndex = 1
+2020-02-23 18:02:16.926 [Thread-3] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 6, maxIndex = 7
+2020-02-23 18:02:16.928 [Thread-3] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 6
+2020-02-23 18:02:16.928 [Thread-5] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 10, maxIndex = 11
+2020-02-23 18:02:16.927 [Thread-9] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 18, maxIndex = 19
+2020-02-23 18:02:16.927 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 0
+2020-02-23 18:02:16.927 [Thread-7] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 14, maxIndex = 15
+2020-02-23 18:02:16.927 [Thread-6] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 12, maxIndex = 13
+2020-02-23 18:02:16.927 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 4
+2020-02-23 18:02:16.926 [Thread-4] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 8, maxIndex = 9
+2020-02-23 18:02:16.928 [Thread-8] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 16, maxIndex = 17
+2020-02-23 18:02:16.928 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 5
+2020-02-23 18:02:16.928 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 1
+2020-02-23 18:02:16.928 [Thread-3] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 7
+2020-02-23 18:02:16.929 [Thread-8] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 16
+2020-02-23 18:02:16.929 [Thread-4] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 8
+2020-02-23 18:02:16.929 [Thread-7] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 14
+2020-02-23 18:02:16.928 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 2
+2020-02-23 18:02:16.929 [Thread-4] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 9
+2020-02-23 18:02:16.928 [Thread-5] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 10
+2020-02-23 18:02:16.929 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 3
+2020-02-23 18:02:16.930 [Thread-9] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 18
+2020-02-23 18:02:16.931 [Thread-6] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 12
+2020-02-23 18:02:23.416 [main] INFO  by.epam.task12.service.ThreadDiagonalFiller - ints = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+2020-02-23 18:02:23.420 [Thread-3] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 6, maxIndex = 7
+2020-02-23 18:02:23.420 [Thread-4] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 8, maxIndex = 9
+2020-02-23 18:02:23.420 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 0, maxIndex = 1
+2020-02-23 18:02:23.420 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 4, maxIndex = 5
+2020-02-23 18:02:23.421 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 4
+2020-02-23 18:02:23.421 [Thread-5] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 10, maxIndex = 11
+2020-02-23 18:02:23.421 [Thread-6] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 12, maxIndex = 13
+2020-02-23 18:02:23.422 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 5
+2020-02-23 18:02:23.421 [Thread-9] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 18, maxIndex = 19
+2020-02-23 18:02:23.422 [Thread-5] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 10
+2020-02-23 18:02:23.422 [Thread-4] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 8
+2020-02-23 18:02:23.421 [Thread-8] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 16, maxIndex = 17
+2020-02-23 18:02:23.421 [Thread-7] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 14, maxIndex = 15
+2020-02-23 18:02:23.423 [Thread-6] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 12
+2020-02-23 18:02:23.423 [Thread-7] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 14
+2020-02-23 18:02:23.420 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 2, maxIndex = 3
+2020-02-23 18:02:23.422 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 0
+2020-02-23 18:02:23.423 [Thread-4] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 9
+2020-02-23 18:02:23.422 [Thread-3] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 6
+2020-02-23 18:02:23.423 [Thread-8] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 16
+2020-02-23 18:02:23.422 [Thread-9] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 18
+2020-02-23 18:02:23.424 [Thread-3] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 7
+2020-02-23 18:02:23.423 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 2
+2020-02-23 18:02:23.423 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 1
+2020-02-23 18:02:23.425 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 3
+2020-02-23 18:02:27.623 [main] INFO  by.epam.task12.service.ThreadDiagonalFiller - ints = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+2020-02-23 18:02:27.628 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 2, maxIndex = 3
+2020-02-23 18:02:27.628 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 0, maxIndex = 1
+2020-02-23 18:02:27.628 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 4, maxIndex = 5
+2020-02-23 18:02:27.628 [Thread-3] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 6, maxIndex = 7
+2020-02-23 18:02:27.628 [Thread-4] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 8, maxIndex = 9
+2020-02-23 18:02:27.630 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 4
+2020-02-23 18:02:27.630 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 2
+2020-02-23 18:02:27.630 [Thread-3] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 6
+2020-02-23 18:02:27.630 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 5
+2020-02-23 18:02:27.629 [Thread-7] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 14, maxIndex = 15
+2020-02-23 18:02:27.630 [Thread-3] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 7
+2020-02-23 18:02:27.630 [Thread-4] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 8
+2020-02-23 18:02:27.630 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 0
+2020-02-23 18:02:27.630 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 3
+2020-02-23 18:02:27.629 [Thread-9] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 18, maxIndex = 19
+2020-02-23 18:02:27.630 [Thread-7] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 14
+2020-02-23 18:02:27.629 [Thread-6] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 12, maxIndex = 13
+2020-02-23 18:02:27.629 [Thread-8] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 16, maxIndex = 17
+2020-02-23 18:02:27.630 [Thread-4] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 9
+2020-02-23 18:02:27.629 [Thread-5] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 10, maxIndex = 11
+2020-02-23 18:02:27.631 [Thread-8] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 16
+2020-02-23 18:02:27.630 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 1
+2020-02-23 18:02:27.631 [Thread-6] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 12
+2020-02-23 18:02:27.631 [Thread-9] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 18
+2020-02-23 18:02:27.632 [Thread-5] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 10
+2020-02-23 18:03:55.063 [main] INFO  by.epam.task12.service.ThreadDiagonalFiller - coresCount = 8
+2020-02-23 18:03:55.066 [main] INFO  by.epam.task12.service.ThreadDiagonalFiller - ints = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+2020-02-23 18:03:55.066 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 2, maxIndex = 3
+2020-02-23 18:03:55.066 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 0, maxIndex = 1
+2020-02-23 18:03:55.066 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 4, maxIndex = 5
+2020-02-23 18:03:55.066 [Thread-3] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 6, maxIndex = 7
+2020-02-23 18:03:55.067 [Thread-7] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 14, maxIndex = 15
+2020-02-23 18:03:55.067 [Thread-8] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 16, maxIndex = 17
+2020-02-23 18:03:55.068 [Thread-3] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 6
+2020-02-23 18:03:55.067 [Thread-6] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 12, maxIndex = 13
+2020-02-23 18:03:55.068 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 2
+2020-02-23 18:03:55.067 [Thread-5] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 10, maxIndex = 11
+2020-02-23 18:03:55.068 [Thread-3] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 7
+2020-02-23 18:03:55.068 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 3
+2020-02-23 18:03:55.068 [Thread-9] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 18, maxIndex = 19
+2020-02-23 18:03:55.067 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 4
+2020-02-23 18:03:55.067 [Thread-4] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 8, maxIndex = 9
+2020-02-23 18:03:55.068 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 0
+2020-02-23 18:03:55.068 [Thread-8] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 16
+2020-02-23 18:03:55.068 [Thread-7] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 14
+2020-02-23 18:03:55.068 [Thread-9] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 18
+2020-02-23 18:03:55.068 [Thread-5] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 10
+2020-02-23 18:03:55.068 [Thread-6] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 12
+2020-02-23 18:03:55.068 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 5
+2020-02-23 18:03:55.068 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 1
+2020-02-23 18:03:55.069 [Thread-4] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 8
+2020-02-23 18:03:55.069 [Thread-4] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 9
+2020-02-23 18:07:06.310 [main] INFO  by.epam.task12.service.ThreadDiagonalFiller - coresCount = 8
+2020-02-23 18:07:06.312 [main] INFO  by.epam.task12.service.ThreadDiagonalFiller - ints = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+2020-02-23 18:07:06.313 [Thread-3] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 3, maxIndex = 4
+2020-02-23 18:07:06.313 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 1, maxIndex = 2
+2020-02-23 18:07:06.313 [Thread-4] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 4, maxIndex = 5
+2020-02-23 18:07:06.313 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 0, maxIndex = 1
+2020-02-23 18:07:06.314 [Thread-8] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 8, maxIndex = 9
+2020-02-23 18:07:06.314 [Thread-5] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 5, maxIndex = 6
+2020-02-23 18:07:06.314 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 1
+2020-02-23 18:07:06.313 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 2, maxIndex = 3
+2020-02-23 18:07:06.314 [Thread-4] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 4
+2020-02-23 18:07:06.314 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 0
+2020-02-23 18:07:06.315 [Thread-8] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 8
+2020-02-23 18:07:06.315 [Thread-4] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 5
+2020-02-23 18:07:06.315 [Thread-3] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 3
+2020-02-23 18:07:06.315 [Thread-8] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 9
+2020-02-23 18:07:06.314 [Thread-7] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 7, maxIndex = 8
+2020-02-23 18:07:06.315 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 2
+2020-02-23 18:07:06.315 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 1
+2020-02-23 18:07:06.314 [Thread-6] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 6, maxIndex = 7
+2020-02-23 18:07:06.315 [Thread-3] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 4
+2020-02-23 18:07:06.314 [Thread-9] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 9, maxIndex = 10
+2020-02-23 18:07:06.315 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 2
+2020-02-23 18:07:06.315 [Thread-5] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 5
+2020-02-23 18:07:06.316 [Thread-5] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 6
+2020-02-23 18:07:06.316 [Thread-7] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 7
+2020-02-23 18:07:06.316 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 3
+2020-02-23 18:07:06.316 [Thread-6] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 6
+2020-02-23 18:07:06.316 [Thread-9] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 9
+2020-02-23 18:07:06.316 [Thread-7] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 8
+2020-02-23 18:07:06.316 [Thread-6] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 7
+2020-02-23 18:07:06.316 [Thread-9] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 10
+2020-02-23 18:09:29.707 [main] INFO  by.epam.task12.service.ThreadDiagonalFiller - coresCount = 8
+2020-02-23 18:09:29.710 [main] INFO  by.epam.task12.service.ThreadDiagonalFiller - ints = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+2020-02-23 18:09:29.711 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 0, maxIndex = 0
+2020-02-23 18:09:29.711 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 2, maxIndex = 2
+2020-02-23 18:09:29.711 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 4, maxIndex = 4
+2020-02-23 18:09:29.711 [Thread-3] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 6, maxIndex = 6
+2020-02-23 18:09:29.711 [Thread-4] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 8, maxIndex = 8
+2020-02-23 18:09:29.711 [Thread-5] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 10, maxIndex = 10
+2020-02-23 18:09:29.712 [Thread-9] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 18, maxIndex = 18
+2020-02-23 18:09:29.712 [Thread-6] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 12, maxIndex = 12
+2020-02-23 18:09:29.712 [Thread-3] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 6
+2020-02-23 18:09:29.712 [Thread-8] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 16, maxIndex = 16
+2020-02-23 18:09:29.712 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 4
+2020-02-23 18:09:29.712 [Thread-4] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 8
+2020-02-23 18:09:29.713 [Thread-9] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 18
+2020-02-23 18:09:29.713 [Thread-5] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 10
+2020-02-23 18:09:29.712 [Thread-7] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 14, maxIndex = 14
+2020-02-23 18:09:29.713 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 0
+2020-02-23 18:09:29.713 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 2
+2020-02-23 18:09:29.713 [Thread-8] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 16
+2020-02-23 18:09:29.714 [Thread-6] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 12
+2020-02-23 18:09:29.714 [Thread-7] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 14
+2020-02-23 18:11:54.408 [main] INFO  by.epam.task12.service.ThreadDiagonalFiller - coresCount = 8
+2020-02-23 18:11:54.410 [main] INFO  by.epam.task12.service.ThreadDiagonalFiller - ints = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+2020-02-23 18:11:54.411 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 0, maxIndex = 0
+2020-02-23 18:11:54.411 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 2, maxIndex = 2
+2020-02-23 18:11:54.411 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 1, maxIndex = 1
+2020-02-23 18:11:54.412 [Thread-6] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 6, maxIndex = 6
+2020-02-23 18:11:54.411 [Thread-4] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 4, maxIndex = 4
+2020-02-23 18:11:54.412 [Thread-8] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 8, maxIndex = 8
+2020-02-23 18:11:54.411 [Thread-3] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 3, maxIndex = 3
+2020-02-23 18:11:54.412 [Thread-5] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 5, maxIndex = 5
+2020-02-23 18:11:54.413 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 1
+2020-02-23 18:11:54.413 [Thread-6] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 6
+2020-02-23 18:11:54.412 [Thread-9] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 9, maxIndex = 9
+2020-02-23 18:11:54.413 [Thread-3] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 3
+2020-02-23 18:11:54.413 [Thread-4] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 4
+2020-02-23 18:11:54.412 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 2
+2020-02-23 18:11:54.412 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 0
+2020-02-23 18:11:54.412 [Thread-7] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 7, maxIndex = 7
+2020-02-23 18:11:54.413 [Thread-5] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 5
+2020-02-23 18:11:54.414 [Thread-9] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 9
+2020-02-23 18:11:54.414 [Thread-7] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 7
+2020-02-23 18:11:54.414 [Thread-8] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 8
+2020-02-23 18:12:43.435 [main] INFO  by.epam.task12.service.ThreadDiagonalFiller - coresCount = 8
+2020-02-23 18:12:43.438 [main] INFO  by.epam.task12.service.ThreadDiagonalFiller - ints = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+2020-02-23 18:12:43.439 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 1, maxIndex = 1
+2020-02-23 18:12:43.439 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 0, maxIndex = 0
+2020-02-23 18:12:43.439 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 2, maxIndex = 2
+2020-02-23 18:12:43.440 [Thread-5] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 5, maxIndex = 5
+2020-02-23 18:12:43.440 [Thread-4] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 4, maxIndex = 4
+2020-02-23 18:12:43.440 [Thread-6] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 6, maxIndex = 6
+2020-02-23 18:12:43.440 [Thread-8] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 8, maxIndex = 8
+2020-02-23 18:12:43.440 [Thread-5] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 5
+2020-02-23 18:12:43.440 [Thread-6] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 6
+2020-02-23 18:12:43.441 [Thread-8] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 8
+2020-02-23 18:12:43.440 [Thread-7] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 7, maxIndex = 7
+2020-02-23 18:12:43.441 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 2
+2020-02-23 18:12:43.440 [Thread-9] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 9, maxIndex = 9
+2020-02-23 18:12:43.441 [Thread-7] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 7
+2020-02-23 18:12:43.441 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 0
+2020-02-23 18:12:43.440 [Thread-3] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 3, maxIndex = 3
+2020-02-23 18:12:43.441 [Thread-4] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 4
+2020-02-23 18:12:43.442 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 1
+2020-02-23 18:12:43.442 [Thread-3] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 3
+2020-02-23 18:12:43.442 [Thread-9] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 9
+2020-02-23 18:13:52.896 [main] INFO  by.epam.task12.service.ThreadDiagonalFiller - coresCount = 8
+2020-02-23 18:13:52.899 [main] INFO  by.epam.task12.service.ThreadDiagonalFiller - ints = [2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+2020-02-23 18:13:52.900 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 0, maxIndex = 1
+2020-02-23 18:13:52.900 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 4, maxIndex = 5
+2020-02-23 18:13:52.900 [Thread-3] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 6, maxIndex = 7
+2020-02-23 18:13:52.900 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 2, maxIndex = 3
+2020-02-23 18:13:52.901 [Thread-5] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 9, maxIndex = 9
+2020-02-23 18:13:52.901 [Thread-9] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 13, maxIndex = 13
+2020-02-23 18:13:52.902 [Thread-4] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 8, maxIndex = 8
+2020-02-23 18:13:52.902 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 2
+2020-02-23 18:13:52.902 [Thread-3] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 6
+2020-02-23 18:13:52.902 [Thread-6] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 10, maxIndex = 10
+2020-02-23 18:13:52.903 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 3
+2020-02-23 18:13:52.903 [Thread-4] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 8
+2020-02-23 18:13:52.902 [Thread-10] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 14, maxIndex = 14
+2020-02-23 18:13:52.903 [Thread-11] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 15, maxIndex = 15
+2020-02-23 18:13:52.902 [Thread-7] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 11, maxIndex = 11
+2020-02-23 18:13:52.903 [Thread-15] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 19, maxIndex = 19
+2020-02-23 18:13:52.904 [Thread-10] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 14
+2020-02-23 18:13:52.902 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 4
+2020-02-23 18:13:52.903 [Thread-13] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 17, maxIndex = 17
+2020-02-23 18:13:52.904 [Thread-6] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 10
+2020-02-23 18:13:52.904 [Thread-11] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 15
+2020-02-23 18:13:52.904 [Thread-15] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 19
+2020-02-23 18:13:52.902 [Thread-12] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 16, maxIndex = 16
+2020-02-23 18:13:52.904 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 5
+2020-02-23 18:13:52.903 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 0
+2020-02-23 18:13:52.903 [Thread-9] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 13
+2020-02-23 18:13:52.905 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 1
+2020-02-23 18:13:52.905 [Thread-12] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 16
+2020-02-23 18:13:52.903 [Thread-5] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 9
+2020-02-23 18:13:52.901 [Thread-8] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 12, maxIndex = 12
+2020-02-23 18:13:52.905 [Thread-7] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 11
+2020-02-23 18:13:52.904 [Thread-14] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 18, maxIndex = 18
+2020-02-23 18:13:52.905 [Thread-3] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 7
+2020-02-23 18:13:52.906 [Thread-8] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 12
+2020-02-23 18:13:52.906 [Thread-13] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 17
+2020-02-23 18:13:52.906 [Thread-14] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 18
+2020-02-23 18:14:08.329 [main] INFO  by.epam.task12.service.ThreadDiagonalFiller - coresCount = 8
+2020-02-23 18:14:08.332 [main] INFO  by.epam.task12.service.ThreadDiagonalFiller - ints = [2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+2020-02-23 18:14:08.333 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 2, maxIndex = 3
+2020-02-23 18:14:08.333 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 0, maxIndex = 1
+2020-02-23 18:14:08.333 [Thread-3] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 6, maxIndex = 6
+2020-02-23 18:14:08.333 [Thread-4] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 7, maxIndex = 7
+2020-02-23 18:14:08.333 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 4, maxIndex = 5
+2020-02-23 18:14:08.334 [Thread-7] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 10, maxIndex = 10
+2020-02-23 18:14:08.334 [Thread-11] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 14, maxIndex = 14
+2020-02-23 18:14:08.334 [Thread-5] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 8, maxIndex = 8
+2020-02-23 18:14:08.334 [Thread-10] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 13, maxIndex = 13
+2020-02-23 18:14:08.335 [Thread-4] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 7
+2020-02-23 18:14:08.335 [Thread-13] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 16, maxIndex = 16
+2020-02-23 18:14:08.335 [Thread-15] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 18, maxIndex = 18
+2020-02-23 18:14:08.335 [Thread-10] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 13
+2020-02-23 18:14:08.335 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 2
+2020-02-23 18:14:08.335 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 0
+2020-02-23 18:14:08.335 [Thread-3] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 6
+2020-02-23 18:14:08.335 [Thread-15] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 18
+2020-02-23 18:14:08.335 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 4
+2020-02-23 18:14:08.335 [Thread-7] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 10
+2020-02-23 18:14:08.335 [Thread-5] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 8
+2020-02-23 18:14:08.334 [Thread-6] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 9, maxIndex = 9
+2020-02-23 18:14:08.334 [Thread-8] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 11, maxIndex = 11
+2020-02-23 18:14:08.334 [Thread-14] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 17, maxIndex = 17
+2020-02-23 18:14:08.336 [Thread-13] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 16
+2020-02-23 18:14:08.334 [Thread-9] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 12, maxIndex = 12
+2020-02-23 18:14:08.336 [Thread-6] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 9
+2020-02-23 18:14:08.336 [Thread-8] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 11
+2020-02-23 18:14:08.336 [Thread-11] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 14
+2020-02-23 18:14:08.334 [Thread-12] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 15, maxIndex = 15
+2020-02-23 18:14:08.336 [Thread-14] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 17
+2020-02-23 18:14:08.337 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 1
+2020-02-23 18:14:08.337 [Thread-9] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 12
+2020-02-23 18:14:08.337 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 5
+2020-02-23 18:14:08.337 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 3
+2020-02-23 18:14:08.338 [Thread-12] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 15
+2020-02-23 18:14:20.687 [main] INFO  by.epam.task12.service.ThreadDiagonalFiller - coresCount = 8
+2020-02-23 18:14:20.689 [main] INFO  by.epam.task12.service.ThreadDiagonalFiller - ints = [2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+2020-02-23 18:14:20.690 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 0, maxIndex = 1
+2020-02-23 18:14:20.690 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 4, maxIndex = 4
+2020-02-23 18:14:20.690 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 2, maxIndex = 3
+2020-02-23 18:14:20.690 [Thread-3] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 5, maxIndex = 5
+2020-02-23 18:14:20.691 [Thread-10] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 12, maxIndex = 12
+2020-02-23 18:14:20.690 [Thread-5] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 7, maxIndex = 7
+2020-02-23 18:14:20.690 [Thread-4] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 6, maxIndex = 6
+2020-02-23 18:14:20.691 [Thread-12] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 14, maxIndex = 14
+2020-02-23 18:14:20.692 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 4
+2020-02-23 18:14:20.692 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 2
+2020-02-23 18:14:20.692 [Thread-3] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 5
+2020-02-23 18:14:20.692 [Thread-4] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 6
+2020-02-23 18:14:20.692 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 0
+2020-02-23 18:14:20.691 [Thread-9] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 11, maxIndex = 11
+2020-02-23 18:14:20.692 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 3
+2020-02-23 18:14:20.692 [Thread-13] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 15, maxIndex = 15
+2020-02-23 18:14:20.692 [Thread-14] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 16, maxIndex = 16
+2020-02-23 18:14:20.693 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 1
+2020-02-23 18:14:20.692 [Thread-11] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 13, maxIndex = 13
+2020-02-23 18:14:20.692 [Thread-6] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 8, maxIndex = 8
+2020-02-23 18:14:20.693 [Thread-9] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 11
+2020-02-23 18:14:20.693 [Thread-13] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 15
+2020-02-23 18:14:20.693 [Thread-14] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 16
+2020-02-23 18:14:20.693 [Thread-11] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 13
+2020-02-23 18:14:20.692 [Thread-8] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 10, maxIndex = 10
+2020-02-23 18:14:20.692 [Thread-7] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 9, maxIndex = 9
+2020-02-23 18:14:20.692 [Thread-15] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 17, maxIndex = 17
+2020-02-23 18:14:20.693 [Thread-12] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 14
+2020-02-23 18:14:20.692 [Thread-10] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 12
+2020-02-23 18:14:20.692 [Thread-5] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 7
+2020-02-23 18:14:20.694 [Thread-6] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 8
+2020-02-23 18:14:20.694 [Thread-8] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 10
+2020-02-23 18:14:20.694 [Thread-15] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 17
+2020-02-23 18:14:20.694 [Thread-7] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 9
+2020-02-23 18:15:00.561 [main] INFO  by.epam.task12.service.ThreadDiagonalFiller - coresCount = 8
+2020-02-23 18:15:00.563 [main] INFO  by.epam.task12.service.ThreadDiagonalFiller - ints = [1],
+2020-02-23 18:15:00.564 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 0, maxIndex = 0
+2020-02-23 18:15:00.565 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 0
+2020-02-23 18:15:13.977 [main] INFO  by.epam.task12.service.ThreadDiagonalFiller - coresCount = 8
+2020-02-23 18:15:13.980 [main] INFO  by.epam.task12.service.ThreadDiagonalFiller - ints = [1, 1],
+2020-02-23 18:15:13.981 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 1, maxIndex = 1
+2020-02-23 18:15:13.981 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 0, maxIndex = 0
+2020-02-23 18:15:13.981 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 0
+2020-02-23 18:15:13.981 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 1
+2020-02-23 18:16:15.388 [main] INFO  by.epam.task12.service.ThreadDiagonalFiller - coresCount = 8
+2020-02-23 18:16:15.391 [main] INFO  by.epam.task12.service.ThreadDiagonalFiller - ints = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+2020-02-23 18:16:15.392 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 0, maxIndex = 0
+2020-02-23 18:16:15.392 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 1, maxIndex = 1
+2020-02-23 18:16:15.392 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 2, maxIndex = 2
+2020-02-23 18:16:15.392 [Thread-4] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 4, maxIndex = 4
+2020-02-23 18:16:15.392 [Thread-8] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 8, maxIndex = 8
+2020-02-23 18:16:15.393 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 2
+2020-02-23 18:16:15.393 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 0
+2020-02-23 18:16:15.393 [Thread-4] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 4
+2020-02-23 18:16:15.392 [Thread-6] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 6, maxIndex = 6
+2020-02-23 18:16:15.392 [Thread-5] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 5, maxIndex = 5
+2020-02-23 18:16:15.392 [Thread-3] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 3, maxIndex = 3
+2020-02-23 18:16:15.393 [Thread-9] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 9, maxIndex = 9
+2020-02-23 18:16:15.393 [Thread-8] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 8
+2020-02-23 18:16:15.393 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 1
+2020-02-23 18:16:15.392 [Thread-7] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 7, maxIndex = 7
+2020-02-23 18:16:15.394 [Thread-6] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 6
+2020-02-23 18:16:15.394 [Thread-3] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 3
+2020-02-23 18:16:15.394 [Thread-9] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 9
+2020-02-23 18:16:15.394 [Thread-5] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 5
+2020-02-23 18:16:15.394 [Thread-7] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 7
+2020-02-23 19:31:25.297 [main] INFO  by.epam.task12.service.ThreadDiagonalFiller - coresCount = 8
+2020-02-23 19:31:25.300 [main] INFO  by.epam.task12.service.ThreadDiagonalFiller - ints = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+2020-02-23 19:31:25.301 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 1, maxIndex = 1
+2020-02-23 19:31:25.301 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 2, maxIndex = 2
+2020-02-23 19:31:25.301 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 0, maxIndex = 0
+2020-02-23 19:31:25.301 [Thread-4] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 4, maxIndex = 4
+2020-02-23 19:31:25.302 [Thread-6] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 6, maxIndex = 6
+2020-02-23 19:31:25.302 [Thread-5] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 5, maxIndex = 5
+2020-02-23 19:31:25.303 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 0
+2020-02-23 19:31:25.302 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 1
+2020-02-23 19:31:25.303 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 2
+2020-02-23 19:31:25.301 [Thread-3] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 3, maxIndex = 3
+2020-02-23 19:31:25.302 [Thread-9] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 9, maxIndex = 9
+2020-02-23 19:31:25.302 [Thread-7] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 7, maxIndex = 7
+2020-02-23 19:31:25.302 [Thread-8] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 8, maxIndex = 8
+2020-02-23 19:31:25.303 [Thread-4] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 4
+2020-02-23 19:31:25.303 [Thread-6] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 6
+2020-02-23 19:31:25.303 [Thread-5] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 5
+2020-02-23 19:31:25.304 [Thread-9] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 9
+2020-02-23 19:31:25.304 [Thread-3] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 3
+2020-02-23 19:31:25.304 [Thread-7] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 7
+2020-02-23 19:31:25.304 [Thread-8] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 8
+2020-02-23 19:32:46.533 [main] INFO  by.epam.task12.service.ThreadDiagonalFiller - coresCount = 8
+2020-02-23 19:32:46.535 [main] INFO  by.epam.task12.service.ThreadDiagonalFiller - ints = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+2020-02-23 19:32:46.536 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 1, maxIndex = 1
+2020-02-23 19:32:46.536 [Thread-3] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 3, maxIndex = 3
+2020-02-23 19:32:46.536 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 2, maxIndex = 2
+2020-02-23 19:32:46.537 [Thread-6] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 6, maxIndex = 6
+2020-02-23 19:32:46.537 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 2
+2020-02-23 19:32:46.536 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 0, maxIndex = 0
+2020-02-23 19:32:46.536 [Thread-4] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 4, maxIndex = 4
+2020-02-23 19:32:46.538 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 1
+2020-02-23 19:32:46.538 [Thread-6] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 6
+2020-02-23 19:32:46.537 [Thread-9] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 9, maxIndex = 9
+2020-02-23 19:32:46.537 [Thread-8] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 8, maxIndex = 8
+2020-02-23 19:32:46.537 [Thread-7] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 7, maxIndex = 7
+2020-02-23 19:32:46.538 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 0
+2020-02-23 19:32:46.537 [Thread-5] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 5, maxIndex = 5
+2020-02-23 19:32:46.538 [Thread-3] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 3
+2020-02-23 19:32:46.539 [Thread-8] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 8
+2020-02-23 19:32:46.539 [Thread-7] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 7
+2020-02-23 19:32:46.539 [Thread-4] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 4
+2020-02-23 19:32:46.539 [Thread-5] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 5
+2020-02-23 19:32:46.539 [Thread-9] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 9
+2020-02-23 19:52:08.245 [main] INFO  by.epam.task12.service.ThreadDiagonalFiller - coresCount = 8
+2020-02-23 19:52:08.249 [main] INFO  by.epam.task12.service.ThreadDiagonalFiller - ints = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+2020-02-23 19:52:08.250 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 0, maxIndex = 0
+2020-02-23 19:52:08.250 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 2, maxIndex = 2
+2020-02-23 19:52:08.250 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 1, maxIndex = 1
+2020-02-23 19:52:08.251 [Thread-8] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 8, maxIndex = 8
+2020-02-23 19:52:08.251 [Thread-6] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 6, maxIndex = 6
+2020-02-23 19:52:08.252 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 2
+2020-02-23 19:52:08.251 [Thread-7] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 7, maxIndex = 7
+2020-02-23 19:52:08.252 [Thread-6] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 6
+2020-02-23 19:52:08.251 [Thread-9] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 9, maxIndex = 9
+2020-02-23 19:52:08.251 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 0
+2020-02-23 19:52:08.251 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 1
+2020-02-23 19:52:08.252 [Thread-8] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 8
+2020-02-23 19:52:08.251 [Thread-3] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 3, maxIndex = 3
+2020-02-23 19:52:08.251 [Thread-4] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 4, maxIndex = 4
+2020-02-23 19:52:08.253 [Thread-9] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 9
+2020-02-23 19:52:08.253 [Thread-7] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 7
+2020-02-23 19:52:08.251 [Thread-5] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 5, maxIndex = 5
+2020-02-23 19:52:08.254 [Thread-5] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 5
+2020-02-23 19:52:08.254 [Thread-4] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 4
+2020-02-23 19:52:08.254 [Thread-3] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 3
+2020-02-23 19:52:26.504 [main] INFO  by.epam.task12.service.ThreadDiagonalFiller - coresCount = 8
+2020-02-23 19:52:26.507 [main] INFO  by.epam.task12.service.ThreadDiagonalFiller - ints = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+2020-02-23 19:52:26.507 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 2, maxIndex = 2
+2020-02-23 19:52:26.507 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 0, maxIndex = 0
+2020-02-23 19:52:26.508 [Thread-4] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 4, maxIndex = 4
+2020-02-23 19:52:26.507 [Thread-3] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 3, maxIndex = 3
+2020-02-23 19:52:26.509 [Thread-4] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 4
+2020-02-23 19:52:26.507 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 1, maxIndex = 1
+2020-02-23 19:52:26.509 [Thread-8] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 8, maxIndex = 8
+2020-02-23 19:52:26.508 [Thread-9] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 9, maxIndex = 9
+2020-02-23 19:52:26.508 [Thread-6] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 6, maxIndex = 6
+2020-02-23 19:52:26.510 [Thread-8] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 8
+2020-02-23 19:52:26.509 [Thread-5] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 5, maxIndex = 5
+2020-02-23 19:52:26.510 [Thread-3] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 3
+2020-02-23 19:52:26.509 [Thread-7] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 7, maxIndex = 7
+2020-02-23 19:52:26.509 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 2
+2020-02-23 19:52:26.510 [Thread-9] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 9
+2020-02-23 19:52:26.509 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 0
+2020-02-23 19:52:26.509 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 1
+2020-02-23 19:52:26.510 [Thread-5] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 5
+2020-02-23 19:52:26.510 [Thread-6] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 6
+2020-02-23 19:52:26.511 [Thread-7] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 7
+2020-02-23 19:53:54.496 [main] INFO  by.epam.task12.service.ThreadDiagonalFiller - coresCount = 8
+2020-02-23 19:53:54.499 [main] INFO  by.epam.task12.service.ThreadDiagonalFiller - ints = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+2020-02-23 19:53:54.500 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 0, maxIndex = 0
+2020-02-23 19:53:54.500 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 1, maxIndex = 1
+2020-02-23 19:53:54.500 [Thread-4] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 4, maxIndex = 4
+2020-02-23 19:53:54.500 [Thread-3] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 3, maxIndex = 3
+2020-02-23 19:53:54.500 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 2, maxIndex = 2
+2020-02-23 19:53:54.500 [Thread-9] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 9, maxIndex = 9
+2020-02-23 19:53:54.501 [Thread-7] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 7, maxIndex = 7
+2020-02-23 19:53:54.501 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 1
+2020-02-23 19:53:54.501 [Thread-4] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 4
+2020-02-23 19:53:54.501 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 2
+2020-02-23 19:53:54.501 [Thread-5] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 5, maxIndex = 5
+2020-02-23 19:53:54.501 [Thread-6] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 6, maxIndex = 6
+2020-02-23 19:53:54.501 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 0
+2020-02-23 19:53:54.501 [Thread-9] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 9
+2020-02-23 19:53:54.501 [Thread-8] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 8, maxIndex = 8
+2020-02-23 19:53:54.502 [Thread-3] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 3
+2020-02-23 19:53:54.502 [Thread-6] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 6
+2020-02-23 19:53:54.503 [Thread-7] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 7
+2020-02-23 19:53:54.503 [Thread-5] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 5
+2020-02-23 19:53:54.503 [Thread-8] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 8
+2020-02-23 20:04:38.062 [main] INFO  by.epam.task12.service.ThreadDiagonalFiller - coresCount = 10
+2020-02-23 20:04:38.066 [main] INFO  by.epam.task12.service.ThreadDiagonalFiller - ints = [2, 1, 1, 1, 1, 1, 1, 1, 1],
+2020-02-23 20:04:38.066 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 2, maxIndex = 2
+2020-02-23 20:04:38.066 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 0, maxIndex = 1
+2020-02-23 20:04:38.066 [Thread-3] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 4, maxIndex = 4
+2020-02-23 20:04:38.067 [Thread-4] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 5, maxIndex = 5
+2020-02-23 20:04:38.066 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 3, maxIndex = 3
+2020-02-23 20:04:38.068 [Thread-3] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 4
+2020-02-23 20:04:38.067 [Thread-7] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 8, maxIndex = 8
+2020-02-23 20:04:38.067 [Thread-5] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 6, maxIndex = 6
+2020-02-23 20:04:38.068 [Thread-8] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 9, maxIndex = 9
+2020-02-23 20:04:38.068 [Thread-6] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 7, maxIndex = 7
+2020-02-23 20:04:38.068 [Thread-7] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 8
+2020-02-23 20:04:38.068 [Thread-5] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 6
+2020-02-23 20:04:38.068 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 0
+2020-02-23 20:04:38.068 [Thread-6] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 7
+2020-02-23 20:04:38.067 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 2
+2020-02-23 20:04:38.068 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 1
+2020-02-23 20:04:38.069 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 3
+2020-02-23 20:04:38.069 [Thread-8] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 9
+2020-02-23 20:04:38.069 [Thread-4] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 5
+2020-02-23 20:05:02.796 [main] INFO  by.epam.task12.service.ThreadDiagonalFiller - coresCount = 10
+2020-02-23 20:05:02.799 [main] INFO  by.epam.task12.service.ThreadDiagonalFiller - ints = [5, 5, 5, 5, 4, 4, 4, 4, 4],
+2020-02-23 20:05:02.800 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 5, maxIndex = 9
+2020-02-23 20:05:02.800 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 0, maxIndex = 4
+2020-02-23 20:05:02.800 [Thread-3] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 15, maxIndex = 19
+2020-02-23 20:05:02.800 [Thread-4] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 20, maxIndex = 23
+2020-02-23 20:05:02.800 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 10, maxIndex = 14
+2020-02-23 20:05:02.801 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 5
+2020-02-23 20:05:02.800 [Thread-7] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 32, maxIndex = 35
+2020-02-23 20:05:02.801 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 0
+2020-02-23 20:05:02.801 [Thread-5] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 24, maxIndex = 27
+2020-02-23 20:05:02.801 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 6
+2020-02-23 20:05:02.801 [Thread-4] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 20
+2020-02-23 20:05:02.801 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 10
+2020-02-23 20:05:02.801 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 7
+2020-02-23 20:05:02.801 [Thread-4] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 21
+2020-02-23 20:05:02.801 [Thread-3] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 15
+2020-02-23 20:05:02.801 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 11
+2020-02-23 20:05:02.800 [Thread-8] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 36, maxIndex = 39
+2020-02-23 20:05:02.801 [Thread-3] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 16
+2020-02-23 20:05:02.801 [Thread-5] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 24
+2020-02-23 20:05:02.801 [Thread-3] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 17
+2020-02-23 20:05:02.801 [Thread-5] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 25
+2020-02-23 20:05:02.801 [Thread-6] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 28, maxIndex = 31
+2020-02-23 20:05:02.801 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 1
+2020-02-23 20:05:02.801 [Thread-7] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 32
+2020-02-23 20:05:02.801 [Thread-3] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 18
+2020-02-23 20:05:02.801 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 12
+2020-02-23 20:05:02.802 [Thread-5] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 26
+2020-02-23 20:05:02.802 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 2
+2020-02-23 20:05:02.801 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 8
+2020-02-23 20:05:02.802 [Thread-7] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 33
+2020-02-23 20:05:02.802 [Thread-6] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 28
+2020-02-23 20:05:02.802 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 13
+2020-02-23 20:05:02.802 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 3
+2020-02-23 20:05:02.802 [Thread-4] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 22
+2020-02-23 20:05:02.802 [Thread-6] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 29
+2020-02-23 20:05:02.802 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 4
+2020-02-23 20:05:02.802 [Thread-5] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 27
+2020-02-23 20:05:02.802 [Thread-4] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 23
+2020-02-23 20:05:02.801 [Thread-8] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 36
+2020-02-23 20:05:02.802 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 9
+2020-02-23 20:05:02.802 [Thread-7] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 34
+2020-02-23 20:05:02.802 [Thread-8] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 37
+2020-02-23 20:05:02.802 [Thread-3] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 19
+2020-02-23 20:05:02.802 [Thread-7] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 35
+2020-02-23 20:05:02.803 [Thread-6] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 30
+2020-02-23 20:05:02.803 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 14
+2020-02-23 20:05:02.803 [Thread-8] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 38
+2020-02-23 20:05:02.803 [Thread-6] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 31
+2020-02-23 20:05:02.803 [Thread-8] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 39
+2020-02-23 20:05:31.311 [main] INFO  by.epam.task12.service.ThreadDiagonalFiller - coresCount = 4
+2020-02-23 20:05:31.315 [main] INFO  by.epam.task12.service.ThreadDiagonalFiller - ints = [14, 13, 13],
+2020-02-23 20:05:31.315 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 0, maxIndex = 13
+2020-02-23 20:05:31.315 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 14, maxIndex = 26
+2020-02-23 20:05:31.315 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 27, maxIndex = 39
+2020-02-23 20:05:31.316 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 0
+2020-02-23 20:05:31.316 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 14
+2020-02-23 20:05:31.316 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 27
+2020-02-23 20:05:31.316 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 1
+2020-02-23 20:05:31.316 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 15
+2020-02-23 20:05:31.316 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 2
+2020-02-23 20:05:31.316 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 28
+2020-02-23 20:05:31.316 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 16
+2020-02-23 20:05:31.317 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 3
+2020-02-23 20:05:31.317 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 29
+2020-02-23 20:05:31.317 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 17
+2020-02-23 20:05:31.317 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 4
+2020-02-23 20:05:31.317 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 30
+2020-02-23 20:05:31.317 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 18
+2020-02-23 20:05:31.317 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 5
+2020-02-23 20:05:31.317 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 31
+2020-02-23 20:05:31.317 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 19
+2020-02-23 20:05:31.317 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 6
+2020-02-23 20:05:31.317 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 32
+2020-02-23 20:05:31.317 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 20
+2020-02-23 20:05:31.317 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 7
+2020-02-23 20:05:31.317 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 33
+2020-02-23 20:05:31.317 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 21
+2020-02-23 20:05:31.317 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 34
+2020-02-23 20:05:31.317 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 8
+2020-02-23 20:05:31.317 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 22
+2020-02-23 20:05:31.317 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 35
+2020-02-23 20:05:31.317 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 23
+2020-02-23 20:05:31.317 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 9
+2020-02-23 20:05:31.318 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 36
+2020-02-23 20:05:31.318 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 24
+2020-02-23 20:05:31.318 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 10
+2020-02-23 20:05:31.318 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 37
+2020-02-23 20:05:31.318 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 25
+2020-02-23 20:05:31.318 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 11
+2020-02-23 20:05:31.318 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 38
+2020-02-23 20:05:31.318 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 26
+2020-02-23 20:05:31.318 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 12
+2020-02-23 20:05:31.318 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 39
+2020-02-23 20:05:31.318 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 13
+2020-02-23 20:06:05.833 [main] INFO  by.epam.task12.service.ThreadDiagonalFiller - coresCount = 6
+2020-02-23 20:06:05.835 [main] INFO  by.epam.task12.service.ThreadDiagonalFiller - ints = [2, 2, 2, 1, 1],
+2020-02-23 20:06:05.836 [Thread-3] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 6, maxIndex = 6
+2020-02-23 20:06:05.836 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 2, maxIndex = 3
+2020-02-23 20:06:05.836 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 0, maxIndex = 1
+2020-02-23 20:06:05.836 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 4, maxIndex = 5
+2020-02-23 20:06:05.836 [Thread-4] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 7, maxIndex = 7
+2020-02-23 20:06:05.837 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 2
+2020-02-23 20:06:05.837 [Thread-3] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 6
+2020-02-23 20:06:05.837 [Thread-4] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 7
+2020-02-23 20:06:05.837 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 4
+2020-02-23 20:06:05.837 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 0
+2020-02-23 20:06:05.837 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 3
+2020-02-23 20:06:05.837 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 5
+2020-02-23 20:06:05.837 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 1
+2020-02-23 23:01:01.113 [main] INFO  by.epam.task12.service.ThreadDiagonalFiller - coresCount = 6
+2020-02-23 23:01:01.139 [main] INFO  by.epam.task12.service.ThreadDiagonalFiller - ints = [2, 2, 2, 1, 1],
+2020-02-23 23:01:01.139 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 0, maxIndex = 1
+2020-02-23 23:01:01.139 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 2, maxIndex = 3
+2020-02-23 23:01:01.140 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 4, maxIndex = 5
+2020-02-23 23:01:01.140 [Thread-3] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 6, maxIndex = 6
+2020-02-23 23:01:01.140 [Thread-4] INFO  by.epam.task12.service.RangeDiagonalFiller - minIndex = 7, maxIndex = 7
+2020-02-23 23:01:01.141 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 2
+2020-02-23 23:01:01.141 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 4
+2020-02-23 23:01:01.141 [Thread-3] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 6
+2020-02-23 23:01:01.141 [Thread-4] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 7
+2020-02-23 23:01:01.141 [Thread-1] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 3
+2020-02-23 23:01:01.141 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 5
+2020-02-23 23:01:01.141 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 0
+2020-02-23 23:01:01.142 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 1
