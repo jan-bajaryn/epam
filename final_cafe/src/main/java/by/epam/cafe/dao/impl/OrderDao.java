@@ -15,6 +15,7 @@ public class OrderDao implements AbstractDao<Integer, Order> {
     private static final String DELETE_BY_ID = "DELETE FROM `order` WHERE id = ";
     private static final String CREATE_SQL = "INSERT INTO `order` (creation, price, status, payment_type) VALUES (?,?,?,?)";
     private static final String UPDATE_SQL = "UPDATE `order` SET creation = ?, price = ?, status = ?, payment_type = ? WHERE id = ?;";
+    private static final String FIND_ALL_SQL = "SELECT id, creation, price, status, payment_type FROM `order`;";
 
     private Connection cn;
 
@@ -26,7 +27,7 @@ public class OrderDao implements AbstractDao<Integer, Order> {
     public List<Order> findAll() {
         List<Order> orders = new ArrayList<>();
         try (Statement statement = cn.createStatement()) {
-            ResultSet resultSet = statement.executeQuery("SELECT id, creation, price, status, payment_type FROM `order`;");
+            ResultSet resultSet = statement.executeQuery(FIND_ALL_SQL);
             while (resultSet.next()) {
                 Order order = findOrder(resultSet);
                 orders.add(order);
