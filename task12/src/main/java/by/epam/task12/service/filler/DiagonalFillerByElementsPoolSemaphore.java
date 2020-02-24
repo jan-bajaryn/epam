@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DiagonalFillerByElementsPoolSemaphore {
-    private ElementsPoolSemaphore elementsPoolLock = ElementsPoolSemaphore.getInstance();
+    private ElementsPoolSemaphore elementsPoolSemaphore = ElementsPoolSemaphore.getInstance();
     private static final Logger log = LogManager.getLogger(DiagonalFillerByElementsPool.class);
 
     public void fill(MatrixElements matrix, int[] arr) {
@@ -27,6 +27,7 @@ public class DiagonalFillerByElementsPoolSemaphore {
         putElements(elements);
         List<Thread> threads = execFill(arr);
         joinAll(threads);
+        elementsPoolSemaphore.clear();
     }
 
     private void joinAll(List<Thread> threads) {
@@ -51,7 +52,7 @@ public class DiagonalFillerByElementsPoolSemaphore {
 
     private void putElements(List<Element> elements) {
         for (Element element : elements) {
-            elementsPoolLock.putElement(element);
+            elementsPoolSemaphore.putElement(element);
         }
     }
 

@@ -27,6 +27,7 @@ public class DiagonalFillerByElementsPool {
         putElements(elements);
         List<Thread> threads = execFill(arr);
         joinAll(threads);
+        elementsPoolLock.clear();
     }
 
     private void joinAll(List<Thread> threads) {

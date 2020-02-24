@@ -626,3 +626,13 @@
 2020-02-23 23:01:01.141 [Thread-2] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 5
 2020-02-23 23:01:01.141 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 0
 2020-02-23 23:01:01.142 [Thread-0] INFO  by.epam.task12.service.RangeDiagonalFiller - i = 1
+2020-02-24 17:31:17.559 [main] INFO  by.epam.task12.view.UserCommandReader - commandDefinition.size = 1
+2020-02-24 17:53:10.169 [main] INFO  by.epam.task12.view.UserCommandReader - commandDefinition.size = 2
+2020-02-24 17:53:19.837 [main] INFO  by.epam.task12.view.InputDataReader - readFileName: answer = abc
+2020-02-24 17:53:21.429 [main] INFO  by.epam.task12.view.InputDataReader - readFileName: answer = abc
+2020-02-24 17:53:21.437 [main] INFO  by.epam.task12.view.UserCommandReader - printDisplayInformation run
+2020-02-24 17:53:21.438 [main] INFO  by.epam.task12.view.UserCommandReader - commandDefinition.size = 2
+2020-02-24 17:53:32.655 [main] INFO  by.epam.task12.view.InputDataReader - readFileName: answer = dd
+2020-02-24 17:53:33.509 [main] INFO  by.epam.task12.view.InputDataReader - readFileName: answer = dd
+2020-02-24 17:53:33.513 [main] INFO  by.epam.task12.view.UserCommandReader - printDisplayInformation run
+2020-02-24 17:53:33.514 [main] INFO  by.epam.task12.view.UserCommandReader - commandDefinition.size = 2
