@@ -85,5 +85,4 @@ public class ElementsPoolSemaphore {
     public boolean isEmpty() {
         return emptyElements.isEmpty() && elementCopies.isEmpty();
     }
-
 }
