@@ -1,10 +1,10 @@
 package by.epam.task12.view;
 
 
-import by.epam.task12.entity.impl.MatrixImpl;
+import by.epam.task12.entity.Matrix;
 
 public class ShowMatrix {
-    public void show(MatrixImpl matrixImpl) {
+    public void show(Matrix matrixImpl) {
         System.out.println(matrixImpl.toString());
     }
 }

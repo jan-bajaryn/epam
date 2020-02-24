@@ -1,4 +1,4 @@
-package by.epam.task12.service;
+package by.epam.task12.service.filler;
 
 import by.epam.task12.entity.impl.MatrixImpl;
 import org.apache.logging.log4j.LogManager;
@@ -62,8 +62,8 @@ public class RangeDiagonalFiller extends Thread {
         log.info("minIndex = {}, maxIndex = {}", minIndex, maxIndex);
         for (int i = minIndex; i <= maxIndex; i++) {
             log.info("i = {}", i);
-            if (matrixImpl.calcElem(i, i) == 0) {
-                matrixImpl.setElement(i, i, input);
+            if (matrixImpl.calcValue(i, i) == 0) {
+                matrixImpl.setValue(i, i, input);
             }
         }
     }

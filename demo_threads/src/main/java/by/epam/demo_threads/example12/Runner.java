@@ -9,8 +9,8 @@ public class Runner {
         Condition condition = locker.newCondition();
 
         Store store = new Store(locker, condition);
-        int countProducts = 6;
-        for (int i = 0; i < 1; i++) {
+        int countProducts = 20;
+        for (int i = 0; i < 5; i++) {
             new Producer(store, countProducts, "Producer " + i).start();
             new Consumer(store, countProducts, "Consumer " + i).start();
         }

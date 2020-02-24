@@ -26,7 +26,7 @@ public class MatrixImpl implements Matrix {
     }
 
     @Override
-    public void setElement(int row, int column, int value) {
+    public void setValue(int row, int column, int value) {
         if (checkParams(row, column)) {
             return;
         }
@@ -38,7 +38,7 @@ public class MatrixImpl implements Matrix {
     need to check dimensions before use this method
     */
     @Override
-    public Integer calcElem(int row, int column) {
+    public Integer calcValue(int row, int column) {
         if (checkParams(row, column)) {
             throw new IllegalParamsException();
         }

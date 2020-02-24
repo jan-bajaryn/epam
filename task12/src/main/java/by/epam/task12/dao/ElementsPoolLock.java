@@ -7,41 +7,40 @@ import java.util.List;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class ElementsPool {
+public class ElementsPoolLock {
 
-    private static final ElementsPool ELEMENTS_POOL = new ElementsPool();
+    private static final ElementsPoolLock ELEMENTS_POOL = new ElementsPoolLock();
 
-    public static ElementsPool getInstance() {
+    public static ElementsPoolLock getInstance() {
         return ELEMENTS_POOL;
     }
 
-    private ReentrantLock lock = new ReentrantLock();
+    private ReentrantLock lock = new ReentrantLock(true);
     private Condition condition = lock.newCondition();
 
     private List<Element> emptyElements = new ArrayList<>();
     private List<Element> elementCopies = new ArrayList<>();
 
-    public ElementsPool() {
+    public ElementsPoolLock() {
     }
 
     public Element takeElement() {
+        lock.lock();
         try {
-            lock.lock();
-
             Element remove = null;
             if (!emptyElements.isEmpty()) {
                 remove = emptyElements.remove(0);
             }
             return remove;
         } finally {
-            lock.unlock();
             condition.signalAll();
+            lock.unlock();
         }
     }
 
     public void putElement(Element element) {
+        lock.lock();
         try {
-            lock.lock();
             if (element != null && element.getValue() != null) {
                 if (element.getValue() == 0) {
                     emptyElements.add(element);
@@ -57,8 +56,8 @@ public class ElementsPool {
                 }
             }
         } finally {
-            lock.unlock();
             condition.signalAll();
+            lock.unlock();
         }
     }
 
@@ -83,7 +82,10 @@ public class ElementsPool {
     }
 
     public boolean isEmpty() {
-        return emptyElements.isEmpty();
+        return emptyElements.isEmpty() && elementCopies.isEmpty();
     }
 
+    public Condition getCondition() {
+        return condition;
+    }
 }

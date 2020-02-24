@@ -13,7 +13,7 @@ public class Store {
         this.condition = condition;
     }
 
-    public synchronized void put(Producer producer) {
+    public void put(Producer producer) {
         locker.lock();
         try {
             while (product >= 5) {
@@ -32,7 +32,7 @@ public class Store {
 
     }
 
-    public synchronized void get(Consumer consumer) {
+    public void get(Consumer consumer) {
 
         locker.lock();
         try {

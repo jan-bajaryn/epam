@@ -13,7 +13,7 @@ public class DiagonalZeroChecker {
 
         for (int i = 0; i < rows; i++) {
             if (i <= columns - 1) {
-                if (matrixImpl.calcElem(i, i) != 0) {
+                if (matrixImpl.calcValue(i, i) != 0) {
                     return false;
                 }
             }
