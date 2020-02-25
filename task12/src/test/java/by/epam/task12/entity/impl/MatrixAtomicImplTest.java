@@ -12,7 +12,6 @@ public class MatrixAtomicImplTest {
     public void atomicTest() {
         AtomicInteger atomicInteger = new AtomicInteger(0);
         atomicInteger.compareAndSet(0, 20);
-        System.out.println(atomicInteger.get());
         assertEquals(atomicInteger.get(), 20);
     }
 
@@ -20,7 +19,6 @@ public class MatrixAtomicImplTest {
     public void testCompareAndSet() {
         AtomicInteger atomicInteger = new AtomicInteger(1);
         atomicInteger.compareAndSet(0, 20);
-        System.out.println(atomicInteger.get());
         assertEquals(atomicInteger.get(), 1);
     }
 

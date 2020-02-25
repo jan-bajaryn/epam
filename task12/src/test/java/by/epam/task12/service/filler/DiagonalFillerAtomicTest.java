@@ -13,13 +13,11 @@ public class DiagonalFillerAtomicTest {
 
     private DiagonalFillerAtomic diagonalFillerAtomic = new DiagonalFillerAtomic();
     private MatrixAtomicImplFactory matrixAtomicImplFactory = new MatrixAtomicImplFactory();
-    private ShowMatrix showMatrix = new ShowMatrix();
 
     @Test
     public void testFill() throws IllegalArgsMatrixException {
         MatrixAtomicImpl matrixAtomic = matrixAtomicImplFactory.create(40, 40);
-        log.info("matrixAtomic = {}", matrixAtomic);
         diagonalFillerAtomic.fill(matrixAtomic, new int[]{1, 2, 3, 4});
-        showMatrix.show(matrixAtomic);
+        log.info("matrix = {}", matrixAtomic);
     }
 }

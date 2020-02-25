@@ -4,13 +4,16 @@ import by.epam.task12.entity.impl.MatrixElements;
 import by.epam.task12.entity.factory.MatrixElementsFactory;
 import by.epam.task12.entity.factory.exception.IllegalArgsMatrixException;
 import by.epam.task12.view.ShowMatrix;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.annotations.Test;
 
 public class DiagonalFillerByElementsPoolSemaphoreTest {
+    private static final Logger log = LogManager.getLogger(DiagonalFillerByElementsPoolSemaphoreTest.class);
+
 
     private DiagonalFillerByElementsPoolSemaphore diagonalFillerByElementsPool =
             new DiagonalFillerByElementsPoolSemaphore();
-    private ShowMatrix showMatrix = new ShowMatrix();
     private MatrixElementsFactory matrixElementsFactory = new MatrixElementsFactory();
 
 
@@ -18,6 +21,6 @@ public class DiagonalFillerByElementsPoolSemaphoreTest {
     public void testFill() throws IllegalArgsMatrixException {
         MatrixElements matrixElements = matrixElementsFactory.create(40, 40);
         diagonalFillerByElementsPool.fill(matrixElements, new int[]{1, 2, 3, 4});
-        showMatrix.show(matrixElements);
+        log.info("matrix = {}", matrixElements);
     }
 }
