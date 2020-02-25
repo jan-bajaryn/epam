@@ -1,9 +1,8 @@
 package by.epam.task12.service.filler;
 
 import by.epam.task12.entity.impl.MatrixElements;
-import by.epam.task12.service.factory.MatrixElementsFactory;
-import by.epam.task12.service.factory.exception.IllegalArgsMatrixException;
-import by.epam.task12.service.filler.DiagonalFillerByElementsPool;
+import by.epam.task12.entity.factory.MatrixElementsFactory;
+import by.epam.task12.entity.factory.exception.IllegalArgsMatrixException;
 import by.epam.task12.view.ShowMatrix;
 import org.testng.annotations.Test;
 

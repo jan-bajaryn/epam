@@ -1,9 +1,8 @@
-package by.epam.task12.service.factory;
+package by.epam.task12.entity.factory;
 
 
-import by.epam.task12.entity.impl.MatrixElements;
 import by.epam.task12.entity.impl.MatrixImpl;
-import by.epam.task12.service.factory.exception.IllegalArgsMatrixException;
+import by.epam.task12.entity.factory.exception.IllegalArgsMatrixException;
 import by.epam.task12.service.validator.MatrixValidator;
 
 public class MatrixFactory {

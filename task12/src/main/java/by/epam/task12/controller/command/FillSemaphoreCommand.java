@@ -3,8 +3,8 @@ package by.epam.task12.controller.command;
 import by.epam.task12.controller.command.dialog.Request;
 import by.epam.task12.controller.command.dialog.Response;
 import by.epam.task12.entity.impl.MatrixElements;
-import by.epam.task12.service.factory.MatrixElementsFactory;
-import by.epam.task12.service.factory.exception.IllegalArgsMatrixException;
+import by.epam.task12.entity.factory.MatrixElementsFactory;
+import by.epam.task12.entity.factory.exception.IllegalArgsMatrixException;
 import by.epam.task12.service.filler.DiagonalFillerByElementsPoolSemaphore;
 
 public class FillSemaphoreCommand implements ExecCommand {

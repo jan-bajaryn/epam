@@ -3,8 +3,8 @@ package by.epam;
 import by.epam.task12.entity.impl.MatrixImpl;
 import by.epam.task12.service.filler.FillWithIntegerMatrix;
 import by.epam.task12.service.filler.thread.ThreadDiagonalFiller;
-import by.epam.task12.service.factory.MatrixFactory;
-import by.epam.task12.service.factory.exception.IllegalArgsMatrixException;
+import by.epam.task12.entity.factory.MatrixFactory;
+import by.epam.task12.entity.factory.exception.IllegalArgsMatrixException;
 import by.epam.task12.service.validator.DiagonalZeroChecker;
 import by.epam.task12.view.ShowMatrix;
 

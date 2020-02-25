@@ -1,4 +1,4 @@
-package by.epam.task12.service.factory.exception;
+package by.epam.task12.entity.factory.exception;
 
 public class IllegalArgsSquareMatrixException extends IllegalArgsMatrixException {
     public IllegalArgsSquareMatrixException() {

@@ -1,9 +1,9 @@
-package by.epam.task12.service.factory;
+package by.epam.task12.entity.factory;
 
 
 import by.epam.task12.entity.impl.SquareMatrixImpl;
-import by.epam.task12.service.factory.exception.IllegalArgsMatrixException;
-import by.epam.task12.service.factory.exception.IllegalArgsSquareMatrixException;
+import by.epam.task12.entity.factory.exception.IllegalArgsMatrixException;
+import by.epam.task12.entity.factory.exception.IllegalArgsSquareMatrixException;
 import by.epam.task12.service.validator.SquareMatrixValidator;
 
 public class SquareMatrixFactory extends MatrixFactory {
