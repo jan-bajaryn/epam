@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://www.example.com/students"
+        xmlns:tns="http://www.example.com/students"
+        elementFormDefault="qualified">
+
+    <element name="students">
+        <complexType>
+            <sequence>
+                <element name="order"
+                         type="tns:Order"
+                         minOccurs="2"
+                         maxOccurs="unbounded"/>
+            </sequence>
+        </complexType>
+    </element>
+    <complexType name="Order">
+        <sequence>
+            <element name="creation" type="date"/>
+            <element name="price" type="int"/>
+            <element name="status" type="string"/>
+            <element name="payment_type" type="int"/>
+            <element name="delivery_inf" type="tns:Delivery_inf"/>
+        </sequence>
+    </complexType>
+    <complexType name="Delivery_inf">
+        <sequence>
+            <element name="id" type="string"/>
+            <element name="name" type="int"/>
+            <element name="abc" type="dateTime"/>
+        </sequence>
+    </complexType>
+    <!--    <complexType name="User">-->
+    <!--        <sequence>-->
+    <!--            <element name="login" type="string" />-->
+    <!--            <element name="pass" type="string" />-->
+    <!--            <element name="email" type="string" />-->
+    <!--        </sequence>-->
+    <!--        <attribute name="id" type="int" use="required"></attribute>-->
+    <!--        <attribute name="role" type="int" use="required">-->
+    <!--            <simpleType>-->
+    <!--                <restrincion base="int">-->
+    <!--                    <enumeration value="0"></enumeration>-->
+    <!--                    <enumeration value="1"></enumeration>-->
+    <!--                    <enumeration value="2"></enumeration>-->
+    <!--                </restrincion>-->
+    <!--            </simpleType>-->
+    <!--        </attribute>-->
+    <!--    </complexType>-->
+</schema>
