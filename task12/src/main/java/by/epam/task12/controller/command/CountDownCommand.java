@@ -2,20 +2,21 @@ package by.epam.task12.controller.command;
 
 import by.epam.task12.controller.command.dialog.Request;
 import by.epam.task12.controller.command.dialog.Response;
-import by.epam.task12.entity.factory.impl.MatrixElementsFactory;
-import by.epam.task12.entity.impl.MatrixElements;
+import by.epam.task12.entity.factory.impl.MatrixAtomicImplFactory;
+import by.epam.task12.entity.impl.MatrixAtomicImpl;
 import by.epam.task12.service.filler.DiagonalFiller;
-import by.epam.task12.service.filler.impl.DiagonalFillerPoolSemaphore;
+import by.epam.task12.service.filler.impl.DiagonalFillerCountDown;
 import by.epam.task12.service.reader.ArrayIntMaker;
 import by.epam.task12.service.reader.MatrixFromFileMaker;
 import by.epam.task12.service.reader.exception.IllegalFileNameException;
 
-public class FillSemaphoreCommand implements ExecCommand {
+public class CountDownCommand implements ExecCommand {
 
-    private MatrixFromFileMaker<MatrixElementsFactory, MatrixElements> matrixFromFileMaker
-            = new MatrixFromFileMaker<>(new MatrixElementsFactory());
+    private MatrixFromFileMaker<MatrixAtomicImplFactory, MatrixAtomicImpl> matrixFromFileMaker
+            = new MatrixFromFileMaker<>(new MatrixAtomicImplFactory());
 
-    private DiagonalFiller<MatrixElements> diagonalFillerPoolSemaphore = new DiagonalFillerPoolSemaphore();
+    private DiagonalFiller<MatrixAtomicImpl> diagonalFiller = new DiagonalFillerCountDown();
+
     private ArrayIntMaker arrayIntMaker = new ArrayIntMaker();
 
     @Override
@@ -26,9 +27,9 @@ public class FillSemaphoreCommand implements ExecCommand {
         if (check(request, response)) return response;
 
         try {
-            MatrixElements matrixElements = matrixFromFileMaker.make(request.getFileNameMatrix());
+            MatrixAtomicImpl matrixElements = matrixFromFileMaker.make(request.getFileNameMatrix());
             int[] arr = arrayIntMaker.make(request.getFileNameArr());
-            diagonalFillerPoolSemaphore.fill(matrixElements, arr);
+            diagonalFiller.fill(matrixElements, arr);
             response.setDisplayInformation("Matrix now is:\n" + matrixElements);
         } catch (IllegalFileNameException e) {
             response.setDisplayInformation("Invalid file Name.");
@@ -48,6 +49,6 @@ public class FillSemaphoreCommand implements ExecCommand {
 
     @Override
     public String definition() {
-        return "Fill diagonal using service with semaphore";
+        return "Fill diagonal using service with count down";
     }
 }

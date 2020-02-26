@@ -3,6 +3,7 @@ package by.epam.task12.service.filler;
 import by.epam.task12.entity.impl.MatrixElements;
 import by.epam.task12.entity.factory.impl.MatrixElementsFactory;
 import by.epam.task12.entity.factory.exception.IllegalArgsMatrixException;
+import by.epam.task12.service.filler.impl.DiagonalFillerPoolLock;
 import by.epam.task12.view.ShowMatrix;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

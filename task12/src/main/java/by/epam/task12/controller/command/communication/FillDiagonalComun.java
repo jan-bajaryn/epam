@@ -4,7 +4,7 @@ import by.epam.task12.controller.command.dialog.Request;
 import by.epam.task12.controller.command.dialog.Response;
 import by.epam.task12.view.InputDataReader;
 
-public class FillSemaphoreComun implements CommunicationCommand {
+public class FillDiagonalComun implements CommunicationCommand {
     private InputDataReader inputDataReader = new InputDataReader();
 
     @Override

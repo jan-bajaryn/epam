@@ -1,36 +1,38 @@
-package by.epam.task12.service.filler;
-
+package by.epam.task12.service.filler.impl;
 
 import by.epam.task12.entity.impl.MatrixAtomicImpl;
-import by.epam.task12.service.filler.thread.CountDownFiller;
+import by.epam.task12.service.CommonCounter;
+import by.epam.task12.service.factory.CommonCounterFactory;
+import by.epam.task12.service.filler.DiagonalFiller;
+import by.epam.task12.service.filler.thread.AtomicFiller;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.Arrays;
-import java.util.concurrent.CountDownLatch;
 
-public class DiagonalFillerCountDown {
+public class DiagonalFillerAtomic implements DiagonalFiller<MatrixAtomicImpl> {
 
-    private static final Logger log = LogManager.getLogger(DiagonalFillerCountDown.class);
+    private static final Logger log = LogManager.getLogger(DiagonalFillerAtomic.class);
 
+    private CommonCounterFactory commonCounterFactory = new CommonCounterFactory();
+
+    @Override
     public void fill(MatrixAtomicImpl matrix, int[] arr) {
 
         int[] pos = decideBeginPositions(matrix, arr);
         log.info("pos = {}", pos);
-        CountDownLatch countDownLatch = new CountDownLatch(Math.min(matrix.calcColumns(), matrix.calcRows()));
-        Thread[] threads = createThreads(arr, matrix, pos, countDownLatch);
+        Thread[] threads = createThreads(arr, matrix, pos);
         startThreads(threads);
-        interruptThreads(threads, countDownLatch);
+        joinThreads(threads);
     }
 
-    private void interruptThreads(Thread[] threads, CountDownLatch countDownLatch) {
-        try {
-            countDownLatch.await();
-        } catch (InterruptedException e) {
-            log.info("main thread was interrupted.");
-        }
+    private void joinThreads(Thread[] threads) {
         for (Thread thread : threads) {
-            thread.interrupt();
+            try {
+                thread.join();
+            } catch (InterruptedException e) {
+                log.info("Integgupted joining thread = {}", thread.getName());
+            }
         }
     }
 
@@ -40,11 +42,12 @@ public class DiagonalFillerCountDown {
         }
     }
 
-    private Thread[] createThreads(int[] arr, MatrixAtomicImpl matrix, int[] pos, CountDownLatch countDownLatch) {
+    private Thread[] createThreads(int[] arr, MatrixAtomicImpl matrix, int[] pos) {
+        CommonCounter commonCounter = commonCounterFactory.create(matrix);
         Thread[] threads = new Thread[arr.length];
         int position = 0;
         for (int i = 0; i < arr.length; i++) {
-            threads[i] = new CountDownFiller(arr[i], position, matrix, countDownLatch);
+            threads[i] = new AtomicFiller(arr[i], position, matrix, commonCounter);
             position = position + pos[i];
         }
         return threads;
@@ -93,4 +96,3 @@ public class DiagonalFillerCountDown {
         }
     }
 }
-

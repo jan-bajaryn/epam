@@ -1,4 +1,4 @@
-package by.epam.task12.service.filler;
+package by.epam.task12.service.filler.thread;
 
 import by.epam.task12.entity.impl.MatrixImpl;
 import org.apache.logging.log4j.LogManager;

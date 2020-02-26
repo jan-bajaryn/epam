@@ -32,3 +32,143 @@
 2020-02-26 19:30:24.952 [1] INFO  task12.service.filler.thread.CountDownFiller - Interrupted.
 2020-02-26 19:30:24.952 [4] INFO  task12.service.filler.thread.CountDownFiller - Interrupted.
 2020-02-26 19:30:24.953 [3] INFO  task12.service.filler.thread.CountDownFiller - Interrupted.
+2020-02-26 20:19:01.095 [main] INFO  by.epam.task12.view.UserCommandReader - commandDefinition.size = 2
+2020-02-26 20:19:18.668 [main] INFO  by.epam.task12.view.InputDataReader - readFileName: answer = data/matrix.txt
+2020-02-26 20:19:37.406 [main] INFO  by.epam.task12.view.InputDataReader - readFileName: answer = data/ints.txt
+2020-02-26 20:19:37.421 [main] INFO  by.epam.task12.view.UserCommandReader - printDisplayInformation run
+2020-02-26 20:19:37.422 [main] INFO  by.epam.task12.view.UserCommandReader - commandDefinition.size = 2
+2020-02-26 20:19:56.188 [main] INFO  by.epam.task12.view.InputDataReader - readFileName: answer = data/matrix.txt
+2020-02-26 20:20:04.482 [main] INFO  by.epam.task12.view.InputDataReader - readFileName: answer = data/ints.txt
+2020-02-26 20:20:04.487 [main] INFO  by.epam.task12.view.UserCommandReader - printDisplayInformation run
+2020-02-26 20:20:04.487 [main] INFO  by.epam.task12.view.UserCommandReader - commandDefinition.size = 2
+2020-02-26 20:51:57.458 [main] INFO  by.epam.task12.view.UserCommandReader - commandDefinition.size = 6
+2020-02-26 20:52:36.689 [main] INFO  by.epam.task12.view.UserCommandReader - commandDefinition.size = 6
+2020-02-26 20:54:09.464 [main] INFO  by.epam.task12.view.UserCommandReader - commandDefinition.size = 6
+2020-02-26 20:54:30.726 [main] INFO  by.epam.task12.view.InputDataReader - readFileName: answer = data/matrix.txt
+2020-02-26 20:54:46.366 [main] INFO  by.epam.task12.view.InputDataReader - readFileName: answer = data/ints.txt
+2020-02-26 20:54:46.377 [main] INFO  task12.service.filler.impl.DiagonalFillerCountDown - pos = [0, 3, 6, 8]
+2020-02-26 20:54:46.388 [main] INFO  by.epam.task12.view.UserCommandReader - printDisplayInformation run
+2020-02-26 20:54:46.388 [2] INFO  task12.service.filler.thread.CountDownFiller - Interrupted.
+2020-02-26 20:54:46.388 [4] INFO  task12.service.filler.thread.CountDownFiller - Interrupted.
+2020-02-26 20:54:46.388 [3] INFO  task12.service.filler.thread.CountDownFiller - Interrupted.
+2020-02-26 20:54:46.388 [1] INFO  task12.service.filler.thread.CountDownFiller - Interrupted.
+2020-02-26 20:54:46.389 [main] INFO  by.epam.task12.view.UserCommandReader - commandDefinition.size = 6
+2020-02-26 20:55:11.217 [main] INFO  by.epam.task12.view.InputDataReader - readFileName: answer = data/matrix.txt
+2020-02-26 20:55:17.095 [main] INFO  by.epam.task12.view.InputDataReader - readFileName: answer = data/ints.txt
+2020-02-26 20:55:17.102 [main] INFO  by.epam.task12.view.UserCommandReader - printDisplayInformation run
+2020-02-26 20:55:17.102 [main] INFO  by.epam.task12.view.UserCommandReader - commandDefinition.size = 6
+2020-02-26 20:55:39.310 [main] INFO  by.epam.task12.view.InputDataReader - readFileName: answer = data/matrix.txt
+2020-02-26 20:55:44.956 [main] INFO  by.epam.task12.view.InputDataReader - readFileName: answer = data/ints.txt
+2020-02-26 20:55:44.962 [main] INFO  by.epam.task12.view.UserCommandReader - printDisplayInformation run
+2020-02-26 20:55:44.963 [main] INFO  by.epam.task12.view.UserCommandReader - commandDefinition.size = 6
+2020-02-26 20:56:06.494 [main] INFO  by.epam.task12.view.InputDataReader - readFileName: answer = data/matrix.txt
+2020-02-26 20:56:12.674 [main] INFO  by.epam.task12.view.InputDataReader - readFileName: answer = data/ints.txt
+2020-02-26 20:56:12.676 [main] INFO  task12.service.filler.impl.ThreadDiagonalFiller - coresCount = 4
+2020-02-26 20:56:12.676 [main] INFO  task12.service.filler.impl.ThreadDiagonalFiller - ints = [4, 3, 3],
+2020-02-26 20:56:12.677 [Thread-10] INFO  task12.service.filler.thread.RangeDiagonalFiller - minIndex = 7, maxIndex = 9
+2020-02-26 20:56:12.677 [Thread-9] INFO  task12.service.filler.thread.RangeDiagonalFiller - minIndex = 4, maxIndex = 6
+2020-02-26 20:56:12.677 [Thread-8] INFO  task12.service.filler.thread.RangeDiagonalFiller - minIndex = 0, maxIndex = 3
+2020-02-26 20:56:12.678 [Thread-10] INFO  task12.service.filler.thread.RangeDiagonalFiller - i = 7
+2020-02-26 20:56:12.678 [Thread-8] INFO  task12.service.filler.thread.RangeDiagonalFiller - i = 0
+2020-02-26 20:56:12.678 [Thread-9] INFO  task12.service.filler.thread.RangeDiagonalFiller - i = 4
+2020-02-26 20:56:12.678 [Thread-8] INFO  task12.service.filler.thread.RangeDiagonalFiller - i = 1
+2020-02-26 20:56:12.678 [Thread-10] INFO  task12.service.filler.thread.RangeDiagonalFiller - i = 8
+2020-02-26 20:56:12.678 [Thread-9] INFO  task12.service.filler.thread.RangeDiagonalFiller - i = 5
+2020-02-26 20:56:12.678 [Thread-8] INFO  task12.service.filler.thread.RangeDiagonalFiller - i = 2
+2020-02-26 20:56:12.678 [Thread-9] INFO  task12.service.filler.thread.RangeDiagonalFiller - i = 6
+2020-02-26 20:56:12.678 [Thread-8] INFO  task12.service.filler.thread.RangeDiagonalFiller - i = 3
+2020-02-26 20:56:12.678 [Thread-10] INFO  task12.service.filler.thread.RangeDiagonalFiller - i = 9
+2020-02-26 20:56:12.680 [main] INFO  by.epam.task12.view.UserCommandReader - printDisplayInformation run
+2020-02-26 20:56:12.680 [main] INFO  by.epam.task12.view.UserCommandReader - commandDefinition.size = 6
+2020-02-26 20:57:01.732 [main] INFO  by.epam.task12.view.UserCommandReader - commandDefinition.size = 6
+2020-02-26 20:59:08.608 [main] INFO  by.epam.task12.view.UserCommandReader - commandDefinition.size = 6
+2020-02-26 20:59:25.121 [main] INFO  by.epam.task12.view.InputDataReader - readFileName: answer = data/matrix.txt
+2020-02-26 20:59:39.702 [main] INFO  by.epam.task12.view.InputDataReader - readFileName: answer = data/ints.txt
+2020-02-26 20:59:39.712 [main] INFO  task12.service.filler.impl.ThreadDiagonalFiller - coresCount = 4
+2020-02-26 20:59:39.712 [main] INFO  task12.service.filler.impl.ThreadDiagonalFiller - ints = [4, 3, 3],
+2020-02-26 20:59:39.713 [Thread-2] INFO  task12.service.filler.thread.RangeDiagonalFiller - minIndex = 7, maxIndex = 9
+2020-02-26 20:59:39.713 [Thread-0] INFO  task12.service.filler.thread.RangeDiagonalFiller - minIndex = 0, maxIndex = 3
+2020-02-26 20:59:39.713 [Thread-1] INFO  task12.service.filler.thread.RangeDiagonalFiller - minIndex = 4, maxIndex = 6
+2020-02-26 20:59:39.715 [Thread-2] INFO  task12.service.filler.thread.RangeDiagonalFiller - i = 7
+2020-02-26 20:59:39.715 [Thread-0] INFO  task12.service.filler.thread.RangeDiagonalFiller - i = 0
+2020-02-26 20:59:39.715 [Thread-0] INFO  task12.service.filler.thread.RangeDiagonalFiller - i = 1
+2020-02-26 20:59:39.715 [Thread-2] INFO  task12.service.filler.thread.RangeDiagonalFiller - i = 8
+2020-02-26 20:59:39.715 [Thread-1] INFO  task12.service.filler.thread.RangeDiagonalFiller - i = 4
+2020-02-26 20:59:39.715 [Thread-2] INFO  task12.service.filler.thread.RangeDiagonalFiller - i = 9
+2020-02-26 20:59:39.715 [Thread-0] INFO  task12.service.filler.thread.RangeDiagonalFiller - i = 2
+2020-02-26 20:59:39.715 [Thread-1] INFO  task12.service.filler.thread.RangeDiagonalFiller - i = 5
+2020-02-26 20:59:39.715 [Thread-0] INFO  task12.service.filler.thread.RangeDiagonalFiller - i = 3
+2020-02-26 20:59:39.715 [Thread-1] INFO  task12.service.filler.thread.RangeDiagonalFiller - i = 6
+2020-02-26 20:59:39.717 [main] INFO  by.epam.task12.view.UserCommandReader - printDisplayInformation run
+2020-02-26 20:59:39.717 [main] INFO  by.epam.task12.view.UserCommandReader - commandDefinition.size = 6
+2020-02-26 20:59:54.062 [main] INFO  by.epam.task12.view.UserCommandReader - commandDefinition.size = 6
+2020-02-26 21:00:01.971 [main] INFO  by.epam.task12.view.InputDataReader - readFileName: answer = data/matrix.txt
+2020-02-26 21:00:06.868 [main] INFO  by.epam.task12.view.InputDataReader - readFileName: answer = data/ints.txt
+2020-02-26 21:00:06.886 [main] INFO  by.epam.task12.view.UserCommandReader - printDisplayInformation run
+2020-02-26 21:00:06.886 [main] INFO  by.epam.task12.view.UserCommandReader - commandDefinition.size = 6
+2020-02-26 21:00:23.201 [main] INFO  by.epam.task12.view.InputDataReader - readFileName: answer = data/matrix.txt
+2020-02-26 21:00:30.910 [main] INFO  by.epam.task12.view.InputDataReader - readFileName: answer = data/ints.txt
+2020-02-26 21:00:30.915 [main] INFO  by.epam.task12.view.UserCommandReader - printDisplayInformation run
+2020-02-26 21:00:30.916 [main] INFO  by.epam.task12.view.UserCommandReader - commandDefinition.size = 6
+2020-02-26 21:00:45.009 [main] INFO  by.epam.task12.view.UserCommandReader - commandDefinition.size = 6
+2020-02-26 21:00:54.895 [main] INFO  by.epam.task12.view.InputDataReader - readFileName: answer = data/matrix.txt
+2020-02-26 21:01:00.656 [main] INFO  by.epam.task12.view.InputDataReader - readFileName: answer = data/ints.txt
+2020-02-26 21:01:00.671 [main] INFO  by.epam.task12.view.UserCommandReader - printDisplayInformation run
+2020-02-26 21:01:00.671 [main] INFO  by.epam.task12.view.UserCommandReader - commandDefinition.size = 6
+2020-02-26 21:01:11.425 [main] INFO  by.epam.task12.view.UserCommandReader - commandDefinition.size = 6
+2020-02-26 21:01:17.271 [main] INFO  by.epam.task12.view.InputDataReader - readFileName: answer = data/matrix.txt
+2020-02-26 21:01:24.408 [main] INFO  by.epam.task12.view.InputDataReader - readFileName: answer = data/ints.txt
+2020-02-26 21:01:24.423 [main] INFO  by.epam.task12.view.UserCommandReader - printDisplayInformation run
+2020-02-26 21:01:24.424 [main] INFO  by.epam.task12.view.UserCommandReader - commandDefinition.size = 6
+2020-02-26 21:01:31.073 [main] INFO  by.epam.task12.view.InputDataReader - readFileName: answer = data/matrix.txt
+2020-02-26 21:01:41.150 [main] INFO  by.epam.task12.view.InputDataReader - readFileName: answer = data/ints.txt
+2020-02-26 21:01:41.155 [main] INFO  by.epam.task12.view.UserCommandReader - printDisplayInformation run
+2020-02-26 21:01:41.155 [main] INFO  by.epam.task12.view.UserCommandReader - commandDefinition.size = 6
+2020-02-26 21:01:52.200 [main] INFO  by.epam.task12.view.UserCommandReader - commandDefinition.size = 6
+2020-02-26 21:02:02.192 [main] INFO  by.epam.task12.view.InputDataReader - readFileName: answer = data/matrix.txt
+2020-02-26 21:02:10.950 [main] INFO  by.epam.task12.view.InputDataReader - readFileName: answer = data/ints.txt
+2020-02-26 21:02:10.963 [main] INFO  task12.service.filler.impl.DiagonalFillerAtomic - pos = [0, 3, 6, 8]
+2020-02-26 21:02:10.978 [main] INFO  by.epam.task12.view.UserCommandReader - printDisplayInformation run
+2020-02-26 21:02:10.978 [main] INFO  by.epam.task12.view.UserCommandReader - commandDefinition.size = 6
+2020-02-26 21:02:22.203 [main] INFO  by.epam.task12.view.UserCommandReader - commandDefinition.size = 6
+2020-02-26 21:02:38.825 [main] INFO  by.epam.task12.view.InputDataReader - readFileName: answer = data/matrix.txt
+2020-02-26 21:02:44.298 [main] INFO  by.epam.task12.view.InputDataReader - readFileName: answer = data/ints.txt
+2020-02-26 21:02:44.312 [main] INFO  by.epam.task12.view.UserCommandReader - printDisplayInformation run
+2020-02-26 21:02:44.312 [main] INFO  by.epam.task12.view.UserCommandReader - commandDefinition.size = 6
+2020-02-26 21:02:53.258 [main] INFO  by.epam.task12.view.InputDataReader - readFileName: answer = data/matrix.txt
+2020-02-26 21:02:59.066 [main] INFO  by.epam.task12.view.InputDataReader - readFileName: answer = data/intst.txt
+2020-02-26 21:02:59.068 [main] INFO  epam.task12.service.reader.ArrayIntMaker - Exception in make method = data\intst.txt
+2020-02-26 21:02:59.068 [main] INFO  by.epam.task12.view.UserCommandReader - printDisplayInformation run
+2020-02-26 21:02:59.069 [main] INFO  by.epam.task12.view.UserCommandReader - commandDefinition.size = 6
+2020-02-26 21:03:13.984 [main] INFO  by.epam.task12.view.InputDataReader - readFileName: answer = data/matrix.txt
+2020-02-26 21:03:20.269 [main] INFO  by.epam.task12.view.InputDataReader - readFileName: answer = data/ints.txt
+2020-02-26 21:03:20.273 [main] INFO  by.epam.task12.view.UserCommandReader - printDisplayInformation run
+2020-02-26 21:03:20.273 [main] INFO  by.epam.task12.view.UserCommandReader - commandDefinition.size = 6
+2020-02-26 21:03:31.698 [main] INFO  by.epam.task12.view.UserCommandReader - commandDefinition.size = 6
+2020-02-26 21:03:43.500 [main] INFO  by.epam.task12.view.InputDataReader - readFileName: answer = data/matrix.txt
+2020-02-26 21:03:50.496 [main] INFO  by.epam.task12.view.InputDataReader - readFileName: answer = data/ints.txt
+2020-02-26 21:03:50.505 [main] INFO  task12.service.filler.impl.DiagonalFillerCountDown - pos = [0, 3, 6, 8]
+2020-02-26 21:03:50.515 [2] INFO  task12.service.filler.thread.CountDownFiller - Interrupted.
+2020-02-26 21:03:50.515 [4] INFO  task12.service.filler.thread.CountDownFiller - Interrupted.
+2020-02-26 21:03:50.515 [3] INFO  task12.service.filler.thread.CountDownFiller - Interrupted.
+2020-02-26 21:03:50.515 [1] INFO  task12.service.filler.thread.CountDownFiller - Interrupted.
+2020-02-26 21:03:50.515 [main] INFO  by.epam.task12.view.UserCommandReader - printDisplayInformation run
+2020-02-26 21:03:50.516 [main] INFO  by.epam.task12.view.UserCommandReader - commandDefinition.size = 6
+2020-02-26 21:09:12.943 [main] INFO  task12.service.filler.impl.DiagonalFillerCountDown - pos = [0, 10, 20, 30]
+2020-02-26 21:09:12.983 [4] INFO  task12.service.filler.thread.CountDownFiller - Interrupted.
+2020-02-26 21:09:12.983 [2] INFO  task12.service.filler.thread.CountDownFiller - Interrupted.
+2020-02-26 21:09:12.983 [3] INFO  task12.service.filler.thread.CountDownFiller - Interrupted.
+2020-02-26 21:09:12.983 [1] INFO  task12.service.filler.thread.CountDownFiller - Interrupted.
+2020-02-26 21:10:11.335 [main] INFO  task12.service.filler.impl.DiagonalFillerCountDown - pos = [0, 3, 6, 8]
+2020-02-26 21:10:11.352 [4] INFO  task12.service.filler.thread.CountDownFiller - Interrupted.
+2020-02-26 21:10:11.352 [3] INFO  task12.service.filler.thread.CountDownFiller - Interrupted.
+2020-02-26 21:11:41.880 [main] INFO  by.epam.task12.view.UserCommandReader - commandDefinition.size = 6
+2020-02-26 21:12:00.804 [main] INFO  by.epam.task12.view.InputDataReader - readFileName: answer = data/matrix.txt
+2020-02-26 21:12:07.156 [main] INFO  by.epam.task12.view.InputDataReader - readFileName: answer = data/ints.txt
+2020-02-26 21:12:07.166 [main] INFO  task12.service.filler.impl.DiagonalFillerCountDown - pos = [0, 3, 6, 8]
+2020-02-26 21:12:07.178 [main] INFO  by.epam.task12.view.UserCommandReader - printDisplayInformation run
+2020-02-26 21:12:07.178 [3] INFO  task12.service.filler.thread.CountDownFiller - Interrupted.
+2020-02-26 21:12:07.178 [4] INFO  task12.service.filler.thread.CountDownFiller - Interrupted.
+2020-02-26 21:12:07.178 [2] INFO  task12.service.filler.thread.CountDownFiller - Interrupted.
+2020-02-26 21:12:07.178 [1] INFO  task12.service.filler.thread.CountDownFiller - Interrupted.
+2020-02-26 21:12:07.178 [main] INFO  by.epam.task12.view.UserCommandReader - commandDefinition.size = 6

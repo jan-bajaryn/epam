@@ -30,7 +30,7 @@ public class CountDownFiller extends Thread {
     public void run() {
         int temp = beginPosition;
         int size = Math.min(matrix.calcColumns(), matrix.calcRows());
-        while (true) {
+        while (countDownLatch.getCount() != 0) {
             AtomicInteger element = matrix.getElement(temp, temp);
             temp = (temp + 1) % size;
             boolean b = element.compareAndSet(0, value);

@@ -5,6 +5,8 @@ import by.epam.task12.entity.Element;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.concurrent.TimeUnit;
+
 public class SingleFillerLock extends Thread {
     private ElementsPoolLock elementsPoolLock = ElementsPoolLock.getInstance();
     private static final Logger log = LogManager.getLogger(SingleFillerLock.class);
@@ -22,9 +24,29 @@ public class SingleFillerLock extends Thread {
         while (!elementsPoolLock.isEmpty()) {
             Element element = elementsPoolLock.takeElement();
             if (element != null) {
+                sleepHavingElement(element);
                 element.setValue(value);
                 elementsPoolLock.putElement(element);
+            } else {
+                sleepWithout();
             }
+        }
+    }
+
+    private void sleepWithout() {
+        try {
+            TimeUnit.MILLISECONDS.sleep(1);
+        } catch (InterruptedException e) {
+            log.info("Interrupted having null");
+        }
+    }
+
+    private void sleepHavingElement(Element element) {
+        try {
+            TimeUnit.MILLISECONDS.sleep(1);
+        } catch (InterruptedException e) {
+            log.info("Interrupted element = {}", element);
+            elementsPoolLock.putElement(element);
         }
     }
 }

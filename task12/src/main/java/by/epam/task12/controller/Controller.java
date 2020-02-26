@@ -1,11 +1,9 @@
 package by.epam.task12.controller;
 
 
-import by.epam.task12.controller.command.ExecCommand;
-import by.epam.task12.controller.command.ExitExecCommand;
-import by.epam.task12.controller.command.FillSemaphoreCommand;
+import by.epam.task12.controller.command.*;
 import by.epam.task12.controller.command.communication.CommunicationCommand;
-import by.epam.task12.controller.command.communication.FillSemaphoreComun;
+import by.epam.task12.controller.command.communication.FillDiagonalComun;
 import by.epam.task12.controller.command.dialog.Request;
 import by.epam.task12.controller.command.dialog.Response;
 import by.epam.task12.view.UserCommandReader;
@@ -26,14 +24,20 @@ public class Controller {
 
         commandMap.put(Response.EXIT, new ExitExecCommand());
 
-        comunCommands.put("fill_semaphore", new FillSemaphoreComun());
+        comunCommands.put("fill_semaphore", new FillDiagonalComun());
         commandMap.put("fill_semaphore", new FillSemaphoreCommand());
 
-//        comunCommands.put("fill_lock", new FillLockComun());
-//        commandMap.put("fill_lock", new FillLockCommand());
+        comunCommands.put("fill_lock", new FillDiagonalComun());
+        commandMap.put("fill_lock", new FillLockCommand());
 
-//        comunCommands.put("fill_parts", new FillPartsComun());
-//        commandMap.put("fill_parts", new FillPartsCommand());
+        comunCommands.put("fill_parts", new FillDiagonalComun());
+        commandMap.put("fill_parts", new FillPartsCommand());
+
+        comunCommands.put("fill_countDown", new FillDiagonalComun());
+        commandMap.put("fill_countDown", new CountDownCommand());
+
+        comunCommands.put("fill_atomic", new FillDiagonalComun());
+        commandMap.put("fill_atomic", new FillAtomicCommand());
 
         Map<String, String> commandsDefinitions = commandMap.entrySet().stream()
                 .collect(Collectors.toMap(Map.Entry::getKey, c -> c.getValue().definition()));

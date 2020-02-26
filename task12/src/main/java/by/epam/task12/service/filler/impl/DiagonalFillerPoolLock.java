@@ -1,19 +1,22 @@
-package by.epam.task12.service.filler;
+package by.epam.task12.service.filler.impl;
 
-import by.epam.task12.dao.ElementsPoolSemaphore;
+import by.epam.task12.dao.ElementsPoolLock;
 import by.epam.task12.entity.Element;
+import by.epam.task12.entity.impl.MatrixAtomicImpl;
 import by.epam.task12.entity.impl.MatrixElements;
-import by.epam.task12.service.filler.thread.SingleFillerSemaphore;
+import by.epam.task12.service.filler.DiagonalFiller;
+import by.epam.task12.service.filler.thread.SingleFillerLock;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class DiagonalFillerPoolSemaphore {
-    private ElementsPoolSemaphore elementsPoolSemaphore = ElementsPoolSemaphore.getInstance();
+public class DiagonalFillerPoolLock implements DiagonalFiller<MatrixElements> {
+    private ElementsPoolLock elementsPoolLock = ElementsPoolLock.getInstance();
     private static final Logger log = LogManager.getLogger(DiagonalFillerPoolLock.class);
 
+    @Override
     public void fill(MatrixElements matrix, int[] arr) {
         if (matrix == null) {
             return;
@@ -27,7 +30,7 @@ public class DiagonalFillerPoolSemaphore {
         putElements(elements);
         List<Thread> threads = execFill(arr);
         joinAll(threads);
-        elementsPoolSemaphore.clear();
+        elementsPoolLock.clear();
     }
 
     private void joinAll(List<Thread> threads) {
@@ -43,16 +46,16 @@ public class DiagonalFillerPoolSemaphore {
     private List<Thread> execFill(int[] arr) {
         List<Thread> threads = new ArrayList<>();
         for (int i : arr) {
-            SingleFillerSemaphore fillerThread = new SingleFillerSemaphore(i);
-            threads.add(fillerThread);
-            fillerThread.start();
+            SingleFillerLock singleFillerLock = new SingleFillerLock(i);
+            threads.add(singleFillerLock);
+            singleFillerLock.start();
         }
         return threads;
     }
 
     private void putElements(List<Element> elements) {
         for (Element element : elements) {
-            elementsPoolSemaphore.putElement(element);
+            elementsPoolLock.putElement(element);
         }
     }
 
@@ -63,4 +66,5 @@ public class DiagonalFillerPoolSemaphore {
             elements.add(element);
         }
     }
+
 }

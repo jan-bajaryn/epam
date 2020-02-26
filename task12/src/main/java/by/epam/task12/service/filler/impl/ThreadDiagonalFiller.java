@@ -1,14 +1,16 @@
-package by.epam.task12.service.filler.thread;
+package by.epam.task12.service.filler.impl;
 
 import by.epam.task12.entity.impl.MatrixImpl;
-import by.epam.task12.service.filler.RangeDiagonalFiller;
+import by.epam.task12.service.filler.DiagonalFiller;
+import by.epam.task12.service.filler.thread.RangeDiagonalFiller;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class ThreadDiagonalFiller {
+public class ThreadDiagonalFiller implements DiagonalFiller<MatrixImpl> {
 
     private static final Logger log = LogManager.getLogger(ThreadDiagonalFiller.class);
 
+    @Override
     public void fill(MatrixImpl matrixImpl, int[] arr) {
         if (matrixImpl == null) {
             return;
@@ -43,7 +45,6 @@ public class ThreadDiagonalFiller {
         for (int i = 0; i < threads.length - 1; i++) {
             threads[i].setNextFiller(threads[i + 1]);
         }
-//        threads[threads.length - 1].setNextFiller(threads[0]);
     }
 
     private void startThreads(Thread[] threads) {
