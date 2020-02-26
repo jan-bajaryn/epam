@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <orders
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns="http://www.example.com/students"
-        xsi:schemaLocation="http://www.example.com/students person.xsd">
+        xmlns="http://by.example.com/orders"
+        xsi:schemaLocation="http://by.example.com/orders aaa.xsd">
+
     <order id="01">
         <creation>2020-02-24</creation>
         <price>3453</price>
@@ -87,11 +88,10 @@
         <status>took</status>
         <payment_type>3</payment_type>
         <delivery_inf>
+            <address>Lenina 30, 30</address>
             <delivery_time>2002-05-30T09:30:10.5</delivery_time>
             <client_name>Jan</client_name>
-            <address>Lenina 30, 30</address>
             <phone>+375 29 345 34 34</phone>
-            <email>abcd@gmail.com</email>
         </delivery_inf>
     </order>
     <order id="08">

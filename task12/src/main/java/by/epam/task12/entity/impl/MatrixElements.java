@@ -1,5 +1,6 @@
 package by.epam.task12.entity.impl;
 
+import by.epam.task12.entity.Element;
 import by.epam.task12.entity.IllegalParamsException;
 import by.epam.task12.entity.Matrix;
 

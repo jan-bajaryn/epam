@@ -3,15 +3,18 @@ package by.epam.task12.controller.command;
 import by.epam.task12.controller.command.dialog.Request;
 import by.epam.task12.controller.command.dialog.Response;
 import by.epam.task12.entity.impl.MatrixElements;
-import by.epam.task12.entity.factory.MatrixElementsFactory;
+import by.epam.task12.entity.factory.impl.MatrixElementsFactory;
 import by.epam.task12.entity.factory.exception.IllegalArgsMatrixException;
-import by.epam.task12.service.filler.DiagonalFillerByElementsPoolSemaphore;
+import by.epam.task12.service.filler.DiagonalFillerPoolSemaphore;
+import by.epam.task12.service.reader.ArrayIntMaker;
+import by.epam.task12.service.reader.MarixFromFileMaker;
+import by.epam.task12.service.reader.exception.IllegalFileNameException;
 
 public class FillSemaphoreCommand implements ExecCommand {
 
-//    private MarixFromFileMaker marixFromFileMaker = new MarixFromFileMaker();
-    private DiagonalFillerByElementsPoolSemaphore diagonalFillerByElementsPoolSemaphore = new DiagonalFillerByElementsPoolSemaphore();
-//    private ArrayIntMaker arrayIntMaker = new ArrayIntMaker();
+    private MarixFromFileMaker marixFromFileMaker = new MarixFromFileMaker();
+    private DiagonalFillerPoolSemaphore diagonalFillerPoolSemaphore = new DiagonalFillerPoolSemaphore();
+    private ArrayIntMaker arrayIntMaker = new ArrayIntMaker();
 
     @Override
     public Response execute(Request request) {
@@ -24,9 +27,14 @@ public class FillSemaphoreCommand implements ExecCommand {
         }
 
         MatrixElements matrixElements = null;
-//        matrixElements = marixFromFileMaker.make(request.getFileNameMatrix());
+        matrixElements = marixFromFileMaker.make(request.getFileNameMatrix());
         int[] arr = null;
-//        arr = arrayIntMaker.make(request.getFileNameArr());
+        try {
+            arr = arrayIntMaker.make(request.getFileNameArr());
+        } catch (IllegalFileNameException e) {
+            response.setDisplayInformation("Illegal file name for array.");
+            return response;
+        }
 
         // заглушка
         MatrixElementsFactory matrixElementsFactory = new MatrixElementsFactory();
@@ -39,7 +47,7 @@ public class FillSemaphoreCommand implements ExecCommand {
 
         //заглушка
 
-        diagonalFillerByElementsPoolSemaphore.fill(matrixElements, arr);
+        diagonalFillerPoolSemaphore.fill(matrixElements, arr);
 
         response.setDisplayInformation("Matrix now is:\n" +
                 matrixElements);

@@ -1,0 +1,6 @@
+by\epam\task12\service\filler\DiagonalFillerCountDownTest.class
+by\epam\task12\service\filler\DiagonalFillerAtomicTest.class
+by\epam\task12\service\filler\DiagonalFillerPoolSemaphoreTest.class
+by\epam\task12\entity\impl\MatrixAtomicImplTest.class
+by\epam\task12\service\filler\DiagonalFillerPoolLockLockTest.class
+by\epam\task12\service\parser\ToIntArrayParserTest.class

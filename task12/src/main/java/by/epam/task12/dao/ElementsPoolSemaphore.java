@@ -1,6 +1,6 @@
 package by.epam.task12.dao;
 
-import by.epam.task12.entity.impl.Element;
+import by.epam.task12.entity.Element;
 
 import java.util.ArrayList;
 import java.util.List;

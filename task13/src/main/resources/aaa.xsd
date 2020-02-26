@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://by.example.com/orders"
+        xmlns:tns="http://by.example.com/orders"
+        elementFormDefault="qualified">
+
+    <!--    <element name="students">-->
+    <!--        <complexType>-->
+    <!--            <sequence>-->
+    <!--                <element name="order"-->
+    <!--                         type="tns:Order"-->
+    <!--                         minOccurs="2"-->
+    <!--                         maxOccurs="unbounded"/>-->
+    <!--            </sequence>-->
+    <!--        </complexType>-->
+    <!--    </element>-->
+    <element name="orders">
+        <complexType>
+            <sequence>
+                <element name="order" type="tns:Order" minOccurs="2" maxOccurs="unbounded"/>
+            </sequence>
+        </complexType>
+    </element>
+
+    <complexType name="Order">
+        <all>
+            <element name="creation" type="date"/>
+            <element name="price" type="int"/>
+            <element name="status" type="string"/>
+            <element name="payment_type" type="int"/>
+            <element name="delivery_inf" type="tns:Delivery_inf"/>
+        </all>
+        <attribute name="id" type="int"/>
+    </complexType>
+    <complexType name="Delivery_inf">
+        <all>
+            <element name="delivery_time" type="dateTime"/>
+            <element name="client_name" type="string"/>
+            <element name="address" type="string"/>
+            <element name="phone" type="string"/>
+            <element name="email" type="string" minOccurs="0"/>
+        </all>
+    </complexType>
+    <!--    <complexType name="User">-->
+    <!--        <sequence>-->
+    <!--            <element name="login" type="string" />-->
+    <!--            <element name="pass" type="string" />-->
+    <!--            <element name="email" type="string" />-->
+    <!--        </sequence>-->
+    <!--        <attribute name="id" type="int" use="required"></attribute>-->
+    <!--        <attribute name="role" type="int" use="required">-->
+    <!--            <simpleType>-->
+    <!--                <restrincion base="int">-->
+    <!--                    <enumeration value="0"></enumeration>-->
+    <!--                    <enumeration value="1"></enumeration>-->
+    <!--                    <enumeration value="2"></enumeration>-->
+    <!--                </restrincion>-->
+    <!--            </simpleType>-->
+    <!--        </attribute>-->
+    <!--    </complexType>-->
+</schema>
