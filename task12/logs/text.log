@@ -1,3 +1,28 @@
 2020-02-26 01:07:40.830 [main] INFO  epam.task12.service.filler.DiagonalFillerAtomic - pos = [0, 10, 20, 30]
 2020-02-26 01:29:23.227 [main] INFO  epam.task12.service.filler.DiagonalFillerAtomic - pos = [0, 10, 20, 30]
 2020-02-26 01:29:55.200 [main] INFO  epam.task12.service.filler.DiagonalFillerAtomic - pos = [0, 10, 20, 30]
+2020-02-26 03:35:10.672 [main] INFO  epam.task12.service.filler.DiagonalFillerCountDown - pos = [0, 10, 20, 30]
+2020-02-26 03:35:10.681 [2] INFO  task12.service.filler.thread.AtomicFiller - Interrupted.
+2020-02-26 03:35:10.681 [1] INFO  task12.service.filler.thread.AtomicFiller - Interrupted.
+2020-02-26 03:35:10.681 [4] INFO  task12.service.filler.thread.AtomicFiller - Interrupted.
+2020-02-26 03:35:10.681 [3] INFO  task12.service.filler.thread.AtomicFiller - Interrupted.
+2020-02-26 03:35:49.451 [main] INFO  epam.task12.service.filler.DiagonalFillerCountDown - pos = [0, 10, 20, 30]
+2020-02-26 03:35:49.459 [3] INFO  task12.service.filler.thread.AtomicFiller - Interrupted.
+2020-02-26 03:35:49.459 [4] INFO  task12.service.filler.thread.AtomicFiller - Interrupted.
+2020-02-26 03:35:49.459 [2] INFO  task12.service.filler.thread.AtomicFiller - Interrupted.
+2020-02-26 03:35:49.459 [1] INFO  task12.service.filler.thread.AtomicFiller - Interrupted.
+2020-02-26 03:36:51.724 [main] INFO  epam.task12.service.filler.DiagonalFillerCountDown - pos = [0, 10, 20, 30]
+2020-02-26 03:36:51.731 [3] INFO  task12.service.filler.thread.CountDownFiller - Interrupted.
+2020-02-26 03:36:51.731 [1] INFO  task12.service.filler.thread.CountDownFiller - Interrupted.
+2020-02-26 03:36:51.731 [4] INFO  task12.service.filler.thread.CountDownFiller - Interrupted.
+2020-02-26 03:36:51.731 [2] INFO  task12.service.filler.thread.CountDownFiller - Interrupted.
+2020-02-26 03:38:36.275 [main] INFO  epam.task12.service.filler.DiagonalFillerCountDown - pos = [0, 10, 20, 30]
+2020-02-26 03:38:36.315 [4] INFO  task12.service.filler.thread.CountDownFiller - Interrupted.
+2020-02-26 03:38:36.315 [3] INFO  task12.service.filler.thread.CountDownFiller - Interrupted.
+2020-02-26 03:38:36.315 [1] INFO  task12.service.filler.thread.CountDownFiller - Interrupted.
+2020-02-26 03:38:36.315 [2] INFO  task12.service.filler.thread.CountDownFiller - Interrupted.
+2020-02-26 03:39:31.953 [main] INFO  epam.task12.service.filler.DiagonalFillerCountDown - pos = [0, 10, 20, 30]
+2020-02-26 03:39:31.996 [1] INFO  task12.service.filler.thread.CountDownFiller - Interrupted.
+2020-02-26 03:39:31.996 [3] INFO  task12.service.filler.thread.CountDownFiller - Interrupted.
+2020-02-26 03:39:31.996 [4] INFO  task12.service.filler.thread.CountDownFiller - Interrupted.
+2020-02-26 03:39:31.996 [2] INFO  task12.service.filler.thread.CountDownFiller - Interrupted.
