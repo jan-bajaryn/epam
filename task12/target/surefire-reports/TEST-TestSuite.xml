@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="9" failures="0" name="TestSuite" time="0.154" errors="0" skipped="0">
+<testsuite tests="9" failures="0" name="TestSuite" time="0.117" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="java.vm.version" value="11.0.1+13-LTS"/>
@@ -64,13 +64,13 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="by.epam.task12.entity.impl.MatrixAtomicImplTest" name="atomicTest" time="0.007"/>
+  <testcase classname="by.epam.task12.entity.impl.MatrixAtomicImplTest" name="atomicTest" time="0.008"/>
   <testcase classname="by.epam.task12.entity.impl.MatrixAtomicImplTest" name="testCompareAndSet" time="0"/>
   <testcase classname="by.epam.task12.entity.impl.MatrixAtomicImplTest" name="testCompareAndSetReturnValueFalse" time="0"/>
   <testcase classname="by.epam.task12.entity.impl.MatrixAtomicImplTest" name="testCompareAndSetReturnValueTrue" time="0"/>
-  <testcase classname="by.epam.task12.service.filler.DiagonalFillerAtomicTest" name="testFill" time="0.075"/>
-  <testcase classname="by.epam.task12.service.filler.DiagonalFillerCountDownTest" name="testFill" time="0.048"/>
-  <testcase classname="by.epam.task12.service.filler.DiagonalFillerPoolLockLockTest" name="testFill" time="0.009"/>
-  <testcase classname="by.epam.task12.service.filler.DiagonalFillerPoolSemaphoreTest" name="testFill" time="0.012"/>
+  <testcase classname="by.epam.task12.service.filler.DiagonalFillerAtomicTest" name="testFill" time="0.038"/>
+  <testcase classname="by.epam.task12.service.filler.DiagonalFillerCountDownTest" name="testFill" time="0.013"/>
+  <testcase classname="by.epam.task12.service.filler.DiagonalFillerPoolLockLockTest" name="testFill" time="0.03"/>
+  <testcase classname="by.epam.task12.service.filler.DiagonalFillerPoolSemaphoreTest" name="testFill" time="0.025"/>
   <testcase classname="by.epam.task12.service.parser.ToIntArrayParserTest" name="testParse" time="0.003"/>
 </testsuite>

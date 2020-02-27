@@ -38,11 +38,12 @@ class DaemonThread extends Thread {
         if (next != null) {
             next.start();
         }
-        while (true) {
+        while (!Thread.interrupted()) {
             try {
                 TimeUnit.SECONDS.sleep(1);
             } catch (InterruptedException e) {
                 log.info("Interrupted");
+                Thread.currentThread().interrupt();
             }
             System.out.println(getName() + " waiting...");
         }

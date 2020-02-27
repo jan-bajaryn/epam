@@ -122,12 +122,7 @@
                       <br/>
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Command_line_suite" title="by.epam.task12.service.filler.DiagonalFillerPoolLockLockTest" class="method navigator-link" hash-for-method="testFill">testFill</a> <!-- method navigator-link -->
-                      </span>
-                      <br/>
-                      <span>
-                        <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Command_line_suite" title="by.epam.task12.service.filler.DiagonalFillerPoolSemaphoreTest" class="method navigator-link" hash-for-method="testFill">testFill</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Command_line_suite" title="by.epam.task12.service.filler.DiagonalFillerAtomicTest" class="method navigator-link" hash-for-method="testFill">testFill</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                       <span>
@@ -137,7 +132,12 @@
                       <br/>
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Command_line_suite" title="by.epam.task12.service.filler.DiagonalFillerAtomicTest" class="method navigator-link" hash-for-method="testFill">testFill</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Command_line_suite" title="by.epam.task12.service.filler.DiagonalFillerPoolSemaphoreTest" class="method navigator-link" hash-for-method="testFill">testFill</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Command_line_suite" title="by.epam.task12.service.filler.DiagonalFillerPoolLockLockTest" class="method navigator-link" hash-for-method="testFill">testFill</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                       <span>
@@ -160,7 +160,7 @@
           <div class="suite-Command_line_suite-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
-              <span class="class-name">by.epam.task12.service.filler.DiagonalFillerPoolSemaphoreTest</span>
+              <span class="class-name">by.epam.task12.service.filler.DiagonalFillerCountDownTest</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
@@ -175,7 +175,7 @@
           <div class="suite-Command_line_suite-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
-              <span class="class-name">by.epam.task12.service.filler.DiagonalFillerCountDownTest</span>
+              <span class="class-name">by.epam.task12.service.filler.DiagonalFillerPoolSemaphoreTest</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
@@ -328,19 +328,19 @@ data.addRows(9);
 data.setCell(0, 0, 0)
 data.setCell(0, 1, 'testFill')
 data.setCell(0, 2, 'by.epam.task12.service.filler.DiagonalFillerAtomicTest')
-data.setCell(0, 3, 76);
+data.setCell(0, 3, 39);
 data.setCell(1, 0, 1)
 data.setCell(1, 1, 'testFill')
-data.setCell(1, 2, 'by.epam.task12.service.filler.DiagonalFillerCountDownTest')
-data.setCell(1, 3, 46);
+data.setCell(1, 2, 'by.epam.task12.service.filler.DiagonalFillerPoolLockLockTest')
+data.setCell(1, 3, 29);
 data.setCell(2, 0, 2)
 data.setCell(2, 1, 'testFill')
-data.setCell(2, 2, 'by.epam.task12.service.filler.DiagonalFillerPoolLockLockTest')
-data.setCell(2, 3, 11);
+data.setCell(2, 2, 'by.epam.task12.service.filler.DiagonalFillerPoolSemaphoreTest')
+data.setCell(2, 3, 24);
 data.setCell(3, 0, 3)
 data.setCell(3, 1, 'testFill')
-data.setCell(3, 2, 'by.epam.task12.service.filler.DiagonalFillerPoolSemaphoreTest')
-data.setCell(3, 3, 11);
+data.setCell(3, 2, 'by.epam.task12.service.filler.DiagonalFillerCountDownTest')
+data.setCell(3, 3, 13);
 data.setCell(4, 0, 4)
 data.setCell(4, 1, 'atomicTest')
 data.setCell(4, 2, 'by.epam.task12.entity.impl.MatrixAtomicImplTest')
@@ -365,7 +365,7 @@ window.suiteTableData['Command_line_suite']= { tableData: data, tableDiv: 'times
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 154 ms</span>
+              <span class="suite-total-time">Total running time: 115 ms</span>
               <div id="times-div-Command_line_suite">
               </div> <!-- times-div-Command_line_suite -->
             </div> <!-- times-div -->
@@ -398,50 +398,50 @@ return data;
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">testCompareAndSet</span>
-                <span class="method-start">8 ms</span>
-              </div> <!-- test-method -->
-              <div class="test-method">
-                <span class="method-name">testCompareAndSetReturnValueFalse</span>
                 <span class="method-start">9 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
-                <span class="method-name">testCompareAndSetReturnValueTrue</span>
+                <span class="method-name">testCompareAndSetReturnValueFalse</span>
                 <span class="method-start">10 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testCompareAndSetReturnValueTrue</span>
+                <span class="method-start">11 ms</span>
               </div> <!-- test-method -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">by.epam.task12.service.filler.DiagonalFillerAtomicTest</div> <!-- chronological-class-name -->
               <div class="test-method">
                 <span class="method-name">testFill</span>
-                <span class="method-start">11 ms</span>
+                <span class="method-start">12 ms</span>
               </div> <!-- test-method -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">by.epam.task12.service.filler.DiagonalFillerCountDownTest</div> <!-- chronological-class-name -->
               <div class="test-method">
                 <span class="method-name">testFill</span>
-                <span class="method-start">87 ms</span>
+                <span class="method-start">52 ms</span>
               </div> <!-- test-method -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">by.epam.task12.service.filler.DiagonalFillerPoolLockLockTest</div> <!-- chronological-class-name -->
               <div class="test-method">
                 <span class="method-name">testFill</span>
-                <span class="method-start">134 ms</span>
+                <span class="method-start">66 ms</span>
               </div> <!-- test-method -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">by.epam.task12.service.filler.DiagonalFillerPoolSemaphoreTest</div> <!-- chronological-class-name -->
               <div class="test-method">
                 <span class="method-name">testFill</span>
-                <span class="method-start">146 ms</span>
+                <span class="method-start">96 ms</span>
               </div> <!-- test-method -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">by.epam.task12.service.parser.ToIntArrayParserTest</div> <!-- chronological-class-name -->
               <div class="test-method">
                 <span class="method-name">testParse</span>
-                <span class="method-start">158 ms</span>
+                <span class="method-start">121 ms</span>
               </div> <!-- test-method -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

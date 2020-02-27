@@ -2,58 +2,58 @@
 <testng-results ignored="0" total="9" passed="9" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2020-02-26T19:30:24 MSK" name="Command line suite" finished-at="2020-02-26T19:30:24 MSK" duration-ms="188">
+  <suite started-at="2020-02-27T04:39:10 MSK" name="Command line suite" finished-at="2020-02-27T04:39:10 MSK" duration-ms="148">
     <groups>
     </groups>
-    <test started-at="2020-02-26T19:30:24 MSK" name="Command line test" finished-at="2020-02-26T19:30:24 MSK" duration-ms="188">
+    <test started-at="2020-02-27T04:39:10 MSK" name="Command line test" finished-at="2020-02-27T04:39:10 MSK" duration-ms="148">
       <class name="by.epam.task12.service.filler.DiagonalFillerCountDownTest">
-        <test-method signature="testFill()[pri:0, instance:by.epam.task12.service.filler.DiagonalFillerCountDownTest@3b00856b]" started-at="2020-02-26T19:30:24 MSK" name="testFill" finished-at="2020-02-26T19:30:24 MSK" duration-ms="46" status="PASS">
+        <test-method signature="testFill()[pri:0, instance:by.epam.task12.service.filler.DiagonalFillerCountDownTest@35d08e6c]" started-at="2020-02-27T04:39:10 MSK" name="testFill" finished-at="2020-02-27T04:39:10 MSK" duration-ms="13" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testFill -->
       </class> <!-- by.epam.task12.service.filler.DiagonalFillerCountDownTest -->
-      <class name="by.epam.task12.service.parser.ToIntArrayParserTest">
-        <test-method signature="testParse()[pri:0, instance:by.epam.task12.service.parser.ToIntArrayParserTest@53d102a2]" started-at="2020-02-26T19:30:24 MSK" name="testParse" finished-at="2020-02-26T19:30:24 MSK" duration-ms="3" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testParse -->
-      </class> <!-- by.epam.task12.service.parser.ToIntArrayParserTest -->
       <class name="by.epam.task12.service.filler.DiagonalFillerPoolLockLockTest">
-        <test-method signature="testFill()[pri:0, instance:by.epam.task12.service.filler.DiagonalFillerPoolLockLockTest@3016fd5e]" started-at="2020-02-26T19:30:24 MSK" name="testFill" finished-at="2020-02-26T19:30:24 MSK" duration-ms="11" status="PASS">
+        <test-method signature="testFill()[pri:0, instance:by.epam.task12.service.filler.DiagonalFillerPoolLockLockTest@53d102a2]" started-at="2020-02-27T04:39:10 MSK" name="testFill" finished-at="2020-02-27T04:39:10 MSK" duration-ms="29" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testFill -->
       </class> <!-- by.epam.task12.service.filler.DiagonalFillerPoolLockLockTest -->
-      <class name="by.epam.task12.service.filler.DiagonalFillerAtomicTest">
-        <test-method signature="testFill()[pri:0, instance:by.epam.task12.service.filler.DiagonalFillerAtomicTest@3bcbb589]" started-at="2020-02-26T19:30:24 MSK" name="testFill" finished-at="2020-02-26T19:30:24 MSK" duration-ms="76" status="PASS">
+      <class name="by.epam.task12.service.parser.ToIntArrayParserTest">
+        <test-method signature="testParse()[pri:0, instance:by.epam.task12.service.parser.ToIntArrayParserTest@6b3e12b5]" started-at="2020-02-27T04:39:10 MSK" name="testParse" finished-at="2020-02-27T04:39:10 MSK" duration-ms="3" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- testFill -->
-      </class> <!-- by.epam.task12.service.filler.DiagonalFillerAtomicTest -->
-      <class name="by.epam.task12.service.filler.DiagonalFillerPoolSemaphoreTest">
-        <test-method signature="testFill()[pri:0, instance:by.epam.task12.service.filler.DiagonalFillerPoolSemaphoreTest@35d08e6c]" started-at="2020-02-26T19:30:24 MSK" name="testFill" finished-at="2020-02-26T19:30:24 MSK" duration-ms="11" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testFill -->
-      </class> <!-- by.epam.task12.service.filler.DiagonalFillerPoolSemaphoreTest -->
+        </test-method> <!-- testParse -->
+      </class> <!-- by.epam.task12.service.parser.ToIntArrayParserTest -->
       <class name="by.epam.task12.entity.impl.MatrixAtomicImplTest">
-        <test-method signature="atomicTest()[pri:0, instance:by.epam.task12.entity.impl.MatrixAtomicImplTest@1d730606]" started-at="2020-02-26T19:30:24 MSK" name="atomicTest" finished-at="2020-02-26T19:30:24 MSK" duration-ms="6" status="PASS">
+        <test-method signature="atomicTest()[pri:0, instance:by.epam.task12.entity.impl.MatrixAtomicImplTest@3b00856b]" started-at="2020-02-27T04:39:10 MSK" name="atomicTest" finished-at="2020-02-27T04:39:10 MSK" duration-ms="6" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- atomicTest -->
-        <test-method signature="testCompareAndSet()[pri:0, instance:by.epam.task12.entity.impl.MatrixAtomicImplTest@1d730606]" started-at="2020-02-26T19:30:24 MSK" name="testCompareAndSet" finished-at="2020-02-26T19:30:24 MSK" duration-ms="1" status="PASS">
+        <test-method signature="testCompareAndSet()[pri:0, instance:by.epam.task12.entity.impl.MatrixAtomicImplTest@3b00856b]" started-at="2020-02-27T04:39:10 MSK" name="testCompareAndSet" finished-at="2020-02-27T04:39:10 MSK" duration-ms="1" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testCompareAndSet -->
-        <test-method signature="testCompareAndSetReturnValueFalse()[pri:0, instance:by.epam.task12.entity.impl.MatrixAtomicImplTest@1d730606]" started-at="2020-02-26T19:30:24 MSK" name="testCompareAndSetReturnValueFalse" finished-at="2020-02-26T19:30:24 MSK" duration-ms="0" status="PASS">
+        <test-method signature="testCompareAndSetReturnValueFalse()[pri:0, instance:by.epam.task12.entity.impl.MatrixAtomicImplTest@3b00856b]" started-at="2020-02-27T04:39:10 MSK" name="testCompareAndSetReturnValueFalse" finished-at="2020-02-27T04:39:10 MSK" duration-ms="0" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testCompareAndSetReturnValueFalse -->
-        <test-method signature="testCompareAndSetReturnValueTrue()[pri:0, instance:by.epam.task12.entity.impl.MatrixAtomicImplTest@1d730606]" started-at="2020-02-26T19:30:24 MSK" name="testCompareAndSetReturnValueTrue" finished-at="2020-02-26T19:30:24 MSK" duration-ms="0" status="PASS">
+        <test-method signature="testCompareAndSetReturnValueTrue()[pri:0, instance:by.epam.task12.entity.impl.MatrixAtomicImplTest@3b00856b]" started-at="2020-02-27T04:39:10 MSK" name="testCompareAndSetReturnValueTrue" finished-at="2020-02-27T04:39:10 MSK" duration-ms="0" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testCompareAndSetReturnValueTrue -->
       </class> <!-- by.epam.task12.entity.impl.MatrixAtomicImplTest -->
+      <class name="by.epam.task12.service.filler.DiagonalFillerPoolSemaphoreTest">
+        <test-method signature="testFill()[pri:0, instance:by.epam.task12.service.filler.DiagonalFillerPoolSemaphoreTest@6c45ee6e]" started-at="2020-02-27T04:39:10 MSK" name="testFill" finished-at="2020-02-27T04:39:10 MSK" duration-ms="24" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testFill -->
+      </class> <!-- by.epam.task12.service.filler.DiagonalFillerPoolSemaphoreTest -->
+      <class name="by.epam.task12.service.filler.DiagonalFillerAtomicTest">
+        <test-method signature="testFill()[pri:0, instance:by.epam.task12.service.filler.DiagonalFillerAtomicTest@3016fd5e]" started-at="2020-02-27T04:39:10 MSK" name="testFill" finished-at="2020-02-27T04:39:10 MSK" duration-ms="39" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testFill -->
+      </class> <!-- by.epam.task12.service.filler.DiagonalFillerAtomicTest -->
     </test> <!-- Command line test -->
   </suite> <!-- Command line suite -->
 </testng-results>
