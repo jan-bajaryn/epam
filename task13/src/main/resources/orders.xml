@@ -4,22 +4,53 @@
         xmlns="http://by.example.com/orders"
         xsi:schemaLocation="http://by.example.com/orders aaa.xsd">
 
-    <order id="01">
+    <order id="ID-1">
+        <products>
+            <product>
+                <name>Margarita</name>
+                <description>Very good classic pizza</description>
+                <photo_name>Margarita.jpg</photo_name>
+                <price>900</price>
+                <product_type>pizza</product_type>
+                <product_size>md</product_size>
+                <ingredients>
+                    <ingredient>Cheese</ingredient>
+                    <ingredient>Tomato</ingredient>
+                    <ingredient>Bacon</ingredient>
+                </ingredients>
+            </product>
+            <product>
+                <name>Coca-cola</name>
+                <description>Classical american drink</description>
+                <photo_name>Coca-cola.jpg</photo_name>
+                <price>300</price>
+                <product_type>drink</product_type>
+                <product_size>sm</product_size>
+            </product>
+        </products>
         <creation>2020-02-24</creation>
-        <price>3453</price>
-        <status>taked</status>
+        <price>1200</price>
+        <status>took</status>
         <payment_type>1</payment_type>
-        <delivery_inf>
-            <delivery_time>2002-05-30T09:30:10.5</delivery_time>
-            <client_name>Jan</client_name>
-            <address>Lenina 30, 30</address>
-            <phone>+375 29 345 34 34</phone>
-            <email>abcd@gmail.com</email>
-        </delivery_inf>
     </order>
-    <order id="02">
+    <order id="ID-02">
+        <products>
+            <product>
+                <name>Bacon-and-cheese</name>
+                <description>Pizza with bacon and cheese</description>
+                <photo_name>Bacon-and-cheese.jpg</photo_name>
+                <price>1800</price>
+                <product_type>pizza</product_type>
+                <product_size>lg</product_size>
+                <ingredients>
+                    <ingredient>Cheese</ingredient>
+                    <ingredient>Mushroom</ingredient>
+                    <ingredient>Bacon</ingredient>
+                </ingredients>
+            </product>
+        </products>
         <creation>2020-02-25</creation>
-        <price>3452</price>
+        <price>1800</price>
         <status>took</status>
         <payment_type>1</payment_type>
         <delivery_inf>
@@ -30,7 +61,30 @@
             <email>abcd@gmail.com</email>
         </delivery_inf>
     </order>
-    <order id="03">
+    <order id="ID-03">
+        <products>
+            <product>
+                <name>Margarita</name>
+                <description>Very good classic pizza</description>
+                <photo_name>Margarita.jpg</photo_name>
+                <price>1500</price>
+                <product_type>pizza</product_type>
+                <product_size>lg</product_size>
+                <ingredients>
+                    <ingredient>Cheese</ingredient>
+                    <ingredient>Tomato</ingredient>
+                    <ingredient>Bacon</ingredient>
+                </ingredients>
+            </product>
+            <product>
+                <name>Sprite</name>
+                <description>Fresh drink, no color</description>
+                <photo_name>Sprite.jpg</photo_name>
+                <price>300</price>
+                <product_type>drink</product_type>
+                <product_size>md</product_size>
+            </product>
+        </products>
         <creation>2020-02-24</creation>
         <price>2222</price>
         <status>took</status>
@@ -43,7 +97,22 @@
             <email>abcd@gmail.com</email>
         </delivery_inf>
     </order>
-    <order id="04">
+    <order id="ID-04">
+        <products>
+            <product>
+                <name>Bacon-and-cheese</name>
+                <description>Pizza with bacon and cheese</description>
+                <photo_name>Bacon-and-cheese.jpg</photo_name>
+                <price>900</price>
+                <product_type>pizza</product_type>
+                <product_size>sm</product_size>
+                <ingredients>
+                    <ingredient>Cheese</ingredient>
+                    <ingredient>Mushroom</ingredient>
+                    <ingredient>Bacon</ingredient>
+                </ingredients>
+            </product>
+        </products>
         <creation>2020-02-24</creation>
         <price>4444</price>
         <status>2</status>
@@ -56,7 +125,17 @@
             <email>abcd@gmail.com</email>
         </delivery_inf>
     </order>
-    <order id="05">
+    <order id="ID-05">
+        <products>
+            <product>
+                <name>Sprite</name>
+                <description>Fresh drink, no color</description>
+                <photo_name>Sprite.jpg</photo_name>
+                <price>300</price>
+                <product_type>drink</product_type>
+                <product_size>md</product_size>
+            </product>
+        </products>
         <creation>2020-02-24</creation>
         <price>4433</price>
         <status>took</status>
@@ -69,7 +148,17 @@
             <email>abcd@gmail.com</email>
         </delivery_inf>
     </order>
-    <order id="06">
+    <order id="ID-06">
+        <products>
+            <product>
+                <name>Coca-cola</name>
+                <description>Classical american drink</description>
+                <photo_name>Coca-cola.jpg</photo_name>
+                <price>300</price>
+                <product_type>drink</product_type>
+                <product_size>sm</product_size>
+            </product>
+        </products>
         <creation>2020-02-24</creation>
         <price>2233</price>
         <status>took</status>
@@ -82,7 +171,43 @@
             <email>abcd@gmail.com</email>
         </delivery_inf>
     </order>
-    <order id="07">
+    <order id="ID-07">
+        <products>
+            <product>
+                <name>Margarita</name>
+                <description>Very good classic pizza</description>
+                <photo_name>Margarita.jpg</photo_name>
+                <price>1500</price>
+                <product_type>pizza</product_type>
+                <product_size>lg</product_size>
+                <ingredients>
+                    <ingredient>Cheese</ingredient>
+                    <ingredient>Tomato</ingredient>
+                    <ingredient>Bacon</ingredient>
+                </ingredients>
+            </product>
+            <product>
+                <name>Coca-cola</name>
+                <description>Classical american drink</description>
+                <photo_name>Coca-cola.jpg</photo_name>
+                <price>300</price>
+                <product_type>drink</product_type>
+                <product_size>sm</product_size>
+            </product>
+            <product>
+                <name>Bacon-and-cheese</name>
+                <description>Pizza with bacon and cheese</description>
+                <photo_name>Bacon-and-cheese.jpg</photo_name>
+                <price>900</price>
+                <product_type>pizza</product_type>
+                <product_size>sm</product_size>
+                <ingredients>
+                    <ingredient>Cheese</ingredient>
+                    <ingredient>Mushroom</ingredient>
+                    <ingredient>Bacon</ingredient>
+                </ingredients>
+            </product>
+        </products>
         <creation>2020-02-24</creation>
         <price>2233</price>
         <status>took</status>
@@ -94,7 +219,35 @@
             <phone>+375 29 345 34 34</phone>
         </delivery_inf>
     </order>
-    <order id="08">
+    <order id="ID-08">
+        <products>
+            <product>
+                <name>Bacon-and-cheese</name>
+                <description>Pizza with bacon and cheese</description>
+                <photo_name>Bacon-and-cheese.jpg</photo_name>
+                <price>900</price>
+                <product_type>pizza</product_type>
+                <product_size>sm</product_size>
+                <ingredients>
+                    <ingredient>Cheese</ingredient>
+                    <ingredient>Mushroom</ingredient>
+                    <ingredient>Bacon</ingredient>
+                </ingredients>
+            </product>
+            <product>
+                <name>Margarita</name>
+                <description>Very good classic pizza</description>
+                <photo_name>Margarita.jpg</photo_name>
+                <price>1500</price>
+                <product_type>pizza</product_type>
+                <product_size>lg</product_size>
+                <ingredients>
+                    <ingredient>Cheese</ingredient>
+                    <ingredient>Tomato</ingredient>
+                    <ingredient>Bacon</ingredient>
+                </ingredients>
+            </product>
+        </products>
         <creation>2020-02-24</creation>
         <price>3456</price>
         <status>took</status>

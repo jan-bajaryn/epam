@@ -1,0 +1,52 @@
+
+<product>
+    <name>Sprite</name>
+    <description>Fresh drink, no color</description>
+    <photo_name>Sprite.jpg</photo_name>
+    <price>300</price>
+    <product_type>drink</product_type>
+    <product_size>md</product_size>
+</product>
+
+
+
+<product>
+<name>Bacon-and-cheese</name>
+<description>Pizza with bacon and cheese</description>
+<photo_name>Bacon-and-cheese.jpg</photo_name>
+<price>900</price>
+<product_type>pizza</product_type>
+<product_size>sm</product_size>
+<ingredients>
+    <ingredient>Cheese</ingredient>
+    <ingredient>Mushroom</ingredient>
+    <ingredient>Bacon</ingredient>
+</ingredients>
+</product>
+
+
+
+<product>
+<name>Margarita</name>
+<description>Very good classic pizza</description>
+<photo_name>Margarita.jpg</photo_name>
+<price>1500</price>
+<product_type>pizza</product_type>
+<product_size>lg</product_size>
+<ingredients>
+    <ingredient>Cheese</ingredient>
+    <ingredient>Tomato</ingredient>
+    <ingredient>Bacon</ingredient>
+</ingredients>
+</product>
+
+
+
+<product>
+<name>Coca-cola</name>
+<description>Classical american drink</description>
+<photo_name>Coca-cola.jpg</photo_name>
+<price>300</price>
+<product_type>drink</product_type>
+<product_size>sm</product_size>
+</product>

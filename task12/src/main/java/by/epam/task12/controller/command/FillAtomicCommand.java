@@ -10,6 +10,7 @@ import by.epam.task12.service.filler.impl.DiagonalFillerCountDown;
 import by.epam.task12.service.reader.ArrayIntMaker;
 import by.epam.task12.service.reader.MatrixFromFileMaker;
 import by.epam.task12.service.reader.exception.IllegalFileNameException;
+import by.epam.task12.service.validator.InputValidator;
 
 public class FillAtomicCommand implements ExecCommand {
 
@@ -20,6 +21,9 @@ public class FillAtomicCommand implements ExecCommand {
 
     private ArrayIntMaker arrayIntMaker = new ArrayIntMaker();
 
+    private InputValidator inputValidator = new InputValidator();
+
+
     @Override
     public Response execute(Request request) {
         Response response = new Response();
@@ -28,10 +32,15 @@ public class FillAtomicCommand implements ExecCommand {
         if (check(request, response)) return response;
 
         try {
-            MatrixAtomicImpl matrixElements = matrixFromFileMaker.make(request.getFileNameMatrix());
+            MatrixAtomicImpl matrixAtomic = matrixFromFileMaker.make(request.getFileNameMatrix());
             int[] arr = arrayIntMaker.make(request.getFileNameArr());
-            diagonalFiller.fill(matrixElements, arr);
-            response.setDisplayInformation("Matrix now is:\n" + matrixElements);
+
+            if (!inputValidator.isValid(matrixAtomic, arr)) {
+                response.setDisplayInformation("Input is invalid, 4<=M<=6, 8<=N<=12");
+            }
+
+            diagonalFiller.fill(matrixAtomic, arr);
+            response.setDisplayInformation("Matrix now is:\n" + matrixAtomic);
         } catch (IllegalFileNameException e) {
             response.setDisplayInformation("Invalid file Name.");
             return response;

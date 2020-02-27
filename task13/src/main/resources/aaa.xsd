@@ -28,9 +28,22 @@
             <element name="price" type="int"/>
             <element name="status" type="string"/>
             <element name="payment_type" type="int"/>
-            <element name="delivery_inf" type="tns:Delivery_inf"/>
+            <element name="delivery_inf" type="tns:Delivery_inf" minOccurs="0"/>
+            <element name="products">
+                <complexType>
+                    <sequence>
+                        <element name="product" type="tns:Product" minOccurs="0" maxOccurs="unbounded"/>
+                    </sequence>
+                </complexType>
+            </element>
         </all>
-        <attribute name="id" type="int"/>
+        <attribute name="id">
+            <simpleType>
+                <restriction base="ID">
+                    <pattern value="[\w-]{}"></pattern>
+                </restriction>
+            </simpleType>
+        </attribute>
     </complexType>
     <complexType name="Delivery_inf">
         <all>
@@ -41,21 +54,39 @@
             <element name="email" type="string" minOccurs="0"/>
         </all>
     </complexType>
-    <!--    <complexType name="User">-->
-    <!--        <sequence>-->
-    <!--            <element name="login" type="string" />-->
-    <!--            <element name="pass" type="string" />-->
-    <!--            <element name="email" type="string" />-->
-    <!--        </sequence>-->
-    <!--        <attribute name="id" type="int" use="required"></attribute>-->
-    <!--        <attribute name="role" type="int" use="required">-->
-    <!--            <simpleType>-->
-    <!--                <restrincion base="int">-->
-    <!--                    <enumeration value="0"></enumeration>-->
-    <!--                    <enumeration value="1"></enumeration>-->
-    <!--                    <enumeration value="2"></enumeration>-->
-    <!--                </restrincion>-->
-    <!--            </simpleType>-->
-    <!--        </attribute>-->
-    <!--    </complexType>-->
+    <complexType name="Product">
+        <all>
+            <element name="name" type="string"/>
+            <element name="description" type="string"/>
+            <element name="photo_name" type="string"/>
+            <element name="price" type="int"/>
+
+            <element name="product_type">
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="pizza"/>
+                        <enumeration value="drink"/>
+                        <enumeration value="snack"/>
+                    </restriction>
+                </simpleType>
+            </element>
+
+            <element name="product_size">
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="sm"/>
+                        <enumeration value="md"/>
+                        <enumeration value="lg"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element name="ingredients" minOccurs="0">
+                <complexType>
+                    <sequence>
+                        <element name="ingredient" type="string" minOccurs="0" maxOccurs="unbounded"/>
+                    </sequence>
+                </complexType>
+            </element>
+        </all>
+    </complexType>
 </schema>
