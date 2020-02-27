@@ -45,10 +45,8 @@ public class DiagonalFillerAtomic implements DiagonalFiller<MatrixAtomicImpl> {
     private Thread[] createThreads(int[] arr, MatrixAtomicImpl matrix, int[] pos) {
         CommonCounter commonCounter = commonCounterFactory.create(matrix);
         Thread[] threads = new Thread[arr.length];
-        int position = 0;
         for (int i = 0; i < arr.length; i++) {
-            threads[i] = new AtomicFiller(arr[i], position, matrix, commonCounter);
-            position = position + pos[i];
+            threads[i] = new AtomicFiller(arr[i], pos[i], matrix, commonCounter);
         }
         return threads;
     }

@@ -39,7 +39,7 @@ public class RangeDiagonalFiller extends Thread {
             executeFill();
         } catch (InterruptedException e) {
             log.info("Thread was interrupted on the join.");
-
+            Thread.currentThread().interrupt();
         }
     }
 

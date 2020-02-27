@@ -22,6 +22,17 @@ public class DiagonalFillerCountDown implements DiagonalFiller<MatrixAtomicImpl>
         Thread[] threads = createThreads(arr, matrix, pos, countDownLatch);
         startThreads(threads);
         interruptThreads(threads, countDownLatch);
+        joinThreads(threads);
+    }
+
+    private void joinThreads(Thread[] threads) {
+        for (Thread thread : threads) {
+            try {
+                thread.join();
+            } catch (InterruptedException e) {
+                log.info("Interrupted");
+            }
+        }
     }
 
     private void interruptThreads(Thread[] threads, CountDownLatch countDownLatch) {
@@ -43,10 +54,8 @@ public class DiagonalFillerCountDown implements DiagonalFiller<MatrixAtomicImpl>
 
     private Thread[] createThreads(int[] arr, MatrixAtomicImpl matrix, int[] pos, CountDownLatch countDownLatch) {
         Thread[] threads = new Thread[arr.length];
-        int position = 0;
         for (int i = 0; i < arr.length; i++) {
-            threads[i] = new CountDownFiller(arr[i], position, matrix, countDownLatch);
-            position = position + pos[i];
+            threads[i] = new CountDownFiller(arr[i], pos[i], matrix, countDownLatch);
         }
         return threads;
     }

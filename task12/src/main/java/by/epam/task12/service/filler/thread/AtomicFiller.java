@@ -28,8 +28,9 @@ public class AtomicFiller extends Thread {
     @Override
     public void run() {
         int temp = beginPosition;
+        log.info("Begin position = {}", beginPosition);
         int size = Math.min(matrix.calcColumns(), matrix.calcRows());
-        while (!commonCounter.isExit()) {
+        while (!commonCounter.isExit() && !Thread.interrupted()) {
             AtomicInteger element = matrix.getElement(temp, temp);
             temp = (temp + 1) % size;
             boolean b = element.compareAndSet(0, value);
@@ -40,6 +41,7 @@ public class AtomicFiller extends Thread {
                 TimeUnit.MILLISECONDS.sleep(1);
             } catch (InterruptedException e) {
                 log.info("Interrupted.");
+                Thread.currentThread().interrupt();
             }
 
         }

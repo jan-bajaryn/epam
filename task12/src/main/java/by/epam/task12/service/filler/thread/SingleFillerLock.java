@@ -21,7 +21,7 @@ public class SingleFillerLock extends Thread {
 
     @Override
     public void run() {
-        while (!elementsPoolLock.isEmpty()) {
+        while (!elementsPoolLock.isEmpty() && !Thread.interrupted()) {
             Element element = elementsPoolLock.takeElement();
             if (element != null) {
                 sleepHavingElement(element);
@@ -38,6 +38,7 @@ public class SingleFillerLock extends Thread {
             TimeUnit.MILLISECONDS.sleep(1);
         } catch (InterruptedException e) {
             log.info("Interrupted having null");
+            Thread.currentThread().interrupt();
         }
     }
 
@@ -47,6 +48,7 @@ public class SingleFillerLock extends Thread {
         } catch (InterruptedException e) {
             log.info("Interrupted element = {}", element);
             elementsPoolLock.putElement(element);
+            Thread.currentThread().interrupt();
         }
     }
 }
