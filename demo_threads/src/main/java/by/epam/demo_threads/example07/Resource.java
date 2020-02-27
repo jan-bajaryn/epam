@@ -2,6 +2,7 @@ package by.epam.demo_threads.example07;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 public class Resource {
     private FileWriter fileWriter;
@@ -13,7 +14,7 @@ public class Resource {
         try {
             fileWriter.append(str + i);
             System.out.print(str + i);
-            Thread.sleep((long)(Math.random() * 50));
+            TimeUnit.MILLISECONDS.sleep((long)(Math.random() * 50));
             fileWriter.append("->" + i + " ");
             System.out.print("->" + i + " ");
         } catch (IOException e) {

@@ -1,5 +1,7 @@
 package by.epam.demo_threads.example05a;
 
+import java.util.concurrent.TimeUnit;
+
 public class RunnerThreadToDisable {
     public static void main(String[] args) {
 
@@ -9,11 +11,11 @@ public class RunnerThreadToDisable {
         myT.start();
 
         try {
-            Thread.sleep(1100);
+            TimeUnit.MILLISECONDS.sleep(1100);
 
             myThread.disable();
 
-            Thread.sleep(1000);
+            TimeUnit.MILLISECONDS.sleep(1000);
         } catch (InterruptedException e) {
             System.out.println("Поток прерван");
         }

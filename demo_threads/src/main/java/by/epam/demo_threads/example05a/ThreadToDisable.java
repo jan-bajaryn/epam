@@ -1,6 +1,8 @@
 package by.epam.demo_threads.example05a;
 
 
+import java.util.concurrent.TimeUnit;
+
 public class ThreadToDisable implements Runnable {
 
     private boolean isActive;
@@ -20,7 +22,7 @@ public class ThreadToDisable implements Runnable {
         while (isActive) {
             System.out.println("Цикл " + counter++);
             try {
-                Thread.sleep(500);
+                TimeUnit.MILLISECONDS.sleep(500);
             } catch (InterruptedException e) {
                 System.out.println("Поток прерван");
             }

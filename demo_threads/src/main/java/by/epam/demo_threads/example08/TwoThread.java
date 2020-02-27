@@ -1,5 +1,7 @@
 package by.epam.demo_threads.example08;
 
+import java.util.concurrent.TimeUnit;
+
 public class TwoThread {
     public static int counter = 0;
 
@@ -11,7 +13,7 @@ public class TwoThread {
                     s.append("A");
                     System.out.println(s);
                     try {
-                        Thread.sleep(100);
+                        TimeUnit.MILLISECONDS.sleep(100);
                     } catch (InterruptedException e) {
                         System.err.print(e);
                     }

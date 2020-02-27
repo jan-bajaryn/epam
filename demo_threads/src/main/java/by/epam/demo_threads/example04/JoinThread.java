@@ -1,5 +1,7 @@
 package by.epam.demo_threads.example04;
 
+import java.util.concurrent.TimeUnit;
+
 class JoinThread extends Thread {
     public JoinThread(String name) {
         super(name);
@@ -17,7 +19,7 @@ class JoinThread extends Thread {
                 case "Second":
                     timeout = 1_000;
             }
-            Thread.sleep(timeout);
+            TimeUnit.MILLISECONDS.sleep(timeout);
             System.out.println("завершение потока " + nameT);
         } catch (InterruptedException e) {
             e.printStackTrace();

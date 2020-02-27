@@ -1,5 +1,7 @@
 package by.epam.demo_threads.example06;
 
+import java.util.concurrent.TimeUnit;
+
 class CommonResource{
 
     int x;
@@ -9,7 +11,7 @@ class CommonResource{
             System.out.printf("%s %d \n", Thread.currentThread().getName(), x);
             x++;
             try{
-                Thread.sleep(100);
+                TimeUnit.MILLISECONDS.sleep(100);
             }
             catch(InterruptedException e){}
         }
