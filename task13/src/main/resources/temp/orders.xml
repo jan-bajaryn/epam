@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entities
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://by.example.com/orders"
+        xsi:schemaLocation="http://by.example.com/orders orders.xsd">
+
+    <order>
+        <id>2</id>
+        <creation>2020-02-25</creation>
+        <price>1800</price>
+        <status>took</status>
+        <payment_type>1</payment_type>
+    </order>
+    <order>
+        <id>3</id>
+        <creation>2020-02-24</creation>
+        <price>2222</price>
+        <status>took</status>
+        <payment_type>1</payment_type>
+    </order>
+    <order>
+        <id>4</id>
+        <creation>2020-02-24</creation>
+        <price>4444</price>
+        <status>2</status>
+        <payment_type>2</payment_type>
+    </order>
+    <order>
+        <id>5</id>
+        <creation>2020-02-24</creation>
+        <price>4433</price>
+        <status>took</status>
+        <payment_type>2</payment_type>
+    </order>
+    <order>
+        <id>6</id>
+        <creation>2020-02-24</creation>
+        <price>2233</price>
+        <status>took</status>
+        <payment_type>3</payment_type>
+    </order>
+    <order>
+        <id>7</id>
+        <creation>2020-02-24</creation>
+        <price>2233</price>
+        <status>took</status>
+        <payment_type>3</payment_type>
+    </order>
+    <order>
+        <id>8</id>
+        <creation>2020-02-24</creation>
+        <price>3456</price>
+        <status>took</status>
+        <payment_type>2</payment_type>
+    </order>
+</entities>

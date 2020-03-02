@@ -2,7 +2,7 @@
 <orders
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xmlns="http://by.example.com/orders"
-        xsi:schemaLocation="http://by.example.com/orders aaa.xsd">
+        xsi:schemaLocation="http://by.example.com/orders orders.xsd">
 
     <order id="ID-1">
         <products>
