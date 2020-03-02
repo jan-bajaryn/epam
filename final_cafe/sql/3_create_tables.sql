@@ -30,7 +30,7 @@ CREATE TABLE user
 
 --  Payment types:
 --  1 - Cash
---  2 - Credit Card
+--  2 - Bank card
 
 CREATE TABLE `order`
 (
