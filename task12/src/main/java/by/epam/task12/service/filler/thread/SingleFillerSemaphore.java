@@ -25,7 +25,9 @@ public class SingleFillerSemaphore extends Thread {
         while (!elementsPoolSemaphore.isEmpty() && !Thread.interrupted()) {
             Element element = elementsPoolSemaphore.takeElement();
             if (element != null) {
-                sleepHavingElement(element);
+                if (sleepHavingElement(element)) {
+                    break;
+                }
                 element.setValue(value);
                 elementsPoolSemaphore.putElement(element);
             } else {
@@ -43,14 +45,16 @@ public class SingleFillerSemaphore extends Thread {
         }
     }
 
-    private void sleepHavingElement(Element element) {
+    private boolean sleepHavingElement(Element element) {
         try {
             TimeUnit.MILLISECONDS.sleep(1);
         } catch (InterruptedException e) {
             log.info("Interrupted element = {}", element);
             elementsPoolSemaphore.putElement(element);
             Thread.currentThread().interrupt();
+            return true;
         }
+        return false;
     }
 
 }

@@ -8,7 +8,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.concurrent.TimeUnit;
 
 public class SingleFillerLock extends Thread {
-    private ElementsPoolLock elementsPoolLock = ElementsPoolLock.getInstance();
+    private ElementsPoolLock elementsPoolLock = ElementsPoolLock.INSTANCE;
     private static final Logger log = LogManager.getLogger(SingleFillerLock.class);
 
 
@@ -24,7 +24,9 @@ public class SingleFillerLock extends Thread {
         while (!elementsPoolLock.isEmpty() && !Thread.interrupted()) {
             Element element = elementsPoolLock.takeElement();
             if (element != null) {
-                sleepHavingElement(element);
+                if (sleepHavingElement(element)) {
+                    break;
+                }
                 element.setValue(value);
                 elementsPoolLock.putElement(element);
             } else {
@@ -42,13 +44,15 @@ public class SingleFillerLock extends Thread {
         }
     }
 
-    private void sleepHavingElement(Element element) {
+    private boolean sleepHavingElement(Element element) {
         try {
             TimeUnit.MILLISECONDS.sleep(1);
         } catch (InterruptedException e) {
             log.info("Interrupted element = {}", element);
             elementsPoolLock.putElement(element);
             Thread.currentThread().interrupt();
+            return true;
         }
+        return false;
     }
 }

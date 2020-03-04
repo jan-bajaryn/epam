@@ -9,11 +9,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class ElementsPoolLock {
 
-    private static final ElementsPoolLock ELEMENTS_POOL = new ElementsPoolLock();
-
-    public static ElementsPoolLock getInstance() {
-        return ELEMENTS_POOL;
-    }
+    public static final ElementsPoolLock INSTANCE = new ElementsPoolLock();
 
     private ReentrantLock lock = new ReentrantLock(true);
     private Condition condition = lock.newCondition();

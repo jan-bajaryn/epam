@@ -2,7 +2,6 @@ package by.epam.task12.service.filler.impl;
 
 import by.epam.task12.dao.ElementsPoolLock;
 import by.epam.task12.entity.Element;
-import by.epam.task12.entity.impl.MatrixAtomicImpl;
 import by.epam.task12.entity.impl.MatrixElements;
 import by.epam.task12.service.filler.DiagonalFiller;
 import by.epam.task12.service.filler.thread.SingleFillerLock;
@@ -13,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DiagonalFillerPoolLock implements DiagonalFiller<MatrixElements> {
-    private ElementsPoolLock elementsPoolLock = ElementsPoolLock.getInstance();
+    private ElementsPoolLock elementsPoolLock = ElementsPoolLock.INSTANCE;
     private static final Logger log = LogManager.getLogger(DiagonalFillerPoolLock.class);
 
     @Override
