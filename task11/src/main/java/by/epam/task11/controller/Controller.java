@@ -49,6 +49,7 @@ public class Controller {
         ParagraphHandler abstractHandler = new ParagraphHandler();
         SentenceHandler sentenceHandler = new SentenceHandler();
         TokenHandler tokenHandler = new TokenHandler();
+
         abstractHandler.setNextHandler(sentenceHandler);
         sentenceHandler.setNextHandler(tokenHandler);
 
