@@ -17,6 +17,7 @@ import by.epam.task13.entities.enums.PaymentType;
 import by.epam.task13.entities.enums.ProductSize;
 import by.epam.task13.entities.enums.ProductType;
 import by.epam.task13.service.OrderEnum;
+import by.epam.task13.service.OrdersBuilder;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Document;
@@ -27,7 +28,7 @@ import org.xml.sax.SAXException;
 
 import static by.epam.task13.service.OrderEnum.*;
 
-public class OrdersDomBuilder {
+public class OrdersDomBuilder implements OrdersBuilder {
 
     private static final Logger log = LogManager.getLogger(OrdersDomBuilder.class);
 
@@ -45,10 +46,12 @@ public class OrdersDomBuilder {
         }
     }
 
+    @Override
     public List<Order> getOrders() {
         return orders;
     }
 
+    @Override
     public void buildListOrders(String fileName) {
         Document doc = null;
         try {
@@ -76,25 +79,8 @@ public class OrdersDomBuilder {
         order.setStatus(OrderStatus.valueOf(getElementTextContent(el, STATUS.getValue()).toUpperCase()));
         order.setPaymentType(PaymentType.values()[Integer.parseInt(getElementTextContent(el, PAYMENT_TYPE.getValue()))]);
 
-        // delivery inf
         order.setDeliveryInf(buildDeliveryInf(((Element) el.getElementsByTagName(DELIVERY_INF.getValue()).item(0))));
-        // products
         order.setProducts(buildProducts(el.getElementsByTagName(PRODUCT.getValue())));
-
-
-//        order.setFaculty(orderElement.getAttribute("faculty")); // проверка на null
-//        order.setName(getElementTextContent(orderElement, "name"));
-//        Integer tel = Integer.parseInt(getElementTextContent(
-//                el, "telephone"));
-//        order.setTelephone(tel);
-//        Order.Address address = order.getAddress();
-// заполнение объекта address
-//        Element adressElement = (Element) el.getElementsByTagName(
-//                "address").item(0);
-//        address.setCountry(getElementTextContent(adressElement, "country"));
-//        address.setCity(getElementTextContent(adressElement, "city"));
-//        address.setStreet(getElementTextContent(adressElement, "street"));
-//        order.setLogin(orderElement.getAttribute("login"));
         return order;
     }
 

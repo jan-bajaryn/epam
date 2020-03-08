@@ -1,6 +1,7 @@
 package by.epam.task13.service.impl;
 
 import by.epam.task13.entities.Order;
+import by.epam.task13.service.OrdersBuilder;
 import by.epam.task13.service.handler.OrderHandler;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -11,7 +12,7 @@ import org.xml.sax.helpers.XMLReaderFactory;
 import java.io.IOException;
 import java.util.List;
 
-public class OrdersSaxBuilder {
+public class OrdersSaxBuilder implements OrdersBuilder {
 
     private static final Logger log = LogManager.getLogger(OrdersSaxBuilder.class);
 
@@ -31,10 +32,12 @@ public class OrdersSaxBuilder {
         }
     }
 
+    @Override
     public List<Order> getOrders() {
         return orders;
     }
 
+    @Override
     public void buildListOrders(String fileName) {
         try {
             reader.parse(fileName);
