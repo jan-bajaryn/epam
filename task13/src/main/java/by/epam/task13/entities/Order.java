@@ -4,13 +4,14 @@ import by.epam.task13.entities.enums.OrderStatus;
 import by.epam.task13.entities.enums.PaymentType;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class Order {
 
     private String id;
 
-    private LocalDate creation;
+    private LocalDateTime creation;
     private Integer price;
     private OrderStatus status;
     private PaymentType paymentType;
@@ -21,7 +22,7 @@ public class Order {
     }
 
     public Order(String id,
-                 LocalDate creation,
+                 LocalDateTime creation,
                  Integer price,
                  OrderStatus status,
                  PaymentType paymentType,
@@ -44,11 +45,11 @@ public class Order {
         this.id = id;
     }
 
-    public LocalDate getCreation() {
+    public LocalDateTime getCreation() {
         return creation;
     }
 
-    public void setCreation(LocalDate creation) {
+    public void setCreation(LocalDateTime creation) {
         this.creation = creation;
     }
 

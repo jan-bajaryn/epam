@@ -28,9 +28,9 @@
                 <product_size>sm</product_size>
             </product>
         </products>
-        <creation>2020-02-24</creation>
-        <price>1200</price>
-        <status>took</status>
+        <creation>2020-02-24T09:30:10.5</creation>
+        <total_price>1200</total_price>
+        <status>waiting</status>
         <payment_type>1</payment_type>
     </order>
     <order id="ID-02">
@@ -49,9 +49,9 @@
                 </ingredients>
             </product>
         </products>
-        <creation>2020-02-25</creation>
-        <price>1800</price>
-        <status>took</status>
+        <creation>2020-02-25T09:30:10.5</creation>
+        <total_price>1800</total_price>
+        <status>waiting</status>
         <payment_type>1</payment_type>
         <delivery_inf>
             <delivery_time>2002-05-30T09:30:10.5</delivery_time>
@@ -85,9 +85,9 @@
                 <product_size>md</product_size>
             </product>
         </products>
-        <creation>2020-02-24</creation>
-        <price>2222</price>
-        <status>took</status>
+        <creation>2020-02-24T09:30:10.5</creation>
+        <total_price>2222</total_price>
+        <status>waiting</status>
         <payment_type>1</payment_type>
         <delivery_inf>
             <delivery_time>2002-05-30T09:30:10.5</delivery_time>
@@ -113,10 +113,10 @@
                 </ingredients>
             </product>
         </products>
-        <creation>2020-02-24</creation>
-        <price>4444</price>
-        <status>2</status>
-        <payment_type>2</payment_type>
+        <creation>2020-02-24T09:30:10.5</creation>
+        <total_price>4444</total_price>
+        <status>waiting</status>
+        <payment_type>0</payment_type>
         <delivery_inf>
             <delivery_time>2002-05-30T09:30:10.5</delivery_time>
             <client_name>Jan</client_name>
@@ -136,10 +136,10 @@
                 <product_size>md</product_size>
             </product>
         </products>
-        <creation>2020-02-24</creation>
-        <price>4433</price>
-        <status>took</status>
-        <payment_type>2</payment_type>
+        <creation>2020-02-24T09:30:10.5</creation>
+        <total_price>4433</total_price>
+        <status>waiting</status>
+        <payment_type>0</payment_type>
         <delivery_inf>
             <delivery_time>2002-05-30T09:30:10.5</delivery_time>
             <client_name>Jan</client_name>
@@ -159,10 +159,10 @@
                 <product_size>sm</product_size>
             </product>
         </products>
-        <creation>2020-02-24</creation>
-        <price>2233</price>
-        <status>took</status>
-        <payment_type>3</payment_type>
+        <creation>2020-02-24T09:30:10.5</creation>
+        <total_price>2233</total_price>
+        <status>waiting</status>
+        <payment_type>0</payment_type>
         <delivery_inf>
             <delivery_time>2002-05-30T09:30:10.5</delivery_time>
             <client_name>Jan</client_name>
@@ -208,10 +208,10 @@
                 </ingredients>
             </product>
         </products>
-        <creation>2020-02-24</creation>
-        <price>2233</price>
-        <status>took</status>
-        <payment_type>3</payment_type>
+        <creation>2020-02-24T09:30:10.5</creation>
+        <total_price>2233</total_price>
+        <status>waiting</status>
+        <payment_type>0</payment_type>
         <delivery_inf>
             <address>Lenina 30, 30</address>
             <delivery_time>2002-05-30T09:30:10.5</delivery_time>
@@ -248,10 +248,10 @@
                 </ingredients>
             </product>
         </products>
-        <creation>2020-02-24</creation>
-        <price>3456</price>
-        <status>took</status>
-        <payment_type>2</payment_type>
+        <creation>2020-02-24T09:30:10.5</creation>
+        <total_price>3456</total_price>
+        <status>waiting</status>
+        <payment_type>0</payment_type>
         <delivery_inf>
             <delivery_time>2002-05-30T09:30:10.5</delivery_time>
             <client_name>Jan</client_name>

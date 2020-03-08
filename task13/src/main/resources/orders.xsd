@@ -24,8 +24,8 @@
 
     <complexType name="Order">
         <all>
-            <element name="creation" type="date"/>
-            <element name="price" type="int"/>
+            <element name="creation" type="dateTime"/>
+            <element name="total_price" type="int"/>
             <element name="status" type="string"/>
             <element name="payment_type" type="int"/>
             <element name="delivery_inf" type="tns:Delivery_inf" minOccurs="0"/>
@@ -40,7 +40,7 @@
         <attribute name="id">
             <simpleType>
                 <restriction base="ID">
-                    <pattern value="[\w-]{}"></pattern>
+                    <pattern value="[\w-]+"></pattern>
                 </restriction>
             </simpleType>
         </attribute>
