@@ -3,7 +3,6 @@ package by.epam.task13.entities;
 import by.epam.task13.entities.enums.OrderStatus;
 import by.epam.task13.entities.enums.PaymentType;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
