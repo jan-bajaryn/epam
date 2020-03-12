@@ -78,7 +78,7 @@ public class OrdersStAXBuilder implements OrdersBuilder {
 
     private Order buildOrder(XMLStreamReader reader) throws XMLStreamException {
         Order or = new Order();
-        or.setId(reader.getAttributeValue(null, "id"));
+        or.setId(Integer.valueOf(reader.getAttributeValue(null, "id")));
         String name;
         while (reader.hasNext()) {
             int type = reader.next();

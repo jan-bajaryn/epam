@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Order {
 
-    private String id;
+    private Integer id;
 
     private LocalDateTime creation;
     private Integer price;
@@ -20,7 +20,7 @@ public class Order {
     public Order() {
     }
 
-    public Order(String id,
+    public Order(Integer id,
                  LocalDateTime creation,
                  Integer price,
                  OrderStatus status,
@@ -36,11 +36,11 @@ public class Order {
         this.products = products;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

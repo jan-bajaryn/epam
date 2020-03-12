@@ -39,8 +39,11 @@
         </all>
         <attribute name="id">
             <simpleType>
-                <restriction base="ID">
-                    <pattern value="[\w-]+"></pattern>
+                <restriction base="int">
+                    <!--                <restriction base="ID">-->
+                    <!--                    <pattern value="[\w-]+"></pattern>-->
+                    <minInclusive value="0"/>
+                    <maxInclusive value="999999999"/>
                 </restriction>
             </simpleType>
         </attribute>

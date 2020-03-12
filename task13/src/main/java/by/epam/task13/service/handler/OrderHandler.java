@@ -50,7 +50,7 @@ public class OrderHandler extends DefaultHandler {
 
         if (OrderEnum.ORDER.getValue().equals(localName)) {
             current = new Order();
-            current.setId(attrs.getValue(0));
+            current.setId(Integer.valueOf(attrs.getValue(0)));
         } else if (OrderEnum.PRODUCT.getValue().equals(localName)) {
             curProd = new Product();
         } else if (OrderEnum.DELIVERY_INF.getValue().equals(localName)) {

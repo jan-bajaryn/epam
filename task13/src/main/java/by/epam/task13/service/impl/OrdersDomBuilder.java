@@ -73,7 +73,7 @@ public class OrdersDomBuilder implements OrdersBuilder {
         Order order = new Order();
 // заполнение объекта student
 
-        order.setId(el.getAttribute("id"));
+        order.setId(Integer.valueOf(el.getAttribute("id")));
         order.setCreation(LocalDateTime.parse(getElementTextContent(el, CREATION.getValue())));
         order.setPrice(Integer.valueOf(getElementTextContent(el, TOTAL_PRICE.getValue())));
         order.setStatus(OrderStatus.valueOf(getElementTextContent(el, STATUS.getValue()).toUpperCase()));
