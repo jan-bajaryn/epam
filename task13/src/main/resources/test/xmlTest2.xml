@@ -1,0 +1,32 @@
+<?xml version ="1.0" encoding = "UTF 8"?>
+<entities xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.training.by/entities"
+       xsi:schemaLocation="http://www.training.by/entities  xmlTest2.xsd">
+    <user role ="2">
+        <id>1</id>
+        <login>admin</login>
+        <pass>123456</pass>
+        <email>admin@gmail.com</email>
+        <userInfo>
+            <name>Артем</name>
+            <surname>Колганов</surname>
+            <phoneNumber>291111111</phoneNumber>
+        </userInfo>
+    </user>
+    <order status="compilation">
+        <id>2</id>
+        <date>2020-02-01</date>
+        <deliviredate>2020-03-05</deliviredate>
+        <price>30.5</price>
+        <productlist>
+            <product>
+                <id>1</id>
+                <quantity>3</quantity>
+            </product>
+            <product>
+                <id>2</id>
+                <quantity>5</quantity>
+            </product>
+        </productlist>
+    </order>
+</entities>

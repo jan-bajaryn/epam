@@ -28,7 +28,6 @@ import java.util.List;
 import java.util.Map;
 
 @WebServlet(name = "ServletIndex")
-//@MultipartConfig
 public class ServletIndex extends HttpServlet {
 
     private static final Logger log = LogManager.getLogger(ServletIndex.class);

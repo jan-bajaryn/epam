@@ -3,13 +3,17 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xmlns="http://by.example.com/orders"
         xsi:schemaLocation="http://by.example.com/orders orders.xsd">
-
     <order>
         <id>2</id>
         <creation>2020-02-25</creation>
         <price>1800</price>
         <status>took</status>
         <payment_type>1</payment_type>
+        <products>
+            <product>1</product>
+            <product>2</product>
+            <product>3</product>
+        </products>
     </order>
     <order>
         <id>3</id>
@@ -24,6 +28,11 @@
         <price>4444</price>
         <status>2</status>
         <payment_type>2</payment_type>
+        <products>
+            <product>1</product>
+            <product>2</product>
+            <product>3</product>
+        </products>
     </order>
     <order>
         <id>5</id>
@@ -45,6 +54,11 @@
         <price>2233</price>
         <status>took</status>
         <payment_type>3</payment_type>
+        <products>
+            <product>1</product>
+            <product>2</product>
+            <product>3</product>
+        </products>
     </order>
     <order>
         <id>8</id>
@@ -52,5 +66,260 @@
         <price>3456</price>
         <status>took</status>
         <payment_type>2</payment_type>
+        <products>
+            <product>1</product>
+            <product>2</product>
+            <product>3</product>
+        </products>
     </order>
+
+
+    <product>
+        <id>1</id>
+        <name>Bacon-and-cheese</name>
+        <description>Pizza with bacon and cheese</description>
+        <photo_name>Bacon-and-cheese.jpg</photo_name>
+        <price>900</price>
+        <product_type>pizza</product_type>
+        <product_size>sm</product_size>
+        <ingredients>
+            <ingredient>Cheese</ingredient>
+            <ingredient>Mushroom</ingredient>
+            <ingredient>Bacon</ingredient>
+        </ingredients>
+    </product>
+
+    <product>
+        <id>1</id>
+        <name>Coca-cola</name>
+        <description>Classical american drink</description>
+        <photo_name>Coca-cola.jpg</photo_name>
+        <price>300</price>
+        <product_type>drink</product_type>
+        <product_size>sm</product_size>
+    </product>
+
+
+    <product>
+        <id>1</id>
+        <name>Margarita</name>
+        <description>Very good classic pizza</description>
+        <photo_name>Margarita.jpg</photo_name>
+        <price>1500</price>
+        <product_type>pizza</product_type>
+        <product_size>lg</product_size>
+        <ingredients>
+            <ingredient>Cheese</ingredient>
+            <ingredient>Tomato</ingredient>
+            <ingredient>Bacon</ingredient>
+        </ingredients>
+    </product>
+
+    <product>
+        <id>1</id>
+        <name>Margarita</name>
+        <description>Very good classic pizza</description>
+        <photo_name>Margarita.jpg</photo_name>
+        <price>900</price>
+        <product_type>pizza</product_type>
+        <product_size>md</product_size>
+        <ingredients>
+            <ingredient>Cheese</ingredient>
+            <ingredient>Tomato</ingredient>
+            <ingredient>Bacon</ingredient>
+        </ingredients>
+    </product>
+
+
+    <product>
+        <id>1</id>
+        <name>Coca-cola</name>
+        <description>Classical american drink</description>
+        <photo_name>Coca-cola.jpg</photo_name>
+        <price>300</price>
+        <product_type>drink</product_type>
+        <product_size>sm</product_size>
+    </product>
+
+
+    <product>
+        <id>1</id>
+        <name>Bacon-and-cheese</name>
+        <description>Pizza with bacon and cheese</description>
+        <photo_name>Bacon-and-cheese.jpg</photo_name>
+        <price>1800</price>
+        <product_type>pizza</product_type>
+        <product_size>lg</product_size>
+        <ingredients>
+            <ingredient>Cheese</ingredient>
+            <ingredient>Mushroom</ingredient>
+            <ingredient>Bacon</ingredient>
+        </ingredients>
+    </product>
+
+    <product>
+        <id>1</id>
+        <name>Margarita</name>
+        <description>Very good classic pizza</description>
+        <photo_name>Margarita.jpg</photo_name>
+        <price>1500</price>
+        <product_type>pizza</product_type>
+        <product_size>lg</product_size>
+        <ingredients>
+            <ingredient>Cheese</ingredient>
+            <ingredient>Tomato</ingredient>
+            <ingredient>Bacon</ingredient>
+        </ingredients>
+    </product>
+
+    <product>
+        <id>1</id>
+        <name>Sprite</name>
+        <description>Fresh drink, no color</description>
+        <photo_name>Sprite.jpg</photo_name>
+        <price>300</price>
+        <product_type>drink</product_type>
+        <product_size>md</product_size>
+    </product>
+
+
+    <product>
+        <id>1</id>
+        <name>Bacon-and-cheese</name>
+        <description>Pizza with bacon and cheese</description>
+        <photo_name>Bacon-and-cheese.jpg</photo_name>
+        <price>900</price>
+        <product_type>pizza</product_type>
+        <product_size>sm</product_size>
+        <ingredients>
+            <ingredient>Cheese</ingredient>
+            <ingredient>Mushroom</ingredient>
+            <ingredient>Bacon</ingredient>
+        </ingredients>
+    </product>
+
+
+    <product>
+        <id>1</id>
+        <name>Sprite</name>
+        <description>Fresh drink, no color</description>
+        <photo_name>Sprite.jpg</photo_name>
+        <price>300</price>
+        <product_type>drink</product_type>
+        <product_size>md</product_size>
+    </product>
+
+
+    <product>
+        <id>1</id>
+        <name>Coca-cola</name>
+        <description>Classical american drink</description>
+        <photo_name>Coca-cola.jpg</photo_name>
+        <price>300</price>
+        <product_type>drink</product_type>
+        <product_size>sm</product_size>
+    </product>
+
+
+    <product>
+        <id>1</id>
+        <name>Bacon-and-cheese</name>
+        <description>Pizza with bacon and cheese</description>
+        <photo_name>Bacon-and-cheese.jpg</photo_name>
+        <price>900</price>
+        <product_type>pizza</product_type>
+        <product_size>sm</product_size>
+        <ingredients>
+            <ingredient>Cheese</ingredient>
+            <ingredient>Mushroom</ingredient>
+            <ingredient>Bacon</ingredient>
+        </ingredients>
+    </product>
+
+
+    <product>
+        <id>1</id>
+        <name>Margarita</name>
+        <description>Very good classic pizza</description>
+        <photo_name>Margarita.jpg</photo_name>
+        <price>1500</price>
+        <product_type>pizza</product_type>
+        <product_size>lg</product_size>
+        <ingredients>
+            <ingredient>Cheese</ingredient>
+            <ingredient>Tomato</ingredient>
+            <ingredient>Bacon</ingredient>
+        </ingredients>
+    </product>
+
+
+    <delivery_inf>
+        <id>1</id>
+        <delivery_time>2002-05-30T09:30:10.5</delivery_time>
+        <client_name>Jan</client_name>
+        <address>Lenina 30, 30</address>
+        <phone>+375 29 345 34 34</phone>
+        <email>abcd@gmail.com</email>
+    </delivery_inf>
+
+
+    <delivery_inf>
+        <id>1</id>
+        <delivery_time>2002-05-30T09:30:10.5</delivery_time>
+        <client_name>Jan</client_name>
+        <address>Lenina 30, 30</address>
+        <phone>+375 29 345 34 34</phone>
+        <email>abcd@gmail.com</email>
+    </delivery_inf>
+
+
+    <delivery_inf>
+        <id>1</id>
+        <delivery_time>2002-05-30T09:30:10.5</delivery_time>
+        <client_name>Jan</client_name>
+        <address>Lenina 30, 30</address>
+        <phone>+375 29 345 34 34</phone>
+        <email>abcd@gmail.com</email>
+    </delivery_inf>
+
+
+    <delivery_inf>
+        <id>1</id>
+        <delivery_time>2002-05-30T09:30:10.5</delivery_time>
+        <client_name>Jan</client_name>
+        <address>Lenina 30, 30</address>
+        <phone>+375 29 345 34 34</phone>
+        <email>abcd@gmail.com</email>
+    </delivery_inf>
+
+
+    <delivery_inf>
+        <id>1</id>
+        <delivery_time>2002-05-30T09:30:10.5</delivery_time>
+        <client_name>Jan</client_name>
+        <address>Lenina 30, 30</address>
+        <phone>+375 29 345 34 34</phone>
+        <email>abcd@gmail.com</email>
+    </delivery_inf>
+
+
+    <delivery_inf>
+        <id>1</id>
+        <delivery_time>2002-05-30T09:30:10.5</delivery_time>
+        <client_name>Jan</client_name>
+        <address>Lenina 30, 30</address>
+        <phone>+375 29 345 34 34</phone>
+    </delivery_inf>
+
+
+    <delivery_inf>
+        <id>1</id>
+        <delivery_time>2002-05-30T09:30:10.5</delivery_time>
+        <client_name>Jan</client_name>
+        <address>Lenina 30, 30</address>
+        <phone>+375 29 345 34 34</phone>
+        <email>abcd@gmail.com</email>
+    </delivery_inf>
+
+
 </entities>
