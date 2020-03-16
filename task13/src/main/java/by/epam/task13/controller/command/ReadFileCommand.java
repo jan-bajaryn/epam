@@ -7,6 +7,7 @@ import by.epam.task13.service.OrdersBuilder;
 import by.epam.task13.service.impl.OrdersDomBuilder;
 import by.epam.task13.service.impl.OrdersSaxBuilder;
 import by.epam.task13.service.impl.OrdersStAXBuilder;
+import by.epam.task13.service.validator.OrdersValidator;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -52,7 +53,8 @@ public class ReadFileCommand {
     }
 
     private boolean checkNulls(HttpServletRequest request, HttpServletResponse response, String type, String path) throws ServletException, IOException {
-        if (type == null || path == null) {
+        OrdersValidator ov = new OrdersValidator();
+        if (type == null || path == null || !ov.isValid(path)) {
             request.setAttribute("failed", true);
             request.getRequestDispatcher("index.jsp").forward(request, response);
             return true;
@@ -64,7 +66,6 @@ public class ReadFileCommand {
         List<Order> orders;
         if (type.equalsIgnoreCase("sax")) {
             OrdersBuilder builder = new OrdersSaxBuilder();
-//            builder.buildListOrders("src/main/resources/orders.xml");
             builder.buildListOrders(path);
             orders = builder.getOrders();
         } else if (type.equalsIgnoreCase("stax")) {

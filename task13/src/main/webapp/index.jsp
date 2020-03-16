@@ -1,5 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <html>
 <head>
     <title>Title</title>
@@ -8,9 +10,13 @@
 <link rel="stylesheet" href="css/index.css">
 <body>
 <div>
+
+    <fmt:setLocale value="ru_RU"/>
+    <fmt:setBundle basename="property.text" var="rb"/>
+
     <c:if test="${failed!=null && failed==true}">
         <div class="red">
-            You must check one of radio button.
+            An error founded in you file.
         </div>
     </c:if>
 </div>
@@ -37,7 +43,10 @@
             <input type="file" name="data" accept="application/xml">
         </label>
         <br>
-        <button disabled type="submit">Submit</button>
+        <button disabled type="submit">
+            <%--            Submit--%>
+            <fmt:message key="button.submit" bundle="${ rb }"/>
+        </button>
     </form>
 </div>
 <script src="js/index.js"></script>
