@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
 
+import static by.epam.task13.service.OrderEnum.*;
+
 public class OrderHandler extends DefaultHandler {
 
     private static final Logger log = LogManager.getLogger(OrderHandler.class);
@@ -39,7 +41,7 @@ public class OrderHandler extends DefaultHandler {
         orders = new ArrayList<>();
         products = new ArrayList<>();
         ingredients = new ArrayList<>();
-        withText = EnumSet.range(OrderEnum.ORDER, OrderEnum.EMAIL);
+        withText = EnumSet.range(ORDER, EMAIL);
     }
 
     public List<Order> getOrders() {
@@ -48,13 +50,23 @@ public class OrderHandler extends DefaultHandler {
 
     public void startElement(String uri, String localName, String qName, Attributes attrs) {
 
-        if (OrderEnum.ORDER.getValue().equals(localName)) {
+        if (ORDER.getValue().equals(localName)) {
 //            current = new Order();
             current = Order.builder();
             current.id(Integer.valueOf(attrs.getValue(0)));
-        } else if (OrderEnum.PRODUCT.getValue().equals(localName)) {
+        } else if (PRODUCT.getValue().equals(localName)) {
             curProd = Product.builder();
-        } else if (OrderEnum.DELIVERY_INF.getValue().equals(localName)) {
+
+            curProd.id(Long.valueOf(calcId(attrs.getValue(ID.getValue()))));
+
+            String value = attrs.getValue(PRODUCT_TYPE.getValue());
+            ProductType pt = null;
+            if (value != null) {
+                pt = ProductType.valueOf(value.toUpperCase());
+            }
+            curProd.type(pt);
+
+        } else if (DELIVERY_INF.getValue().equals(localName)) {
             deliveryInf = DeliveryInf.builder();
         }
 //        else if (OrderEnum.PRODUCTS.getValue().equals(localName)){
@@ -63,25 +75,30 @@ public class OrderHandler extends DefaultHandler {
 //            ingredients = new ArrayList<>();
 //        }
         else {
-            OrderEnum temp = OrderEnum.valueOf(localName.toUpperCase());
+            OrderEnum temp = valueOf(localName.toUpperCase());
             if (withText.contains(temp)) {
                 currentEnum = temp;
             }
         }
     }
 
+
+    private String calcId(String attribute) {
+        return attribute.substring(3);
+    }
+
     public void endElement(String uri, String localName, String qName) {
-        if (OrderEnum.ORDER.getValue().equals(localName)) {
+        if (ORDER.getValue().equals(localName)) {
             orders.add(current.build());
             clearData();
-        } else if (OrderEnum.PRODUCT.getValue().equals(localName)) {
+        } else if (PRODUCT.getValue().equals(localName)) {
             products.add(curProd.build());
             clearIngredients();
-        } else if (OrderEnum.PRODUCTS.getValue().equals(localName)) {
+        } else if (PRODUCTS.getValue().equals(localName)) {
             current.products(products);
-        } else if (OrderEnum.DELIVERY_INF.getValue().equals(localName)) {
+        } else if (DELIVERY_INF.getValue().equals(localName)) {
             current.deliveryInf(deliveryInf.build());
-        } else if (OrderEnum.INGREDIENTS.getValue().equals(localName)) {
+        } else if (INGREDIENTS.getValue().equals(localName)) {
             curProd.ingredients(ingredients);
             clearIngredients();
         }
@@ -114,9 +131,9 @@ public class OrderHandler extends DefaultHandler {
                 case PRICE:
                     curProd.price(Integer.valueOf(s));
                     break;
-                case PRODUCT_TYPE:
-                    curProd.type(ProductType.valueOf(s.toUpperCase()));
-                    break;
+//                case PRODUCT_TYPE:
+//                    curProd.type(ProductType.valueOf(s.toUpperCase()));
+//                    break;
                 case PRODUCT_SIZE:
                     curProd.size(ProductSize.valueOf(s.toUpperCase()));
                     break;

@@ -6,12 +6,12 @@
 
     <order id="1">
         <products>
-            <product>
+            <product id="ID-1">
                 <name>Margarita</name>
                 <description>Very good classic pizza</description>
                 <photo_name>Margarita.jpg</photo_name>
                 <price>900</price>
-                <product_type>pizza</product_type>
+
                 <product_size>md</product_size>
                 <ingredients>
                     <ingredient>Cheese</ingredient>
@@ -19,12 +19,12 @@
                     <ingredient>Bacon</ingredient>
                 </ingredients>
             </product>
-            <product>
+            <product id="ID-2" product_type="drink">
                 <name>Coca-cola</name>
                 <description>Classical american drink</description>
                 <photo_name>Coca-cola.jpg</photo_name>
                 <price>300</price>
-                <product_type>drink</product_type>
+
                 <product_size>sm</product_size>
             </product>
         </products>
@@ -35,12 +35,11 @@
     </order>
     <order id="2">
         <products>
-            <product>
+            <product id="ID-3">
                 <name>Bacon-and-cheese</name>
                 <description>Pizza with bacon and cheese</description>
                 <photo_name>Bacon-and-cheese.jpg</photo_name>
                 <price>1800</price>
-                <product_type>pizza</product_type>
                 <product_size>lg</product_size>
                 <ingredients>
                     <ingredient>Cheese</ingredient>
@@ -63,12 +62,11 @@
     </order>
     <order id="3">
         <products>
-            <product>
+            <product id="ID-4" product_type="pizza">
                 <name>Margarita</name>
                 <description>Very good classic pizza</description>
                 <photo_name>Margarita.jpg</photo_name>
                 <price>1500</price>
-                <product_type>pizza</product_type>
                 <product_size>lg</product_size>
                 <ingredients>
                     <ingredient>Cheese</ingredient>
@@ -76,12 +74,11 @@
                     <ingredient>Bacon</ingredient>
                 </ingredients>
             </product>
-            <product>
+            <product id="ID-5" product_type="drink">
                 <name>Sprite</name>
                 <description>Fresh drink, no color</description>
                 <photo_name>Sprite.jpg</photo_name>
                 <price>300</price>
-                <product_type>drink</product_type>
                 <product_size>md</product_size>
             </product>
         </products>
@@ -99,12 +96,12 @@
     </order>
     <order id="4">
         <products>
-            <product>
+            <product id="ID-6" product_type="pizza">
                 <name>Bacon-and-cheese</name>
                 <description>Pizza with bacon and cheese</description>
                 <photo_name>Bacon-and-cheese.jpg</photo_name>
                 <price>900</price>
-                <product_type>pizza</product_type>
+
                 <product_size>sm</product_size>
                 <ingredients>
                     <ingredient>Cheese</ingredient>
@@ -127,12 +124,12 @@
     </order>
     <order id="5">
         <products>
-            <product>
+            <product id="ID-7" product_type="drink">
                 <name>Sprite</name>
                 <description>Fresh drink, no color</description>
                 <photo_name>Sprite.jpg</photo_name>
                 <price>300</price>
-                <product_type>drink</product_type>
+
                 <product_size>md</product_size>
             </product>
         </products>
@@ -150,12 +147,12 @@
     </order>
     <order id="6">
         <products>
-            <product>
+            <product id="ID-8" product_type="drink">
                 <name>Coca-cola</name>
                 <description>Classical american drink</description>
                 <photo_name>Coca-cola.jpg</photo_name>
                 <price>300</price>
-                <product_type>drink</product_type>
+
                 <product_size>sm</product_size>
             </product>
         </products>
@@ -173,12 +170,12 @@
     </order>
     <order id="7">
         <products>
-            <product>
+            <product id="ID-9" product_type="pizza">
                 <name>Margarita</name>
                 <description>Very good classic pizza</description>
                 <photo_name>Margarita.jpg</photo_name>
                 <price>1500</price>
-                <product_type>pizza</product_type>
+
                 <product_size>lg</product_size>
                 <ingredients>
                     <ingredient>Cheese</ingredient>
@@ -186,20 +183,18 @@
                     <ingredient>Bacon</ingredient>
                 </ingredients>
             </product>
-            <product>
+            <product id="ID-10" product_type="drink">
                 <name>Coca-cola</name>
                 <description>Classical american drink</description>
                 <photo_name>Coca-cola.jpg</photo_name>
                 <price>300</price>
-                <product_type>drink</product_type>
                 <product_size>sm</product_size>
             </product>
-            <product>
+            <product id="ID-11" product_type="pizza">
                 <name>Bacon-and-cheese</name>
                 <description>Pizza with bacon and cheese</description>
                 <photo_name>Bacon-and-cheese.jpg</photo_name>
                 <price>900</price>
-                <product_type>pizza</product_type>
                 <product_size>sm</product_size>
                 <ingredients>
                     <ingredient>Cheese</ingredient>
@@ -221,12 +216,11 @@
     </order>
     <order id="8">
         <products>
-            <product>
+            <product id="ID-12" product_type="pizza">
                 <name>Bacon-and-cheese</name>
                 <description>Pizza with bacon and cheese</description>
                 <photo_name>Bacon-and-cheese.jpg</photo_name>
                 <price>900</price>
-                <product_type>pizza</product_type>
                 <product_size>sm</product_size>
                 <ingredients>
                     <ingredient>Cheese</ingredient>
@@ -234,12 +228,11 @@
                     <ingredient>Bacon</ingredient>
                 </ingredients>
             </product>
-            <product>
+            <product id="ID-13" product_type="pizza">
                 <name>Margarita</name>
                 <description>Very good classic pizza</description>
                 <photo_name>Margarita.jpg</photo_name>
                 <price>1500</price>
-                <product_type>pizza</product_type>
                 <product_size>lg</product_size>
                 <ingredients>
                     <ingredient>Cheese</ingredient>

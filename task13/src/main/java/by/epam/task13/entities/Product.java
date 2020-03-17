@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Product {
+    private Long id;
+
     private String name;
     private String description;
     private String photoName;
@@ -15,7 +17,20 @@ public class Product {
     private ProductSize size;
     private List<String> ingredients;
 
-    public Product(String name, String description, String photoName, Integer price, ProductType type, ProductSize size, List<String> ingredients) {
+
+    public static Product.Builder builder() {
+        return new Product.Builder();
+    }
+
+    public Product(Long id,
+                   String name,
+                   String description,
+                   String photoName,
+                   Integer price,
+                   ProductType type,
+                   ProductSize size,
+                   List<String> ingredients) {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.photoName = photoName;
@@ -25,14 +40,11 @@ public class Product {
         this.ingredients = ingredients;
     }
 
-    public static Product.Builder builder() {
-        return new Product.Builder();
-    }
-
     public Product() {
     }
 
     private Product(Builder builder) {
+        setId(builder.id);
         setName(builder.name);
         setDescription(builder.description);
         setPhotoName(builder.photoName);
@@ -41,6 +53,7 @@ public class Product {
         setSize(builder.size);
         setIngredients(builder.ingredients);
     }
+
 
     public String getName() {
         return name;
@@ -105,6 +118,7 @@ public class Product {
 
         Product product = (Product) o;
 
+        if (id != null ? !id.equals(product.id) : product.id != null) return false;
         if (name != null ? !name.equals(product.name) : product.name != null) return false;
         if (description != null ? !description.equals(product.description) : product.description != null) return false;
         if (photoName != null ? !photoName.equals(product.photoName) : product.photoName != null) return false;
@@ -116,7 +130,8 @@ public class Product {
 
     @Override
     public int hashCode() {
-        int result = name != null ? name.hashCode() : 0;
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + (photoName != null ? photoName.hashCode() : 0);
         result = 31 * result + (price != null ? price.hashCode() : 0);
@@ -129,7 +144,8 @@ public class Product {
     @Override
     public String toString() {
         return "Product{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", photoName='" + photoName + '\'' +
                 ", price=" + price +
@@ -139,7 +155,17 @@ public class Product {
                 '}';
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+
     public static final class Builder {
+        private Long id;
         private String name;
         private String description;
         private String photoName;
@@ -149,6 +175,11 @@ public class Product {
         private List<String> ingredients;
 
         public Builder() {
+        }
+
+        public Builder id(Long val) {
+            id = val;
+            return this;
         }
 
         public Builder name(String val) {
@@ -190,6 +221,11 @@ public class Product {
             if (ingredients == null) {
                 ingredients = new ArrayList<>();
             }
+
+            if (type == null) {
+                type = ProductType.PIZZA;
+            }
+
             return new Product(this);
         }
     }

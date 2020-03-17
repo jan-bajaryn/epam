@@ -16,9 +16,13 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.validation.Schema;
+import javax.xml.validation.SchemaFactory;
+import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -36,10 +40,16 @@ public class OrdersDomBuilder implements OrdersBuilder {
 
     public OrdersDomBuilder() {
         this.orders = new ArrayList<>();
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+
         try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+//            String constant = XMLConstants.W3C_XML_SCHEMA_NS_URI;
+//            SchemaFactory xsdFactory = SchemaFactory.newInstance(constant);
+//            Schema schema = xsdFactory.newSchema(new File("D:\\Programming\\epam\\epam\\task13\\src\\main\\resources\\orders.xsd"));
+//            factory.setSchema(schema);
+
             docBuilder = factory.newDocumentBuilder();
-        } catch (ParserConfigurationException e) {
+        } catch (ParserConfigurationException /*| SAXException*/ e) {
             log.info(e.getMessage());
         }
     }
@@ -74,7 +84,6 @@ public class OrdersDomBuilder implements OrdersBuilder {
                 .price(Integer.valueOf(getElementTextContent(el, TOTAL_PRICE.getValue())))
                 .status(OrderStatus.valueOf(getElementTextContent(el, STATUS.getValue()).toUpperCase()))
                 .paymentType(PaymentType.values()[Integer.parseInt(getElementTextContent(el, PAYMENT_TYPE.getValue()))])
-
                 .deliveryInf(buildDeliveryInf(((Element) el.getElementsByTagName(DELIVERY_INF.getValue()).item(0))))
                 .products(buildProducts(el.getElementsByTagName(PRODUCT.getValue())))
                 .build();
@@ -91,17 +100,25 @@ public class OrdersDomBuilder implements OrdersBuilder {
     }
 
     private Product buildProduct(Element item) {
-        Product product = new Product();
+        String name = item.getAttribute(PRODUCT_TYPE.getValue()).toUpperCase();
+        ProductType type = null;
+        if (!name.isEmpty()) {
+            type = ProductType.valueOf(name);
+        }
 
         return Product.builder()
+                .id(Long.valueOf(calcId(item.getAttribute(ID.getValue()))))
+                .type(type)
                 .name(getElementTextContent(item, NAME.getValue()))
                 .description(getElementTextContent(item, DESCRIPTION.getValue()))
                 .photoName(getElementTextContent(item, PHOTO_NAME.getValue()))
                 .price(Integer.valueOf(getElementTextContent(item, PRICE.getValue())))
-                .type(ProductType.valueOf(getElementTextContent(item, PRODUCT_TYPE.getValue()).toUpperCase()))
                 .size(ProductSize.valueOf(getElementTextContent(item, PRODUCT_SIZE.getValue()).toUpperCase()))
-
                 .ingredients(buildIngredients(item.getElementsByTagName(INGREDIENT.getValue()))).build();
+    }
+
+    private String calcId(String attribute) {
+        return attribute.substring(3);
     }
 
     private List<String> buildIngredients(NodeList list) {

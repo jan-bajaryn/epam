@@ -1,6 +1,9 @@
 package by.epam.task13.service;
 
 public enum OrderEnum {
+
+    ID("id"),
+
     ORDERS("orders"),
     PRODUCTS("products"),
     INGREDIENTS("ingredients"),
@@ -8,7 +11,7 @@ public enum OrderEnum {
 
     ORDER("order"),
     PRODUCT("product"),
-
+    STATUS("status"),
     NAME("name"),
     DESCRIPTION("description"),
     PHOTO_NAME("photo_name"),
@@ -18,7 +21,6 @@ public enum OrderEnum {
     INGREDIENT("ingredient"),
     CREATION("creation"),
     TOTAL_PRICE("total_price"),
-    STATUS("status"),
     PAYMENT_TYPE("payment_type"),
     DELIVERY_TIME("delivery_time"),
     CLIENT_NAME("client_name"),

@@ -11,10 +11,13 @@ import by.epam.task13.service.OrdersBuilder;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.xml.XMLConstants;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamConstants;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
+import javax.xml.validation.Schema;
+import javax.xml.validation.SchemaFactory;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -52,7 +55,6 @@ public class OrdersStAXBuilder implements OrdersBuilder {
         try {
             inputStream = new FileInputStream(new File(fileName));
             reader = inputFactory.createXMLStreamReader(inputStream);
-
             while (reader.hasNext()) {
                 int type = reader.next();
                 if (type == XMLStreamConstants.START_ELEMENT) {
@@ -78,7 +80,7 @@ public class OrdersStAXBuilder implements OrdersBuilder {
 
     private Order buildOrder(XMLStreamReader reader) throws XMLStreamException {
         Order.Builder builder = Order.builder();
-        builder.id(Integer.valueOf(reader.getAttributeValue(null, "id")));
+        builder.id(Integer.valueOf(reader.getAttributeValue(null, ID.getValue())));
         String name;
         while (reader.hasNext()) {
             int type = reader.next();
@@ -141,8 +143,23 @@ public class OrdersStAXBuilder implements OrdersBuilder {
         throw new XMLStreamException("Unknown element in tag Order");
     }
 
+    private String calcId(String attribute) {
+        return attribute.substring(3);
+    }
+
+
     private Product buildSingleProduct(XMLStreamReader reader) throws XMLStreamException {
         Product.Builder builder = Product.builder();
+        builder.id(Long.valueOf(calcId(reader.getAttributeValue(null, ID.getValue()))));
+
+        String attributeValue = reader.getAttributeValue(null, PRODUCT_TYPE.getValue());
+        ProductType pType = null;
+        if (attributeValue != null) {
+            log.info("attributeValue = {}", attributeValue);;
+            pType = ProductType.valueOf(attributeValue.toUpperCase());
+        }
+
+        builder.type(pType);
 
         int type;
         String name;

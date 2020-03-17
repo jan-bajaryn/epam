@@ -14,6 +14,18 @@
     <!--            </sequence>-->
     <!--        </complexType>-->
     <!--    </element>-->
+
+    <complexType name="Entity">
+        <attribute name="id" use="required">
+            <simpleType>
+                <restriction base="ID">
+                    <pattern value="ID-\d{1,10}"/>
+                </restriction>
+            </simpleType>
+        </attribute>
+    </complexType>
+
+
     <element name="orders">
         <complexType>
             <sequence>
@@ -37,7 +49,7 @@
                 </complexType>
             </element>
         </all>
-        <attribute name="id">
+        <attribute name="id" use="required">
             <simpleType>
                 <restriction base="int">
                     <!--                <restriction base="ID">-->
@@ -47,16 +59,16 @@
                 </restriction>
             </simpleType>
         </attribute>
-<!--        <attribute name="id">-->
-<!--            <simpleType>-->
-<!--                <restriction base="int">-->
-<!--                    &lt;!&ndash;                <restriction base="ID">&ndash;&gt;-->
-<!--                    &lt;!&ndash;                    <pattern value="[\w-]+"></pattern>&ndash;&gt;-->
-<!--                    <minInclusive value="0"/>-->
-<!--                    <maxInclusive value="999999999"/>-->
-<!--                </restriction>-->
-<!--            </simpleType>-->
-<!--        </attribute>-->
+        <!--        <attribute name="id">-->
+        <!--            <simpleType>-->
+        <!--                <restriction base="int">-->
+        <!--                    &lt;!&ndash;                <restriction base="ID">&ndash;&gt;-->
+        <!--                    &lt;!&ndash;                    <pattern value="[\w-]+"></pattern>&ndash;&gt;-->
+        <!--                    <minInclusive value="0"/>-->
+        <!--                    <maxInclusive value="999999999"/>-->
+        <!--                </restriction>-->
+        <!--            </simpleType>-->
+        <!--        </attribute>-->
 
     </complexType>
     <complexType name="Delivery_inf">
@@ -69,38 +81,55 @@
         </all>
     </complexType>
     <complexType name="Product">
-        <all>
-            <element name="name" type="string"/>
-            <element name="description" type="string"/>
-            <element name="photo_name" type="string"/>
-            <element name="price" type="int"/>
+        <complexContent>
+            <extension base="tns:Entity">
+                <all>
+                    <element name="name" type="string"/>
+                    <element name="description" type="string"/>
+                    <element name="photo_name" type="string"/>
+                    <element name="price" type="int"/>
 
-            <element name="product_type">
-                <simpleType>
-                    <restriction base="string">
-                        <enumeration value="pizza"/>
-                        <enumeration value="drink"/>
-                        <enumeration value="snack"/>
-                    </restriction>
-                </simpleType>
-            </element>
+                    <element name="product_size">
+                        <simpleType>
+                            <restriction base="string">
+                                <enumeration value="sm"/>
+                                <enumeration value="md"/>
+                                <enumeration value="lg"/>
+                            </restriction>
+                        </simpleType>
+                    </element>
+                    <element name="ingredients" minOccurs="0">
+                        <complexType>
+                            <sequence>
+                                <element name="ingredient" type="string" minOccurs="0" maxOccurs="unbounded"/>
+                            </sequence>
+                        </complexType>
+                    </element>
+                </all>
+                <attribute name="product_type" use="optional" default="pizza">
+                    <simpleType>
+                        <restriction base="string">
+                            <enumeration value="pizza"/>
+                            <enumeration value="drink"/>
+                            <enumeration value="snack"/>
+                        </restriction>
+                    </simpleType>
+                </attribute>
+            </extension>
+        </complexContent>
 
-            <element name="product_size">
-                <simpleType>
-                    <restriction base="string">
-                        <enumeration value="sm"/>
-                        <enumeration value="md"/>
-                        <enumeration value="lg"/>
-                    </restriction>
-                </simpleType>
-            </element>
-            <element name="ingredients" minOccurs="0">
-                <complexType>
-                    <sequence>
-                        <element name="ingredient" type="string" minOccurs="0" maxOccurs="unbounded"/>
-                    </sequence>
-                </complexType>
-            </element>
-        </all>
+
+        <!--        <attribute name="id" use="required">-->
+        <!--            <simpleType>-->
+        <!--                <restriction base="int">-->
+        <!--                    &lt;!&ndash;                <restriction base="ID">&ndash;&gt;-->
+        <!--                    &lt;!&ndash;                    <pattern value="[\w-]+"></pattern>&ndash;&gt;-->
+        <!--                    <minInclusive value="0"/>-->
+        <!--                    <maxInclusive value="999999999"/>-->
+        <!--                </restriction>-->
+        <!--            </simpleType>-->
+        <!--        </attribute>-->
+
+
     </complexType>
 </schema>
