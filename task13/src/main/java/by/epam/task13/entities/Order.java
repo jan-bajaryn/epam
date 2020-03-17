@@ -4,6 +4,7 @@ import by.epam.task13.entities.enums.OrderStatus;
 import by.epam.task13.entities.enums.PaymentType;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Order {
@@ -16,6 +17,10 @@ public class Order {
     private PaymentType paymentType;
     private DeliveryInf deliveryInf;
     private List<Product> products;
+
+    public static Builder builder() {
+        return new Builder();
+    }
 
     public Order() {
     }
@@ -34,6 +39,16 @@ public class Order {
         this.paymentType = paymentType;
         this.deliveryInf = deliveryInf;
         this.products = products;
+    }
+
+    private Order(Builder builder) {
+        setId(builder.id);
+        setCreation(builder.creation);
+        setPrice(builder.price);
+        setStatus(builder.status);
+        setPaymentType(builder.paymentType);
+        setDeliveryInf(builder.deliveryInf);
+        setProducts(builder.products);
     }
 
     public Integer getId() {
@@ -133,4 +148,58 @@ public class Order {
         return result;
     }
 
+    public static final class Builder {
+        private Integer id;
+        private LocalDateTime creation;
+        private Integer price;
+        private OrderStatus status;
+        private PaymentType paymentType;
+        private DeliveryInf deliveryInf;
+        private List<Product> products;
+
+        public Builder() {
+        }
+
+        public Builder id(Integer val) {
+            id = val;
+            return this;
+        }
+
+        public Builder creation(LocalDateTime val) {
+            creation = val;
+            return this;
+        }
+
+        public Builder price(Integer val) {
+            price = val;
+            return this;
+        }
+
+        public Builder status(OrderStatus val) {
+            status = val;
+            return this;
+        }
+
+        public Builder paymentType(PaymentType val) {
+            paymentType = val;
+            return this;
+        }
+
+        public Builder deliveryInf(DeliveryInf val) {
+            deliveryInf = val;
+            return this;
+        }
+
+        public Builder products(List<Product> val) {
+            products = val;
+            return this;
+        }
+
+        public Order build() {
+            if (products == null) {
+                products = new ArrayList<>();
+            }
+            return new Order(this);
+        }
+    }
 }

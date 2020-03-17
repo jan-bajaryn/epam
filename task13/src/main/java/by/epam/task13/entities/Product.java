@@ -3,6 +3,7 @@ package by.epam.task13.entities;
 import by.epam.task13.entities.enums.ProductSize;
 import by.epam.task13.entities.enums.ProductType;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Product {
@@ -24,7 +25,21 @@ public class Product {
         this.ingredients = ingredients;
     }
 
+    public static Product.Builder builder() {
+        return new Product.Builder();
+    }
+
     public Product() {
+    }
+
+    private Product(Builder builder) {
+        setName(builder.name);
+        setDescription(builder.description);
+        setPhotoName(builder.photoName);
+        setPrice(builder.price);
+        setType(builder.type);
+        setSize(builder.size);
+        setIngredients(builder.ingredients);
     }
 
     public String getName() {
@@ -122,6 +137,61 @@ public class Product {
                 ", size=" + size +
                 ", ingredients=" + ingredients +
                 '}';
+    }
+
+    public static final class Builder {
+        private String name;
+        private String description;
+        private String photoName;
+        private Integer price;
+        private ProductType type;
+        private ProductSize size;
+        private List<String> ingredients;
+
+        public Builder() {
+        }
+
+        public Builder name(String val) {
+            name = val;
+            return this;
+        }
+
+        public Builder description(String val) {
+            description = val;
+            return this;
+        }
+
+        public Builder photoName(String val) {
+            photoName = val;
+            return this;
+        }
+
+        public Builder price(Integer val) {
+            price = val;
+            return this;
+        }
+
+        public Builder type(ProductType val) {
+            type = val;
+            return this;
+        }
+
+        public Builder size(ProductSize val) {
+            size = val;
+            return this;
+        }
+
+        public Builder ingredients(List<String> val) {
+            ingredients = val;
+            return this;
+        }
+
+        public Product build() {
+            if (ingredients == null) {
+                ingredients = new ArrayList<>();
+            }
+            return new Product(this);
+        }
     }
 }
 

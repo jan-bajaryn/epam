@@ -47,6 +47,17 @@
                 </restriction>
             </simpleType>
         </attribute>
+<!--        <attribute name="id">-->
+<!--            <simpleType>-->
+<!--                <restriction base="int">-->
+<!--                    &lt;!&ndash;                <restriction base="ID">&ndash;&gt;-->
+<!--                    &lt;!&ndash;                    <pattern value="[\w-]+"></pattern>&ndash;&gt;-->
+<!--                    <minInclusive value="0"/>-->
+<!--                    <maxInclusive value="999999999"/>-->
+<!--                </restriction>-->
+<!--            </simpleType>-->
+<!--        </attribute>-->
+
     </complexType>
     <complexType name="Delivery_inf">
         <all>

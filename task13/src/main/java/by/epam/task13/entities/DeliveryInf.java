@@ -17,7 +17,19 @@ public class DeliveryInf {
         this.email = email;
     }
 
+    public static DeliveryInf.Builder builder(){
+        return new DeliveryInf.Builder();
+    }
+
     public DeliveryInf() {
+    }
+
+    private DeliveryInf(Builder builder) {
+        setDeliveryTime(builder.deliveryTime);
+        setClientName(builder.clientName);
+        setAddress(builder.address);
+        setPhone(builder.phone);
+        setEmail(builder.email);
     }
 
     public LocalDateTime getDeliveryTime() {
@@ -93,5 +105,45 @@ public class DeliveryInf {
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
                 '}';
+    }
+
+    public static final class Builder {
+        private LocalDateTime deliveryTime;
+        private String clientName;
+        private String address;
+        private String phone;
+        private String email;
+
+        public Builder() {
+        }
+
+        public Builder deliveryTime(LocalDateTime val) {
+            deliveryTime = val;
+            return this;
+        }
+
+        public Builder clientName(String val) {
+            clientName = val;
+            return this;
+        }
+
+        public Builder address(String val) {
+            address = val;
+            return this;
+        }
+
+        public Builder phone(String val) {
+            phone = val;
+            return this;
+        }
+
+        public Builder email(String val) {
+            email = val;
+            return this;
+        }
+
+        public DeliveryInf build() {
+            return new DeliveryInf(this);
+        }
     }
 }

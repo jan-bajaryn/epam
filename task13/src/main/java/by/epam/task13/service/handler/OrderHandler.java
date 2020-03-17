@@ -26,12 +26,12 @@ public class OrderHandler extends DefaultHandler {
     private EnumSet<OrderEnum> withText;
 
     private List<Order> orders;
-    private Order current = null;
+    private Order.Builder current;
 
-    private Product curProd;
+    private Product.Builder curProd;
     private List<Product> products;
 
-    private DeliveryInf deliveryInf;
+    private DeliveryInf.Builder deliveryInf;
 
     private List<String> ingredients;
 
@@ -49,12 +49,13 @@ public class OrderHandler extends DefaultHandler {
     public void startElement(String uri, String localName, String qName, Attributes attrs) {
 
         if (OrderEnum.ORDER.getValue().equals(localName)) {
-            current = new Order();
-            current.setId(Integer.valueOf(attrs.getValue(0)));
+//            current = new Order();
+            current = Order.builder();
+            current.id(Integer.valueOf(attrs.getValue(0)));
         } else if (OrderEnum.PRODUCT.getValue().equals(localName)) {
-            curProd = new Product();
+            curProd = Product.builder();
         } else if (OrderEnum.DELIVERY_INF.getValue().equals(localName)) {
-            deliveryInf = new DeliveryInf();
+            deliveryInf = DeliveryInf.builder();
         }
 //        else if (OrderEnum.PRODUCTS.getValue().equals(localName)){
 //            products = new ArrayList<>();
@@ -71,17 +72,17 @@ public class OrderHandler extends DefaultHandler {
 
     public void endElement(String uri, String localName, String qName) {
         if (OrderEnum.ORDER.getValue().equals(localName)) {
-            orders.add(current);
+            orders.add(current.build());
             clearData();
         } else if (OrderEnum.PRODUCT.getValue().equals(localName)) {
-            products.add(curProd);
+            products.add(curProd.build());
             clearIngredients();
         } else if (OrderEnum.PRODUCTS.getValue().equals(localName)) {
-            current.setProducts(products);
+            current.products(products);
         } else if (OrderEnum.DELIVERY_INF.getValue().equals(localName)) {
-            current.setDeliveryInf(deliveryInf);
+            current.deliveryInf(deliveryInf.build());
         } else if (OrderEnum.INGREDIENTS.getValue().equals(localName)) {
-            curProd.setIngredients(ingredients);
+            curProd.ingredients(ingredients);
             clearIngredients();
         }
     }
@@ -102,49 +103,49 @@ public class OrderHandler extends DefaultHandler {
         if (currentEnum != null) {
             switch (currentEnum) {
                 case NAME:
-                    curProd.setName(s);
+                    curProd.name(s);
                     break;
                 case DESCRIPTION:
-                    curProd.setDescription(s);
+                    curProd.description(s);
                     break;
                 case PHOTO_NAME:
-                    curProd.setPhotoName(s);
+                    curProd.photoName(s);
                     break;
                 case PRICE:
-                    curProd.setPrice(Integer.valueOf(s));
+                    curProd.price(Integer.valueOf(s));
                     break;
                 case PRODUCT_TYPE:
-                    curProd.setType(ProductType.valueOf(s.toUpperCase()));
+                    curProd.type(ProductType.valueOf(s.toUpperCase()));
                     break;
                 case PRODUCT_SIZE:
-                    curProd.setSize(ProductSize.valueOf(s.toUpperCase()));
+                    curProd.size(ProductSize.valueOf(s.toUpperCase()));
                     break;
                 case EMAIL:
-                    deliveryInf.setEmail(s);
+                    deliveryInf.email(s);
                     break;
                 case PHONE:
-                    deliveryInf.setPhone(s);
+                    deliveryInf.phone(s);
                     break;
                 case ADDRESS:
-                    deliveryInf.setAddress(s);
+                    deliveryInf.address(s);
                     break;
                 case CLIENT_NAME:
-                    deliveryInf.setClientName(s);
+                    deliveryInf.clientName(s);
                     break;
                 case DELIVERY_TIME:
-                    deliveryInf.setDeliveryTime(LocalDateTime.parse(s));
+                    deliveryInf.deliveryTime(LocalDateTime.parse(s));
                     break;
                 case CREATION:
-                    current.setCreation(LocalDateTime.parse(s));
+                    current.creation(LocalDateTime.parse(s));
                     break;
                 case TOTAL_PRICE:
-                    current.setPrice(Integer.valueOf(s));
+                    current.price(Integer.valueOf(s));
                     break;
                 case STATUS:
-                    current.setStatus(OrderStatus.valueOf(s.toUpperCase()));
+                    current.status(OrderStatus.valueOf(s.toUpperCase()));
                     break;
                 case PAYMENT_TYPE:
-                    current.setPaymentType(PaymentType.values()[Integer.parseInt(s)]);
+                    current.paymentType(PaymentType.values()[Integer.parseInt(s)]);
                     break;
                 case INGREDIENT:
                     ingredients.add(s);

@@ -13,6 +13,7 @@ public class OrdersStAXBuilderTest {
     public void testBuildListOrders() {
         OrdersStAXBuilder ordersStAxBuilder = new OrdersStAXBuilder();
         ordersStAxBuilder.buildListOrders("src/main/resources/orders.xml");
-        log.info("ordersStAxBuilder.getOrders() = {}", ordersStAxBuilder.getOrders());
+//        log.info("ordersStAxBuilder.getOrders() = {}", ordersStAxBuilder.getOrders());
+        System.out.println(ordersStAxBuilder.getOrders());
     }
 }

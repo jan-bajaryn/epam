@@ -1,14 +1,5 @@
 package by.epam.task13.service.impl;
 
-import java.io.IOException;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-
 import by.epam.task13.entities.DeliveryInf;
 import by.epam.task13.entities.Order;
 import by.epam.task13.entities.Product;
@@ -16,7 +7,6 @@ import by.epam.task13.entities.enums.OrderStatus;
 import by.epam.task13.entities.enums.PaymentType;
 import by.epam.task13.entities.enums.ProductSize;
 import by.epam.task13.entities.enums.ProductType;
-import by.epam.task13.service.OrderEnum;
 import by.epam.task13.service.OrdersBuilder;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -25,6 +15,14 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import static by.epam.task13.service.OrderEnum.*;
 
@@ -70,18 +68,16 @@ public class OrdersDomBuilder implements OrdersBuilder {
     }
 
     private Order buildOrder(Element el) {
-        Order order = new Order();
-// заполнение объекта student
+        return Order.builder()
+                .id(Integer.valueOf(el.getAttribute("id")))
+                .creation(LocalDateTime.parse(getElementTextContent(el, CREATION.getValue())))
+                .price(Integer.valueOf(getElementTextContent(el, TOTAL_PRICE.getValue())))
+                .status(OrderStatus.valueOf(getElementTextContent(el, STATUS.getValue()).toUpperCase()))
+                .paymentType(PaymentType.values()[Integer.parseInt(getElementTextContent(el, PAYMENT_TYPE.getValue()))])
 
-        order.setId(Integer.valueOf(el.getAttribute("id")));
-        order.setCreation(LocalDateTime.parse(getElementTextContent(el, CREATION.getValue())));
-        order.setPrice(Integer.valueOf(getElementTextContent(el, TOTAL_PRICE.getValue())));
-        order.setStatus(OrderStatus.valueOf(getElementTextContent(el, STATUS.getValue()).toUpperCase()));
-        order.setPaymentType(PaymentType.values()[Integer.parseInt(getElementTextContent(el, PAYMENT_TYPE.getValue()))]);
-
-        order.setDeliveryInf(buildDeliveryInf(((Element) el.getElementsByTagName(DELIVERY_INF.getValue()).item(0))));
-        order.setProducts(buildProducts(el.getElementsByTagName(PRODUCT.getValue())));
-        return order;
+                .deliveryInf(buildDeliveryInf(((Element) el.getElementsByTagName(DELIVERY_INF.getValue()).item(0))))
+                .products(buildProducts(el.getElementsByTagName(PRODUCT.getValue())))
+                .build();
     }
 
     private List<Product> buildProducts(NodeList list) {
@@ -96,15 +92,16 @@ public class OrdersDomBuilder implements OrdersBuilder {
 
     private Product buildProduct(Element item) {
         Product product = new Product();
-        product.setName(getElementTextContent(item, NAME.getValue()));
-        product.setDescription(getElementTextContent(item, DESCRIPTION.getValue()));
-        product.setPhotoName(getElementTextContent(item, PHOTO_NAME.getValue()));
-        product.setPrice(Integer.valueOf(getElementTextContent(item, PRICE.getValue())));
-        product.setType(ProductType.valueOf(getElementTextContent(item, PRODUCT_TYPE.getValue()).toUpperCase()));
-        product.setSize(ProductSize.valueOf(getElementTextContent(item, PRODUCT_SIZE.getValue()).toUpperCase()));
 
-        product.setIngredients(buildIngredients(item.getElementsByTagName(INGREDIENT.getValue())));
-        return product;
+        return Product.builder()
+                .name(getElementTextContent(item, NAME.getValue()))
+                .description(getElementTextContent(item, DESCRIPTION.getValue()))
+                .photoName(getElementTextContent(item, PHOTO_NAME.getValue()))
+                .price(Integer.valueOf(getElementTextContent(item, PRICE.getValue())))
+                .type(ProductType.valueOf(getElementTextContent(item, PRODUCT_TYPE.getValue()).toUpperCase()))
+                .size(ProductSize.valueOf(getElementTextContent(item, PRODUCT_SIZE.getValue()).toUpperCase()))
+
+                .ingredients(buildIngredients(item.getElementsByTagName(INGREDIENT.getValue()))).build();
     }
 
     private List<String> buildIngredients(NodeList list) {
@@ -119,13 +116,12 @@ public class OrdersDomBuilder implements OrdersBuilder {
         if (item == null) {
             return null;
         }
-        DeliveryInf deliveryInf = new DeliveryInf();
-        deliveryInf.setDeliveryTime(LocalDateTime.parse(getElementTextContent(item, DELIVERY_TIME.getValue())));
-        deliveryInf.setClientName(getElementTextContent(item, CLIENT_NAME.getValue()));
-        deliveryInf.setAddress(getElementTextContent(item, ADDRESS.getValue()));
-        deliveryInf.setPhone(getElementTextContent(item, PHONE.getValue()));
-        deliveryInf.setEmail(getIfPresent(item, EMAIL.getValue()));
-        return deliveryInf;
+        return DeliveryInf.builder()
+                .deliveryTime(LocalDateTime.parse(getElementTextContent(item, DELIVERY_TIME.getValue())))
+                .clientName(getElementTextContent(item, CLIENT_NAME.getValue()))
+                .address(getElementTextContent(item, ADDRESS.getValue()))
+                .phone(getElementTextContent(item, PHONE.getValue()))
+                .email(getIfPresent(item, EMAIL.getValue())).build();
     }
 
     private String getIfPresent(Element item, String value) {

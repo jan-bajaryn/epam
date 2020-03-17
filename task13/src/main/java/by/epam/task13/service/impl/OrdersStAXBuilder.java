@@ -77,8 +77,8 @@ public class OrdersStAXBuilder implements OrdersBuilder {
     }
 
     private Order buildOrder(XMLStreamReader reader) throws XMLStreamException {
-        Order or = new Order();
-        or.setId(Integer.valueOf(reader.getAttributeValue(null, "id")));
+        Order.Builder builder = Order.builder();
+        builder.id(Integer.valueOf(reader.getAttributeValue(null, "id")));
         String name;
         while (reader.hasNext()) {
             int type = reader.next();
@@ -87,34 +87,29 @@ public class OrdersStAXBuilder implements OrdersBuilder {
                     name = reader.getLocalName();
                     switch (valueOf(name.toUpperCase())) {
                         case CREATION:
-                            or.setCreation(LocalDateTime.parse(getXMLText(reader)));
+                            builder.creation(LocalDateTime.parse(getXMLText(reader)));
                             break;
                         case TOTAL_PRICE:
-                            or.setPrice(Integer.valueOf(getXMLText(reader)));
+                            builder.price(Integer.valueOf(getXMLText(reader)));
                             break;
                         case STATUS:
-                            or.setStatus(OrderStatus.valueOf(getXMLText(reader).toUpperCase()));
+                            builder.status(OrderStatus.valueOf(getXMLText(reader).toUpperCase()));
                             break;
                         case PAYMENT_TYPE:
-                            or.setPaymentType(PaymentType.values()[Integer.parseInt(getXMLText(reader))]);
+                            builder.paymentType(PaymentType.values()[Integer.parseInt(getXMLText(reader))]);
                             break;
                         case DELIVERY_INF:
-                            or.setDeliveryInf(buildDeliveryInf(reader));
+                            builder.deliveryInf(buildDeliveryInf(reader));
                             break;
                         case PRODUCTS:
-                            or.setProducts(buildProducts(reader));
+                            builder.products(buildProducts(reader));
                             break;
                     }
                     break;
                 case XMLStreamConstants.END_ELEMENT:
                     name = reader.getLocalName();
                     if (valueOf(name.toUpperCase()) == ORDER) {
-
-                        if (or.getProducts() == null) {
-                            or.setProducts(new ArrayList<>());
-                        }
-
-                        return or;
+                        return builder.build();
                     }
                     break;
             }
@@ -147,7 +142,7 @@ public class OrdersStAXBuilder implements OrdersBuilder {
     }
 
     private Product buildSingleProduct(XMLStreamReader reader) throws XMLStreamException {
-        Product product = new Product();
+        Product.Builder builder = Product.builder();
 
         int type;
         String name;
@@ -158,35 +153,32 @@ public class OrdersStAXBuilder implements OrdersBuilder {
                     name = reader.getLocalName();
                     switch (valueOf(name.toUpperCase())) {
                         case NAME:
-                            product.setName(getXMLText(reader));
+                            builder.name(getXMLText(reader));
                             break;
                         case DESCRIPTION:
-                            product.setDescription(getXMLText(reader));
+                            builder.description(getXMLText(reader));
                             break;
                         case PHOTO_NAME:
-                            product.setPhotoName(getXMLText(reader));
+                            builder.photoName(getXMLText(reader));
                             break;
                         case PRICE:
-                            product.setPrice(Integer.valueOf(getXMLText(reader)));
+                            builder.price(Integer.valueOf(getXMLText(reader)));
                             break;
                         case PRODUCT_TYPE:
-                            product.setType(ProductType.valueOf(getXMLText(reader).toUpperCase()));
+                            builder.type(ProductType.valueOf(getXMLText(reader).toUpperCase()));
                             break;
                         case PRODUCT_SIZE:
-                            product.setSize(ProductSize.valueOf(getXMLText(reader).toUpperCase()));
+                            builder.size(ProductSize.valueOf(getXMLText(reader).toUpperCase()));
                             break;
                         case INGREDIENTS:
-                            product.setIngredients(buildIngredients(reader));
+                            builder.ingredients(buildIngredients(reader));
                             break;
                     }
                     break;
                 case XMLStreamConstants.END_ELEMENT:
                     name = reader.getLocalName();
                     if (valueOf(name.toUpperCase()) == PRODUCT) {
-                        if (product.getIngredients() == null) {
-                            product.setIngredients(new ArrayList<>());
-                        }
-                        return product;
+                        return builder.build();
                     }
                     break;
             }
@@ -221,7 +213,7 @@ public class OrdersStAXBuilder implements OrdersBuilder {
     }
 
     private DeliveryInf buildDeliveryInf(XMLStreamReader reader) throws XMLStreamException {
-        DeliveryInf di = new DeliveryInf();
+        DeliveryInf.Builder builder = DeliveryInf.builder();
 
         int type;
         String name;
@@ -232,26 +224,26 @@ public class OrdersStAXBuilder implements OrdersBuilder {
                     name = reader.getLocalName();
                     switch (valueOf(name.toUpperCase())) {
                         case DELIVERY_TIME:
-                            di.setDeliveryTime(LocalDateTime.parse(getXMLText(reader)));
+                            builder.deliveryTime(LocalDateTime.parse(getXMLText(reader)));
                             break;
                         case CLIENT_NAME:
-                            di.setClientName(getXMLText(reader));
+                            builder.clientName(getXMLText(reader));
                             break;
                         case ADDRESS:
-                            di.setAddress(getXMLText(reader));
+                            builder.address(getXMLText(reader));
                             break;
                         case PHONE:
-                            di.setPhone(getXMLText(reader));
+                            builder.phone(getXMLText(reader));
                             break;
                         case EMAIL:
-                            di.setEmail(getXMLText(reader));
+                            builder.email(getXMLText(reader));
                             break;
                     }
                     break;
                 case XMLStreamConstants.END_ELEMENT:
                     name = reader.getLocalName();
                     if (valueOf(name.toUpperCase()) == DELIVERY_INF) {
-                        return di;
+                        return builder.build();
                     }
                     break;
             }
