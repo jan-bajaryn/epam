@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 
 public class Controller {
 
-    public static Locale locale = new Locale("RU", "ru");
+    public static Locale locale = new Locale("en", "US");
 
     private UserCommandReader userCommandReader = new UserCommandReader();
 
@@ -34,8 +34,8 @@ public class Controller {
         comunCommands.put("parse", new ParseXmlComun());
         commandMap.put("parse", new ParseXmlCommand());
 
-        Map<String, String> commandsDefinitions = commandMap.entrySet().stream()
-                .collect(Collectors.toMap(Map.Entry::getKey, c -> c.getValue().definition()));
+        Map<String, ExecCommand> commandsDefinitions = commandMap.entrySet().stream()
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
         Response response = new Response();
         Request request = new Request();
 

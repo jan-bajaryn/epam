@@ -1,9 +1,12 @@
 package by.epam.task13.view;
 
+import by.epam.task13.consolecontroller.controller.Controller;
+import by.epam.task13.consolecontroller.controller.command.ExecCommand;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.Map;
+import java.util.ResourceBundle;
 import java.util.Scanner;
 
 public class UserCommandReader {
@@ -12,13 +15,15 @@ public class UserCommandReader {
     private Scanner sc = new Scanner(System.in);
 
 
-    public String printUserInterface(Map<String, String> commandsDefinitions) {
+    public String printUserInterface(Map<String, ExecCommand> commandsDefinitions) {
 
         log.info("commandDefinition.size = {}", commandsDefinitions.size());
 
-        System.out.println("Please enter what to do.");
-        for (Map.Entry<String, String> stringStringEntry : commandsDefinitions.entrySet()) {
-            System.out.println(stringStringEntry.getValue() + " --> " + stringStringEntry.getKey());
+
+        ResourceBundle rb = ResourceBundle.getBundle("property.text", Controller.locale);
+        System.out.println(rb.getString("consoleinput.whattodo"));
+        for (Map.Entry<String, ExecCommand> stringStringEntry : commandsDefinitions.entrySet()) {
+            System.out.println(stringStringEntry.getValue().definition() + " --> " + stringStringEntry.getKey());
         }
         return sc.nextLine();
     }

@@ -35,7 +35,8 @@ public class ParseXmlCommand implements ExecCommand {
         }
 
         try {
-            List<Order> orders = chooseAndExecute(request.getFileNameMatrix(), request.getMethod());
+            List<Order> orders = chooseAndExecute(request.getMethod(), request.getFileNameMatrix());
+
             response.setDisplayInformation(orders.toString());
         } catch (Exception e) {
             response.setDisplayInformation(rb.getString("consoleinput.illegalinput"));
