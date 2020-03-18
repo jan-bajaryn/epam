@@ -110,14 +110,14 @@ public class Order {
     @Override
     public String toString() {
         return "Order{" +
-                "id='" + id + '\'' +
-                ", creation=" + creation +
-                ", price=" + price +
-                ", status=" + status +
-                ", paymentType=" + paymentType +
-                ", deliveryInf=" + deliveryInf +
-                ", products=" + products +
-                '}';
+                "id='" + id + '\'' +"\n"+
+                ", creation=" + creation +"\n"+
+                ", price=" + price +"\n"+
+                ", status=" + status +"\n"+
+                ", paymentType=" + paymentType +"\n"+
+                ", deliveryInf=" + deliveryInf +"\n"+
+                ", products=" + products +"\n"+
+                '}'+"\n";
     }
 
     @Override

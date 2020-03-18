@@ -1,4 +1,4 @@
-package by.epam.task13.controller.console;
+package by.epam.task13.controller;
 
 import by.epam.task13.entities.Order;
 import by.epam.task13.service.OrdersBuilder;

@@ -143,16 +143,16 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", photoName='" + photoName + '\'' +
-                ", price=" + price +
-                ", type=" + type +
-                ", size=" + size +
-                ", ingredients=" + ingredients +
-                '}';
+        return "Product{" + "\n" +
+                "id=" + id + "\n" +
+                ", name='" + name + '\'' + "\n" +
+                ", description='" + description + '\'' + "\n" +
+                ", photoName='" + photoName + '\'' + "\n" +
+                ", price=" + price + "\n" +
+                ", type=" + type + "\n" +
+                ", size=" + size + "\n" +
+                ", ingredients=" + ingredients + "\n" +
+                '}' + "\n";
     }
 
     public Long getId() {

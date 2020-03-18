@@ -17,7 +17,7 @@ public class DeliveryInf {
         this.email = email;
     }
 
-    public static DeliveryInf.Builder builder(){
+    public static DeliveryInf.Builder builder() {
         return new DeliveryInf.Builder();
     }
 
@@ -98,13 +98,13 @@ public class DeliveryInf {
 
     @Override
     public String toString() {
-        return "DeliveryInf{" +
-                "deliveryTime=" + deliveryTime +
-                ", clientName='" + clientName + '\'' +
-                ", address='" + address + '\'' +
-                ", phone='" + phone + '\'' +
-                ", email='" + email + '\'' +
-                '}';
+        return "DeliveryInf{" + "\n" +
+                "deliveryTime=" + deliveryTime + "\n" +
+                ", clientName='" + clientName + '\'' + "\n" +
+                ", address='" + address + '\'' + "\n" +
+                ", phone='" + phone + '\'' + "\n" +
+                ", email='" + email + '\'' + "\n" +
+                '}' + "\n";
     }
 
     public static final class Builder {
