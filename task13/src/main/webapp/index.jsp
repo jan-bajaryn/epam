@@ -11,8 +11,19 @@
 <body>
 <div>
 
-    <fmt:setLocale value="ru_RU"/>
+<%--    <c:if test="${loc!=null}">--%>
+<%--        <c:if test="${loc.equals('en')}">--%>
+<%--            <fmt:setLocale value="en_US" scope="session"/>--%>
+<%--        </c:if>--%>
+<%--        <c:if test="${loc.equals('ru')}">--%>
+<%--            <fmt:setLocale value="ru_RU" scope="session"/>--%>
+<%--        </c:if>--%>
+<%--    </c:if>--%>
+
     <fmt:setBundle basename="property.text" var="rb"/>
+    <div>
+        <a href="<c:url value="/index_page"/>">Change language</a>
+    </div>
 
     <c:if test="${failed!=null && failed==true}">
         <div class="red">
