@@ -11,15 +11,6 @@
 <body>
 <div>
 
-<%--    <c:if test="${loc!=null}">--%>
-<%--        <c:if test="${loc.equals('en')}">--%>
-<%--            <fmt:setLocale value="en_US" scope="session"/>--%>
-<%--        </c:if>--%>
-<%--        <c:if test="${loc.equals('ru')}">--%>
-<%--            <fmt:setLocale value="ru_RU" scope="session"/>--%>
-<%--        </c:if>--%>
-<%--    </c:if>--%>
-
     <fmt:setBundle basename="property.text" var="rb"/>
     <div>
         <a href="<c:url value="/index_page"/>">Change language</a>
@@ -52,22 +43,16 @@
         <br>
         <label>
             <input type="file" name="data" accept="application/xml">
+            <br>
+            <fmt:message key="button.choosefile" bundle="${ rb }"/>
         </label>
         <br>
         <button disabled type="submit">
-            <%--            Submit--%>
             <fmt:message key="button.submit" bundle="${ rb }"/>
         </button>
     </form>
 </div>
 <script src="js/index.js"></script>
-
-<%--<form action="${pageContext.request.contextPath}/test" method="post"--%>
-<%--      enctype="multipart/form-data">--%>
-<%--    <input type="file" name="data" accept="application/xml">--%>
-<%--    <input type="submit" value="abc">--%>
-<%--</form>--%>
-
 
 </body>
 </html>

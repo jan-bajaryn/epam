@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 
 <!doctype html>
@@ -15,20 +16,37 @@
 </head>
 <body>
 
+<fmt:setBundle basename="property.text" var="rb"/>
+
 <header class="mb-5">
-    <h1>Orders</h1>
+    <h1>
+        <fmt:message key="web.text.orders" bundle="${ rb }"/>
+    </h1>
 </header>
 
 <table class="table table-bordered">
     <thead>
     <tr>
         <th>id</th>
-        <th>creation</th>
-        <th>price</th>
-        <th>status</th>
-        <th>payment type</th>
-        <th>delivery information</th>
-        <th>ptoducts</th>
+        <th>
+            <fmt:message key="web.text.creation" bundle="${ rb }"/>
+        </th>
+        <th>
+            <fmt:message key="web.text.price" bundle="${ rb }"/>
+        </th>
+        <th>
+
+            <fmt:message key="web.text.status" bundle="${ rb }"/>
+        </th>
+        <th>
+            <fmt:message key="web.text.paymenttype" bundle="${ rb }"/>
+        </th>
+        <th>
+            <fmt:message key="web.text.information" bundle="${ rb }"/>
+        </th>
+        <th>
+            <fmt:message key="web.text.ptoducts" bundle="${ rb }"/>
+        </th>
     </tr>
     </thead>
     <tbody>
@@ -44,11 +62,11 @@
                     <table class="table table-bordered">
                         <thead>
                         <tr>
-                            <th>deliveryTime</th>
-                            <th>clientName</th>
-                            <th>address</th>
-                            <th>phone</th>
-                            <th>email</th>
+                            <fmt:message key="web.text.deliveryTime" bundle="${ rb }"/>
+                            <fmt:message key="web.text.clientName" bundle="${ rb }"/>
+                            <fmt:message key="web.text.address" bundle="${ rb }"/>
+                            <fmt:message key="web.text.phone" bundle="${ rb }"/>
+                            <fmt:message key="web.text.email" bundle="${ rb }"/>
                         </tr>
                         </thead>
                         <tbody>
@@ -68,13 +86,13 @@
                     <table class="table table-bordered">
                         <thead>
                         <tr>
-                            <th>name</th>
-                            <th>description</th>
-                            <th>photoName</th>
-                            <th>price</th>
-                            <th>type</th>
-                            <th>size</th>
-                            <th>ingredients</th>
+                            <th><fmt:message key="web.text.name" bundle="${ rb }"/></th>
+                            <th><fmt:message key="web.text.description" bundle="${ rb }"/></th>
+                            <th><fmt:message key="web.text.photoName" bundle="${ rb }"/></th>
+                            <th><fmt:message key="web.text.sprice" bundle="${ rb }"/></th>
+                            <th><fmt:message key="web.text.type" bundle="${ rb }"/></th>
+                            <th><fmt:message key="web.text.size" bundle="${ rb }"/></th>
+                            <th><fmt:message key="web.text.ingredients" bundle="${ rb }"/></th>
                         </tr>
                         </thead>
                         <tbody>
