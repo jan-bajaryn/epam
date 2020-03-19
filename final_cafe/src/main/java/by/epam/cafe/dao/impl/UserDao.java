@@ -5,16 +5,15 @@ import by.epam.cafe.entity.impl.User;
 
 import java.sql.*;
 import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.List;
 
-public class UserDao implements AbstractDao<Long, User> {
+public class UserDao extends AbstractDao<Long, User> {
+
+    public static final ZoneId DEFAULT_ZONE = ZoneId.systemDefault();
 
     public static final String FIND_ALL_SQL = "SELECT " +
             "id, username, password, role, name, surname," +
             " birth_date, creation, address, phone FROM user;";
 
-    public static final ZoneId DEFAULT_ZONE = ZoneId.systemDefault();
 
     public static final String FIND_ENTITY_BY_ID_SQL = "SELECT " +
             "id, username, password, role, name, surname," +
@@ -33,28 +32,11 @@ public class UserDao implements AbstractDao<Long, User> {
             "WHERE id = ?;";
 
 
-    private Connection cn;
-
     public UserDao(Connection cn) {
-        this.cn = cn;
+        super(cn, FIND_ALL_SQL, FIND_ENTITY_BY_ID_SQL, DELETE_BY_ID_SQL, CREATE_SQL, UPDATE_SQL);
     }
 
-    @Override
-    public List<User> findAll() {
-        List<User> users = new ArrayList<>();
-        try (Statement statement = cn.createStatement()) {
-            ResultSet resultSet = statement.executeQuery(FIND_ALL_SQL);
-            while (resultSet.next()) {
-                User user = findUser(resultSet);
-                users.add(user);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return users;
-    }
-
-    private User findUser(ResultSet resultSet) throws SQLException {
+    protected User findEntity(ResultSet resultSet) throws SQLException {
         return new User(
                 resultSet.getLong(1),
                 resultSet.getString(2),
@@ -69,56 +51,7 @@ public class UserDao implements AbstractDao<Long, User> {
         );
     }
 
-    @Override
-    public User findEntityById(Long id) {
-        User user = null;
-        try (Statement statement = cn.createStatement()) {
-            ResultSet resultSet = statement.executeQuery(FIND_ENTITY_BY_ID_SQL + id.toString() + ";");
-            if (resultSet.next()) {
-                user = findUser(resultSet);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return user;
-    }
-
-    @Override
-    public boolean delete(Long id) {
-        try (Statement statement = cn.createStatement()) {
-            return statement.execute(DELETE_BY_ID_SQL
-                    + id.toString());
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
-
-    @Override
-    public boolean delete(User entity) {
-        try (Statement statement = cn.createStatement()) {
-            return statement.execute(DELETE_BY_ID_SQL
-                    + entity.getId());
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
-
-    @Override
-    public boolean create(User entity) {
-        try (PreparedStatement statement =
-                     cn.prepareStatement(CREATE_SQL)) {
-
-            createParams(entity, statement);
-            return statement.execute();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
-
-    private void createParams(User entity, PreparedStatement statement) throws SQLException {
+    protected void createParams(User entity, PreparedStatement statement) throws SQLException {
         statement.setString(1, entity.getUsername());
         statement.setString(2, entity.getPassword());
         statement.setInt(3, entity.getRole());
@@ -131,25 +64,7 @@ public class UserDao implements AbstractDao<Long, User> {
     }
 
 
-    // TODO ask question about what I must return in that method
-    @Override
-    public User update(User entity) {
-        try (PreparedStatement statement =
-                     cn.prepareStatement(UPDATE_SQL)) {
-
-            updateParams(entity, statement);
-            if (statement.execute()) {
-                return entity;
-            } else {
-                return null;
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    private void updateParams(User entity, PreparedStatement statement) throws SQLException {
+    protected void updateParams(User entity, PreparedStatement statement) throws SQLException {
         statement.setString(1, entity.getUsername());
         statement.setString(2, entity.getPassword());
         statement.setInt(3, entity.getRole());

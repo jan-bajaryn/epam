@@ -1,4 +1,4 @@
-package by.epam.cafe.entity.impl;
+package by.epam.cafe.entity.enums;
 
 public class ProductType {
     private Integer id;

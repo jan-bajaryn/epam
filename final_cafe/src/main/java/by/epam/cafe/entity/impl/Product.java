@@ -1,9 +1,9 @@
 package by.epam.cafe.entity.impl;
 
 import by.epam.cafe.entity.Entity;
+import by.epam.cafe.entity.enums.ProductType;
 
-public class Product implements Entity {
-    private Long id;
+public class Product extends Entity<Long> {
     private String name;
     private String description;
     private String photoName;
@@ -15,7 +15,7 @@ public class Product implements Entity {
     }
 
     public Product(Long id, String name, String description, String photoName, Integer price, ProductType productType, Integer productSize) {
-        this.id = id;
+        super(id);
         this.name = name;
         this.description = description;
         this.photoName = photoName;
@@ -24,13 +24,6 @@ public class Product implements Entity {
         this.productSize = productSize;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -87,7 +80,7 @@ public class Product implements Entity {
 
         Product product = (Product) o;
 
-        if (id != null ? !id.equals(product.id) : product.id != null) return false;
+        if (getId() != null ? !getId().equals(product.getId()) : product.getId() != null) return false;
         if (name != null ? !name.equals(product.name) : product.name != null) return false;
         if (description != null ? !description.equals(product.description) : product.description != null) return false;
         if (photoName != null ? !photoName.equals(product.photoName) : product.photoName != null) return false;
@@ -98,7 +91,7 @@ public class Product implements Entity {
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
+        int result = getId() != null ? getId().hashCode() : 0;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + (photoName != null ? photoName.hashCode() : 0);
@@ -111,7 +104,7 @@ public class Product implements Entity {
     @Override
     public String toString() {
         return "Product{" +
-                "id=" + id +
+                "id=" + getId() +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", photoName='" + photoName + '\'' +

@@ -4,8 +4,8 @@ import by.epam.cafe.entity.Entity;
 
 import java.time.LocalDateTime;
 
-public class Order implements Entity {
-    private Long id;
+public class Order extends Entity<Long> {
+    //    private Long id;
     private LocalDateTime creation;
     private Integer price;
     private Integer status;
@@ -15,19 +15,12 @@ public class Order implements Entity {
     }
 
     public Order(Long id, LocalDateTime creation, Integer price, Integer status, Integer paymentType) {
-        this.id = id;
+        super(id);
+//        this.id = id;
         this.creation = creation;
         this.price = price;
         this.status = status;
         this.paymentType = paymentType;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public LocalDateTime getCreation() {
@@ -69,7 +62,7 @@ public class Order implements Entity {
 
         Order order = (Order) o;
 
-        if (id != null ? !id.equals(order.id) : order.id != null) return false;
+        if (getId() != null ? !getId().equals(order.getId()) : order.getId() != null) return false;
         if (creation != null ? !creation.equals(order.creation) : order.creation != null) return false;
         if (price != null ? !price.equals(order.price) : order.price != null) return false;
         if (status != null ? !status.equals(order.status) : order.status != null) return false;
@@ -78,7 +71,7 @@ public class Order implements Entity {
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
+        int result = getId() != null ? getId().hashCode() : 0;
         result = 31 * result + (creation != null ? creation.hashCode() : 0);
         result = 31 * result + (price != null ? price.hashCode() : 0);
         result = 31 * result + (status != null ? status.hashCode() : 0);
@@ -89,7 +82,7 @@ public class Order implements Entity {
     @Override
     public String toString() {
         return "Order{" +
-                "id=" + id +
+                "id=" + getId() +
                 ", creation=" + creation +
                 ", price=" + price +
                 ", status=" + status +

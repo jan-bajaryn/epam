@@ -5,8 +5,7 @@ import by.epam.cafe.entity.Entity;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-public class User implements Entity {
-    private Long id;
+public class User extends Entity<Long> {
     private String username;
     private String password;
     private Integer role;
@@ -30,7 +29,7 @@ public class User implements Entity {
                 LocalDateTime creation,
                 String address,
                 String phone) {
-        this.id = id;
+        super(id);
         this.username = username;
         this.password = password;
         this.role = role;
@@ -40,14 +39,6 @@ public class User implements Entity {
         this.creation = creation;
         this.address = address;
         this.phone = phone;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getUsername() {
@@ -129,7 +120,7 @@ public class User implements Entity {
 
         User user = (User) o;
 
-        if (id != null ? !id.equals(user.id) : user.id != null) return false;
+        if (getId() != null ? !getId().equals(user.getId()) : user.getId() != null) return false;
         if (username != null ? !username.equals(user.username) : user.username != null) return false;
         if (password != null ? !password.equals(user.password) : user.password != null) return false;
         if (role != null ? !role.equals(user.role) : user.role != null) return false;
@@ -143,7 +134,7 @@ public class User implements Entity {
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
+        int result = getId() != null ? getId().hashCode() : 0;
         result = 31 * result + (username != null ? username.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (role != null ? role.hashCode() : 0);
@@ -159,7 +150,7 @@ public class User implements Entity {
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
+                "id=" + getId() +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", role=" + role +
