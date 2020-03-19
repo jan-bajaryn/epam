@@ -16,13 +16,13 @@ import java.io.IOException;
 public class OrdersValidator {
 
     private static final Logger log = LogManager.getLogger(OrdersValidator.class);
+    private static final String PATH = "D:\\Programming\\epam\\epam\\task13\\src\\main\\resources\\orders.xsd";
 
 
     public boolean isValid(String path) {
         String language = XMLConstants.W3C_XML_SCHEMA_NS_URI;
-        String schemaName = "D:\\Programming\\epam\\epam\\task13\\src\\main\\resources\\orders.xsd";
         SchemaFactory factory = SchemaFactory.newInstance(language);
-        File schemaLocation = new File(schemaName);
+        File schemaLocation = new File(PATH);
         try {
             Schema schema = factory.newSchema(schemaLocation);
             Validator validator = schema.newValidator();
