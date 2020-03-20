@@ -1,0 +1,19 @@
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    justify-content: space-between;
+}
+
+header {
+    padding-top: 150px;
+    margin-bottom: 50px;
+}
+
+main {
+    max-width: 600px !important;
+}
+
+.create__data > form > * {
+    margin-bottom: 20px;
+}

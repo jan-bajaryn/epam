@@ -1,0 +1,128 @@
+@import url("../nav__bar.css");
+@import "../footer.css";
+@import "../buttons.css";
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.title-container {
+    margin-left: 40px;
+    margin-top: 50px;
+    padding-top: 50px;
+    margin-bottom: 50px;
+    font-size: 36px;
+    font-variant: small-caps;
+}
+
+.data__input {
+    display: grid;
+    grid-template-columns: auto auto;
+    max-width: 750px;
+}
+
+main {
+    margin-bottom: 150px;
+}
+
+.data__input__label {
+    color: #4f4e4e;
+    font-size: 16px;
+    padding: 8px;
+    margin: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.data__input__place {
+    padding: 8px;
+    margin: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.log__out button {
+    margin-left: 13px;
+}
+
+.input_name {
+    color: #ff6c05;
+    text-decoration: none;
+    margin-left: 10px;
+}
+
+.input_name:hover {
+    color: #d96334;
+    text-decoration: none;
+}
+
+.fas.fa-info-circle.birthday {
+    margin-left: 5px;
+    color: #e2deda;
+}
+
+.subscribe__container {
+    display: flex;
+    align-items: center;
+    align-content: center;
+}
+
+.subscribe__container > * {
+    margin-right: 15px;
+}
+
+input[type="checkbox"] {
+    width: 19px;
+    height: 19px;
+}
+
+.subscribe__container > label {
+    display: block;
+    margin-bottom: 0;
+}
+
+.data__input__place select {
+    margin-bottom: 0 !important;
+}
+
+.max__width__fixed {
+    max-width: 278px;
+    width: 100%;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    justify-content: space-between;
+}
+
+.grid__container {
+    width: 100%;
+}
+
+.subscribe__container {
+    margin-top: 20px;
+    margin-left: 5px;
+    padding-left: 8px;
+}
+
+.log__out {
+    margin-top: 20px;
+}
+
+@media screen and (max-width: 600px) {
+    .title-container {
+        font-size: 20px;
+    }
+    .data__input{
+        grid-template-columns: auto;
+    }
+    @media screen and (max-width: 350px){
+        .birth___data, .email___data{
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+    }
+}

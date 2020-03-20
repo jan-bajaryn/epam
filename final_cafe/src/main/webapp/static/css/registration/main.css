@@ -1,0 +1,28 @@
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    justify-content: space-between;
+}
+
+header {
+    padding-top: 150px;
+    margin-bottom: 50px;
+}
+
+main {
+    font-size: 25px;
+    padding-bottom: 30px;
+}
+
+.obligatory a {
+    color: #ff6900;
+}
+
+.obligatory a:hover, a:visited {
+    color: #e1e3eb;
+}
+
+.submit{
+    margin-top: 40px;
+}

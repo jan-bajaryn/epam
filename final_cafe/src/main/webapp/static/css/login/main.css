@@ -1,0 +1,32 @@
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    justify-content: space-between;
+}
+
+header {
+    padding-top: 100px;
+    margin-bottom: 50px;
+}
+
+main {
+    max-width: 800px !important;
+}
+
+main input {
+    height: 46px;
+    margin-bottom: 20px;
+}
+
+.links > * {
+    margin: 20px 0;
+}
+
+.links a, .links a:visited {
+    color: #ff6900;
+}
+
+.links a:hover {
+    color: #d96334;
+}

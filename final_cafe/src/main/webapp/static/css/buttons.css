@@ -1,0 +1,49 @@
+.orange__hover {
+    background: #ffffff;
+    border: 1px solid #e1e3eb;
+}
+
+.orange__hover:hover {
+    border-color: #ff6900;
+    color: #ff6900;
+}
+
+.orange__bg {
+    background-color: #ff6900;
+    color: #ffffff;
+}
+
+.orange__bg:hover {
+    background-color: #d96334;
+}
+
+.orange__bg:disabled {
+    background-color: #ffb480;
+    color: #ffd7bb;
+}
+
+.white__bg__orange {
+    background: #ffffff;
+    color: #ff6900;
+    border: 1px solid #ff6900;
+}
+
+.white__bg__orange:hover {
+    background: #ff6900;
+    color: #ffffff;
+}
+
+.white__bg__orange:disabled {
+    color: #ffd4b5;
+    background-color: #fff;
+}
+
+.white__bg__black {
+    background: #fff;
+    border: 1px solid #ff6900;
+}
+
+.white__bg__black:hover {
+    background: #ff6900;
+    color: #fff;
+}

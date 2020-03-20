@@ -1,0 +1,78 @@
+@import "../nav__bar.css";
+@import "../footer.css";
+
+/*body {*/
+/*    min-height: 100vh;*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    justify-content: space-between;*/
+/*}*/
+
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    justify-content: space-between;
+}
+
+
+.title-container {
+    margin-left: 40px;
+    margin-top: 50px;
+    padding-top: 50px;
+    margin-bottom: 50px;
+    font-size: 36px;
+    font-variant: small-caps;
+}
+
+.p_card-list {
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.p_card-image img {
+    height: 233px;
+    width: 233px;
+}
+
+.p_card {
+    display: flex;
+    flex-direction: column;
+    width: 233px;
+    margin: 15px;
+}
+
+.p_card-name {
+    font-size: 20px;
+    line-height: 23px;
+    padding-bottom: 10px;
+    height: 54px;
+}
+
+.p_card-description {
+    font-size: 15px;
+    padding-bottom: 10px;
+}
+
+.p_card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.p_card-footer button {
+    background: #ffffff;
+    border: 1px solid #ff6900;
+}
+
+
+.p_card-footer button:hover {
+    background: #ff6900;
+    color: #ffffff;
+}
+
+.p_card-description {
+    height: 77px !important;
+}

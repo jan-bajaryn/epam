@@ -1,0 +1,21 @@
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    justify-content: space-between;
+}
+
+header {
+    padding-top: 150px;
+    margin-bottom: 50px;
+}
+
+main {
+    /*max-width: 600px !important;*/
+    /*max-width: 1000px !important;*/
+    /*display: flex;*/
+    /*justify-content: space-between;*/
+    /*flex-direction: column;*/
+    /*align-content: center;*/
+    /*align-items: center;*/
+}
