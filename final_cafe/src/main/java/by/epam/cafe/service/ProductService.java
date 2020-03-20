@@ -42,7 +42,7 @@ public class ProductService {
     }
 
 
-    public Product update(Product entity) {
+    public boolean update(Product entity) {
         return productDao.update(entity);
     }
 }

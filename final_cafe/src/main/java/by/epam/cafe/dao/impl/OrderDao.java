@@ -10,10 +10,15 @@ import static by.epam.cafe.dao.impl.UserDao.DEFAULT_ZONE;
 
 public class OrderDao extends AbstractDao<Long, Order> {
 
+    /*language=SQL*/
     private static final String FIND_ALL_SQL = "SELECT id, creation, price, status, payment_type FROM `order`;";
+    /*language=SQL*/
     private static final String FIND_BY_ID_SQL = "SELECT id, creation, price, status, payment_type FROM `order` WHERE id = ";
+    /*language=SQL*/
     private static final String DELETE_BY_ID = "DELETE FROM `order` WHERE id = ";
+    /*language=SQL*/
     private static final String CREATE_SQL = "INSERT INTO `order` (creation, price, status, payment_type) VALUES (?,?,?,?)";
+    /*language=SQL*/
     private static final String UPDATE_SQL = "UPDATE `order` SET creation = ?, price = ?, status = ?, payment_type = ? WHERE id = ?;";
 
     public OrderDao(Connection cn) {

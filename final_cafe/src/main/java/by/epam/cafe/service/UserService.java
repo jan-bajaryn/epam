@@ -40,7 +40,7 @@ public class UserService {
     }
 
 
-    public User update(User entity) {
+    public boolean update(User entity) {
         return userDao.update(entity);
     }
 }

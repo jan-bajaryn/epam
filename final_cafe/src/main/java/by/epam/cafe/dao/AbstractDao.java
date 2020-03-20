@@ -1,13 +1,17 @@
 package by.epam.cafe.dao;
 
 import by.epam.cafe.entity.Entity;
-import by.epam.cafe.entity.impl.User;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class AbstractDao<K, T extends Entity<K>> {
+
+    private static final Logger log = LogManager.getLogger(AbstractDao.class);
+
 
     protected Connection cn;
 
@@ -41,7 +45,7 @@ public abstract class AbstractDao<K, T extends Entity<K>> {
                 entities.add(entity);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.info("e.getMessage() = {}", e.getMessage());
         }
         return entities;
     }
@@ -57,7 +61,7 @@ public abstract class AbstractDao<K, T extends Entity<K>> {
                 entity = findEntity(resultSet);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.info("e.getMessage() = {}", e.getMessage());
         }
         return entity;
     }
@@ -77,7 +81,7 @@ public abstract class AbstractDao<K, T extends Entity<K>> {
             return statement.execute(deleteByIdSql
                     + entity.getId());
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.info("e.getMessage() = {}", e.getMessage());
         }
         return false;
     }
@@ -89,28 +93,23 @@ public abstract class AbstractDao<K, T extends Entity<K>> {
             createParams(entity, statement);
             return statement.execute();
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.info("e.getMessage() = {}", e.getMessage());
         }
         return false;
     }
 
     protected abstract void createParams(T entity, PreparedStatement statement) throws SQLException;
 
-    // TODO ask question about what I must return in that method
-    public T update(T entity) {
+    public boolean update(T entity) {
         try (PreparedStatement statement =
                      cn.prepareStatement(updateSql)) {
 
             updateParams(entity, statement);
-            if (statement.execute()) {
-                return entity;
-            } else {
-                return null;
-            }
+            return statement.execute();
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.info("e.getMessage() = {}", e.getMessage());
         }
-        return null;
+        return false;
     }
 
     protected abstract void updateParams(T entity, PreparedStatement statement) throws SQLException;

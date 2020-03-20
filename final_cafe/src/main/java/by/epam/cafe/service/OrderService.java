@@ -21,12 +21,12 @@ public class OrderService {
     }
 
 
-    public Order findEntityById(Integer id) {
+    public Order findEntityById(Long id) {
         return orderDao.findEntityById(id);
     }
 
 
-    public boolean delete(Integer id) {
+    public boolean delete(Long id) {
         return orderDao.delete(id);
     }
 
@@ -41,7 +41,7 @@ public class OrderService {
     }
 
 
-    public Order update(Order entity) {
+    public boolean update(Order entity) {
         return orderDao.update(entity);
     }
 
