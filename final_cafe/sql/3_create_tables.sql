@@ -1,113 +1,83 @@
 use pizzeria;
 
---  Roles:
---   1 - admin
---  2 - operator
---  3 - client
+CREATE TABLE delivery_inf
+(
+    id            bigint NOT NULL,
+    client_name   varchar(255),
+    comments      varchar(255),
+    delivery_time datetime(6),
+    email         varchar(255),
+    floor         int,
+    house         varchar(10),
+    phone         varchar(255),
+    porch         int,
+    room          varchar(10),
+    street        varchar(255),
+    CONSTRAINT pk_delivery_inf PRIMARY KEY (id)
+);
 
 CREATE TABLE user
 (
-    id         bigint auto_increment,
-    username   varchar(20),
-    password   varchar(100),
-    role       tinyint,
-    name       varchar(100),
-    surname    varchar(100),
-    birth_date date,
-    creation   datetime,
-    address    varchar(100),
-    phone      varchar(100),
-
+    id         bigint NOT NULL,
+    creation   datetime(6),
+    name       varchar(255),
+    password   varchar(255),
+    phone      varchar(255),
+    role       int,
+    surname    varchar(255),
+    username   varchar(255),
+    email      varchar(255),
+    floor      int,
+    house      varchar(10),
+    porch      int,
+    room       varchar(10),
+    street     varchar(255),
+    is_blocked BOOL   NOT NULL,
     CONSTRAINT pk_user PRIMARY KEY (id)
 );
 
-
---  Order statuses:
---  1 - Waiting
---  2- Ready
---  3 - Delivering
---  4 - Done
-
---  Payment types:
---  1 - Cash
---  2 - Bank card
-
 CREATE TABLE `order`
 (
-    id           bigint auto_increment,
-    creation     datetime,
-    price        int,
-    status tinyint,
-    payment_type tinyint,
-    CONSTRAINT pk_order PRIMARY KEY (id)
+    id              bigint NOT NULL,
+    creation        date,
+    payment_type    int,
+    price           int,
+    status          int,
+    delivery_inf_id bigint,
+    user_id         bigint,
+    CONSTRAINT pk_order PRIMARY KEY (id),
+    CONSTRAINT fk_order_user_id FOREIGN KEY (user_id) REFERENCES user (id),
+    CONSTRAINT fk_order_delivery_inf_id FOREIGN KEY (delivery_inf_id) REFERENCES delivery_inf (id)
 );
 
-CREATE TABLE delivery_inf
+CREATE TABLE product_group
 (
-    id            bigint auto_increment,
-    delivery_time datetime,
-    client_name   varchar(100),
-    address       varchar(100),
-    phone         varchar(100),
-    email         varchar(100),
-    order_id      bigint,
-    CONSTRAINT pk_delivery_inf PRIMARY KEY (id),
-    CONSTRAINT fk_delivery_inf_order FOREIGN KEY (order_id) references `order` (id),
-    CONSTRAINT unique_order_id UNIQUE (order_id)
+    id          bigint NOT NULL,
+    description varchar(255),
+    name        varchar(255),
+    photo_name  varchar(255),
+    type        int,
+    disabled    BOOL   NOT NULL,
+    CONSTRAINT pk_product_group PRIMARY KEY (id)
 );
-
-CREATE TABLE product_type
-(
-    id   int auto_increment,
-    name varchar(50),
-    CONSTRAINT pk_product_type PRIMARY KEY (id),
-    CONSTRAINT unique_product_type_name UNIQUE (name)
-);
-
--- Product sizes:
--- null - not measured
--- 1- small
--- 2 - middle
--- 3 - big
--- 4 - extra big
 
 CREATE TABLE product
 (
-    id              bigint auto_increment,
-    name            varchar(100),
-    description     text(500),
-    photo_name      varchar(200),
-    price           int,
-    product_type_id int,
-    product_size    tinyint,
+    id               bigint NOT NULL,
+    price            int,
+    weight           int,
+    product_group_id bigint,
     CONSTRAINT pk_product PRIMARY KEY (id),
-    CONSTRAINT fk_product_product_type FOREIGN KEY (product_type_id) REFERENCES product_type (id)
-);
-
-CREATE TABLE ingredient
-(
-    id   bigint auto_increment,
-    name varchar(100),
-    CONSTRAINT pk_ingredient PRIMARY KEY (id),
-    CONSTRAINT unique_ingredient_name UNIQUE (name)
-);
-
-CREATE TABLE product_ingredient
-(
-    product_id    bigint,
-    ingredient_id bigint,
-    weight        int NOT NULL,
-    CONSTRAINT pk_product_ingredient PRIMARY KEY (product_id, ingredient_id),
-    CONSTRAINT fk_product_id FOREIGN KEY (product_id) REFERENCES product (id),
-    CONSTRAINT fk_ingredient_id FOREIGN KEY (ingredient_id) REFERENCES ingredient (id)
+    UNIQUE KEY uk_product_product_group_id_weight (product_group_id, weight),
+    CONSTRAINT fk_product_product_group FOREIGN KEY (product_group_id) REFERENCES product_group (id)
 );
 
 CREATE TABLE order_product
 (
-    id         bigint not null auto_increment,
-    product_id bigint,
-    order_id   bigint,
-    CONSTRAINT pk_order_product PRIMARY KEY (id),
-    CONSTRAINT fk_order_product_product FOREIGN KEY (product_id) REFERENCES product (id),
-    CONSTRAINT fk_order_product_order FOREIGN KEY (order_id) REFERENCES `order` (id)
-)
+    order_id   bigint NOT NULL,
+    product_id bigint NOT NULL,
+    CONSTRAINT fk_order_product_order FOREIGN KEY (order_id) REFERENCES `order` (id),
+    CONSTRAINT fk_order_product_product FOREIGN KEY (product_id) REFERENCES product (id)
+);
+
+

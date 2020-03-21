@@ -37,17 +37,18 @@ public class OrdersDomBuilderTest {
         assertEquals(ordersDomBuilder.getOrders(), list);
     }
 
-    @Test(expectedExceptions = IllegalArgumentException.class)
+    @Test/*(expectedExceptions = IllegalArgumentException.class)*/
     public void testNull() throws IllegalArgumentException {
         OrdersDomBuilder ordersDomBuilder = new OrdersDomBuilder();
-        ordersDomBuilder.buildListOrders(null);
+//        ordersDomBuilder.buildListOrders(null);
+        assertThrows(IllegalArgumentException.class, () -> ordersDomBuilder.buildListOrders(null));
     }
 
     @Test
     public void negative() {
         OrdersDomBuilder ordersDomBuilder = new OrdersDomBuilder();
         ordersDomBuilder.buildListOrders("D:\\Programming\\epam\\epam\\task13\\src\\main\\resources\\temp.xml");
-        assertEquals(new ArrayList<>(),ordersDomBuilder.getOrders());
+        assertEquals(new ArrayList<>(), ordersDomBuilder.getOrders());
     }
 
     private List<Order> createOrders() {

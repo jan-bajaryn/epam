@@ -51,7 +51,6 @@ public class OrderHandler extends DefaultHandler {
     public void startElement(String uri, String localName, String qName, Attributes attrs) {
 
         if (ORDER.getValue().equals(localName)) {
-//            current = new Order();
             current = Order.builder();
             current.id(Integer.valueOf(attrs.getValue(0)));
         } else if (PRODUCT.getValue().equals(localName)) {
@@ -69,11 +68,6 @@ public class OrderHandler extends DefaultHandler {
         } else if (DELIVERY_INF.getValue().equals(localName)) {
             deliveryInf = DeliveryInf.builder();
         }
-//        else if (OrderEnum.PRODUCTS.getValue().equals(localName)){
-//            products = new ArrayList<>();
-//        } else if (OrderEnum.INGREDIENTS.getValue().equals(localName)){
-//            ingredients = new ArrayList<>();
-//        }
         else {
             OrderEnum temp = valueOf(localName.toUpperCase());
             if (withText.contains(temp)) {
