@@ -3,7 +3,6 @@ use pizzeria;
 CREATE TABLE delivery_inf
 (
     id            bigint NOT NULL,
-    client_name   varchar(255),
     comments      varchar(255),
     delivery_time datetime(6),
     email         varchar(255),
@@ -39,6 +38,7 @@ CREATE TABLE user
 CREATE TABLE `order`
 (
     id              bigint NOT NULL,
+    client_name     varchar(255),
     creation        date,
     payment_type    int,
     price           int,

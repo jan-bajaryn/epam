@@ -1,7 +1,6 @@
 package by.epam.cafe.dao.impl;
 
 import by.epam.cafe.dao.AbstractDao;
-import by.epam.cafe.entity.impl.User;
 
 import java.sql.*;
 import java.time.ZoneId;

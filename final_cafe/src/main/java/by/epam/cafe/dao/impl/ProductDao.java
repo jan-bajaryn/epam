@@ -1,8 +1,6 @@
 package by.epam.cafe.dao.impl;
 
 import by.epam.cafe.dao.AbstractDao;
-import by.epam.cafe.entity.enums.ProductType;
-import by.epam.cafe.entity.impl.Product;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

@@ -1,18 +1,16 @@
 use pizzeria;
-INSERT INTO delivery_inf (id, client_name, comments, delivery_time, email, floor, house, phone, porch, room, street)
-VALUES (1, 'dsf', NULL, NULL, 'uuu@uuu.com', 3, '1', 'sdf', 1, '1', 'sdf'),
-       (3, 'dsfdgdfggggggggggggggg', NULL, NULL, 'uuu@uuu.com', 2, '1', 'sdf', 1, '1', 'sdf'),
-       (5, 'gggggg', NULL, NULL, 'g@sdf.sdf', 2, '1', 'g', 1, '1', 'g'),
-       (7, 'vv', NULL, NULL, 'viviva5679@ymail365.com', 1, '1', 'v', 1, '1', 'v'),
-       (9, 'z', NULL, NULL, 'viviva5679@ymail365.com', 1, '1', 'z', 1, '1', 'z'),
-       (21, 'asdasd', NULL, NULL, 'andreygordenevskiy@gmail.com', 5, '1', '+375 29 444 44 55', 2,
+INSERT INTO delivery_inf (id, comments, delivery_time, email, floor, house, phone, porch, room, street)
+VALUES (3, NULL, NULL, 'uuu@uuu.com', 2, '1', 'sdf', 1, '1', 'sdf'),
+       (5, NULL, NULL, 'g@sdf.sdf', 2, '1', 'g', 1, '1', 'g'),
+       (9, NULL, NULL, 'viviva5679@ymail365.com', 1, '1', 'z', 1, '1', 'z'),
+       (21, NULL, NULL, 'andreygordenevskiy@gmail.com', 5, '1', '+375 29 444 44 55', 2,
         '1', 'Edwarda Wittiga'),
-       (38, 'Торин', NULL, NULL, 'asdasd@gmail.com', 2, '2', '+375 29 444 44 55', 2, '4', 'Барадино'),
-       (40, 'Антуан', NULL, NULL, 'semenov@gmail.com', 1, '1', '+375 29 444 44 55', 1, '1', 'Семенова'),
-       (42, 'A', NULL, NULL, 'A@A.com', 1, '1', '+375 29 444 44 55', 1, '1', 'A');
+       (38, NULL, NULL, 'asdasd@gmail.com', 2, '2', '+375 29 444 44 55', 2, '4', 'Барадино'),
+       (40, NULL, NULL, 'semenov@gmail.com', 1, '1', '+375 29 444 44 55', 1, '1', 'Семенова'),
+       (42, NULL, NULL, 'A@A.com', 1, '1', '+375 29 444 44 55', 1, '1', 'A');
 
 INSERT INTO user (id, creation, name, password, phone, role, surname, username, email, floor, house, porch, room,
-                    street, is_blocked)
+                  street, is_blocked)
 VALUES (12, '2020-03-13 15:55:52.611265', 'Anatoliy', '1234', '+375 33 333 33 33', 1, 'Chichivarkin', 'Alex',
         'toha@gmail.com', NULL, NULL, NULL, NULL, NULL, FALSE),
        (16, '2020-03-13 20:27:24.898557', 'Георгий', 'asdf', '+48 444 444 444', 2, 'Станкевич', 'Avalon',
@@ -25,14 +23,14 @@ VALUES (12, '2020-03-13 15:55:52.611265', 'Anatoliy', '1234', '+375 33 333 33 33
         'kkk@kkk.kkk', 1, '23', 1,
         '18', 'Ленина', FALSE);
 
-INSERT INTO `order` (id, creation, payment_type, price, status, delivery_inf_id, user_id)
-VALUES (4, NULL, 1, 0, 4, 3, NULL),
-       (6, NULL, 0, 0, 2, 5, NULL),
-       (10, NULL, 0, 2020, 4, 9, NULL),
-       (22, NULL, 1, 17776, 2, 21, NULL),
-       (39, NULL, 0, 13610, 1, 38, NULL),
-       (41, NULL, 0, 2008, 0, 40, NULL),
-       (43, NULL, 0, 2020, 0, 42, 16);
+INSERT INTO `order` (id, creation, payment_type, price, status, delivery_inf_id, user_id, client_name)
+VALUES (4, NULL, 1, 0, 4, 3, NULL, 'Генадий'),
+       (6, NULL, 0, 0, 2, 5, NULL, 'Антон'),
+       (10, NULL, 0, 2020, 4, 9, NULL, 'Андрей'),
+       (22, NULL, 1, 17776, 2, 21, NULL, 'Виктор'),
+       (39, NULL, 0, 13610, 1, 38, NULL, 'Екатерина'),
+       (41, NULL, 0, 2008, 0, 40, NULL, 'Настя'),
+       (43, NULL, 0, 2020, 0, 42, 16, 'Торин');
 
 INSERT INTO product_group (id, description, name, photo_name, type, disabled)
 VALUES (1, 'Сливочный соус, смесь сыров пармезан и чеддер, сыр блю чиз, моцарелла', 'Четыре сыра', 'chetyre_syra.jpg',

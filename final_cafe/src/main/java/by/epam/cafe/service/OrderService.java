@@ -1,8 +1,6 @@
 package by.epam.cafe.service;
 
-import by.epam.cafe.dao.AbstractDao;
 import by.epam.cafe.dao.impl.OrderDao;
-import by.epam.cafe.entity.impl.Order;
 
 import java.sql.Connection;
 import java.util.List;
