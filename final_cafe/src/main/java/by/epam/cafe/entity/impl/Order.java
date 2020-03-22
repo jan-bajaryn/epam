@@ -5,15 +5,13 @@ import by.epam.cafe.entity.enums.OrderStatus;
 import by.epam.cafe.entity.enums.PaymentType;
 
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.util.ArrayList;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class Order extends Entity<Integer> implements Serializable {
 
 
-
-    private LocalDate creation;
+    private LocalDateTime creation;
 
     private String clientName;
 
@@ -25,31 +23,23 @@ public class Order extends Entity<Integer> implements Serializable {
 
     private DeliveryInf deliveryInf;
 
-    private List<Product> products = new ArrayList<>();
-
     private User user;
+
+    private List<Product> products;
 
     public Order() {
     }
 
-    public Order(Integer id,
-                 LocalDate creation,
-                 String clientName,
-                 Integer price,
-                 OrderStatus status,
-                 PaymentType paymentType,
-                 DeliveryInf deliveryInf,
-                 List<Product> products,
-                 User user) {
-        super(id);
+    public Order(Integer integer, LocalDateTime creation, String clientName, Integer price, OrderStatus status, PaymentType paymentType, DeliveryInf deliveryInf, User user, List<Product> products) {
+        super(integer);
         this.creation = creation;
         this.clientName = clientName;
         this.price = price;
         this.status = status;
         this.paymentType = paymentType;
         this.deliveryInf = deliveryInf;
-        this.products = products;
         this.user = user;
+        this.products = products;
     }
 
     private Order(Builder builder) {
@@ -60,19 +50,49 @@ public class Order extends Entity<Integer> implements Serializable {
         setStatus(builder.status);
         setPaymentType(builder.paymentType);
         setDeliveryInf(builder.deliveryInf);
-        setProducts(builder.products);
         setUser(builder.user);
+        setProducts(builder.products);
     }
 
     public static Builder newBuilder() {
         return new Builder();
     }
 
-    public LocalDate getCreation() {
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Order order = (Order) o;
+
+        if (creation != null ? !creation.equals(order.creation) : order.creation != null) return false;
+        if (clientName != null ? !clientName.equals(order.clientName) : order.clientName != null) return false;
+        if (price != null ? !price.equals(order.price) : order.price != null) return false;
+        if (status != order.status) return false;
+        if (paymentType != order.paymentType) return false;
+        if (deliveryInf != null ? !deliveryInf.equals(order.deliveryInf) : order.deliveryInf != null) return false;
+        if (user != null ? !user.equals(order.user) : order.user != null) return false;
+        return products != null ? products.equals(order.products) : order.products == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = creation != null ? creation.hashCode() : 0;
+        result = 31 * result + (clientName != null ? clientName.hashCode() : 0);
+        result = 31 * result + (price != null ? price.hashCode() : 0);
+        result = 31 * result + (status != null ? status.hashCode() : 0);
+        result = 31 * result + (paymentType != null ? paymentType.hashCode() : 0);
+        result = 31 * result + (deliveryInf != null ? deliveryInf.hashCode() : 0);
+        result = 31 * result + (user != null ? user.hashCode() : 0);
+        result = 31 * result + (products != null ? products.hashCode() : 0);
+        return result;
+    }
+
+    public LocalDateTime getCreation() {
         return creation;
     }
 
-    public void setCreation(LocalDate creation) {
+    public void setCreation(LocalDateTime creation) {
         this.creation = creation;
     }
 
@@ -116,14 +136,6 @@ public class Order extends Entity<Integer> implements Serializable {
         this.deliveryInf = deliveryInf;
     }
 
-    public List<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List<Product> products) {
-        this.products = products;
-    }
-
     public User getUser() {
         return user;
     }
@@ -132,46 +144,24 @@ public class Order extends Entity<Integer> implements Serializable {
         this.user = user;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Order order = (Order) o;
-
-        if (creation != null ? !creation.equals(order.creation) : order.creation != null) return false;
-        if (clientName != null ? !clientName.equals(order.clientName) : order.clientName != null) return false;
-        if (price != null ? !price.equals(order.price) : order.price != null) return false;
-        if (status != order.status) return false;
-        if (paymentType != order.paymentType) return false;
-        if (deliveryInf != null ? !deliveryInf.equals(order.deliveryInf) : order.deliveryInf != null) return false;
-        if (products != null ? !products.equals(order.products) : order.products != null) return false;
-        return user != null ? user.equals(order.user) : order.user == null;
+    public List<Product> getProducts() {
+        return products;
     }
 
-    @Override
-    public int hashCode() {
-        int result = creation != null ? creation.hashCode() : 0;
-        result = 31 * result + (clientName != null ? clientName.hashCode() : 0);
-        result = 31 * result + (price != null ? price.hashCode() : 0);
-        result = 31 * result + (status != null ? status.hashCode() : 0);
-        result = 31 * result + (paymentType != null ? paymentType.hashCode() : 0);
-        result = 31 * result + (deliveryInf != null ? deliveryInf.hashCode() : 0);
-        result = 31 * result + (products != null ? products.hashCode() : 0);
-        result = 31 * result + (user != null ? user.hashCode() : 0);
-        return result;
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 
     public static final class Builder {
         private Integer id;
-        private LocalDate creation;
+        private LocalDateTime creation;
         private String clientName;
         private Integer price;
         private OrderStatus status;
         private PaymentType paymentType;
         private DeliveryInf deliveryInf;
-        private List<Product> products;
         private User user;
+        private List<Product> products;
 
         private Builder() {
         }
@@ -181,7 +171,7 @@ public class Order extends Entity<Integer> implements Serializable {
             return this;
         }
 
-        public Builder creation(LocalDate val) {
+        public Builder creation(LocalDateTime val) {
             creation = val;
             return this;
         }
@@ -211,13 +201,13 @@ public class Order extends Entity<Integer> implements Serializable {
             return this;
         }
 
-        public Builder products(List<Product> val) {
-            products = val;
+        public Builder user(User val) {
+            user = val;
             return this;
         }
 
-        public Builder user(User val) {
-            user = val;
+        public Builder products(List<Product> val) {
+            products = val;
             return this;
         }
 

@@ -13,8 +13,8 @@ public class DeliveryInf extends Entity<Integer> implements Serializable {
     private String street;
     private String house;
     private String room;
-    private String porch;
-    private String floor;
+    private Integer porch;
+    private Integer floor;
 
 
     private String phone;
@@ -31,8 +31,8 @@ public class DeliveryInf extends Entity<Integer> implements Serializable {
                        String street,
                        String house,
                        String room,
-                       String porch,
-                       String floor,
+                       Integer porch,
+                       Integer floor,
                        String phone,
                        String email,
                        String comments,
@@ -100,19 +100,19 @@ public class DeliveryInf extends Entity<Integer> implements Serializable {
         this.room = room;
     }
 
-    public String getPorch() {
+    public Integer getPorch() {
         return porch;
     }
 
-    public void setPorch(String porch) {
+    public void setPorch(Integer porch) {
         this.porch = porch;
     }
 
-    public String getFloor() {
+    public Integer getFloor() {
         return floor;
     }
 
-    public void setFloor(String floor) {
+    public void setFloor(Integer floor) {
         this.floor = floor;
     }
 
@@ -188,8 +188,8 @@ public class DeliveryInf extends Entity<Integer> implements Serializable {
         private String street;
         private String house;
         private String room;
-        private String porch;
-        private String floor;
+        private Integer porch;
+        private Integer floor;
         private String phone;
         private String email;
         private String comments;
@@ -223,12 +223,12 @@ public class DeliveryInf extends Entity<Integer> implements Serializable {
             return this;
         }
 
-        public Builder porch(String porch) {
+        public Builder porch(Integer porch) {
             this.porch = porch;
             return this;
         }
 
-        public Builder floor(String floor) {
+        public Builder floor(Integer floor) {
             this.floor = floor;
             return this;
         }

@@ -6,8 +6,6 @@ import by.epam.cafe.entity.enums.Role;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 public class User extends Entity<Integer> implements Serializable {
 
@@ -25,8 +23,8 @@ public class User extends Entity<Integer> implements Serializable {
     private String street;
     private String house;
     private String room;
-    private String porch;
-    private String floor;
+    private Integer porch;
+    private Integer floor;
 
     private String phone;
 
@@ -34,12 +32,11 @@ public class User extends Entity<Integer> implements Serializable {
 
     private Boolean isBlocked;
 
-    private List<Order> orders = new ArrayList<>();
 
     public User() {
     }
 
-    public User(Integer integer, String username, String password, Role role, String name, String surname, LocalDateTime creation, String street, String house, String room, String porch, String floor, String phone, String email, Boolean isBlocked, List<Order> orders) {
+    public User(Integer integer, String username, String password, Role role, String name, String surname, LocalDateTime creation, String street, String house, String room, Integer porch, Integer floor, String phone, String email, Boolean isBlocked) {
         super(integer);
         this.username = username;
         this.password = password;
@@ -55,7 +52,6 @@ public class User extends Entity<Integer> implements Serializable {
         this.phone = phone;
         this.email = email;
         this.isBlocked = isBlocked;
-        this.orders = orders;
     }
 
     private User(Builder builder) {
@@ -74,12 +70,12 @@ public class User extends Entity<Integer> implements Serializable {
         setPhone(builder.phone);
         setEmail(builder.email);
         isBlocked = builder.isBlocked;
-        setOrders(builder.orders);
     }
 
     public static Builder newBuilder() {
         return new Builder();
     }
+
 
     public String getUsername() {
         return username;
@@ -153,19 +149,19 @@ public class User extends Entity<Integer> implements Serializable {
         this.room = room;
     }
 
-    public String getPorch() {
+    public Integer getPorch() {
         return porch;
     }
 
-    public void setPorch(String porch) {
+    public void setPorch(Integer porch) {
         this.porch = porch;
     }
 
-    public String getFloor() {
+    public Integer getFloor() {
         return floor;
     }
 
-    public void setFloor(String floor) {
+    public void setFloor(Integer floor) {
         this.floor = floor;
     }
 
@@ -193,14 +189,6 @@ public class User extends Entity<Integer> implements Serializable {
         isBlocked = blocked;
     }
 
-    public List<Order> getOrders() {
-        return orders;
-    }
-
-    public void setOrders(List<Order> orders) {
-        this.orders = orders;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -221,8 +209,7 @@ public class User extends Entity<Integer> implements Serializable {
         if (floor != null ? !floor.equals(user.floor) : user.floor != null) return false;
         if (phone != null ? !phone.equals(user.phone) : user.phone != null) return false;
         if (email != null ? !email.equals(user.email) : user.email != null) return false;
-        if (isBlocked != null ? !isBlocked.equals(user.isBlocked) : user.isBlocked != null) return false;
-        return orders != null ? orders.equals(user.orders) : user.orders == null;
+        return isBlocked != null ? isBlocked.equals(user.isBlocked) : user.isBlocked == null;
     }
 
     @Override
@@ -241,7 +228,6 @@ public class User extends Entity<Integer> implements Serializable {
         result = 31 * result + (phone != null ? phone.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (isBlocked != null ? isBlocked.hashCode() : 0);
-        result = 31 * result + (orders != null ? orders.hashCode() : 0);
         return result;
     }
 
@@ -256,12 +242,11 @@ public class User extends Entity<Integer> implements Serializable {
         private String street;
         private String house;
         private String room;
-        private String porch;
-        private String floor;
+        private Integer porch;
+        private Integer floor;
         private String phone;
         private String email;
         private Boolean isBlocked;
-        private List<Order> orders;
 
         private Builder() {
         }
@@ -316,12 +301,12 @@ public class User extends Entity<Integer> implements Serializable {
             return this;
         }
 
-        public Builder porch(String val) {
+        public Builder porch(Integer val) {
             porch = val;
             return this;
         }
 
-        public Builder floor(String val) {
+        public Builder floor(Integer val) {
             floor = val;
             return this;
         }
@@ -338,11 +323,6 @@ public class User extends Entity<Integer> implements Serializable {
 
         public Builder isBlocked(Boolean val) {
             isBlocked = val;
-            return this;
-        }
-
-        public Builder orders(List<Order> val) {
-            orders = val;
             return this;
         }
 
