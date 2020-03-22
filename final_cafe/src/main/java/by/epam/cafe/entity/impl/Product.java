@@ -82,7 +82,9 @@ public class Product extends Entity<Integer> implements Serializable {
     @Override
     public String toString() {
         return "Product{" +
-                "price=" + price +
+                " id=" + getId() +
+
+                ", price=" + price +
                 ", weight=" + weight +
                 ", productGroup=" + productGroup +
                 '}';

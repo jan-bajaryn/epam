@@ -1,7 +1,7 @@
 package by.epam.cafe.service;
 
 import by.epam.cafe.dao.DAOFactory;
-import by.epam.cafe.dao.my_sql.impl.UserMysqlDao;
+import by.epam.cafe.dao.mysql.impl.UserMysqlDao;
 import by.epam.cafe.entity.impl.User;
 
 import java.util.List;

@@ -156,7 +156,8 @@ public class Order extends Entity<Integer> implements Serializable {
     @Override
     public String toString() {
         return "Order{" +
-                "creation=" + creation +
+                " id=" + getId() +
+                ", creation=" + creation +
                 ", clientName='" + clientName + '\'' +
                 ", price=" + price +
                 ", status=" + status +
@@ -166,7 +167,6 @@ public class Order extends Entity<Integer> implements Serializable {
                 ", products=" + products +
                 '}';
     }
-
 
     public static final class Builder {
         private Integer id;

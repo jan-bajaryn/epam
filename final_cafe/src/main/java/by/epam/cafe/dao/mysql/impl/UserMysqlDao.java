@@ -1,6 +1,6 @@
-package by.epam.cafe.dao.my_sql.impl;
+package by.epam.cafe.dao.mysql.impl;
 
-import by.epam.cafe.dao.my_sql.AbstractMysqlDao;
+import by.epam.cafe.dao.mysql.AbstractMysqlDao;
 import by.epam.cafe.entity.enums.Role;
 import by.epam.cafe.entity.impl.User;
 
@@ -34,7 +34,7 @@ public class UserMysqlDao extends AbstractMysqlDao<Integer, User> {
 
     protected User findEntity(ResultSet resultSet) throws SQLException {
         return User.newBuilder()
-                .id(resultSet.getInt(resultSet.getInt("id")))
+                .id(resultSet.getInt("id"))
                 .creation(resultSet.getTimestamp("creation").toLocalDateTime())
                 .name(resultSet.getString("name"))
                 .password(resultSet.getString("password"))

@@ -234,7 +234,8 @@ public class User extends Entity<Integer> implements Serializable {
     @Override
     public String toString() {
         return "User{" +
-                "username='" + username + '\'' +
+                " id=" + getId() +
+                ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", role=" + role +
                 ", name='" + name + '\'' +

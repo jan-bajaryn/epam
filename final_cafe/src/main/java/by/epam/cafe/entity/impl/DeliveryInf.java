@@ -185,7 +185,8 @@ public class DeliveryInf extends Entity<Integer> implements Serializable {
     @Override
     public String toString() {
         return "DeliveryInf{" +
-                "deliveryTime=" + deliveryTime +
+                " id=" + getId() +
+                ", deliveryTime=" + deliveryTime +
                 ", street='" + street + '\'' +
                 ", house='" + house + '\'' +
                 ", room='" + room + '\'' +

@@ -1,4 +1,4 @@
-package by.epam.cafe.dao.my_sql;
+package by.epam.cafe.dao.mysql;
 
 import by.epam.cafe.dao.AbstractDao;
 import by.epam.cafe.dao.pool.ConnectionPool;
@@ -51,6 +51,7 @@ public abstract class AbstractMysqlDao<ID, T extends Entity<ID>> implements Abst
                 }
             } catch (SQLException e) {
                 log.info("e.getMessage() = {}", e.getMessage());
+                e.printStackTrace();
             }
             return entities;
         } finally {

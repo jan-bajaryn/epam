@@ -1,7 +1,7 @@
-package by.epam.cafe.dao.my_sql.impl;
+package by.epam.cafe.dao.mysql.impl;
 
 
-import by.epam.cafe.dao.my_sql.AbstractMysqlDao;
+import by.epam.cafe.dao.mysql.AbstractMysqlDao;
 import by.epam.cafe.entity.enums.OrderStatus;
 import by.epam.cafe.entity.enums.PaymentType;
 import by.epam.cafe.entity.impl.DeliveryInf;
@@ -92,10 +92,11 @@ public class OrderMysqlDao extends AbstractMysqlDao<Integer, Order> {
     protected Order findEntity(ResultSet resultSet) throws SQLException {
 
         int id = resultSet.getInt(ID_COL);
+        Timestamp timestamp = resultSet.getTimestamp(CREATION_COL);
         return Order.newBuilder()
                 .id(id)
                 .clientName(resultSet.getString(CLIENT_NAME_COL))
-                .creation(resultSet.getTimestamp(CREATION_COL).toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime())
+                .creation(timestamp == null ? null : timestamp.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime())
                 .paymentType(PaymentType.values()[resultSet.getInt(PAYMENT_TYPE_COL)])
                 .price(resultSet.getInt(PRICE_COL))
                 .status(OrderStatus.values()[resultSet.getInt(STATUS_ID_COL)])

@@ -3,15 +3,11 @@ package by.epam.cafe.dao.pool;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Properties;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
@@ -42,14 +38,28 @@ public class ConnectionPool {
     private Condition condition = locker.newCondition();
 
     static {
-        FileInputStream fis;
+//        FileInputStream fis;
+//        try {
+//            InputStream inputStream = ConnectionPool.class
+//                    .getClassLoader().getResourceAsStream(RESOURCE);
+//            properties.load(Objects.requireNonNull(inputStream));
+//        } catch (IOException | NullPointerException e) {
+//            throw new RuntimeException("Error in initialization properties file.", e);
+//        }
+
         try {
-            InputStream inputStream = ConnectionPool.class
-                    .getClassLoader().getResourceAsStream(RESOURCE);
-            properties.load(Objects.requireNonNull(inputStream));
-        } catch (IOException | NullPointerException e) {
-            throw new RuntimeException("Error in initialization properties file.", e);
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
+        properties.put("user", "root");
+        properties.put("password", "pass");
+        properties.put("autoReconnect", "true");
+        properties.put("characterEncoding", "UTF-8");
+        properties.put("useUnicode", "true");
+        properties.put("serverTimezone", "UTC");
+        properties.put("useSSL", "false");
+
     }
 
     public Connection takeConnection() {

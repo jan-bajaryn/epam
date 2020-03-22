@@ -1,6 +1,6 @@
-package by.epam.cafe.dao.my_sql.impl;
+package by.epam.cafe.dao.mysql.impl;
 
-import by.epam.cafe.dao.my_sql.AbstractMysqlDao;
+import by.epam.cafe.dao.mysql.AbstractMysqlDao;
 import by.epam.cafe.entity.impl.DeliveryInf;
 
 import java.sql.*;

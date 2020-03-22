@@ -1,6 +1,6 @@
 package by.epam.cafe.dao;
 
-import by.epam.cafe.dao.my_sql.impl.*;
+import by.epam.cafe.dao.mysql.impl.*;
 
 public final class DAOFactory {
     private static final DAOFactory instance = new DAOFactory();
