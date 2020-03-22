@@ -4,6 +4,8 @@ import by.epam.cafe.entity.Entity;
 import by.epam.cafe.entity.enums.ProductType;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProductGroup extends Entity<Integer> implements Serializable {
 
@@ -17,16 +19,19 @@ public class ProductGroup extends Entity<Integer> implements Serializable {
 
     private boolean disabled;
 
+    private List<Product> products = new ArrayList<>();
+
     public ProductGroup() {
     }
 
-    public ProductGroup(Integer integer, String name, String description, String photoName, ProductType type, boolean disabled) {
+    public ProductGroup(Integer integer, String name, String description, String photoName, ProductType type, boolean disabled, List<Product> products) {
         super(integer);
         this.name = name;
         this.description = description;
         this.photoName = photoName;
         this.type = type;
         this.disabled = disabled;
+        this.products = products;
     }
 
     private ProductGroup(Builder builder) {
@@ -36,10 +41,37 @@ public class ProductGroup extends Entity<Integer> implements Serializable {
         setPhotoName(builder.photoName);
         setType(builder.type);
         setDisabled(builder.disabled);
+        setProducts(builder.products);
     }
 
     public static Builder newBuilder() {
         return new Builder();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ProductGroup that = (ProductGroup) o;
+
+        if (disabled != that.disabled) return false;
+        if (name != null ? !name.equals(that.name) : that.name != null) return false;
+        if (description != null ? !description.equals(that.description) : that.description != null) return false;
+        if (photoName != null ? !photoName.equals(that.photoName) : that.photoName != null) return false;
+        if (type != that.type) return false;
+        return products != null ? products.equals(that.products) : that.products == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name != null ? name.hashCode() : 0;
+        result = 31 * result + (description != null ? description.hashCode() : 0);
+        result = 31 * result + (photoName != null ? photoName.hashCode() : 0);
+        result = 31 * result + (type != null ? type.hashCode() : 0);
+        result = 31 * result + (disabled ? 1 : 0);
+        result = 31 * result + (products != null ? products.hashCode() : 0);
+        return result;
     }
 
     public String getName() {
@@ -82,41 +114,14 @@ public class ProductGroup extends Entity<Integer> implements Serializable {
         this.disabled = disabled;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        ProductGroup that = (ProductGroup) o;
-
-        if (disabled != that.disabled) return false;
-        if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        if (description != null ? !description.equals(that.description) : that.description != null) return false;
-        if (photoName != null ? !photoName.equals(that.photoName) : that.photoName != null) return false;
-        return type == that.type;
+    public List<Product> getProducts() {
+        return products;
     }
 
-    @Override
-    public int hashCode() {
-        int result = name != null ? name.hashCode() : 0;
-        result = 31 * result + (description != null ? description.hashCode() : 0);
-        result = 31 * result + (photoName != null ? photoName.hashCode() : 0);
-        result = 31 * result + (type != null ? type.hashCode() : 0);
-        result = 31 * result + (disabled ? 1 : 0);
-        return result;
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 
-    @Override
-    public String toString() {
-        return "ProductGroup{" +
-                " id=" + getId() +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", photoName='" + photoName + '\'' +
-                ", type=" + type +
-                ", disabled=" + disabled +
-                '}';
-    }
 
     public static final class Builder {
         private Integer id;
@@ -125,6 +130,7 @@ public class ProductGroup extends Entity<Integer> implements Serializable {
         private String photoName;
         private ProductType type;
         private boolean disabled;
+        private List<Product> products = new ArrayList<>();
 
         private Builder() {
         }
@@ -156,6 +162,11 @@ public class ProductGroup extends Entity<Integer> implements Serializable {
 
         public Builder disabled(boolean val) {
             disabled = val;
+            return this;
+        }
+
+        public Builder products(List<Product> val) {
+            products = val;
             return this;
         }
 

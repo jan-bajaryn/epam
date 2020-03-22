@@ -50,7 +50,7 @@ public abstract class AbstractMysqlDao<ID, T extends Entity<ID>> implements Abst
                     entities.add(entity);
                 }
             } catch (SQLException e) {
-                log.info("e.getMessage() = {}", e.getMessage());
+                log.info("e: ", e);
                 e.printStackTrace();
             }
             return entities;
@@ -76,7 +76,7 @@ public abstract class AbstractMysqlDao<ID, T extends Entity<ID>> implements Abst
                     entity = findEntity(resultSet);
                 }
             } catch (SQLException e) {
-                log.info("e.getMessage() = {}", e.getMessage());
+                log.info("e: ", e);
             }
             return entity;
         } finally {
@@ -113,7 +113,7 @@ public abstract class AbstractMysqlDao<ID, T extends Entity<ID>> implements Abst
                 idParam(statement, entity.getId());
                 return statement.execute();
             } catch (SQLException e) {
-                log.info("e.getMessage() = {}", e.getMessage());
+                log.info("e: ", e);
             }
             return false;
         } finally {
@@ -131,7 +131,7 @@ public abstract class AbstractMysqlDao<ID, T extends Entity<ID>> implements Abst
                 createParams(entity, statement);
                 return statement.execute();
             } catch (SQLException e) {
-                log.info("e.getMessage() = {}", e.getMessage());
+                log.info("e: ", e);
             }
             return false;
         } finally {
@@ -151,7 +151,7 @@ public abstract class AbstractMysqlDao<ID, T extends Entity<ID>> implements Abst
                 updateParams(entity, statement);
                 return statement.execute();
             } catch (SQLException e) {
-                log.info("e.getMessage() = {}", e.getMessage());
+                log.info("e: ", e);
             }
             return false;
         } finally {

@@ -35,17 +35,17 @@
             <c:forEach var="product_group" items="${products}">
                 <div class="p_card">
                     <div class="p_card-image">
-                        <img src="static/img/${product_group.key.key.getPhotoName()}" alt="">
+                        <img src="<c:url value="/static/img/${product_group.key.getPhotoName()}"/>" alt="">
                     </div>
                     <div class="p_card-name">
-                            ${product_group.key.key.getName()}
+                            ${product_group.key.getName()}
                     </div>
                     <div class="p_card-description text-muted">
-                            ${product_group.key.key.getDescription()}
+                            ${product_group.key.getDescription()}
                     </div>
                     <div class="p_card-footer md-2">
                     <span>
-                        от ${String.format("%.2f", product_group.key.value/100.0)} руб.
+                        от ${String.format("%.2f", product_group.value/100.0)} руб.
                     </span>
                         <button class="btn mr-5 myBtn">
                             Выбрать
@@ -55,16 +55,16 @@
                                 <div class="modal-content">
                                     <span class="close">&times;</span>
                                     <div class="modal__main__content">
-                                        <img src="static/img/${product_group.key.key.getPhotoName()}" alt="Photo"/>
+                                        <img src="static/img/${product_group.key.getPhotoName()}" alt="Photo"/>
                                         <div class="content__description">
                                             <div class="header">
-                                                    ${product_group.key.key.getName()}
+                                                    ${product_group.key.getName()}
                                             </div>
                                             <div class="description text-muted">
-                                                    ${product_group.key.key.getDescription()}
+                                                    ${product_group.key.getDescription()}
                                             </div>
                                             <div>
-                                                <c:forEach var="product" items="${product_group.value}">
+                                                <c:forEach var="product" items="${product_group.key.products}">
                                                     <div>
                                                         <label>
                                                             <input type="radio" name="variant" value="${product.id}">

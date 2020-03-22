@@ -44,7 +44,7 @@ public class ServletCafe extends HttpServlet {
             Command command = commandGetFactory.create(requestURI.substring(prefix.length()));
             command.execute(request, response);
         } catch (PageNotFoundException e) {
-            log.info("e.getMessage() = {}", e.getMessage());
+            log.info("e: ", e);
         }
 //        request.getRequestDispatcher("/WEB-INF/jsp/page.jsp").forward(request, response);
     }

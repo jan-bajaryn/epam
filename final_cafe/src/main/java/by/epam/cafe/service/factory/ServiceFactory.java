@@ -1,9 +1,6 @@
 package by.epam.cafe.service.factory;
 
-import by.epam.cafe.service.DeliveryInfService;
-import by.epam.cafe.service.OrderService;
-import by.epam.cafe.service.ProductGroupService;
-import by.epam.cafe.service.UserService;
+import by.epam.cafe.service.*;
 import by.epam.cafe.service.impl.*;
 
 public class ServiceFactory {
@@ -19,7 +16,7 @@ public class ServiceFactory {
     private final DeliveryInfService deliveryInfService = new DeliveryInfServiceImpl();
     private final OrderService orderService = new OrderServiceImpl();
     private final ProductGroupService productGroupService = new ProductGroupServiceImpl();
-    private final ProductServiceImpl productServiceImpl = new ProductServiceImpl();
+    private final ProductService productServiceImpl = new ProductServiceImpl();
     private final UserService userService = new UserServiceImpl();
 
     public DeliveryInfService getDeliveryInfService() {
@@ -34,7 +31,7 @@ public class ServiceFactory {
         return productGroupService;
     }
 
-    public ProductServiceImpl getProductServiceImpl() {
+    public ProductService getProductService() {
         return productServiceImpl;
     }
 

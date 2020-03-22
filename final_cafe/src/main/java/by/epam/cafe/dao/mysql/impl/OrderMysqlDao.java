@@ -63,6 +63,11 @@ public class OrderMysqlDao extends AbstractMysqlDao<Integer, Order> {
     /*language=SQL*/
     private static final String FIND_PRODUCTS_BY_ORDER_SQL = "SELECT product_id from `order` INNER JOIN order_product ON `order`.id = order_product.order_id WHERE order_id = ?;";
 
+    public OrderMysqlDao() {
+        super(FIND_ALL_SQL, FIND_BY_ID_SQL, DELETE_BY_ID, CREATE_SQL, UPDATE_SQL);
+    }
+
+
     public List<Integer> findAllProductsIdsByOrderId(Integer id) {
         Connection cn = getPool().takeConnection();
         try {
@@ -76,7 +81,7 @@ public class OrderMysqlDao extends AbstractMysqlDao<Integer, Order> {
                     ids.add(product_id);
                 }
             } catch (SQLException e) {
-                log.info("e.getMessage() = {}", e.getMessage());
+                log.info("e: ", e);
             }
             return ids;
         } finally {
@@ -84,9 +89,6 @@ public class OrderMysqlDao extends AbstractMysqlDao<Integer, Order> {
         }
     }
 
-    public OrderMysqlDao() {
-        super(FIND_ALL_SQL, FIND_BY_ID_SQL, DELETE_BY_ID, CREATE_SQL, UPDATE_SQL);
-    }
 
     @Override
     protected Order findEntity(ResultSet resultSet) throws SQLException {

@@ -1,12 +1,21 @@
 package by.epam.cafe.dao.mysql.impl;
 
+import by.epam.cafe.dao.exception.NullParamDaoException;
 import by.epam.cafe.dao.mysql.AbstractMysqlDao;
 import by.epam.cafe.entity.enums.ProductType;
 import by.epam.cafe.entity.impl.ProductGroup;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProductGroupMysqlDao extends AbstractMysqlDao<Integer, ProductGroup> {
+
+    private static final Logger log = LogManager.getLogger(ProductGroupMysqlDao.class);
+
+
     // language=SQL
     private static final String findAllSql = "SELECT id, description, name, photo_name, type, disabled FROM product_group;";
     // language=SQL
@@ -17,6 +26,8 @@ public class ProductGroupMysqlDao extends AbstractMysqlDao<Integer, ProductGroup
     private static final String createSql = "INSERT INTO product_group (description, name, photo_name, type, disabled) VALUES (?,?,?,?,?);";
     // language=SQL
     private static final String updateSql = "UPDATE product_group SET  description = ?, name = ?, photo_name = ?, type = ?, disabled = ? WHERE id = ?;";
+    // language=SQL
+    private static final String findAllByProductGroupNotDisabled = "SELECT id, description, name, photo_name, type, disabled FROM product_group WHERE type = ? and disabled = ?;";
 
 
     public ProductGroupMysqlDao() {
@@ -59,5 +70,34 @@ public class ProductGroupMysqlDao extends AbstractMysqlDao<Integer, ProductGroup
         statement.setInt(4, entity.getType().ordinal());
         statement.setBoolean(5, entity.isDisabled());
         statement.setInt(6, entity.getId());
+    }
+
+    public List<ProductGroup> findAllByProductTypeAndDisabled(ProductType type, boolean disabled) throws NullParamDaoException {
+        if (type == null) {
+            throw new NullParamDaoException("type is null");
+        }
+
+        Connection cn = getPool().takeConnection();
+        List<ProductGroup> productGroups = new ArrayList<>();
+        try {
+            try (PreparedStatement statement =
+                         cn.prepareStatement(findAllByProductGroupNotDisabled)) {
+
+                statement.setInt(1, type.ordinal());
+                statement.setBoolean(2, disabled);
+
+                ResultSet resultSet = statement.executeQuery();
+                while (resultSet.next()) {
+                    ProductGroup entity = findEntity(resultSet);
+                    productGroups.add(entity);
+                }
+            } catch (SQLException e) {
+                log.info("e: ", e);
+            }
+
+            return productGroups;
+        } finally {
+            getPool().release(cn);
+        }
     }
 }
