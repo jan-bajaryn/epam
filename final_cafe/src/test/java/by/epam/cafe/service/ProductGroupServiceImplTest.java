@@ -1,12 +1,11 @@
 package by.epam.cafe.service;
 
+import by.epam.cafe.service.impl.ProductGroupServiceImpl;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.*;
+public class ProductGroupServiceImplTest {
 
-public class ProductGroupServiceTest {
-
-    private ProductGroupService productGroupService = new ProductGroupService();
+    private ProductGroupService productGroupService = new ProductGroupServiceImpl();
 
     @Test
     public void testFindAll() {

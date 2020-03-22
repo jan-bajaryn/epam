@@ -1,12 +1,11 @@
 package by.epam.cafe.service;
 
+import by.epam.cafe.service.impl.UserServiceImpl;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.*;
+public class UserServiceImplTest {
 
-public class UserServiceTest {
-
-    private UserService userService = new UserService();
+    private by.epam.cafe.service.UserService userService = new UserServiceImpl();
 
     @Test
     public void testFindAll() {

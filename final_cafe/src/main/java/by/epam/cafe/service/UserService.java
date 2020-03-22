@@ -1,37 +1,19 @@
 package by.epam.cafe.service;
 
-import by.epam.cafe.dao.DAOFactory;
-import by.epam.cafe.dao.mysql.impl.UserMysqlDao;
 import by.epam.cafe.entity.impl.User;
 
 import java.util.List;
 
-public class UserService {
+public interface UserService {
+    List<User> findAll();
 
-    private final DAOFactory dAOFactory = DAOFactory.getInstance();
-    private final UserMysqlDao userMysqlDao = dAOFactory.getUserMysqlDao();
+    User findEntityById(Integer integer);
 
-    public List<User> findAll() {
-        return userMysqlDao.findAll();
-    }
+    boolean deleteById(Integer integer);
 
-    public User findEntityById(Integer integer) {
-        return userMysqlDao.findEntityById(integer);
-    }
+    boolean delete(User entity);
 
-    public boolean deleteById(Integer integer) {
-        return userMysqlDao.deleteById(integer);
-    }
+    boolean create(User entity);
 
-    public boolean delete(User entity) {
-        return userMysqlDao.delete(entity);
-    }
-
-    public boolean create(User entity) {
-        return userMysqlDao.create(entity);
-    }
-
-    public boolean update(User entity) {
-        return userMysqlDao.update(entity);
-    }
+    boolean update(User entity);
 }

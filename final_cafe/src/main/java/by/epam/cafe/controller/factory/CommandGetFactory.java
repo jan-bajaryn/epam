@@ -2,6 +2,7 @@ package by.epam.cafe.controller.factory;
 
 import by.epam.cafe.controller.command.Command;
 import by.epam.cafe.controller.command.SecondCommand;
+import by.epam.cafe.controller.command.getimpl.IndexCommand;
 import by.epam.cafe.controller.command.getimpl.MainCommand;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -19,7 +20,7 @@ public class CommandGetFactory {
     static {
         commandMap.put("/second", new MainCommand());
         /*language=RegExp*/
-        commandMap.put("/?", new SecondCommand());
+        commandMap.put("/?", new IndexCommand());
     }
 
     public Command create(String key) throws PageNotFoundException {

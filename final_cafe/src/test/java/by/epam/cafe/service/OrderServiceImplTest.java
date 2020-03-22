@@ -1,13 +1,12 @@
 package by.epam.cafe.service;
 
+import by.epam.cafe.service.impl.OrderServiceImpl;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.*;
+public class OrderServiceImplTest {
 
-public class OrderServiceTest {
-
-    private OrderService orderService = new OrderService();
+    private OrderServiceImpl orderServiceImpl = new OrderServiceImpl();
 
     @BeforeMethod
     public void setUp() {
@@ -15,12 +14,12 @@ public class OrderServiceTest {
 
     @Test
     public void testFindAll() {
-        System.out.println("orderService.findAll() = " + orderService.findAll());
+        System.out.println("orderService.findAll() = " + orderServiceImpl.findAll());
     }
 
     @Test
     public void testFindEntityById() {
-        System.out.println("orderService.findEntityById(1) = " + orderService.findEntityById(1));
+        System.out.println("orderService.findEntityById(1) = " + orderServiceImpl.findEntityById(1));
     }
 
     @Test

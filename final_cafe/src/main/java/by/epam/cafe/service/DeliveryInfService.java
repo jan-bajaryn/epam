@@ -1,44 +1,19 @@
 package by.epam.cafe.service;
 
-import by.epam.cafe.dao.DAOFactory;
-import by.epam.cafe.dao.mysql.impl.DeliveryInfMysqlDao;
 import by.epam.cafe.entity.impl.DeliveryInf;
 
 import java.util.List;
 
-public class DeliveryInfService {
+public interface DeliveryInfService {
+    List<DeliveryInf> findAll();
 
-    DAOFactory daoFactory = DAOFactory.getInstance();
+    DeliveryInf findEntityById(Integer integer);
 
-    private DeliveryInfMysqlDao deliveryInfMysqlDao = daoFactory.getDeliveryInfMysqlDao();
+    boolean deleteById(Integer integer);
 
+    boolean delete(DeliveryInf entity);
 
-    public List<DeliveryInf> findAll() {
-        return deliveryInfMysqlDao.findAll();
-    }
+    boolean create(DeliveryInf entity);
 
-
-    public DeliveryInf findEntityById(Integer integer) {
-        return deliveryInfMysqlDao.findEntityById(integer);
-    }
-
-
-    public boolean deleteById(Integer integer) {
-        return deliveryInfMysqlDao.deleteById(integer);
-    }
-
-
-    public boolean delete(DeliveryInf entity) {
-        return deliveryInfMysqlDao.delete(entity);
-    }
-
-
-    public boolean create(DeliveryInf entity) {
-        return deliveryInfMysqlDao.create(entity);
-    }
-
-
-    public boolean update(DeliveryInf entity) {
-        return deliveryInfMysqlDao.update(entity);
-    }
+    boolean update(DeliveryInf entity);
 }

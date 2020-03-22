@@ -1,37 +1,19 @@
 package by.epam.cafe.service;
 
-import by.epam.cafe.dao.DAOFactory;
-import by.epam.cafe.dao.mysql.impl.OrderMysqlDao;
 import by.epam.cafe.entity.impl.Order;
 
 import java.util.List;
 
-public class OrderService {
+public interface OrderService {
+    List<Order> findAll();
 
-    DAOFactory daoFactory = DAOFactory.getInstance();
-    private OrderMysqlDao orderMysqlDao = daoFactory.getOrderMysqlDao();
+    Order findEntityById(Integer integer);
 
-    public List<Order> findAll() {
-        return orderMysqlDao.findAll();
-    }
+    boolean deleteById(Integer integer);
 
-    public Order findEntityById(Integer integer) {
-        return orderMysqlDao.findEntityById(integer);
-    }
+    boolean delete(Order entity);
 
-    public boolean deleteById(Integer integer) {
-        return orderMysqlDao.deleteById(integer);
-    }
+    boolean create(Order entity);
 
-    public boolean delete(Order entity) {
-        return orderMysqlDao.delete(entity);
-    }
-
-    public boolean create(Order entity) {
-        return orderMysqlDao.create(entity);
-    }
-
-    public boolean update(Order entity) {
-        return orderMysqlDao.update(entity);
-    }
+    boolean update(Order entity);
 }

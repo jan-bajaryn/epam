@@ -1,11 +1,10 @@
 package by.epam.cafe.service;
 
+import by.epam.cafe.service.impl.DeliveryInfServiceImpl;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.*;
-
-public class DeliveryInfServiceTest {
-    private DeliveryInfService deliveryInfService = new DeliveryInfService();
+public class DeliveryInfServiceImplTest {
+    private DeliveryInfService deliveryInfService = new DeliveryInfServiceImpl();
 
     @Test
     public void testFindAll() {
