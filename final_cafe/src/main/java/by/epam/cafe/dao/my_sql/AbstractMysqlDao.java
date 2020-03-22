@@ -1,4 +1,4 @@
-package by.epam.cafe.dao.mysql;
+package by.epam.cafe.dao.my_sql;
 
 import by.epam.cafe.dao.AbstractDao;
 import by.epam.cafe.dao.pool.ConnectionPool;

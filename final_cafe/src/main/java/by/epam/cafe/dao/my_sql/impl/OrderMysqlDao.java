@@ -1,7 +1,7 @@
-package by.epam.cafe.dao.mysql.impl;
+package by.epam.cafe.dao.my_sql.impl;
 
 
-import by.epam.cafe.dao.mysql.AbstractMysqlDao;
+import by.epam.cafe.dao.my_sql.AbstractMysqlDao;
 import by.epam.cafe.entity.enums.OrderStatus;
 import by.epam.cafe.entity.enums.PaymentType;
 import by.epam.cafe.entity.impl.DeliveryInf;
@@ -84,7 +84,7 @@ public class OrderMysqlDao extends AbstractMysqlDao<Integer, Order> {
         }
     }
 
-    public OrderMysqlDao(Connection cn) {
+    public OrderMysqlDao() {
         super(FIND_ALL_SQL, FIND_BY_ID_SQL, DELETE_BY_ID, CREATE_SQL, UPDATE_SQL);
     }
 

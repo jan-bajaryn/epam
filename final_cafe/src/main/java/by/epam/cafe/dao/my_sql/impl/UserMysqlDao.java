@@ -1,6 +1,6 @@
-package by.epam.cafe.dao.mysql.impl;
+package by.epam.cafe.dao.my_sql.impl;
 
-import by.epam.cafe.dao.mysql.AbstractMysqlDao;
+import by.epam.cafe.dao.my_sql.AbstractMysqlDao;
 import by.epam.cafe.entity.enums.Role;
 import by.epam.cafe.entity.impl.User;
 
@@ -27,7 +27,7 @@ public class UserMysqlDao extends AbstractMysqlDao<Integer, User> {
     public static final String UPDATE_SQL = "UPDATE user SET  creation = ?, name = ?, password = ?, phone = ?, role = ?, surname = ?, username = ?, email = ?, floor = ?, house = ?, porch = ?, room = ?, street = ?, is_blocked = ? WHERE id = ?;";
 
 
-    public UserMysqlDao(Connection cn) {
+    public UserMysqlDao() {
         super(FIND_ALL_SQL, FIND_ENTITY_BY_ID_SQL, DELETE_BY_ID_SQL, CREATE_SQL, UPDATE_SQL);
     }
 

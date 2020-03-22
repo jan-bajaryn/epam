@@ -79,6 +79,15 @@ public class Product extends Entity<Integer> implements Serializable {
         return result;
     }
 
+    @Override
+    public String toString() {
+        return "Product{" +
+                "price=" + price +
+                ", weight=" + weight +
+                ", productGroup=" + productGroup +
+                '}';
+    }
+
     public static final class Builder {
         private Integer id;
         private Integer price;

@@ -231,6 +231,26 @@ public class User extends Entity<Integer> implements Serializable {
         return result;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", role=" + role +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", creation=" + creation +
+                ", street='" + street + '\'' +
+                ", house='" + house + '\'' +
+                ", room='" + room + '\'' +
+                ", porch=" + porch +
+                ", floor=" + floor +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                ", isBlocked=" + isBlocked +
+                '}';
+    }
+
     public static final class Builder {
         private Integer id;
         private String username;

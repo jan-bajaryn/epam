@@ -1,6 +1,6 @@
-package by.epam.cafe.dao.mysql.impl;
+package by.epam.cafe.dao.my_sql.impl;
 
-import by.epam.cafe.dao.mysql.AbstractMysqlDao;
+import by.epam.cafe.dao.my_sql.AbstractMysqlDao;
 import by.epam.cafe.entity.enums.ProductType;
 import by.epam.cafe.entity.impl.ProductGroup;
 
@@ -19,7 +19,7 @@ public class ProductGroupMysqlDao extends AbstractMysqlDao<Integer, ProductGroup
     private static final String updateSql = "UPDATE product_group SET  description = ?, name = ?, photo_name = ?, type = ?, disabled = ? WHERE id = ?;";
 
 
-    public ProductGroupMysqlDao(Connection cn) {
+    public ProductGroupMysqlDao() {
         super(findAllSql, findEntityByIdSql, deleteByIdSql, createSql, updateSql);
     }
 

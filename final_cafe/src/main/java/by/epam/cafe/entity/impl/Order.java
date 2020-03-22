@@ -148,9 +148,25 @@ public class Order extends Entity<Integer> implements Serializable {
         return products;
     }
 
+
     public void setProducts(List<Product> products) {
         this.products = products;
     }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "creation=" + creation +
+                ", clientName='" + clientName + '\'' +
+                ", price=" + price +
+                ", status=" + status +
+                ", paymentType=" + paymentType +
+                ", deliveryInf=" + deliveryInf +
+                ", user=" + user +
+                ", products=" + products +
+                '}';
+    }
+
 
     public static final class Builder {
         private Integer id;

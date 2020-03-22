@@ -182,6 +182,22 @@ public class DeliveryInf extends Entity<Integer> implements Serializable {
         return result;
     }
 
+    @Override
+    public String toString() {
+        return "DeliveryInf{" +
+                "deliveryTime=" + deliveryTime +
+                ", street='" + street + '\'' +
+                ", house='" + house + '\'' +
+                ", room='" + room + '\'' +
+                ", porch=" + porch +
+                ", floor=" + floor +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                ", comments='" + comments + '\'' +
+                ", order=" + order +
+                '}';
+    }
+
     public static final class Builder {
         private Integer id;
         private LocalDateTime deliveryTime;

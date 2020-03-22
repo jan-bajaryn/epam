@@ -1,18 +1,14 @@
-package by.epam.cafe.dao.mysql.impl;
+package by.epam.cafe.dao.my_sql.impl;
 
-import by.epam.cafe.dao.mysql.AbstractMysqlDao;
-import by.epam.cafe.entity.impl.Order;
+import by.epam.cafe.dao.my_sql.AbstractMysqlDao;
 import by.epam.cafe.entity.impl.Product;
 import by.epam.cafe.entity.impl.ProductGroup;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class ProductMysqlDao extends AbstractMysqlDao<Integer, Product> {
@@ -33,7 +29,7 @@ public class ProductMysqlDao extends AbstractMysqlDao<Integer, Product> {
 
 
 
-    public ProductMysqlDao(Connection cn) {
+    public ProductMysqlDao() {
         super(FIND_ALL_SQL, FIND_BY_ID_SQL, DELETE_BY_ID, CREATE_SQL, UPDATE_SQL);
     }
 

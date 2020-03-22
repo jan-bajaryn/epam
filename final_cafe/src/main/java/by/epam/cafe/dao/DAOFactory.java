@@ -1,15 +1,15 @@
 package by.epam.cafe.dao;
 
-import by.epam.cafe.dao.mysql.impl.*;
+import by.epam.cafe.dao.my_sql.impl.*;
 
 public final class DAOFactory {
     private static final DAOFactory instance = new DAOFactory();
 
-    private final DeliveryInfMysqlDao deliveryInfMysqlDao = new DeliveryInfMysqlDao(null);
-    private final OrderMysqlDao orderMysqlDao = new OrderMysqlDao(null);
-    private final ProductMysqlDao productMysqlDao = new ProductMysqlDao(null);
-    private final ProductGroupMysqlDao productGroupMysqlDao = new ProductGroupMysqlDao(null);
-    private final UserMysqlDao userMysqlDao = new UserMysqlDao(null);
+    private final DeliveryInfMysqlDao deliveryInfMysqlDao = new DeliveryInfMysqlDao();
+    private final OrderMysqlDao orderMysqlDao = new OrderMysqlDao();
+    private final ProductMysqlDao productMysqlDao = new ProductMysqlDao();
+    private final ProductGroupMysqlDao productGroupMysqlDao = new ProductGroupMysqlDao();
+    private final UserMysqlDao userMysqlDao = new UserMysqlDao();
 
     private DAOFactory() {
     }

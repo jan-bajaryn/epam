@@ -106,6 +106,17 @@ public class ProductGroup extends Entity<Integer> implements Serializable {
         return result;
     }
 
+    @Override
+    public String toString() {
+        return "ProductGroup{" +
+                "name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", photoName='" + photoName + '\'' +
+                ", type=" + type +
+                ", disabled=" + disabled +
+                '}';
+    }
+
     public static final class Builder {
         private Integer id;
         private String name;
