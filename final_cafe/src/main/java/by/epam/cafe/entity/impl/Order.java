@@ -6,6 +6,7 @@ import by.epam.cafe.entity.enums.PaymentType;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Order extends Entity<Integer> implements Serializable {
@@ -25,7 +26,7 @@ public class Order extends Entity<Integer> implements Serializable {
 
     private User user;
 
-    private List<Product> products;
+    private List<Product> products = new ArrayList<>();
 
     public Order() {
     }
@@ -177,7 +178,7 @@ public class Order extends Entity<Integer> implements Serializable {
         private PaymentType paymentType;
         private DeliveryInf deliveryInf;
         private User user;
-        private List<Product> products;
+        private List<Product> products = new ArrayList<>();
 
         private Builder() {
         }

@@ -14,7 +14,7 @@
           crossorigin="anonymous">
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 
-    <link rel="stylesheet" href="<c:url value='static/css/client_cabinet/main.css' />">
+    <link rel="stylesheet" href="<c:url value='/static/css/client_cabinet/main.css' />">
 </head>
 <body>
 

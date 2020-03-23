@@ -34,7 +34,7 @@
 
 <main class="container">
     <c:if test="${order!=null}">
-        <form action="<c:url value="/edit-order/confirm"/>" method="post">
+        <form action="<c:url value="/page/edit-order/confirm"/>" method="post">
             <div class="modal__main__content">
                 <div class="body__form">
                     <div class="id__row">
@@ -68,7 +68,7 @@
                     <div class="name__row">
                         <label for="name">Name:</label>
                         <input type="text" id="name" name="name" placeholder="Имя"
-                               class="form-control" value="${order.deliveryInf.clientName}">
+                               class="form-control" value="${order.clientName}">
                     </div>
                     <div class="time__row">
                         <label for="time">Time:</label>

@@ -1,9 +1,7 @@
 package by.epam.cafe.controller.factory;
 
 import by.epam.cafe.controller.command.Command;
-import by.epam.cafe.controller.command.SecondCommand;
-import by.epam.cafe.controller.command.getimpl.IndexCommand;
-import by.epam.cafe.controller.command.getimpl.MainCommand;
+import by.epam.cafe.controller.command.getimpl.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -21,6 +19,16 @@ public class CommandGetFactory {
         commandMap.put("/second", new MainCommand());
         /*language=RegExp*/
         commandMap.put("/?", new IndexCommand());
+        commandMap.put("/order", new OrderCommand());
+        commandMap.put("/login", new LoginCommand());
+        commandMap.put("/cabinet", new ClientCabinetCommand());
+        /*language=RegExp*/
+        commandMap.put("/edit-order/\\d+", new EditOrderCommand());
+        commandMap.put("/order-list", new OrderListCommand());
+        commandMap.put("/registration", new RegistrationCommand());
+        /*language=RegExp*/
+        commandMap.put("/your-order/\\d+", new YourOrderCommand());
+        commandMap.put("/admin/create_product",new CreateProductCommand());
     }
 
     public Command create(String key) throws PageNotFoundException {

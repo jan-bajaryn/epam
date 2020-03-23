@@ -35,7 +35,7 @@
 
 <main class="container">
     <div class="create__data">
-        <form action="<c:url value="/registration"/>" method="post">
+        <form action="<c:url value="page/registration"/>" method="post">
             <div class="email">
                 <label for="email">Email:
                     <span class="obligatory">

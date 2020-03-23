@@ -61,7 +61,7 @@
                         </form>
                     </td>
                     <td>
-                        <a href="<c:url value="/edit-order/${order.id}"/>">
+                        <a href="<c:url value="/page/edit-order/${order.id}"/>">
                             <button class="btn orange__bg">Редактировать</button>
                         </a>
                     </td>

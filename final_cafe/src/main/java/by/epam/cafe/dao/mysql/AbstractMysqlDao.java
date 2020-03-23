@@ -51,7 +51,6 @@ public abstract class AbstractMysqlDao<ID, T extends Entity<ID>> implements Abst
                 }
             } catch (SQLException e) {
                 log.info("e: ", e);
-                e.printStackTrace();
             }
             return entities;
         } finally {

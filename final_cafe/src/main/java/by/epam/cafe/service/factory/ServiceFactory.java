@@ -2,6 +2,8 @@ package by.epam.cafe.service.factory;
 
 import by.epam.cafe.service.*;
 import by.epam.cafe.service.impl.*;
+import by.epam.cafe.service.parser.PathVarCalculator;
+import by.epam.cafe.service.parser.impl.PathVarCalculatorImpl;
 
 public class ServiceFactory {
     private static ServiceFactory instance = new ServiceFactory();
@@ -18,6 +20,7 @@ public class ServiceFactory {
     private final ProductGroupService productGroupService = new ProductGroupServiceImpl();
     private final ProductService productServiceImpl = new ProductServiceImpl();
     private final UserService userService = new UserServiceImpl();
+    private final PathVarCalculator pathVarCalculator = new PathVarCalculatorImpl();
 
     public DeliveryInfService getDeliveryInfService() {
         return deliveryInfService;
@@ -37,5 +40,9 @@ public class ServiceFactory {
 
     public UserService getUserService() {
         return userService;
+    }
+
+    public PathVarCalculator getPathVarCalculator() {
+        return pathVarCalculator;
     }
 }

@@ -15,8 +15,8 @@
           integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
           crossorigin="anonymous">
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
-    <link rel="stylesheet" href="<c:url value='static/css/order/main.css' />">
-    <link rel="stylesheet" href="<c:url value='static/css/order/modals.css' />">
+    <link rel="stylesheet" href="<c:url value='/static/css/order/main.css' />">
+    <link rel="stylesheet" href="<c:url value='/static/css/order/modals.css' />">
 </head>
 <body>
 
@@ -169,8 +169,8 @@
         integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
         crossorigin="anonymous"></script>
 
-<script src="static/js/order/modals.js"></script>
-<%--<script src="static/js/order/plus_minus.js"></script>--%>
+<script src="/static/js/order/modals.js"></script>
+<%--<script src="/static/js/order/plus_minus.js"></script>--%>
 
 
 </body>

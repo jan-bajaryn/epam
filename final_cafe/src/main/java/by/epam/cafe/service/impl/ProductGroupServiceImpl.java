@@ -66,6 +66,13 @@ public class ProductGroupServiceImpl implements by.epam.cafe.service.ProductGrou
         }
     }
 
+
+    //TODO at that time not useful, may be delete after exit
+    @Override
+    public List<ProductGroup> findAllEmpty() {
+        return productGroupMysqlDao.findAllEmpty();
+    }
+
     private void buildProductGroup(ProductGroup productGroup) throws NullParamDaoException {
         List<Product> products = productGroup.getProducts();
         List<Product> allByProductGroupId = productMysqlDao.findAllByProductGroupId(productGroup.getId());

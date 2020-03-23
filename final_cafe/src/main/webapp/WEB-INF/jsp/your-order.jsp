@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="<c:url value='/static/css/footer.css' />">
     <link rel="stylesheet" href="<c:url value='/static/css/nav__bar.css' />">
     <link rel="stylesheet" href="<c:url value='/static/css/buttons.css' />">
-    <link rel="stylesheet" href="/static/css/order-list/main.css">
+    <link rel="stylesheet" href="<c:url value='/static/css/order-list/main.css' />">
 </head>
 <body>
 
@@ -28,7 +28,7 @@
     <table class="table">
         <tr>
             <td>Ваше имя</td>
-            <td>${order.deliveryInf.clientName}</td>
+            <td>${order.clientName}</td>
         </tr>
         <tr>
             <td>Номер заказа</td>
@@ -96,6 +96,7 @@
                 </div>
             </c:forEach>
         </div>
+    </div>
 </main>
 
 <c:import url="fragments/footer.jsp"/>

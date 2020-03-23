@@ -20,4 +20,6 @@ public interface ProductGroupService {
     boolean update(ProductGroup entity);
 
     List<ProductGroup> findAllByProductTypeNotDisabled(ProductType type) throws NullServiceException;
+
+    List<ProductGroup> findAllEmpty();
 }

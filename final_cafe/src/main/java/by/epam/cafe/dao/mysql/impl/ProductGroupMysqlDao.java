@@ -29,6 +29,8 @@ public class ProductGroupMysqlDao extends AbstractMysqlDao<Integer, ProductGroup
     // language=SQL
     private static final String findAllByProductGroupNotDisabled = "SELECT id, description, name, photo_name, type, disabled FROM product_group WHERE type = ? and disabled = ?;";
 
+    // language=SQL
+    public static final String findEmpty = "SELECT id, description, name, photo_name, type, disabled FROM product_group LEFT JOIN product ON product_group.id = product.product_group_id WHERE product_group_id IS NULL;";
 
     public ProductGroupMysqlDao() {
         super(findAllSql, findEntityByIdSql, deleteByIdSql, createSql, updateSql);
@@ -96,6 +98,27 @@ public class ProductGroupMysqlDao extends AbstractMysqlDao<Integer, ProductGroup
             }
 
             return productGroups;
+        } finally {
+            getPool().release(cn);
+        }
+    }
+
+    public List<ProductGroup> findAllEmpty() {
+
+        Connection cn = getPool().takeConnection();
+        try {
+            List<ProductGroup> entities = new ArrayList<>();
+
+            try (Statement statement = cn.createStatement()) {
+                ResultSet resultSet = statement.executeQuery(findEmpty);
+                while (resultSet.next()) {
+                    ProductGroup entity = findEntity(resultSet);
+                    entities.add(entity);
+                }
+            } catch (SQLException e) {
+                log.info("e: ", e);
+            }
+            return entities;
         } finally {
             getPool().release(cn);
         }

@@ -55,7 +55,7 @@
                                 <div class="modal-content">
                                     <span class="close">&times;</span>
                                     <div class="modal__main__content">
-                                        <img src="static/img/${product_group.key.getPhotoName()}" alt="Photo"/>
+                                        <img src="/static/img/${product_group.key.getPhotoName()}" alt="Photo"/>
                                         <div class="content__description">
                                             <div class="header">
                                                     ${product_group.key.getName()}
@@ -95,8 +95,8 @@
             integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
             crossorigin="anonymous"></script>
 
-    <script src="static/js/index/modals.js"></script>
-    <script src="static/js/index/main.js"></script>
+    <script src="/static/js/index/modals.js"></script>
+    <script src="/static/js/index/main.js"></script>
 
 </div>
 </body>

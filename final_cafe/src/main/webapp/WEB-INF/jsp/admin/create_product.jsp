@@ -29,12 +29,12 @@
 
 <c:import url="../fragments/navPanel.jsp"/>
 <header>
-    <h1>Edit user</h1>
+    <h1>Create product</h1>
 </header>
 
 <main class="container">
     <div class="create__data">
-        <form action="<c:url value="/admin/create_product"/>" method="post">
+        <form action="<c:url value="page/admin/create_product"/>" method="post">
             <div class="product_group">
                 <label for="product_group">Product group:</label>
                 <select class="form-control" id="product_group" name="product_group">

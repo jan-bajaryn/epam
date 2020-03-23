@@ -33,6 +33,11 @@ public class IndexCommand extends by.epam.cafe.controller.command.Command {
         ProductType prodType = calcVariables(request);
         log.info("execute: prodType = {}", prodType);
         try {
+            System.out.println("request.getRequestedSessionId() = " + request.getRequestedSessionId());
+            System.out.println("request.getSession() = " + request.getSession());
+            System.out.println("request.getRequestedSessionId() = " + request.getRequestedSessionId());
+
+
             List<ProductGroup> list = productGroupService.findAllByProductTypeNotDisabled(prodType);
             Map<ProductGroup, Integer> result = list.stream()
                     .collect(Collectors.toMap(p -> p, this::getMinPrice));

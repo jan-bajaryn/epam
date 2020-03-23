@@ -12,23 +12,24 @@
                 <i class='fas fa-pizza-slice'></i>
             </div>
             <ul>
-                <li><a href="<c:url value="/?type=PIZZA"/>">Пиццы</a></li>
-                <li><a href="<c:url value="/?type=SNACK"/>">Закуски</a></li>
-                <li><a href="<c:url value="/?type=DRINK"/>">Напитки</a></li>
-                <li><a href="<c:url value="/?type=DESSERT"/>">Десерты</a></li>
+                <li><a href="<c:url value="/page/?type=PIZZA"/>">Пиццы</a></li>
+                <li><a href="<c:url value="/page/?type=SNACK"/>">Закуски</a></li>
+                <li><a href="<c:url value="/page/?type=DRINK"/>">Напитки</a></li>
+                <li><a href="<c:url value="/page/?type=DESSERT"/>">Десерты</a></li>
                 <%--                <sec:authorize access="!isAuthenticated()">--%>
-                <li><a href="<c:url value="/login"/>">Войти</a></li>
+                <li><a href="<c:url value="/page/login"/>">Войти</a></li>
+                <li><a href="<c:url value="/page/cabinet"/>">Личный кабинет</a></li>
                 <%--                </sec:authorize>--%>
                 <%--                <sec:authorize access="hasAuthority('ADMIN')">--%>
-                <li><a href="<c:url value="/admin/user_list"/>">Пользователи</a></li>
-                <li><a href="<c:url value="/admin/product_list"/>">Продукты</a></li>
-                <li><a href="<c:url value="/admin/product_group_list"/>">Группы продуктов</a></li>
+                <li><a href="<c:url value="/page/admin/user_list"/>">Пользователи</a></li>
+                <li><a href="<c:url value="/page/admin/product_list"/>">Продукты</a></li>
+                <li><a href="<c:url value="/page/admin/product_group_list"/>">Группы продуктов</a></li>
                 <%--                </sec:authorize>--%>
                 <%--                <sec:authorize access="hasAuthority('OPERATOR')">--%>
-                <li><a href="<c:url value="/order-list"/>">Заказы</a></li>
+                <li><a href="<c:url value="/page/order-list"/>">Заказы</a></li>
                 <%--                </sec:authorize>--%>
                 <%--                <sec:authorize access="isAuthenticated()">--%>
-                <li><a href="<c:url value="/logout"/>">Выйти</a></li>
+                <li><a href="<c:url value="/page/logout"/>">Выйти</a></li>
                 <%--                </sec:authorize>--%>
             </ul>
         </div>
