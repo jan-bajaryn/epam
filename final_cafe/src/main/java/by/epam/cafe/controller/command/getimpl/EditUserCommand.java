@@ -1,31 +1,37 @@
 package by.epam.cafe.controller.command.getimpl;
 
-import by.epam.cafe.entity.impl.Order;
-import by.epam.cafe.service.OrderService;
+import by.epam.cafe.entity.impl.User;
+import by.epam.cafe.service.UserService;
 import by.epam.cafe.service.exception.IllegalPathParamException;
 import by.epam.cafe.service.factory.ServiceFactory;
 import by.epam.cafe.service.parser.PathVarCalculator;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class YourOrderCommand extends by.epam.cafe.controller.command.Command {
+public class EditUserCommand extends by.epam.cafe.controller.command.Command {
+
+    private static final Logger log = LogManager.getLogger(EditUserCommand.class);
+
 
     private final ServiceFactory serviceFactory = ServiceFactory.getInstance();
     private final PathVarCalculator pathVarCalculator = serviceFactory.getPathVarCalculator();
-    private final OrderService orderService = serviceFactory.getOrderService();
-
+    private final UserService userService = serviceFactory.getUserService();
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             Integer id = pathVarCalculator.findLastInteger(request.getPathInfo());
-            Order order = orderService.findEntityById(id);
-            if (order != null) {
-                request.setAttribute("order", order);
-                request.getRequestDispatcher("/WEB-INF/jsp/your-order.jsp").forward(request, response);
+            log.info("execute: id = {}", id);
+            User user = userService.findEntityById(id);
+            log.info("execute: user = {}", user);
+            if (user != null) {
+                request.setAttribute("user", user);
+                request.getRequestDispatcher("/WEB-INF/jsp/admin/edit-user.jsp").forward(request, response);
             } else {
                 request.getRequestDispatcher("/WEB-INF/jsp/errors/something_went_wrong.jsp").forward(request, response);
             }

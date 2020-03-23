@@ -17,10 +17,10 @@
           crossorigin="anonymous">
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 
-    <link rel="stylesheet" href="/static/css/footer.css">
-    <link rel="stylesheet" href="/static/css/nav__bar.css">
-    <link rel="stylesheet" href="/static/css/buttons.css">
-    <link rel="stylesheet" href="/static/css/admin/create_user.css">
+    <link rel="stylesheet" href="<c:url value='/static/css/footer.css' />">
+    <link rel="stylesheet" href="<c:url value='/static/css/nav__bar.css' />">
+    <link rel="stylesheet" href="<c:url value='/static/css/buttons.css' />">
+    <link rel="stylesheet" href="<c:url value='/static/css/admin/create_user.css' />">
 
 
 </head>
@@ -118,10 +118,10 @@
 
                 <div class="isBlocked">
                     <label for="isBlocked">is blocked:</label>
-                    <c:if test="${user.isBlocked}">
+                    <c:if test="${user.blocked}">
                         <input type="checkbox" checked name="isBlocked" id="isBlocked" value="1">
                     </c:if>
-                    <c:if test="${!user.isBlocked}">
+                    <c:if test="${!user.blocked}">
                         <input type="checkbox" name="isBlocked" id="isBlocked" value="1">
                     </c:if>
                 </div>

@@ -83,7 +83,7 @@ public class UserMysqlDao extends AbstractMysqlDao<Integer, User> {
         setIntOrNull(statement, entity.getPorch(), 11);
         statement.setString(12, entity.getRoom());
         statement.setString(13, entity.getStreet());
-        statement.setBoolean(14, entity.getBlocked());
+        statement.setBoolean(14, entity.isBlocked());
     }
 
     private void setIntOrNull(PreparedStatement statement, Integer integer, int label) throws SQLException {
@@ -108,7 +108,7 @@ public class UserMysqlDao extends AbstractMysqlDao<Integer, User> {
         setIntOrNull(statement, entity.getPorch(), 11);
         statement.setString(12, entity.getRoom());
         statement.setString(13, entity.getStreet());
-        statement.setBoolean(14, entity.getBlocked());
+        statement.setBoolean(14, entity.isBlocked());
         statement.setInt(15, entity.getId());
     }
 }

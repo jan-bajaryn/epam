@@ -28,7 +28,24 @@ public class CommandGetFactory {
         commandMap.put("/registration", new RegistrationCommand());
         /*language=RegExp*/
         commandMap.put("/your-order/\\d+", new YourOrderCommand());
-        commandMap.put("/admin/create_product",new CreateProductCommand());
+
+
+        commandMap.put("/admin/create-product", new CreateProductCommand());
+        commandMap.put("/admin/create-product-group", new CreateProductGroupCommand());
+        commandMap.put("/admin/create-user", new CreateUserCommand());
+
+        commandMap.put("/admin/user-list", new UserListCommand());
+        commandMap.put("/admin/product-list", new ProductListCommand());
+        commandMap.put("/admin/product-group-list", new ProductGroupListCommand());
+
+        /*language=RegExp*/
+        commandMap.put("/admin/edit-user/\\d+", new EditUserCommand());
+        /*language=RegExp*/
+        commandMap.put("/admin/edit-product-group/\\d+", new EditProductGroupCommand());
+        /*language=RegExp*/
+        commandMap.put("/admin/edit-product/\\d+", new EditProductCommand());
+
+
     }
 
     public Command create(String key) throws PageNotFoundException {

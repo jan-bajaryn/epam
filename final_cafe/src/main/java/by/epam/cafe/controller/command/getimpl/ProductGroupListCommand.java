@@ -11,22 +11,18 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-public class CreateProductCommand extends by.epam.cafe.controller.command.Command {
+public class ProductGroupListCommand extends by.epam.cafe.controller.command.Command {
 
     private final ServiceFactory serviceFactory = ServiceFactory.getInstance();
-
     private final ProductGroupService productGroupService = serviceFactory.getProductGroupService();
+
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         try {
             List<ProductGroup> all = productGroupService.findAll();
-
             request.setAttribute("groups", all);
-
-            request.getRequestDispatcher("/WEB-INF/jsp/admin/create-product.jsp").forward(request, response);
-
+            request.getRequestDispatcher("/WEB-INF/jsp/admin/product-group-list.jsp").forward(request, response);
         } catch (NullParamDaoException e) {
             request.getRequestDispatcher("/WEB-INF/jsp/errors/something_went_wrong.jsp").forward(request, response);
         }

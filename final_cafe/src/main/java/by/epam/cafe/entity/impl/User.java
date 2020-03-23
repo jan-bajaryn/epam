@@ -30,13 +30,13 @@ public class User extends Entity<Integer> implements Serializable {
 
     private String email;
 
-    private Boolean isBlocked;
+    private Boolean blocked;
 
 
     public User() {
     }
 
-    public User(Integer integer, String username, String password, Role role, String name, String surname, LocalDateTime creation, String street, String house, String room, Integer porch, Integer floor, String phone, String email, Boolean isBlocked) {
+    public User(Integer integer, String username, String password, Role role, String name, String surname, LocalDateTime creation, String street, String house, String room, Integer porch, Integer floor, String phone, String email, boolean blocked) {
         super(integer);
         this.username = username;
         this.password = password;
@@ -51,7 +51,7 @@ public class User extends Entity<Integer> implements Serializable {
         this.floor = floor;
         this.phone = phone;
         this.email = email;
-        this.isBlocked = isBlocked;
+        this.blocked = blocked;
     }
 
     private User(Builder builder) {
@@ -69,7 +69,7 @@ public class User extends Entity<Integer> implements Serializable {
         setFloor(builder.floor);
         setPhone(builder.phone);
         setEmail(builder.email);
-        isBlocked = builder.isBlocked;
+        blocked = builder.isBlocked;
     }
 
     public static Builder newBuilder() {
@@ -181,12 +181,12 @@ public class User extends Entity<Integer> implements Serializable {
         this.email = email;
     }
 
-    public Boolean getBlocked() {
-        return isBlocked;
+    public boolean isBlocked() {
+        return blocked;
     }
 
-    public void setBlocked(Boolean blocked) {
-        isBlocked = blocked;
+    public void setBlocked(boolean blocked) {
+        this.blocked = blocked;
     }
 
     @Override
@@ -209,7 +209,7 @@ public class User extends Entity<Integer> implements Serializable {
         if (floor != null ? !floor.equals(user.floor) : user.floor != null) return false;
         if (phone != null ? !phone.equals(user.phone) : user.phone != null) return false;
         if (email != null ? !email.equals(user.email) : user.email != null) return false;
-        return isBlocked != null ? isBlocked.equals(user.isBlocked) : user.isBlocked == null;
+        return blocked != null ? blocked.equals(user.blocked) : user.blocked == null;
     }
 
     @Override
@@ -227,7 +227,7 @@ public class User extends Entity<Integer> implements Serializable {
         result = 31 * result + (floor != null ? floor.hashCode() : 0);
         result = 31 * result + (phone != null ? phone.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
-        result = 31 * result + (isBlocked != null ? isBlocked.hashCode() : 0);
+        result = 31 * result + (blocked != null ? blocked.hashCode() : 0);
         return result;
     }
 
@@ -248,7 +248,7 @@ public class User extends Entity<Integer> implements Serializable {
                 ", floor=" + floor +
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
-                ", isBlocked=" + isBlocked +
+                ", isBlocked=" + blocked +
                 '}';
     }
 
@@ -267,7 +267,7 @@ public class User extends Entity<Integer> implements Serializable {
         private Integer floor;
         private String phone;
         private String email;
-        private Boolean isBlocked;
+        private boolean isBlocked;
 
         private Builder() {
         }
@@ -342,7 +342,7 @@ public class User extends Entity<Integer> implements Serializable {
             return this;
         }
 
-        public Builder isBlocked(Boolean val) {
+        public Builder isBlocked(boolean val) {
             isBlocked = val;
             return this;
         }

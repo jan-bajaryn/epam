@@ -35,7 +35,7 @@
 <main class="container">
 
     <div class="create__new mb-5">
-        <a href="<c:url value="/admin/create_product_group"/>">
+        <a href="<c:url value="/page/admin/create-product-group"/>">
             <button class="btn white__bg__orange">
                 Create new product group
             </button>
@@ -59,7 +59,7 @@
         <tbody>
         <c:forEach items="${groups}" var="p">
             <tr>
-                <td><img src="/static/img/${p.photoName}" alt="Photo"></td>
+                <td><img src="<c:url value="/static/img/${p.photoName}"/>" alt="Photo"></td>
                 <td>${p.id}</td>
                 <td>${p.name}</td>
                 <td>${p.description}</td>
@@ -83,7 +83,7 @@
                     </form>
                 </td>
                 <td>
-                    <a href="<c:url value="/admin/edit_product_group/${p.id}"/>">
+                    <a href="<c:url value="/page/admin/edit-product-group/${p.id}"/>">
                         <button class="btn orange__bg">Edit</button>
                     </a>
                 </td>

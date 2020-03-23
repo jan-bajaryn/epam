@@ -16,4 +16,6 @@ public interface ProductService {
     boolean create(Product entity);
 
     boolean update(Product entity);
+
+    List<Product> findAllByProductGroupNull();
 }

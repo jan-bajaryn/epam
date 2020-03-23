@@ -21,9 +21,9 @@
                 <li><a href="<c:url value="/page/cabinet"/>">Личный кабинет</a></li>
                 <%--                </sec:authorize>--%>
                 <%--                <sec:authorize access="hasAuthority('ADMIN')">--%>
-                <li><a href="<c:url value="/page/admin/user_list"/>">Пользователи</a></li>
-                <li><a href="<c:url value="/page/admin/product_list"/>">Продукты</a></li>
-                <li><a href="<c:url value="/page/admin/product_group_list"/>">Группы продуктов</a></li>
+                <li><a href="<c:url value="/page/admin/user-list"/>">Пользователи</a></li>
+                <li><a href="<c:url value="/page/admin/product-list"/>">Продукты</a></li>
+                <li><a href="<c:url value="/page/admin/product-group-list"/>">Группы продуктов</a></li>
                 <%--                </sec:authorize>--%>
                 <%--                <sec:authorize access="hasAuthority('OPERATOR')">--%>
                 <li><a href="<c:url value="/page/order-list"/>">Заказы</a></li>
