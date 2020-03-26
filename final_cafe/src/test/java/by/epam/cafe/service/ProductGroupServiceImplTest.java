@@ -1,5 +1,6 @@
 package by.epam.cafe.service;
 
+import by.epam.cafe.dao.exception.NullParamDaoException;
 import by.epam.cafe.service.impl.ProductGroupServiceImpl;
 import org.testng.annotations.Test;
 
@@ -8,7 +9,7 @@ public class ProductGroupServiceImplTest {
     private ProductGroupService productGroupService = new ProductGroupServiceImpl();
 
     @Test
-    public void testFindAll() {
+    public void testFindAll() throws NullParamDaoException {
         System.out.println("productGroupService.findAll() = " + productGroupService.findAll());
     }
 
