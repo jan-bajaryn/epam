@@ -40,4 +40,15 @@ public class UserServiceImpl implements by.epam.cafe.service.UserService {
     public boolean update(User entity) {
         return userMysqlDao.update(entity);
     }
+
+
+//    TODO complete this method with dao
+    @Override
+    public User findUserByUsername(String username) {
+        return findAll().stream()
+                .filter(u -> u.getUsername().equals(username))
+                .findAny()
+                .orElse(null);
+
+    }
 }

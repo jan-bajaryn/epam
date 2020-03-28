@@ -1,4 +1,4 @@
-package by.epam.cafe.controller.factory;
+package by.epam.cafe.controller.factory.exception;
 
 public class PageNotFoundException extends Exception {
     public PageNotFoundException() {

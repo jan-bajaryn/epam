@@ -1,7 +1,9 @@
-package by.epam.cafe.controller.factory;
+package by.epam.cafe.controller.factory.impl;
 
 import by.epam.cafe.controller.command.Command;
 import by.epam.cafe.controller.command.getimpl.*;
+import by.epam.cafe.controller.factory.CommandFactory;
+import by.epam.cafe.controller.factory.exception.PageNotFoundException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -9,7 +11,16 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
 
-public class CommandGetFactory {
+public class CommandGetFactory implements CommandFactory {
+
+    private CommandGetFactory() {
+    }
+
+    private static CommandGetFactory instance = new CommandGetFactory();
+
+    public static CommandGetFactory getInstance() {
+        return instance;
+    }
 
     private static final Logger log = LogManager.getLogger(CommandGetFactory.class);
 
@@ -17,6 +28,7 @@ public class CommandGetFactory {
 
     static {
         commandMap.put("/second", new MainCommand());
+        commandMap.put("/something_went_wrong", new SomethingWentWrongCommand());
         /*language=RegExp*/
         commandMap.put("/?", new IndexCommand());
         commandMap.put("/order", new OrderCommand());
@@ -48,6 +60,7 @@ public class CommandGetFactory {
 
     }
 
+    @Override
     public Command create(String key) throws PageNotFoundException {
         for (Map.Entry<String, Command> s : commandMap.entrySet()) {
             log.info("s.getKey() = {}", s.getKey());

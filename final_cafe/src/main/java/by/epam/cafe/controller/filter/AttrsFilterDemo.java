@@ -1,4 +1,4 @@
-package by.epam.cafe.controller.command.filter;
+package by.epam.cafe.controller.filter;
 
 
 import by.epam.cafe.controller.tags.VendorMap;

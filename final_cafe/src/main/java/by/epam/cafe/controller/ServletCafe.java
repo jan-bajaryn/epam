@@ -1,8 +1,10 @@
 package by.epam.cafe.controller;
 
 import by.epam.cafe.controller.command.Command;
-import by.epam.cafe.controller.factory.CommandGetFactory;
-import by.epam.cafe.controller.factory.PageNotFoundException;
+import by.epam.cafe.controller.factory.CommandFactory;
+import by.epam.cafe.controller.factory.impl.CommandGetFactory;
+import by.epam.cafe.controller.factory.impl.CommandPostFactory;
+import by.epam.cafe.controller.factory.exception.PageNotFoundException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -18,24 +20,20 @@ public class ServletCafe extends HttpServlet {
 
     private static final Logger log = LogManager.getLogger(ServletCafe.class);
 
-    private CommandGetFactory commandGetFactory = new CommandGetFactory();
+    private final CommandGetFactory commandGetFactory = CommandGetFactory.getInstance();
+    private final CommandPostFactory commandPostFactory = CommandPostFactory.getInstance();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        executeMethod(commandPostFactory, request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        getFactory.create(request.get);
-//        log.info("request.getContextPath() = {}", request.getContextPath());
-//        log.info("request.getRequestURI() = {}", request.getRequestURI());
-//        System.out.println("request.getContextPath() = " + request.getContextPath());
-//        System.out.println("request.getRequestURI() = " + request.getRequestURI());
-//        log.info("request.getPathInfo() = {}", request.getPathInfo());
-//        log.info("request.getRequestURL().toString() = {}", request.getRequestURL().toString());
-//        log.info("request.getLocalName() = {}", request.getLocalName());
-//
-//        log.info("request.getServletPath() = {}", request.getServletPath());
+        executeMethod(commandGetFactory, request, response);
+    }
 
+    private void executeMethod(CommandFactory commandFactory,
+                               HttpServletRequest request,
+                               HttpServletResponse response) throws ServletException, IOException {
         try {
             String requestURI = request.getRequestURI();
             log.info("requestURI = {}", requestURI);
@@ -46,6 +44,6 @@ public class ServletCafe extends HttpServlet {
         } catch (PageNotFoundException e) {
             log.info("e: ", e);
         }
-//        request.getRequestDispatcher("/WEB-INF/jsp/page.jsp").forward(request, response);
     }
+
 }

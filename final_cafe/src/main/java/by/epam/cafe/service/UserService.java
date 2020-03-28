@@ -16,4 +16,6 @@ public interface UserService {
     boolean create(User entity);
 
     boolean update(User entity);
+
+    User findUserByUsername(String username);
 }
