@@ -66,6 +66,7 @@ public class ConnectionPool {
         try {
             return DriverManager.getConnection(URL, properties);
         } catch (SQLException e) {
+            log.error("Exception in takeConnection: ", e);
             return null;
         }
 //        locker.lock();

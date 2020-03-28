@@ -17,10 +17,12 @@
                 <li><a href="<c:url value="/page/?type=DRINK"/>">Напитки</a></li>
                 <li><a href="<c:url value="/page/?type=DESSERT"/>">Десерты</a></li>
                 <%--                <sec:authorize access="!isAuthenticated()">--%>
-                <li><a href="<c:url value="/page/login"/>">Войти</a></li>
-                <li><a href="<c:url value="/page/cabinet"/>">Личный кабинет</a></li>
-                <%--                </sec:authorize>--%>
-                <%--                <sec:authorize access="hasAuthority('ADMIN')">--%>
+                <c:if test="${sessionScope.user==null}">
+                    <li><a href="<c:url value="/page/login"/>">Войти</a></li>
+                </c:if>
+                <c:if test="${sessionScope.user!=null}">
+                    <li><a href="<c:url value="/page/cabinet"/>">Личный кабинет</a></li>
+                </c:if>
                 <li><a href="<c:url value="/page/admin/user-list"/>">Пользователи</a></li>
                 <li><a href="<c:url value="/page/admin/product-list"/>">Продукты</a></li>
                 <li><a href="<c:url value="/page/admin/product-group-list"/>">Группы продуктов</a></li>

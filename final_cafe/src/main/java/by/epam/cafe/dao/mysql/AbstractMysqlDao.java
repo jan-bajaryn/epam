@@ -161,6 +161,7 @@ public abstract class AbstractMysqlDao<ID, T extends Entity<ID>> implements Abst
     protected abstract void updateParams(T entity, PreparedStatement statement) throws SQLException;
 
     protected ConnectionPool getPool() {
+        log.info("connectionPool = {}", connectionPool);
         return connectionPool;
     }
 }

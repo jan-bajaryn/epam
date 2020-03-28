@@ -80,6 +80,7 @@ public class ProductGroupMysqlDao extends AbstractMysqlDao<Integer, ProductGroup
         }
 
         Connection cn = getPool().takeConnection();
+        log.info("findAllByProductTypeAndDisabled: cn = {}", cn);
         List<ProductGroup> productGroups = new ArrayList<>();
         try {
             try (PreparedStatement statement =
