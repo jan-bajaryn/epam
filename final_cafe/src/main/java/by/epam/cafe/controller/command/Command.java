@@ -10,5 +10,5 @@ public abstract class Command {
     public Command() {
     }
 
-    public abstract void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+    public abstract void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PermissionDeniedException;
 }

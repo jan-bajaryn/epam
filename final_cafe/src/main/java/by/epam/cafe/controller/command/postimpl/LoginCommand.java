@@ -30,7 +30,7 @@ public class LoginCommand extends by.epam.cafe.controller.command.Command {
 
         if (user != null && user.getPassword().equals(password)) {
             putUser(request, user);
-            response.sendRedirect(request.getServletPath() + "/");
+            response.sendRedirect(request.getContextPath() + request.getServletPath() + "/");
         } else {
             response.sendRedirect(request.getServletPath() + "/something_went_wrong");
         }

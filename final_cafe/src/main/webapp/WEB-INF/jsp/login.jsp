@@ -35,7 +35,8 @@
 
 
 <main class="container">
-    <form action="<c:url value="/login"/>" method="post" enctype="application/x-www-form-urlencoded">
+    <form action="<c:url value="/page/login"/>" method="post">
+<%--        enctype="application/x-www-form-urlencoded"--%>
         <div class="username__group">
             <label for="username">Username: </label>
             <input type="text" id="username" placeholder="Username" class="form-control" name="username">
@@ -46,9 +47,9 @@
             <input name="password" type="password" id="password" class="form-control" placeholder="Password">
         </div>
 
-<%--        <input type="hidden"--%>
-<%--               name="${_csrf.parameterName}"--%>
-<%--               value="${_csrf.token}"/>--%>
+        <%--        <input type="hidden"--%>
+        <%--               name="${_csrf.parameterName}"--%>
+        <%--               value="${_csrf.token}"/>--%>
 
         <div class="submit">
             <button class="btn white__bg__orange" type="submit">Submit</button>

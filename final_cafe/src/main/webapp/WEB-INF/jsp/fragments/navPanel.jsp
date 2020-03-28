@@ -31,6 +31,7 @@
                 <li><a href="<c:url value="/page/order-list"/>">Заказы</a></li>
                 <%--                </sec:authorize>--%>
                 <%--                <sec:authorize access="isAuthenticated()">--%>
+<%--                <li><a href="<c:url value="/page/logout"/>">Выйти</a></li>--%>
                 <li><a href="<c:url value="/page/logout"/>">Выйти</a></li>
                 <%--                </sec:authorize>--%>
             </ul>

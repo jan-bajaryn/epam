@@ -1,6 +1,7 @@
 package by.epam.cafe.controller;
 
 import by.epam.cafe.controller.command.Command;
+import by.epam.cafe.controller.command.PermissionDeniedException;
 import by.epam.cafe.controller.factory.CommandFactory;
 import by.epam.cafe.controller.factory.impl.CommandGetFactory;
 import by.epam.cafe.controller.factory.impl.CommandPostFactory;
@@ -39,9 +40,9 @@ public class ServletCafe extends HttpServlet {
             log.info("requestURI = {}", requestURI);
             String prefix = request.getContextPath() + request.getServletPath();
             log.info("prefix = {}", prefix);
-            Command command = commandGetFactory.create(requestURI.substring(prefix.length()));
+            Command command = commandFactory.create(requestURI.substring(prefix.length()));
             command.execute(request, response);
-        } catch (PageNotFoundException e) {
+        } catch (PageNotFoundException | PermissionDeniedException e) {
             log.info("e: ", e);
         }
     }

@@ -10,4 +10,14 @@ public class EncodingFilter implements Filter {
         request.setCharacterEncoding("UTF-8");
         chain.doFilter(request, response);
     }
+
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException {
+
+    }
+
+    @Override
+    public void destroy() {
+
+    }
 }
