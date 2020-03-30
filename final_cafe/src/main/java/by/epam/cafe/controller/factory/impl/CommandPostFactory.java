@@ -1,15 +1,21 @@
 package by.epam.cafe.controller.factory.impl;
 
 import by.epam.cafe.controller.command.Command;
+import by.epam.cafe.controller.command.CommandDecorator;
+import by.epam.cafe.controller.command.postimpl.CreateUserCommand;
 import by.epam.cafe.controller.command.postimpl.LoginCommand;
 import by.epam.cafe.controller.factory.CommandFactory;
 import by.epam.cafe.controller.factory.exception.PageNotFoundException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.EnumSet;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
+
+import static by.epam.cafe.entity.enums.Role.ADMIN;
+import static by.epam.cafe.entity.enums.Role.ANON;
 
 public class CommandPostFactory implements CommandFactory {
 
@@ -29,7 +35,9 @@ public class CommandPostFactory implements CommandFactory {
 
     static {
         /*language=RegExp*/
-        commandMap.put("/login", new LoginCommand());
+        commandMap.put("/login", new CommandDecorator(new LoginCommand(), EnumSet.of(ANON)));
+        commandMap.put("/admin/create_user", new CommandDecorator(new CreateUserCommand(), EnumSet.of(ADMIN)));
+
     }
 
     @Override

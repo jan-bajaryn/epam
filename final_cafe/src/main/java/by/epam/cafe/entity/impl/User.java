@@ -30,7 +30,7 @@ public class User extends Entity<Integer> implements Serializable {
 
     private String email;
 
-    private Boolean blocked;
+    private boolean blocked;
 
 
     public User() {
@@ -196,6 +196,7 @@ public class User extends Entity<Integer> implements Serializable {
 
         User user = (User) o;
 
+        if (blocked != user.blocked) return false;
         if (username != null ? !username.equals(user.username) : user.username != null) return false;
         if (password != null ? !password.equals(user.password) : user.password != null) return false;
         if (role != user.role) return false;
@@ -208,8 +209,7 @@ public class User extends Entity<Integer> implements Serializable {
         if (porch != null ? !porch.equals(user.porch) : user.porch != null) return false;
         if (floor != null ? !floor.equals(user.floor) : user.floor != null) return false;
         if (phone != null ? !phone.equals(user.phone) : user.phone != null) return false;
-        if (email != null ? !email.equals(user.email) : user.email != null) return false;
-        return blocked != null ? blocked.equals(user.blocked) : user.blocked == null;
+        return email != null ? email.equals(user.email) : user.email == null;
     }
 
     @Override
@@ -227,7 +227,7 @@ public class User extends Entity<Integer> implements Serializable {
         result = 31 * result + (floor != null ? floor.hashCode() : 0);
         result = 31 * result + (phone != null ? phone.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
-        result = 31 * result + (blocked != null ? blocked.hashCode() : 0);
+        result = 31 * result + (blocked ? 1 : 0);
         return result;
     }
 

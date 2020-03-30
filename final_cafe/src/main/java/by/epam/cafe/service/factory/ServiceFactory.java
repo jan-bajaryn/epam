@@ -5,6 +5,7 @@ import by.epam.cafe.service.impl.*;
 import by.epam.cafe.service.parser.PathVarCalculator;
 import by.epam.cafe.service.parser.impl.PathVarCalculatorImpl;
 import by.epam.cafe.service.validator.LoginValidator;
+import by.epam.cafe.service.validator.UserValidator;
 
 public class ServiceFactory {
     private static ServiceFactory instance = new ServiceFactory();
@@ -23,6 +24,8 @@ public class ServiceFactory {
     private final UserService userService = new UserServiceImpl();
     private final PathVarCalculator pathVarCalculator = new PathVarCalculatorImpl();
     private final LoginValidator loginValidator = new LoginValidator();
+    private UserValidator userValidator = new UserValidator();
+
 
     public DeliveryInfService getDeliveryInfService() {
         return deliveryInfService;
@@ -51,4 +54,9 @@ public class ServiceFactory {
     public LoginValidator getLoginValidator() {
         return loginValidator;
     }
+
+    public UserValidator getUserValidator() {
+        return userValidator;
+    }
+
 }
