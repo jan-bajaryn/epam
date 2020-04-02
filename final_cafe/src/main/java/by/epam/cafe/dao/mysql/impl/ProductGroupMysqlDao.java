@@ -78,7 +78,7 @@ public class ProductGroupMysqlDao extends AbstractMysqlDao<Integer, ProductGroup
         if (type == null) {
             throw new NullParamDaoException("type is null");
         }
-
+        log.debug("entered findAllByProductTypeAndDisabled");
         Connection cn = getPool().takeConnection();
         log.info("findAllByProductTypeAndDisabled: cn = {}", cn);
         List<ProductGroup> productGroups = new ArrayList<>();

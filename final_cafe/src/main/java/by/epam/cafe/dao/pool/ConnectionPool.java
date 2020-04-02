@@ -71,6 +71,7 @@ public class ConnectionPool {
 
             locker.lock();
             while (noAccessibleCon()) {
+                log.info("No accessible connections now");
                 condition.await();
             }
             return createOrAccess();
@@ -78,6 +79,8 @@ public class ConnectionPool {
         } catch (InterruptedException | SQLException e) {
             log.error("e: ", e);
             return null;
+        }finally {
+            locker.unlock();
         }
     }
 
