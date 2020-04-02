@@ -1,6 +1,5 @@
-package by.epam.cafe.service;
+package by.epam.cafe.service.impl;
 
-import by.epam.cafe.service.impl.ProductServiceImpl;
 import org.testng.annotations.Test;
 
 public class ProductServiceImplTest {

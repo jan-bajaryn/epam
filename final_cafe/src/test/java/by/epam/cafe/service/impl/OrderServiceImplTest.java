@@ -1,6 +1,5 @@
-package by.epam.cafe.service;
+package by.epam.cafe.service.impl;
 
-import by.epam.cafe.service.impl.OrderServiceImpl;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 

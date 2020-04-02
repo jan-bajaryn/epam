@@ -1,14 +1,17 @@
-package by.epam.cafe.service;
+package by.epam.cafe.service.impl;
 
-import by.epam.cafe.service.impl.DeliveryInfServiceImpl;
+import by.epam.cafe.entity.impl.DeliveryInf;
+import by.epam.cafe.service.DeliveryInfService;
 import org.testng.annotations.Test;
 
+import java.util.List;
+
 public class DeliveryInfServiceImplTest {
-    private DeliveryInfService deliveryInfService = new DeliveryInfServiceImpl();
+    private final DeliveryInfService deliveryInfService = new DeliveryInfServiceImpl();
 
     @Test
     public void testFindAll() {
-        System.out.println("deliveryInfService.findAll() = " + deliveryInfService.findAll());
+        List<DeliveryInf> all = deliveryInfService.findAll();
     }
 
     @Test

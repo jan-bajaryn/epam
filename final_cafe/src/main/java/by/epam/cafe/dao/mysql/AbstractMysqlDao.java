@@ -61,6 +61,12 @@ public abstract class AbstractMysqlDao<ID, T extends Entity<ID>> implements Abst
     protected abstract T findEntity(ResultSet resultSet) throws SQLException;
 
 
+    /**
+     * @param id Identifier of entity in {@code MySQL} database
+     * @return instance of class {@link Entity}
+     * @throws NullPointerException if the input is {@code null}
+     *                              {@link NullPointerException}
+     */
     @Override
     public T findEntityById(ID id) {
         Connection cn = getPool().takeConnection();

@@ -1,7 +1,7 @@
-package by.epam.cafe.service;
+package by.epam.cafe.service.impl;
 
 import by.epam.cafe.dao.exception.NullParamDaoException;
-import by.epam.cafe.service.impl.ProductGroupServiceImpl;
+import by.epam.cafe.service.ProductGroupService;
 import org.testng.annotations.Test;
 
 public class ProductGroupServiceImplTest {

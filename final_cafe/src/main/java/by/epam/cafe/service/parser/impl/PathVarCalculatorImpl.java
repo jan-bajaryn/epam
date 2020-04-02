@@ -5,8 +5,6 @@ import by.epam.cafe.service.parser.PathVarCalculator;
 
 public class PathVarCalculatorImpl implements PathVarCalculator {
 
-    private static final String DELIMITER = "/";
-
     @Override
     public Integer findLastInteger(String path) throws IllegalPathParamException {
         if (path == null || !path.contains(DELIMITER)) {

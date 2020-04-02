@@ -4,6 +4,9 @@ import by.epam.cafe.entity.impl.User;
 
 import java.util.List;
 
+/**
+ * Dedicated to service necessary CRUD operations for class {@link User}
+ */
 public interface UserService {
     List<User> findAll();
 
