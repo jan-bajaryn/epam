@@ -39,9 +39,10 @@ public class IndexCommand extends by.epam.cafe.controller.command.Command {
 
 
             List<ProductGroup> list = productGroupService.findAllByProductTypeNotDisabled(prodType);
-            Map<ProductGroup, Integer> result = list.stream()
-                    .collect(Collectors.toMap(p -> p, this::getMinPrice));
+            Map<ProductGroup, String> result = list.stream()
+                    .collect(Collectors.toMap(p -> p, p -> String.format("%.2f", getMinPrice(p) / 100.0)));
             request.setAttribute("products", result);
+            log.info("execute: result = {}", result);
             request.getRequestDispatcher("/WEB-INF/jsp/index.jsp").forward(request, response);
         } catch (NullServiceException e) {
             log.error("Error:", e);

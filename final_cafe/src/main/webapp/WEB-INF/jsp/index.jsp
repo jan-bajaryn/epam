@@ -1,6 +1,7 @@
 <%@ page import="java.util.List" %>
 <%--<%@ page import="by.epam.cafe.entity.Product" %>--%>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="java.lang.String" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
@@ -26,8 +27,15 @@
 </head>
 <body>
 
+
+<c:if test="${param.lang == null}">
+    <fmt:setLocale value="ru-RU"/>
+</c:if>
+<c:if test="${param.lang != null}">
+    <fmt:setLocale value="${param.lang}"/>
+</c:if>
 <fmt:setBundle basename="property.text" var="rb"/>
-<fmt:setLocale value="ru-RU"/>
+
 
 <div class="main-container">
     <c:import url="fragments/navPanel.jsp"/>
@@ -49,17 +57,19 @@
                     </div>
                     <div class="p_card-footer md-2">
                     <span>
-                        от ${String.format("%.2f", product_group.value/100.0)} руб.
+<%--                        от ${String.format("%.2f", product_group.value/100)} руб.--%>
+                        от ${product_group.value} руб.
                     </span>
                         <button class="btn mr-5 myBtn">
                             Выбрать
                         </button>
                         <div class="modal">
-                            <form action="/put_item" method="get">
+                            <form action="page/put_item" method="get">
                                 <div class="modal-content">
                                     <span class="close">&times;</span>
                                     <div class="modal__main__content">
-                                        <img src="/static/img/${product_group.key.getPhotoName()}" alt="Photo"/>
+                                        <img src="<c:url value="/static/img/${product_group.key.getPhotoName()}"/>"
+                                             alt="Photo"/>
                                         <div class="content__description">
                                             <div class="header">
                                                     ${product_group.key.getName()}
@@ -73,7 +83,7 @@
                                                         <label>
                                                             <input type="radio" name="variant" value="${product.id}">
                                                                 ${product.weight}
-<%--                                                            грамм--%>
+                                                                <%--                                                            грамм--%>
                                                             <fmt:message key="web.gram" bundle="${ rb }"/>
                                                             -
                                                             <span> ${String.format("%.2f", product.price/100.0)}р</span>
@@ -103,8 +113,8 @@
             integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
             crossorigin="anonymous"></script>
 
-    <script src="/static/js/index/modals.js"></script>
-    <script src="/static/js/index/main.js"></script>
+    <script src="<c:url value="/static/js/index/main.js"/>"></script>
+    <script src="<c:url value="/static/js/index/modals.js"/>"></script>
 
 </div>
 </body>
