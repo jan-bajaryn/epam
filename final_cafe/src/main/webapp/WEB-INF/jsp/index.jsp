@@ -5,6 +5,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%@ taglib prefix="ctg" uri="customtags" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -25,9 +26,10 @@
 </head>
 <body>
 
+<fmt:setBundle basename="property.text" var="rb"/>
+<fmt:setLocale value="ru-RU"/>
 
-<div class=" main-container
-    ">
+<div class="main-container">
     <c:import url="fragments/navPanel.jsp"/>
     <main class="container">
         <div class="title-container">
@@ -70,7 +72,10 @@
                                                     <div>
                                                         <label>
                                                             <input type="radio" name="variant" value="${product.id}">
-                                                                ${product.weight} грамм -
+                                                                ${product.weight}
+<%--                                                            грамм--%>
+                                                            <fmt:message key="web.gram" bundle="${ rb }"/>
+                                                            -
                                                             <span> ${String.format("%.2f", product.price/100.0)}р</span>
                                                         </label>
                                                     </div>
