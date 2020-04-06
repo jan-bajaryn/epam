@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>
 <html lang="en">
@@ -26,6 +27,15 @@
 </head>
 <body>
 
+<c:if test="${param.lang == null}">
+    <fmt:setLocale value="ru-RU"/>
+</c:if>
+<c:if test="${param.lang != null}">
+    <fmt:setLocale value="${param.lang}"/>
+</c:if>
+<fmt:setBundle basename="property.text" var="rb"/>
+
+
 <c:import url="fragments/navPanel.jsp"/>
 
 
@@ -52,7 +62,9 @@
         <%--               value="${_csrf.token}"/>--%>
 
         <div class="submit">
-            <button class="btn white__bg__orange" type="submit">Submit</button>
+            <button class="btn white__bg__orange" type="submit">
+                Submit
+            </button>
         </div>
     </form>
 

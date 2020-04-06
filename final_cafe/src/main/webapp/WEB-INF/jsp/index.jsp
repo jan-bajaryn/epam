@@ -61,7 +61,8 @@
                         от ${product_group.value} руб.
                     </span>
                         <button class="btn mr-5 myBtn">
-                            Выбрать
+<%--                            Выбрать--%>
+                            <fmt:message key="web.btns.choose" bundle="${ rb }"/>
                         </button>
                         <div class="modal">
                             <form action="page/put_item" method="get">
@@ -93,7 +94,9 @@
                                             </div>
                                         </div>
 
-                                        <button class="btn .orange__bg" type="submit">Добавить в корзину</button>
+                                        <button class="btn .orange__bg" type="submit">
+                                            <fmt:message key="web.btns.addbasket" bundle="${ rb }"/>
+                                        </button>
                                     </div>
                                 </div>
                             </form>
