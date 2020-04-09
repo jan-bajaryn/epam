@@ -1,5 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -23,10 +25,16 @@
 
 </head>
 <body>
+
+<fmt:setBundle basename="property.text" var="rb"/>
+
+
 <c:import url="fragments/navPanel.jsp"/>
 
 <header class="container">
-    <h1>Orders</h1>
+    <h1>
+        <fmt:message key="web.links.orders" bundle="${ rb }"/>
+    </h1>
 </header>
 
 <main>
@@ -34,12 +42,30 @@
         <table class="table">
             <thead>
             <tr>
-                <th>Номер заказа</th>
-                <th>Статус</th>
-                <th>Адрес доставки</th>
-                <th>Цена заказа</th>
-                <th>Отменить</th>
-                <th>Изменить</th>
+                <th>
+<%--                    Номер заказа--%>
+                    <fmt:message key="web.tab.ordernumber" bundle="${ rb }"/>
+                </th>
+                <th>
+<%--                    Статус--%>
+                    <fmt:message key="web.tab.orderstatus" bundle="${ rb }"/>
+                </th>
+                <th>
+<%--                    Адрес доставки--%>
+                    <fmt:message key="web.tab.addressdeliv" bundle="${ rb }"/>
+                </th>
+                <th>
+<%--                    Цена заказа--%>
+                    <fmt:message key="web.tab.priceorder" bundle="${ rb }"/>
+                </th>
+                <th>
+<%--                    Отменить--%>
+                    <fmt:message key="web.tab.cancel" bundle="${ rb }"/>
+                </th>
+                <th>
+<%--                    Изменить--%>
+                    <fmt:message key="web.tab.edit" bundle="${ rb }"/>
+                </th>
             </tr>
             </thead>
             <tbody>
@@ -57,12 +83,16 @@
                     <td>${order.price}</td>
                     <td>
                         <form action="<c:url value="/cancel_order/${order.id}"/>" method="post">
-                            <button class="btn orange__bg" type="submit">Отменить</button>
+                            <button class="btn orange__bg" type="submit">
+                                <fmt:message key="web.tab.cancel" bundle="${ rb }"/>
+                            </button>
                         </form>
                     </td>
                     <td>
                         <a href="<c:url value="/page/edit-order/${order.id}"/>">
-                            <button class="btn orange__bg">Редактировать</button>
+                            <button class="btn orange__bg">
+                                <fmt:message key="web.tab.edit" bundle="${ rb }"/>
+                            </button>
                         </a>
                     </td>
                 </tr>
