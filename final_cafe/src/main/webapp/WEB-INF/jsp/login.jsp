@@ -28,12 +28,6 @@
 </head>
 <body>
 
-<%--<c:if test="${param.lang == null}">--%>
-<%--    <fmt:setLocale value="ru-RU"/>--%>
-<%--</c:if>--%>
-<%--<c:if test="${param.lang != null}">--%>
-<%--    <fmt:setLocale value="${param.lang}"/>--%>
-<%--</c:if>--%>
 <fmt:setBundle basename="property.text" var="rb"/>
 
 
@@ -41,21 +35,28 @@
 
 
 <header class="container">
-    <h1>Login</h1>
+    <h1>
+        <fmt:message key="web.links.login" bundle="${ rb }"/>
+    </h1>
 </header>
 
 
 <main class="container">
     <form action="<c:url value="/page/login"/>" method="post">
-<%--        enctype="application/x-www-form-urlencoded"--%>
+        <%--        enctype="application/x-www-form-urlencoded"--%>
         <div class="username__group">
-            <label for="username">Username: </label>
-            <input type="text" id="username" placeholder="Username" class="form-control" name="username">
+            <label for="username">
+                <fmt:message key="web.inputs.username" bundle="${ rb }"/>:
+            </label>
+            <input type="text" id="username"
+                   placeholder="<fmt:message key="web.inputs.username" bundle="${ rb }"/>"
+                   class="form-control" name="username">
         </div>
 
         <div class="password__group">
-            <label for="password">Password:</label>
-            <input name="password" type="password" id="password" class="form-control" placeholder="Password">
+            <label for="password"><fmt:message key="web.inputs.password" bundle="${ rb }"/>:</label>
+            <input name="password" type="password" id="password" class="form-control"
+                   placeholder="<fmt:message key="web.inputs.password" bundle="${ rb }"/>">
         </div>
 
         <%--        <input type="hidden"--%>
@@ -64,17 +65,21 @@
 
         <div class="submit">
             <button class="btn white__bg__orange" type="submit">
-                Submit
+                <fmt:message key="web.inputs.submit" bundle="${ rb }"/>
             </button>
         </div>
     </form>
 
     <div class="links">
         <div class="registration">
-            <a href="<c:url value="/page/registration"/>">Я ещё не зарегистрировался</a>
+            <a href="<c:url value="/page/registration"/>">
+                <fmt:message key="web.text.noteregyet" bundle="${ rb }"/>
+            </a>
         </div>
         <div class="forgot__password">
-            <a href="<c:url value="/page/forgot-password"/>">Я забыл пароль</a>
+            <a href="<c:url value="/page/forgot-password"/>">
+                <fmt:message key="web.text.forgotpassword" bundle="${ rb }"/>
+            </a>
         </div>
     </div>
 </main>
