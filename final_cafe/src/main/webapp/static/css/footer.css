@@ -15,6 +15,16 @@ footer a:hover {
     text-decoration: none;
 }
 
+footer form.footer__element input[type=submit]{
+    background: inherit;
+    border: 0;
+    color: #b9b8b8;
+    margin: 10px;
+}
+footer form.footer__element input[type=submit]:hover{
+    color: #ffffff;
+}
+
 
 footer a:first-child {
     padding-top: 20px;

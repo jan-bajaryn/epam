@@ -13,43 +13,51 @@
 <body>
 <footer class="bg-dark">
 
-<%--    TODO with include works fine--%>
-
-            <c:if test="${param.lang == null}">
-                <fmt:setLocale value="ru-RU"/>
-            </c:if>
-            <c:if test="${param.lang != null}">
-                <fmt:setLocale value="${param.lang}"/>
-            </c:if>
-<%--    <fmt:setLocale value="ru-RU"/>--%>
-    <fmt:setBundle basename="property.text" var="rb" scope="page"/>
+    <%--    <c:if test="${param.lang == null}">--%>
+    <%--        <fmt:setLocale value="ru-RU"/>--%>
+    <%--    </c:if>--%>
+    <%--    <c:if test="${param.lang != null}">--%>
+    <%--        <fmt:setLocale value="${param.lang}"/>--%>
+    <%--    </c:if>--%>
+    <fmt:setBundle basename="property.text" var="rb"/>
 
 
     <div class="container">
         <a href="?">
-            <%--            О нас--%>
-                        <fmt:message key="web.links.aboutus" bundle="${ rb }"/>
+            <fmt:message key="web.links.aboutus" bundle="${ rb }"/>
         </a>
         <a href="?">
-            <%--                        Почему нашу пиццу все любят--%>
             <fmt:message key="web.links.alllove" bundle="${ rb }"/>
         </a>
         <a href="?">
-            <%--            Наш блог--%>
-                        <fmt:message key="web.links.outblog" bundle="${ rb }"/>
+            <fmt:message key="web.links.outblog" bundle="${ rb }"/>
         </a>
         <a href="?">
-                        <fmt:message key="web.links.sponsors" bundle="${ rb }"/>
-            <%--            Наши спонсоры--%>
+            <fmt:message key="web.links.sponsors" bundle="${ rb }"/>
         </a>
-        <a href="?">
-            <ctg:hello role="${param.role}"/>
-        </a>
-        <ctg:table-revenue rows="${ rw.size }" head="Revenue">
-            ${ rw.revenue }
-        </ctg:table-revenue>
+
+        <form method="post" class="footer__element" action="<c:url value="/page/change-language"/>">
+            <input type="hidden" value="ru" name="lang">
+            <input type="submit" value="<fmt:message key="web.langs.rus" bundle="${ rb }"/>">
+        </form>
+        <form method="post" class="footer__element" action="<c:url value="/page/change-language"/>">
+            <input type="hidden" value="en" name="lang">
+            <input type="submit" value="<fmt:message key="web.langs.en" bundle="${ rb }"/>">
+        </form>
+        <form method="post" class="footer__element" action="<c:url value="/page/change-language"/>">
+            <input type="hidden" value="pl" name="lang">
+            <input type="submit" value="<fmt:message key="web.langs.pl" bundle="${ rb }"/>">
+        </form>
         <a href=""><br><br></a>
-        <ctg:table-revenue>5 rub BulbaComp</ctg:table-revenue>
+
+        <%--        <a href="?">--%>
+        <%--            <ctg:hello role="${param.role}"/>--%>
+        <%--        </a>--%>
+        <%--        <ctg:table-revenue rows="${ rw.size }" head="Revenue">--%>
+        <%--            ${ rw.revenue }--%>
+        <%--        </ctg:table-revenue>--%>
+        <%--        <a href=""><br><br></a>--%>
+        <%--        <ctg:table-revenue>5 rub BulbaComp</ctg:table-revenue>--%>
     </div>
 
 </footer>

@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>
 <html lang="en">
@@ -27,12 +28,12 @@
 </head>
 <body>
 
-<c:if test="${param.lang == null}">
-    <fmt:setLocale value="ru-RU"/>
-</c:if>
-<c:if test="${param.lang != null}">
-    <fmt:setLocale value="${param.lang}"/>
-</c:if>
+<%--<c:if test="${param.lang == null}">--%>
+<%--    <fmt:setLocale value="ru-RU"/>--%>
+<%--</c:if>--%>
+<%--<c:if test="${param.lang != null}">--%>
+<%--    <fmt:setLocale value="${param.lang}"/>--%>
+<%--</c:if>--%>
 <fmt:setBundle basename="property.text" var="rb"/>
 
 

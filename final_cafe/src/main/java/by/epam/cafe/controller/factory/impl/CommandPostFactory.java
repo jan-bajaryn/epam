@@ -2,6 +2,7 @@ package by.epam.cafe.controller.factory.impl;
 
 import by.epam.cafe.controller.command.Command;
 import by.epam.cafe.controller.command.CommandDecorator;
+import by.epam.cafe.controller.command.postimpl.ChangeLanguageCommand;
 import by.epam.cafe.controller.command.postimpl.CreateUserCommand;
 import by.epam.cafe.controller.command.postimpl.LoginCommand;
 import by.epam.cafe.controller.factory.CommandFactory;
@@ -37,6 +38,7 @@ public class CommandPostFactory implements CommandFactory {
         /*language=RegExp*/
         commandMap.put("/login", new CommandDecorator(new LoginCommand(), EnumSet.of(ANON)));
         commandMap.put("/admin/create_user", new CommandDecorator(new CreateUserCommand(), EnumSet.of(ADMIN)));
+        commandMap.put("/change-language", new ChangeLanguageCommand());
 
     }
 
