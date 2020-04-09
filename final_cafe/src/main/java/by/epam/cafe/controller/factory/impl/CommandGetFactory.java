@@ -43,7 +43,7 @@ public class CommandGetFactory implements CommandFactory {
         commandMap.put("/order-list", new CommandDecorator(new OrderListCommand(), EnumSet.of(OPERATOR)));
         commandMap.put("/registration", new RegistrationCommand());
         /*language=RegExp*/
-        commandMap.put("/your-order/\\d+", new CommandDecorator(new YourOrderCommand(), EnumSet.of(CLIENT)));
+        commandMap.put("/your-order/\\d+", new YourOrderCommand());
 
 
         commandMap.put("/admin/create-product", new CommandDecorator(new CreateProductCommand(), EnumSet.of(ADMIN)));

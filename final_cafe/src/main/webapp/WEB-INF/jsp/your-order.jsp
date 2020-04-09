@@ -1,5 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -22,69 +24,95 @@
 </head>
 <body>
 
+<fmt:setBundle basename="property.text" var="rb"/>
+
 <c:import url="fragments/navPanel.jsp"/>
 
 <main class="container">
     <table class="table">
         <tr>
-            <td>Ваше имя</td>
+            <td>
+                <fmt:message key="web.inputs.name" bundle="${ rb }"/>
+            </td>
             <td>${order.clientName}</td>
         </tr>
         <tr>
-            <td>Номер заказа</td>
+            <td>
+                <fmt:message key="web.tab.ordernumber" bundle="${ rb }"/>
+            </td>
             <td>${order.id}</td>
         </tr>
         <tr>
-            <td>Улица</td>
+            <td>
+                <fmt:message key="web.inputs.street" bundle="${ rb }"/>
+            </td>
             <td>${order.deliveryInf.street}</td>
         </tr>
         <tr>
-            <td>Дом</td>
+            <td>
+                <fmt:message key="web.inputs.house" bundle="${ rb }"/>
+            </td>
             <td>${order.deliveryInf.house}</td>
         </tr>
         <tr>
-            <td>Квартира</td>
+            <td>
+                <fmt:message key="web.inputs.room" bundle="${ rb }"/>
+            </td>
             <td>${order.deliveryInf.room}</td>
         </tr>
         <tr>
-            <td>Подъезд</td>
+            <td>
+                <fmt:message key="web.inputs.porch" bundle="${ rb }"/>
+            </td>
             <td>${order.deliveryInf.porch}</td>
         </tr>
         <tr>
-            <td>Этаж</td>
+            <td>
+                <fmt:message key="web.inputs.floor" bundle="${ rb }"/>
+            </td>
             <td>${order.deliveryInf.floor}</td>
         </tr>
         <tr>
-            <td>Email</td>
+            <td>
+                <fmt:message key="web.inputs.email" bundle="${ rb }"/>
+            </td>
             <td>${order.deliveryInf.email}</td>
         </tr>
         <tr>
-            <td>Номер телефона</td>
+            <td>
+                <fmt:message key="web.inputs.phone" bundle="${ rb }"/>
+            </td>
             <td>${order.deliveryInf.phone}</td>
         </tr>
         <tr>
-            <td>Время доставки</td>
+            <td>
+                <fmt:message key="web.tab.deliverytime" bundle="${ rb }"/>
+            </td>
             <td>${order.deliveryInf.deliveryTime}</td>
         </tr>
         <tr>
-            <td>Сумма заказа</td>
+            <td>
+                <fmt:message key="web.tab.sumorder" bundle="${ rb }"/>
+            </td>
             <td>${order.price}</td>
         </tr>
     </table>
-    <button type="button" class="btn orange__bg" data-toggle="collapse" data-target="#demo">Продукты</button>
+    <button type="button" class="btn orange__bg" data-toggle="collapse" data-target="#demo">
+        <fmt:message key="web.btns.products" bundle="${ rb }"/>
+    </button>
     <div id="demo" class="collapse">
         <div class="product-list">
             <c:forEach var="product" items="${productMap}">
                 <div class="product-item">
                     <div class="grid-part">
                         <div class="image-part">
-                            <img src="../static/img/${product.key.productGroup.photoName}" alt="">
+                            <img src="<c:url value="/static/img/${product.key.productGroup.photoName}"/>" alt="">
                         </div>
                         <div class="product-name">
                                 ${product.key.productGroup.name}
                         </div>
                         <div class="product-type text-muted">
-                                ${product.key.weight} гр.
+                                ${product.key.weight} <fmt:message key="web.gram" bundle="${ rb }"/>.
                         </div>
                     </div>
                     <div class="flex-part">

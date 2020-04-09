@@ -36,6 +36,7 @@ public class OrderServiceImpl implements by.epam.cafe.service.OrderService {
 
             o.setDeliveryInf(delInf);
         }
+        // TODO find product group and build
         o.setProducts(products);
     }
 
