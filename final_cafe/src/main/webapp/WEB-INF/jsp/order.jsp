@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!doctype html>
 <html lang="en">
@@ -20,12 +21,14 @@
 </head>
 <body>
 
+<fmt:setBundle basename="property.text" var="rb"/>
 
 <main>
     <div class="main-container">
         <header class="mt-4">
             <h1>
-                Корзина
+                <%--                Корзина--%>
+                <fmt:message key="web.links.basket" bundle="${ rb }"/>
             </h1>
         </header>
         <div class="promo">
@@ -33,7 +36,10 @@
                 <div class="form-group promo-group">
                     <label for="promo"></label>
                     <input class="form-control" placeholder="Promo" type="text" id="promo">
-                    <button class="btn white__bg__orange">Применить</button>
+                    <button class="btn white__bg__orange">
+                        <%--                        Применить--%>
+                        <fmt:message key="web.btns.execute" bundle="${ rb }"/>
+                    </button>
                 </div>
             </form>
         </div>
@@ -54,17 +60,20 @@
                         </div>
                     </div>
                     <div class="flex-part">
-                        <a href='<c:url value="/minus?product_id=${product.key.id}"/>'>
+                        <a href='<c:url value="page/minus?product_id=${product.key.id}"/>'>
                             <button class="btn mx-3 white__bg__black minus"> -</button>
                         </a>
                         <span>${product.value}</span>
-                        <a href='<c:url value="/plus?product_id=${product.key.id}"/>'>
+                        <a href='<c:url value="page/plus?product_id=${product.key.id}"/>'>
                             <button class="btn mx-3 white__bg__black plus"> +</button>
                         </a>
                         <div class="prise mr-3">
-                                ${String.format("%.2f",(product.key.price*product.value)/100)} руб.
+                                ${String.format("%.2f",(product.key.price*product.value)/100)}
+                            <fmt:message key="web.text.rub" bundle="${ rb }"/>
+                                <%--                                    руб--%>
+                            .
                         </div>
-                        <form action="${pageContext.request.contextPath}/deleteAll" method="get">
+                        <form action="<c:url value="page/deleteAll"/>" method="get">
                             <button class="abc" type="submit">
                                 <i class="fa fa-trash mr-3" aria-hidden="true"></i>
                             </button>
@@ -79,71 +88,99 @@
         </div>
 
         <div class="sum">
-            <div class="sum-text">Сумма заказа:</div>
-            <div class="sum-price"> ${String.format("%.2f",sum/100)} руб.</div>
+            <div class="sum-text">
+                <%--                Сумма заказа:--%>
+                <fmt:message key="web.text.sumorder" bundle="${ rb }"/>
+            </div>
+            <div class="sum-price"> ${String.format("%.2f",sum/100)}
+                <fmt:message key="web.text.rub" bundle="${ rb }"/>
+            </div>
         </div>
 
         <div class="decision mb-5 mt-2">
             <a href="<c:url value="/"/>">
-                <button class="btn orange__hover">Вернуться в меню</button>
+                <button class="btn orange__hover">
+                    <fmt:message key="web.btns.returnmenu" bundle="${ rb }"/>
+                </button>
             </a>
 
-            <button class="btn orange__bg myBtn">Заказать</button>
+            <button class="btn orange__bg myBtn">
+                <fmt:message key="web.btns.makeorder" bundle="${ rb }"/>
+            </button>
             <div class="my__modal">
-                <form action="${pageContext.request.contextPath}/make_order" method="post">
-                    <div class="modal-content">
-                        <span class="close">&times;</span>
-                        <div class="modal__main__content">
-                            <h3>Куда доставить?</h3>
-                            <div class="body__form">
-                                <label for="street"></label>
-                                <label for="comments"></label>
-                                <label for="floor"></label>
-                                <label for="porch"></label>
-                                <label for="room"></label>
-                                <label for="house"></label>
-                                <label for="name"></label>
-                                <label for="tel"></label>
-                                <label for="email"></label>
-                                <label for="time"></label>
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <div class="modal__main__content">
+                        <h3>
+                            <%--                                Куда доставить?--%>
+                            <fmt:message key="web.text.wheredelivery" bundle="${ rb }"/>
+                        </h3>
+                        <div class="body__form">
+                            <label for="street"></label>
+                            <label for="comments"></label>
+                            <label for="floor"></label>
+                            <label for="porch"></label>
+                            <label for="room"></label>
+                            <label for="house"></label>
+                            <label for="name"></label>
+                            <label for="tel"></label>
+                            <label for="email"></label>
+                            <label for="time"></label>
 
 
-                                <div class="name__row">
-                                    <input type="text" id="name" name="name" placeholder="Ваше имя"
-                                           class="form-control">
-                                </div>
-                                <div class="time__row">
-                                    <input type="time" id="time" name="time"
-                                           placeholder="Желаемое время доставки"
-                                           class="form-control">
-                                </div>
-                                <div class="first__row">
-                                    <input type="text" class="form-control" placeholder="Улица" id="street"
-                                           name="street">
-                                    <input type="text" class="form-control" placeholder="Дом" id="house" name="house">
-                                </div>
-                                <div class="sec__row">
-                                    <input type="text" class="form-control" placeholder="Квартира" id="room"
-                                           name="room">
-                                    <input type="text" class="form-control" placeholder="Подъезд" id="porch"
-                                           name="porch">
-                                    <input type="text" class="form-control" placeholder="Этаж" id="floor" name="floor">
-                                </div>
-                                <div class="phone__row">
-                                    <input type="tel" class="form-control" placeholder="Телефон" id="tel" name="tel">
-                                </div>
-                                <div class="email__row">
-                                    <input type="email" class="form-control" placeholder="Email" id="email"
-                                           name="email">
-                                </div>
-                                <div class="comments__row">
-                                    <textarea class="form-control" id="comments" name="comments"
-                                              placeholder="Комментарий к заказу"></textarea>
-                                </div>
+                            <div class="name__row">
+                                <input type="text" id="name" name="name"
+                                       placeholder="<fmt:message key="web.inputs.yourname" bundle="${ rb }"/>"
+                                       class="form-control">
                             </div>
-                            <button class="btn orange__bg accept__btn" type="submit">Подтвердить адрес</button>
+                            <div class="time__row">
+                                <input type="time" id="time" name="time"
+                                       placeholder="<fmt:message key="web.inputs.datedeliver" bundle="${ rb }"/>"
+                                       class="form-control">
+                            </div>
+                            <div class="first__row">
+                                <input type="text" class="form-control"
+                                       placeholder="<fmt:message key="web.inputs.street" bundle="${ rb }"/>"
+                                       id="street"
+                                       name="street">
+                                <input type="text" class="form-control"
+                                       placeholder="<fmt:message key="web.inputs.house" bundle="${ rb }"/>"
+                                       id="house" name="house">
+                            </div>
+                            <div class="sec__row">
+                                <input type="text" class="form-control"
+                                       placeholder="<fmt:message key="web.inputs.room" bundle="${ rb }"/>"
+                                       id="room"
+                                       name="room">
+                                <input type="text" class="form-control"
+                                       placeholder="<fmt:message key="web.inputs.porch" bundle="${ rb }"/>"
+                                       id="porch"
+                                       name="porch">
+                                <input type="text" class="form-control"
+                                       placeholder="<fmt:message key="web.inputs.floor" bundle="${ rb }"/>"
+                                       id="floor" name="floor">
+                            </div>
+                            <div class="phone__row">
+                                <input type="tel" class="form-control"
+                                       placeholder="<fmt:message key="web.inputs.phone" bundle="${ rb }"/>"
+                                       id="tel" name="tel">
+                            </div>
+                            <div class="email__row">
+                                <input type="email" class="form-control"
+                                       placeholder="<fmt:message key="web.inputs.email" bundle="${ rb }"/>"
+                                       id="email"
+                                       name="email">
+                            </div>
+                            <div class="comments__row">
+                                    <textarea class="form-control" id="comments" name="comments"
+                                              placeholder="<fmt:message key="web.inputs.comments" bundle="${ rb }"/>"></textarea>
+                            </div>
                         </div>
+                        <button class="btn orange__bg accept__btn" type="submit">
+                            <fmt:message key="web.inputs.acceptorder" bundle="${ rb }"/>
+                        </button>
                     </div>
+                </div>
                 </form>
             </div>
         </div>

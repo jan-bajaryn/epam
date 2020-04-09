@@ -77,17 +77,19 @@
             </ul>
         </div>
         <div class="basket">
-            <button class="btn">
+            <a href="<c:url value="page/order"/>">
+                <button class="btn">
                 <span class="border-right">
                                             <fmt:message key="web.links.basket" bundle="${ rb }"/>
                 </span>
-                <span>
+                    <span>
                 <c:if test="${basket==null}">
                     0
                 </c:if>
                     ${basket}
                 </span>
-            </button>
+                </button>
+            </a>
         </div>
     </div>
 </nav>
