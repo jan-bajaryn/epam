@@ -71,10 +71,10 @@
 
     <div class="links">
         <div class="registration">
-            <a href="<c:url value="/registration"/>">Я ещё не зарегистрировался</a>
+            <a href="<c:url value="/page/registration"/>">Я ещё не зарегистрировался</a>
         </div>
         <div class="forgot__password">
-            <a href="<c:url value="/registration"/>">Я забыл пароль</a>
+            <a href="<c:url value="/page/forgot-password"/>">Я забыл пароль</a>
         </div>
     </div>
 </main>

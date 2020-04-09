@@ -19,10 +19,15 @@ main {
     color: #ff6900;
 }
 
-.obligatory a:hover, a:visited {
-    color: #e1e3eb;
+.obligatory a:hover, .obligatory a:visited {
+    /*color: #e1e3eb;*/
+    color: #ff6900;
 }
 
-.submit{
+.submit {
     margin-top: 40px;
+}
+
+label[for=password]{
+    color: #000;
 }
