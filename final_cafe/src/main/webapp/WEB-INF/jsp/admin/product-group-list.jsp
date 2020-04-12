@@ -1,4 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>
 <html lang="en">
@@ -27,9 +29,14 @@
 </head>
 <body>
 
+<fmt:setBundle basename="property.text" var="rb"/>
+
+
 <c:import url="../fragments/navPanel.jsp"/>
 <header>
-    <h1>User list</h1>
+    <h1>
+        <fmt:message key="web.links.productgroups" bundle="${ rb }"/>
+    </h1>
 </header>
 
 <main class="container">
@@ -37,7 +44,7 @@
     <div class="create__new mb-5">
         <a href="<c:url value="/page/admin/create-product-group"/>">
             <button class="btn white__bg__orange">
-                Create new product group
+                <fmt:message key="web.btns.create-new-product-group" bundle="${ rb }"/>
             </button>
         </a>
     </div>
@@ -45,15 +52,33 @@
     <table class="table">
         <thead>
         <tr>
-            <th>Photo</th>
-            <th>Id</th>
-            <th>name</th>
-            <th>description</th>
-            <th>Type</th>
-            <th>Disabled</th>
-            <th>Disable</th>
-            <th>Enable</th>
-            <th>Edit</th>
+            <th>
+                <fmt:message key="web.tab.photo" bundle="${ rb }"/>
+            </th>
+            <th>
+                <fmt:message key="web.tab.identifier" bundle="${ rb }"/>
+            </th>
+            <th>
+                <fmt:message key="web.tab.name" bundle="${ rb }"/>
+            </th>
+            <th>
+                <fmt:message key="web.tab.description" bundle="${ rb }"/>
+            </th>
+            <th>
+                <fmt:message key="web.tab.type" bundle="${ rb }"/>
+            </th>
+            <th>
+                <fmt:message key="web.tab.disabled" bundle="${ rb }"/>
+            </th>
+            <th>
+                <fmt:message key="web.tab.disable" bundle="${ rb }"/>
+            </th>
+            <th>
+                <fmt:message key="web.tab.enable" bundle="${ rb }"/>
+            </th>
+            <th>
+                <fmt:message key="web.tab.edit" bundle="${ rb }"/>
+            </th>
         </tr>
         </thead>
         <tbody>
@@ -67,7 +92,9 @@
                 <td>${p.disabled}</td>
                 <td>
                     <form action="<c:url value="/admin/disable_product_group"/>" method="post">
-                        <button class="btn orange__bg" type="submit">Disable</button>
+                        <button class="btn orange__bg" type="submit">
+                            <fmt:message key="web.tab.disable" bundle="${ rb }"/>
+                        </button>
                         <label>
                             <input type="number" hidden name="id" value="${p.id}">
                         </label>
@@ -76,7 +103,9 @@
 
                 <td>
                     <form action="<c:url value="/admin/enable_product_group"/>" method="post">
-                        <button class="btn orange__bg" type="submit">Enable</button>
+                        <button class="btn orange__bg" type="submit">
+                            <fmt:message key="web.tab.enable" bundle="${ rb }"/>
+                        </button>
                         <label>
                             <input type="number" hidden name="id" value="${p.id}">
                         </label>
@@ -84,7 +113,9 @@
                 </td>
                 <td>
                     <a href="<c:url value="/page/admin/edit-product-group/${p.id}"/>">
-                        <button class="btn orange__bg">Edit</button>
+                        <button class="btn orange__bg">
+                            <fmt:message key="web.tab.edit" bundle="${ rb }"/>
+                        </button>
                     </a>
                 </td>
             </tr>

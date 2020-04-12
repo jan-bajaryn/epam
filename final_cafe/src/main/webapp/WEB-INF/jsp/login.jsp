@@ -59,6 +59,12 @@
                    placeholder="<fmt:message key="web.inputs.password" bundle="${ rb }"/>">
         </div>
 
+
+        <c:if test="${not empty target_url}">
+            <input type="hidden"
+                   name="target_url"
+                   value="${target_url}"/>
+        </c:if>
         <%--        <input type="hidden"--%>
         <%--               name="${_csrf.parameterName}"--%>
         <%--               value="${_csrf.token}"/>--%>

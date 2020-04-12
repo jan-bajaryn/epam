@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>
 <html lang="en">
@@ -24,17 +25,22 @@
 
 </head>
 <body>
+
+<fmt:setBundle basename="property.text" var="rb"/>
+
 <c:import url="../fragments/navPanel.jsp"/>
 
 <header>
-    <h1>Product list</h1>
+    <h1>
+        <fmt:message key="web.links.products" bundle="${ rb }"/>
+    </h1>
 </header>
 
 <main class="text-center container">
     <div class="create__new mb-5">
         <a href="<c:url value="/page/admin/create-product"/>">
             <button class="btn white__bg__orange">
-                Create new product
+                <fmt:message key="web.text.createproduct" bundle="${ rb }"/>
             </button>
         </a>
     </div>
@@ -43,11 +49,21 @@
         <table class="table">
             <thead>
             <tr>
-                <th>Id</th>
-                <th>Price</th>
-                <th>Weight</th>
-                <th>Product group</th>
-                <th>Edit</th>
+                <th>
+                    <fmt:message key="web.tab.identifier" bundle="${ rb }"/>
+                </th>
+                <th>
+                    <fmt:message key="web.tab.price" bundle="${ rb }"/>
+                </th>
+                <th>
+                    <fmt:message key="web.tab.weight" bundle="${ rb }"/>
+                </th>
+                <th>
+                    <fmt:message key="web.tab.product-group" bundle="${ rb }"/>
+                </th>
+                <th>
+                    <fmt:message key="web.tab.edit" bundle="${ rb }"/>
+                </th>
             </tr>
             </thead>
             <tbody>
@@ -59,7 +75,9 @@
                     <td>${p.productGroup.name}</td>
                     <td>
                         <a href="<c:url value="/page/admin/edit-product/${p.id}"/>">
-                            <button class="btn orange__bg">Изменить</button>
+                            <button class="btn orange__bg">
+                                <fmt:message key="web.tab.edit" bundle="${ rb }"/>
+                            </button>
                         </a>
                     </td>
                 </tr>

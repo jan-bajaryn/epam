@@ -1,5 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -26,10 +29,15 @@
 </head>
 <body>
 
+<fmt:setBundle basename="property.text" var="rb"/>
+
+
 <c:import url="fragments/navPanel.jsp"/>
 
 <header class="container">
-    <h1>Редактировать заказ</h1>
+    <h1>
+        <fmt:message key="web.text.editorder" bundle="${ rb }"/>
+    </h1>
 </header>
 
 <main class="container">
@@ -38,12 +46,16 @@
             <div class="modal__main__content">
                 <div class="body__form">
                     <div class="id__row">
-                        <label for="id">Number of order</label>
+                        <label for="id">
+                            <fmt:message key="web.tab.ordernumber" bundle="${ rb }"/>
+                        </label>
                         <input type="number" value="${order.id}" class="form-control" id="id" name="id" readonly>
                     </div>
 
                     <div class="status__row">
-                        <label for="status">Status</label>
+                        <label for="status">
+                            <fmt:message key="web.inputs.orderstatus" bundle="${ rb }"/>
+                        </label>
                         <select class="form-control" id="status" name="status">
                             <option>${order.status}</option>
                             <c:forEach var="stat" items="${statuses}">
@@ -53,7 +65,9 @@
                     </div>
 
                     <div class="payment_type__row">
-                        <label for="payment_type">Payment type</label>
+                        <label for="payment_type">
+                            <fmt:message key="web.inputs.paymenttype" bundle="${ rb }"/>
+                        </label>
                         <select class="form-control" id="payment_type" name="payment_type">
                             <option>${order.paymentType}</option>
                             <c:forEach var="type" items="${types}">
@@ -62,62 +76,103 @@
                         </select>
                     </div>
                     <div class="price__row">
-                        <label for="price">Price</label>
+                        <label for="price">
+                            <fmt:message key="web.inputs.orderprice" bundle="${ rb }"/>
+                        </label>
                         <input type="number" value="${order.price}" class="form-control" id="price" name="price">
                     </div>
                     <div class="name__row">
-                        <label for="name">Name:</label>
+                        <label for="name">
+                            <fmt:message key="web.inputs.name" bundle="${ rb }"/>
+                            :
+                        </label>
                         <input type="text" id="name" name="name" placeholder="Имя"
                                class="form-control" value="${order.clientName}">
                     </div>
                     <div class="time__row">
-                        <label for="time">Time:</label>
+                        <label for="time">
+                            <fmt:message key="web.inputs.time" bundle="${ rb }"/>
+                            :
+                        </label>
                         <input type="time" id="time" name="time"
-                               placeholder="Желаемое время доставки"
+                               placeholder="<fmt:message key="web.inputs.datedeliver" bundle="${ rb }"/>"
                                class="form-control" value="${order.deliveryInf.deliveryTime}">
                     </div>
                     <div class="first__row">
-                        <label for="street">Street: </label>
+                        <label for="street">
+                            <fmt:message key="web.inputs.street" bundle="${ rb }"/>
+                            :
+                        </label>
                         <input type="text" class="form-control" placeholder="Улица" id="street"
                                name="street" value="${order.deliveryInf.street}">
-                        <label for="house">House</label>
-                        <input type="text" class="form-control" placeholder="Дом" id="house" name="house"
+                        <label for="house">
+                            <fmt:message key="web.inputs.house" bundle="${ rb }"/>
+                        </label>
+                        <input type="text" class="form-control"
+                               placeholder="<fmt:message key="web.inputs.house" bundle="${ rb }"/>"
+                               id="house" name="house"
                                value="${order.deliveryInf.house}">
                     </div>
                     <div class="sec__row">
-                        <label for="room">Room</label>
-                        <input type="text" class="form-control" placeholder="Квартира" id="room"
+                        <label for="room">
+                            <fmt:message key="web.inputs.room" bundle="${ rb }"/>
+                        </label>
+                        <input type="text" class="form-control"
+                               placeholder="<fmt:message key="web.inputs.room" bundle="${ rb }"/>"
+                               id="room"
                                name="room" value="${order.deliveryInf.room}">
-                        <label for="porch">Porch:</label>
-                        <input type="text" class="form-control" placeholder="Подъезд" id="porch"
+                        <label for="porch">
+                            <fmt:message key="web.inputs.porch" bundle="${ rb }"/>
+                        </label>
+                        <input type="text" class="form-control"
+                               placeholder="<fmt:message key="web.inputs.porch" bundle="${ rb }"/>"
+                               id="porch"
                                name="porch" value="${order.deliveryInf.porch}">
-                        <label for="floor">Floor</label>
-                        <input type="text" class="form-control" placeholder="Этаж" id="floor" name="floor"
+                        <label for="floor">
+                            <fmt:message key="web.inputs.floor" bundle="${ rb }"/>
+                        </label>
+                        <input type="text" class="form-control"
+                               placeholder="<fmt:message key="web.inputs.floor" bundle="${ rb }"/>"
+                               id="floor" name="floor"
                                value="${order.deliveryInf.floor}">
                     </div>
                     <div class="phone__row">
-                        <label for="tel">Phone number:</label>
-                        <input type="tel" class="form-control" placeholder="Телефон" id="tel" name="tel"
+                        <label for="tel">
+                            <fmt:message key="web.inputs.phone" bundle="${ rb }"/>
+                        </label>
+                        <input type="tel" class="form-control"
+                               placeholder="<fmt:message key="web.inputs.phone" bundle="${ rb }"/>"
+                               id="tel" name="tel"
                                value="${order.deliveryInf.phone}">
                     </div>
                     <div class="email__row">
-                        <label for="email">Email:</label>
-                        <input type="email" class="form-control" placeholder="Email" id="email"
+                        <label for="email">
+                            <fmt:message key="web.inputs.email" bundle="${ rb }"/>
+                        </label>
+                        <input type="email" class="form-control"
+                               placeholder="<fmt:message key="web.inputs.email" bundle="${ rb }"/>"
+                               id="email"
                                name="email" value="${order.deliveryInf.email}">
                     </div>
                     <div class="comments__row">
-                        <label for="comments">Comments:</label>
+                        <label for="comments">
+                            <fmt:message key="web.inputs.comments" bundle="${ rb }"/>
+                        </label>
                         <textarea class="form-control" id="comments" name="comments"
-                                  placeholder="Комментарий к заказу">${order.deliveryInf.comments}</textarea>
+                                  placeholder="<fmt:message key="web.inputs.comments" bundle="${ rb }"/>">
+                                ${order.deliveryInf.comments}
+                        </textarea>
                     </div>
                 </div>
-                <button class="btn orange__bg accept__btn" type="submit">Изменить</button>
+                <button class="btn orange__bg accept__btn" type="submit">
+                    <fmt:message key="web.tab.edit" bundle="${ rb }"/>
+                </button>
             </div>
         </form>
     </c:if>
     <c:if test="${order==null}">
         <div>
-            There no order with so number
+            <fmt:message key="web.text.noorder" bundle="${ rb }"/>
         </div>
     </c:if>
 </main>

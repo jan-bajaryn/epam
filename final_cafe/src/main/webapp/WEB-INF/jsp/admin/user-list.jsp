@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>
 <html lang="en">
@@ -24,17 +25,23 @@
 
 </head>
 <body>
+
+<fmt:setBundle basename="property.text" var="rb"/>
+
+
 <c:import url="../fragments/navPanel.jsp"/>
 
 <header>
-    <h1>User list</h1>
+    <h1>
+        <fmt:message key="web.links.userlist" bundle="${ rb }"/>
+    </h1>
 </header>
 
 <main class="text-center container">
     <div class="create__new mb-5">
         <a href="<c:url value="/page/admin/create-user"/>">
             <button class="btn white__bg__orange">
-                Create new user
+                <fmt:message key="web.btns.createuser" bundle="${ rb }"/>
             </button>
         </a>
     </div>
@@ -43,16 +50,36 @@
         <table class="table">
             <thead>
             <tr>
-                <th>Id</th>
-                <th>Is blocked</th>
-                <th>Role</th>
-                <th>Username</th>
-                <th>Name</th>
-                <th>Surname</th>
-                <th>Address</th>
-                <th>Подробнее</th>
-                <th>Заблокировать</th>
-                <th>Разблокировать</th>
+                <th>
+                    <fmt:message key="web.tab.identifier" bundle="${ rb }"/>
+                </th>
+                <th>
+                    <fmt:message key="web.tab.isblocked" bundle="${ rb }"/>
+                </th>
+                <th>
+                    <fmt:message key="web.tab.role" bundle="${ rb }"/>
+                </th>
+                <th>
+                    <fmt:message key="web.tab.username" bundle="${ rb }"/>
+                </th>
+                <th>
+                    <fmt:message key="web.tab.name" bundle="${ rb }"/>
+                </th>
+                <th>
+                    <fmt:message key="web.inputs.surname" bundle="${ rb }"/>
+                </th>
+                <th>
+                    <fmt:message key="web.tab.address" bundle="${ rb }"/>
+                </th>
+                <th>
+                    <fmt:message key="web.tab.details" bundle="${ rb }"/>
+                </th>
+                <th>
+                    <fmt:message key="web.tab.block" bundle="${ rb }"/>
+                </th>
+                <th>
+                    <fmt:message key="web.tab.unblock" bundle="${ rb }"/>
+                </th>
             </tr>
             </thead>
             <tbody>
@@ -78,17 +105,23 @@
                     </td>
                     <td>
                         <a href="<c:url value="/page/admin/edit-user/${u.id}"/>">
-                            <button class="btn orange__bg">Подробнее</button>
+                            <button class="btn orange__bg">
+                                <fmt:message key="web.tab.details" bundle="${ rb }"/>
+                            </button>
                         </a>
                     </td>
                     <td>
                         <form action="<c:url value="/admin/block/${u.id}"/>" method="post">
-                            <button class="btn orange__bg" type="submit">Заблокировать</button>
+                            <button class="btn orange__bg" type="submit">
+                                <fmt:message key="web.tab.block" bundle="${ rb }"/>
+                            </button>
                         </form>
                     </td>
                     <td>
                         <form action="<c:url value="/admin/unblock/${u.id}"/>" method="post">
-                            <button class="btn orange__bg" type="submit">Разблокировать</button>
+                            <button class="btn orange__bg" type="submit">
+                                <fmt:message key="web.tab.unblock" bundle="${ rb }"/>
+                            </button>
                         </form>
                     </td>
                 </tr>

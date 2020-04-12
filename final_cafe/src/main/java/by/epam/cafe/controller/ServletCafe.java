@@ -2,6 +2,7 @@ package by.epam.cafe.controller;
 
 import by.epam.cafe.controller.command.Command;
 import by.epam.cafe.controller.command.PermissionDeniedException;
+import by.epam.cafe.controller.command.getimpl.PermissionDeniedCommand;
 import by.epam.cafe.controller.factory.CommandFactory;
 import by.epam.cafe.controller.factory.impl.CommandGetFactory;
 import by.epam.cafe.controller.factory.impl.CommandPostFactory;
@@ -19,6 +20,8 @@ import java.io.IOException;
 @WebServlet(name = "ServletCafe")
 public class ServletCafe extends HttpServlet {
 
+    private static final PermissionDeniedCommand permDen = new PermissionDeniedCommand();
+
     private static final Logger log = LogManager.getLogger(ServletCafe.class);
 
     private final CommandGetFactory commandGetFactory = CommandGetFactory.getInstance();
@@ -29,9 +32,22 @@ public class ServletCafe extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        executeMethod(commandGetFactory, request, response);
+        try {
+            executeMethod(commandGetFactory, request, response);
+        } catch (PermissionDeniedException e) {
+            log.debug("Permission denied e:", e);
+            permDen.execute(request, response);
+        }
     }
 
+    /**
+     * @param commandFactory factory {@link CommandFactory} to create a command {@link Command}
+     * @param request        request from user
+     * @param response       response to user
+     * @throws ServletException          same as throws {@link HttpServlet}
+     * @throws IOException               same as throws {@link HttpServlet}
+     * @throws PermissionDeniedException if user can't execute specific command {@link Command}
+     */
     private void executeMethod(CommandFactory commandFactory,
                                HttpServletRequest request,
                                HttpServletResponse response) throws ServletException, IOException {
@@ -42,8 +58,8 @@ public class ServletCafe extends HttpServlet {
             log.info("prefix = {}", prefix);
             Command command = commandFactory.create(requestURI.substring(prefix.length()));
             command.execute(request, response);
-        } catch (PageNotFoundException | PermissionDeniedException e) {
-            log.info("e: ", e);
+        } catch (PageNotFoundException e) {
+            log.debug("e: ", e);
         }
     }
 

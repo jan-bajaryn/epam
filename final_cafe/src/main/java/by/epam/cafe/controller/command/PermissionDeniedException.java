@@ -1,6 +1,8 @@
 package by.epam.cafe.controller.command;
 
-public class PermissionDeniedException extends Exception {
+import javax.servlet.ServletException;
+
+public class PermissionDeniedException extends ServletException {
     public PermissionDeniedException() {
     }
 

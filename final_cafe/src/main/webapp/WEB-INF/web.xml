@@ -44,6 +44,11 @@
         <filter-class>by.epam.cafe.controller.filter.AttrsFilterDemo</filter-class>
     </filter>
 
+<!--    <error-page>-->
+<!--        <exception-type>by.epam.cafe.controller.command.PermissionDeniedException</exception-type>-->
+<!--        <location>/page/permission-denied</location>-->
+<!--    </error-page>-->
+
 
     <jsp-config>
         <taglib>

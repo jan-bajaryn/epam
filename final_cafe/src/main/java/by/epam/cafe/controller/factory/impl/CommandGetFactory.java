@@ -30,13 +30,15 @@ public class CommandGetFactory implements CommandFactory {
 
     private static Map<String, Command> commandMap = new LinkedHashMap<>();
 
+    public static final String LOGIN_PAGE = "/login";
+
     static {
         commandMap.put("/second", new MainCommand());
         commandMap.put("/something_went_wrong", new SomethingWentWrongCommand());
         /*language=RegExp*/
         commandMap.put("/?", new IndexCommand());
         commandMap.put("/order", new OrderCommand());
-        commandMap.put("/login", new CommandDecorator(new LoginCommand(), EnumSet.of(ANON)));
+        commandMap.put(LOGIN_PAGE, new CommandDecorator(new LoginCommand(), EnumSet.of(ANON)));
         commandMap.put("/cabinet", new CommandDecorator(new ClientCabinetCommand(), EnumSet.of(CLIENT)));
         /*language=RegExp*/
         commandMap.put("/edit-order/\\d+", new CommandDecorator(new EditOrderCommand(), EnumSet.of(OPERATOR)));
@@ -61,6 +63,8 @@ public class CommandGetFactory implements CommandFactory {
         /*language=RegExp*/
         commandMap.put("/admin/edit-product/\\d+", new CommandDecorator(new EditProductCommand(), EnumSet.of(ADMIN)));
         commandMap.put("/logout", new CommandDecorator(new LogOutCommand(), EnumSet.complementOf(EnumSet.of(ANON))));
+
+//        commandMap.put("/permission-denied", new PermissionDeniedCommand());
     }
 
     @Override
