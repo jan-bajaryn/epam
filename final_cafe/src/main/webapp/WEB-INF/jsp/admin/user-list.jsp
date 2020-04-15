@@ -111,14 +111,14 @@
                         </a>
                     </td>
                     <td>
-                        <form action="<c:url value="/admin/block/${u.id}"/>" method="post">
+                        <form action="<c:url value="/page/admin/block/${u.id}"/>" method="post">
                             <button class="btn orange__bg" type="submit">
                                 <fmt:message key="web.tab.block" bundle="${ rb }"/>
                             </button>
                         </form>
                     </td>
                     <td>
-                        <form action="<c:url value="/admin/unblock/${u.id}"/>" method="post">
+                        <form action="<c:url value="/page/admin/unblock/${u.id}"/>" method="post">
                             <button class="btn orange__bg" type="submit">
                                 <fmt:message key="web.tab.unblock" bundle="${ rb }"/>
                             </button>

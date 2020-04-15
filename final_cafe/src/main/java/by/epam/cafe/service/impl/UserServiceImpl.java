@@ -3,6 +3,7 @@ package by.epam.cafe.service.impl;
 import by.epam.cafe.dao.DAOFactory;
 import by.epam.cafe.dao.mysql.impl.UserMysqlDao;
 import by.epam.cafe.entity.impl.User;
+import by.epam.cafe.service.exception.IllegalIdException;
 
 import java.util.List;
 
@@ -42,13 +43,54 @@ public class UserServiceImpl implements by.epam.cafe.service.UserService {
     }
 
 
-//    TODO complete this method with dao
+    //    TODO complete this method with dao
     @Override
     public User findUserByUsername(String username) {
         return findAll().stream()
                 .filter(u -> u.getUsername().equals(username))
                 .findAny()
                 .orElse(null);
+
+    }
+
+    @Override
+    public void blockById(Integer id) throws IllegalIdException {
+        if (id == null || id < 0) {
+            throw new IllegalIdException("id = " + id);
+        }
+        User entityById = userMysqlDao.findEntityById(id);
+        if (entityById == null) {
+            throw new IllegalIdException("id = " + id);
+        }
+
+        if (!entityById.isBlocked()) {
+            entityById.setBlocked(true);
+            boolean update = userMysqlDao.update(entityById);
+
+            if (!update) {
+                throw new IllegalIdException("id = " + id);
+            }
+        }
+    }
+
+    @Override
+    public void unBlockById(Integer id) throws IllegalIdException {
+        if (id == null || id < 0) {
+            throw new IllegalIdException("id = " + id);
+        }
+        User entityById = userMysqlDao.findEntityById(id);
+        if (entityById == null) {
+            throw new IllegalIdException("id = " + id);
+        }
+
+        if (entityById.isBlocked()) {
+            entityById.setBlocked(false);
+            boolean update = userMysqlDao.update(entityById);
+
+            if (!update) {
+                throw new IllegalIdException("id = " + id);
+            }
+        }
 
     }
 }

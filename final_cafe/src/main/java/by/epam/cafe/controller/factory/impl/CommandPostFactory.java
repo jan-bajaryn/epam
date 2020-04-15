@@ -2,10 +2,7 @@ package by.epam.cafe.controller.factory.impl;
 
 import by.epam.cafe.controller.command.Command;
 import by.epam.cafe.controller.command.CommandDecorator;
-import by.epam.cafe.controller.command.postimpl.ChangeLanguageCommand;
-import by.epam.cafe.controller.command.postimpl.CreateUserCommand;
-import by.epam.cafe.controller.command.postimpl.LoginCommand;
-import by.epam.cafe.controller.command.postimpl.RegistrationCommand;
+import by.epam.cafe.controller.command.postimpl.*;
 import by.epam.cafe.controller.factory.CommandFactory;
 import by.epam.cafe.controller.factory.exception.PageNotFoundException;
 import org.apache.logging.log4j.LogManager;
@@ -41,7 +38,11 @@ public class CommandPostFactory implements CommandFactory {
         commandMap.put("/admin/create_user", new CommandDecorator(new CreateUserCommand(), EnumSet.of(ADMIN)));
         commandMap.put("/change-language", new ChangeLanguageCommand());
         commandMap.put("/registration", new RegistrationCommand());
-
+        commandMap.put("/admin/edit_user", new EditAdminCommand());
+        /*language=RegExp*/
+        commandMap.put("/admin/block/\\d+", new UserBlockCommand());
+        /*language=RegExp*/
+        commandMap.put("/admin/unblock/\\d+", new UserUnBlockCommand());
     }
 
     @Override

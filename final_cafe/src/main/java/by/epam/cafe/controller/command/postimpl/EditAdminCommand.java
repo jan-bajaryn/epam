@@ -1,6 +1,5 @@
 package by.epam.cafe.controller.command.postimpl;
 
-import by.epam.cafe.controller.command.PermissionDeniedException;
 import by.epam.cafe.entity.enums.Role;
 import by.epam.cafe.entity.impl.User;
 import by.epam.cafe.service.UserService;
@@ -16,9 +15,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDateTime;
 
-public class CreateUserCommand extends by.epam.cafe.controller.command.Command {
+public class EditAdminCommand extends by.epam.cafe.controller.command.Command {
 
-    private static final Logger log = LogManager.getLogger(CreateUserCommand.class);
+    private static final Logger log = LogManager.getLogger(EditAdminCommand.class);
+    private static final String IS_BLOCKED = "1";
+
+
     private final ServiceFactory serviceFactory = ServiceFactory.getInstance();
 
     private final UserService userService = serviceFactory.getUserService();
@@ -26,30 +28,25 @@ public class CreateUserCommand extends by.epam.cafe.controller.command.Command {
 
     private final NullIfEmptyService nullEmpt = serviceFactory.getNullIfEmptyService();
 
-
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PermissionDeniedException {
-        try {
-            User build = buildUser(request);
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        log.debug("Begin  EditAdminCommand");
 
-            if (userValidator.validWithoutId(build) && userService.create(build)) {
+        try {
+            User user = buildUser(request);
+            if (userValidator.isValid(user) && userService.update(user)) {
                 response.sendRedirect(request.getContextPath() + request.getServletPath() + "/admin/user-list");
             } else {
                 response.sendRedirect(request.getContextPath() + request.getServletPath() + "/something_went_wrong");
             }
-
-
-        } catch (IllegalArgumentException | NullPointerException e) {
-            log.error("e:", e);
-            String path = request.getContextPath() + request.getServletPath();
-            log.info("execute: path = {}", path);
-            response.sendRedirect(path + "/something_went_wrong");
+        } catch (NullPointerException | IllegalArgumentException e) {
+            log.debug("e: ", e);
         }
-
 
     }
 
     private User buildUser(HttpServletRequest request) {
+        String id = request.getParameter("id");
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String role = request.getParameter("role");
@@ -62,7 +59,11 @@ public class CreateUserCommand extends by.epam.cafe.controller.command.Command {
         String phone = request.getParameter("phone");
         String email = request.getParameter("email");
         String street = request.getParameter("street");
+        String isBlocked = request.getParameter("isBlocked");
+        log.info("isBlocked = {}", isBlocked);
+
         return User.newBuilder()
+                .id(Integer.valueOf(id))
                 .username(username)
                 .password(password)
                 .role(Role.valueOf(role))
@@ -77,6 +78,8 @@ public class CreateUserCommand extends by.epam.cafe.controller.command.Command {
                 .creation(LocalDateTime.now())
                 .isBlocked(false)
                 .street(nullEmpt.nullIfEmptyString(street))
+                .isBlocked(IS_BLOCKED.equals(isBlocked))
                 .build();
     }
+
 }

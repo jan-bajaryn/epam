@@ -35,7 +35,7 @@
 <main class="container">
     <c:if test="${user!=null}">
         <div class="create__data">
-            <form action="<c:url value="/admin/edit_user"/>" method="post">
+            <form action="<c:url value="/page/admin/edit_user"/>" method="post">
                 <div class="id">
                     <label for="id">Id:</label>
                     <input type="number" id="id" name="id" placeholder="Id"

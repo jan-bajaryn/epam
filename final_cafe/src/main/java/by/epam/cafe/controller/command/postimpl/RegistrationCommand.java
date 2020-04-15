@@ -30,6 +30,29 @@ public class RegistrationCommand extends by.epam.cafe.controller.command.Command
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PermissionDeniedException {
         log.info("execute: begin");
+
+        try {
+            User build = buildUser(request);
+            boolean validate = userValidator.validWithoutId(build);
+            log.debug("execute: validate = {}", validate);
+            if (validate && userService.create(build)) {
+                response.sendRedirect(request.getContextPath() + request.getServletPath() + "/login");
+            } else {
+                response.sendRedirect(request.getContextPath() + request.getServletPath() + "/something_went_wrong");
+            }
+
+
+        } catch (IllegalArgumentException | NullPointerException e) {
+            log.error("e:", e);
+            String path = request.getContextPath() + request.getServletPath();
+            log.info("execute: path = {}", path);
+            response.sendRedirect(path + "/something_went_wrong");
+        }
+
+
+    }
+
+    private User buildUser(HttpServletRequest request) {
         String email = request.getParameter("email");
         String phone = request.getParameter("phone");
         String username = request.getParameter("username");
@@ -42,47 +65,22 @@ public class RegistrationCommand extends by.epam.cafe.controller.command.Command
         String porch = request.getParameter("porch");
         String floor = request.getParameter("floor");
 
-
-        try {
-            User build = User.newBuilder()
-                    .username(username)
-                    .password(password)
-                    .role(Role.CLIENT)
-                    .name(name)
-                    .surname(surname)
-                    .house(nullEmpt.nullIfEmptyString(house))
-                    .room(nullEmpt.nullIfEmptyString(room))
-                    .porch(nullEmpt.nullIfEmptyInteger(porch))
-                    .floor(nullEmpt.nullIfEmptyInteger(floor))
-                    .phone(nullEmpt.nullIfEmptyString(phone))
-                    .email(email)
-                    .creation(LocalDateTime.now())
-                    .isBlocked(false)
-                    .street(nullEmpt.nullIfEmptyString(street))
-                    .build();
-
-            boolean validate = userValidator.validWithoutId(build);
-            log.debug("execute: validate = {}", validate);
-            boolean create = false;
-            if (validate) {
-                create = userService.create(build);
-            }
-            log.info("execute: create = {}", create);
-            if (validate && create) {
-                response.sendRedirect(request.getContextPath() + request.getServletPath() + "/login");
-            } else {
-                response.sendRedirect(request.getContextPath() + request.getServletPath() + "/something_went_wrong");
-            }
-
-
-        } catch (IllegalArgumentException e) {
-            log.error("e:", e);
-            String path = request.getContextPath() + request.getServletPath();
-            log.info("execute: path = {}", path);
-            response.sendRedirect(path + "/something_went_wrong");
-        }
-
-
+        return User.newBuilder()
+                .username(username)
+                .password(password)
+                .role(Role.CLIENT)
+                .name(name)
+                .surname(surname)
+                .house(nullEmpt.nullIfEmptyString(house))
+                .room(nullEmpt.nullIfEmptyString(room))
+                .porch(nullEmpt.nullIfEmptyInteger(porch))
+                .floor(nullEmpt.nullIfEmptyInteger(floor))
+                .phone(nullEmpt.nullIfEmptyString(phone))
+                .email(email)
+                .creation(LocalDateTime.now())
+                .isBlocked(false)
+                .street(nullEmpt.nullIfEmptyString(street))
+                .build();
     }
 
 }

@@ -1,6 +1,7 @@
 package by.epam.cafe.service;
 
 import by.epam.cafe.entity.impl.User;
+import by.epam.cafe.service.exception.IllegalIdException;
 
 import java.util.List;
 
@@ -21,4 +22,8 @@ public interface UserService {
     boolean update(User entity);
 
     User findUserByUsername(String username);
+
+    void blockById(Integer id) throws IllegalIdException;
+
+    public void unBlockById(Integer id) throws IllegalIdException;
 }

@@ -155,7 +155,7 @@ public abstract class AbstractMysqlDao<ID, T extends Entity<ID>> implements Abst
                          cn.prepareStatement(updateSql)) {
 
                 updateParams(entity, statement);
-                return statement.execute();
+                return statement.executeUpdate() == 1;
             } catch (SQLException e) {
                 log.info("e: ", e);
             }
