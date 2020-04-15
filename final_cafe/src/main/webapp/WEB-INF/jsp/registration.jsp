@@ -42,7 +42,7 @@
 
 <main class="container">
     <div class="create__data">
-        <form action="<c:url value="page/registration"/>" method="post">
+        <form action="<c:url value="/page/registration"/>" method="post">
             <div class="email">
                 <label for="email">
                     <fmt:message key="web.inputs.email" bundle="${ rb }"/>
@@ -75,7 +75,7 @@
                     :
                     <span class="obligatory">
                         <a href="#" data-toggle="tooltip"
-                           data-placement="top"
+                           data-placement="top">
                            <fmt:message key="web.inputs.oblicatory" bundle="${ rb }"/>
                         </a>
                     </span>

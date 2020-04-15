@@ -16,9 +16,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDateTime;
 
-public class CreateUserCommand extends by.epam.cafe.controller.command.Command {
+public class RegistrationCommand extends by.epam.cafe.controller.command.Command {
 
-    private static final Logger log = LogManager.getLogger(CreateUserCommand.class);
+    private static final Logger log = LogManager.getLogger(RegistrationCommand.class);
+
     private final ServiceFactory serviceFactory = ServiceFactory.getInstance();
 
     private final UserService userService = serviceFactory.getUserService();
@@ -26,27 +27,27 @@ public class CreateUserCommand extends by.epam.cafe.controller.command.Command {
 
     private final NullIfEmptyService nullEmpt = serviceFactory.getNullIfEmptyService();
 
-
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PermissionDeniedException {
+        log.info("execute: begin");
+        String email = request.getParameter("email");
+        String phone = request.getParameter("phone");
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        String role = request.getParameter("role");
         String name = request.getParameter("name");
         String surname = request.getParameter("surname");
+        String street = request.getParameter("street");
         String house = request.getParameter("house");
         String room = request.getParameter("room");
         String porch = request.getParameter("porch");
         String floor = request.getParameter("floor");
-        String phone = request.getParameter("phone");
-        String email = request.getParameter("email");
-        String street = request.getParameter("street");
+
 
         try {
             User build = User.newBuilder()
                     .username(username)
                     .password(password)
-                    .role(Role.valueOf(role))
+                    .role(Role.CLIENT)
                     .name(name)
                     .surname(surname)
                     .house(nullEmpt.nullIfEmptyString(house))
@@ -60,8 +61,15 @@ public class CreateUserCommand extends by.epam.cafe.controller.command.Command {
                     .street(nullEmpt.nullIfEmptyString(street))
                     .build();
 
-            if (userValidator.validWithoutId(build) && userService.create(build)) {
-                response.sendRedirect(request.getContextPath() + request.getServletPath() + "/admin/user-list");
+            boolean validate = userValidator.validWithoutId(build);
+            log.debug("execute: validate = {}", validate);
+            boolean create = false;
+            if (validate) {
+                create = userService.create(build);
+            }
+            log.info("execute: create = {}", create);
+            if (validate && create) {
+                response.sendRedirect(request.getContextPath() + request.getServletPath() + "/login");
             } else {
                 response.sendRedirect(request.getContextPath() + request.getServletPath() + "/something_went_wrong");
             }
@@ -76,4 +84,5 @@ public class CreateUserCommand extends by.epam.cafe.controller.command.Command {
 
 
     }
+
 }

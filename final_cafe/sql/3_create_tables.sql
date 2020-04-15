@@ -31,8 +31,10 @@ CREATE TABLE user
     porch      integer,
     room       varchar(10),
     street     varchar(255),
-    is_blocked BOOL   NOT NULL,
-    CONSTRAINT pk_user PRIMARY KEY (id)
+    is_blocked BOOL    NOT NULL,
+    CONSTRAINT pk_user PRIMARY KEY (id),
+    CONSTRAINT uk UNIQUE (username),
+    INDEX (username, password)
 );
 
 CREATE TABLE `order`
@@ -57,7 +59,7 @@ CREATE TABLE product_group
     name        varchar(255),
     photo_name  varchar(255),
     type        integer,
-    disabled    BOOL   NOT NULL,
+    disabled    BOOL    NOT NULL,
     CONSTRAINT pk_product_group PRIMARY KEY (id)
 );
 
