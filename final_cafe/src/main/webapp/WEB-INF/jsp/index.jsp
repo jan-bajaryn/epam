@@ -12,7 +12,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Pizzeria</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
           integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
@@ -41,7 +41,7 @@
     <c:import url="fragments/navPanel.jsp"/>
     <main class="container">
         <div class="title-container">
-            Пиццы
+            <fmt:message key="web.text.products" bundle="${ rb }"/>
         </div>
         <div class="p_card-list">
             <c:forEach var="product_group" items="${products}">
@@ -61,7 +61,7 @@
                         от ${product_group.value} руб.
                     </span>
                         <button class="btn mr-5 myBtn">
-<%--                            Выбрать--%>
+                                <%--                            Выбрать--%>
                             <fmt:message key="web.btns.choose" bundle="${ rb }"/>
                         </button>
                         <div class="modal">
@@ -105,7 +105,7 @@
                     </div>
                 </div>
             </c:forEach>
-<%--            <ctg:info-time/>--%>
+            <%--            <ctg:info-time/>--%>
         </div>
     </main>
     <c:import url="fragments/footer.jsp"/>

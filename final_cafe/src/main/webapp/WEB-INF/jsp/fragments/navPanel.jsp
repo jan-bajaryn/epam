@@ -77,7 +77,7 @@
             </ul>
         </div>
         <div class="basket">
-            <a href="<c:url value="page/order"/>">
+            <a href="<c:url value="/page/order"/>">
                 <button class="btn">
                 <span class="border-right">
                                             <fmt:message key="web.links.basket" bundle="${ rb }"/>
