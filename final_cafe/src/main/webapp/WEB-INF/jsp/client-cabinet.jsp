@@ -23,77 +23,87 @@
 <fmt:setBundle basename="property.text" var="rb"/>
 
 <div class="main-container">
-<%--    <nav>--%>
-<%--        <div class="nav-container">--%>
-<%--            <div class="list-nav">--%>
-<%--                <div class="icon">--%>
-<%--                    <i class='fas fa-pizza-slice'></i>--%>
-<%--                </div>--%>
-<%--                <ul>--%>
-<%--                    <li><a href="?">Пиццы</a></li>--%>
-<%--                    <li><a href="?">Закуски</a></li>--%>
-<%--                    <li><a href="?">Десерты</a></li>--%>
-<%--                    <li><a href="?">Напитки</a></li>--%>
-<%--                    <li><a href="?">Контакты</a></li>--%>
-<%--                    <li><a href="?">О нас</a></li>--%>
-<%--                </ul>--%>
-<%--            </div>--%>
-<%--            <div class="basket">--%>
-<%--                <button class="btn">--%>
-<%--                    <span class="border-right">Корзина</span>--%>
-<%--                    <span>1</span>--%>
-<%--                </button>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-<%--    </nav>--%>
+    <%--    <nav>--%>
+    <%--        <div class="nav-container">--%>
+    <%--            <div class="list-nav">--%>
+    <%--                <div class="icon">--%>
+    <%--                    <i class='fas fa-pizza-slice'></i>--%>
+    <%--                </div>--%>
+    <%--                <ul>--%>
+    <%--                    <li><a href="?">Пиццы</a></li>--%>
+    <%--                    <li><a href="?">Закуски</a></li>--%>
+    <%--                    <li><a href="?">Десерты</a></li>--%>
+    <%--                    <li><a href="?">Напитки</a></li>--%>
+    <%--                    <li><a href="?">Контакты</a></li>--%>
+    <%--                    <li><a href="?">О нас</a></li>--%>
+    <%--                </ul>--%>
+    <%--            </div>--%>
+    <%--            <div class="basket">--%>
+    <%--                <button class="btn">--%>
+    <%--                    <span class="border-right">Корзина</span>--%>
+    <%--                    <span>1</span>--%>
+    <%--                </button>--%>
+    <%--            </div>--%>
+    <%--        </div>--%>
+    <%--    </nav>--%>
     <c:import url="fragments/navPanel.jsp"/>
 
     <main class="container">
         <div class="title-container">
-            Личный кабинет
+            <fmt:message key="web.text.self-cabinet" bundle="${ rb }"/>
         </div>
         <div class="data__input">
             <div class="data__input__label">
-                Имя:
+                <fmt:message key="web.inputs.name" bundle="${ rb }"/>
             </div>
             <div class="data__input__place">
-                Антуан <a href="?" class="input_name">Изменить</a>
+                Антуан <a href="?" class="input_name">
+                <fmt:message key="web.tab.edit" bundle="${ rb }"/>
+            </a>
             </div>
             <div class="data__input__label">
-                Номер телефона:
+                <fmt:message key="web.inputs.phone" bundle="${ rb }"/>
             </div>
             <div class="data__input__place">
                 +375 29 111-11-11
             </div>
             <div class="data__input__label">
-                День рождения:
+                <fmt:message key="web.inputs.birthday" bundle="${ rb }"/>
                 <i class="fas fa-info-circle birthday"></i>
             </div>
             <div class="data__input__place birth___data">
                 <div class="max__width__fixed grid">
                     <select name="cars" class="custom-select">
-                        <option selected>День</option>
+                        <option selected>
+                            <fmt:message key="web.inputs.day" bundle="${ rb }"/>
+                        </option>
                         <option value="volvo">Volvo</option>
                         <option value="fiat">Fiat</option>
                         <option value="audi">Audi</option>
                     </select>
                     <select name="cars" class="custom-select">
-                        <option selected>Месяц</option>
+                        <option selected>
+                            <fmt:message key="web.inputs.month" bundle="${ rb }"/>
+                        </option>
                         <option value="volvo">Volvo</option>
                         <option value="fiat">Fiat</option>
                         <option value="audi">Audi</option>
                     </select>
                 </div>
-                <button class="btn orange__bg" disabled>Сохранить</button>
+                <button class="btn orange__bg" disabled>
+                    <fmt:message key="web.inputs.save" bundle="${ rb }"/>
+                </button>
             </div>
             <div class="data__input__label">
-                Email:
+                <fmt:message key="web.inputs.email" bundle="${ rb }"/>
             </div>
             <div class="data__input__place email___data">
                 <div class="max__width__fixed">
                     <input type="email" class="form-control" placeholder="Enter email" id="email">
                 </div>
-                <button class="btn orange__bg" disabled>Сохранить</button>
+                <button class="btn orange__bg" disabled>
+                    <fmt:message key="web.inputs.save" bundle="${ rb }"/>
+                </button>
             </div>
             <div></div>
             <div class="subscribe__form">
@@ -108,18 +118,20 @@
         </div>
 
         <div class="log__out">
-            <button class="btn orange__hover">Выйти</button>
+            <button class="btn orange__hover">
+                <fmt:message key="web.links.logout" bundle="${ rb }"/>
+            </button>
         </div>
     </main>
 
-<%--    <footer class="bg-dark">--%>
-<%--        <div class="container">--%>
-<%--            <a href="?">О нас</a>--%>
-<%--            <a href="?">Почему нашу пиццу все любят</a>--%>
-<%--            <a href="?">Наш блог</a>--%>
-<%--            <a href="?">Наши спонсоры</a>--%>
-<%--        </div>--%>
-<%--    </footer>--%>
+    <%--    <footer class="bg-dark">--%>
+    <%--        <div class="container">--%>
+    <%--            <a href="?">О нас</a>--%>
+    <%--            <a href="?">Почему нашу пиццу все любят</a>--%>
+    <%--            <a href="?">Наш блог</a>--%>
+    <%--            <a href="?">Наши спонсоры</a>--%>
+    <%--        </div>--%>
+    <%--    </footer>--%>
     <c:import url="fragments/footer.jsp"/>
 
 </div>
