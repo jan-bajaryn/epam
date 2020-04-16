@@ -91,7 +91,7 @@
                 <td>${p.type}</td>
                 <td>${p.disabled}</td>
                 <td>
-                    <form action="<c:url value="/admin/disable_product_group"/>" method="post">
+                    <form action="<c:url value="/page/admin/disable_product_group"/>" method="post">
                         <button class="btn orange__bg" type="submit">
                             <fmt:message key="web.tab.disable" bundle="${ rb }"/>
                         </button>
@@ -102,7 +102,7 @@
                 </td>
 
                 <td>
-                    <form action="<c:url value="/admin/enable_product_group"/>" method="post">
+                    <form action="<c:url value="/page/admin/enable_product_group"/>" method="post">
                         <button class="btn orange__bg" type="submit">
                             <fmt:message key="web.tab.enable" bundle="${ rb }"/>
                         </button>

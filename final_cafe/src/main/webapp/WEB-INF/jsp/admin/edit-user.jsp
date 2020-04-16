@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -26,10 +27,14 @@
 </head>
 <body>
 
+<fmt:setBundle basename="property.text" var="rb"/>
+
 
 <c:import url="../fragments/navPanel.jsp"/>
 <header>
-    <h1>Edit user</h1>
+    <h1>
+        <fmt:message key="web.text.edit-user" bundle="${ rb }"/>
+    </h1>
 </header>
 
 <main class="container">
@@ -37,25 +42,36 @@
         <div class="create__data">
             <form action="<c:url value="/page/admin/edit_user"/>" method="post">
                 <div class="id">
-                    <label for="id">Id:</label>
-                    <input type="number" id="id" name="id" placeholder="Id"
+                    <label for="id">
+                        <fmt:message key="web.tab.identifier" bundle="${ rb }"/>
+                    </label>
+                    <input type="number" id="id" name="id"
+                           placeholder="<fmt:message key="web.tab.identifier" bundle="${ rb }"/>"
                            class="form-control" value="${user.id}" readonly>
                 </div>
 
                 <div class="username">
-                    <label for="username">Username:</label>
-                    <input type="text" id="username" name="username" placeholder="Username"
+                    <label for="username">
+                        <fmt:message key="web.inputs.username" bundle="${ rb }"/>
+                    </label>
+                    <input type="text" id="username" name="username"
+                           placeholder="<fmt:message key="web.inputs.username" bundle="${ rb }"/>"
                            class="form-control" value="${user.username}">
                 </div>
 
                 <div class="password">
-                    <label for="password">Password:</label>
-                    <input type="text" id="password" name="password" placeholder="Password"
+                    <label for="password">
+                        <fmt:message key="web.inputs.password" bundle="${ rb }"/>
+                    </label>
+                    <input type="text" id="password" name="password"
+                           placeholder="<fmt:message key="web.inputs.password" bundle="${ rb }"/>"
                            class="form-control" value="${user.password}">
                 </div>
 
                 <div class="role__row">
-                    <label for="role">Role:</label>
+                    <label for="role">
+                        <fmt:message key="web.tab.role" bundle="${ rb }"/>
+                    </label>
                     <select class="form-control" id="role" name="role">
                         <option>${user.role}</option>
                         <c:forEach var="role" items="${roles}">
@@ -65,59 +81,88 @@
                 </div>
 
                 <div class="name__row">
-                    <label for="name">Name:</label>
-                    <input type="text" id="name" name="name" placeholder="Name"
+                    <label for="name">
+                        <fmt:message key="web.inputs.name" bundle="${ rb }"/>
+                    </label>
+                    <input type="text" id="name" name="name"
+                           placeholder="<fmt:message key="web.inputs.name" bundle="${ rb }"/>"
                            class="form-control" value="${user.name}">
                 </div>
 
                 <div class="surname__row">
-                    <label for="surname">Surname:</label>
-                    <input type="text" id="surname" name="surname" placeholder="Surname"
+                    <label for="surname">
+                        <fmt:message key="web.inputs.surname" bundle="${ rb }"/>
+                    </label>
+                    <input type="text" id="surname" name="surname"
+                           placeholder="<fmt:message key="web.inputs.surname" bundle="${ rb }"/>"
                            class="form-control" value="${user.surname}">
                 </div>
 
                 <div class="street">
-                    <label for="street">Street:</label>
-                    <input type="text" id="street" name="street" placeholder="Street"
+                    <label for="street">
+                        <fmt:message key="web.inputs.street" bundle="${ rb }"/>
+                    </label>
+                    <input type="text" id="street" name="street"
+                           placeholder="<fmt:message key="web.inputs.street" bundle="${ rb }"/>"
                            class="form-control" value="${user.street}">
                 </div>
                 <div class="house">
-                    <label for="house">House:</label>
-                    <input type="text" id="house" name="house" placeholder="House"
+                    <label for="house">
+                        <fmt:message key="web.inputs.house" bundle="${ rb }"/>
+                    </label>
+                    <input type="text" id="house" name="house"
+                           placeholder="<fmt:message key="web.inputs.house" bundle="${ rb }"/>"
                            class="form-control" value="${user.house}">
                 </div>
                 <div class="room">
-                    <label for="room">Room:</label>
-                    <input type="text" id="room" name="room" placeholder="Room"
+                    <label for="room">
+                        <fmt:message key="web.inputs.room" bundle="${ rb }"/>
+                    </label>
+                    <input type="text" id="room" name="room"
+                           placeholder="<fmt:message key="web.inputs.room" bundle="${ rb }"/>"
                            class="form-control" value="${user.room}">
                 </div>
 
                 <div class="porch">
-                    <label for="porch">Porch:</label>
-                    <input type="text" id="porch" name="porch" placeholder="Porch"
+                    <label for="porch">
+                        <fmt:message key="web.inputs.porch" bundle="${ rb }"/>
+                    </label>
+                    <input type="text" id="porch" name="porch"
+                           placeholder="<fmt:message key="web.inputs.porch" bundle="${ rb }"/>"
                            class="form-control" value="${user.porch}">
                 </div>
 
                 <div class="floor">
-                    <label for="floor">Floor:</label>
-                    <input type="text" id="floor" name="floor" placeholder="Floor"
+                    <label for="floor">
+                        <fmt:message key="web.inputs.floor" bundle="${ rb }"/>
+                    </label>
+                    <input type="text" id="floor" name="floor"
+                           placeholder="<fmt:message key="web.inputs.floor" bundle="${ rb }"/>"
                            class="form-control" value="${user.floor}">
                 </div>
 
                 <div class="phone">
-                    <label for="phone">Phone:</label>
-                    <input type="text" id="phone" name="phone" placeholder="Phone"
+                    <label for="phone">
+                        <fmt:message key="web.inputs.phone" bundle="${ rb }"/>
+                    </label>
+                    <input type="text" id="phone" name="phone"
+                           placeholder="<fmt:message key="web.inputs.phone" bundle="${ rb }"/>"
                            class="form-control" value="${user.phone}">
                 </div>
 
                 <div class="email">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" placeholder="Email"
+                    <label for="email">
+                        <fmt:message key="web.inputs.email" bundle="${ rb }"/>
+                    </label>
+                    <input type="email" id="email" name="email"
+                           placeholder="<fmt:message key="web.inputs.email" bundle="${ rb }"/>"
                            class="form-control" value="${user.email}">
                 </div>
 
                 <div class="isBlocked">
-                    <label for="isBlocked">is blocked:</label>
+                    <label for="isBlocked">
+                        <fmt:message key="web.inputs.is-blocked" bundle="${ rb }"/>
+                    </label>
                     <c:if test="${user.blocked}">
                         <input type="checkbox" checked name="isBlocked" id="isBlocked" value="1">
                     </c:if>
@@ -127,7 +172,9 @@
                 </div>
                 <div class="submit">
                     <label for="submit"></label>
-                    <button type="submit" id="submit" class="btn orange__bg">Подтвердить</button>
+                    <button type="submit" id="submit" class="btn orange__bg">
+                        <fmt:message key="web.inputs.submit" bundle="${ rb }"/>
+                    </button>
                 </div>
 
             </form>

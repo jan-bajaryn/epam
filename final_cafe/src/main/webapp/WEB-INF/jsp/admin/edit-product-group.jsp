@@ -1,5 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -26,30 +28,41 @@
 </head>
 <body>
 
+<fmt:setBundle basename="property.text" var="rb"/>
 
 <c:import url="../fragments/navPanel.jsp"/>
 <header>
-    <h1>Edit product group</h1>
+    <h1>
+        <fmt:message key="web.text.edit-product-group" bundle="${ rb }"/>
+    </h1>
 </header>
 
 <main class="container">
     <div class="create__data">
-        <form action="<c:url value="/admin/edit_product_group"/>" method="post" enctype="multipart/form-data">
+        <form action="<c:url value="/page/admin/edit_product_group"/>" method="post" enctype="multipart/form-data">
 
             <div class="id_row">
-                <label for="id">Id:</label>
+                <label for="id">
+                    <fmt:message key="web.tab.identifier" bundle="${ rb }"/>
+                </label>
                 <input class="form-control" type="number" id="id" name="id" value="${group.id}" readonly>
             </div>
 
             <div class="name">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" placeholder="Name"
+                <label for="name">
+                    <fmt:message key="web.inputs.name" bundle="${ rb }"/>
+                </label>
+                <input type="text" id="name" name="name"
+                       placeholder="<fmt:message key="web.inputs.name" bundle="${ rb }"/>"
                        class="form-control" value="${group.name}">
             </div>
 
             <div class="description">
-                <label for="description">Description:</label>
-                <input type="text" id="description" name="description" placeholder="Description"
+                <label for="description">
+                    <fmt:message key="web.inputs.description" bundle="${ rb }"/>
+                </label>
+                <input type="text" id="description" name="description"
+                       placeholder="<fmt:message key="web.inputs.description" bundle="${ rb }"/>"
                        class="form-control" value="${group.description}">
             </div>
 
@@ -60,7 +73,9 @@
             </div>
 
             <div class="type">
-                <label for="type">Type</label>
+                <label for="type">
+                    <fmt:message key="web.inputs.type" bundle="${ rb }"/>
+                </label>
                 <select class="form-control" id="type" name="type">
                     <option>${group.type}</option>
                     <c:forEach var="t" items="${types}">
@@ -70,22 +85,29 @@
             </div>
 
             <div class="items">
-<%--                <c:if test="${group.products!=null}">--%>
-                    <c:forEach items="${group.products}" var="p">
-                        <div>
-                            <label>
-                                <span>${p.weight} грамм,</span>
-                                <span>${p.price} рублей</span>
-                                <input type="checkbox" value="${p.id}" checked name="products" >
-                            </label>
-                        </div>
-                    </c:forEach>
-<%--                </c:if>--%>
+                <%--                <c:if test="${group.products!=null}">--%>
+                <c:forEach items="${group.products}" var="p">
+                    <div>
+                        <label>
+                            <span>
+                                ${p.weight}
+                                <fmt:message key="web.gram" bundle="${ rb }"/>
+                                ,
+                            </span>
+                            <span>
+                                    ${p.price}
+                                    <fmt:message key="web.text.rub" bundle="${ rb }"/>
+                            </span>
+                            <input type="checkbox" value="${p.id}" checked name="products">
+                        </label>
+                    </div>
+                </c:forEach>
+                <%--                </c:if>--%>
                 <c:forEach items="${products}" var="p">
                     <div>
                         <label>
-                            <span>${p.weight} грамм,</span>
-                            <span>${p.price} рублей</span>
+                            <span>${p.weight} <fmt:message key="web.gram" bundle="${ rb }"/>,</span>
+                            <span>${p.price} <fmt:message key="web.text.rub" bundle="${ rb }"/></span>
                             <input type="checkbox" value="${p.id}" name="products">
                         </label>
                     </div>
@@ -95,7 +117,9 @@
 
             <div class="submit">
                 <label for="submit"></label>
-                <button type="submit" id="submit" class="btn orange__bg">Подтвердить</button>
+                <button type="submit" id="submit" class="btn orange__bg">
+                    <fmt:message key="web.inputs.submit" bundle="${ rb }"/>
+                </button>
             </div>
 
         </form>
