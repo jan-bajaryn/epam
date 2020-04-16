@@ -1,5 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -26,31 +28,44 @@
 </head>
 <body>
 
+<fmt:setBundle basename="property.text" var="rb"/>
+
 
 <c:import url="../fragments/navPanel.jsp"/>
 <header>
-    <h1>Edit product</h1>
+    <h1>
+        <fmt:message key="web.text.edit-product" bundle="${ rb }"/>
+    </h1>
 </header>
 
 <main class="container">
     <c:if test="${product!=null}">
         <div class="create__data">
-            <form action="<c:url value="/admin/edit_product"/>" method="post">
+            <form action="<c:url value="/page/admin/edit_product"/>" method="post">
                 <div class="id">
-                    <label for="id">Id:</label>
-                    <input type="number" id="id" name="id" placeholder="Id"
+                    <label for="id">
+                        <fmt:message key="web.tab.identifier" bundle="${ rb }"/>
+                    </label>
+                    <input type="number" id="id" name="id"
+                           placeholder="<fmt:message key="web.tab.identifier" bundle="${ rb }"/>"
                            class="form-control" value="${product.id}" readonly>
                 </div>
 
                 <div class="product_group">
-                    <label for="product_group">Product group:</label>
+                    <label for="product_group">
+                        <fmt:message key="web.inputs.product-group" bundle="${ rb }"/>
+                    </label>
                     <select class="form-control" id="product_group" name="product_group">
                         <c:if test="${product.productGroup!=null}">
                             <option value="${product.productGroup.id}">${product.productGroup.name}</option>
-                            <option value="">Empty</option>
+                            <option value="">
+                                <fmt:message key="web.text.empty" bundle="${ rb }"/>
+                            </option>
                         </c:if>
                         <c:if test="${product.productGroup == null}">
-                            <option value="">Empty</option>
+                            <option value="">
+                                <fmt:message key="web.text.empty" bundle="${ rb }"/>
+                            </option>
                         </c:if>
                         <c:forEach var="g" items="${groups}">
                             <option value="${g.id}">${g.name}</option>
@@ -59,21 +74,29 @@
                 </div>
 
                 <div class="price">
-                    <label for="price">Price:</label>
-                    <input type="number" id="price" name="price" placeholder="Price"
+                    <label for="price">
+                        <fmt:message key="web.inputs.price" bundle="${ rb }"/>
+                    </label>
+                    <input type="number" id="price" name="price"
+                           placeholder="<fmt:message key="web.inputs.price" bundle="${ rb }"/>"
                            class="form-control" value="${product.price}">
                 </div>
 
                 <div class="weight">
-                    <label for="weight">Weight:</label>
-                    <input type="number" id="weight" name="weight" placeholder="Weight"
+                    <label for="weight">
+                        <fmt:message key="web.tab.weight" bundle="${ rb }"/>
+                    </label>
+                    <input type="number" id="weight" name="weight"
+                           placeholder="<fmt:message key="web.tab.weight" bundle="${ rb }"/>"
                            class="form-control" value="${product.weight}">
                 </div>
 
 
                 <div class="submit">
                     <label for="submit"></label>
-                    <button type="submit" id="submit" class="btn orange__bg">Подтвердить</button>
+                    <button type="submit" id="submit" class="btn orange__bg">
+                        <fmt:message key="web.inputs.submit" bundle="${ rb }"/>
+                    </button>
                 </div>
 
             </form>
