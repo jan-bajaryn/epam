@@ -38,7 +38,7 @@
                     <input class="form-control" placeholder="Promo" type="text" id="promo">
                     <button class="btn white__bg__orange">
                         <%--                        Применить--%>
-                        <fmt:message key="web.btns.execute" bundle="${ rb }"/>
+                        <fmt:message key="web.btn.execute" bundle="${ rb }"/>
                     </button>
                 </div>
             </form>
@@ -90,7 +90,7 @@
         <div class="sum">
             <div class="sum-text">
                 <%--                Сумма заказа:--%>
-                <fmt:message key="web.text.sumorder" bundle="${ rb }"/>
+                <fmt:message key="web.text.sum-order" bundle="${ rb }"/>
             </div>
             <div class="sum-price"> ${String.format("%.2f",sum/100)}
                 <fmt:message key="web.text.rub" bundle="${ rb }"/>
@@ -100,12 +100,12 @@
         <div class="decision mb-5 mt-2">
             <a href="<c:url value="/"/>">
                 <button class="btn orange__hover">
-                    <fmt:message key="web.btns.returnmenu" bundle="${ rb }"/>
+                    <fmt:message key="web.btn.return-menu" bundle="${ rb }"/>
                 </button>
             </a>
 
             <button class="btn orange__bg myBtn">
-                <fmt:message key="web.btns.makeorder" bundle="${ rb }"/>
+                <fmt:message key="web.btn.make-order" bundle="${ rb }"/>
             </button>
             <div class="my__modal">
                 <div class="modal-content">
@@ -113,7 +113,7 @@
                     <div class="modal__main__content">
                         <h3>
                             <%--                                Куда доставить?--%>
-                            <fmt:message key="web.text.wheredelivery" bundle="${ rb }"/>
+                            <fmt:message key="web.text.where-delivery" bundle="${ rb }"/>
                         </h3>
                         <div class="body__form">
                             <label for="street"></label>
@@ -130,12 +130,12 @@
 
                             <div class="name__row">
                                 <input type="text" id="name" name="name"
-                                       placeholder="<fmt:message key="web.inputs.yourname" bundle="${ rb }"/>"
+                                       placeholder="<fmt:message key="web.inputs.your-name" bundle="${ rb }"/>"
                                        class="form-control">
                             </div>
                             <div class="time__row">
                                 <input type="time" id="time" name="time"
-                                       placeholder="<fmt:message key="web.inputs.datedeliver" bundle="${ rb }"/>"
+                                       placeholder="<fmt:message key="web.inputs.date-deliver" bundle="${ rb }"/>"
                                        class="form-control">
                             </div>
                             <div class="first__row">
@@ -177,7 +177,7 @@
                             </div>
                         </div>
                         <button class="btn orange__bg accept__btn" type="submit">
-                            <fmt:message key="web.inputs.acceptorder" bundle="${ rb }"/>
+                            <fmt:message key="web.inputs.accept-order" bundle="${ rb }"/>
                         </button>
                     </div>
                 </div>

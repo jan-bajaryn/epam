@@ -50,7 +50,7 @@
                     <span class="obligatory">
                         <a href="#" data-toggle="tooltip"
                            data-placement="top"
-                           title="<fmt:message key="web.inputs.oblicatory" bundle="${ rb }"/>"> *
+                           title="<fmt:message key="web.inputs.obligatory" bundle="${ rb }"/>"> *
                         </a>
                     </span>
                 </label>
@@ -76,7 +76,7 @@
                     <span class="obligatory">
                         <a href="#" data-toggle="tooltip"
                            data-placement="top">
-                           <fmt:message key="web.inputs.oblicatory" bundle="${ rb }"/>
+                           <fmt:message key="web.inputs.obligatory" bundle="${ rb }"/>
                         </a>
                     </span>
                 </label>
@@ -91,7 +91,7 @@
                     <span class="obligatory">
                         <a href="#" data-toggle="tooltip"
                            data-placement="top"
-                           title="<fmt:message key="web.inputs.oblicatory" bundle="${ rb }"/>"> *
+                           title="<fmt:message key="web.inputs.obligatory" bundle="${ rb }"/>"> *
                         </a>
                     </span>
                 </label>
@@ -101,12 +101,12 @@
             </div>
 
             <div class="password__repeat">
-                <label for="password__repeat"><fmt:message key="web.inputs.repeatpassword" bundle="${ rb }"/>
+                <label for="password__repeat"><fmt:message key="web.inputs.repeat-password" bundle="${ rb }"/>
                     :
                     <span class="obligatory">
                         <a href="#" data-toggle="tooltip"
                            data-placement="top"
-                           title="<fmt:message key="web.inputs.oblicatory" bundle="${ rb }"/>"> *
+                           title="<fmt:message key="web.inputs.obligatory" bundle="${ rb }"/>"> *
                         </a>
                     </span>
                 </label>
@@ -122,7 +122,7 @@
                     <span class="obligatory">
                         <a href="#" data-toggle="tooltip"
                            data-placement="top"
-                           title="<fmt:message key="web.inputs.oblicatory" bundle="${ rb }"/>"> *
+                           title="<fmt:message key="web.inputs.obligatory" bundle="${ rb }"/>"> *
                         </a>
                     </span>
                 </label>
@@ -136,7 +136,7 @@
                     <span class="obligatory">
                         <a href="#" data-toggle="tooltip"
                            data-placement="top"
-                           title="<fmt:message key="web.inputs.oblicatory" bundle="${ rb }"/>"> *
+                           title="<fmt:message key="web.inputs.obligatory" bundle="${ rb }"/>"> *
                         </a>
                     </span>
                 </label>

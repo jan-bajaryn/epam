@@ -24,13 +24,13 @@
 
     <div class="container">
         <a href="?">
-            <fmt:message key="web.links.aboutus" bundle="${ rb }"/>
+            <fmt:message key="web.links.about-us" bundle="${ rb }"/>
         </a>
         <a href="?">
-            <fmt:message key="web.links.alllove" bundle="${ rb }"/>
+            <fmt:message key="web.links.all-love" bundle="${ rb }"/>
         </a>
         <a href="?">
-            <fmt:message key="web.links.outblog" bundle="${ rb }"/>
+            <fmt:message key="web.links.our-blog" bundle="${ rb }"/>
         </a>
         <a href="?">
             <fmt:message key="web.links.sponsors" bundle="${ rb }"/>
@@ -38,15 +38,15 @@
 
         <form method="post" class="footer__element" action="<c:url value="/page/change-language"/>">
             <input type="hidden" value="ru" name="lang">
-            <input type="submit" value="<fmt:message key="web.langs.rus" bundle="${ rb }"/>">
+            <input type="submit" value="<fmt:message key="web.lang.rus" bundle="${ rb }"/>">
         </form>
         <form method="post" class="footer__element" action="<c:url value="/page/change-language"/>">
             <input type="hidden" value="en" name="lang">
-            <input type="submit" value="<fmt:message key="web.langs.en" bundle="${ rb }"/>">
+            <input type="submit" value="<fmt:message key="web.lang.en" bundle="${ rb }"/>">
         </form>
         <form method="post" class="footer__element" action="<c:url value="/page/change-language"/>">
             <input type="hidden" value="pl" name="lang">
-            <input type="submit" value="<fmt:message key="web.langs.pl" bundle="${ rb }"/>">
+            <input type="submit" value="<fmt:message key="web.lang.pl" bundle="${ rb }"/>">
         </form>
         <a href=""><br><br></a>
 

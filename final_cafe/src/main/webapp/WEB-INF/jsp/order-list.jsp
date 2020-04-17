@@ -43,27 +43,21 @@
             <thead>
             <tr>
                 <th>
-<%--                    Номер заказа--%>
-                    <fmt:message key="web.tab.ordernumber" bundle="${ rb }"/>
+                    <fmt:message key="web.tab.order-number" bundle="${ rb }"/>
                 </th>
                 <th>
-<%--                    Статус--%>
-                    <fmt:message key="web.tab.orderstatus" bundle="${ rb }"/>
+                    <fmt:message key="web.tab.order-status" bundle="${ rb }"/>
                 </th>
                 <th>
-<%--                    Адрес доставки--%>
-                    <fmt:message key="web.tab.addressdeliv" bundle="${ rb }"/>
+                    <fmt:message key="web.tab.address-deliv" bundle="${ rb }"/>
                 </th>
                 <th>
-<%--                    Цена заказа--%>
-                    <fmt:message key="web.tab.priceorder" bundle="${ rb }"/>
+                    <fmt:message key="web.tab.price-order" bundle="${ rb }"/>
                 </th>
                 <th>
-<%--                    Отменить--%>
                     <fmt:message key="web.tab.cancel" bundle="${ rb }"/>
                 </th>
                 <th>
-<%--                    Изменить--%>
                     <fmt:message key="web.tab.edit" bundle="${ rb }"/>
                 </th>
             </tr>

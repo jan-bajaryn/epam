@@ -36,7 +36,7 @@
 
 <header class="container">
     <h1>
-        <fmt:message key="web.text.editorder" bundle="${ rb }"/>
+        <fmt:message key="web.text.edit-order" bundle="${ rb }"/>
     </h1>
 </header>
 
@@ -47,14 +47,14 @@
                 <div class="body__form">
                     <div class="id__row">
                         <label for="id">
-                            <fmt:message key="web.tab.ordernumber" bundle="${ rb }"/>
+                            <fmt:message key="web.tab.order-number" bundle="${ rb }"/>
                         </label>
                         <input type="number" value="${order.id}" class="form-control" id="id" name="id" readonly>
                     </div>
 
                     <div class="status__row">
                         <label for="status">
-                            <fmt:message key="web.inputs.orderstatus" bundle="${ rb }"/>
+                            <fmt:message key="web.inputs.order-status" bundle="${ rb }"/>
                         </label>
                         <select class="form-control" id="status" name="status">
                             <option>${order.status}</option>
@@ -66,7 +66,7 @@
 
                     <div class="payment_type__row">
                         <label for="payment_type">
-                            <fmt:message key="web.inputs.paymenttype" bundle="${ rb }"/>
+                            <fmt:message key="web.inputs.payment-type" bundle="${ rb }"/>
                         </label>
                         <select class="form-control" id="payment_type" name="payment_type">
                             <option>${order.paymentType}</option>
@@ -77,7 +77,7 @@
                     </div>
                     <div class="price__row">
                         <label for="price">
-                            <fmt:message key="web.inputs.orderprice" bundle="${ rb }"/>
+                            <fmt:message key="web.inputs.order-price" bundle="${ rb }"/>
                         </label>
                         <input type="number" value="${order.price}" class="form-control" id="price" name="price">
                     </div>
@@ -95,7 +95,7 @@
                             :
                         </label>
                         <input type="time" id="time" name="time"
-                               placeholder="<fmt:message key="web.inputs.datedeliver" bundle="${ rb }"/>"
+                               placeholder="<fmt:message key="web.inputs.date-deliver" bundle="${ rb }"/>"
                                class="form-control" value="${order.deliveryInf.deliveryTime}">
                     </div>
                     <div class="first__row">

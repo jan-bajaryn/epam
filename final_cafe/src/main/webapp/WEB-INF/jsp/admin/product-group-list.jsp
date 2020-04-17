@@ -35,7 +35,7 @@
 <c:import url="../fragments/navPanel.jsp"/>
 <header>
     <h1>
-        <fmt:message key="web.links.productgroups" bundle="${ rb }"/>
+        <fmt:message key="web.links.product-groups" bundle="${ rb }"/>
     </h1>
 </header>
 
@@ -44,7 +44,7 @@
     <div class="create__new mb-5">
         <a href="<c:url value="/page/admin/create-product-group"/>">
             <button class="btn white__bg__orange">
-                <fmt:message key="web.btns.create-new-product-group" bundle="${ rb }"/>
+                <fmt:message key="web.btn.create-new-product-group" bundle="${ rb }"/>
             </button>
         </a>
     </div>

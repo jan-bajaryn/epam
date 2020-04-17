@@ -39,7 +39,7 @@
         </tr>
         <tr>
             <td>
-                <fmt:message key="web.tab.ordernumber" bundle="${ rb }"/>
+                <fmt:message key="web.tab.order-number" bundle="${ rb }"/>
             </td>
             <td>${order.id}</td>
         </tr>
@@ -87,19 +87,19 @@
         </tr>
         <tr>
             <td>
-                <fmt:message key="web.tab.deliverytime" bundle="${ rb }"/>
+                <fmt:message key="web.tab.delivery-time" bundle="${ rb }"/>
             </td>
             <td>${order.deliveryInf.deliveryTime}</td>
         </tr>
         <tr>
             <td>
-                <fmt:message key="web.tab.sumorder" bundle="${ rb }"/>
+                <fmt:message key="web.tab.sum-order" bundle="${ rb }"/>
             </td>
             <td>${order.price}</td>
         </tr>
     </table>
     <button type="button" class="btn orange__bg" data-toggle="collapse" data-target="#demo">
-        <fmt:message key="web.btns.products" bundle="${ rb }"/>
+        <fmt:message key="web.btn.products" bundle="${ rb }"/>
     </button>
     <div id="demo" class="collapse">
         <div class="product-list">

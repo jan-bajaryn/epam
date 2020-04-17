@@ -33,7 +33,7 @@
 
 <header>
     <h1>
-        <fmt:message key="web.links.userlist" bundle="${ rb }"/>
+        <fmt:message key="web.links.user-list" bundle="${ rb }"/>
     </h1>
 </header>
 
@@ -41,7 +41,7 @@
     <div class="create__new mb-5">
         <a href="<c:url value="/page/admin/create-user"/>">
             <button class="btn white__bg__orange">
-                <fmt:message key="web.btns.createuser" bundle="${ rb }"/>
+                <fmt:message key="web.btn.create-user" bundle="${ rb }"/>
             </button>
         </a>
     </div>
@@ -54,7 +54,7 @@
                     <fmt:message key="web.tab.identifier" bundle="${ rb }"/>
                 </th>
                 <th>
-                    <fmt:message key="web.tab.isblocked" bundle="${ rb }"/>
+                    <fmt:message key="web.tab.is-blocked" bundle="${ rb }"/>
                 </th>
                 <th>
                     <fmt:message key="web.tab.role" bundle="${ rb }"/>

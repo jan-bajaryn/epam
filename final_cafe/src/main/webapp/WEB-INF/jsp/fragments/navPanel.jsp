@@ -55,13 +55,13 @@
                 </c:if>
                 <c:if test="${role eq 'ADMIN'}">
                     <li><a href="<c:url value="/page/admin/user-list"/>">
-                        <fmt:message key="web.links.userlist" bundle="${ rb }"/>
+                        <fmt:message key="web.links.user-list" bundle="${ rb }"/>
                     </a></li>
                     <li><a href="<c:url value="/page/admin/product-list"/>">
                         <fmt:message key="web.links.products" bundle="${ rb }"/>
                     </a></li>
                     <li><a href="<c:url value="/page/admin/product-group-list"/>">
-                        <fmt:message key="web.links.productgroups" bundle="${ rb }"/>
+                        <fmt:message key="web.links.product-groups" bundle="${ rb }"/>
                     </a></li>
                 </c:if>
                 <c:if test="${role eq 'OPERATOR'}">

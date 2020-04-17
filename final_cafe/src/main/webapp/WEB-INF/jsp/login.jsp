@@ -79,12 +79,12 @@
     <div class="links">
         <div class="registration">
             <a href="<c:url value="/page/registration"/>">
-                <fmt:message key="web.text.noteregyet" bundle="${ rb }"/>
+                <fmt:message key="web.text.not-reg-yet" bundle="${ rb }"/>
             </a>
         </div>
         <div class="forgot__password">
             <a href="<c:url value="/page/forgot-password"/>">
-                <fmt:message key="web.text.forgotpassword" bundle="${ rb }"/>
+                <fmt:message key="web.text.forgot-password" bundle="${ rb }"/>
             </a>
         </div>
     </div>

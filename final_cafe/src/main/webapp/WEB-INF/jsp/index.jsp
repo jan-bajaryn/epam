@@ -62,7 +62,7 @@
                     </span>
                         <button class="btn mr-5 myBtn">
                                 <%--                            Выбрать--%>
-                            <fmt:message key="web.btns.choose" bundle="${ rb }"/>
+                            <fmt:message key="web.btn.choose" bundle="${ rb }"/>
                         </button>
                         <div class="modal">
                             <form action="page/put_item" method="get">
@@ -95,7 +95,7 @@
                                         </div>
 
                                         <button class="btn .orange__bg" type="submit">
-                                            <fmt:message key="web.btns.addbasket" bundle="${ rb }"/>
+                                            <fmt:message key="web.btn.add-basket" bundle="${ rb }"/>
                                         </button>
                                     </div>
                                 </div>

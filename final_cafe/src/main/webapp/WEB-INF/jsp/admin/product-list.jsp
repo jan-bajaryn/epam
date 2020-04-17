@@ -40,7 +40,7 @@
     <div class="create__new mb-5">
         <a href="<c:url value="/page/admin/create-product"/>">
             <button class="btn white__bg__orange">
-                <fmt:message key="web.text.createproduct" bundle="${ rb }"/>
+                <fmt:message key="web.text.create-product" bundle="${ rb }"/>
             </button>
         </a>
     </div>
