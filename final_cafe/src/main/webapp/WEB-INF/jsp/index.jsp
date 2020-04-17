@@ -27,13 +27,6 @@
 </head>
 <body>
 
-
-<%--<c:if test="${param.lang == null}">--%>
-<%--    <fmt:setLocale value="ru-RU"/>--%>
-<%--</c:if>--%>
-<%--<c:if test="${param.lang != null}">--%>
-<%--    <fmt:setLocale value="${param.lang}"/>--%>
-<%--</c:if>--%>
 <fmt:setBundle basename="property.text" var="rb"/>
 
 

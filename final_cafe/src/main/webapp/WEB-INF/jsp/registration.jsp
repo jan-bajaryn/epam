@@ -198,6 +198,7 @@
         </form>
     </div>
 </main>
+
 <c:import url="fragments/footer.jsp"/>
 
 
@@ -208,7 +209,7 @@
         crossorigin="anonymous"></script>
 
 
-<script src="/static/js/registration/main.js"></script>
+<script src="<c:url value="/static/js/registration/main.js"/>"></script>
 
 </body>
 </html>
