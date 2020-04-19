@@ -3,7 +3,7 @@ package by.epam.cafe.controller.command.postimpl;
 import by.epam.cafe.entity.impl.User;
 import by.epam.cafe.service.UserService;
 import by.epam.cafe.service.factory.ServiceFactory;
-import by.epam.cafe.service.validator.LoginValidator;
+import by.epam.cafe.service.validator.parts.LoginValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

@@ -4,6 +4,7 @@
 <jsp:useBean id="user" scope="request" type="by.epam.cafe.entity.impl.User"/>
 
 
+
 <!doctype html>
 <html lang="en">
 <head>

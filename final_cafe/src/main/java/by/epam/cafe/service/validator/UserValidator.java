@@ -1,12 +1,11 @@
 package by.epam.cafe.service.validator;
 
 import by.epam.cafe.entity.impl.User;
+import by.epam.cafe.service.validator.parts.AddressValidator;
 import by.epam.cafe.service.validator.parts.PasswordValidator;
 import org.apache.commons.validator.routines.EmailValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import java.time.LocalDateTime;
 
 public class UserValidator {
 

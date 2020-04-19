@@ -6,7 +6,8 @@ import by.epam.cafe.service.parser.NullIfEmptyService;
 import by.epam.cafe.service.parser.PathVarCalculator;
 import by.epam.cafe.service.parser.impl.NullIfEmptyServiceImpl;
 import by.epam.cafe.service.parser.impl.PathVarCalculatorImpl;
-import by.epam.cafe.service.validator.LoginValidator;
+import by.epam.cafe.service.validator.ProductValidator;
+import by.epam.cafe.service.validator.parts.LoginValidator;
 import by.epam.cafe.service.validator.UserValidator;
 
 public class ServiceFactory {
@@ -19,6 +20,7 @@ public class ServiceFactory {
     private ServiceFactory() {
     }
 
+    private ProductValidator productValidator = new ProductValidator();
     private final DeliveryInfService deliveryInfService = new DeliveryInfServiceImpl();
     private final OrderService orderService = new OrderServiceImpl();
     private final ProductGroupService productGroupService = new ProductGroupServiceImpl();
@@ -64,5 +66,9 @@ public class ServiceFactory {
 
     public NullIfEmptyService getNullIfEmptyService() {
         return nullIfEmptyService;
+    }
+
+    public ProductValidator getProductValidator() {
+        return productValidator;
     }
 }

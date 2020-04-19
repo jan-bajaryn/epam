@@ -1,5 +1,6 @@
 package by.epam.cafe.controller.command.getimpl;
 
+import by.epam.cafe.entity.enums.Role;
 import by.epam.cafe.entity.impl.User;
 import by.epam.cafe.service.UserService;
 import by.epam.cafe.service.exception.IllegalPathParamException;
@@ -31,6 +32,7 @@ public class EditUserCommand extends by.epam.cafe.controller.command.Command {
             log.info("execute: user = {}", user);
             if (user != null) {
                 request.setAttribute("user", user);
+                request.setAttribute("roles", Role.values());
                 request.getRequestDispatcher("/WEB-INF/jsp/admin/edit-user.jsp").forward(request, response);
             } else {
                 request.getRequestDispatcher("/WEB-INF/jsp/errors/something_went_wrong.jsp").forward(request, response);

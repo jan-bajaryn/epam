@@ -41,7 +41,7 @@
 
 <main class="container">
     <div class="create__data">
-        <form action="<c:url value="page/admin/create_product"/>" method="post">
+        <form action="<c:url value="/page/admin/create-product"/>" method="post">
             <div class="product_group">
                 <label for="product_group">
                     <fmt:message key="web.inputs.product-group" bundle="${ rb }"/>

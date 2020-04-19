@@ -7,10 +7,7 @@ import by.epam.cafe.entity.impl.ProductGroup;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,14 +61,25 @@ public class ProductMysqlDao extends AbstractMysqlDao<Integer, Product> {
     protected void createParams(Product entity, PreparedStatement statement) throws SQLException {
         statement.setInt(1, entity.getPrice());
         statement.setInt(2, entity.getWeight());
-        statement.setInt(3, entity.getProductGroup().getId());
+//        statement.setInt(3, entity.getProductGroup().getId());
+        setProductGroup(3, entity.getProductGroup(), statement);
     }
 
     protected void updateParams(Product entity, PreparedStatement statement) throws SQLException {
         statement.setInt(1, entity.getPrice());
         statement.setInt(2, entity.getWeight());
-        statement.setInt(3, entity.getProductGroup().getId());
+//        statement.setInt(3, entity.getProductGroup().getId());
+        setProductGroup(3, entity.getProductGroup(), statement);
         statement.setInt(4, entity.getId());
+    }
+
+    private void setProductGroup(int index, ProductGroup productGroup,
+                                 PreparedStatement statement) throws SQLException {
+        if (productGroup == null) {
+            statement.setNull(index, Types.INTEGER);
+        } else {
+            statement.setInt(index, productGroup.getId());
+        }
     }
 
     public List<Product> findAllByProductGroupId(Integer id) throws NullParamDaoException {

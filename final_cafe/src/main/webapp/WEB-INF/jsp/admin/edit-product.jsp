@@ -43,7 +43,7 @@
 <main class="container">
     <c:if test="${product!=null}">
         <div class="create__data">
-            <form action="<c:url value="/page/admin/edit_product"/>" method="post">
+            <form action="<c:url value="/page/admin/edit-product"/>" method="post">
                 <div class="id">
                     <label for="id">
                         <fmt:message key="web.tab.identifier" bundle="${ rb }"/>
