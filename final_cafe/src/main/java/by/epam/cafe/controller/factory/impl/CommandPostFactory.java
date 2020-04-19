@@ -45,6 +45,9 @@ public class CommandPostFactory implements CommandFactory {
         commandMap.put("/admin/unblock/\\d+", new UserUnBlockCommand());
         commandMap.put("/admin/edit-product", new EditProductCommand());
         commandMap.put("/admin/create-product", new CreateProductCommand());
+
+        commandMap.put("/admin/create-product-group", new CreateProductGroupCommand());
+        commandMap.put("/admin/edit-product-group", new EditProductGroupCommand());
     }
 
     @Override

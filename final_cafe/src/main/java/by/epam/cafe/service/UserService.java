@@ -17,7 +17,7 @@ public interface UserService {
 
     boolean delete(User entity);
 
-    boolean create(User entity);
+    User create(User entity);
 
     boolean update(User entity);
 

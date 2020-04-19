@@ -11,6 +11,8 @@ public final class DAOFactory {
     private final ProductGroupMysqlDao productGroupMysqlDao = new ProductGroupMysqlDao();
     private final UserMysqlDao userMysqlDao = new UserMysqlDao();
 
+    private final ImageWriterDao imageWriterDao = new ImageWriterDao();
+
     private DAOFactory() {
     }
 
@@ -36,5 +38,9 @@ public final class DAOFactory {
 
     public UserMysqlDao getUserMysqlDao() {
         return userMysqlDao;
+    }
+
+    public ImageWriterDao getImageWriterDao() {
+        return imageWriterDao;
     }
 }

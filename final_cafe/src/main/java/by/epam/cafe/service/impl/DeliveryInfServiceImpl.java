@@ -38,7 +38,7 @@ public class DeliveryInfServiceImpl implements by.epam.cafe.service.DeliveryInfS
 
 
     @Override
-    public boolean create(DeliveryInf entity) {
+    public DeliveryInf create(DeliveryInf entity) {
         return deliveryInfMysqlDao.create(entity);
     }
 

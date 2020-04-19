@@ -68,6 +68,11 @@ public class UserMysqlDao extends AbstractMysqlDao<Integer, User> {
         statement.setInt(1, integer);
     }
 
+    @Override
+    protected Integer getIdFromGeneratedKeys(ResultSet generatedKeys) throws SQLException {
+        return generatedKeys.getInt(1);
+    }
+
 
     protected void createParams(User entity, PreparedStatement statement) throws SQLException {
         statement.setTimestamp(1, Timestamp.valueOf(entity.getCreation()));

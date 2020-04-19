@@ -161,4 +161,11 @@ public class OrderMysqlDao extends AbstractMysqlDao<Integer, Order> {
 
         statement.setInt(8, entity.getId());
     }
+
+
+
+    @Override
+    protected Integer getIdFromGeneratedKeys(ResultSet generatedKeys) throws SQLException {
+        return generatedKeys.getInt(1);
+    }
 }

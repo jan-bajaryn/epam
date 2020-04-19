@@ -13,7 +13,7 @@ public interface ProductService {
 
     boolean delete(Product entity);
 
-    boolean create(Product entity);
+    Product create(Product entity);
 
     boolean update(Product entity);
 

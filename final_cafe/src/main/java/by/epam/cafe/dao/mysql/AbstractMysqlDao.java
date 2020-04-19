@@ -127,23 +127,38 @@ public abstract class AbstractMysqlDao<ID, T extends Entity<ID>> implements Abst
     }
 
     @Override
-    public boolean create(T entity) {
+    public T create(T entity) {
         Connection cn = getPool().takeConnection();
 
         try {
             try (PreparedStatement statement =
-                         cn.prepareStatement(createSql)) {
+                         cn.prepareStatement(createSql,Statement.RETURN_GENERATED_KEYS)) {
                 createParams(entity, statement);
 //                return statement.execute();
-                return statement.executeUpdate() == 1;
+//                return statement.executeUpdate() == 1;
+                int affectedRows = statement.executeUpdate();
+
+                if (affectedRows==0){
+                    return null;
+                }
+
+                try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
+                    if (generatedKeys.next()) {
+                        entity.setId(getIdFromGeneratedKeys(generatedKeys));
+                        return entity;
+                    }
+                }
+
             } catch (SQLException e) {
                 log.info("e: ", e);
             }
-            return false;
+            return null;
         } finally {
             getPool().release(cn);
         }
     }
+
+    protected abstract ID getIdFromGeneratedKeys(ResultSet generatedKeys) throws SQLException;
 
     protected abstract void createParams(T entity, PreparedStatement statement) throws SQLException;
 

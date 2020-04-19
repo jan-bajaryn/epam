@@ -32,7 +32,7 @@ public class CreateUserCommand extends by.epam.cafe.controller.command.Command {
         try {
             User build = buildUser(request);
 
-            if (userValidator.validWithoutId(build) && userService.create(build)) {
+            if (userValidator.validWithoutId(build) && userService.create(build)!=null) {
                 response.sendRedirect(request.getContextPath() + request.getServletPath() + "/admin/user-list");
             } else {
                 response.sendRedirect(request.getContextPath() + request.getServletPath() + "/something_went_wrong");

@@ -49,7 +49,7 @@ public class ProductServiceImpl implements by.epam.cafe.service.ProductService {
     }
 
     @Override
-    public boolean create(Product entity) {
+    public Product create(Product entity) {
         return userMysqlDao.create(entity);
     }
 

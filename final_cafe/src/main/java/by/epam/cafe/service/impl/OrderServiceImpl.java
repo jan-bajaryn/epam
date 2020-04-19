@@ -60,7 +60,7 @@ public class OrderServiceImpl implements by.epam.cafe.service.OrderService {
     }
 
     @Override
-    public boolean create(Order entity) {
+    public Order create(Order entity) {
         return orderMysqlDao.create(entity);
     }
 

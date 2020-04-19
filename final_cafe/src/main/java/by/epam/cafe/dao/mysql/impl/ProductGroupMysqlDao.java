@@ -124,4 +124,11 @@ public class ProductGroupMysqlDao extends AbstractMysqlDao<Integer, ProductGroup
             getPool().release(cn);
         }
     }
+
+
+    @Override
+    protected Integer getIdFromGeneratedKeys(ResultSet generatedKeys) throws SQLException {
+        return generatedKeys.getInt(1);
+    }
+
 }

@@ -13,7 +13,7 @@ public interface DeliveryInfService {
 
     boolean delete(DeliveryInf entity);
 
-    boolean create(DeliveryInf entity);
+    DeliveryInf create(DeliveryInf entity);
 
     boolean update(DeliveryInf entity);
 }

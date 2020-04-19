@@ -13,7 +13,7 @@ public interface OrderService {
 
     boolean delete(Order entity);
 
-    boolean create(Order entity);
+    Order create(Order entity);
 
     boolean update(Order entity);
 }

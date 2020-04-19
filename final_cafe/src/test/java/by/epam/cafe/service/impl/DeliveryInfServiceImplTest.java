@@ -1,6 +1,7 @@
 package by.epam.cafe.service.impl;
 
 import by.epam.cafe.entity.impl.DeliveryInf;
+import by.epam.cafe.entity.impl.Product;
 import by.epam.cafe.service.DeliveryInfService;
 import org.testng.annotations.Test;
 

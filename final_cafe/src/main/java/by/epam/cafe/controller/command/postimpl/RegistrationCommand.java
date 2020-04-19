@@ -35,7 +35,7 @@ public class RegistrationCommand extends by.epam.cafe.controller.command.Command
             User build = buildUser(request);
             boolean validate = userValidator.validWithoutId(build);
             log.debug("execute: validate = {}", validate);
-            if (validate && userService.create(build)) {
+            if (validate && userService.create(build)!=null) {
                 response.sendRedirect(request.getContextPath() + request.getServletPath() + "/login");
             } else {
                 response.sendRedirect(request.getContextPath() + request.getServletPath() + "/something_went_wrong");

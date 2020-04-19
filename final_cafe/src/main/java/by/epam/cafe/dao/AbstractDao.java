@@ -14,7 +14,7 @@ public interface AbstractDao<ID, T extends Entity<ID>> {
 
     boolean delete(T entity);
 
-    boolean create(T entity);
+    T create(T entity);
 
     boolean update(T entity);
 }

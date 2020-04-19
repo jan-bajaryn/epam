@@ -75,7 +75,7 @@ public class ProductMysqlDao extends AbstractMysqlDao<Integer, Product> {
 
     private void setProductGroup(int index, ProductGroup productGroup,
                                  PreparedStatement statement) throws SQLException {
-        if (productGroup == null) {
+        if (productGroup == null || productGroup.getId() == null) {
             statement.setNull(index, Types.INTEGER);
         } else {
             statement.setInt(index, productGroup.getId());
@@ -107,5 +107,12 @@ public class ProductMysqlDao extends AbstractMysqlDao<Integer, Product> {
         } finally {
             getPool().release(cn);
         }
+    }
+
+
+
+    @Override
+    protected Integer getIdFromGeneratedKeys(ResultSet generatedKeys) throws SQLException {
+        return generatedKeys.getInt(1);
     }
 }

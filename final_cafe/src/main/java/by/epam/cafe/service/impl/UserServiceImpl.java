@@ -33,7 +33,7 @@ public class UserServiceImpl implements by.epam.cafe.service.UserService {
     }
 
     @Override
-    public boolean create(User entity) {
+    public User create(User entity) {
         return userMysqlDao.create(entity);
     }
 

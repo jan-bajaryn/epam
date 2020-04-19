@@ -31,7 +31,7 @@ public class CreateProductCommand extends by.epam.cafe.controller.command.Comman
         try {
             Product product = buildProduct(request);
 
-            if (productValidator.validWithoutId(product) && productService.create(product)) {
+            if (productValidator.validWithoutId(product) && productService.create(product)!=null) {
                 log.debug("success");
                 response.sendRedirect(request.getContextPath() + request.getServletPath() + "/admin/product-list");
             } else {

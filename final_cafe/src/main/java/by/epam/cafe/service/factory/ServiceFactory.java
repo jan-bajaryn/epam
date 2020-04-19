@@ -31,6 +31,7 @@ public class ServiceFactory {
     private final UserValidator userValidator = new UserValidator();
     private final NullIfEmptyService nullIfEmptyService = new NullIfEmptyServiceImpl();
 
+    private final ImageWriterService imageWriterService = new ImageWriterService();
 
     public DeliveryInfService getDeliveryInfService() {
         return deliveryInfService;
@@ -70,5 +71,9 @@ public class ServiceFactory {
 
     public ProductValidator getProductValidator() {
         return productValidator;
+    }
+
+    public ImageWriterService getImageWriterService() {
+        return imageWriterService;
     }
 }

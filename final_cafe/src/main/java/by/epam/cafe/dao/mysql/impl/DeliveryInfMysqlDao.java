@@ -63,7 +63,6 @@ public class DeliveryInfMysqlDao extends AbstractMysqlDao<Integer, DeliveryInf> 
     }
 
 
-
     @Override
     protected void createParams(DeliveryInf entity, PreparedStatement statement) throws SQLException {
         statement.setString(1, entity.getComments());
@@ -101,4 +100,11 @@ public class DeliveryInfMysqlDao extends AbstractMysqlDao<Integer, DeliveryInf> 
         statement.setString(9, entity.getStreet());
         statement.setInt(10, entity.getId());
     }
+
+
+    @Override
+    protected Integer getIdFromGeneratedKeys(ResultSet generatedKeys) throws SQLException {
+        return generatedKeys.getInt(1);
+    }
+
 }

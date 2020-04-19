@@ -5,9 +5,11 @@ import by.epam.cafe.entity.enums.ProductType;
 import by.epam.cafe.entity.impl.ProductGroup;
 import by.epam.cafe.service.exception.NullServiceException;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 public interface ProductGroupService {
+
     List<ProductGroup> findAll() throws NullParamDaoException;
 
     ProductGroup findEntityById(Integer integer) throws NullParamDaoException;
@@ -16,7 +18,7 @@ public interface ProductGroupService {
 
     boolean delete(ProductGroup entity);
 
-    boolean create(ProductGroup entity);
+    ProductGroup create(ProductGroup entity);
 
     boolean update(ProductGroup entity);
 
@@ -25,4 +27,7 @@ public interface ProductGroupService {
     List<ProductGroup> findAllEmpty();
 
     List<ProductGroup> findAllExcept(ProductGroup productGroup) throws NullParamDaoException;
+
+    ProductGroup parseRequest(HttpServletRequest request);
+
 }

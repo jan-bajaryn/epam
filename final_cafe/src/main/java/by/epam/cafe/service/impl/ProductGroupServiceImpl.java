@@ -8,13 +8,22 @@ import by.epam.cafe.entity.enums.ProductType;
 import by.epam.cafe.entity.impl.Product;
 import by.epam.cafe.entity.impl.ProductGroup;
 import by.epam.cafe.service.exception.NullServiceException;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class ProductGroupServiceImpl implements by.epam.cafe.service.ProductGroupService {
+
+    private static final DiskFileItemFactory FILE_ITEM_FACTORY = new DiskFileItemFactory();
+
 
     private static final Logger log = LogManager.getLogger(ProductGroupServiceImpl.class);
 
@@ -23,6 +32,7 @@ public class ProductGroupServiceImpl implements by.epam.cafe.service.ProductGrou
     private final ProductMysqlDao productMysqlDao = dAOFactory.getProductMysqlDao();
     private final ProductGroupMysqlDao productGroupMysqlDao = dAOFactory.getProductGroupMysqlDao();
 
+    private final ImageWriterService imageWriterService = new ImageWriterService();
 
     @Override
     public List<ProductGroup> findAll() throws NullParamDaoException {
@@ -51,8 +61,20 @@ public class ProductGroupServiceImpl implements by.epam.cafe.service.ProductGrou
     }
 
     @Override
-    public boolean create(ProductGroup entity) {
-        return productGroupMysqlDao.create(entity);
+    public ProductGroup create(ProductGroup entity) {
+        ProductGroup productGroup = productGroupMysqlDao.create(entity);
+        insertProductsIfPossible(productGroup);
+        return productGroup;
+    }
+
+    private void insertProductsIfPossible(ProductGroup entity) {
+        List<Product> products = entity.getProducts();
+        if (products !=null){
+            products.stream()
+                    .map(p -> productMysqlDao.findEntityById(p.getId()))
+                    .peek(p -> p.setProductGroup(entity))
+                    .forEach(productMysqlDao::update);
+        }
     }
 
     @Override
@@ -91,10 +113,93 @@ public class ProductGroupServiceImpl implements by.epam.cafe.service.ProductGrou
         return all;
     }
 
+    @Override
+    public ProductGroup parseRequest(HttpServletRequest request) {
+        try {
+
+            ProductGroup productGroup = new ProductGroup();
+
+            ServletFileUpload fileUpload = new ServletFileUpload(FILE_ITEM_FACTORY);
+            List<FileItem> parts = fileUpload.parseRequest(request);
+
+            for (FileItem part : parts) {
+                log(part);
+
+                fillFields(productGroup, part);
+            }
+            return productGroup;
+        } catch (FileUploadException e) {
+            log.error("e: ", e);
+            return null;
+        }
+    }
+
+    private void fillFields(ProductGroup productGroup, FileItem part) {
+
+        File file = null;
+
+        try {
+            switch (part.getFieldName()) {
+                case "name":
+                    productGroup.setName(part.getString());
+                    break;
+                case "type":
+                    productGroup.setType(ProductType.valueOf(part.getString()));
+                    break;
+                case "description":
+                    productGroup.setDescription(part.getString());
+                    break;
+                case "products":
+                    productGroup.getProducts().add(
+                            Product.newBuilder().id(Integer.valueOf(part.getString())).build()
+                    );
+                    break;
+                case "file":
+                    file = imageWriterService.downloadFile(part);
+                    productGroup.setPhotoName(file.getName());
+                    break;
+                case "id":
+                    productGroup.setId(Integer.valueOf(part.getString()));
+                    break;
+                case "disabled":
+                    // TODO check that
+                    productGroup.setDisabled(part.getString().equals("1"));
+                    break;
+                default:
+                    log.error("irregular field");
+            }
+        } catch (Exception e) {
+            if (file != null) {
+                // TODO check security
+                file.delete();
+            }
+        }
+
+    }
+
     private void buildProductGroup(ProductGroup productGroup) throws NullParamDaoException {
         List<Product> products = productGroup.getProducts();
         List<Product> allByProductGroupId = productMysqlDao.findAllByProductGroupId(productGroup.getId());
         products.addAll(allByProductGroupId);
         log.info("buildProductGroup: products = {}", products);
+    }
+
+
+    private void log(FileItem part) {
+        if (part.isFormField()) {
+            log.debug("--------------------------");
+            log.debug("part.getName() = {}", part.getName());
+            log.debug("part.getContentType() = {}", part.getContentType());
+            log.debug("part.getFieldName() = {}", part.getFieldName());
+            log.debug("part = {}", part);
+            log.debug("part.getString() = {}", part.getString());
+        } else {
+            log.debug("===============================");
+            log.debug("part.getName() = {}", part.getName());
+            log.debug("part.getContentType() = {}", part.getContentType());
+            log.debug("part.getFieldName() = {}", part.getFieldName());
+            log.debug("part = {}", part);
+        }
+
     }
 }
