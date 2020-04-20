@@ -20,7 +20,7 @@ public interface ProductGroupService {
 
     ProductGroup create(ProductGroup entity);
 
-    boolean update(ProductGroup entity);
+    boolean update(ProductGroup entity) throws NullParamDaoException;
 
     List<ProductGroup> findAllByProductTypeNotDisabled(ProductType type) throws NullServiceException;
 
@@ -30,4 +30,7 @@ public interface ProductGroupService {
 
     ProductGroup parseRequest(HttpServletRequest request);
 
+    void disableById(Integer id);
+
+    void enableById(Integer id);
 }

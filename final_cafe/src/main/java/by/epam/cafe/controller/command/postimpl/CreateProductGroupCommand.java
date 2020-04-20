@@ -5,15 +5,13 @@ import by.epam.cafe.entity.impl.ProductGroup;
 import by.epam.cafe.service.ProductGroupService;
 import by.epam.cafe.service.factory.ServiceFactory;
 import by.epam.cafe.service.impl.ImageWriterService;
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import by.epam.cafe.service.validator.ProductGroupValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
 import java.io.IOException;
 
 public class CreateProductGroupCommand extends by.epam.cafe.controller.command.Command {
@@ -26,21 +24,22 @@ public class CreateProductGroupCommand extends by.epam.cafe.controller.command.C
 
     private final ImageWriterService imageWriterService = serviceFactory.getImageWriterService();
 
+    private final ProductGroupValidator productGroupValidator = serviceFactory.getProductGroupValidator();
+
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PermissionDeniedException {
 
         ProductGroup productGroup = productGroupService.parseRequest(request);
-        boolean b = productGroupService.create(productGroup) != null;
 
-        if (b) {
+        boolean withoutId = productGroupValidator.validWithoutId(productGroup);
+        log.debug("withoutId = {}", withoutId);
+        if (withoutId && productGroupService.create(productGroup) != null) {
             response.sendRedirect(request.getContextPath() + request.getServletPath() + "/admin/product-group-list");
         } else {
             imageWriterService.deleteImageIfNeed(productGroup.getPhotoName());
             response.sendRedirect(request.getContextPath() + request.getServletPath() + "/something_went_wrong");
         }
 
-
-//        response.sendRedirect(request.getContextPath() + request.getServletPath() + "/something_went_wrong");
     }
 
 }

@@ -41,7 +41,7 @@
 
 <main class="container">
     <div class="create__data">
-        <form action="<c:url value="/page/admin/edit_product_group"/>" method="post" enctype="multipart/form-data">
+        <form action="<c:url value="/page/admin/edit-product-group"/>" method="post" enctype="multipart/form-data">
 
             <div class="id_row">
                 <label for="id">

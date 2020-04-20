@@ -48,6 +48,9 @@ public class CommandPostFactory implements CommandFactory {
 
         commandMap.put("/admin/create-product-group", new CreateProductGroupCommand());
         commandMap.put("/admin/edit-product-group", new EditProductGroupCommand());
+
+        commandMap.put("/admin/disable-product-group", new DisableProductGroupCommand());
+        commandMap.put("/admin/enable-product-group", new EnableProductGroupCommand());
     }
 
     @Override

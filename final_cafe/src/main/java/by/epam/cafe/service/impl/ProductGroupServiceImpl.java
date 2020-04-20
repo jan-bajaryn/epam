@@ -69,7 +69,7 @@ public class ProductGroupServiceImpl implements by.epam.cafe.service.ProductGrou
 
     private void insertProductsIfPossible(ProductGroup entity) {
         List<Product> products = entity.getProducts();
-        if (products !=null){
+        if (products != null) {
             products.stream()
                     .map(p -> productMysqlDao.findEntityById(p.getId()))
                     .peek(p -> p.setProductGroup(entity))
@@ -78,8 +78,55 @@ public class ProductGroupServiceImpl implements by.epam.cafe.service.ProductGrou
     }
 
     @Override
-    public boolean update(ProductGroup entity) {
-        return productGroupMysqlDao.update(entity);
+    public boolean update(ProductGroup entity) throws NullParamDaoException {
+        boolean update = productGroupMysqlDao.update(entity);
+        insertAndDeleteOthers(entity);
+        return update;
+    }
+
+    private void insertAndDeleteOthers(ProductGroup entity) throws NullParamDaoException {
+        final List<Product> products = entity.getProducts();
+        final List<Product> allByProductGroupId = productMysqlDao.findAllByProductGroupId(entity.getId());
+
+        List<Product> toDelete = allByProductGroupId.stream()
+                .filter(p -> {
+                    for (Product product : products) {
+                        if (product.getId().equals(p.getId())) {
+                            return false;
+                        }
+                    }
+                    return true;
+                })
+                .collect(Collectors.toList());
+        deleteAll(toDelete);
+        List<Product> toAdd = products.stream()
+                .filter(p -> {
+                    for (Product product : allByProductGroupId) {
+                        if (product.getId().equals(p.getId())) {
+                            return false;
+                        }
+                    }
+                    return true;
+                })
+                .collect(Collectors.toList());
+        insertAll(toAdd, entity);
+    }
+
+    private void deleteAll(List<Product> toDelete) {
+        for (Product product : toDelete) {
+            Product entityById = productMysqlDao.findEntityById(product.getId());
+            entityById.setProductGroup(null);
+            productMysqlDao.update(entityById);
+        }
+    }
+
+    // TODO check if there more efficient way to do that
+    private void insertAll(List<Product> toAdd, ProductGroup entity) {
+        for (Product product : toAdd) {
+            Product entityById = productMysqlDao.findEntityById(product.getId());
+            entityById.setProductGroup(entity);
+            productMysqlDao.update(entityById);
+        }
     }
 
     @Override
@@ -131,6 +178,24 @@ public class ProductGroupServiceImpl implements by.epam.cafe.service.ProductGrou
         } catch (FileUploadException e) {
             log.error("e: ", e);
             return null;
+        }
+    }
+
+    @Override
+    public void disableById(Integer id) {
+        ProductGroup productGroup = productGroupMysqlDao.findEntityById(id);
+        if (!productGroup.isDisabled()) {
+            productGroup.setDisabled(true);
+            productGroupMysqlDao.update(productGroup);
+        }
+    }
+
+    @Override
+    public void enableById(Integer id) {
+        ProductGroup productGroup = productGroupMysqlDao.findEntityById(id);
+        if (productGroup.isDisabled()) {
+            productGroup.setDisabled(false);
+            productGroupMysqlDao.update(productGroup);
         }
     }
 
