@@ -58,41 +58,122 @@
                             <fmt:message key="web.btn.choose" bundle="${ rb }"/>
                         </button>
                         <div class="modal">
-                            <form action="page/put_item" method="get">
-                                <div class="modal-content">
-                                    <span class="close">&times;</span>
-                                    <div class="modal__main__content">
-                                        <img src="<c:url value="/static/img/${product_group.key.getPhotoName()}"/>"
-                                             alt="Photo"/>
-                                        <div class="content__description">
-                                            <div class="header">
-                                                    ${product_group.key.getName()}
-                                            </div>
-                                            <div class="description text-muted">
-                                                    ${product_group.key.getDescription()}
-                                            </div>
-                                            <div>
-                                                <c:forEach var="product" items="${product_group.key.products}">
-                                                    <div>
-                                                        <label>
-                                                            <input type="radio" name="variant" value="${product.id}">
-                                                                ${product.weight}
-                                                                <%--                                                            грамм--%>
-                                                            <fmt:message key="web.gram" bundle="${ rb }"/>
-                                                            -
-                                                            <span> ${String.format("%.2f", product.price/100.0)}р</span>
-                                                        </label>
+                            <c:choose>
+                                <c:when test="${role eq 'ANON'}">
+                                    <form action="<c:url value="/page/put-item-anon"/>" method="post">
+                                        <div class="modal-content">
+                                            <span class="close">&times;</span>
+                                            <div class="modal__main__content">
+                                                <img src="<c:url value="/static/img/${product_group.key.getPhotoName()}"/>"
+                                                     alt="Photo"/>
+                                                <div class="content__description">
+                                                    <div class="header">
+                                                            ${product_group.key.getName()}
                                                     </div>
-                                                </c:forEach>
+                                                    <div class="description text-muted">
+                                                            ${product_group.key.getDescription()}
+                                                    </div>
+                                                    <div>
+                                                        <c:forEach var="product" items="${product_group.key.products}">
+                                                            <div>
+                                                                <label>
+                                                                    <input type="radio" name="variant"
+                                                                           value="${product.id}">
+                                                                        ${product.weight}
+                                                                        <%--                                                            грамм--%>
+                                                                    <fmt:message key="web.gram" bundle="${ rb }"/>
+                                                                    -
+                                                                    <span> ${String.format("%.2f", product.price/100.0)}р</span>
+                                                                </label>
+                                                            </div>
+                                                        </c:forEach>
+                                                    </div>
+                                                </div>
+
+                                                <button class="btn orange__bg" type="submit">
+                                                    <fmt:message key="web.btn.add-basket" bundle="${ rb }"/>
+                                                </button>
                                             </div>
                                         </div>
+                                    </form>
+                                </c:when>
+                                <c:when test="${role eq 'CLIENT'}">
+                                    <form action="<c:url value="/page/put-item-client"/>" method="post">
+                                        <div class="modal-content">
+                                            <span class="close">&times;</span>
+                                            <div class="modal__main__content">
+                                                <img src="<c:url value="/static/img/${product_group.key.getPhotoName()}"/>"
+                                                     alt="Photo"/>
+                                                <div class="content__description">
+                                                    <div class="header">
+                                                            ${product_group.key.getName()}
+                                                    </div>
+                                                    <div class="description text-muted">
+                                                            ${product_group.key.getDescription()}
+                                                    </div>
+                                                    <div>
+                                                        <c:forEach var="product" items="${product_group.key.products}">
+                                                            <div>
+                                                                <label>
+                                                                    <input type="radio" name="variant"
+                                                                           value="${product.id}">
+                                                                        ${product.weight}
+                                                                        <%--                                                            грамм--%>
+                                                                    <fmt:message key="web.gram" bundle="${ rb }"/>
+                                                                    -
+                                                                    <span> ${String.format("%.2f", product.price/100.0)}р</span>
+                                                                </label>
+                                                            </div>
+                                                        </c:forEach>
+                                                    </div>
+                                                </div>
 
-                                        <button class="btn .orange__bg" type="submit">
-                                            <fmt:message key="web.btn.add-basket" bundle="${ rb }"/>
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
+                                                <button class="btn .orange__bg" type="submit">
+                                                    <fmt:message key="web.btn.add-basket" bundle="${ rb }"/>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </c:when>
+                                <c:otherwise>
+                                    <form action="?" method="post">
+                                        <div class="modal-content">
+                                            <span class="close">&times;</span>
+                                            <div class="modal__main__content">
+                                                <img src="<c:url value="/static/img/${product_group.key.getPhotoName()}"/>"
+                                                     alt="Photo"/>
+                                                <div class="content__description">
+                                                    <div class="header">
+                                                            ${product_group.key.getName()}
+                                                    </div>
+                                                    <div class="description text-muted">
+                                                            ${product_group.key.getDescription()}
+                                                    </div>
+                                                    <div>
+                                                        <c:forEach var="product" items="${product_group.key.products}">
+                                                            <div>
+                                                                <label>
+                                                                    <input type="radio" name="variant"
+                                                                           value="${product.id}">
+                                                                        ${product.weight}
+                                                                        <%--                                                            грамм--%>
+                                                                    <fmt:message key="web.gram" bundle="${ rb }"/>
+                                                                    -
+                                                                    <span> ${String.format("%.2f", product.price/100.0)}р</span>
+                                                                </label>
+                                                            </div>
+                                                        </c:forEach>
+                                                    </div>
+                                                </div>
+
+                                                <button class="btn orange__bg" disabled type="submit">
+                                                    <fmt:message key="web.btn.add-basket" bundle="${ rb }"/>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </c:otherwise>
+                            </c:choose>
 
                         </div>
                     </div>

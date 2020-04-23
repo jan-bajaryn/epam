@@ -51,6 +51,11 @@ public class CommandPostFactory implements CommandFactory {
 
         commandMap.put("/admin/disable-product-group", new DisableProductGroupCommand());
         commandMap.put("/admin/enable-product-group", new EnableProductGroupCommand());
+
+        commandMap.put("/put-item-anon", new PutItemAnonCommand());
+        commandMap.put("/minus-item-anon", new MinusItemAnonCommand());
+
+        commandMap.put("/delete-all", new DeleteAllProdFromBasketCommand());
     }
 
     @Override

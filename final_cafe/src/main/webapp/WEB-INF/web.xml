@@ -34,6 +34,17 @@
         <url-pattern>/page/*</url-pattern>
     </filter-mapping>
 
+
+    <filter>
+        <filter-name>BasketFilter</filter-name>
+        <filter-class>by.epam.cafe.controller.filter.BasketFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>BasketFilter</filter-name>
+        <url-pattern>/page/*</url-pattern>
+    </filter-mapping>
+
+
     <filter-mapping>
         <filter-name>AttrsFilterDemo</filter-name>
         <url-pattern>*</url-pattern>
@@ -44,10 +55,13 @@
         <filter-class>by.epam.cafe.controller.filter.AttrsFilterDemo</filter-class>
     </filter>
 
-<!--    <error-page>-->
-<!--        <exception-type>by.epam.cafe.controller.command.PermissionDeniedException</exception-type>-->
-<!--        <location>/page/permission-denied</location>-->
-<!--    </error-page>-->
+
+
+
+    <!--    <error-page>-->
+    <!--        <exception-type>by.epam.cafe.controller.command.PermissionDeniedException</exception-type>-->
+    <!--        <location>/page/permission-denied</location>-->
+    <!--    </error-page>-->
 
 
     <jsp-config>

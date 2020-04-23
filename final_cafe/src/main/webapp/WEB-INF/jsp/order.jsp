@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<jsp:useBean id="productMap" scope="request" type="java.util.Map<by.epam.cafe.entity.impl.Product,java.lang.Integer>"/>
+<%--<jsp:useBean id="productMap" scope="request" type="java.util.Map<by.epam.cafe.entity.impl.Product,java.lang.Integer>"/>--%>
 
 <!doctype html>
 <html lang="en">
@@ -46,46 +46,50 @@
         </div>
 
         <div class="product-list">
-            <c:forEach var="product" items="${productMap}">
+            <c:if test="${productMap!=null}">
+                <c:forEach var="product" items="${productMap}">
 
-                <div class="product-item">
-                    <div class="grid-part">
-                        <div class="image-part">
-                            <img src="../static/img/${product.key.productGroup.photoName}" alt="">
+                    <div class="product-item">
+                        <div class="grid-part">
+                            <div class="image-part">
+                                <img src="../static/img/${product.key.productGroup.photoName}" alt="">
+                            </div>
+                            <div class="product-name">
+                                    ${product.key.productGroup.name}
+                            </div>
+                            <div class="product-type text-muted">
+                                    ${product.key.weight} гр.
+                            </div>
                         </div>
-                        <div class="product-name">
-                                ${product.key.productGroup.name}
-                        </div>
-                        <div class="product-type text-muted">
-                                ${product.key.weight} гр.
+                        <div class="flex-part">
+                            <form action="<c:url value="/page/minus-item-anon"/>" method="post">
+                                <input type="hidden" value="${product.key.id}" name="variant">
+                                <button type="submit" class="btn mx-3 white__bg__black minus"> -</button>
+                            </form>
+                            <span>${product.value}</span>
+                            <form action='<c:url value="/page/put-item-anon"/>' method="post">
+                                <input type="hidden" value="${product.key.id}" name="variant">
+                                <button type="submit" class="btn mx-3 white__bg__black plus"> +</button>
+                            </form>
+                            <div class="prise mr-3">
+                                    ${String.format("%.2f",(product.key.price*product.value)/100)}
+                                <fmt:message key="web.text.rub" bundle="${ rb }"/>
+                                    <%--                                    руб--%>
+                                .
+                            </div>
+                            <form action="<c:url value="/page/delete-all"/>" method="post">
+                                <button class="abc" type="submit">
+                                    <i class="fa fa-trash mr-3" aria-hidden="true"></i>
+                                </button>
+                                <label>
+                                    <input name="id" type="number" value="${product.key.id}"
+                                           style="display: none;">
+                                </label>
+                            </form>
                         </div>
                     </div>
-                    <div class="flex-part">
-                        <a href='<c:url value="page/minus?product_id=${product.key.id}"/>'>
-                            <button class="btn mx-3 white__bg__black minus"> -</button>
-                        </a>
-                        <span>${product.value}</span>
-                        <a href='<c:url value="page/plus?product_id=${product.key.id}"/>'>
-                            <button class="btn mx-3 white__bg__black plus"> +</button>
-                        </a>
-                        <div class="prise mr-3">
-                                ${String.format("%.2f",(product.key.price*product.value)/100)}
-                            <fmt:message key="web.text.rub" bundle="${ rb }"/>
-                                <%--                                    руб--%>
-                            .
-                        </div>
-                        <form action="<c:url value="page/deleteAll"/>" method="get">
-                            <button class="abc" type="submit">
-                                <i class="fa fa-trash mr-3" aria-hidden="true"></i>
-                            </button>
-                            <label>
-                                <input name="id" type="number" value="${product.key.id}"
-                                       style="display: none;">
-                            </label>
-                        </form>
-                    </div>
-                </div>
-            </c:forEach>
+                </c:forEach>
+            </c:if>
         </div>
 
         <div class="sum">
@@ -93,13 +97,13 @@
                 <%--                Сумма заказа:--%>
                 <fmt:message key="web.text.sum-order" bundle="${ rb }"/>
             </div>
-            <div class="sum-price"> ${String.format("%.2f",sum/100)}
+            <div class="sum-price"> ${sum}
                 <fmt:message key="web.text.rub" bundle="${ rb }"/>
             </div>
         </div>
 
         <div class="decision mb-5 mt-2">
-            <a href="<c:url value="/"/>">
+            <a href="<c:url value="/page/"/>">
                 <button class="btn orange__hover">
                     <fmt:message key="web.btn.return-menu" bundle="${ rb }"/>
                 </button>
@@ -113,7 +117,6 @@
                     <span class="close">&times;</span>
                     <div class="modal__main__content">
                         <h3>
-                            <%--                                Куда доставить?--%>
                             <fmt:message key="web.text.where-delivery" bundle="${ rb }"/>
                         </h3>
                         <div class="body__form">
@@ -187,14 +190,6 @@
 
     </div>
 </main>
-<%--<footer class="bg-dark">--%>
-<%--    <div class="container">--%>
-<%--        <a href="?">О нас</a>--%>
-<%--        <a href="?">Почему нашу пиццу все любят</a>--%>
-<%--        <a href="?">Наш блог</a>--%>
-<%--        <a href="?">Наши спонсоры</a>--%>
-<%--    </div>--%>
-<%--</footer>--%>
 
 <c:import url="fragments/footer.jsp"/>
 
@@ -206,7 +201,7 @@
         integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
         crossorigin="anonymous"></script>
 
-<script src="/static/js/order/modals.js"></script>
+<script src="<c:url value="/static/js/order/modals.js"/>"></script>
 <%--<script src="/static/js/order/plus_minus.js"></script>--%>
 
 

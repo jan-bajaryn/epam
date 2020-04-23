@@ -25,5 +25,5 @@ public interface UserService {
 
     void blockById(Integer id) throws IllegalIdException;
 
-    public void unBlockById(Integer id) throws IllegalIdException;
+    void unBlockById(Integer id) throws IllegalIdException;
 }

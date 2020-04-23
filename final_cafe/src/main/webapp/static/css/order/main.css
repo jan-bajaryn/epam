@@ -126,7 +126,7 @@ main {
 }
 
 
-form[action*="deleteAll"] > button[type=submit]:not(.accept__btn) {
+form[action*="delete-all"] > button[type=submit]:not(.accept__btn) {
     background: #ffffff;
     border: none;
 }

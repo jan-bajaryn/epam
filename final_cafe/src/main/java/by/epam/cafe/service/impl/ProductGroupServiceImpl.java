@@ -160,6 +160,8 @@ public class ProductGroupServiceImpl implements by.epam.cafe.service.ProductGrou
         return all;
     }
 
+
+    // TODO List<FileItem> instead of request
     @Override
     public ProductGroup parseRequest(HttpServletRequest request) {
         try {
