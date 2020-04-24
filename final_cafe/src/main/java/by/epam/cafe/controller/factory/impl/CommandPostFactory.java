@@ -55,7 +55,9 @@ public class CommandPostFactory implements CommandFactory {
         commandMap.put("/put-item-anon", new PutItemAnonCommand());
         commandMap.put("/minus-item-anon", new MinusItemAnonCommand());
 
-        commandMap.put("/delete-all", new DeleteAllProdFromBasketCommand());
+        commandMap.put("/delete-all-anon", new DeleteAllProdFromBasketCommand());
+
+        commandMap.put("/make-order-anon", new MakeOrderAnonCommand());
     }
 
     @Override

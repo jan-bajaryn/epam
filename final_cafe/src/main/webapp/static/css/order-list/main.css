@@ -9,3 +9,69 @@ body {
 header {
     padding-top: 150px;
 }
+
+/*changes begin copiright from order*/
+
+.product-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #f1f2f5;
+    padding-bottom: 30px;
+    padding-top: 30px;
+}
+
+.grid-part {
+    display: grid;
+    grid-template: auto auto /auto auto;
+}
+
+.grid-part .product-name, .grid-part .product-type {
+    max-width: 234px;
+}
+
+.grid-part .image-part {
+    grid-row: 1/ 3;
+}
+
+.grid-part img {
+    height: 87px;
+    width: 87px;
+}
+
+.product-item .flex-part {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+
+
+
+
+
+.flex-part i:hover {
+    color: #ff6900;
+}
+
+.grid-part .product-name {
+    font-size: 22px;
+    line-height: 22px;
+    margin-left: 5px;
+}
+
+.grid-part .product-type {
+    margin: 4px 0 0 5px;
+    padding-bottom: 5px;
+    font-size: 12px;
+}
+
+
+.sum {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+/*changes end copiright from order*/

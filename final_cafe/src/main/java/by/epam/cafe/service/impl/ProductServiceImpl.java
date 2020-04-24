@@ -23,7 +23,8 @@ public class ProductServiceImpl implements by.epam.cafe.service.ProductService {
         return all;
     }
 
-    private void buildProduct(Product p) {
+    @Override
+    public void buildProduct(Product p) {
         ProductGroup productGroup = p.getProductGroup();
         if (productGroup != null) {
             Integer id = productGroup.getId();

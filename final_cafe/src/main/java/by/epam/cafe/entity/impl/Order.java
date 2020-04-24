@@ -6,8 +6,8 @@ import by.epam.cafe.entity.enums.PaymentType;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Order extends Entity<Integer> implements Serializable {
 
@@ -26,12 +26,13 @@ public class Order extends Entity<Integer> implements Serializable {
 
     private User user;
 
-    private List<Product> products = new ArrayList<>();
+    private Map<Product,Integer> products = new HashMap<>();
+//    private List<Product> products = new ArrayList<>();
 
     public Order() {
     }
 
-    public Order(Integer integer, LocalDateTime creation, String clientName, Integer price, OrderStatus status, PaymentType paymentType, DeliveryInf deliveryInf, User user, List<Product> products) {
+    public Order(Integer integer, LocalDateTime creation, String clientName, Integer price, OrderStatus status, PaymentType paymentType, DeliveryInf deliveryInf, User user, Map<Product,Integer> products) {
         super(integer);
         this.creation = creation;
         this.clientName = clientName;
@@ -145,12 +146,12 @@ public class Order extends Entity<Integer> implements Serializable {
         this.user = user;
     }
 
-    public List<Product> getProducts() {
+    public Map<Product,Integer> getProducts() {
         return products;
     }
 
 
-    public void setProducts(List<Product> products) {
+    public void setProducts(Map<Product,Integer> products) {
         this.products = products;
     }
 
@@ -178,7 +179,7 @@ public class Order extends Entity<Integer> implements Serializable {
         private PaymentType paymentType;
         private DeliveryInf deliveryInf;
         private User user;
-        private List<Product> products = new ArrayList<>();
+        private Map<Product,Integer> products = new HashMap<>();
 
         private Builder() {
         }
@@ -223,7 +224,7 @@ public class Order extends Entity<Integer> implements Serializable {
             return this;
         }
 
-        public Builder products(List<Product> val) {
+        public Builder products(Map<Product,Integer> val) {
             products = val;
             return this;
         }

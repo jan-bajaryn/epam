@@ -15,6 +15,7 @@ import java.sql.*;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 
@@ -62,6 +63,7 @@ public class OrderMysqlDao extends AbstractMysqlDao<Integer, Order> {
 
     /*language=SQL*/
     private static final String FIND_PRODUCTS_BY_ORDER_SQL = "SELECT product_id from `order` INNER JOIN order_product ON `order`.id = order_product.order_id WHERE order_id = ?;";
+    private static final String insertProducts = "INSERT INTO order_product(order_id, product_id, count) VALUES (?,?,?);";
 
     public OrderMysqlDao() {
         super(FIND_ALL_SQL, FIND_BY_ID_SQL, DELETE_BY_ID, CREATE_SQL, UPDATE_SQL);
@@ -104,7 +106,7 @@ public class OrderMysqlDao extends AbstractMysqlDao<Integer, Order> {
                 .status(OrderStatus.values()[resultSet.getInt(STATUS_ID_COL)])
                 .deliveryInf(DeliveryInf.newBuilder().id(resultSet.getInt(DELIVERY_INF_ID_COL)).build())
                 .user(User.newBuilder().id(resultSet.getInt(USER_ID_COL)).build())
-                .products(mapToEmptyProducts(findAllProductsIdsByOrderId(id)))
+//                .products(mapToEmptyProducts(findAllProductsIdsByOrderId(id)))
                 .build();
     }
 
@@ -163,9 +165,40 @@ public class OrderMysqlDao extends AbstractMysqlDao<Integer, Order> {
     }
 
 
-
     @Override
     protected Integer getIdFromGeneratedKeys(ResultSet generatedKeys) throws SQLException {
         return generatedKeys.getInt(1);
+    }
+
+    public boolean addProductsOnCreate(Map<Product, Integer> products, Order order) {
+        Connection cn = getPool().takeConnection();
+
+        try {
+            for (Map.Entry<Product, Integer> productIntegerEntry : products.entrySet()) {
+                try (PreparedStatement statement =
+                             cn.prepareStatement(insertProducts)) {
+                    insertProdsParams(productIntegerEntry, order, statement);
+                    int affectedRows = statement.executeUpdate();
+
+                    if (affectedRows != 1) {
+                        return false;
+                    }
+
+                } catch (SQLException e) {
+                    log.info("e: ", e);
+                    return false;
+                }
+            }
+            return true;
+        } finally {
+            getPool().release(cn);
+        }
+    }
+
+    private void insertProdsParams(Map.Entry<Product, Integer> entry, Order order,
+                                   PreparedStatement statement) throws SQLException {
+        statement.setInt(1, order.getId());
+        statement.setInt(2, entry.getKey().getId());
+        statement.setInt(3, entry.getValue());
     }
 }

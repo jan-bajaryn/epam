@@ -34,20 +34,24 @@ public class YourOrderCommand extends by.epam.cafe.controller.command.Command {
             Order order = orderService.findEntityById(id);
             if (order != null) {
 
-                Map<Product, Long> productMap = order.getProducts().stream()
-                        .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+//                Map<Product, Long> productMap = order.getProducts().stream()
+//                        .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
 
 
-                log.info("productMap = {}", productMap);
+                log.info("productMap = {}", order.getProducts());
                 log.info("order.getProducts() = {}", order.getProducts());
 
-                Integer sum = productMap.entrySet().stream()
+                Integer sum = order.getProducts().entrySet().stream()
                         .map(p -> p.getKey().getPrice() * p.getValue())
-                        .reduce(0L, Long::sum).intValue();
+                        .reduce(0, Integer::sum);
 
                 request.setAttribute("order", order);
                 request.setAttribute("sum", sum);
-                request.setAttribute("productMap", productMap);
+
+                // TODO there changes 1
+
+                log.debug("order.getProducts() = {}", order.getProducts());
+                request.setAttribute("productMap", order.getProducts());
                 request.getRequestDispatcher("/WEB-INF/jsp/your-order.jsp").forward(request, response);
             } else {
                 request.getRequestDispatcher("/WEB-INF/jsp/errors/something_went_wrong.jsp").forward(request, response);

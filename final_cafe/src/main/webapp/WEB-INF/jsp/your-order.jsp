@@ -121,7 +121,7 @@
                     <div class="flex-part">
                         <span class="text-danger">${product.value}</span>
                         <div class="prise mr-3 ml-5">
-                                ${String.format("%.2f",(product.key.price*product.value)/100)} руб.
+                                ${product.key.price*product.value/100} руб.
                         </div>
                     </div>
                 </div>

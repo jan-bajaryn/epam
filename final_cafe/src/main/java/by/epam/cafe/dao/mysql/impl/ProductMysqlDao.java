@@ -9,7 +9,9 @@ import org.apache.logging.log4j.Logger;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class ProductMysqlDao extends AbstractMysqlDao<Integer, Product> {
@@ -28,6 +30,8 @@ public class ProductMysqlDao extends AbstractMysqlDao<Integer, Product> {
     // language=SQL
     private static final String UPDATE_SQL = "UPDATE product SET  price = ?, weight = ?, product_group_id = ? WHERE id = ?";
     private static final String findProductByProductGroup = "SELECT id, price, weight, product_group_id FROM product WHERE product_group_id = ?;";
+    // language=SQL
+    private static final String findProductsByOrder = "SELECT id, price, weight, product_group_id, count FROM product INNER JOIN order_product ON product.id = order_product.product_id WHERE order_id = ?;";
 
 
     public ProductMysqlDao() {
@@ -110,9 +114,36 @@ public class ProductMysqlDao extends AbstractMysqlDao<Integer, Product> {
     }
 
 
-
     @Override
     protected Integer getIdFromGeneratedKeys(ResultSet generatedKeys) throws SQLException {
         return generatedKeys.getInt(1);
+    }
+
+    public Map<Product, Integer> findAllByOrderId(Integer id) {
+
+        Connection cn = getPool().takeConnection();
+        try {
+            Map<Product, Integer> result = new HashMap<>();
+
+            try (PreparedStatement statement = cn.prepareStatement(findProductsByOrder)) {
+                idParam(statement,id);
+                ResultSet resultSet = statement.executeQuery();
+                while (resultSet.next()) {
+                    Product entity = findEntity(resultSet);
+                    Integer count = findCount(resultSet);
+                    result.put(entity, count);
+                }
+            } catch (SQLException e) {
+                log.info("e: ", e);
+            }
+            return result;
+        } finally {
+            getPool().release(cn);
+        }
+
+    }
+
+    private Integer findCount(ResultSet resultSet) throws SQLException {
+        return resultSet.getInt("count");
     }
 }
