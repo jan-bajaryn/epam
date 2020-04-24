@@ -57,7 +57,8 @@ public class OrderMysqlDao extends AbstractMysqlDao<Integer, Order> {
     private static final String UPDATE_SQL = "UPDATE " + TABLE_NAME +
             " SET  " + CLIENT_NAME_COL + " = ?, " + CREATION_COL + " = ?, " +
             PAYMENT_TYPE_COL + " = ?, " + PRICE_COL + " = ?, " + STATUS_ID_COL + " = ?, " +
-            DELIVERY_INF_ID_COL + " = ?, " + USER_ID_COL + " = ?" +
+            DELIVERY_INF_ID_COL + " = ? " +
+//             USER_ID_COL + " = ?" +
             " WHERE " + ID_COL + " = ?;";
 
 
@@ -135,6 +136,7 @@ public class OrderMysqlDao extends AbstractMysqlDao<Integer, Order> {
         } else {
             statement.setNull(6, Types.INTEGER);
         }
+
         if (entity.getUser() != null) {
             statement.setInt(7, entity.getUser().getId());
         } else {
@@ -155,13 +157,14 @@ public class OrderMysqlDao extends AbstractMysqlDao<Integer, Order> {
         } else {
             statement.setNull(6, Types.INTEGER);
         }
-        if (entity.getUser() != null) {
-            statement.setInt(7, entity.getUser().getId());
-        } else {
-            statement.setNull(7, Types.INTEGER);
-        }
+//        if (entity.getUser() != null) {
+//            statement.setInt(7, entity.getUser().getId());
+//        } else {
+//            statement.setNull(7, Types.INTEGER);
+//        }
 
-        statement.setInt(8, entity.getId());
+//        statement.setInt(8, entity.getId());
+        statement.setInt(7, entity.getId());
     }
 
 

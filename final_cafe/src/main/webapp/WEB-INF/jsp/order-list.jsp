@@ -78,7 +78,8 @@
                     </td>
                     <td>${order.price}</td>
                     <td>
-                        <form action="<c:url value="/cancel_order/${order.id}"/>" method="post">
+                        <form action="<c:url value="/page/cancel_order"/>" method="post">
+                            <input type="hidden" value="${order.id}" name="id">
                             <button class="btn orange__bg" type="submit">
                                 <fmt:message key="web.tab.cancel" bundle="${ rb }"/>
                             </button>
