@@ -62,6 +62,9 @@
                 <th>
                     <fmt:message key="web.tab.edit" bundle="${ rb }"/>
                 </th>
+                <th>
+                    <fmt:message key="web.tab.add-product" bundle="${ rb }"/>
+                </th>
             </tr>
             </thead>
             <tbody>
@@ -89,6 +92,13 @@
                         <a href="<c:url value="/page/edit-order/${order.id}"/>">
                             <button class="btn orange__bg">
                                 <fmt:message key="web.tab.edit" bundle="${ rb }"/>
+                            </button>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="<c:url value="/page/add-products/${order.id}"/>">
+                            <button class="btn orange__bg">
+                                <fmt:message key="web.tab.add-product" bundle="${ rb }"/>
                             </button>
                         </a>
                     </td>

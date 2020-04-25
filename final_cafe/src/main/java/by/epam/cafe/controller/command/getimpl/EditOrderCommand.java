@@ -1,5 +1,7 @@
 package by.epam.cafe.controller.command.getimpl;
 
+import by.epam.cafe.entity.enums.OrderStatus;
+import by.epam.cafe.entity.enums.PaymentType;
 import by.epam.cafe.entity.impl.Order;
 import by.epam.cafe.service.OrderService;
 import by.epam.cafe.service.exception.IllegalPathParamException;
@@ -12,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 public class EditOrderCommand extends by.epam.cafe.controller.command.Command {
 
@@ -32,6 +35,9 @@ public class EditOrderCommand extends by.epam.cafe.controller.command.Command {
             Order order = orderService.findEntityById(id);
             if (order != null) {
                 request.setAttribute("order", order);
+                request.setAttribute("statuses", OrderStatus.values());
+                request.setAttribute("types", PaymentType.values());
+                request.setAttribute("time", parseToTime(order.getDeliveryInf().getDeliveryTime()));
                 request.getRequestDispatcher("/WEB-INF/jsp/edit-order.jsp").forward(request, response);
             } else {
                 log.info("order is null");
@@ -42,5 +48,9 @@ public class EditOrderCommand extends by.epam.cafe.controller.command.Command {
             request.getRequestDispatcher("/WEB-INF/jsp/edit-order.jsp").forward(request, response);
         }
 
+    }
+
+    private String parseToTime(LocalDateTime deliveryTime) {
+        return deliveryTime.getHour() + ":" + deliveryTime.getMinute();
     }
 }

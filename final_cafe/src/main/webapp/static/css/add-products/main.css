@@ -1,0 +1,147 @@
+header{
+    margin-top: 100px;
+    padding-top: 50px;
+    margin-bottom: 30px;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.main-container {
+    max-width: 865px;
+    width: 865px;
+}
+
+.main-container .promo form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-container .promo form label {
+    visibility: hidden;
+}
+
+.promo-group {
+    display: flex;
+    align-items: center;
+}
+
+.promo {
+    margin-top: 38px;
+    padding-bottom: 55px;
+    border-bottom: 1px solid #f1f2f5;
+}
+
+.product-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #f1f2f5;
+    padding-bottom: 30px;
+    padding-top: 30px;
+}
+
+.grid-part {
+    display: grid;
+    grid-template: auto auto /auto auto;
+}
+
+.grid-part .product-name, .grid-part .product-type {
+    max-width: 234px;
+}
+
+.grid-part .image-part {
+    grid-row: 1/ 3;
+}
+
+.grid-part img {
+    height: 87px;
+    width: 87px;
+}
+
+.product-item .flex-part {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.white__bg__black {
+    background: #fff;
+    border: 1px solid #ff6900;
+}
+
+.white__bg__black:hover {
+    background: #ff6900;
+    color: #fff;
+}
+
+.flex-part i:hover {
+    color: #ff6900;
+}
+
+.grid-part .product-name {
+    font-size: 22px;
+    line-height: 22px;
+    margin-left: 5px;
+}
+
+.grid-part .product-type {
+    margin: 4px 0 0 5px;
+    padding-bottom: 5px;
+    font-size: 12px;
+}
+
+
+.sum {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.sum .sum-text {
+    font-size: 21px;
+    padding: 15px;
+}
+
+.sum .sum-price {
+    font-size: 26px;
+    color: #ff6900;
+}
+
+.decision {
+    display: flex;
+    justify-content: space-between;
+}
+
+.decision button {
+    padding: 18px;
+}
+
+
+/*form[action*="delete-all"] > button[type=submit]:not(.accept__btn) {*/
+/*    background: #ffffff;*/
+/*    border: none;*/
+/*}*/
+.abc{
+        background: #ffffff;
+        border: none;
+}
+
+.id {
+    display: none;
+}
+
+.product-list{
+    max-width: 500px;
+}

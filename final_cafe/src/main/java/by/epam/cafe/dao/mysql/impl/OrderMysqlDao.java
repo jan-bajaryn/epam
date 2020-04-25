@@ -99,6 +99,7 @@ public class OrderMysqlDao extends AbstractMysqlDao<Integer, Order> {
         int id = resultSet.getInt(ID_COL);
         Timestamp timestamp = resultSet.getTimestamp(CREATION_COL);
         int userId = resultSet.getInt(USER_ID_COL);
+        int delInfId = resultSet.getInt(DELIVERY_INF_ID_COL);
         return Order.newBuilder()
                 .id(id)
                 .clientName(resultSet.getString(CLIENT_NAME_COL))
@@ -106,7 +107,7 @@ public class OrderMysqlDao extends AbstractMysqlDao<Integer, Order> {
                 .paymentType(PaymentType.values()[resultSet.getInt(PAYMENT_TYPE_COL)])
                 .price(resultSet.getInt(PRICE_COL))
                 .status(OrderStatus.values()[resultSet.getInt(STATUS_ID_COL)])
-                .deliveryInf(DeliveryInf.newBuilder().id(resultSet.getInt(DELIVERY_INF_ID_COL)).build())
+                .deliveryInf(delInfId != 0 ? DeliveryInf.newBuilder().id(delInfId).build() : null)
                 .user(userId != 0 ? User.newBuilder().id(userId).build() : null)
 //                .products(mapToEmptyProducts(findAllProductsIdsByOrderId(id)))
                 .build();

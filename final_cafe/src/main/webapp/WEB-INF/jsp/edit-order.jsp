@@ -44,7 +44,7 @@
 
 <main class="container">
     <c:if test="${order!=null}">
-        <form action="<c:url value="/page/edit-order/confirm"/>" method="post">
+        <form action="<c:url value="/page/edit-order"/>" method="post">
             <div class="modal__main__content">
                 <div class="body__form">
                     <div class="id__row">
@@ -98,7 +98,7 @@
                         </label>
                         <input type="time" id="time" name="time"
                                placeholder="<fmt:message key="web.inputs.date-deliver" bundle="${ rb }"/>"
-                               class="form-control" value="${order.deliveryInf.deliveryTime}">
+                               class="form-control" value="${time}">
                     </div>
                     <div class="first__row">
                         <label for="street">

@@ -21,9 +21,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class MakeOrderAnonCommand extends by.epam.cafe.controller.command.Command {
 
@@ -93,7 +91,7 @@ public class MakeOrderAnonCommand extends by.epam.cafe.controller.command.Comman
                 .clientName(name)
                 .paymentType(PaymentType.CASH)
                 .deliveryInf(deliveryInf)
-                .status(OrderStatus.WAITING)
+                .status(OrderStatus.CONFIRMED)
                 .price(calcSum(basket))
                 .products(basket)
                 .user(null)
@@ -103,9 +101,16 @@ public class MakeOrderAnonCommand extends by.epam.cafe.controller.command.Comman
     private LocalDateTime parseToLocalDateTime(String time) throws ParseException {
         DateFormat dateFormat = new SimpleDateFormat("hh:mm");
         Date parse = dateFormat.parse(time);
-        return LocalDateTime.now().withHour(parse.getHours())
-                .withMinute(parse.getMinutes())
+
+        Calendar calendar = GregorianCalendar.getInstance();
+        calendar.setTime(parse);
+
+        return LocalDateTime.now().withHour(calendar.get(Calendar.HOUR_OF_DAY))
+                .withMinute(calendar.get(Calendar.MINUTE))
                 .withSecond(0);
+//        return LocalDateTime.now().withHour(parse.getHours())
+//                .withMinute(parse.getMinutes())
+//                .withSecond(0);
     }
 
     private Map<Product, Integer> takeBasket(HttpSession session) {

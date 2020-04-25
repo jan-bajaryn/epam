@@ -86,6 +86,7 @@ public class OrderServiceImpl implements by.epam.cafe.service.OrderService {
     public Order create(Order entity) {
         DeliveryInf deliveryInf = deliveryInfMysqlDao.create(entity.getDeliveryInf());
         entity.setDeliveryInf(deliveryInf);
+
         Order order = orderMysqlDao.create(entity);
         Map<Product, Integer> products = order.getProducts();
         saveProducts(products, order);
@@ -98,6 +99,9 @@ public class OrderServiceImpl implements by.epam.cafe.service.OrderService {
 
     @Override
     public boolean update(Order entity) {
-        return orderMysqlDao.update(entity);
+        boolean update = orderMysqlDao.update(entity);
+
+        deliveryInfMysqlDao.update(entity.getDeliveryInf());
+        return update;
     }
 }

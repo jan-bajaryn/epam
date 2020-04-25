@@ -62,6 +62,9 @@ public class CommandGetFactory implements CommandFactory {
         commandMap.put("/admin/edit-product-group/\\d+", new CommandDecorator(new EditProductGroupCommand(), EnumSet.of(ADMIN)));
         /*language=RegExp*/
         commandMap.put("/admin/edit-product/\\d+", new CommandDecorator(new EditProductCommand(), EnumSet.of(ADMIN)));
+
+        commandMap.put("/add-products/\\d+", new AddProductsCommand());
+
         commandMap.put("/logout", new CommandDecorator(new LogOutCommand(), EnumSet.complementOf(EnumSet.of(ANON))));
 
 //        commandMap.put("/permission-denied", new PermissionDeniedCommand());

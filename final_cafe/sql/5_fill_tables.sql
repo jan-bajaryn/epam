@@ -1,13 +1,13 @@
 use pizzeria;
 INSERT INTO delivery_inf (id, comments, delivery_time, email, floor, house, phone, porch, room, street)
-VALUES (3, NULL, NULL, 'uuu@uuu.com', 2, '1', 'sdf', 1, '1', 'sdf'),
-       (5, NULL, NULL, 'g@sdf.sdf', 2, '1', 'g', 1, '1', 'g'),
-       (9, NULL, NULL, 'viviva5679@ymail365.com', 1, '1', 'z', 1, '1', 'z'),
-       (21, NULL, NULL, 'andreygordenevskiy@gmail.com', 5, '1', '+375 29 444 44 55', 2,
+VALUES (3, NULL, '2020-03-13 15:55:52.611265', 'uuu@uuu.com', 2, '1', 'sdf', 1, '1', 'sdf'),
+       (5, NULL, '2020-03-13 15:55:52.611265', 'g@sdf.sdf', 2, '1', 'g', 1, '1', 'g'),
+       (9, NULL, '2020-03-13 15:55:52.611265', 'viviva5679@ymail365.com', 1, '1', 'z', 1, '1', 'z'),
+       (21, NULL, '2020-03-13 15:55:52.611265', 'andreygordenevskiy@gmail.com', 5, '1', '+375 29 444 44 55', 2,
         '1', 'Edwarda Wittiga'),
-       (38, NULL, NULL, 'asdasd@gmail.com', 2, '2', '+375 29 444 44 55', 2, '4', 'Барадино'),
-       (40, NULL, NULL, 'semenov@gmail.com', 1, '1', '+375 29 444 44 55', 1, '1', 'Семенова'),
-       (42, NULL, NULL, 'A@A.com', 1, '1', '+375 29 444 44 55', 1, '1', 'A');
+       (38, NULL, '2020-03-13 15:55:52.611265', 'asdasd@gmail.com', 2, '2', '+375 29 444 44 55', 2, '4', 'Барадино'),
+       (40, NULL, '2020-03-13 15:55:52.611265', 'semenov@gmail.com', 1, '1', '+375 29 444 44 55', 1, '1', 'Семенова'),
+       (42, NULL, '2020-03-13 15:55:52.611265', 'A@A.com', 1, '1', '+375 29 444 44 55', 1, '1', 'A');
 
 INSERT INTO user (id, creation, name, password, phone, role, surname, username, email, floor, house, porch, room,
                   street, is_blocked)
