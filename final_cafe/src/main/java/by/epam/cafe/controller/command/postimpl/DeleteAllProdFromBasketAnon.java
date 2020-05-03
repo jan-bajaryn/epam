@@ -16,9 +16,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-public class DeleteAllProdFromBasket extends by.epam.cafe.controller.command.Command {
+public class DeleteAllProdFromBasketAnon extends by.epam.cafe.controller.command.Command {
 
-    private static final Logger log = LogManager.getLogger(DeleteAllProdFromBasket.class);
+    private static final Logger log = LogManager.getLogger(DeleteAllProdFromBasketAnon.class);
 
 
     private final ServiceFactory serviceFactory = ServiceFactory.getInstance();

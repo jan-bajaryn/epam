@@ -10,12 +10,6 @@
 </head>
 <body>
 
-<%--<c:if test="${param.lang == null}">--%>
-<%--    <fmt:setLocale value="ru-RU"/>--%>
-<%--</c:if>--%>
-<%--<c:if test="${param.lang != null}">--%>
-<%--    <fmt:setLocale value="${param.lang}"/>--%>
-<%--</c:if>--%>
 <fmt:setBundle basename="property.text" var="rb"/>
 
 <nav>
@@ -25,10 +19,8 @@
                 <i class='fas fa-pizza-slice'></i>
             </div>
             <ul>
-                <%--                <li><a href="?">${role}</a></li>--%>
                 <li>
                     <a href="<c:url value="/page/?type=PIZZA"/>">
-                        <%--                    Пиццы--%>
                         <fmt:message key="web.links.pizza" bundle="${ rb }"/>
                     </a>
                 </li>
@@ -43,7 +35,6 @@
                 <li><a href="<c:url value="/page/?type=DESSERT"/>">
                     <fmt:message key="web.links.dessert" bundle="${ rb }"/>
                 </a></li>
-                <%--                <sec:authorize access="!isAuthenticated()">--%>
                 <c:if test="${role eq 'ANON'}">
                     <li><a href="<c:url value="/page/login"/>">
                         <fmt:message key="web.links.login" bundle="${ rb }"/>
@@ -81,15 +72,11 @@
             <a href="<c:url value="/page/order"/>">
                 <button class="btn">
                 <span class="border-right">
-                                            <fmt:message key="web.links.basket" bundle="${ rb }"/>
+                    <fmt:message key="web.links.basket" bundle="${ rb }"/>
                 </span>
                     <span>
-<%--                <c:if test="${basket==null}">--%>
-<%--                    0--%>
-<%--                </c:if>--%>
-<%--                    ${basket}--%>
                         <ctg:basket/>
-                </span>
+                    </span>
                 </button>
             </a>
         </div>
