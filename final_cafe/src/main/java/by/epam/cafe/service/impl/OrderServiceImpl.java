@@ -102,10 +102,16 @@ public class OrderServiceImpl implements by.epam.cafe.service.OrderService {
 
     @Override
     public boolean update(Order entity) {
-        boolean update = orderMysqlDao.update(entity);
+        DeliveryInf curDeliveryInf = entity.getDeliveryInf();
+        if (curDeliveryInf != null) {
+            if (curDeliveryInf.getId() != null) {
+                deliveryInfMysqlDao.update(curDeliveryInf);
+            } else {
+                deliveryInfMysqlDao.create(curDeliveryInf);
+            }
+        }
 
-        deliveryInfMysqlDao.update(entity.getDeliveryInf());
-        return update;
+        return orderMysqlDao.update(entity);
     }
 
     @Override
