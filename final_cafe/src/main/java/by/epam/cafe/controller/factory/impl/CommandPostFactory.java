@@ -65,6 +65,7 @@ public class CommandPostFactory implements CommandFactory {
         commandMap.put("/operator/plus-product", new PlusProductOperator());
 
         commandMap.put("/operator/minus-product", new MinusProductOperator());
+        commandMap.put("/operator/delete-product", new DeleteProductOperator());
     }
 
     @Override

@@ -108,8 +108,6 @@ public class OrderServiceImpl implements by.epam.cafe.service.OrderService {
 
     @Override
     public void plusProduct(final Integer orderId, final Integer prodId) throws ServiceException {
-        log.debug("begin plusProduct method");
-        log.info("begin plusProduct method");
         if (!orderMysqlDao.plusProductFirst(orderId, prodId)) {
             log.debug("executing second");
             if (!orderMysqlDao.plusExistingProduct(orderId, prodId)) {
@@ -117,5 +115,14 @@ public class OrderServiceImpl implements by.epam.cafe.service.OrderService {
             }
         }
         log.debug("executed first");
+    }
+
+    @Override
+    public void deleteProduct(Integer orderId, Integer prodId) throws ServiceException {
+        boolean result = orderMysqlDao.removeProduct(orderId, prodId);
+        log.debug("deleteProduct: result = {}", result);
+        if (!result){
+            throw new ServiceException();
+        }
     }
 }

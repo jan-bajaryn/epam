@@ -19,4 +19,6 @@ public interface OrderService {
     boolean update(Order entity);
 
     void plusProduct(Integer orderId, Integer prodId) throws ServiceException;
+
+    void deleteProduct(Integer orderId, Integer prodId) throws ServiceException;
 }

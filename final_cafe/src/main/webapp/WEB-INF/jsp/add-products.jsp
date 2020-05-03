@@ -118,12 +118,12 @@
                                 ${String.format("%.2f",(product.key.price*product.value)/100)}
                             <fmt:message key="web.text.rub" bundle="${ rb }"/>
                         </div>
-                        <form action="<c:url value="/page/operator/delete-product"/>" method="post">
-                            <button class="abc" type="submit">
+                        <form action="?" method="get">
+                            <button class="abc" type="submit" disabled>
                                 <i class="fa fa-trash mr-3" aria-hidden="true"></i>
                             </button>
                             <label>
-                                <input name="id" type="number" value="${product.key.id}"
+                                <input name="id" type="number" value=""
                                        style="display: none;">
                             </label>
                         </form>

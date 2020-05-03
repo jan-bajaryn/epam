@@ -254,4 +254,26 @@ public class OrderMysqlDao extends AbstractMysqlDao<Integer, Order> {
             getPool().release(cn);
         }
     }
+
+    public boolean removeProduct(Integer orderId, Integer prodId) {
+        Connection cn = getPool().takeConnection();
+        try {
+            try (PreparedStatement statement =
+                         cn.prepareStatement("DELETE FROM order_product WHERE order_id=? AND product_id = ?;")) {
+
+
+                statement.setInt(1, orderId);
+                statement.setInt(2, prodId);
+
+                int affectedRows = statement.executeUpdate();
+                return affectedRows == 1;
+
+            } catch (SQLException e) {
+                log.info("e: ", e);
+                return false;
+            }
+        } finally {
+            getPool().release(cn);
+        }
+    }
 }
