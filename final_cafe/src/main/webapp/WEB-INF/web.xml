@@ -46,13 +46,13 @@
 
 
     <filter-mapping>
-        <filter-name>AttrsFilterDemo</filter-name>
-        <url-pattern>*</url-pattern>
+        <filter-name>RedirectFilter</filter-name>
+        <url-pattern>/page/*</url-pattern>
     </filter-mapping>
 
     <filter>
-        <filter-name>AttrsFilterDemo</filter-name>
-        <filter-class>by.epam.cafe.controller.filter.AttrsFilterDemo</filter-class>
+        <filter-name>RedirectFilter</filter-name>
+        <filter-class>by.epam.cafe.controller.filter.RedirectFilter</filter-class>
     </filter>
 
 

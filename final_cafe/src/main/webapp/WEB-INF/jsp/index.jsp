@@ -50,7 +50,6 @@
                     </div>
                     <div class="p_card-footer md-2">
                     <span>
-<%--                        от ${String.format("%.2f", product_group.value/100)} руб.--%>
                         от ${product_group.value} руб.
                     </span>
                         <button class="btn mr-5 myBtn">
@@ -80,7 +79,6 @@
                                                                     <input type="radio" name="variant"
                                                                            value="${product.id}">
                                                                         ${product.weight}
-                                                                        <%--                                                            грамм--%>
                                                                     <fmt:message key="web.gram" bundle="${ rb }"/>
                                                                     -
                                                                     <span> ${String.format("%.2f", product.price/100.0)}р</span>
@@ -118,7 +116,6 @@
                                                                     <input type="radio" name="variant"
                                                                            value="${product.id}">
                                                                         ${product.weight}
-                                                                        <%--                                                            грамм--%>
                                                                     <fmt:message key="web.gram" bundle="${ rb }"/>
                                                                     -
                                                                     <span> ${String.format("%.2f", product.price/100.0)}р</span>
@@ -156,7 +153,6 @@
                                                                     <input type="radio" name="variant"
                                                                            value="${product.id}">
                                                                         ${product.weight}
-                                                                        <%--                                                            грамм--%>
                                                                     <fmt:message key="web.gram" bundle="${ rb }"/>
                                                                     -
                                                                     <span> ${String.format("%.2f", product.price/100.0)}р</span>

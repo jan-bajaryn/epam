@@ -34,38 +34,38 @@ public class CommandGetFactory implements CommandFactory {
 
     static {
         commandMap.put("/second", new MainCommand());
-        commandMap.put("/something_went_wrong", new SomethingWentWrongCommand());
+        commandMap.put("/something_went_wrong", new SomethingWentWrong());
         /*language=RegExp*/
-        commandMap.put("/?", new IndexCommand());
-        commandMap.put("/order", new OrderCommand());
-        commandMap.put(LOGIN_PAGE, new CommandDecorator(new LoginCommand(), EnumSet.of(ANON)));
-        commandMap.put("/cabinet", new CommandDecorator(new ClientCabinetCommand(), EnumSet.of(CLIENT)));
+        commandMap.put("/?", new Index());
+        commandMap.put("/order", new DisplayOrder());
+        commandMap.put(LOGIN_PAGE, new CommandDecorator(new Login(), EnumSet.of(ANON)));
+        commandMap.put("/cabinet", new CommandDecorator(new ClientCabinet(), EnumSet.of(CLIENT)));
         /*language=RegExp*/
-        commandMap.put("/edit-order/\\d+", new CommandDecorator(new EditOrderCommand(), EnumSet.of(OPERATOR)));
-        commandMap.put("/order-list", new CommandDecorator(new OrderListCommand(), EnumSet.of(OPERATOR)));
-        commandMap.put("/registration", new RegistrationCommand());
+        commandMap.put("/edit-order/\\d+", new CommandDecorator(new EditOrder(), EnumSet.of(OPERATOR)));
+        commandMap.put("/order-list", new CommandDecorator(new OrderList(), EnumSet.of(OPERATOR)));
+        commandMap.put("/registration", new Registration());
         /*language=RegExp*/
-        commandMap.put("/your-order/\\d+", new YourOrderCommand());
+        commandMap.put("/your-order/\\d+", new YourOrder());
 
 
-        commandMap.put("/admin/create-product", new CommandDecorator(new CreateProductCommand(), EnumSet.of(ADMIN)));
-        commandMap.put("/admin/create-product-group", new CommandDecorator(new CreateProductGroupCommand(), EnumSet.of(ADMIN)));
-        commandMap.put("/admin/create-user", new CommandDecorator(new CreateUserCommand(), EnumSet.of(ADMIN)));
+        commandMap.put("/admin/create-product", new CommandDecorator(new CreateProduct(), EnumSet.of(ADMIN)));
+        commandMap.put("/admin/create-product-group", new CommandDecorator(new CreateProductGroup(), EnumSet.of(ADMIN)));
+        commandMap.put("/admin/create-user", new CommandDecorator(new CreateUser(), EnumSet.of(ADMIN)));
 
-        commandMap.put("/admin/user-list", new CommandDecorator(new UserListCommand(), EnumSet.of(ADMIN)));
-        commandMap.put("/admin/product-list", new CommandDecorator(new ProductListCommand(), EnumSet.of(ADMIN)));
-        commandMap.put("/admin/product-group-list", new CommandDecorator(new ProductGroupListCommand(), EnumSet.of(ADMIN)));
+        commandMap.put("/admin/user-list", new CommandDecorator(new UserList(), EnumSet.of(ADMIN)));
+        commandMap.put("/admin/product-list", new CommandDecorator(new ProductList(), EnumSet.of(ADMIN)));
+        commandMap.put("/admin/product-group-list", new CommandDecorator(new ProductGroupList(), EnumSet.of(ADMIN)));
 
         /*language=RegExp*/
-        commandMap.put("/admin/edit-user/\\d+", new CommandDecorator(new EditUserCommand(), EnumSet.of(ADMIN)));
+        commandMap.put("/admin/edit-user/\\d+", new CommandDecorator(new EditUser(), EnumSet.of(ADMIN)));
         /*language=RegExp*/
-        commandMap.put("/admin/edit-product-group/\\d+", new CommandDecorator(new EditProductGroupCommand(), EnumSet.of(ADMIN)));
+        commandMap.put("/admin/edit-product-group/\\d+", new CommandDecorator(new EditProductGroup(), EnumSet.of(ADMIN)));
         /*language=RegExp*/
-        commandMap.put("/admin/edit-product/\\d+", new CommandDecorator(new EditProductCommand(), EnumSet.of(ADMIN)));
+        commandMap.put("/admin/edit-product/\\d+", new CommandDecorator(new EditProduct(), EnumSet.of(ADMIN)));
 
-        commandMap.put("/add-products/\\d+", new AddProductsCommand());
+        commandMap.put("/add-products/\\d+", new AddProducts());
 
-        commandMap.put("/logout", new CommandDecorator(new LogOutCommand(), EnumSet.complementOf(EnumSet.of(ANON))));
+        commandMap.put("/logout", new CommandDecorator(new LogOut(), EnumSet.complementOf(EnumSet.of(ANON))));
 
 //        commandMap.put("/permission-denied", new PermissionDeniedCommand());
     }

@@ -2,7 +2,7 @@ package by.epam.cafe.controller;
 
 import by.epam.cafe.controller.command.Command;
 import by.epam.cafe.controller.command.PermissionDeniedException;
-import by.epam.cafe.controller.command.getimpl.PermissionDeniedCommand;
+import by.epam.cafe.controller.command.getimpl.PermissionDenied;
 import by.epam.cafe.controller.factory.CommandFactory;
 import by.epam.cafe.controller.factory.impl.CommandGetFactory;
 import by.epam.cafe.controller.factory.impl.CommandPostFactory;
@@ -20,7 +20,7 @@ import java.io.IOException;
 @WebServlet(name = "ServletCafe")
 public class ServletCafe extends HttpServlet {
 
-    private static final PermissionDeniedCommand permDen = new PermissionDeniedCommand();
+    private static final PermissionDenied permDen = new PermissionDenied();
 
     private static final Logger log = LogManager.getLogger(ServletCafe.class);
 

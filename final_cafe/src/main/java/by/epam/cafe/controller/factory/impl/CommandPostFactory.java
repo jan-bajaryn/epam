@@ -34,33 +34,35 @@ public class CommandPostFactory implements CommandFactory {
 
     static {
         /*language=RegExp*/
-        commandMap.put("/login", new CommandDecorator(new LoginCommand(), EnumSet.of(ANON)));
-        commandMap.put("/admin/create_user", new CommandDecorator(new CreateUserCommand(), EnumSet.of(ADMIN)));
-        commandMap.put("/change-language", new ChangeLanguageCommand());
-        commandMap.put("/registration", new RegistrationCommand());
-        commandMap.put("/admin/edit_user", new EditAdminCommand());
+        commandMap.put("/login", new CommandDecorator(new Login(), EnumSet.of(ANON)));
+        commandMap.put("/admin/create_user", new CommandDecorator(new CreateUser(), EnumSet.of(ADMIN)));
+        commandMap.put("/change-language", new ChangeLanguage());
+        commandMap.put("/registration", new Registration());
+        commandMap.put("/admin/edit_user", new EditAdmin());
         /*language=RegExp*/
-        commandMap.put("/admin/block/\\d+", new UserBlockCommand());
+        commandMap.put("/admin/block/\\d+", new UserBlock());
         /*language=RegExp*/
-        commandMap.put("/admin/unblock/\\d+", new UserUnBlockCommand());
-        commandMap.put("/admin/edit-product", new EditProductCommand());
-        commandMap.put("/admin/create-product", new CreateProductCommand());
+        commandMap.put("/admin/unblock/\\d+", new UserUnBlock());
+        commandMap.put("/admin/edit-product", new EditProduct());
+        commandMap.put("/admin/create-product", new CreateProduct());
 
-        commandMap.put("/admin/create-product-group", new CreateProductGroupCommand());
-        commandMap.put("/admin/edit-product-group", new EditProductGroupCommand());
+        commandMap.put("/admin/create-product-group", new CreateProductGroup());
+        commandMap.put("/admin/edit-product-group", new EditProductGroup());
 
-        commandMap.put("/admin/disable-product-group", new DisableProductGroupCommand());
-        commandMap.put("/admin/enable-product-group", new EnableProductGroupCommand());
+        commandMap.put("/admin/disable-product-group", new DisableProductGroup());
+        commandMap.put("/admin/enable-product-group", new EnableProductGroup());
 
-        commandMap.put("/put-item-anon", new PutItemAnonCommand());
-        commandMap.put("/minus-item-anon", new MinusItemAnonCommand());
+        commandMap.put("/put-item-anon", new PutItemAnon());
+        commandMap.put("/minus-item-anon", new MinusItemAnon());
 
-        commandMap.put("/delete-all-anon", new DeleteAllProdFromBasketCommand());
+        commandMap.put("/delete-all-anon", new DeleteAllProdFromBasket());
 
-        commandMap.put("/make-order-anon", new MakeOrderAnonCommand());
-        commandMap.put("/cancel_order", new CancelOrderCommand());
+        commandMap.put("/make-order-anon", new MakeOrderAnon());
+        commandMap.put("/cancel_order", new CancelOrder());
 
-        commandMap.put("/edit-order", new EditOrderCommand());
+        commandMap.put("/edit-order", new EditOrder());
+        commandMap.put("/page/operator/minus-product", new MinusProductOperator());
+        commandMap.put("/page/operator/plus-product", new PlusProductOperator());
     }
 
     @Override
