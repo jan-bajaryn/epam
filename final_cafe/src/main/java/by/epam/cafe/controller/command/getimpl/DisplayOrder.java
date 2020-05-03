@@ -1,10 +1,12 @@
 package by.epam.cafe.controller.command.getimpl;
 
+import by.epam.cafe.controller.dto.UserDTO;
 import by.epam.cafe.entity.enums.Role;
 import by.epam.cafe.entity.impl.Order;
 import by.epam.cafe.entity.impl.Product;
 import by.epam.cafe.entity.impl.User;
 import by.epam.cafe.service.OrderService;
+import by.epam.cafe.service.UserService;
 import by.epam.cafe.service.factory.ServiceFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -22,6 +24,7 @@ public class DisplayOrder extends by.epam.cafe.controller.command.Command {
     private static final Logger log = LogManager.getLogger(DisplayOrder.class);
     private final ServiceFactory serviceFactory = ServiceFactory.getInstance();
     private final OrderService orderService = serviceFactory.getOrderService();
+    private final UserService userService = serviceFactory.getUserService();
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -31,9 +34,17 @@ public class DisplayOrder extends by.epam.cafe.controller.command.Command {
         request.setAttribute("productMap", basket);
 
         request.setAttribute("sum", calcSum(basket));
-
+        sendUserDTO(request);
 
         request.getRequestDispatcher("/WEB-INF/jsp/order.jsp").forward(request, response);
+    }
+
+    private void sendUserDTO(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+        if (user != null) {
+            request.setAttribute("info", new UserDTO(user));
+        }
     }
 
     private Integer calcSum(Map<Product, Integer> basket) {

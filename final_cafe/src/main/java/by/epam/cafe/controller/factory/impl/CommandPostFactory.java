@@ -57,7 +57,7 @@ public class CommandPostFactory implements CommandFactory {
 
         commandMap.put("/anon/delete-all", new DeleteAllProdFromBasketAnon());
 
-        commandMap.put("/make-order-anon", new MakeOrderAnon());
+        commandMap.put("/anon/make-order", new MakeOrderAnon());
         commandMap.put("/cancel_order", new CancelOrder());
 
         commandMap.put("/edit-order", new EditOrder());
@@ -72,6 +72,10 @@ public class CommandPostFactory implements CommandFactory {
 
         commandMap.put("/client/minus-item", new MinusItemClient());
         commandMap.put("/client/delete-all", new DeleteAllProdFromBasketClient());
+
+
+        commandMap.put("/client/make-order", new MakeOrderClient());
+
 
     }
 

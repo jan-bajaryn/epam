@@ -143,72 +143,146 @@
                             <fmt:message key="web.text.where-delivery" bundle="${ rb }"/>
                         </h3>
 
-                        <form action="<c:url value="/page/make-order-anon"/>" method="post">
-                            <div class="body__form">
-                                <label for="street"></label>
-                                <label for="comments"></label>
-                                <label for="floor"></label>
-                                <label for="porch"></label>
-                                <label for="room"></label>
-                                <label for="house"></label>
-                                <label for="name"></label>
-                                <label for="tel"></label>
-                                <label for="email"></label>
-                                <label for="time"></label>
+                        <c:choose>
+                            <c:when test="${role eq 'ANON'}">
+                                <form action="<c:url value="/page/anon/make-order"/>" method="post">
+                                    <div class="body__form">
+                                        <label for="street"></label>
+                                        <label for="comments"></label>
+                                        <label for="floor"></label>
+                                        <label for="porch"></label>
+                                        <label for="room"></label>
+                                        <label for="house"></label>
+                                        <label for="name"></label>
+                                        <label for="tel"></label>
+                                        <label for="email"></label>
+                                        <label for="time"></label>
 
 
-                                <div class="name__row">
-                                    <input type="text" id="name" name="name"
-                                           placeholder="<fmt:message key="web.inputs.your-name" bundle="${ rb }"/>"
-                                           class="form-control">
-                                </div>
-                                <div class="time__row">
-                                    <input type="time" id="time" name="time"
-                                           placeholder="<fmt:message key="web.inputs.date-deliver" bundle="${ rb }"/>"
-                                           class="form-control">
-                                </div>
-                                <div class="first__row">
-                                    <input type="text" class="form-control"
-                                           placeholder="<fmt:message key="web.inputs.street" bundle="${ rb }"/>"
-                                           id="street"
-                                           name="street">
-                                    <input type="text" class="form-control"
-                                           placeholder="<fmt:message key="web.inputs.house" bundle="${ rb }"/>"
-                                           id="house" name="house">
-                                </div>
-                                <div class="sec__row">
-                                    <input type="text" class="form-control"
-                                           placeholder="<fmt:message key="web.inputs.room" bundle="${ rb }"/>"
-                                           id="room"
-                                           name="room">
-                                    <input type="number" class="form-control"
-                                           placeholder="<fmt:message key="web.inputs.porch" bundle="${ rb }"/>"
-                                           id="porch"
-                                           name="porch">
-                                    <input type="number" class="form-control"
-                                           placeholder="<fmt:message key="web.inputs.floor" bundle="${ rb }"/>"
-                                           id="floor" name="floor">
-                                </div>
-                                <div class="phone__row">
-                                    <input type="tel" class="form-control"
-                                           placeholder="<fmt:message key="web.inputs.phone" bundle="${ rb }"/>"
-                                           id="tel" name="tel">
-                                </div>
-                                <div class="email__row">
-                                    <input type="email" class="form-control"
-                                           placeholder="<fmt:message key="web.inputs.email" bundle="${ rb }"/>"
-                                           id="email"
-                                           name="email">
-                                </div>
-                                <div class="comments__row">
+                                        <div class="name__row">
+                                            <input type="text" id="name" name="name"
+                                                   placeholder="<fmt:message key="web.inputs.your-name" bundle="${ rb }"/>"
+                                                   class="form-control">
+                                        </div>
+                                        <div class="time__row">
+                                            <input type="time" id="time" name="time"
+                                                   placeholder="<fmt:message key="web.inputs.date-deliver" bundle="${ rb }"/>"
+                                                   class="form-control">
+                                        </div>
+                                        <div class="first__row">
+                                            <input type="text" class="form-control"
+                                                   placeholder="<fmt:message key="web.inputs.street" bundle="${ rb }"/>"
+                                                   id="street"
+                                                   name="street">
+                                            <input type="text" class="form-control"
+                                                   placeholder="<fmt:message key="web.inputs.house" bundle="${ rb }"/>"
+                                                   id="house" name="house">
+                                        </div>
+                                        <div class="sec__row">
+                                            <input type="text" class="form-control"
+                                                   placeholder="<fmt:message key="web.inputs.room" bundle="${ rb }"/>"
+                                                   id="room"
+                                                   name="room">
+                                            <input type="number" class="form-control"
+                                                   placeholder="<fmt:message key="web.inputs.porch" bundle="${ rb }"/>"
+                                                   id="porch"
+                                                   name="porch">
+                                            <input type="number" class="form-control"
+                                                   placeholder="<fmt:message key="web.inputs.floor" bundle="${ rb }"/>"
+                                                   id="floor" name="floor">
+                                        </div>
+                                        <div class="phone__row">
+                                            <input type="tel" class="form-control"
+                                                   placeholder="<fmt:message key="web.inputs.phone" bundle="${ rb }"/>"
+                                                   id="tel" name="tel">
+                                        </div>
+                                        <div class="email__row">
+                                            <input type="email" class="form-control"
+                                                   placeholder="<fmt:message key="web.inputs.email" bundle="${ rb }"/>"
+                                                   id="email"
+                                                   name="email">
+                                        </div>
+                                        <div class="comments__row">
                                     <textarea class="form-control" id="comments" name="comments"
                                               placeholder="<fmt:message key="web.inputs.comments" bundle="${ rb }"/>"></textarea>
-                                </div>
-                            </div>
-                            <button class="btn orange__bg accept__btn" type="submit">
-                                <fmt:message key="web.inputs.accept-order" bundle="${ rb }"/>
-                            </button>
-                        </form>
+                                        </div>
+                                    </div>
+                                    <button class="btn orange__bg accept__btn" type="submit">
+                                        <fmt:message key="web.inputs.accept-order" bundle="${ rb }"/>
+                                    </button>
+                                </form>
+                            </c:when>
+                            <c:when test="${role eq 'CLIENT'}">
+
+                                <jsp:useBean id="info" scope="request" type="by.epam.cafe.controller.dto.UserDTO"/>
+
+                                <form action="<c:url value="/page/client/make-order"/>" method="post">
+                                    <div class="body__form">
+                                        <label for="street"></label>
+                                        <label for="comments"></label>
+                                        <label for="floor"></label>
+                                        <label for="porch"></label>
+                                        <label for="room"></label>
+                                        <label for="house"></label>
+                                        <label for="name"></label>
+                                        <label for="tel"></label>
+                                        <label for="email"></label>
+                                        <label for="time"></label>
+
+
+                                        <div class="name__row">
+                                            <input type="text" id="name" name="name"
+                                                   placeholder="<fmt:message key="web.inputs.your-name" bundle="${ rb }"/>"
+                                                   class="form-control" value="${info.name}">
+                                        </div>
+                                        <div class="time__row">
+                                            <input type="time" id="time" name="time"
+                                                   placeholder="<fmt:message key="web.inputs.date-deliver" bundle="${ rb }"/>"
+                                                   class="form-control">
+                                        </div>
+                                        <div class="first__row">
+                                            <input type="text" class="form-control"
+                                                   placeholder="<fmt:message key="web.inputs.street" bundle="${ rb }"/>"
+                                                   id="street"
+                                                   name="street"
+                                                   value="${info.street}">
+                                            <input type="text" class="form-control"
+                                                   placeholder="<fmt:message key="web.inputs.house" bundle="${ rb }"/>"
+                                                   id="house" name="house" value="${info.house}">
+                                        </div>
+                                        <div class="sec__row">
+                                            <input type="text" class="form-control"
+                                                   placeholder="<fmt:message key="web.inputs.room" bundle="${ rb }"/>"
+                                                   id="room" name="room" value="${info.room}">
+                                            <input type="number" class="form-control"
+                                                   placeholder="<fmt:message key="web.inputs.porch" bundle="${ rb }"/>"
+                                                   id="porch" name="porch" value="${info.porch}">
+                                            <input type="number" class="form-control"
+                                                   placeholder="<fmt:message key="web.inputs.floor" bundle="${ rb }"/>"
+                                                   id="floor" name="floor" value="${info.floor}">
+                                        </div>
+                                        <div class="phone__row">
+                                            <input type="tel" class="form-control"
+                                                   placeholder="<fmt:message key="web.inputs.phone" bundle="${ rb }"/>"
+                                                   id="tel" name="tel" value="${info.phone}">
+                                        </div>
+                                        <div class="email__row">
+                                            <input type="email" class="form-control"
+                                                   placeholder="<fmt:message key="web.inputs.email" bundle="${ rb }"/>"
+                                                   id="email" name="email" value="${info.email}">
+                                        </div>
+                                        <div class="comments__row">
+                                    <textarea class="form-control" id="comments" name="comments"
+                                              placeholder="<fmt:message key="web.inputs.comments" bundle="${ rb }"/>"></textarea>
+                                        </div>
+                                    </div>
+                                    <button class="btn orange__bg accept__btn" type="submit">
+                                        <fmt:message key="web.inputs.accept-order" bundle="${ rb }"/>
+                                    </button>
+                                </form>
+                            </c:when>
+                        </c:choose>
+
 
                     </div>
                 </div>

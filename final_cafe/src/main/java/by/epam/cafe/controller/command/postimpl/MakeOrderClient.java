@@ -23,28 +23,21 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.*;
 
-public class MakeOrderAnon extends by.epam.cafe.controller.command.Command {
+public class MakeOrderClient extends by.epam.cafe.controller.command.Command {
 
-    private static final Logger log = LogManager.getLogger(MakeOrderAnon.class);
+    private static final Logger log = LogManager.getLogger(MakeOrderClient.class);
 
     private final ServiceFactory serviceFactory = ServiceFactory.getInstance();
     private final OrderService orderService = serviceFactory.getOrderService();
 
-
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PermissionDeniedException {
-
-        HttpSession session = request.getSession();
-//        User user = (User) session.getAttribute("user");
-
-//        if (user == null) {
         try {
-            Order order = buildOrder(request, session);
+            Order order = buildOrder(request);
             log.debug("order = {}", order);
-            Order newOrder = orderService.create(order);
+            boolean isUpdated = orderService.update(order);
 
-            if (newOrder != null) {
-                session.setAttribute("basket", null);
+            if (isUpdated) {
                 response.sendRedirect(request.getContextPath() + request.getServletPath() + "/your-order/" + order.getId());
             }
 
@@ -52,13 +45,15 @@ public class MakeOrderAnon extends by.epam.cafe.controller.command.Command {
             log.debug("e: ", e);
             response.sendRedirect(request.getContextPath() + request.getServletPath() + "/something_went_wrong");
         }
-//        }else {
-//            response.sendRedirect(request.getContextPath() + request.getServletPath() + "/something_went_wrong");
-//        }
 
     }
 
-    private Order buildOrder(HttpServletRequest request, HttpSession session) throws ParseException {
+    private Order buildOrder(HttpServletRequest request) throws ParseException {
+
+        HttpSession session = request.getSession();
+
+        User user = (User) session.getAttribute("user");
+
         String street = request.getParameter("street");
         String comments = request.getParameter("comments");
         String floor = request.getParameter("floor");
@@ -86,17 +81,16 @@ public class MakeOrderAnon extends by.epam.cafe.controller.command.Command {
                 .street(street)
                 .build();
 
-        Map<Product, Integer> basket = takeBasket(session);
-        return Order.newBuilder()
-                .creation(LocalDateTime.now())
-                .clientName(name)
-                .paymentType(PaymentType.CASH)
-                .deliveryInf(deliveryInf)
-                .status(OrderStatus.CONFIRMED)
-                .price(calcSum(basket))
-                .products(basket)
-                .user(null)
-                .build();
+        Order order = orderService.findOrCreateCurrentByUserId(user.getId());
+        order.setCreation(LocalDateTime.now());
+        order.setClientName(name);
+        order.setPaymentType(PaymentType.CASH);
+        order.setDeliveryInf(deliveryInf);
+        order.setStatus(OrderStatus.CONFIRMED);
+        order.setPrice(calcSum(order.getProducts()));
+        order.setUser(user);
+
+        return order;
     }
 
     private LocalDateTime parseToLocalDateTime(String time) throws ParseException {
@@ -109,20 +103,6 @@ public class MakeOrderAnon extends by.epam.cafe.controller.command.Command {
         return LocalDateTime.now().withHour(calendar.get(Calendar.HOUR_OF_DAY))
                 .withMinute(calendar.get(Calendar.MINUTE))
                 .withSecond(0);
-//        return LocalDateTime.now().withHour(parse.getHours())
-//                .withMinute(parse.getMinutes())
-//                .withSecond(0);
-    }
-
-    private Map<Product, Integer> takeBasket(HttpSession session) {
-        Map<Product, Integer> basket;
-        Object basketObj = session.getAttribute("basket");
-        if (basketObj == null) {
-            basket = new HashMap<>();
-        } else {
-            basket = ((Map<Product, Integer>) basketObj);
-        }
-        return basket;
     }
 
     private Integer calcSum(Map<Product, Integer> basket) {
