@@ -106,7 +106,7 @@
                         <form action="<c:url value="/page/operator/minus-product"/>" method="post">
                             <input type="hidden" value="${product.key.id}" name="product_id">
                             <input type="hidden" value="${id}" name="order_id">
-                            <button type="submit" class="btn mx-3 white__bg__black minus"> -</button>
+                            <button type="submit" class="btn mx-3 white__bg__black minus" disabled> -</button>
                         </form>
                         <span>${product.value}</span>
                         <form action='<c:url value="/page/operator/plus-product"/>' method="post">

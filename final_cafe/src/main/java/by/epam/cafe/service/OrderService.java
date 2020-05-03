@@ -21,4 +21,6 @@ public interface OrderService {
     void plusProduct(Integer orderId, Integer prodId) throws ServiceException;
 
     void deleteProduct(Integer orderId, Integer prodId) throws ServiceException;
+
+    void minusOrDelete(Integer orderId, Integer prodId) throws ServiceException;
 }

@@ -67,6 +67,7 @@ public class OrderMysqlDao extends AbstractMysqlDao<Integer, Order> {
     private static final String insertProducts = "INSERT INTO order_product(order_id, product_id, count) VALUES (?,?,?);";
     private static final String ADD_FIRST_PRODUCT = "INSERT INTO order_product(order_id, product_id, count) VALUES (?,?,1);";
     private static final String INCREASE_COUNT_PROD = "UPDATE order_product SET count = count+1 WHERE product_id = ? and  order_id = ?;";
+    private static final String REMOVE_PRODUCT = "DELETE FROM order_product WHERE order_id=? AND product_id = ?;";
 
     public OrderMysqlDao() {
         super(FIND_ALL_SQL, FIND_BY_ID_SQL, DELETE_BY_ID, CREATE_SQL, UPDATE_SQL);
@@ -259,11 +260,33 @@ public class OrderMysqlDao extends AbstractMysqlDao<Integer, Order> {
         Connection cn = getPool().takeConnection();
         try {
             try (PreparedStatement statement =
-                         cn.prepareStatement("DELETE FROM order_product WHERE order_id=? AND product_id = ?;")) {
+                         cn.prepareStatement(REMOVE_PRODUCT)) {
 
 
                 statement.setInt(1, orderId);
                 statement.setInt(2, prodId);
+
+                int affectedRows = statement.executeUpdate();
+                return affectedRows == 1;
+
+            } catch (SQLException e) {
+                log.info("e: ", e);
+                return false;
+            }
+        } finally {
+            getPool().release(cn);
+        }
+    }
+
+    public boolean minusProduct(Integer orderId, Integer prodId) {
+        Connection cn = getPool().takeConnection();
+        try {
+            try (PreparedStatement statement =
+                         cn.prepareStatement("UPDATE order_product SET count = count -1 WHERE product_id=? and order_id = ?;")) {
+
+
+                statement.setInt(1, prodId);
+                statement.setInt(2, orderId);
 
                 int affectedRows = statement.executeUpdate();
                 return affectedRows == 1;

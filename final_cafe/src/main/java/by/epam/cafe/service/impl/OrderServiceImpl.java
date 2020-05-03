@@ -121,8 +121,17 @@ public class OrderServiceImpl implements by.epam.cafe.service.OrderService {
     public void deleteProduct(Integer orderId, Integer prodId) throws ServiceException {
         boolean result = orderMysqlDao.removeProduct(orderId, prodId);
         log.debug("deleteProduct: result = {}", result);
-        if (!result){
+        if (!result) {
             throw new ServiceException();
+        }
+    }
+
+    @Override
+    public void minusOrDelete(Integer orderId, Integer prodId) throws ServiceException {
+        if (!orderMysqlDao.minusProduct(orderId, prodId)) {
+            if (!orderMysqlDao.removeProduct(orderId, prodId)) {
+                throw new ServiceException();
+            }
         }
     }
 }
