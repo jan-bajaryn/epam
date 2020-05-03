@@ -9,6 +9,8 @@ import java.time.ZoneId;
 
 public class UserMysqlDao extends AbstractMysqlDao<Integer, User> {
 
+    private final DaoHelper daoHelper = DaoHelper.getInstance();
+
     public static final ZoneId DEFAULT_ZONE = ZoneId.systemDefault();
     // language=SQL
     public static final String FIND_ALL_SQL = "SELECT id, creation, name, password, phone, role, surname, username, email, floor, house, porch, room, street, is_blocked FROM user;";
@@ -43,24 +45,13 @@ public class UserMysqlDao extends AbstractMysqlDao<Integer, User> {
                 .surname(resultSet.getString("surname"))
                 .username(resultSet.getString("username"))
                 .email(resultSet.getString("email"))
-                .floor(getIntOrNull(resultSet, "floor"))
+                .floor(daoHelper.getIntOrNull(resultSet, "floor"))
                 .house(resultSet.getString("house"))
-                .porch(getIntOrNull(resultSet, "porch"))
+                .porch(daoHelper.getIntOrNull(resultSet, "porch"))
                 .room(resultSet.getString("room"))
                 .street(resultSet.getString("street"))
                 .isBlocked(resultSet.getBoolean("is_blocked"))
                 .build();
-    }
-
-    private Integer getIntOrNull(ResultSet resultSet, String label) throws SQLException {
-        Integer floor;
-        int floorInt = resultSet.getInt(label);
-        if (resultSet.wasNull()) {
-            floor = null;
-        } else {
-            floor = floorInt;
-        }
-        return floor;
     }
 
     @Override
@@ -83,20 +74,12 @@ public class UserMysqlDao extends AbstractMysqlDao<Integer, User> {
         statement.setString(6, entity.getSurname());
         statement.setString(7, entity.getUsername());
         statement.setString(8, entity.getEmail());
-        setIntOrNull(statement, entity.getFloor(), 9);
+        daoHelper.setIntOrNull(statement, entity.getFloor(), 9);
         statement.setString(10, entity.getHouse());
-        setIntOrNull(statement, entity.getPorch(), 11);
+        daoHelper.setIntOrNull(statement, entity.getPorch(), 11);
         statement.setString(12, entity.getRoom());
         statement.setString(13, entity.getStreet());
         statement.setBoolean(14, entity.isBlocked());
-    }
-
-    private void setIntOrNull(PreparedStatement statement, Integer integer, int label) throws SQLException {
-        if (integer == null) {
-            statement.setNull(label, Types.INTEGER);
-        } else {
-            statement.setInt(label, integer);
-        }
     }
 
     protected void updateParams(User entity, PreparedStatement statement) throws SQLException {
@@ -108,9 +91,9 @@ public class UserMysqlDao extends AbstractMysqlDao<Integer, User> {
         statement.setString(6, entity.getSurname());
         statement.setString(7, entity.getUsername());
         statement.setString(8, entity.getEmail());
-        setIntOrNull(statement, entity.getFloor(), 9);
+        daoHelper.setIntOrNull(statement, entity.getFloor(), 9);
         statement.setString(10, entity.getHouse());
-        setIntOrNull(statement, entity.getPorch(), 11);
+        daoHelper.setIntOrNull(statement, entity.getPorch(), 11);
         statement.setString(12, entity.getRoom());
         statement.setString(13, entity.getStreet());
         statement.setBoolean(14, entity.isBlocked());

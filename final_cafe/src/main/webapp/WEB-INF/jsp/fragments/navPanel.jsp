@@ -2,6 +2,7 @@
 <%@ page import="by.epam.cafe.entity.enums.Role" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="ctg" uri="customtags" %>
 
 <html>
 <head>
@@ -83,10 +84,11 @@
                                             <fmt:message key="web.links.basket" bundle="${ rb }"/>
                 </span>
                     <span>
-                <c:if test="${basket==null}">
-                    0
-                </c:if>
-                    ${basket}
+<%--                <c:if test="${basket==null}">--%>
+<%--                    0--%>
+<%--                </c:if>--%>
+<%--                    ${basket}--%>
+                        <ctg:basket/>
                 </span>
                 </button>
             </a>

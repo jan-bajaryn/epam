@@ -50,7 +50,7 @@
                     <div class="product-item">
                         <div class="grid-part">
                             <div class="image-part">
-                                <img src="../static/img/${product.key.productGroup.photoName}" alt="">
+                                <img src="<c:url value="/static/img/${product.key.productGroup.photoName}"/>" alt="">
                             </div>
                             <div class="product-name">
                                     ${product.key.productGroup.name}
@@ -60,28 +60,56 @@
                             </div>
                         </div>
                         <div class="flex-part">
-                            <form action="<c:url value="/page/minus-item-anon"/>" method="post">
-                                <input type="hidden" value="${product.key.id}" name="variant">
-                                <button type="submit" class="btn mx-3 white__bg__black minus"> -</button>
-                            </form>
-                            <span>${product.value}</span>
-                            <form action='<c:url value="/page/put-item-anon"/>' method="post">
-                                <input type="hidden" value="${product.key.id}" name="variant">
-                                <button type="submit" class="btn mx-3 white__bg__black plus"> +</button>
-                            </form>
-                            <div class="prise mr-3">
-                                    ${String.format("%.2f",(product.key.price*product.value)/100)}
-                                <fmt:message key="web.text.rub" bundle="${ rb }"/>
-                            </div>
-                            <form action="<c:url value="/page/delete-all-anon"/>" method="post">
-                                <button class="abc" type="submit">
-                                    <i class="fa fa-trash mr-3" aria-hidden="true"></i>
-                                </button>
-                                <label>
-                                    <input name="id" type="number" value="${product.key.id}"
-                                           style="display: none;">
-                                </label>
-                            </form>
+                            <c:choose>
+                                <c:when test="${role eq 'ANON'}">
+                                    <form action="<c:url value="/page/anon/minus-item"/>" method="post">
+                                        <input type="hidden" value="${product.key.id}" name="variant">
+                                        <button type="submit" class="btn mx-3 white__bg__black minus"> -</button>
+                                    </form>
+                                    <span>${product.value}</span>
+                                    <form action='<c:url value="/page/anon/put-item"/>' method="post">
+                                        <input type="hidden" value="${product.key.id}" name="variant">
+                                        <button type="submit" class="btn mx-3 white__bg__black plus"> +</button>
+                                    </form>
+                                    <div class="prise mr-3">
+                                            ${String.format("%.2f",(product.key.price*product.value)/100)}
+                                        <fmt:message key="web.text.rub" bundle="${ rb }"/>
+                                    </div>
+                                    <form action="<c:url value="/page/anon/delete-all"/>" method="post">
+                                        <button class="abc" type="submit">
+                                            <i class="fa fa-trash mr-3" aria-hidden="true"></i>
+                                        </button>
+                                        <label>
+                                            <input name="id" type="number" value="${product.key.id}"
+                                                   style="display: none;">
+                                        </label>
+                                    </form>
+                                </c:when>
+                                <c:when test="${role eq 'CLIENT'}">
+                                    <form action="<c:url value="/page/client/minus-item"/>" method="post">
+                                        <input type="hidden" value="${product.key.id}" name="variant">
+                                        <button type="submit" class="btn mx-3 white__bg__black minus"> -</button>
+                                    </form>
+                                    <span>${product.value}</span>
+                                    <form action='<c:url value="/page/client/put-item"/>' method="post">
+                                        <input type="hidden" value="${product.key.id}" name="variant">
+                                        <button type="submit" class="btn mx-3 white__bg__black plus"> +</button>
+                                    </form>
+                                    <div class="prise mr-3">
+                                            ${String.format("%.2f",(product.key.price*product.value)/100)}
+                                        <fmt:message key="web.text.rub" bundle="${ rb }"/>
+                                    </div>
+                                    <form action="<c:url value="/page/client/delete-all"/>" method="post">
+                                        <button class="abc" type="submit">
+                                            <i class="fa fa-trash mr-3" aria-hidden="true"></i>
+                                        </button>
+                                        <label>
+                                            <input name="id" type="number" value="${product.key.id}"
+                                                   style="display: none;">
+                                        </label>
+                                    </form>
+                                </c:when>
+                            </c:choose>
                         </div>
                     </div>
                 </c:forEach>

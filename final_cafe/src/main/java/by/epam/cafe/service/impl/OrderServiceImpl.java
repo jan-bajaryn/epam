@@ -4,9 +4,11 @@ import by.epam.cafe.dao.DAOFactory;
 import by.epam.cafe.dao.mysql.impl.DeliveryInfMysqlDao;
 import by.epam.cafe.dao.mysql.impl.OrderMysqlDao;
 import by.epam.cafe.dao.mysql.impl.ProductMysqlDao;
+import by.epam.cafe.entity.enums.OrderStatus;
 import by.epam.cafe.entity.impl.DeliveryInf;
 import by.epam.cafe.entity.impl.Order;
 import by.epam.cafe.entity.impl.Product;
+import by.epam.cafe.entity.impl.User;
 import by.epam.cafe.service.ProductService;
 import by.epam.cafe.service.exception.ServiceException;
 import by.epam.cafe.service.factory.ServiceFactory;
@@ -133,5 +135,31 @@ public class OrderServiceImpl implements by.epam.cafe.service.OrderService {
                 throw new ServiceException();
             }
         }
+    }
+
+    @Override
+    public Order findOrCreateCurrentByUserId(Integer userId) {
+        Order current = findCurrentByUserId(userId);
+        if (current == null) {
+            current = orderMysqlDao.create(
+                    Order.newBuilder()
+                            .user(User.newBuilder().id(userId).build())
+                            .status(OrderStatus.WAITING)
+                            .build()
+            );
+        }
+        log.debug("current = {}", current);
+        buildOrder(current);
+        return current;
+    }
+
+    @Override
+    public Order findCurrentByUserId(Integer id) {
+
+        Order current = orderMysqlDao.findCurrentByUserId(id);
+        if (current != null) {
+            buildOrder(current);
+        }
+        return current;
     }
 }

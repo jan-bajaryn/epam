@@ -23,4 +23,8 @@ public interface OrderService {
     void deleteProduct(Integer orderId, Integer prodId) throws ServiceException;
 
     void minusOrDelete(Integer orderId, Integer prodId) throws ServiceException;
+
+    Order findOrCreateCurrentByUserId(Integer id);
+
+    Order findCurrentByUserId(Integer id);
 }

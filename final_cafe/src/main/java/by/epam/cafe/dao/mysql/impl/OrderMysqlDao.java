@@ -12,6 +12,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.sql.*;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,43 +24,31 @@ public class OrderMysqlDao extends AbstractMysqlDao<Integer, Order> {
 
     private static final Logger log = LogManager.getLogger(OrderMysqlDao.class);
 
+    private final DaoHelper daoHelper = DaoHelper.getInstance();
+//    public static final String ID_COL = "id";
+//    private static final String CLIENT_NAME_COL = "client_name";
+//    private static final String CREATION_COL = "creation";
+//    private static final String PAYMENT_TYPE_COL = "payment_type";
+//    private static final String PRICE_COL = "price";
+//    private static final String STATUS_ID_COL = "status";
+//    private static final String DELIVERY_INF_ID_COL = "delivery_inf_id";
+//    private static final String USER_ID_COL = "user_id";
+//    private static final String TABLE_NAME = "`order`";
 
-    public static final String ID_COL = "id";
-    private static final String CLIENT_NAME_COL = "client_name";
-    private static final String CREATION_COL = "creation";
-    private static final String PAYMENT_TYPE_COL = "payment_type";
-    private static final String PRICE_COL = "price";
-    private static final String STATUS_ID_COL = "status";
-    private static final String DELIVERY_INF_ID_COL = "delivery_inf_id";
-    private static final String USER_ID_COL = "user_id";
-    private static final String TABLE_NAME = "`order`";
+
     /*language=SQL*/
-    private static final String FIND_ALL_SQL = "SELECT " + ID_COL + ", " +
-            CLIENT_NAME_COL + ", " + CREATION_COL + ", " + PAYMENT_TYPE_COL + ", " +
-            PRICE_COL + ", " + STATUS_ID_COL + ", " + DELIVERY_INF_ID_COL + ", " + USER_ID_COL +
-            " FROM " + TABLE_NAME + ";";
+    private static final String FIND_ALL_SQL = "SELECT id, client_name, creation, payment_type, price, status, delivery_inf_id, user_id FROM `order`;";
     //    private static final String FIND_ALL_SQL = "SELECT id, creation, price, status, payment_type FROM `order`;";
     /*language=SQL*/
-    private static final String FIND_BY_ID_SQL = "SELECT " + ID_COL + ", " +
-            CLIENT_NAME_COL + ", " + CREATION_COL + ", " +
-            PAYMENT_TYPE_COL + ", " + PRICE_COL + ", " +
-            STATUS_ID_COL + ", " + DELIVERY_INF_ID_COL + ", " +
-            USER_ID_COL + " FROM " + TABLE_NAME + " WHERE " + ID_COL + " = ?;";
+    private static final String FIND_BY_ID_SQL = "SELECT id, client_name, creation, payment_type, price, status, delivery_inf_id, user_id FROM `order` WHERE id = ?;";
     /*language=SQL*/
-    private static final String DELETE_BY_ID = "DELETE FROM " + TABLE_NAME + " WHERE " + ID_COL + " = ?";
+    private static final String DELETE_BY_ID = "DELETE FROM `order` WHERE id = ?";
     /*language=SQL*/
-    private static final String CREATE_SQL = "INSERT INTO " + TABLE_NAME +
-            " (" + CLIENT_NAME_COL + ", " + CREATION_COL + ", " +
-            PAYMENT_TYPE_COL + ", " + PRICE_COL + ", " + STATUS_ID_COL + ", " +
-            DELIVERY_INF_ID_COL + ", " + USER_ID_COL + ")" +
+    private static final String CREATE_SQL = "INSERT INTO `order` (client_name, creation, payment_type, price, status, delivery_inf_id, user_id)" +
             " VALUES (?,?,?,?,?,?,?);";
     /*language=SQL*/
-    private static final String UPDATE_SQL = "UPDATE " + TABLE_NAME +
-            " SET  " + CLIENT_NAME_COL + " = ?, " + CREATION_COL + " = ?, " +
-            PAYMENT_TYPE_COL + " = ?, " + PRICE_COL + " = ?, " + STATUS_ID_COL + " = ?, " +
-            DELIVERY_INF_ID_COL + " = ?, " +
-            USER_ID_COL + " = ?" +
-            " WHERE " + ID_COL + " = ?;";
+    private static final String UPDATE_SQL = "UPDATE `order` SET  client_name = ?, creation = ?, payment_type = ?, price = ?, status = ?, delivery_inf_id = ?, user_id = ?" +
+            " WHERE id = ?;";
 
 
     /*language=SQL*/
@@ -68,6 +57,7 @@ public class OrderMysqlDao extends AbstractMysqlDao<Integer, Order> {
     private static final String ADD_FIRST_PRODUCT = "INSERT INTO order_product(order_id, product_id, count) VALUES (?,?,1);";
     private static final String INCREASE_COUNT_PROD = "UPDATE order_product SET count = count+1 WHERE product_id = ? and  order_id = ?;";
     private static final String REMOVE_PRODUCT = "DELETE FROM order_product WHERE order_id=? AND product_id = ?;";
+    private static final String MINUS_PRODUCT = "UPDATE order_product SET count = count -1 WHERE product_id=? and order_id = ?;";
 
     public OrderMysqlDao() {
         super(FIND_ALL_SQL, FIND_BY_ID_SQL, DELETE_BY_ID, CREATE_SQL, UPDATE_SQL);
@@ -99,17 +89,17 @@ public class OrderMysqlDao extends AbstractMysqlDao<Integer, Order> {
     @Override
     protected Order findEntity(ResultSet resultSet) throws SQLException {
 
-        int id = resultSet.getInt(ID_COL);
-        Timestamp timestamp = resultSet.getTimestamp(CREATION_COL);
-        int userId = resultSet.getInt(USER_ID_COL);
-        int delInfId = resultSet.getInt(DELIVERY_INF_ID_COL);
+        int id = resultSet.getInt("id");
+        Timestamp timestamp = resultSet.getTimestamp("creation");
+        int userId = resultSet.getInt("user_id");
+        int delInfId = resultSet.getInt("delivery_inf_id");
         return Order.newBuilder()
                 .id(id)
-                .clientName(resultSet.getString(CLIENT_NAME_COL))
+                .clientName(resultSet.getString("client_name"))
                 .creation(timestamp == null ? null : timestamp.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime())
-                .paymentType(PaymentType.values()[resultSet.getInt(PAYMENT_TYPE_COL)])
-                .price(resultSet.getInt(PRICE_COL))
-                .status(OrderStatus.values()[resultSet.getInt(STATUS_ID_COL)])
+                .paymentType(PaymentType.values()[resultSet.getInt("payment_type")])
+                .price(resultSet.getInt("price"))
+                .status(OrderStatus.values()[resultSet.getInt("status")])
                 .deliveryInf(delInfId != 0 ? DeliveryInf.newBuilder().id(delInfId).build() : null)
                 .user(userId != 0 ? User.newBuilder().id(userId).build() : null)
 //                .products(mapToEmptyProducts(findAllProductsIdsByOrderId(id)))
@@ -131,10 +121,12 @@ public class OrderMysqlDao extends AbstractMysqlDao<Integer, Order> {
     protected void createParams(Order entity, PreparedStatement statement) throws SQLException {
 
         statement.setString(1, entity.getClientName());
-        statement.setTimestamp(2, Timestamp.valueOf(entity.getCreation()));
-        statement.setInt(3, entity.getPaymentType().ordinal());
-        statement.setInt(4, entity.getPrice());
-        statement.setInt(5, entity.getStatus().ordinal());
+        statement.setTimestamp(2, Timestamp.valueOf(LocalDateTime.now()));
+        daoHelper.setOrdinalOrNull(entity.getPaymentType(), statement, 3);
+//        statement.setInt(3, );
+//        statement.setInt(4, entity.getPrice());
+        daoHelper.setIntOrNull(statement, entity.getPrice(), 4);
+        daoHelper.setOrdinalOrNull(entity.getStatus(), statement, 5);
 
         if (entity.getDeliveryInf() != null) {
             statement.setInt(6, entity.getDeliveryInf().getId());
@@ -282,7 +274,7 @@ public class OrderMysqlDao extends AbstractMysqlDao<Integer, Order> {
         Connection cn = getPool().takeConnection();
         try {
             try (PreparedStatement statement =
-                         cn.prepareStatement("UPDATE order_product SET count = count -1 WHERE product_id=? and order_id = ?;")) {
+                         cn.prepareStatement(MINUS_PRODUCT)) {
 
 
                 statement.setInt(1, prodId);
@@ -294,6 +286,34 @@ public class OrderMysqlDao extends AbstractMysqlDao<Integer, Order> {
             } catch (SQLException e) {
                 log.info("e: ", e);
                 return false;
+            }
+        } finally {
+            getPool().release(cn);
+        }
+    }
+
+    public Order findCurrentByUserId(Integer userId) {
+
+        log.debug("findCurrentByUserId: userId = {}", userId);
+
+        Connection cn = getPool().takeConnection();
+        try {
+            try (PreparedStatement statement =
+                         cn.prepareStatement("SELECT id, client_name, creation, payment_type, price, status, delivery_inf_id, user_id FROM `order` WHERE `status` = ? AND  user_id = ?;")) {
+
+
+                statement.setInt(1, OrderStatus.WAITING.ordinal());
+                statement.setInt(2, userId);
+
+                ResultSet resultSet = statement.executeQuery();
+
+                if (resultSet.next()) {
+                    return findEntity(resultSet);
+                }
+                return null;
+            } catch (SQLException e) {
+                log.info("e: ", e);
+                return null;
             }
         } finally {
             getPool().release(cn);

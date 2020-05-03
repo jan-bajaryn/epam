@@ -21,7 +21,7 @@ public class ServiceFactory {
     private ServiceFactory() {
     }
 
-    private ProductValidator productValidator = new ProductValidator();
+    private final ProductValidator productValidator = new ProductValidator();
     private final DeliveryInfService deliveryInfService = new DeliveryInfServiceImpl();
     private final OrderService orderService = new OrderServiceImpl();
     private final ProductGroupService productGroupService = new ProductGroupServiceImpl();
@@ -32,6 +32,7 @@ public class ServiceFactory {
     private final UserValidator userValidator = new UserValidator();
     private final NullIfEmptyService nullIfEmptyService = new NullIfEmptyServiceImpl();
     private final ProductGroupValidator productGroupValidator = new ProductGroupValidator();
+    private final PutItemService putItemService = new PutItemServiceImpl();
 
     private final ImageWriterService imageWriterService = new ImageWriterService();
 
@@ -81,5 +82,9 @@ public class ServiceFactory {
 
     public ProductGroupValidator getProductGroupValidator() {
         return productGroupValidator;
+    }
+
+    public PutItemService getPutItemService() {
+        return putItemService;
     }
 }

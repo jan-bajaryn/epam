@@ -35,16 +35,6 @@
     </filter-mapping>
 
 
-    <filter>
-        <filter-name>BasketFilter</filter-name>
-        <filter-class>by.epam.cafe.controller.filter.BasketFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>BasketFilter</filter-name>
-        <url-pattern>/page/*</url-pattern>
-    </filter-mapping>
-
-
     <filter-mapping>
         <filter-name>RedirectFilter</filter-name>
         <url-pattern>/page/*</url-pattern>

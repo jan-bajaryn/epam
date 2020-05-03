@@ -53,13 +53,12 @@
                         от ${product_group.value} руб.
                     </span>
                         <button class="btn mr-5 myBtn">
-                                <%--                            Выбрать--%>
                             <fmt:message key="web.btn.choose" bundle="${ rb }"/>
                         </button>
                         <div class="modal">
                             <c:choose>
                                 <c:when test="${role eq 'ANON'}">
-                                    <form action="<c:url value="/page/put-item-anon"/>" method="post">
+                                    <form action="<c:url value="/page/anon/put-item"/>" method="post">
                                         <div class="modal-content">
                                             <span class="close">&times;</span>
                                             <div class="modal__main__content">
@@ -96,7 +95,7 @@
                                     </form>
                                 </c:when>
                                 <c:when test="${role eq 'CLIENT'}">
-                                    <form action="<c:url value="/page/put-item-client"/>" method="post">
+                                    <form action="<c:url value="/page/client/put-item"/>" method="post">
                                         <div class="modal-content">
                                             <span class="close">&times;</span>
                                             <div class="modal__main__content">

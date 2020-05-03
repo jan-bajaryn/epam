@@ -52,6 +52,7 @@ CREATE TABLE `order`
     CONSTRAINT fk_order_delivery_inf_id FOREIGN KEY (delivery_inf_id) REFERENCES delivery_inf (id)
 );
 
+
 CREATE TABLE product_group
 (
     id          integer NOT NULL auto_increment,

@@ -52,10 +52,10 @@ public class CommandPostFactory implements CommandFactory {
         commandMap.put("/admin/disable-product-group", new DisableProductGroup());
         commandMap.put("/admin/enable-product-group", new EnableProductGroup());
 
-        commandMap.put("/put-item-anon", new PutItemAnon());
-        commandMap.put("/minus-item-anon", new MinusItemAnon());
+        commandMap.put("/anon/put-item", new PutItemAnon());
+        commandMap.put("/anon/minus-item", new MinusItemAnon());
 
-        commandMap.put("/delete-all-anon", new DeleteAllProdFromBasket());
+        commandMap.put("/anon/delete-all", new DeleteAllProdFromBasket());
 
         commandMap.put("/make-order-anon", new MakeOrderAnon());
         commandMap.put("/cancel_order", new CancelOrder());
@@ -66,6 +66,9 @@ public class CommandPostFactory implements CommandFactory {
 
         commandMap.put("/operator/minus-product", new MinusProductOperator());
         commandMap.put("/operator/delete-product", new DeleteProductOperator());
+
+
+        commandMap.put("/client/put-item", new PutItemClient());
     }
 
     @Override
