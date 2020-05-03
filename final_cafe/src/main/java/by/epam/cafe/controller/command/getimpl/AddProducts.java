@@ -29,7 +29,7 @@ public class AddProducts extends by.epam.cafe.controller.command.Command {
     private final ServiceFactory serviceFactory = ServiceFactory.getInstance();
     private final PathVarCalculator pathVarCalculator = serviceFactory.getPathVarCalculator();
     private final ProductService productService = serviceFactory.getProductService();
-    private final ProductGroupService productGroupService = serviceFactory.getProductGroupService();
+//    private final ProductGroupService productGroupService = serviceFactory.getProductGroupService();
     private final OrderService orderService = serviceFactory.getOrderService();
 
 
@@ -64,6 +64,7 @@ public class AddProducts extends by.epam.cafe.controller.command.Command {
             request.setAttribute("contain_products", products);
             request.setAttribute("not_contain_products", all);
             request.setAttribute("sum", order.getPrice());
+            request.setAttribute("id", order.getId());
 
             log.debug("all = {}", all);
             request.getRequestDispatcher("/WEB-INF/jsp/add-products.jsp").forward(request, response);

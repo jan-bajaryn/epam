@@ -8,6 +8,7 @@ import by.epam.cafe.entity.impl.DeliveryInf;
 import by.epam.cafe.entity.impl.Order;
 import by.epam.cafe.entity.impl.Product;
 import by.epam.cafe.service.ProductService;
+import by.epam.cafe.service.exception.ServiceException;
 import by.epam.cafe.service.factory.ServiceFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -103,5 +104,18 @@ public class OrderServiceImpl implements by.epam.cafe.service.OrderService {
 
         deliveryInfMysqlDao.update(entity.getDeliveryInf());
         return update;
+    }
+
+    @Override
+    public void plusProduct(final Integer orderId, final Integer prodId) throws ServiceException {
+        log.debug("begin plusProduct method");
+        log.info("begin plusProduct method");
+        if (!orderMysqlDao.plusProductFirst(orderId, prodId)) {
+            log.debug("executing second");
+            if (!orderMysqlDao.plusExistingProduct(orderId, prodId)) {
+                throw new ServiceException();
+            }
+        }
+        log.debug("executed first");
     }
 }

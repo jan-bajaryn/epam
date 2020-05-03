@@ -65,6 +65,8 @@ public class OrderMysqlDao extends AbstractMysqlDao<Integer, Order> {
     /*language=SQL*/
     private static final String FIND_PRODUCTS_BY_ORDER_SQL = "SELECT product_id from `order` INNER JOIN order_product ON `order`.id = order_product.order_id WHERE order_id = ?;";
     private static final String insertProducts = "INSERT INTO order_product(order_id, product_id, count) VALUES (?,?,?);";
+    private static final String ADD_FIRST_PRODUCT = "INSERT INTO order_product(order_id, product_id, count) VALUES (?,?,1);";
+    private static final String INCREASE_COUNT_PROD = "UPDATE order_product SET count = count+1 WHERE product_id = ? and  order_id = ?;";
 
     public OrderMysqlDao() {
         super(FIND_ALL_SQL, FIND_BY_ID_SQL, DELETE_BY_ID, CREATE_SQL, UPDATE_SQL);
@@ -207,5 +209,49 @@ public class OrderMysqlDao extends AbstractMysqlDao<Integer, Order> {
         statement.setInt(1, order.getId());
         statement.setInt(2, entry.getKey().getId());
         statement.setInt(3, entry.getValue());
+    }
+
+    public boolean plusProductFirst(Integer orderId, Integer prodId) {
+        Connection cn = getPool().takeConnection();
+
+        try {
+            try (PreparedStatement statement =
+                         cn.prepareStatement(ADD_FIRST_PRODUCT)) {
+
+                statement.setInt(1, orderId);
+                statement.setInt(2, prodId);
+
+                int affectedRows = statement.executeUpdate();
+                return affectedRows == 1;
+
+            } catch (SQLException e) {
+                log.info("e: ", e);
+                return false;
+            }
+        } finally {
+            getPool().release(cn);
+        }
+    }
+
+    public boolean plusExistingProduct(Integer orderId, Integer prodId) {
+        Connection cn = getPool().takeConnection();
+        try {
+            try (PreparedStatement statement =
+                         cn.prepareStatement(INCREASE_COUNT_PROD)) {
+
+
+                statement.setInt(1, prodId);
+                statement.setInt(2, orderId);
+
+                int affectedRows = statement.executeUpdate();
+                return affectedRows == 1;
+
+            } catch (SQLException e) {
+                log.info("e: ", e);
+                return false;
+            }
+        } finally {
+            getPool().release(cn);
+        }
     }
 }

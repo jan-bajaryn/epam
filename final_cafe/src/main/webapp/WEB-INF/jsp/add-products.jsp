@@ -103,20 +103,22 @@
                         </div>
                     </div>
                     <div class="flex-part">
-                        <form action="<c:url value="/page/minus-item-anon"/>" method="post">
-                            <input type="hidden" value="${product.key.id}" name="variant">
+                        <form action="<c:url value="/page/operator/minus-product"/>" method="post">
+                            <input type="hidden" value="${product.key.id}" name="product_id">
+                            <input type="hidden" value="${id}" name="order_id">
                             <button type="submit" class="btn mx-3 white__bg__black minus"> -</button>
                         </form>
                         <span>${product.value}</span>
-                        <form action='<c:url value="/page/put-item-anon"/>' method="post">
-                            <input type="hidden" value="${product.key.id}" name="variant">
+                        <form action='<c:url value="/page/operator/plus-product"/>' method="post">
+                            <input type="hidden" value="${product.key.id}" name="product_id">
+                            <input type="hidden" value="${id}" name="order_id">
                             <button type="submit" class="btn mx-3 white__bg__black plus"> +</button>
                         </form>
                         <div class="prise mr-3">
                                 ${String.format("%.2f",(product.key.price*product.value)/100)}
                             <fmt:message key="web.text.rub" bundle="${ rb }"/>
                         </div>
-                        <form action="<c:url value="/page/delete-all-anon"/>" method="post">
+                        <form action="<c:url value="/page/operator/delete-product"/>" method="post">
                             <button class="abc" type="submit">
                                 <i class="fa fa-trash mr-3" aria-hidden="true"></i>
                             </button>
