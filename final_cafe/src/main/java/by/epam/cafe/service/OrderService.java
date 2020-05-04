@@ -27,4 +27,6 @@ public interface OrderService {
     Order findOrCreateCurrentByUserId(Integer id);
 
     Order findCurrentByUserId(Integer id);
+
+    boolean cancelOrDeleteById(Integer idInt);
 }

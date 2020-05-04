@@ -168,4 +168,17 @@ public class OrderServiceImpl implements by.epam.cafe.service.OrderService {
         }
         return current;
     }
+
+    @Override
+    public boolean cancelOrDeleteById(Integer idInt) {
+        Order entityById = findEntityById(idInt);
+        if (entityById.getStatus() == OrderStatus.WAITING) {
+
+            return delete(entityById);
+
+        } else {
+            entityById.setStatus(OrderStatus.CANCELED);
+            return update(entityById);
+        }
+    }
 }

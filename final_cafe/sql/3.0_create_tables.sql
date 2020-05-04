@@ -81,7 +81,7 @@ CREATE TABLE order_product
     product_id integer NOT NULL,
     count      integer NOT NULL,
     CONSTRAINT uk_order_product UNIQUE (order_id, product_id),
-    CONSTRAINT fk_order_product_order FOREIGN KEY (order_id) REFERENCES `order` (id),
+    CONSTRAINT fk_order_product_order FOREIGN KEY (order_id) REFERENCES `order` (id) ON DELETE CASCADE,
     CONSTRAINT fk_order_product_product FOREIGN KEY (product_id) REFERENCES product (id),
     CONSTRAINT ch_count CHECK ( count > 0 )
 );

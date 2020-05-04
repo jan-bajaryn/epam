@@ -79,9 +79,18 @@
                     </td>
                     <td>
                         <a href="<c:url value="/page/edit-order/${order.id}"/>">
-                            <button class="btn orange__bg">
-                                <fmt:message key="web.tab.edit" bundle="${ rb }"/>
-                            </button>
+                            <c:choose>
+                                <c:when test="${order.status eq 'WAITING'}">
+                                    <button class="btn orange__bg" disabled>
+                                        <fmt:message key="web.tab.edit" bundle="${ rb }"/>
+                                    </button>
+                                </c:when>
+                                <c:otherwise>
+                                    <button class="btn orange__bg">
+                                        <fmt:message key="web.tab.edit" bundle="${ rb }"/>
+                                    </button>
+                                </c:otherwise>
+                            </c:choose>
                         </a>
                     </td>
                     <td>

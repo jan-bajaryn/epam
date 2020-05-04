@@ -1,8 +1,6 @@
 package by.epam.cafe.controller.command.postimpl;
 
 import by.epam.cafe.controller.command.PermissionDeniedException;
-import by.epam.cafe.entity.enums.OrderStatus;
-import by.epam.cafe.entity.impl.Order;
 import by.epam.cafe.service.OrderService;
 import by.epam.cafe.service.factory.ServiceFactory;
 import org.apache.logging.log4j.LogManager;
@@ -29,10 +27,7 @@ public class CancelOrder extends by.epam.cafe.controller.command.Command {
         try {
             Integer idInt = Integer.valueOf(id);
 
-            Order entityById = orderService.findEntityById(idInt);
-            entityById.setStatus(OrderStatus.CANCELED);
-            boolean update = orderService.update(entityById);
-            log.debug("executed");
+            boolean update = orderService.cancelOrDeleteById(idInt);
             log.debug("execute: update = {}", update);
             response.sendRedirect(request.getContextPath()+request.getServletPath()+"/order-list");
         } catch (NumberFormatException e) {
