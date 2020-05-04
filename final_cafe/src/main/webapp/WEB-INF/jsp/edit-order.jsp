@@ -5,7 +5,6 @@
 <%@ taglib tagdir="/WEB-INF/tags" prefix="tag" %>
 
 
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -46,9 +45,9 @@
                             <fmt:message key="web.inputs.order-status" bundle="${ rb }"/>
                         </label>
                         <select class="form-control" id="status" name="status">
-                            <option>${order.status}</option>
+                            <option><c:out value="${order.status}"/></option>
                             <c:forEach var="stat" items="${statuses}">
-                                <option>${stat}</option>
+                                <option><c:out value="${stat}"/></option>
                             </c:forEach>
                         </select>
                     </div>
@@ -60,7 +59,7 @@
                         <select class="form-control" id="payment_type" name="payment_type">
                             <option>${order.paymentType}</option>
                             <c:forEach var="type" items="${types}">
-                                <option>${type}</option>
+                                <option><c:out value="${type}"/></option>
                             </c:forEach>
                         </select>
                     </div>
@@ -76,7 +75,7 @@
                             :
                         </label>
                         <input type="text" id="name" name="name" placeholder="Имя"
-                               class="form-control" value="${order.clientName}">
+                               class="form-control" value="<c:out value="${order.clientName}"/>">
                     </div>
                     <div class="time__row">
                         <label for="time">
@@ -93,14 +92,14 @@
                             :
                         </label>
                         <input type="text" class="form-control" placeholder="Улица" id="street"
-                               name="street" value="${order.deliveryInf.street}">
+                               name="street" value="<c:out value="${order.deliveryInf.street}"/>">
                         <label for="house">
                             <fmt:message key="web.inputs.house" bundle="${ rb }"/>
                         </label>
                         <input type="text" class="form-control"
                                placeholder="<fmt:message key="web.inputs.house" bundle="${ rb }"/>"
                                id="house" name="house"
-                               value="${order.deliveryInf.house}">
+                               value="<c:out value="${order.deliveryInf.house}"/>">
                     </div>
                     <div class="sec__row">
                         <label for="room">
@@ -109,21 +108,21 @@
                         <input type="text" class="form-control"
                                placeholder="<fmt:message key="web.inputs.room" bundle="${ rb }"/>"
                                id="room"
-                               name="room" value="${order.deliveryInf.room}">
+                               name="room" value="<c:out value="${order.deliveryInf.room}"/>">
                         <label for="porch">
                             <fmt:message key="web.inputs.porch" bundle="${ rb }"/>
                         </label>
                         <input type="text" class="form-control"
                                placeholder="<fmt:message key="web.inputs.porch" bundle="${ rb }"/>"
                                id="porch"
-                               name="porch" value="${order.deliveryInf.porch}">
+                               name="porch" value="<c:out value="${order.deliveryInf.porch}"/>">
                         <label for="floor">
                             <fmt:message key="web.inputs.floor" bundle="${ rb }"/>
                         </label>
                         <input type="text" class="form-control"
                                placeholder="<fmt:message key="web.inputs.floor" bundle="${ rb }"/>"
                                id="floor" name="floor"
-                               value="${order.deliveryInf.floor}">
+                               value="<c:out value="${order.deliveryInf.floor}"/>">
                     </div>
                     <div class="phone__row">
                         <label for="tel">
@@ -132,7 +131,7 @@
                         <input type="tel" class="form-control"
                                placeholder="<fmt:message key="web.inputs.phone" bundle="${ rb }"/>"
                                id="tel" name="tel"
-                               value="${order.deliveryInf.phone}">
+                               value="<c:out value="${order.deliveryInf.phone}"/>">
                     </div>
                     <div class="email__row">
                         <label for="email">
@@ -141,7 +140,7 @@
                         <input type="email" class="form-control"
                                placeholder="<fmt:message key="web.inputs.email" bundle="${ rb }"/>"
                                id="email"
-                               name="email" value="${order.deliveryInf.email}">
+                               name="email" value="<c:out value="${order.deliveryInf.email}"/>">
                     </div>
                     <div class="comments__row">
                         <label for="comments">
@@ -149,7 +148,7 @@
                         </label>
                         <textarea class="form-control" id="comments" name="comments"
                                   placeholder="<fmt:message key="web.inputs.comments" bundle="${ rb }"/>">
-                                ${order.deliveryInf.comments}
+                            <c:out value="${order.deliveryInf.comments}"/>
                         </textarea>
                     </div>
                 </div>

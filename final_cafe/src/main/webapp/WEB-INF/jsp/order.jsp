@@ -46,10 +46,10 @@
                                 <img src="<c:url value="/static/img/${product.key.productGroup.photoName}"/>" alt="">
                             </div>
                             <div class="product-name">
-                                    ${product.key.productGroup.name}
+                                <c:out value="${product.key.productGroup.name}"/>
                             </div>
                             <div class="product-type text-muted">
-                                    ${product.key.weight} гр.
+                                    ${product.key.weight} <fmt:message key="web.gram" bundle="${ rb }"/>.
                             </div>
                         </div>
                         <div class="flex-part">
@@ -59,7 +59,7 @@
                                         <input type="hidden" value="${product.key.id}" name="variant">
                                         <button type="submit" class="btn mx-3 white__bg__black minus"> -</button>
                                     </form>
-                                    <span>${product.value}</span>
+                                    <span><c:out value="${product.value}"/></span>
                                     <form action='<c:url value="/page/anon/put-item"/>' method="post">
                                         <input type="hidden" value="${product.key.id}" name="variant">
                                         <button type="submit" class="btn mx-3 white__bg__black plus"> +</button>
@@ -83,7 +83,7 @@
                                         <input type="hidden" value="${product.key.id}" name="variant">
                                         <button type="submit" class="btn mx-3 white__bg__black minus"> -</button>
                                     </form>
-                                    <span>${product.value}</span>
+                                    <span><c:out value="${product.value}"/></span>
                                     <form action='<c:url value="/page/client/put-item"/>' method="post">
                                         <input type="hidden" value="${product.key.id}" name="variant">
                                         <button type="submit" class="btn mx-3 white__bg__black plus"> +</button>
@@ -168,7 +168,7 @@
                                                    name="street">
                                             <input type="text" class="form-control"
                                                    placeholder="<fmt:message key="web.inputs.house" bundle="${ rb }"/>"
-                                                    name="house">
+                                                   name="house">
                                         </div>
                                         <div class="sec__row">
                                             <input type="text" class="form-control"
@@ -181,12 +181,12 @@
                                                    name="porch">
                                             <input type="number" class="form-control"
                                                    placeholder="<fmt:message key="web.inputs.floor" bundle="${ rb }"/>"
-                                                    name="floor">
+                                                   name="floor">
                                         </div>
                                         <div class="phone__row">
                                             <input type="tel" class="form-control"
                                                    placeholder="<fmt:message key="web.inputs.phone" bundle="${ rb }"/>"
-                                                    name="tel">
+                                                   name="tel">
                                         </div>
                                         <div class="email__row">
                                             <input type="email" class="form-control"
@@ -224,7 +224,7 @@
                                         <div class="name__row">
                                             <input type="text" id="name" name="name"
                                                    placeholder="<fmt:message key="web.inputs.your-name" bundle="${ rb }"/>"
-                                                   class="form-control" value="${info.name}">
+                                                   class="form-control" value="<c:out value="${info.name}"/>">
                                         </div>
                                         <div class="time__row">
                                             <input type="time" id="time" name="time"
@@ -236,31 +236,31 @@
                                                    placeholder="<fmt:message key="web.inputs.street" bundle="${ rb }"/>"
                                                    id="street"
                                                    name="street"
-                                                   value="${info.street}">
+                                                   value="<c:out value="${info.street}"/>">
                                             <input type="text" class="form-control"
                                                    placeholder="<fmt:message key="web.inputs.house" bundle="${ rb }"/>"
-                                                   id="house" name="house" value="${info.house}">
+                                                   id="house" name="house" value="<c:out value="${info.house}"/>">
                                         </div>
                                         <div class="sec__row">
                                             <input type="text" class="form-control"
                                                    placeholder="<fmt:message key="web.inputs.room" bundle="${ rb }"/>"
-                                                   id="room" name="room" value="${info.room}">
+                                                   id="room" name="room" value="<c:out value="${info.room}"/>">
                                             <input type="number" class="form-control"
                                                    placeholder="<fmt:message key="web.inputs.porch" bundle="${ rb }"/>"
-                                                   id="porch" name="porch" value="${info.porch}">
+                                                   id="porch" name="porch" value="<c:out value="${info.porch}"/>">
                                             <input type="number" class="form-control"
                                                    placeholder="<fmt:message key="web.inputs.floor" bundle="${ rb }"/>"
-                                                   id="floor" name="floor" value="${info.floor}">
+                                                   id="floor" name="floor" value="<c:out value="${info.floor}"/>">
                                         </div>
                                         <div class="phone__row">
                                             <input type="tel" class="form-control"
                                                    placeholder="<fmt:message key="web.inputs.phone" bundle="${ rb }"/>"
-                                                   id="tel" name="tel" value="${info.phone}">
+                                                   id="tel" name="tel" value="<c:out value="${info.phone}"/>">
                                         </div>
                                         <div class="email__row">
                                             <input type="email" class="form-control"
                                                    placeholder="<fmt:message key="web.inputs.email" bundle="${ rb }"/>"
-                                                   id="email" name="email" value="${info.email}">
+                                                   id="email" name="email" value="<c:out value="${info.email}"/>">
                                         </div>
                                         <div class="comments__row">
                                     <textarea class="form-control" id="comments" name="comments"
@@ -286,12 +286,10 @@
 <c:import url="fragments/footer.jsp"/>
 
 
-<%--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>--%>
 <tag:impfoot/>
 
 
 <script src="<c:url value="/static/js/order/modals.js"/>"></script>
-<%--<script src="/static/js/order/plus_minus.js"></script>--%>
 
 
 </body>

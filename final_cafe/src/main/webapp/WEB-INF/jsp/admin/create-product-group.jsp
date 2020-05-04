@@ -60,7 +60,7 @@
                 </label>
                 <select class="form-control" id="type" name="type">
                     <c:forEach var="t" items="${types}">
-                        <option>${t}</option>
+                        <option><c:out value="${t}"/></option>
                     </c:forEach>
                 </select>
             </div>

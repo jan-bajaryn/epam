@@ -63,9 +63,9 @@
                     <td>${order.status}</td>
                     <td>
                         <c:if test="${order.deliveryInf!=null}">
-                            <span>${order.deliveryInf.street}</span>
+                            <span><c:out value="${order.deliveryInf.street}"/></span>
                             &nbsp;
-                            <span>${order.deliveryInf.house}</span>
+                            <span><c:out value="${order.deliveryInf.house}"/></span>
                         </c:if>
                     </td>
                     <td>${order.price}</td>

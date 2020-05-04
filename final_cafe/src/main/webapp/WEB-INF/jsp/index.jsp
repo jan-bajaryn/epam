@@ -39,14 +39,14 @@
                         <img src="<c:url value="/static/img/${product_group.key.getPhotoName()}"/>" alt="">
                     </div>
                     <div class="p_card-name">
-                            ${product_group.key.getName()}
+                            <c:out value="${product_group.key.getName()}"/>
                     </div>
                     <div class="p_card-description text-muted">
-                            ${product_group.key.getDescription()}
+                            <c:out value="${product_group.key.getDescription()}"/>
                     </div>
                     <div class="p_card-footer md-2">
                     <span>
-                        от ${product_group.value} руб.
+                        <fmt:message key="web.text.from" bundle="${ rb }"/> ${product_group.value} <fmt:message key="web.text.rub" bundle="${ rb }"/>.
                     </span>
                         <button class="btn mr-5 myBtn">
                             <fmt:message key="web.btn.choose" bundle="${ rb }"/>
@@ -62,10 +62,10 @@
                                                      alt="Photo"/>
                                                 <div class="content__description">
                                                     <div class="header">
-                                                            ${product_group.key.getName()}
+                                                            <c:out value="${product_group.key.getName()}"/>
                                                     </div>
                                                     <div class="description text-muted">
-                                                            ${product_group.key.getDescription()}
+                                                            <c:out value="${product_group.key.getDescription()}"/>
                                                     </div>
                                                     <div>
                                                         <c:forEach var="product" items="${product_group.key.products}">
@@ -99,10 +99,10 @@
                                                      alt="Photo"/>
                                                 <div class="content__description">
                                                     <div class="header">
-                                                            ${product_group.key.getName()}
+                                                            <c:out value="${product_group.key.getName()}"/>
                                                     </div>
                                                     <div class="description text-muted">
-                                                            ${product_group.key.getDescription()}
+                                                            <c:out value="${product_group.key.getDescription()}"/>
                                                     </div>
                                                     <div>
                                                         <c:forEach var="product" items="${product_group.key.products}">
@@ -136,10 +136,10 @@
                                                      alt="Photo"/>
                                                 <div class="content__description">
                                                     <div class="header">
-                                                            ${product_group.key.getName()}
+                                                            <c:out value="${product_group.key.getName()}"/>
                                                     </div>
                                                     <div class="description text-muted">
-                                                            ${product_group.key.getDescription()}
+                                                            <c:out value="${product_group.key.getDescription()}"/>
                                                     </div>
                                                     <div>
                                                         <c:forEach var="product" items="${product_group.key.products}">

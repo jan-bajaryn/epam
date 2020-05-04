@@ -63,7 +63,7 @@
                     <td>${p.id}</td>
                     <td>${p.price}</td>
                     <td>${p.weight}</td>
-                    <td>${p.productGroup.name}</td>
+                    <td><c:out value="${p.productGroup.name}"/></td>
                     <td>
                         <a href="<c:url value="/page/admin/edit-product/${p.id}"/>">
                             <button class="btn orange__bg">

@@ -47,7 +47,7 @@
                     </label>
                     <input type="text" id="username" name="username"
                            placeholder="<fmt:message key="web.inputs.username" bundle="${ rb }"/>"
-                           class="form-control" value="${user.username}">
+                           class="form-control" value="<c:out value="${user.username}"/>">
                 </div>
 
                 <div class="password">
@@ -56,7 +56,7 @@
                     </label>
                     <input type="text" id="password" name="password"
                            placeholder="<fmt:message key="web.inputs.password" bundle="${ rb }"/>"
-                           class="form-control" value="${user.password}">
+                           class="form-control" value="<c:out value="${user.password}"/>">
                 </div>
 
                 <div class="role__row">
@@ -77,7 +77,7 @@
                     </label>
                     <input type="text" id="name" name="name"
                            placeholder="<fmt:message key="web.inputs.name" bundle="${ rb }"/>"
-                           class="form-control" value="${user.name}">
+                           class="form-control" value="<c:out value="${user.name}"/>">
                 </div>
 
                 <div class="surname__row">
@@ -86,7 +86,7 @@
                     </label>
                     <input type="text" id="surname" name="surname"
                            placeholder="<fmt:message key="web.inputs.surname" bundle="${ rb }"/>"
-                           class="form-control" value="${user.surname}">
+                           class="form-control" value="<c:out value="${user.surname}"/>">
                 </div>
 
                 <div class="street">
@@ -95,7 +95,7 @@
                     </label>
                     <input type="text" id="street" name="street"
                            placeholder="<fmt:message key="web.inputs.street" bundle="${ rb }"/>"
-                           class="form-control" value="${user.street}">
+                           class="form-control" value="<c:out value="${user.street}"/>">
                 </div>
                 <div class="house">
                     <label for="house">
@@ -103,7 +103,7 @@
                     </label>
                     <input type="text" id="house" name="house"
                            placeholder="<fmt:message key="web.inputs.house" bundle="${ rb }"/>"
-                           class="form-control" value="${user.house}">
+                           class="form-control" value="<c:out value="${user.house}"/>">
                 </div>
                 <div class="room">
                     <label for="room">
@@ -111,7 +111,7 @@
                     </label>
                     <input type="text" id="room" name="room"
                            placeholder="<fmt:message key="web.inputs.room" bundle="${ rb }"/>"
-                           class="form-control" value="${user.room}">
+                           class="form-control" value="<c:out value="${user.room}"/>">
                 </div>
 
                 <div class="porch">
@@ -120,7 +120,7 @@
                     </label>
                     <input type="text" id="porch" name="porch"
                            placeholder="<fmt:message key="web.inputs.porch" bundle="${ rb }"/>"
-                           class="form-control" value="${user.porch}">
+                           class="form-control" value="<c:out value="${user.porch}"/>">
                 </div>
 
                 <div class="floor">
@@ -129,7 +129,7 @@
                     </label>
                     <input type="text" id="floor" name="floor"
                            placeholder="<fmt:message key="web.inputs.floor" bundle="${ rb }"/>"
-                           class="form-control" value="${user.floor}">
+                           class="form-control" value="<c:out value="${user.floor}"/>">
                 </div>
 
                 <div class="phone">
@@ -138,7 +138,7 @@
                     </label>
                     <input type="text" id="phone" name="phone"
                            placeholder="<fmt:message key="web.inputs.phone" bundle="${ rb }"/>"
-                           class="form-control" value="${user.phone}">
+                           class="form-control" value="<c:out value="${user.phone}"/>">
                 </div>
 
                 <div class="email">
@@ -147,7 +147,7 @@
                     </label>
                     <input type="email" id="email" name="email"
                            placeholder="<fmt:message key="web.inputs.email" bundle="${ rb }"/>"
-                           class="form-control" value="${user.email}">
+                           class="form-control" value="<c:out value="${user.email}"/>">
                 </div>
 
                 <div class="isBlocked">

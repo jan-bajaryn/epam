@@ -46,7 +46,7 @@
                     </label>
                     <select class="form-control" id="product_group" name="product_group">
                         <c:if test="${product.productGroup!=null}">
-                            <option value="${product.productGroup.id}">${product.productGroup.name}</option>
+                            <option value="${product.productGroup.id}"><c:out value="${product.productGroup.name}"/></option>
                             <option value="">
                                 <fmt:message key="web.text.empty" bundle="${ rb }"/>
                             </option>
@@ -57,7 +57,7 @@
                             </option>
                         </c:if>
                         <c:forEach var="g" items="${groups}">
-                            <option value="${g.id}">${g.name}</option>
+                            <option value="${g.id}"><c:out value="${g.name}"/></option>
                         </c:forEach>
                     </select>
                 </div>

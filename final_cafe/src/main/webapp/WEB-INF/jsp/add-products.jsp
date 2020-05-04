@@ -39,7 +39,7 @@
                             <img src="<c:url value="/static/img/${product.key.productGroup.photoName}"/>" alt="">
                         </div>
                         <div class="product-name">
-                                ${product.key.productGroup.name}
+                                <c:out value="${product.key.productGroup.name}"/>
                         </div>
                         <div class="product-type text-muted">
                                 ${product.key.weight} гр.
@@ -51,7 +51,7 @@
                             <input type="hidden" value="${id}" name="order_id">
                             <button type="submit" class="btn mx-3 white__bg__black minus"> -</button>
                         </form>
-                        <span>${product.value}</span>
+                        <span><c:out value="${product.value}"/></span>
                         <form action='<c:url value="/page/operator/plus-product"/>' method="post">
                             <input type="hidden" value="${product.key.id}" name="product_id">
                             <input type="hidden" value="${id}" name="order_id">
@@ -84,7 +84,7 @@
                             <img src="<c:url value="/static/img/${product.key.productGroup.photoName}"/>" alt="">
                         </div>
                         <div class="product-name">
-                                ${product.key.productGroup.name}
+                                <c:out value="${product.key.productGroup.name}"/>
                         </div>
                         <div class="product-type text-muted">
                                 ${product.key.weight} гр.
@@ -96,7 +96,7 @@
                             <input type="hidden" value="${id}" name="order_id">
                             <button type="submit" class="btn mx-3 white__bg__black minus" disabled> -</button>
                         </form>
-                        <span>${product.value}</span>
+                        <span><c:out value="${product.value}"/></span>
                         <form action='<c:url value="/page/operator/plus-product"/>' method="post">
                             <input type="hidden" value="${product.key.id}" name="product_id">
                             <input type="hidden" value="${id}" name="order_id">
@@ -125,7 +125,7 @@
         <div class="sum-text">
             <fmt:message key="web.text.sum-order" bundle="${ rb }"/>
         </div>
-        <div class="sum-price"> ${sum}
+        <div class="sum-price"> <c:out value="${sum}"/>
             <fmt:message key="web.text.rub" bundle="${ rb }"/>
         </div>
     </div>

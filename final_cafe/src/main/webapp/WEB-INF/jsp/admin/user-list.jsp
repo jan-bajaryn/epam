@@ -78,19 +78,19 @@
                     <td>${u.id}</td>
                     <td>${u.blocked}</td>
                     <td>${u.role}</td>
-                    <td>${u.username}</td>
-                    <td>${u.name}</td>
-                    <td>${u.surname}</td>
+                    <td><c:out value="${u.username}"/></td>
+                    <td><c:out value="${u.name}"/></td>
+                    <td><c:out value="${u.surname}"/></td>
                     <td>
-                        <span>${u.street}</span>
+                        <span><c:out value="${u.street}"/></span>
                         &nbsp;
-                        <span>${u.house}</span>
+                        <span><c:out value="${u.house}"/></span>
                         &nbsp;
-                        <span>${u.room}</span>
+                        <span><c:out value="${u.room}"/></span>
                         &nbsp;
-                        <span>${u.porch}</span>
+                        <span><c:out value="${u.porch}"/></span>
                         &nbsp;
-                        <span>${u.floor}</span>
+                        <span><c:out value="${u.floor}"/></span>
                         &nbsp;
                     </td>
                     <td>

@@ -44,7 +44,7 @@
                 </label>
                 <input type="text" id="name" name="name"
                        placeholder="<fmt:message key="web.inputs.name" bundle="${ rb }"/>"
-                       class="form-control" value="${group.name}">
+                       class="form-control" value="<c:out value="${group.name}"/>">
             </div>
 
             <div class="description">
@@ -53,7 +53,7 @@
                 </label>
                 <input type="text" id="description" name="description"
                        placeholder="<fmt:message key="web.inputs.description" bundle="${ rb }"/>"
-                       class="form-control" value="${group.description}">
+                       class="form-control" value="<c:out value="${group.description}"/>">
             </div>
 
             <div class="custom-file">
@@ -67,9 +67,9 @@
                     <fmt:message key="web.inputs.type" bundle="${ rb }"/>
                 </label>
                 <select class="form-control" id="type" name="type">
-                    <option>${group.type}</option>
+                    <option><c:out value="${group.type}"/></option>
                     <c:forEach var="t" items="${types}">
-                        <option>${t}</option>
+                        <option><c:out value="${t}"/></option>
                     </c:forEach>
                 </select>
             </div>

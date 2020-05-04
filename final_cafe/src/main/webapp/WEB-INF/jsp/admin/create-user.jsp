@@ -56,7 +56,7 @@
                 </c:if>
                 <input type="text" id="password" name="password"
                        placeholder="<fmt:message key="web.inputs.password" bundle="${ rb }"/>"
-                       class="form-control" value="${redirect_password}">
+                       class="form-control" value="<c:out value="${redirect_password}"/>">
             </div>
 
             <div class="role__row">
@@ -69,7 +69,7 @@
                     </span>
                 </c:if>
                 <select class="form-control" id="role" name="role">
-                    <option>${redirect_role}</option>
+                    <option><c:out value="${redirect_role}"/></option>
                     <c:forEach var="role" items="${roles}">
                         <option>${role}</option>
                     </c:forEach>
@@ -88,7 +88,7 @@
                 </c:if>
                 <input type="text" id="name" name="name"
                        placeholder="<fmt:message key="web.inputs.name" bundle="${ rb }"/>"
-                       class="form-control" value="${redirect_name}">
+                       class="form-control" value="<c:out value="${redirect_name}"/>">
             </div>
 
             <div class="surname__row">
@@ -102,7 +102,7 @@
                 </c:if>
                 <input type="text" id="surname" name="surname"
                        placeholder="<fmt:message key="web.inputs.surname" bundle="${ rb }"/>"
-                       class="form-control" value="${redirect_surname}">
+                       class="form-control" value="<c:out value="${redirect_surname}"/>">
             </div>
 
             <div class="street">
@@ -116,7 +116,7 @@
                 </c:if>
                 <input type="text" id="street" name="street"
                        placeholder="<fmt:message key="web.inputs.street" bundle="${ rb }"/>"
-                       class="form-control" value="${redirect_street}">
+                       class="form-control" value="<c:out value="${redirect_street}"/>">
             </div>
             <div class="house">
                 <label for="house">
@@ -130,7 +130,7 @@
 
                 <input type="text" id="house" name="house"
                        placeholder="<fmt:message key="web.inputs.house" bundle="${ rb }"/>"
-                       class="form-control" value="${redirect_house}">
+                       class="form-control" value="<c:out value="${redirect_house}"/>">
             </div>
             <div class="room">
                 <label for="room">
@@ -143,7 +143,7 @@
                 </c:if>
                 <input type="text" id="room" name="room"
                        placeholder="<fmt:message key="web.inputs.room" bundle="${ rb }"/>"
-                       class="form-control" value="${redirect_room}">
+                       class="form-control" value="<c:out value="${redirect_room}"/>">
             </div>
 
             <div class="porch">
@@ -157,7 +157,7 @@
                 </c:if>
                 <input type="text" id="porch" name="porch"
                        placeholder="<fmt:message key="web.inputs.porch" bundle="${ rb }"/>"
-                       class="form-control" value="${redirect_porch}">
+                       class="form-control" value="<c:out value="${redirect_porch}"/>">
             </div>
 
             <div class="floor">
@@ -171,7 +171,7 @@
                 </c:if>
                 <input type="text" id="floor" name="floor"
                        placeholder="<fmt:message key="web.inputs.floor" bundle="${ rb }"/>"
-                       class="form-control" value="${redirect_floor}">
+                       class="form-control" value="<c:out value="${redirect_floor}"/>">
             </div>
 
             <div class="phone">
@@ -186,7 +186,7 @@
                 </c:if>
                 <input type="text" id="phone" name="phone"
                        placeholder="<fmt:message key="web.inputs.phone" bundle="${ rb }"/>"
-                       class="form-control" value="${redirect_phone}">
+                       class="form-control" value="<c:out value="${redirect_phone}"/>">
             </div>
 
             <div class="email">
@@ -200,7 +200,7 @@
                 </c:if>
                 <input type="email" id="email" name="email"
                        placeholder="<fmt:message key="web.inputs.email" bundle="${ rb }"/>"
-                       class="form-control" value="${redirect_email}">
+                       class="form-control" value="<c:out value="${redirect_email}"/>">
             </div>
             <div class="submit">
                 <label for="submit"></label>

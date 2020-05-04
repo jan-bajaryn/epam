@@ -75,8 +75,8 @@
             <tr>
                 <td><img src="<c:url value="/static/img/${p.photoName}"/>" alt="Photo"></td>
                 <td>${p.id}</td>
-                <td>${p.name}</td>
-                <td>${p.description}</td>
+                <td><c:out value="${p.name}"/></td>
+                <td><c:out value="${p.description}"/></td>
                 <td>${p.type}</td>
                 <td>${p.disabled}</td>
                 <td>

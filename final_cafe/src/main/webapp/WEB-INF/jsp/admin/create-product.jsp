@@ -39,7 +39,7 @@
                         <fmt:message key="web.text.empty" bundle="${ rb }"/>
                     </option>
                     <c:forEach var="g" items="${groups}">
-                        <option value="${g.id}">${g.name}</option>
+                        <option value="${g.id}"><c:out value="${g.name}"/></option>
                     </c:forEach>
                 </select>
             </div>

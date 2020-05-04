@@ -52,7 +52,7 @@
         <c:if test="${not empty target_url}">
             <input type="hidden"
                    name="target_url"
-                   value="${target_url}"/>
+                   value="<c:out value="${target_url}"/>"/>
         </c:if>
         <%--        <input type="hidden"--%>
         <%--               name="${_csrf.parameterName}"--%>

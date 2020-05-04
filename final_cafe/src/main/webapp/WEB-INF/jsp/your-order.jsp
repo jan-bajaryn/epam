@@ -27,7 +27,7 @@
             <td>
                 <fmt:message key="web.inputs.name" bundle="${ rb }"/>
             </td>
-            <td>${order.clientName}</td>
+            <td><c:out value="${order.clientName}"/></td>
         </tr>
         <tr>
             <td>
@@ -39,49 +39,49 @@
             <td>
                 <fmt:message key="web.inputs.street" bundle="${ rb }"/>
             </td>
-            <td>${order.deliveryInf.street}</td>
+            <td><c:out value="${order.deliveryInf.street}"/></td>
         </tr>
         <tr>
             <td>
                 <fmt:message key="web.inputs.house" bundle="${ rb }"/>
             </td>
-            <td>${order.deliveryInf.house}</td>
+            <td><c:out value="${order.deliveryInf.house}"/></td>
         </tr>
         <tr>
             <td>
                 <fmt:message key="web.inputs.room" bundle="${ rb }"/>
             </td>
-            <td>${order.deliveryInf.room}</td>
+            <td><c:out value="${order.deliveryInf.room}"/></td>
         </tr>
         <tr>
             <td>
                 <fmt:message key="web.inputs.porch" bundle="${ rb }"/>
             </td>
-            <td>${order.deliveryInf.porch}</td>
+            <td><c:out value="${order.deliveryInf.porch}"/></td>
         </tr>
         <tr>
             <td>
                 <fmt:message key="web.inputs.floor" bundle="${ rb }"/>
             </td>
-            <td>${order.deliveryInf.floor}</td>
+            <td><c:out value="${order.deliveryInf.floor}"/></td>
         </tr>
         <tr>
             <td>
                 <fmt:message key="web.inputs.email" bundle="${ rb }"/>
             </td>
-            <td>${order.deliveryInf.email}</td>
+            <td><c:out value="${order.deliveryInf.email}"/></td>
         </tr>
         <tr>
             <td>
                 <fmt:message key="web.inputs.phone" bundle="${ rb }"/>
             </td>
-            <td>${order.deliveryInf.phone}</td>
+            <td><c:out value="${order.deliveryInf.phone}"/></td>
         </tr>
         <tr>
             <td>
                 <fmt:message key="web.tab.delivery-time" bundle="${ rb }"/>
             </td>
-            <td>${order.deliveryInf.deliveryTime}</td>
+            <td><c:out value="${order.deliveryInf.deliveryTime}"/></td>
         </tr>
         <tr>
             <td>
@@ -102,7 +102,7 @@
                             <img src="<c:url value="/static/img/${product.key.productGroup.photoName}"/>" alt="">
                         </div>
                         <div class="product-name">
-                                ${product.key.productGroup.name}
+                                <c:out value="${product.key.productGroup.name}"/>
                         </div>
                         <div class="product-type text-muted">
                                 ${product.key.weight} <fmt:message key="web.gram" bundle="${ rb }"/>.
