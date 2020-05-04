@@ -6,6 +6,7 @@ import by.epam.cafe.entity.impl.User;
 import by.epam.cafe.service.UserService;
 import by.epam.cafe.service.factory.ServiceFactory;
 import by.epam.cafe.service.parser.NullIfEmptyService;
+import by.epam.cafe.service.parser.parts.impl.*;
 import by.epam.cafe.service.validator.UserValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -13,12 +14,22 @@ import org.apache.logging.log4j.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
+
+import static by.epam.cafe.controller.filter.RedirectFilter.REDIRECTED_INFO;
 
 public class CreateUser extends by.epam.cafe.controller.command.Command {
 
+
+
+
     private static final Logger log = LogManager.getLogger(CreateUser.class);
+    private static final String POSTFIX = "_error";
     private final ServiceFactory serviceFactory = ServiceFactory.getInstance();
 
     private final UserService userService = serviceFactory.getUserService();
@@ -26,57 +37,112 @@ public class CreateUser extends by.epam.cafe.controller.command.Command {
 
     private final NullIfEmptyService nullEmpt = serviceFactory.getNullIfEmptyService();
 
+    private final EmailParser emailParser = serviceFactory.getEmailParser();
+    private final FloorParser floorParser = serviceFactory.getFloorParser();
+    private final HouseParser houseParser = serviceFactory.getHouseParser();
+    private final NameParser nameParser = serviceFactory.getNameParser();
+    private final PasswordParser passwordParser = serviceFactory.getPasswordParser();
+    private final PhoneParser phoneParser = serviceFactory.getPhoneParser();
+    private final PorchParser porchParser = serviceFactory.getPorchParser();
+    private final RoleParser roleParser = serviceFactory.getRoleParser();
+    private final RoomParser roomParser = serviceFactory.getRoomParser();
+    private final StreetParser streetParser = serviceFactory.getStreetParser();
+    private final UsernameParser usernameParser = serviceFactory.getUsernameParser();
+    private final SurnameParser surnameParser = serviceFactory.getSurnameParser();
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PermissionDeniedException {
-        try {
-            User build = buildUser(request);
+            String referrer = request.getHeader("referer");
 
-            if (userValidator.validWithoutId(build) && userService.create(build)!=null) {
-                response.sendRedirect(request.getContextPath() + request.getServletPath() + "/admin/user-list");
+            User build = validateAndTakeParams(request);
+
+            if (build != null) {
+                if (userService.create(build) != null) {
+                    response.sendRedirect(request.getContextPath() + request.getServletPath() + "/admin/user-list");
+                } else {
+                    request.setAttribute("unknown_error", "true");
+                    response.sendRedirect(referrer);
+                }
             } else {
-                response.sendRedirect(request.getContextPath() + request.getServletPath() + "/something_went_wrong");
+                response.sendRedirect(referrer);
             }
-
-
-        } catch (IllegalArgumentException | NullPointerException e) {
-            log.error("e:", e);
-            String path = request.getContextPath() + request.getServletPath();
-            log.info("execute: path = {}", path);
-            response.sendRedirect(path + "/something_went_wrong");
-        }
-
 
     }
 
-    private User buildUser(HttpServletRequest request) {
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        String role = request.getParameter("role");
-        String name = request.getParameter("name");
-        String surname = request.getParameter("surname");
-        String house = request.getParameter("house");
-        String room = request.getParameter("room");
-        String porch = request.getParameter("porch");
-        String floor = request.getParameter("floor");
-        String phone = request.getParameter("phone");
-        String email = request.getParameter("email");
-        String street = request.getParameter("street");
-        return User.newBuilder()
-                .username(username)
-                .password(password)
-                .role(Role.valueOf(role))
-                .name(name)
-                .surname(surname)
-                .house(nullEmpt.nullIfEmptyString(house))
-                .room(nullEmpt.nullIfEmptyString(room))
-                .porch(nullEmpt.nullIfEmptyInteger(porch))
-                .floor(nullEmpt.nullIfEmptyInteger(floor))
-                .phone(nullEmpt.nullIfEmptyString(phone))
-                .email(email)
-                .creation(LocalDateTime.now())
-                .isBlocked(false)
-                .street(nullEmpt.nullIfEmptyString(street))
-                .build();
+    private User validateAndTakeParams(HttpServletRequest req) {
+
+        Map<String, String> redirect = new HashMap<>();
+
+        String usernameParam = req.getParameter("username");
+        String passwordParam = req.getParameter("password");
+        String roleParam = req.getParameter("role");
+        String nameParam = req.getParameter("name");
+        String surnameParam = req.getParameter("surname");
+        String houseParam = req.getParameter("house");
+        String roomParam = req.getParameter("room");
+        String porchParam = req.getParameter("porch");
+        String floorParam = req.getParameter("floor");
+        String phoneParam = req.getParameter("phone");
+        String emailParam = req.getParameter("email");
+        String streetParam = req.getParameter("street");
+
+        Optional<String> username = usernameParser.parse(usernameParam);
+        Optional<String> password = passwordParser.parse(passwordParam);
+        Optional<Role> role = roleParser.parse(roleParam);
+        Optional<String> name = nameParser.parse(nameParam);
+        Optional<String> surname = surnameParser.parse(surnameParam);
+        Optional<String> house = houseParser.parse(houseParam);
+        Optional<String> room = roomParser.parse(roomParam);
+        Optional<Integer> porch = porchParser.parse(porchParam);
+        Optional<Integer> floor = floorParser.parse(floorParam);
+        Optional<String> phone = phoneParser.parse(phoneParam);
+        Optional<String> email = emailParser.parse(emailParam);
+        Optional<String> street = streetParser.parse(streetParam);
+
+        boolean result = validateAndPut(redirect, username, "username", usernameParam) &
+                validateAndPut(redirect, password, "password", passwordParam) &
+                validateAndPut(redirect, role, "role", roleParam) &
+                validateAndPut(redirect, name, "name", nameParam) &
+                validateAndPut(redirect, surname, "surname", surnameParam) &
+                validateAndPut(redirect, house, "house", houseParam) &
+                validateAndPut(redirect, room, "room", roomParam) &
+                validateAndPut(redirect, porch, "porch", porchParam) &
+                validateAndPut(redirect, floor, "floor", floorParam) &
+                validateAndPut(redirect, phone, "phone", phoneParam) &
+                validateAndPut(redirect, email, "email", emailParam) &
+                validateAndPut(redirect, street, "street", streetParam);
+
+        if (result) {
+            return User.newBuilder()
+                    .username(username.get())
+                    .password(password.get())
+                    .role(role.get())
+                    .name(name.get())
+                    .surname(surname.get())
+                    .house(house.get())
+                    .room(room.get())
+                    .porch(porch.get())
+                    .floor(floor.get())
+                    .phone(phone.get())
+                    .email(email.get())
+                    .creation(LocalDateTime.now())
+                    .isBlocked(false)
+                    .street(street.get())
+                    .build();
+        } else {
+            req.getSession().setAttribute(REDIRECTED_INFO, redirect);
+            return null;
+        }
+    }
+
+    private boolean validateAndPut(Map<String, String> redirect, Optional<?> optional, String label, String param) {
+        redirect.put(label, param);
+        if (optional.isEmpty()) {
+            redirect.put(label + POSTFIX, "true");
+            return false;
+        }
+        log.debug("label = {}", label);
+        log.debug("param = {}", param);
+        return true;
     }
 }

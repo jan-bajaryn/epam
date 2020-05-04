@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.Locale;
 
 @SuppressWarnings("serial")
-public class RevenueTableTag extends TagSupport {
+public class    RevenueTableTag extends TagSupport {
     private String head;
     private int rows;
 

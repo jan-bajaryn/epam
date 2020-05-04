@@ -2,21 +2,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--<jsp:useBean id="productMap" scope="request" type="java.util.Map<by.epam.cafe.entity.impl.Product,java.lang.Integer>"/>--%>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="tag" %>
 
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Title</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
-          integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
-          integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
-          crossorigin="anonymous">
-    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <tag:imphead/>
+
     <link rel="stylesheet" href="<c:url value='/static/css/order/main.css' />">
     <link rel="stylesheet" href="<c:url value='/static/css/order/modals.css' />">
 </head>
@@ -160,50 +153,48 @@
 
 
                                         <div class="name__row">
-                                            <input type="text" id="name" name="name"
+                                            <input type="text" name="name"
                                                    placeholder="<fmt:message key="web.inputs.your-name" bundle="${ rb }"/>"
                                                    class="form-control">
                                         </div>
                                         <div class="time__row">
-                                            <input type="time" id="time" name="time"
+                                            <input type="time" name="time"
                                                    placeholder="<fmt:message key="web.inputs.date-deliver" bundle="${ rb }"/>"
                                                    class="form-control">
                                         </div>
                                         <div class="first__row">
                                             <input type="text" class="form-control"
                                                    placeholder="<fmt:message key="web.inputs.street" bundle="${ rb }"/>"
-                                                   id="street"
                                                    name="street">
                                             <input type="text" class="form-control"
                                                    placeholder="<fmt:message key="web.inputs.house" bundle="${ rb }"/>"
-                                                   id="house" name="house">
+                                                    name="house">
                                         </div>
                                         <div class="sec__row">
                                             <input type="text" class="form-control"
                                                    placeholder="<fmt:message key="web.inputs.room" bundle="${ rb }"/>"
-                                                   id="room"
+
                                                    name="room">
                                             <input type="number" class="form-control"
                                                    placeholder="<fmt:message key="web.inputs.porch" bundle="${ rb }"/>"
-                                                   id="porch"
+
                                                    name="porch">
                                             <input type="number" class="form-control"
                                                    placeholder="<fmt:message key="web.inputs.floor" bundle="${ rb }"/>"
-                                                   id="floor" name="floor">
+                                                    name="floor">
                                         </div>
                                         <div class="phone__row">
                                             <input type="tel" class="form-control"
                                                    placeholder="<fmt:message key="web.inputs.phone" bundle="${ rb }"/>"
-                                                   id="tel" name="tel">
+                                                    name="tel">
                                         </div>
                                         <div class="email__row">
                                             <input type="email" class="form-control"
                                                    placeholder="<fmt:message key="web.inputs.email" bundle="${ rb }"/>"
-                                                   id="email"
                                                    name="email">
                                         </div>
                                         <div class="comments__row">
-                                    <textarea class="form-control" id="comments" name="comments"
+                                    <textarea class="form-control" name="comments"
                                               placeholder="<fmt:message key="web.inputs.comments" bundle="${ rb }"/>"></textarea>
                                         </div>
                                     </div>
@@ -296,11 +287,8 @@
 
 
 <%--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>--%>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
-        integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
-        crossorigin="anonymous"></script>
+<tag:impfoot/>
+
 
 <script src="<c:url value="/static/js/order/modals.js"/>"></script>
 <%--<script src="/static/js/order/plus_minus.js"></script>--%>

@@ -1,0 +1,8 @@
+.error__message {
+    color: red;
+    margin-left: 20px;
+}
+
+.error__message:not([hidden]) + input, .error__message:not([hidden]) + select {
+    border-color: red;
+}
