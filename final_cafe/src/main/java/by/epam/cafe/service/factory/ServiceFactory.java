@@ -1,9 +1,13 @@
 package by.epam.cafe.service.factory;
 
+import by.epam.cafe.entity.impl.ProductGroup;
 import by.epam.cafe.service.*;
 import by.epam.cafe.service.impl.*;
 import by.epam.cafe.service.parser.NullIfEmptyService;
 import by.epam.cafe.service.parser.PathVarCalculator;
+import by.epam.cafe.service.parser.full.ProductGroupParser;
+import by.epam.cafe.service.parser.full.ProductParser;
+import by.epam.cafe.service.parser.full.UserParser;
 import by.epam.cafe.service.parser.impl.NullIfEmptyServiceImpl;
 import by.epam.cafe.service.parser.impl.PathVarCalculatorImpl;
 import by.epam.cafe.service.parser.parts.impl.*;
@@ -48,6 +52,9 @@ public class ServiceFactory {
     private final UsernameParser usernameParser = new UsernameParser();
     private final SurnameParser surnameParser = new SurnameParser();
 
+    private  final UserParser userParser = new UserParser();
+    private final ProductParser productParser = new ProductParser();
+    private final ProductGroupParser productGroupParser = new ProductGroupParser();
 
     private final ImageWriterService imageWriterService = new ImageWriterService();
 
@@ -153,5 +160,17 @@ public class ServiceFactory {
 
     public SurnameParser getSurnameParser() {
         return surnameParser;
+    }
+
+    public UserParser getUserParser() {
+        return userParser;
+    }
+
+    public ProductParser getProductParser() {
+        return productParser;
+    }
+
+    public ProductGroupParser getProductGroupParser() {
+        return productGroupParser;
     }
 }

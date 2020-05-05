@@ -29,8 +29,6 @@ public interface ProductGroupService {
 
     List<ProductGroup> findAllExcept(ProductGroup productGroup) throws NullParamDaoException, ServiceException;
 
-    ProductGroup parseRequest(HttpServletRequest request);
-
     void disableById(Integer id) throws ServiceException;
 
     void enableById(Integer id) throws ServiceException;

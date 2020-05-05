@@ -253,27 +253,6 @@ public class ProductGroupServiceImpl implements by.epam.cafe.service.ProductGrou
     }
 
 
-    // TODO List<FileItem> instead of request
-    @Override
-    public ProductGroup parseRequest(HttpServletRequest request) {
-        try {
-
-            ProductGroup productGroup = new ProductGroup();
-
-            ServletFileUpload fileUpload = new ServletFileUpload(FILE_ITEM_FACTORY);
-            List<FileItem> parts = fileUpload.parseRequest(request);
-
-            for (FileItem part : parts) {
-                log(part);
-
-                fillFields(productGroup, part);
-            }
-            return productGroup;
-        } catch (FileUploadException e) {
-            log.error("e: ", e);
-            return null;
-        }
-    }
 
     @Override
     public void disableById(Integer id) throws ServiceException {
@@ -304,49 +283,6 @@ public class ProductGroupServiceImpl implements by.epam.cafe.service.ProductGrou
             }
         } catch (DaoException e) {
             throw new ServiceException();
-        }
-
-    }
-
-    private void fillFields(ProductGroup productGroup, FileItem part) {
-
-        File file = null;
-
-        try {
-            switch (part.getFieldName()) {
-                case "name":
-                    productGroup.setName(part.getString());
-                    break;
-                case "type":
-                    productGroup.setType(ProductType.valueOf(part.getString()));
-                    break;
-                case "description":
-                    productGroup.setDescription(part.getString());
-                    break;
-                case "products":
-                    productGroup.getProducts().add(
-                            Product.newBuilder().id(Integer.valueOf(part.getString())).build()
-                    );
-                    break;
-                case "file":
-                    file = imageWriterService.downloadFile(part);
-                    productGroup.setPhotoName(file.getName());
-                    break;
-                case "id":
-                    productGroup.setId(Integer.valueOf(part.getString()));
-                    break;
-                case "disabled":
-                    // TODO check that
-                    productGroup.setDisabled(part.getString().equals("1"));
-                    break;
-                default:
-                    log.error("irregular field");
-            }
-        } catch (Exception e) {
-            if (file != null) {
-                // TODO check security
-                file.delete();
-            }
         }
 
     }
