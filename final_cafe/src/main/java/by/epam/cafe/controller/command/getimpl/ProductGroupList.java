@@ -3,6 +3,7 @@ package by.epam.cafe.controller.command.getimpl;
 import by.epam.cafe.dao.exception.NullParamDaoException;
 import by.epam.cafe.entity.impl.ProductGroup;
 import by.epam.cafe.service.ProductGroupService;
+import by.epam.cafe.service.exception.ServiceException;
 import by.epam.cafe.service.factory.ServiceFactory;
 
 import javax.servlet.ServletException;
@@ -23,7 +24,7 @@ public class ProductGroupList extends by.epam.cafe.controller.command.Command {
             List<ProductGroup> all = productGroupService.findAll();
             request.setAttribute("groups", all);
             request.getRequestDispatcher("/WEB-INF/jsp/admin/product-group-list.jsp").forward(request, response);
-        } catch (NullParamDaoException e) {
+        } catch (NullParamDaoException | ServiceException e) {
             request.getRequestDispatcher("/WEB-INF/jsp/errors/something_went_wrong.jsp").forward(request, response);
         }
 

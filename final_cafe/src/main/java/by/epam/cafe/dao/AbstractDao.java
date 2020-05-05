@@ -1,20 +1,21 @@
 package by.epam.cafe.dao;
 
+import by.epam.cafe.dao.mysql.Transaction;
 import by.epam.cafe.entity.Entity;
 
 import java.util.List;
 
 public interface AbstractDao<ID, T extends Entity<ID>> {
 
-    List<T> findAll();
+    List<T> findAll(Transaction transaction);
 
-    T findEntityById(ID id);
+    T findEntityById(ID id, Transaction transaction);
 
-    boolean deleteById(ID id);
+    boolean deleteById(ID id, Transaction transaction);
 
-    boolean delete(T entity);
+    boolean delete(T entity, Transaction transaction);
 
-    T create(T entity);
+    T create(T entity, Transaction transaction);
 
-    boolean update(T entity);
+    boolean update(T entity, Transaction transaction);
 }

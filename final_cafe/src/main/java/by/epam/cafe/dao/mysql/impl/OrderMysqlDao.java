@@ -2,6 +2,7 @@ package by.epam.cafe.dao.mysql.impl;
 
 
 import by.epam.cafe.dao.mysql.AbstractMysqlDao;
+import by.epam.cafe.dao.mysql.Transaction;
 import by.epam.cafe.entity.enums.OrderStatus;
 import by.epam.cafe.entity.enums.PaymentType;
 import by.epam.cafe.entity.impl.DeliveryInf;
@@ -64,25 +65,22 @@ public class OrderMysqlDao extends AbstractMysqlDao<Integer, Order> {
     }
 
 
-    public List<Integer> findAllProductsIdsByOrderId(Integer id) {
-        Connection cn = getPool().takeConnection();
-        try {
-            List<Integer> ids = new ArrayList<>();
+    public List<Integer> findAllProductsIdsByOrderId(Integer id, Transaction transaction) {
+        Connection cn = transaction.getConnection();
 
-            try (PreparedStatement statement = cn.prepareStatement(FIND_PRODUCTS_BY_ORDER_SQL)) {
-                statement.setInt(1, id);
-                ResultSet resultSet = statement.executeQuery();
-                while (resultSet.next()) {
-                    int product_id = resultSet.getInt("product_id");
-                    ids.add(product_id);
-                }
-            } catch (SQLException e) {
-                log.info("e: ", e);
+        List<Integer> ids = new ArrayList<>();
+
+        try (PreparedStatement statement = cn.prepareStatement(FIND_PRODUCTS_BY_ORDER_SQL)) {
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                int product_id = resultSet.getInt("product_id");
+                ids.add(product_id);
             }
-            return ids;
-        } finally {
-            getPool().release(cn);
+        } catch (SQLException e) {
+            log.info("e: ", e);
         }
+        return ids;
     }
 
 
@@ -172,29 +170,25 @@ public class OrderMysqlDao extends AbstractMysqlDao<Integer, Order> {
         return generatedKeys.getInt(1);
     }
 
-    public boolean addProductsOnCreate(Map<Product, Integer> products, Order order) {
-        Connection cn = getPool().takeConnection();
+    public boolean addProductsOnCreate(Map<Product, Integer> products, Order order, Transaction transaction) {
+        Connection cn = transaction.getConnection();
 
-        try {
-            for (Map.Entry<Product, Integer> productIntegerEntry : products.entrySet()) {
-                try (PreparedStatement statement =
-                             cn.prepareStatement(insertProducts)) {
-                    insertProdsParams(productIntegerEntry, order, statement);
-                    int affectedRows = statement.executeUpdate();
+        for (Map.Entry<Product, Integer> productIntegerEntry : products.entrySet()) {
+            try (PreparedStatement statement =
+                         cn.prepareStatement(insertProducts)) {
+                insertProdsParams(productIntegerEntry, order, statement);
+                int affectedRows = statement.executeUpdate();
 
-                    if (affectedRows != 1) {
-                        return false;
-                    }
-
-                } catch (SQLException e) {
-                    log.info("e: ", e);
+                if (affectedRows != 1) {
                     return false;
                 }
+
+            } catch (SQLException e) {
+                log.info("e: ", e);
+                return false;
             }
-            return true;
-        } finally {
-            getPool().release(cn);
         }
+        return true;
     }
 
     private void insertProdsParams(Map.Entry<Product, Integer> entry, Order order,
@@ -204,119 +198,104 @@ public class OrderMysqlDao extends AbstractMysqlDao<Integer, Order> {
         statement.setInt(3, entry.getValue());
     }
 
-    public boolean plusProductFirst(Integer orderId, Integer prodId) {
-        Connection cn = getPool().takeConnection();
+    public boolean plusProductFirst(Integer orderId, Integer prodId, Transaction transaction) {
+        Connection cn = transaction.getConnection();
 
-        try {
-            try (PreparedStatement statement =
-                         cn.prepareStatement(ADD_FIRST_PRODUCT)) {
+        try (PreparedStatement statement =
+                     cn.prepareStatement(ADD_FIRST_PRODUCT)) {
 
-                statement.setInt(1, orderId);
-                statement.setInt(2, prodId);
+            statement.setInt(1, orderId);
+            statement.setInt(2, prodId);
 
-                int affectedRows = statement.executeUpdate();
-                return affectedRows == 1;
+            int affectedRows = statement.executeUpdate();
+            return affectedRows == 1;
 
-            } catch (SQLException e) {
-                log.info("e: ", e);
-                return false;
-            }
-        } finally {
-            getPool().release(cn);
+        } catch (SQLException e) {
+            log.info("e: ", e);
+            return false;
         }
     }
 
-    public boolean plusExistingProduct(Integer orderId, Integer prodId) {
-        Connection cn = getPool().takeConnection();
-        try {
-            try (PreparedStatement statement =
-                         cn.prepareStatement(INCREASE_COUNT_PROD)) {
+    public boolean plusExistingProduct(Integer orderId, Integer prodId, Transaction transaction) {
+        Connection cn = transaction.getConnection();
+
+        try (PreparedStatement statement =
+                     cn.prepareStatement(INCREASE_COUNT_PROD)) {
 
 
-                statement.setInt(1, prodId);
-                statement.setInt(2, orderId);
+            statement.setInt(1, prodId);
+            statement.setInt(2, orderId);
 
-                int affectedRows = statement.executeUpdate();
-                return affectedRows == 1;
+            int affectedRows = statement.executeUpdate();
+            return affectedRows == 1;
 
-            } catch (SQLException e) {
-                log.info("e: ", e);
-                return false;
-            }
-        } finally {
-            getPool().release(cn);
+        } catch (SQLException e) {
+            log.info("e: ", e);
+            return false;
         }
     }
 
-    public boolean removeProduct(Integer orderId, Integer prodId) {
-        Connection cn = getPool().takeConnection();
-        try {
-            try (PreparedStatement statement =
-                         cn.prepareStatement(REMOVE_PRODUCT)) {
+    public boolean removeProduct(Integer orderId, Integer prodId, Transaction transaction) {
+        Connection cn = transaction.getConnection();
+
+        try (PreparedStatement statement =
+                     cn.prepareStatement(REMOVE_PRODUCT)) {
 
 
-                statement.setInt(1, orderId);
-                statement.setInt(2, prodId);
+            statement.setInt(1, orderId);
+            statement.setInt(2, prodId);
 
-                int affectedRows = statement.executeUpdate();
-                return affectedRows == 1;
+            int affectedRows = statement.executeUpdate();
+            return affectedRows == 1;
 
-            } catch (SQLException e) {
-                log.info("e: ", e);
-                return false;
-            }
-        } finally {
-            getPool().release(cn);
+        } catch (SQLException e) {
+            log.info("e: ", e);
+            return false;
         }
     }
 
-    public boolean minusProduct(Integer orderId, Integer prodId) {
-        Connection cn = getPool().takeConnection();
-        try {
-            try (PreparedStatement statement =
-                         cn.prepareStatement(MINUS_PRODUCT)) {
+    public boolean minusProduct(Integer orderId, Integer prodId, Transaction transaction) {
+        Connection cn = transaction.getConnection();
+
+        try (PreparedStatement statement =
+                     cn.prepareStatement(MINUS_PRODUCT)) {
 
 
-                statement.setInt(1, prodId);
-                statement.setInt(2, orderId);
+            statement.setInt(1, prodId);
+            statement.setInt(2, orderId);
 
-                int affectedRows = statement.executeUpdate();
-                return affectedRows == 1;
+            int affectedRows = statement.executeUpdate();
+            return affectedRows == 1;
 
-            } catch (SQLException e) {
-                log.info("e: ", e);
-                return false;
-            }
-        } finally {
-            getPool().release(cn);
+        } catch (SQLException e) {
+            log.info("e: ", e);
+            return false;
         }
     }
 
-    public Order findCurrentByUserId(Integer userId) {
+    public Order findCurrentByUserId(Integer userId, Transaction transaction) {
 
         log.debug("findCurrentByUserId: userId = {}", userId);
 
-        Connection cn = getPool().takeConnection();
-        try {
-            try (PreparedStatement statement =
-                         cn.prepareStatement("SELECT id, client_name, creation, payment_type, price, status, delivery_inf_id, user_id FROM `order` WHERE `status` = ? AND  user_id = ?;")) {
+        Connection cn = transaction.getConnection();
 
 
-                statement.setInt(1, OrderStatus.WAITING.ordinal());
-                statement.setInt(2, userId);
+        try (PreparedStatement statement =
+                     cn.prepareStatement("SELECT id, client_name, creation, payment_type, price, status, delivery_inf_id, user_id FROM `order` WHERE `status` = ? AND  user_id = ?;")) {
 
-                ResultSet resultSet = statement.executeQuery();
 
-                if (resultSet.next()) {
-                    return findEntity(resultSet);
-                }
-                return null;
-            } catch (SQLException e) {
-                log.info("e: ", e);
-                return null;
+            statement.setInt(1, OrderStatus.WAITING.ordinal());
+            statement.setInt(2, userId);
+
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                return findEntity(resultSet);
             }
-        } finally {
-            getPool().release(cn);
+            return null;
+        } catch (SQLException e) {
+            log.info("e: ", e);
+            return null;
         }
     }
 }

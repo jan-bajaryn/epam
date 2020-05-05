@@ -2,6 +2,7 @@ package by.epam.cafe.controller.command.postimpl;
 
 import by.epam.cafe.controller.command.PermissionDeniedException;
 import by.epam.cafe.service.OrderService;
+import by.epam.cafe.service.exception.ServiceException;
 import by.epam.cafe.service.factory.ServiceFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -30,7 +31,7 @@ public class CancelOrder extends by.epam.cafe.controller.command.Command {
             boolean update = orderService.cancelOrDeleteById(idInt);
             log.debug("execute: update = {}", update);
             response.sendRedirect(request.getContextPath()+request.getServletPath()+"/order-list");
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException | ServiceException e) {
             log.debug("e: ",e);
             response.sendRedirect(request.getContextPath()+request.getServletPath()+"/something_went_wrong");
         }

@@ -6,17 +6,17 @@ import by.epam.cafe.service.exception.ServiceException;
 import java.util.List;
 
 public interface OrderService {
-    List<Order> findAll();
+    List<Order> findAll() throws ServiceException;
 
-    Order findEntityById(Integer integer);
+    Order findEntityById(Integer integer) throws ServiceException;
 
-    boolean deleteById(Integer integer);
+    boolean deleteById(Integer integer) throws ServiceException;
 
-    boolean delete(Order entity);
+    boolean delete(Order entity) throws ServiceException;
 
-    Order create(Order entity);
+    Order create(Order entity) throws ServiceException;
 
-    boolean update(Order entity);
+    boolean update(Order entity) throws ServiceException;
 
     void plusProduct(Integer orderId, Integer prodId) throws ServiceException;
 
@@ -24,9 +24,9 @@ public interface OrderService {
 
     void minusOrDelete(Integer orderId, Integer prodId) throws ServiceException;
 
-    Order findOrCreateCurrentByUserId(Integer id);
+    Order findOrCreateCurrentByUserId(Integer id) throws ServiceException;
 
-    Order findCurrentByUserId(Integer id);
+    Order findCurrentByUserId(Integer id) throws ServiceException;
 
-    boolean cancelOrDeleteById(Integer idInt);
+    boolean cancelOrDeleteById(Integer idInt) throws ServiceException;
 }

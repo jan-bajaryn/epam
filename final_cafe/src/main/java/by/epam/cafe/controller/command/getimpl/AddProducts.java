@@ -7,6 +7,7 @@ import by.epam.cafe.service.OrderService;
 import by.epam.cafe.service.ProductGroupService;
 import by.epam.cafe.service.ProductService;
 import by.epam.cafe.service.exception.IllegalPathParamException;
+import by.epam.cafe.service.exception.ServiceException;
 import by.epam.cafe.service.factory.ServiceFactory;
 import by.epam.cafe.service.parser.PathVarCalculator;
 import org.apache.logging.log4j.LogManager;
@@ -68,7 +69,7 @@ public class AddProducts extends by.epam.cafe.controller.command.Command {
 
             log.debug("all = {}", all);
             request.getRequestDispatcher("/WEB-INF/jsp/add-products.jsp").forward(request, response);
-        } catch (IllegalPathParamException e) {
+        } catch (IllegalPathParamException | ServiceException e) {
             e.printStackTrace();
         }
     }

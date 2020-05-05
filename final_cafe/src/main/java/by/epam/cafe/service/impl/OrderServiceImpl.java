@@ -1,6 +1,8 @@
 package by.epam.cafe.service.impl;
 
 import by.epam.cafe.dao.DAOFactory;
+import by.epam.cafe.dao.exception.DaoException;
+import by.epam.cafe.dao.mysql.Transaction;
 import by.epam.cafe.dao.mysql.impl.DeliveryInfMysqlDao;
 import by.epam.cafe.dao.mysql.impl.OrderMysqlDao;
 import by.epam.cafe.dao.mysql.impl.ProductMysqlDao;
@@ -25,27 +27,32 @@ public class OrderServiceImpl implements by.epam.cafe.service.OrderService {
 
     private final ServiceFactory serviceFactory = ServiceFactory.getInstance();
 
-    DAOFactory daoFactory = DAOFactory.getInstance();
-    private OrderMysqlDao orderMysqlDao = daoFactory.getOrderMysqlDao();
-    private final ProductMysqlDao productMysqlDao = daoFactory.getProductMysqlDao();
-    private final DeliveryInfMysqlDao deliveryInfMysqlDao = daoFactory.getDeliveryInfMysqlDao();
+    private final DAOFactory dAOFactory = DAOFactory.getInstance();
+    private final OrderMysqlDao orderMysqlDao = dAOFactory.getOrderMysqlDao();
+    private final ProductMysqlDao productMysqlDao = dAOFactory.getProductMysqlDao();
+    private final DeliveryInfMysqlDao deliveryInfMysqlDao = dAOFactory.getDeliveryInfMysqlDao();
 
     private final ProductService productService = new ProductServiceImpl();
 
     @Override
-    public List<Order> findAll() {
-        return orderMysqlDao.findAll().stream()
-                .peek(this::buildOrder)
-                .collect(Collectors.toList());
+    public List<Order> findAll() throws ServiceException {
+        try (final Transaction transaction = dAOFactory.createTransaction()) {
+            return orderMysqlDao.findAll(transaction).stream()
+                    .peek(o -> buildOrder(o, transaction))
+                    .collect(Collectors.toList());
+
+        } catch (DaoException e) {
+            throw new ServiceException();
+        }
     }
 
-    private void buildOrder(Order o) {
+    private void buildOrder(Order o, Transaction transaction) {
         log.debug("buildOrder: o = {}", o);
         Map<Product, Integer> products =
-                productMysqlDao.findAllByOrderId(o.getId());
+                productMysqlDao.findAllByOrderId(o.getId(), transaction);
         Map<Product, Integer> buildingProducts = products.entrySet().stream()
                 .map(p -> {
-                    productService.buildProduct(p.getKey());
+                    productService.buildProduct(p.getKey(), transaction);
                     return Map.entry(p.getKey(), p.getValue());
                 })
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
@@ -59,7 +66,7 @@ public class OrderServiceImpl implements by.epam.cafe.service.OrderService {
         if (o.getDeliveryInf() != null) {
 
             DeliveryInf delInf = deliveryInfMysqlDao
-                    .findEntityById(o.getDeliveryInf().getId());
+                    .findEntityById(o.getDeliveryInf().getId(), transaction);
 
             o.setDeliveryInf(delInf);
         }
@@ -67,110 +74,218 @@ public class OrderServiceImpl implements by.epam.cafe.service.OrderService {
     }
 
     @Override
-    public Order findEntityById(Integer integer) {
-        Order order = orderMysqlDao.findEntityById(integer);
-        if (order != null) {
-            buildOrder(order);
+    public Order findEntityById(Integer integer) throws ServiceException {
+
+        try (final Transaction transaction = dAOFactory.createTransaction()) {
+            Order order = orderMysqlDao.findEntityById(integer, transaction);
+            if (order != null) {
+                buildOrder(order, transaction);
+            }
+            return order;
+        } catch (DaoException e) {
+            throw new ServiceException();
         }
-        return order;
+
     }
 
     @Override
-    public boolean deleteById(Integer integer) {
-        return orderMysqlDao.deleteById(integer);
-    }
-
-    @Override
-    public boolean delete(Order entity) {
-        return orderMysqlDao.delete(entity);
-    }
-
-    @Override
-    public Order create(Order entity) {
-        DeliveryInf deliveryInf = deliveryInfMysqlDao.create(entity.getDeliveryInf());
-        entity.setDeliveryInf(deliveryInf);
-
-        Order order = orderMysqlDao.create(entity);
-        Map<Product, Integer> products = order.getProducts();
-        saveProducts(products, order);
-        return order;
-    }
-
-    private void saveProducts(Map<Product, Integer> products, Order order) {
-        orderMysqlDao.addProductsOnCreate(products, order);
-    }
-
-    @Override
-    public boolean update(Order entity) {
-        DeliveryInf curDeliveryInf = entity.getDeliveryInf();
-        if (curDeliveryInf != null) {
-            if (curDeliveryInf.getId() != null) {
-                deliveryInfMysqlDao.update(curDeliveryInf);
+    public boolean deleteById(Integer integer) throws ServiceException {
+        try (final Transaction transaction = dAOFactory.createTransaction()) {
+            boolean result = orderMysqlDao.deleteById(integer, transaction);
+            if (result) {
+                transaction.commit();
             } else {
-                deliveryInfMysqlDao.create(curDeliveryInf);
+                transaction.rollBack();
             }
-        }
-
-        return orderMysqlDao.update(entity);
-    }
-
-    @Override
-    public void plusProduct(final Integer orderId, final Integer prodId) throws ServiceException {
-        if (!orderMysqlDao.plusProductFirst(orderId, prodId)) {
-            log.debug("executing second");
-            if (!orderMysqlDao.plusExistingProduct(orderId, prodId)) {
-                throw new ServiceException();
-            }
-        }
-        log.debug("executed first");
-    }
-
-    @Override
-    public void deleteProduct(Integer orderId, Integer prodId) throws ServiceException {
-        boolean result = orderMysqlDao.removeProduct(orderId, prodId);
-        log.debug("deleteProduct: result = {}", result);
-        if (!result) {
+            return result;
+        } catch (DaoException e) {
             throw new ServiceException();
         }
     }
 
     @Override
-    public void minusOrDelete(Integer orderId, Integer prodId) throws ServiceException {
-        if (!orderMysqlDao.minusProduct(orderId, prodId)) {
-            if (!orderMysqlDao.removeProduct(orderId, prodId)) {
-                throw new ServiceException();
+    public boolean delete(Order entity) throws ServiceException {
+        try (final Transaction transaction = dAOFactory.createTransaction()) {
+
+            boolean result = orderMysqlDao.delete(entity, transaction);
+            if (result) {
+                transaction.commit();
+            } else {
+                transaction.rollBack();
             }
+            return result;
+        } catch (DaoException e) {
+            throw new ServiceException();
+        }
+    }
+
+    //
+    @Override
+    public Order create(Order entity) throws ServiceException {
+
+        try (final Transaction transaction = dAOFactory.createTransaction()) {
+
+            DeliveryInf deliveryInf = deliveryInfMysqlDao.create(entity.getDeliveryInf(), transaction);
+            entity.setDeliveryInf(deliveryInf);
+
+            Order order = orderMysqlDao.create(entity, transaction);
+
+
+            Map<Product, Integer> products = order.getProducts();
+            saveProducts(products, order);
+
+            if (deliveryInf == null) {
+                transaction.rollBack();
+            } else {
+                transaction.commit();
+            }
+
+            return order;
+        } catch (DaoException e) {
+            throw new ServiceException();
+        }
+
+    }
+
+    private void saveProducts(Map<Product, Integer> products, Order order) throws ServiceException {
+
+        try (final Transaction transaction = dAOFactory.createTransaction()) {
+            orderMysqlDao.addProductsOnCreate(products, order, transaction);
+        } catch (DaoException e) {
+            throw new ServiceException();
         }
     }
 
     @Override
-    public Order findOrCreateCurrentByUserId(Integer userId) {
-        Order current = findCurrentByUserId(userId);
-        if (current == null) {
-            current = orderMysqlDao.create(
-                    Order.newBuilder()
-                            .user(User.newBuilder().id(userId).build())
-                            .status(OrderStatus.WAITING)
-                            .build()
-            );
+    public boolean update(Order entity) throws ServiceException {
+
+        try (final Transaction transaction = dAOFactory.createTransaction()) {
+
+            DeliveryInf curDeliveryInf = entity.getDeliveryInf();
+            if (curDeliveryInf != null) {
+                if (curDeliveryInf.getId() != null) {
+                    deliveryInfMysqlDao.update(curDeliveryInf, transaction);
+                } else {
+                    deliveryInfMysqlDao.create(curDeliveryInf, transaction);
+                }
+            }
+
+            boolean result = orderMysqlDao.update(entity, transaction);
+            if (result) {
+                transaction.commit();
+            } else {
+                transaction.rollBack();
+            }
+            return result;
+        } catch (DaoException e) {
+            throw new ServiceException();
         }
-        log.debug("current = {}", current);
-        buildOrder(current);
-        return current;
+
     }
 
     @Override
-    public Order findCurrentByUserId(Integer id) {
+    public void plusProduct(final Integer orderId, final Integer prodId) throws ServiceException {
+        try (final Transaction transaction = dAOFactory.createTransaction()) {
 
-        Order current = orderMysqlDao.findCurrentByUserId(id);
-        if (current != null) {
-            buildOrder(current);
+            if (!orderMysqlDao.plusProductFirst(orderId, prodId, transaction)) {
+                log.debug("executing second");
+                if (!orderMysqlDao.plusExistingProduct(orderId, prodId, transaction)) {
+                    transaction.rollBack();
+                    throw new ServiceException();
+
+                } else {
+                    transaction.commit();
+                }
+            } else {
+                transaction.commit();
+            }
+            log.debug("executed first");
+
+        } catch (DaoException e) {
+            throw new ServiceException();
         }
-        return current;
     }
 
     @Override
-    public boolean cancelOrDeleteById(Integer idInt) {
+    public void deleteProduct(Integer orderId, Integer prodId) throws ServiceException {
+
+        try (final Transaction transaction = dAOFactory.createTransaction()) {
+
+            boolean result = orderMysqlDao.removeProduct(orderId, prodId, transaction);
+            log.debug("deleteProduct: result = {}", result);
+            if (!result) {
+                transaction.rollBack();
+                throw new ServiceException();
+            } else {
+                transaction.commit();
+            }
+        } catch (DaoException e) {
+            throw new ServiceException();
+        }
+
+    }
+
+    @Override
+    public void minusOrDelete(Integer orderId, Integer prodId) throws ServiceException {
+        try (final Transaction transaction = dAOFactory.createTransaction()) {
+            if (!orderMysqlDao.minusProduct(orderId, prodId, transaction)) {
+                if (!orderMysqlDao.removeProduct(orderId, prodId, transaction)) {
+                    transaction.rollBack();
+                    throw new ServiceException();
+                } else {
+                    transaction.commit();
+                }
+            } else {
+                transaction.commit();
+            }
+        } catch (DaoException e) {
+            throw new ServiceException();
+        }
+    }
+
+    @Override
+    public Order findOrCreateCurrentByUserId(Integer userId) throws ServiceException {
+
+        try (final Transaction transaction = dAOFactory.createTransaction()) {
+            Order current = findCurrentByUserId(userId);
+            if (current == null) {
+                current = orderMysqlDao.create(
+                        Order.newBuilder()
+                                .user(User.newBuilder().id(userId).build())
+                                .status(OrderStatus.WAITING)
+                                .build(),
+                        transaction
+                );
+            }
+            log.debug("current = {}", current);
+            buildOrder(current, transaction);
+            if (current != null) {
+                transaction.commit();
+            } else {
+                transaction.rollBack();
+            }
+            return current;
+        } catch (DaoException e) {
+            throw new ServiceException();
+        }
+    }
+
+    @Override
+    public Order findCurrentByUserId(Integer id) throws ServiceException {
+        try (final Transaction transaction = dAOFactory.createTransaction()) {
+
+            Order current = orderMysqlDao.findCurrentByUserId(id, transaction);
+            if (current != null) {
+                buildOrder(current, transaction);
+            }
+            return current;
+        } catch (DaoException e) {
+            throw new ServiceException();
+        }
+    }
+
+    @Override
+    public boolean cancelOrDeleteById(Integer idInt) throws ServiceException {
         Order entityById = findEntityById(idInt);
         if (entityById.getStatus() == OrderStatus.WAITING) {
 

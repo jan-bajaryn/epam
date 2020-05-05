@@ -2,6 +2,7 @@ package by.epam.cafe.controller.command.getimpl;
 
 import by.epam.cafe.entity.impl.Order;
 import by.epam.cafe.service.OrderService;
+import by.epam.cafe.service.exception.ServiceException;
 import by.epam.cafe.service.factory.ServiceFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -21,9 +22,14 @@ public class OrderList extends by.epam.cafe.controller.command.Command {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Order> all = orderService.findAll();
-        log.info("execute: all = {}", all);
-        request.setAttribute("orders", all);
-        request.getRequestDispatcher("/WEB-INF/jsp/order-list.jsp").forward(request, response);
+
+        try {
+            List<Order> all = orderService.findAll();
+            log.info("execute: all = {}", all);
+            request.setAttribute("orders", all);
+            request.getRequestDispatcher("/WEB-INF/jsp/order-list.jsp").forward(request, response);
+        } catch (ServiceException e) {
+            response.sendRedirect(request.getContextPath() + request.getServletPath() + "/something_went_wrong");
+        }
     }
 }

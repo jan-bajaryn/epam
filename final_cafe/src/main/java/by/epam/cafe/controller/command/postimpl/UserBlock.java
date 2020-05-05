@@ -3,6 +3,7 @@ package by.epam.cafe.controller.command.postimpl;
 import by.epam.cafe.service.UserService;
 import by.epam.cafe.service.exception.IllegalIdException;
 import by.epam.cafe.service.exception.IllegalPathParamException;
+import by.epam.cafe.service.exception.ServiceException;
 import by.epam.cafe.service.factory.ServiceFactory;
 import by.epam.cafe.service.parser.PathVarCalculator;
 import org.apache.logging.log4j.LogManager;
@@ -35,7 +36,7 @@ public class UserBlock extends by.epam.cafe.controller.command.Command {
             log.debug("block executed");
             response.sendRedirect(request.getContextPath() + request.getServletPath() + "/admin/user-list");
 
-        } catch (IllegalPathParamException | IllegalIdException e) {
+        } catch (IllegalPathParamException | IllegalIdException | ServiceException e) {
             log.error("e: ", e);
             response.sendRedirect(request.getContextPath() + request.getServletPath() + "/something_went_wrong");
         }

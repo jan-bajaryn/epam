@@ -6,6 +6,7 @@ import by.epam.cafe.entity.impl.ProductGroup;
 import by.epam.cafe.service.ProductGroupService;
 import by.epam.cafe.service.ProductService;
 import by.epam.cafe.service.exception.IllegalPathParamException;
+import by.epam.cafe.service.exception.ServiceException;
 import by.epam.cafe.service.factory.ServiceFactory;
 import by.epam.cafe.service.parser.PathVarCalculator;
 
@@ -39,12 +40,12 @@ public class EditProductGroup extends by.epam.cafe.controller.command.Command {
             } else {
                 request.getRequestDispatcher("/WEB-INF/jsp/errors/something_went_wrong.jsp").forward(request, response);
             }
-        } catch (IllegalPathParamException | NullParamDaoException e) {
+        } catch (IllegalPathParamException | NullParamDaoException | ServiceException e) {
             request.getRequestDispatcher("/WEB-INF/jsp/errors/something_went_wrong.jsp").forward(request, response);
         }
     }
 
-    private void putProducts(HttpServletRequest request) {
+    private void putProducts(HttpServletRequest request) throws ServiceException {
         List<Product> emptyProducts = productService.findAllByProductGroupNull();
         request.setAttribute("products", emptyProducts);
     }

@@ -1,19 +1,20 @@
 package by.epam.cafe.service;
 
 import by.epam.cafe.entity.impl.DeliveryInf;
+import by.epam.cafe.service.exception.ServiceException;
 
 import java.util.List;
 
 public interface DeliveryInfService {
-    List<DeliveryInf> findAll();
+    List<DeliveryInf> findAll() throws ServiceException;
 
-    DeliveryInf findEntityById(Integer integer);
+    DeliveryInf findEntityById(Integer integer) throws ServiceException;
 
-    boolean deleteById(Integer integer);
+    boolean deleteById(Integer integer) throws ServiceException;
 
-    boolean delete(DeliveryInf entity);
+    boolean delete(DeliveryInf entity) throws ServiceException;
 
-    DeliveryInf create(DeliveryInf entity);
+    DeliveryInf create(DeliveryInf entity) throws ServiceException;
 
-    boolean update(DeliveryInf entity);
+    boolean update(DeliveryInf entity) throws ServiceException;
 }

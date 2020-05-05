@@ -4,6 +4,7 @@ import by.epam.cafe.controller.command.PermissionDeniedException;
 import by.epam.cafe.dao.exception.NullParamDaoException;
 import by.epam.cafe.entity.impl.ProductGroup;
 import by.epam.cafe.service.ProductGroupService;
+import by.epam.cafe.service.exception.ServiceException;
 import by.epam.cafe.service.factory.ServiceFactory;
 import by.epam.cafe.service.impl.ImageWriterService;
 import by.epam.cafe.service.validator.ProductGroupValidator;
@@ -41,7 +42,7 @@ public class EditProductGroup extends by.epam.cafe.controller.command.Command {
                 imageWriterService.deleteImageIfNeed(productGroup.getPhotoName());
                 response.sendRedirect(request.getContextPath() + request.getServletPath() + "/something_went_wrong");
             }
-        } catch (NullParamDaoException e) {
+        } catch (NullParamDaoException | ServiceException e) {
             response.sendRedirect(request.getContextPath() + request.getServletPath() + "/something_went_wrong");
         }
 

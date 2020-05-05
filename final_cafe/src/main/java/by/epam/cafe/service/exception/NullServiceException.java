@@ -1,6 +1,6 @@
 package by.epam.cafe.service.exception;
 
-public class NullServiceException extends Exception {
+public class NullServiceException extends ServiceException {
     public NullServiceException() {
     }
 

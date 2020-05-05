@@ -6,6 +6,7 @@ import by.epam.cafe.entity.impl.ProductGroup;
 import by.epam.cafe.service.ProductGroupService;
 import by.epam.cafe.service.ProductService;
 import by.epam.cafe.service.exception.NullServiceException;
+import by.epam.cafe.service.exception.ServiceException;
 import by.epam.cafe.service.factory.ServiceFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -44,7 +45,7 @@ public class Index extends by.epam.cafe.controller.command.Command {
             request.setAttribute("products", result);
             log.info("execute: result = {}", result);
             request.getRequestDispatcher("/WEB-INF/jsp/index.jsp").forward(request, response);
-        } catch (NullServiceException e) {
+        } catch (ServiceException e) {
             log.error("Error:", e);
         }
 

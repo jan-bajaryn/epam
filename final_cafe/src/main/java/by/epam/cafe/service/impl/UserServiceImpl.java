@@ -1,9 +1,12 @@
 package by.epam.cafe.service.impl;
 
 import by.epam.cafe.dao.DAOFactory;
+import by.epam.cafe.dao.exception.DaoException;
+import by.epam.cafe.dao.mysql.Transaction;
 import by.epam.cafe.dao.mysql.impl.UserMysqlDao;
 import by.epam.cafe.entity.impl.User;
 import by.epam.cafe.service.exception.IllegalIdException;
+import by.epam.cafe.service.exception.ServiceException;
 
 import java.util.List;
 
@@ -13,39 +16,89 @@ public class UserServiceImpl implements by.epam.cafe.service.UserService {
     private final UserMysqlDao userMysqlDao = dAOFactory.getUserMysqlDao();
 
     @Override
-    public List<User> findAll() {
-        return userMysqlDao.findAll();
+    public List<User> findAll() throws ServiceException {
+        try (Transaction transaction = dAOFactory.createTransaction()) {
+            return userMysqlDao.findAll(transaction);
+        } catch (DaoException e) {
+            throw new ServiceException();
+        }
     }
 
     @Override
-    public User findEntityById(Integer integer) {
-        return userMysqlDao.findEntityById(integer);
+    public User findEntityById(Integer integer) throws ServiceException {
+        try (Transaction transaction = dAOFactory.createTransaction()) {
+            return userMysqlDao.findEntityById(integer, transaction);
+        } catch (DaoException e) {
+            throw new ServiceException();
+        }
     }
 
     @Override
-    public boolean deleteById(Integer integer) {
-        return userMysqlDao.deleteById(integer);
+    public boolean deleteById(Integer integer) throws ServiceException {
+        try (Transaction transaction = dAOFactory.createTransaction()) {
+            boolean result = userMysqlDao.deleteById(integer, transaction);
+            if (result) {
+                transaction.commit();
+            } else {
+                transaction.rollBack();
+            }
+            return result;
+        } catch (DaoException e) {
+            throw new ServiceException();
+        }
     }
 
     @Override
-    public boolean delete(User entity) {
-        return userMysqlDao.delete(entity);
+    public boolean delete(User entity) throws ServiceException {
+        try (Transaction transaction = dAOFactory.createTransaction()) {
+            boolean result = userMysqlDao.delete(entity, transaction);
+            if (result) {
+                transaction.commit();
+            } else {
+                transaction.rollBack();
+            }
+            return result;
+        } catch (DaoException e) {
+            throw new ServiceException();
+        }
     }
 
     @Override
-    public User create(User entity) {
-        return userMysqlDao.create(entity);
+    public User create(User entity) throws ServiceException {
+        try (Transaction transaction = dAOFactory.createTransaction()) {
+            User user = userMysqlDao.create(entity, transaction);
+            if (user == null) {
+                transaction.rollBack();
+            } else {
+                transaction.commit();
+            }
+            return user;
+        } catch (DaoException e) {
+            throw new ServiceException();
+        }
+
+
     }
 
     @Override
-    public boolean update(User entity) {
-        return userMysqlDao.update(entity);
+    public boolean update(User entity) throws ServiceException {
+        try (Transaction transaction = dAOFactory.createTransaction()) {
+            boolean result = userMysqlDao.update(entity, transaction);
+            if (result) {
+                transaction.commit();
+            } else {
+                transaction.rollBack();
+            }
+            return result;
+        } catch (DaoException e) {
+            throw new ServiceException();
+        }
     }
 
 
     //    TODO complete this method with dao
     @Override
-    public User findUserByUsername(String username) {
+    public User findUserByUsername(String username) throws ServiceException {
         return findAll().stream()
                 .filter(u -> u.getUsername().equals(username))
                 .findAny()
@@ -54,43 +107,57 @@ public class UserServiceImpl implements by.epam.cafe.service.UserService {
     }
 
     @Override
-    public void blockById(Integer id) throws IllegalIdException {
+    public void blockById(Integer id) throws IllegalIdException, ServiceException {
         if (id == null || id < 0) {
             throw new IllegalIdException("id = " + id);
         }
-        User entityById = userMysqlDao.findEntityById(id);
-        if (entityById == null) {
-            throw new IllegalIdException("id = " + id);
-        }
-
-        if (!entityById.isBlocked()) {
-            entityById.setBlocked(true);
-            boolean update = userMysqlDao.update(entityById);
-
-            if (!update) {
+        try (Transaction transaction = dAOFactory.createTransaction()) {
+            User entityById = userMysqlDao.findEntityById(id, transaction);
+            if (entityById == null) {
                 throw new IllegalIdException("id = " + id);
             }
+
+            if (!entityById.isBlocked()) {
+                entityById.setBlocked(true);
+                boolean update = userMysqlDao.update(entityById, transaction);
+
+                if (!update) {
+                    transaction.rollBack();
+                    throw new IllegalIdException("id = " + id);
+                } else {
+                    transaction.commit();
+                }
+            }
+        } catch (DaoException e) {
+            throw new ServiceException();
         }
+
     }
 
     @Override
-    public void unBlockById(Integer id) throws IllegalIdException {
+    public void unBlockById(Integer id) throws IllegalIdException, ServiceException {
         if (id == null || id < 0) {
             throw new IllegalIdException("id = " + id);
         }
-        User entityById = userMysqlDao.findEntityById(id);
-        if (entityById == null) {
-            throw new IllegalIdException("id = " + id);
-        }
-
-        if (entityById.isBlocked()) {
-            entityById.setBlocked(false);
-            boolean update = userMysqlDao.update(entityById);
-
-            if (!update) {
+        try (Transaction transaction = dAOFactory.createTransaction()) {
+            User entityById = userMysqlDao.findEntityById(id, transaction);
+            if (entityById == null) {
                 throw new IllegalIdException("id = " + id);
             }
-        }
 
+            if (entityById.isBlocked()) {
+                entityById.setBlocked(false);
+                boolean update = userMysqlDao.update(entityById, transaction);
+
+                if (!update) {
+                    transaction.rollBack();
+                    throw new IllegalIdException("id = " + id);
+                } else {
+                    transaction.commit();
+                }
+            }
+        } catch (DaoException e) {
+            throw new ServiceException();
+        }
     }
 }

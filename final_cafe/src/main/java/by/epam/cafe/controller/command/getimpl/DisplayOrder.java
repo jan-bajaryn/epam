@@ -7,6 +7,7 @@ import by.epam.cafe.entity.impl.Product;
 import by.epam.cafe.entity.impl.User;
 import by.epam.cafe.service.OrderService;
 import by.epam.cafe.service.UserService;
+import by.epam.cafe.service.exception.ServiceException;
 import by.epam.cafe.service.factory.ServiceFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -30,13 +31,17 @@ public class DisplayOrder extends by.epam.cafe.controller.command.Command {
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 
-        Map<Product, Integer> basket = takeBasket(request);
-        request.setAttribute("productMap", basket);
+        try {
+            Map<Product, Integer> basket = takeBasket(request);
+            request.setAttribute("productMap", basket);
 
-        request.setAttribute("sum", calcSum(basket));
-        sendUserDTO(request);
+            request.setAttribute("sum", calcSum(basket));
+            sendUserDTO(request);
 
-        request.getRequestDispatcher("/WEB-INF/jsp/order.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/jsp/order.jsp").forward(request, response);
+        } catch (ServiceException e) {
+            response.sendRedirect(request.getContextPath() + request.getServletPath() + "/something_went_wrong");
+        }
     }
 
     private void sendUserDTO(HttpServletRequest request) {
@@ -54,7 +59,7 @@ public class DisplayOrder extends by.epam.cafe.controller.command.Command {
     }
 
 
-    private Map<Product, Integer> takeBasket(HttpServletRequest req) {
+    private Map<Product, Integer> takeBasket(HttpServletRequest req) throws ServiceException {
 
         HttpSession session = req.getSession();
 
@@ -84,7 +89,7 @@ public class DisplayOrder extends by.epam.cafe.controller.command.Command {
         return basket;
     }
 
-    private Map<Product, Integer> returnClientBasket(HttpSession session) {
+    private Map<Product, Integer> returnClientBasket(HttpSession session) throws ServiceException {
         User user = (User) session.getAttribute("user");
         Order order = orderService.findCurrentByUserId(user.getId());
         if (order == null) {

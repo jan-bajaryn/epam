@@ -8,6 +8,7 @@ import by.epam.cafe.entity.impl.Order;
 import by.epam.cafe.entity.impl.Product;
 import by.epam.cafe.entity.impl.User;
 import by.epam.cafe.service.OrderService;
+import by.epam.cafe.service.exception.ServiceException;
 import by.epam.cafe.service.factory.ServiceFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -48,7 +49,7 @@ public class MakeOrderAnon extends by.epam.cafe.controller.command.Command {
                 response.sendRedirect(request.getContextPath() + request.getServletPath() + "/your-order/" + order.getId());
             }
 
-        } catch (ParseException e) {
+        } catch (ParseException | ServiceException e) {
             log.debug("e: ", e);
             response.sendRedirect(request.getContextPath() + request.getServletPath() + "/something_went_wrong");
         }

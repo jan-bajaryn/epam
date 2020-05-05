@@ -6,6 +6,7 @@ import by.epam.cafe.entity.enums.PaymentType;
 import by.epam.cafe.entity.impl.DeliveryInf;
 import by.epam.cafe.entity.impl.Order;
 import by.epam.cafe.service.OrderService;
+import by.epam.cafe.service.exception.ServiceException;
 import by.epam.cafe.service.factory.ServiceFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -43,7 +44,7 @@ public class EditOrder extends by.epam.cafe.controller.command.Command {
             } else {
                 response.sendRedirect(request.getContextPath() + request.getServletPath() + "/something_went_wrong");
             }
-        } catch (ParseException | IllegalArgumentException e) {
+        } catch (ParseException | IllegalArgumentException | ServiceException e) {
             log.debug("e: ", e);
             response.sendRedirect(request.getContextPath() + request.getServletPath() + "/something_went_wrong");
         }
@@ -79,7 +80,7 @@ public class EditOrder extends by.epam.cafe.controller.command.Command {
 
     }
 
-    private Order findOrder(HttpServletRequest request) {
+    private Order findOrder(HttpServletRequest request) throws ServiceException {
         String idSt = request.getParameter("id");
         String statusSt = request.getParameter("status");
         String paymentTypeSt = request.getParameter("payment_type");

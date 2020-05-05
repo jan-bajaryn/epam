@@ -6,6 +6,7 @@ import by.epam.cafe.entity.impl.Order;
 import by.epam.cafe.entity.impl.Product;
 import by.epam.cafe.entity.impl.User;
 import by.epam.cafe.service.OrderService;
+import by.epam.cafe.service.exception.ServiceException;
 import by.epam.cafe.service.factory.ServiceFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -37,7 +38,7 @@ public class BasketTag extends TagSupport {
             Integer c = sizeBasket(basket);
             log.debug("c = {}", c);
             pageContext.getOut().write(c.toString());
-        } catch (IOException e) {
+        } catch (IOException | ServiceException e) {
             throw new JspException(e.getMessage());
         }
         return SKIP_BODY;
@@ -50,7 +51,7 @@ public class BasketTag extends TagSupport {
     }
 
 
-    private Map<Product, Integer> takeBasket() {
+    private Map<Product, Integer> takeBasket() throws ServiceException {
 
         HttpServletRequest req = ((HttpServletRequest) pageContext.getRequest());
         HttpSession session = req.getSession();
@@ -81,7 +82,7 @@ public class BasketTag extends TagSupport {
         return basket;
     }
 
-    private Map<Product, Integer> returnClientBasket(HttpSession session) {
+    private Map<Product, Integer> returnClientBasket(HttpSession session) throws ServiceException {
         User user = (User) session.getAttribute("user");
         Order order = orderService.findCurrentByUserId(user.getId());
         if (order == null) {

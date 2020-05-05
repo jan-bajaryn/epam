@@ -4,6 +4,7 @@ import by.epam.cafe.controller.command.PermissionDeniedException;
 import by.epam.cafe.entity.enums.Role;
 import by.epam.cafe.entity.impl.User;
 import by.epam.cafe.service.UserService;
+import by.epam.cafe.service.exception.ServiceException;
 import by.epam.cafe.service.factory.ServiceFactory;
 import by.epam.cafe.service.parser.NullIfEmptyService;
 import by.epam.cafe.service.parser.parts.impl.*;
@@ -24,8 +25,6 @@ import java.util.Optional;
 import static by.epam.cafe.controller.filter.RedirectFilter.REDIRECTED_INFO;
 
 public class CreateUser extends by.epam.cafe.controller.command.Command {
-
-
 
 
     private static final Logger log = LogManager.getLogger(CreateUser.class);
@@ -52,20 +51,26 @@ public class CreateUser extends by.epam.cafe.controller.command.Command {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PermissionDeniedException {
-            String referrer = request.getHeader("referer");
+        String referrer = request.getHeader("referer");
 
-            User build = validateAndTakeParams(request);
+        User build = validateAndTakeParams(request);
 
-            if (build != null) {
+        if (build != null) {
+
+            try {
                 if (userService.create(build) != null) {
                     response.sendRedirect(request.getContextPath() + request.getServletPath() + "/admin/user-list");
                 } else {
                     request.setAttribute("unknown_error", "true");
                     response.sendRedirect(referrer);
                 }
-            } else {
+            } catch (ServiceException e) {
+                request.setAttribute("unknown_error", "true");
                 response.sendRedirect(referrer);
             }
+        } else {
+            response.sendRedirect(referrer);
+        }
 
     }
 

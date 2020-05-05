@@ -1,13 +1,16 @@
 package by.epam.cafe.service.impl;
 
 import by.epam.cafe.dao.DAOFactory;
+import by.epam.cafe.dao.exception.DaoException;
 import by.epam.cafe.dao.exception.NullParamDaoException;
+import by.epam.cafe.dao.mysql.Transaction;
 import by.epam.cafe.dao.mysql.impl.ProductGroupMysqlDao;
 import by.epam.cafe.dao.mysql.impl.ProductMysqlDao;
 import by.epam.cafe.entity.enums.ProductType;
 import by.epam.cafe.entity.impl.Product;
 import by.epam.cafe.entity.impl.ProductGroup;
 import by.epam.cafe.service.exception.NullServiceException;
+import by.epam.cafe.service.exception.ServiceException;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -35,122 +38,211 @@ public class ProductGroupServiceImpl implements by.epam.cafe.service.ProductGrou
     private final ImageWriterService imageWriterService = new ImageWriterService();
 
     @Override
-    public List<ProductGroup> findAll() throws NullParamDaoException {
-        List<ProductGroup> all = productGroupMysqlDao.findAll();
-        for (ProductGroup productGroup : all) {
-            buildProductGroup(productGroup);
-        }
-        return all;
-    }
+    public List<ProductGroup> findAll() throws NullParamDaoException, ServiceException {
 
-    @Override
-    public ProductGroup findEntityById(Integer integer) throws NullParamDaoException {
-        ProductGroup entityById = productGroupMysqlDao.findEntityById(integer);
-        buildProductGroup(entityById);
-        return entityById;
-    }
-
-    @Override
-    public boolean deleteById(Integer integer) {
-        return productGroupMysqlDao.deleteById(integer);
-    }
-
-    @Override
-    public boolean delete(ProductGroup entity) {
-        return productGroupMysqlDao.delete(entity);
-    }
-
-    @Override
-    public ProductGroup create(ProductGroup entity) {
-        ProductGroup productGroup = productGroupMysqlDao.create(entity);
-        insertProductsIfPossible(productGroup);
-        return productGroup;
-    }
-
-    private void insertProductsIfPossible(ProductGroup entity) {
-        List<Product> products = entity.getProducts();
-        if (products != null) {
-            products.stream()
-                    .map(p -> productMysqlDao.findEntityById(p.getId()))
-                    .peek(p -> p.setProductGroup(entity))
-                    .forEach(productMysqlDao::update);
+        try (Transaction transaction = dAOFactory.createTransaction()) {
+            List<ProductGroup> all = productGroupMysqlDao.findAll(transaction);
+            for (ProductGroup productGroup : all) {
+                buildProductGroup(productGroup, transaction);
+            }
+            return all;
+        } catch (DaoException e) {
+            throw new ServiceException();
         }
     }
 
     @Override
-    public boolean update(ProductGroup entity) throws NullParamDaoException {
-        boolean update = productGroupMysqlDao.update(entity);
-        insertAndDeleteOthers(entity);
-        return update;
+    public ProductGroup findEntityById(Integer integer) throws NullParamDaoException, ServiceException {
+        try (Transaction transaction = dAOFactory.createTransaction()) {
+            ProductGroup entityById = productGroupMysqlDao.findEntityById(integer, transaction);
+            buildProductGroup(entityById, transaction);
+            return entityById;
+        } catch (DaoException e) {
+            throw new ServiceException();
+        }
     }
 
-    private void insertAndDeleteOthers(ProductGroup entity) throws NullParamDaoException {
-        final List<Product> products = entity.getProducts();
-        final List<Product> allByProductGroupId = productMysqlDao.findAllByProductGroupId(entity.getId());
+    @Override
+    public boolean deleteById(Integer integer) throws ServiceException {
 
-        List<Product> toDelete = allByProductGroupId.stream()
-                .filter(p -> {
-                    for (Product product : products) {
-                        if (product.getId().equals(p.getId())) {
-                            return false;
-                        }
-                    }
-                    return true;
-                })
-                .collect(Collectors.toList());
-        deleteAll(toDelete);
-        List<Product> toAdd = products.stream()
-                .filter(p -> {
-                    for (Product product : allByProductGroupId) {
-                        if (product.getId().equals(p.getId())) {
-                            return false;
-                        }
-                    }
-                    return true;
-                })
-                .collect(Collectors.toList());
-        insertAll(toAdd, entity);
+        try (Transaction transaction = dAOFactory.createTransaction()) {
+            boolean result = productGroupMysqlDao.deleteById(integer, transaction);
+            if (result) {
+                transaction.commit();
+            } else {
+                transaction.rollBack();
+            }
+            return result;
+        } catch (DaoException e) {
+            throw new ServiceException();
+        }
     }
 
-    private void deleteAll(List<Product> toDelete) {
-        for (Product product : toDelete) {
-            Product entityById = productMysqlDao.findEntityById(product.getId());
-            entityById.setProductGroup(null);
-            productMysqlDao.update(entityById);
+    @Override
+    public boolean delete(ProductGroup entity) throws ServiceException {
+        try (Transaction transaction = dAOFactory.createTransaction()) {
+            boolean result = productGroupMysqlDao.delete(entity, transaction);
+            if (result) {
+                transaction.commit();
+            } else {
+                transaction.rollBack();
+            }
+            return result;
+        } catch (DaoException e) {
+            throw new ServiceException();
+        }
+    }
+
+    @Override
+    public ProductGroup create(ProductGroup entity) throws ServiceException {
+
+        try (Transaction transaction = dAOFactory.createTransaction()) {
+            ProductGroup productGroup = productGroupMysqlDao.create(entity, transaction);
+            insertProductsIfPossible(productGroup);
+
+// TODO insert rollback somewhere may be
+
+            transaction.commit();
+            return productGroup;
+
+        } catch (DaoException e) {
+            throw new ServiceException();
+        }
+    }
+
+    private void insertProductsIfPossible(ProductGroup entity) throws ServiceException {
+
+        try (final Transaction transaction = dAOFactory.createTransaction()) {
+            List<Product> products = entity.getProducts();
+            if (products != null) {
+                products.stream()
+                        .map(p -> productMysqlDao.findEntityById(p.getId(), transaction))
+                        .peek(p -> p.setProductGroup(entity))
+                        .forEach(ent -> productMysqlDao.update(ent, transaction));
+            }
+
+        } catch (DaoException e) {
+            throw new ServiceException();
+        }
+
+    }
+
+    @Override
+    public boolean update(ProductGroup entity) throws NullParamDaoException, ServiceException {
+
+        try (final Transaction transaction = dAOFactory.createTransaction()) {
+
+            try {
+                boolean update = productGroupMysqlDao.update(entity, transaction);
+                insertAndDeleteOthers(entity);
+
+                if (update) {
+                    transaction.commit();
+                }
+
+                return update;
+            } catch (ServiceException e) {
+                transaction.rollBack();
+                return false;
+            }
+
+        } catch (DaoException e) {
+            throw new ServiceException();
+        }
+    }
+
+    private void insertAndDeleteOthers(ProductGroup entity) throws NullParamDaoException, ServiceException {
+
+        try (final Transaction transaction = dAOFactory.createTransaction()) {
+            final List<Product> products = entity.getProducts();
+            final List<Product> allByProductGroupId = productMysqlDao.findAllByProductGroupId(entity.getId(), transaction);
+
+            List<Product> toDelete = allByProductGroupId.stream()
+                    .filter(p -> {
+                        for (Product product : products) {
+                            if (product.getId().equals(p.getId())) {
+                                return false;
+                            }
+                        }
+                        return true;
+                    })
+                    .collect(Collectors.toList());
+            deleteAll(toDelete);
+            List<Product> toAdd = products.stream()
+                    .filter(p -> {
+                        for (Product product : allByProductGroupId) {
+                            if (product.getId().equals(p.getId())) {
+                                return false;
+                            }
+                        }
+                        return true;
+                    })
+                    .collect(Collectors.toList());
+            insertAll(toAdd, entity);
+        } catch (DaoException e) {
+            throw new ServiceException();
+        }
+    }
+
+    private void deleteAll(List<Product> toDelete) throws ServiceException {
+        try (final Transaction transaction = dAOFactory.createTransaction()) {
+            for (Product product : toDelete) {
+                Product entityById = productMysqlDao.findEntityById(product.getId(), transaction);
+                entityById.setProductGroup(null);
+                productMysqlDao.update(entityById, transaction);
+            }
+        } catch (DaoException e) {
+            throw new ServiceException();
         }
     }
 
     // TODO check if there more efficient way to do that
-    private void insertAll(List<Product> toAdd, ProductGroup entity) {
-        for (Product product : toAdd) {
-            Product entityById = productMysqlDao.findEntityById(product.getId());
-            entityById.setProductGroup(entity);
-            productMysqlDao.update(entityById);
+    private void insertAll(List<Product> toAdd, ProductGroup entity) throws ServiceException {
+
+        try (final Transaction transaction = dAOFactory.createTransaction()) {
+            for (Product product : toAdd) {
+                Product entityById = productMysqlDao.findEntityById(product.getId(), transaction);
+                entityById.setProductGroup(entity);
+                productMysqlDao.update(entityById, transaction);
+            }
+
+        } catch (DaoException e) {
+            throw new ServiceException();
         }
+
     }
 
     @Override
-    public List<ProductGroup> findAllByProductTypeNotDisabled(ProductType type) throws NullServiceException {
-        try {
-            List<ProductGroup> list = productGroupMysqlDao.findAllByProductTypeAndDisabled(type, false);
-            for (ProductGroup productGroup : list) {
-                buildProductGroup(productGroup);
+    public List<ProductGroup> findAllByProductTypeNotDisabled(ProductType type) throws NullServiceException, ServiceException {
+
+        try (final Transaction transaction = dAOFactory.createTransaction()) {
+            try {
+                List<ProductGroup> list = productGroupMysqlDao.findAllByProductTypeAndDisabled(type, false, transaction);
+                for (ProductGroup productGroup : list) {
+                    buildProductGroup(productGroup, transaction);
+                }
+                return list;
+            } catch (NullParamDaoException e) {
+                throw new NullServiceException(e);
             }
-            return list;
-        } catch (NullParamDaoException e) {
-            throw new NullServiceException(e);
+        } catch (DaoException e) {
+            throw new ServiceException();
         }
     }
 
 
     //TODO at that time not useful, may be delete after exit
     @Override
-    public List<ProductGroup> findAllEmpty() {
-        return productGroupMysqlDao.findAllEmpty();
+    public List<ProductGroup> findAllEmpty() throws ServiceException {
+        try (final Transaction transaction = dAOFactory.createTransaction()) {
+            return productGroupMysqlDao.findAllEmpty(transaction);
+        } catch (DaoException e) {
+            throw new ServiceException();
+        }
     }
 
     @Override
-    public List<ProductGroup> findAllExcept(ProductGroup productGroup) throws NullParamDaoException {
+    public List<ProductGroup> findAllExcept(ProductGroup productGroup) throws NullParamDaoException, ServiceException {
         List<ProductGroup> all = findAll();
         if (productGroup != null) {
             all = all.stream()
@@ -184,21 +276,36 @@ public class ProductGroupServiceImpl implements by.epam.cafe.service.ProductGrou
     }
 
     @Override
-    public void disableById(Integer id) {
-        ProductGroup productGroup = productGroupMysqlDao.findEntityById(id);
-        if (!productGroup.isDisabled()) {
-            productGroup.setDisabled(true);
-            productGroupMysqlDao.update(productGroup);
+    public void disableById(Integer id) throws ServiceException {
+
+        try (final Transaction transaction = dAOFactory.createTransaction()) {
+
+            ProductGroup productGroup = productGroupMysqlDao.findEntityById(id, transaction);
+            if (!productGroup.isDisabled()) {
+                productGroup.setDisabled(true);
+                productGroupMysqlDao.update(productGroup, transaction);
+                transaction.commit();
+            }
+        } catch (DaoException e) {
+            throw new ServiceException();
         }
     }
 
     @Override
-    public void enableById(Integer id) {
-        ProductGroup productGroup = productGroupMysqlDao.findEntityById(id);
-        if (productGroup.isDisabled()) {
-            productGroup.setDisabled(false);
-            productGroupMysqlDao.update(productGroup);
+    public void enableById(Integer id) throws ServiceException {
+
+        try (final Transaction transaction = dAOFactory.createTransaction()) {
+
+            ProductGroup productGroup = productGroupMysqlDao.findEntityById(id, transaction);
+            if (productGroup.isDisabled()) {
+                productGroup.setDisabled(false);
+                productGroupMysqlDao.update(productGroup, transaction);
+                transaction.commit();
+            }
+        } catch (DaoException e) {
+            throw new ServiceException();
         }
+
     }
 
     private void fillFields(ProductGroup productGroup, FileItem part) {
@@ -244,9 +351,9 @@ public class ProductGroupServiceImpl implements by.epam.cafe.service.ProductGrou
 
     }
 
-    private void buildProductGroup(ProductGroup productGroup) throws NullParamDaoException {
+    private void buildProductGroup(ProductGroup productGroup, Transaction transaction) throws NullParamDaoException {
         List<Product> products = productGroup.getProducts();
-        List<Product> allByProductGroupId = productMysqlDao.findAllByProductGroupId(productGroup.getId());
+        List<Product> allByProductGroupId = productMysqlDao.findAllByProductGroupId(productGroup.getId(), transaction);
         products.addAll(allByProductGroupId);
         log.info("buildProductGroup: products = {}", products);
     }

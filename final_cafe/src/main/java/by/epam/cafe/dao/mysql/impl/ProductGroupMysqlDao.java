@@ -2,6 +2,7 @@ package by.epam.cafe.dao.mysql.impl;
 
 import by.epam.cafe.dao.exception.NullParamDaoException;
 import by.epam.cafe.dao.mysql.AbstractMysqlDao;
+import by.epam.cafe.dao.mysql.Transaction;
 import by.epam.cafe.entity.enums.ProductType;
 import by.epam.cafe.entity.impl.ProductGroup;
 import org.apache.logging.log4j.LogManager;
@@ -74,55 +75,50 @@ public class ProductGroupMysqlDao extends AbstractMysqlDao<Integer, ProductGroup
         statement.setInt(6, entity.getId());
     }
 
-    public List<ProductGroup> findAllByProductTypeAndDisabled(ProductType type, boolean disabled) throws NullParamDaoException {
+    public List<ProductGroup> findAllByProductTypeAndDisabled(ProductType type, boolean disabled, Transaction transaction) throws NullParamDaoException {
         if (type == null) {
             throw new NullParamDaoException("type is null");
         }
         log.debug("entered findAllByProductTypeAndDisabled");
-        Connection cn = getPool().takeConnection();
+        Connection cn = transaction.getConnection();
+
         log.info("findAllByProductTypeAndDisabled: cn = {}", cn);
         List<ProductGroup> productGroups = new ArrayList<>();
-        try {
-            try (PreparedStatement statement =
-                         cn.prepareStatement(findAllByProductGroupNotDisabled)) {
+        try (PreparedStatement statement =
+                     cn.prepareStatement(findAllByProductGroupNotDisabled)) {
 
-                statement.setInt(1, type.ordinal());
-                statement.setBoolean(2, disabled);
+            statement.setInt(1, type.ordinal());
+            statement.setBoolean(2, disabled);
 
-                ResultSet resultSet = statement.executeQuery();
-                while (resultSet.next()) {
-                    ProductGroup entity = findEntity(resultSet);
-                    productGroups.add(entity);
-                }
-            } catch (SQLException e) {
-                log.info("e: ", e);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                ProductGroup entity = findEntity(resultSet);
+                productGroups.add(entity);
             }
-
-            return productGroups;
-        } finally {
-            getPool().release(cn);
+        } catch (SQLException e) {
+            log.info("e: ", e);
         }
+
+        return productGroups;
     }
 
-    public List<ProductGroup> findAllEmpty() {
+    public List<ProductGroup> findAllEmpty(Transaction transaction) {
 
-        Connection cn = getPool().takeConnection();
-        try {
-            List<ProductGroup> entities = new ArrayList<>();
+        Connection cn = transaction.getConnection();
 
-            try (Statement statement = cn.createStatement()) {
-                ResultSet resultSet = statement.executeQuery(findEmpty);
-                while (resultSet.next()) {
-                    ProductGroup entity = findEntity(resultSet);
-                    entities.add(entity);
-                }
-            } catch (SQLException e) {
-                log.info("e: ", e);
+
+        List<ProductGroup> entities = new ArrayList<>();
+
+        try (Statement statement = cn.createStatement()) {
+            ResultSet resultSet = statement.executeQuery(findEmpty);
+            while (resultSet.next()) {
+                ProductGroup entity = findEntity(resultSet);
+                entities.add(entity);
             }
-            return entities;
-        } finally {
-            getPool().release(cn);
+        } catch (SQLException e) {
+            log.info("e: ", e);
         }
+        return entities;
     }
 
 

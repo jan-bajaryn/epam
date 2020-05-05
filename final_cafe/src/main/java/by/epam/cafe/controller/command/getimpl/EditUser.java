@@ -4,6 +4,7 @@ import by.epam.cafe.entity.enums.Role;
 import by.epam.cafe.entity.impl.User;
 import by.epam.cafe.service.UserService;
 import by.epam.cafe.service.exception.IllegalPathParamException;
+import by.epam.cafe.service.exception.ServiceException;
 import by.epam.cafe.service.factory.ServiceFactory;
 import by.epam.cafe.service.parser.PathVarCalculator;
 import org.apache.logging.log4j.LogManager;
@@ -37,7 +38,7 @@ public class EditUser extends by.epam.cafe.controller.command.Command {
             } else {
                 request.getRequestDispatcher("/WEB-INF/jsp/errors/something_went_wrong.jsp").forward(request, response);
             }
-        } catch (IllegalPathParamException e) {
+        } catch (IllegalPathParamException | ServiceException e) {
             request.getRequestDispatcher("/WEB-INF/jsp/errors/something_went_wrong.jsp").forward(request, response);
         }
     }

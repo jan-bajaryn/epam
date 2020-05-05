@@ -37,25 +37,23 @@ public abstract class AbstractMysqlDao<ID, T extends Entity<ID>> implements Abst
     }
 
     @Override
-    public List<T> findAll() {
+    public List<T> findAll(Transaction transaction) {
 
-        Connection cn = getPool().takeConnection();
-        try {
-            List<T> entities = new ArrayList<>();
+        Connection cn = transaction.getConnection();
 
-            try (Statement statement = cn.createStatement()) {
-                ResultSet resultSet = statement.executeQuery(findAllSql);
-                while (resultSet.next()) {
-                    T entity = findEntity(resultSet);
-                    entities.add(entity);
-                }
-            } catch (SQLException e) {
-                log.info("e: ", e);
+
+        List<T> entities = new ArrayList<>();
+
+        try (Statement statement = cn.createStatement()) {
+            ResultSet resultSet = statement.executeQuery(findAllSql);
+            while (resultSet.next()) {
+                T entity = findEntity(resultSet);
+                entities.add(entity);
             }
-            return entities;
-        } finally {
-            getPool().release(cn);
+        } catch (SQLException e) {
+            log.info("e: ", e);
         }
+        return entities;
     }
 
     protected abstract T findEntity(ResultSet resultSet) throws SQLException;
@@ -68,94 +66,79 @@ public abstract class AbstractMysqlDao<ID, T extends Entity<ID>> implements Abst
      *                              {@link NullPointerException}
      */
     @Override
-    public T findEntityById(ID id) {
-        Connection cn = getPool().takeConnection();
+    public T findEntityById(ID id, Transaction transaction) {
 
-        try {
-            T entity = null;
-            try (PreparedStatement statement =
-                         cn.prepareStatement(findEntityByIdSql)) {
-                idParam(statement, id);
-                ResultSet resultSet = statement.executeQuery();
-                if (resultSet.next()) {
-                    entity = findEntity(resultSet);
-                }
-            } catch (SQLException e) {
-                log.info("e: ", e);
+        Connection cn = transaction.getConnection();
+
+        T entity = null;
+        try (PreparedStatement statement =
+                     cn.prepareStatement(findEntityByIdSql)) {
+            idParam(statement, id);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                entity = findEntity(resultSet);
             }
-            return entity;
-        } finally {
-            getPool().release(cn);
+        } catch (SQLException e) {
+            log.info("e: ", e);
         }
+        return entity;
 
     }
 
     protected abstract void idParam(PreparedStatement statement, ID id) throws SQLException;
 
     @Override
-    public boolean deleteById(ID id) {
-        Connection cn = getPool().takeConnection();
+    public boolean deleteById(ID id, Transaction transaction) {
+        Connection cn = transaction.getConnection();
 
-        try {
-            try (PreparedStatement statement = cn.prepareStatement(deleteByIdSql)) {
-                idParam(statement, id);
-                return statement.execute();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            return false;
-        } finally {
-            getPool().release(cn);
+        try (PreparedStatement statement = cn.prepareStatement(deleteByIdSql)) {
+            idParam(statement, id);
+            return statement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+        return false;
     }
 
     @Override
-    public boolean delete(T entity) {
-        Connection cn = getPool().takeConnection();
+    public boolean delete(T entity, Transaction transaction) {
+        Connection cn = transaction.getConnection();
 
-        try {
-            try (PreparedStatement statement = cn.prepareStatement(deleteByIdSql)) {
-                idParam(statement, entity.getId());
-                return statement.execute();
-            } catch (SQLException e) {
-                log.info("e: ", e);
-            }
-            return false;
-        } finally {
-            getPool().release(cn);
+        try (PreparedStatement statement = cn.prepareStatement(deleteByIdSql)) {
+            idParam(statement, entity.getId());
+            return statement.execute();
+        } catch (SQLException e) {
+            log.info("e: ", e);
         }
+        return false;
     }
 
     @Override
-    public T create(T entity) {
-        Connection cn = getPool().takeConnection();
+    public T create(T entity, Transaction transaction) {
+        Connection cn = transaction.getConnection();
 
-        try {
-            try (PreparedStatement statement =
-                         cn.prepareStatement(createSql,Statement.RETURN_GENERATED_KEYS)) {
-                createParams(entity, statement);
+        try (PreparedStatement statement =
+                     cn.prepareStatement(createSql, Statement.RETURN_GENERATED_KEYS)) {
+            createParams(entity, statement);
 //                return statement.execute();
 //                return statement.executeUpdate() == 1;
-                int affectedRows = statement.executeUpdate();
+            int affectedRows = statement.executeUpdate();
 
-                if (affectedRows==0){
-                    return null;
-                }
-
-                try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
-                    if (generatedKeys.next()) {
-                        entity.setId(getIdFromGeneratedKeys(generatedKeys));
-                        return entity;
-                    }
-                }
-
-            } catch (SQLException e) {
-                log.info("e: ", e);
+            if (affectedRows == 0) {
+                return null;
             }
-            return null;
-        } finally {
-            getPool().release(cn);
+
+            try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    entity.setId(getIdFromGeneratedKeys(generatedKeys));
+                    return entity;
+                }
+            }
+
+        } catch (SQLException e) {
+            log.info("e: ", e);
         }
+        return null;
     }
 
     protected abstract ID getIdFromGeneratedKeys(ResultSet generatedKeys) throws SQLException;
@@ -163,27 +146,19 @@ public abstract class AbstractMysqlDao<ID, T extends Entity<ID>> implements Abst
     protected abstract void createParams(T entity, PreparedStatement statement) throws SQLException;
 
     @Override
-    public boolean update(T entity) {
-        Connection cn = getPool().takeConnection();
-        try {
-            try (PreparedStatement statement =
-                         cn.prepareStatement(updateSql)) {
+    public boolean update(T entity, Transaction transaction) {
+        Connection cn = transaction.getConnection();
+        try (PreparedStatement statement =
+                     cn.prepareStatement(updateSql)) {
 
-                updateParams(entity, statement);
-                return statement.executeUpdate() == 1;
-            } catch (SQLException e) {
-                log.info("e: ", e);
-            }
-            return false;
-        } finally {
-            getPool().release(cn);
+            updateParams(entity, statement);
+            return statement.executeUpdate() == 1;
+        } catch (SQLException e) {
+            log.info("e: ", e);
         }
+        return false;
     }
 
     protected abstract void updateParams(T entity, PreparedStatement statement) throws SQLException;
 
-    protected ConnectionPool getPool() {
-        log.info("connectionPool = {}", connectionPool);
-        return connectionPool;
-    }
 }

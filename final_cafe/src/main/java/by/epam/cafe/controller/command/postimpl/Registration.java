@@ -4,6 +4,7 @@ import by.epam.cafe.controller.command.PermissionDeniedException;
 import by.epam.cafe.entity.enums.Role;
 import by.epam.cafe.entity.impl.User;
 import by.epam.cafe.service.UserService;
+import by.epam.cafe.service.exception.ServiceException;
 import by.epam.cafe.service.factory.ServiceFactory;
 import by.epam.cafe.service.parser.NullIfEmptyService;
 import by.epam.cafe.service.validator.UserValidator;
@@ -42,7 +43,7 @@ public class Registration extends by.epam.cafe.controller.command.Command {
             }
 
 
-        } catch (IllegalArgumentException | NullPointerException e) {
+        } catch (IllegalArgumentException | NullPointerException | ServiceException e) {
             log.error("e:", e);
             String path = request.getContextPath() + request.getServletPath();
             log.info("execute: path = {}", path);

@@ -2,6 +2,7 @@ package by.epam.cafe.dao.mysql.impl;
 
 import by.epam.cafe.dao.exception.NullParamDaoException;
 import by.epam.cafe.dao.mysql.AbstractMysqlDao;
+import by.epam.cafe.dao.mysql.Transaction;
 import by.epam.cafe.entity.impl.Product;
 import by.epam.cafe.entity.impl.ProductGroup;
 import org.apache.logging.log4j.LogManager;
@@ -86,31 +87,27 @@ public class ProductMysqlDao extends AbstractMysqlDao<Integer, Product> {
         }
     }
 
-    public List<Product> findAllByProductGroupId(Integer id) throws NullParamDaoException {
+    public List<Product> findAllByProductGroupId(Integer id, Transaction transaction) throws NullParamDaoException {
         if (id == null) {
             throw new NullParamDaoException("id is null");
         }
+        Connection cn = transaction.getConnection();
 
-        Connection cn = getPool().takeConnection();
         List<Product> productGroups = new ArrayList<>();
-        try {
-            try (PreparedStatement statement =
-                         cn.prepareStatement(findProductByProductGroup)) {
+        try (PreparedStatement statement =
+                     cn.prepareStatement(findProductByProductGroup)) {
 
-                statement.setInt(1, id);
+            statement.setInt(1, id);
 
-                ResultSet resultSet = statement.executeQuery();
-                while (resultSet.next()) {
-                    Product entity = findEntity(resultSet);
-                    productGroups.add(entity);
-                }
-            } catch (SQLException e) {
-                log.info("e: ", e);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Product entity = findEntity(resultSet);
+                productGroups.add(entity);
             }
-            return productGroups;
-        } finally {
-            getPool().release(cn);
+        } catch (SQLException e) {
+            log.info("e: ", e);
         }
+        return productGroups;
     }
 
 
@@ -119,27 +116,24 @@ public class ProductMysqlDao extends AbstractMysqlDao<Integer, Product> {
         return generatedKeys.getInt(1);
     }
 
-    public Map<Product, Integer> findAllByOrderId(Integer id) {
+    public Map<Product, Integer> findAllByOrderId(Integer id, Transaction transaction) {
 
-        Connection cn = getPool().takeConnection();
-        try {
-            Map<Product, Integer> result = new HashMap<>();
+        Connection cn = transaction.getConnection();
 
-            try (PreparedStatement statement = cn.prepareStatement(findProductsByOrder)) {
-                idParam(statement,id);
-                ResultSet resultSet = statement.executeQuery();
-                while (resultSet.next()) {
-                    Product entity = findEntity(resultSet);
-                    Integer count = findCount(resultSet);
-                    result.put(entity, count);
-                }
-            } catch (SQLException e) {
-                log.info("e: ", e);
+        Map<Product, Integer> result = new HashMap<>();
+
+        try (PreparedStatement statement = cn.prepareStatement(findProductsByOrder)) {
+            idParam(statement, id);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Product entity = findEntity(resultSet);
+                Integer count = findCount(resultSet);
+                result.put(entity, count);
             }
-            return result;
-        } finally {
-            getPool().release(cn);
+        } catch (SQLException e) {
+            log.info("e: ", e);
         }
+        return result;
 
     }
 

@@ -2,6 +2,7 @@ package by.epam.cafe.controller.command.postimpl;
 
 import by.epam.cafe.entity.impl.User;
 import by.epam.cafe.service.UserService;
+import by.epam.cafe.service.exception.ServiceException;
 import by.epam.cafe.service.factory.ServiceFactory;
 import by.epam.cafe.service.validator.parts.LoginValidator;
 import org.apache.logging.log4j.LogManager;
@@ -33,14 +34,19 @@ public class Login extends by.epam.cafe.controller.command.Command {
                     request.getServletPath() + "/something_went_wrong");
         }
 
-        User user = userService.findUserByUsername(username);
 
-        if (user != null && user.getPassword().equals(password)) {
-            putUser(request, user);
-            redirect(request, response);
-        } else {
-            response.sendRedirect(request.getContextPath() +
-                    request.getServletPath() + "/something_went_wrong");
+        try {
+            User user = userService.findUserByUsername(username);
+
+            if (user != null && user.getPassword().equals(password)) {
+                putUser(request, user);
+                redirect(request, response);
+            } else {
+                response.sendRedirect(request.getContextPath() +
+                        request.getServletPath() + "/something_went_wrong");
+            }
+        } catch (ServiceException e) {
+            response.sendRedirect(request.getContextPath() + request.getServletPath() + "/something_went_wrong");
         }
 
     }

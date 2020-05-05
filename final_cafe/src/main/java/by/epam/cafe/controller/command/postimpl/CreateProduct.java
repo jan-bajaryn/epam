@@ -4,6 +4,7 @@ import by.epam.cafe.controller.command.PermissionDeniedException;
 import by.epam.cafe.entity.impl.Product;
 import by.epam.cafe.entity.impl.ProductGroup;
 import by.epam.cafe.service.ProductService;
+import by.epam.cafe.service.exception.ServiceException;
 import by.epam.cafe.service.factory.ServiceFactory;
 import by.epam.cafe.service.validator.ProductValidator;
 import org.apache.logging.log4j.LogManager;
@@ -38,7 +39,7 @@ public class CreateProduct extends by.epam.cafe.controller.command.Command {
                 log.debug("fail");
                 response.sendRedirect(request.getContextPath() + request.getServletPath() + "/something_went_wrong");
             }
-        } catch (NumberFormatException | NullPointerException e) {
+        } catch (NumberFormatException | NullPointerException | ServiceException e) {
             log.debug("e: ", e);
             response.sendRedirect(request.getContextPath() + request.getServletPath() + "/something_went_wrong");
         }

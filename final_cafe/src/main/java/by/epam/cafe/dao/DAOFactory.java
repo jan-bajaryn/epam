@@ -1,6 +1,10 @@
 package by.epam.cafe.dao;
 
+import by.epam.cafe.dao.exception.DaoException;
+import by.epam.cafe.dao.mysql.Transaction;
 import by.epam.cafe.dao.mysql.impl.*;
+
+import java.sql.SQLException;
 
 public final class DAOFactory {
     private static final DAOFactory instance = new DAOFactory();
@@ -42,5 +46,11 @@ public final class DAOFactory {
 
     public ImageWriterDao getImageWriterDao() {
         return imageWriterDao;
+    }
+
+    public Transaction createTransaction() throws DaoException {
+        Transaction transaction = new Transaction();
+        transaction.beginTransaction();
+        return transaction;
     }
 }

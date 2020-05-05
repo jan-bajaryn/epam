@@ -3,6 +3,7 @@ package by.epam.cafe.controller.command.postimpl;
 import by.epam.cafe.entity.enums.Role;
 import by.epam.cafe.entity.impl.User;
 import by.epam.cafe.service.UserService;
+import by.epam.cafe.service.exception.ServiceException;
 import by.epam.cafe.service.factory.ServiceFactory;
 import by.epam.cafe.service.parser.NullIfEmptyService;
 import by.epam.cafe.service.validator.UserValidator;
@@ -34,9 +35,14 @@ public class EditAdmin extends by.epam.cafe.controller.command.Command {
 
         try {
             User user = buildUser(request);
-            if (userValidator.isValid(user) && userService.update(user)) {
-                response.sendRedirect(request.getContextPath() + request.getServletPath() + "/admin/user-list");
-            } else {
+
+            try {
+                if (userValidator.isValid(user) && userService.update(user)) {
+                    response.sendRedirect(request.getContextPath() + request.getServletPath() + "/admin/user-list");
+                } else {
+                    response.sendRedirect(request.getContextPath() + request.getServletPath() + "/something_went_wrong");
+                }
+            } catch (ServiceException e) {
                 response.sendRedirect(request.getContextPath() + request.getServletPath() + "/something_went_wrong");
             }
         } catch (NullPointerException | IllegalArgumentException e) {

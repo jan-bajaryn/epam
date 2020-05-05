@@ -4,6 +4,7 @@ import by.epam.cafe.controller.command.PermissionDeniedException;
 import by.epam.cafe.entity.impl.Product;
 import by.epam.cafe.service.ProductService;
 import by.epam.cafe.service.PutItemService;
+import by.epam.cafe.service.exception.ServiceException;
 import by.epam.cafe.service.factory.ServiceFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -50,7 +51,7 @@ public class PutItemAnon extends by.epam.cafe.controller.command.Command {
                 //TODO LOGIC
                 response.sendRedirect(request.getContextPath() + request.getServletPath() + "/something_went_wrong");
             }
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException | ServiceException e) {
             //TODO LOGIC
             response.sendRedirect(request.getContextPath() + request.getServletPath() + "/something_went_wrong");
         }
