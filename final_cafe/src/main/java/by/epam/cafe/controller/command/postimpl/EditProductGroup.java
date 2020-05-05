@@ -20,7 +20,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class EditProductGroup extends by.epam.cafe.controller.command.Command {
     private static final Logger log = LogManager.getLogger(EditProductGroup.class);
@@ -36,7 +38,8 @@ public class EditProductGroup extends by.epam.cafe.controller.command.Command {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PermissionDeniedException {
 
-        ProductGroup productGroup = parseRequest(request);
+        Map<String ,String > redirect = new HashMap<>();
+        ProductGroup productGroup = parseRequest(request,redirect);
 
         boolean valid = productGroupValidator.isValid(productGroup);
         log.debug("valid = {}", valid);
@@ -53,7 +56,7 @@ public class EditProductGroup extends by.epam.cafe.controller.command.Command {
 
     }
 
-    public ProductGroup parseRequest(HttpServletRequest request) {
+    public ProductGroup parseRequest(HttpServletRequest request, Map<String ,String > redirect) {
         try {
 
             ProductGroup productGroup = new ProductGroup();
@@ -63,7 +66,7 @@ public class EditProductGroup extends by.epam.cafe.controller.command.Command {
 
             for (FileItem part : parts) {
 
-                productGroupParser.fillFields(productGroup, part);
+                productGroupParser.fillFields(productGroup, part,redirect);
             }
             return productGroup;
         } catch (FileUploadException e) {
