@@ -38,7 +38,7 @@ public class CommandPostFactory implements CommandFactory {
         commandMap.put("/admin/create_user", new CommandDecorator(new CreateUser(), EnumSet.of(ADMIN)));
         commandMap.put("/change-language", new ChangeLanguage());
         commandMap.put("/registration", new Registration());
-        commandMap.put("/admin/edit_user", new EditAdmin());
+        commandMap.put("/admin/edit-user", new EditAdmin());
         /*language=RegExp*/
         commandMap.put("/admin/block/\\d+", new UserBlock());
         /*language=RegExp*/
@@ -75,6 +75,7 @@ public class CommandPostFactory implements CommandFactory {
 
 
         commandMap.put("/client/make-order", new MakeOrderClient());
+
 
 
     }

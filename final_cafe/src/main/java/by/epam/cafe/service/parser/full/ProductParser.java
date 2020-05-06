@@ -22,7 +22,7 @@ public class ProductParser {
     private final PriceParser priceParser = new PriceParser();
     private final WeightParser weightParser = new WeightParser();
 
-    public Product parseProduct(Map<String, String> redirect, String id, String productGroup, String price, String weight) {
+    public Product parseProduct(Map<String, String> redirect, String productGroup, String price, String weight) {
         Optional<Integer> productGroupOpt = productGroupInProductParser.parse(productGroup);
         Optional<Integer> priceOpt = priceParser.parse(price);
         Optional<Integer> weightOpt = weightParser.parse(weight);
@@ -47,12 +47,17 @@ public class ProductParser {
     }
 
     public Product parseProductWithId(Map<String, String> redirect, String id, String productGroup, String price, String weight) {
-        Product product = parseProduct(redirect, id, productGroup, price, weight);
-        Optional<Integer> idOpt = idParser.parse(id);
-        boolean result = validateAndPutter.validateAndPut(redirect, idOpt, "id", id);
-        if (result) {
-            product.setId(idOpt.get());
-            return product;
+        Product product = parseProduct(redirect, productGroup, price, weight);
+        if (product != null) {
+
+            Optional<Integer> idOpt = idParser.parse(id);
+            boolean result = validateAndPutter.validateAndPut(redirect, idOpt, "id", id);
+            if (result) {
+                product.setId(idOpt.get());
+                return product;
+            } else {
+                return null;
+            }
         } else {
             return null;
         }

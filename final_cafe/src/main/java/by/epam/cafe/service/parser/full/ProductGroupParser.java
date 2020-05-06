@@ -17,6 +17,13 @@ import java.util.Optional;
 
 public class ProductGroupParser {
     private static final Logger log = LogManager.getLogger(ProductGroupParser.class);
+    private static final String NAME = "name";
+    private static final String TYPE = "type";
+    private static final String DESCRIPTION = "description";
+    private static final String PRODUCTS = "products";
+    private static final String FILE = "file";
+    private static final String ID = "id";
+    private static final String DISABLED = "disabled";
 
     private final ValidateAndPutter validateAndPutter = ValidateAndPutter.getInstance();
 
@@ -28,7 +35,7 @@ public class ProductGroupParser {
     private final ProductGroupDescriptionParser productGroupDescriptionParser = new ProductGroupDescriptionParser();
     private final IdParser idParser = new IdParser();
     private final PhotoNameParser photoNameParser = new PhotoNameParser();
-    private final DisabledParser disabledParser = new DisabledParser();
+    private final BooleanParser booleanParser = new BooleanParser();
 
 
     public boolean fillFields(ProductGroup productGroup, FileItem part, Map<String, String> redirect) {
@@ -37,37 +44,37 @@ public class ProductGroupParser {
 
         try {
             switch (part.getFieldName()) {
-                case "name":
+                case NAME:
                     String name = part.getString();
                     Optional<String> nameOpt = productGroupNameParser.parse(name);
-                    if (validateAndPutter.validateAndPut(redirect, nameOpt, "name", name)) {
+                    if (validateAndPutter.validateAndPut(redirect, nameOpt, NAME, name)) {
                         productGroup.setName(nameOpt.get());
                         return true;
                     } else {
                         return false;
                     }
-                case "type":
+                case TYPE:
                     String type = part.getString();
                     Optional<ProductType> typeOpt = productTypeParser.parse(type);
-                    if (validateAndPutter.validateAndPut(redirect, typeOpt, "type", type)) {
+                    if (validateAndPutter.validateAndPut(redirect, typeOpt, TYPE, type)) {
                         productGroup.setType(typeOpt.get());
                         return true;
                     } else {
                         return false;
                     }
-                case "description":
+                case DESCRIPTION:
                     String description = part.getString();
                     Optional<String> descriptionOpt = productGroupDescriptionParser.parse(description);
-                    if (validateAndPutter.validateAndPut(redirect, descriptionOpt, "description", description)) {
+                    if (validateAndPutter.validateAndPut(redirect, descriptionOpt, DESCRIPTION, description)) {
                         productGroup.setDescription(descriptionOpt.get());
                         return true;
                     } else {
                         return false;
                     }
-                case "products":
+                case PRODUCTS:
                     String product = part.getString();
                     Optional<Integer> productOpt = idParser.parse(product);
-                    if (validateAndPutter.validateAndPut(redirect, productOpt, "products", product)) {
+                    if (validateAndPutter.validateAndPut(redirect, productOpt, PRODUCTS, product)) {
                         productGroup.getProducts().add(
                                 Product.newBuilder().id(productOpt.get()).build()
                         );
@@ -75,29 +82,29 @@ public class ProductGroupParser {
                     } else {
                         return false;
                     }
-                case "file":
+                case FILE:
                     file = imageWriterService.downloadFile(part);
                     String fileName = file.getName();
                     Optional<String> parse = photoNameParser.parse(fileName);
-                    if (validateAndPutter.validateAndPut(redirect, parse, "file", fileName)) {
+                    if (validateAndPutter.validateAndPut(redirect, parse, FILE, fileName)) {
                         productGroup.setPhotoName(fileName);
                         return true;
                     } else {
                         return false;
                     }
-                case "id":
+                case ID:
                     String id = part.getString();
                     Optional<Integer> idOpt = idParser.parse(id);
-                    if (validateAndPutter.validateAndPut(redirect, idOpt, "id", id)) {
+                    if (validateAndPutter.validateAndPut(redirect, idOpt, ID, id)) {
                         productGroup.setId(idOpt.get());
                         return true;
                     } else {
                         return false;
                     }
-                case "disabled":
+                case DISABLED:
                     String isDisabled = part.getString();
-                    Optional<Boolean> isDisabledOpt = disabledParser.parse(isDisabled);
-                    if (validateAndPutter.validateAndPut(redirect, isDisabledOpt, "disabled", isDisabled)) {
+                    Optional<Boolean> isDisabledOpt = booleanParser.parse(isDisabled);
+                    if (validateAndPutter.validateAndPut(redirect, isDisabledOpt, DISABLED, isDisabled)) {
                         productGroup.setDisabled(isDisabledOpt.get());
                         return true;
                     } else {

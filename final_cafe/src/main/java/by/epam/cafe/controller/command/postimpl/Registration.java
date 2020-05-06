@@ -7,6 +7,7 @@ import by.epam.cafe.service.UserService;
 import by.epam.cafe.service.exception.ServiceException;
 import by.epam.cafe.service.factory.ServiceFactory;
 import by.epam.cafe.service.parser.NullIfEmptyService;
+import by.epam.cafe.service.parser.full.UserParser;
 import by.epam.cafe.service.validator.UserValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -16,6 +17,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
+
+import static by.epam.cafe.controller.filter.RedirectFilter.REDIRECTED_INFO;
 
 public class Registration extends by.epam.cafe.controller.command.Command {
 
@@ -27,33 +32,41 @@ public class Registration extends by.epam.cafe.controller.command.Command {
     private final UserValidator userValidator = serviceFactory.getUserValidator();
 
     private final NullIfEmptyService nullEmpt = serviceFactory.getNullIfEmptyService();
+    private final UserParser userParser = serviceFactory.getUserParser();
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PermissionDeniedException {
         log.info("execute: begin");
+        String referrer = request.getHeader("referer");
 
-        try {
-            User build = buildUser(request);
-            boolean validate = userValidator.validWithoutId(build);
-            log.debug("execute: validate = {}", validate);
-            if (validate && userService.create(build)!=null) {
-                response.sendRedirect(request.getContextPath() + request.getServletPath() + "/login");
-            } else {
-                response.sendRedirect(request.getContextPath() + request.getServletPath() + "/something_went_wrong");
+
+        Map<String, String> redirect = new HashMap<>();
+        User build = validateAndTakeParams(request, redirect);
+
+        if (build != null) {
+
+            try {
+                if (userService.create(build) != null) {
+                    response.sendRedirect(request.getContextPath() + request.getServletPath() + "/login");
+                } else {
+                    request.setAttribute("unknown_error", "true");
+                    response.sendRedirect(referrer);
+                }
+            } catch (ServiceException e) {
+                request.setAttribute("unknown_error", "true");
+                response.sendRedirect(referrer);
             }
-
-
-        } catch (IllegalArgumentException | NullPointerException | ServiceException e) {
-            log.error("e:", e);
-            String path = request.getContextPath() + request.getServletPath();
-            log.info("execute: path = {}", path);
-            response.sendRedirect(path + "/something_went_wrong");
+        } else {
+            response.sendRedirect(referrer);
+            request.getSession().setAttribute(REDIRECTED_INFO, redirect);
         }
 
 
     }
 
-    private User buildUser(HttpServletRequest request) {
+
+    private User validateAndTakeParams(HttpServletRequest request, Map<String, String> redirect) {
+
         String email = request.getParameter("email");
         String phone = request.getParameter("phone");
         String username = request.getParameter("username");
@@ -66,22 +79,8 @@ public class Registration extends by.epam.cafe.controller.command.Command {
         String porch = request.getParameter("porch");
         String floor = request.getParameter("floor");
 
-        return User.newBuilder()
-                .username(username)
-                .password(password)
-                .role(Role.CLIENT)
-                .name(name)
-                .surname(surname)
-                .house(nullEmpt.nullIfEmptyString(house))
-                .room(nullEmpt.nullIfEmptyString(room))
-                .porch(nullEmpt.nullIfEmptyInteger(porch))
-                .floor(nullEmpt.nullIfEmptyInteger(floor))
-                .phone(nullEmpt.nullIfEmptyString(phone))
-                .email(email)
-                .creation(LocalDateTime.now())
-                .isBlocked(false)
-                .street(nullEmpt.nullIfEmptyString(street))
-                .build();
+        return userParser.parseRegistrationUser(redirect, email, phone, username, password, name, surname, street, house, room, porch, floor);
     }
+
 
 }

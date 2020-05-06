@@ -9,7 +9,7 @@
 <head>
 
     <title>Create product</title>
-    <tag:imphead footer="${true}" navbar="${true}" btns="${true}"/>
+    <tag:imphead footer="${true}" navbar="${true}" btns="${true}" err="${true}"/>
 
     <link rel="stylesheet" href="<c:url value='/static/css/admin/create_product/main.css' />">
 
@@ -34,6 +34,12 @@
                 <label for="product_group">
                     <fmt:message key="web.inputs.product-group" bundle="${ rb }"/>
                 </label>
+                <c:if test="${not empty redirect_product_group_error}">
+                    <span class="error__message"
+                          title="<fmt:message key="web.inputs.err-value" bundle="${ rb }"/>: <c:out value="${redirect_product_group}"/>">
+                        <fmt:message key="web.errors.username" bundle="${ rb }"/>
+                    </span>
+                </c:if>
                 <select class="form-control" id="product_group" name="product_group">
                     <option value="">
                         <fmt:message key="web.text.empty" bundle="${ rb }"/>
@@ -48,18 +54,30 @@
                 <label for="price">
                     <fmt:message key="web.inputs.price" bundle="${ rb }"/>
                 </label>
+                <c:if test="${not empty redirect_price_error}">
+                    <span class="error__message">
+                        <fmt:message key="web.errors.username" bundle="${ rb }"/>
+                    </span>
+                </c:if>
                 <input type="number" id="price" name="price"
                        placeholder="<fmt:message key="web.inputs.price" bundle="${ rb }"/>"
-                       class="form-control" value="0">
+                       class="form-control"
+                       value="<c:out value="${redirect_price}"/>">
             </div>
 
             <div class="weight">
                 <label for="weight">
                     <fmt:message key="web.tab.weight" bundle="${ rb }"/>
                 </label>
+                <c:if test="${not empty redirect_weight_error}">
+                    <span class="error__message">
+                        <fmt:message key="web.errors.username" bundle="${ rb }"/>
+                    </span>
+                </c:if>
                 <input type="number" id="weight" name="weight"
                        placeholder="<fmt:message key="web.tab.weight" bundle="${ rb }"/>"
-                       class="form-control" value="0">
+                       class="form-control"
+                       value="<c:out value="${redirect_weight}"/>">
             </div>
 
 

@@ -2,14 +2,14 @@ package by.epam.cafe.service.parser.parts;
 
 import by.epam.cafe.service.validator.parts.BooleanParamValidator;
 
-public class DisabledParser extends ParamsParser<Boolean> {
+public class BooleanParser extends ParamsParser<Boolean> {
 
 
     private static final String TRUE = "1";
 
     private static final BooleanParamValidator validator = new BooleanParamValidator();
 
-    public DisabledParser() {
+    public BooleanParser() {
         super(validator);
     }
 

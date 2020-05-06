@@ -27,9 +27,6 @@ public class CreateUser extends by.epam.cafe.controller.command.Command {
     private final ServiceFactory serviceFactory = ServiceFactory.getInstance();
 
     private final UserService userService = serviceFactory.getUserService();
-    private final UserValidator userValidator = serviceFactory.getUserValidator();
-
-    private final NullIfEmptyService nullEmpt = serviceFactory.getNullIfEmptyService();
 
     private final UserParser userParser = serviceFactory.getUserParser();
 

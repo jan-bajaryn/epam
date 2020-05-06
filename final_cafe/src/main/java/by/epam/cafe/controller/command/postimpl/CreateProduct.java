@@ -3,9 +3,11 @@ package by.epam.cafe.controller.command.postimpl;
 import by.epam.cafe.controller.command.PermissionDeniedException;
 import by.epam.cafe.entity.impl.Product;
 import by.epam.cafe.entity.impl.ProductGroup;
+import by.epam.cafe.entity.impl.User;
 import by.epam.cafe.service.ProductService;
 import by.epam.cafe.service.exception.ServiceException;
 import by.epam.cafe.service.factory.ServiceFactory;
+import by.epam.cafe.service.parser.full.ProductParser;
 import by.epam.cafe.service.validator.ProductValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -14,6 +16,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
+import static by.epam.cafe.controller.filter.RedirectFilter.REDIRECTED_INFO;
 
 public class CreateProduct extends by.epam.cafe.controller.command.Command {
 
@@ -22,43 +28,46 @@ public class CreateProduct extends by.epam.cafe.controller.command.Command {
     private final ServiceFactory serviceFactory = ServiceFactory.getInstance();
     private final ProductService productService = serviceFactory.getProductService();
 
-    private final ProductValidator productValidator = serviceFactory.getProductValidator();
+    private final ProductParser productParser = serviceFactory.getProductParser();
 
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PermissionDeniedException {
+
+        String referrer = request.getHeader("referer");
+
+
         log.debug("begin method");
 
-        try {
-            Product product = buildProduct(request);
+        Map<String, String> redirect = new HashMap<>();
+        Product build = validateAndTakeParams(request, redirect);
 
-            if (productValidator.validWithoutId(product) && productService.create(product)!=null) {
-                log.debug("success");
-                response.sendRedirect(request.getContextPath() + request.getServletPath() + "/admin/product-list");
-            } else {
-                log.debug("fail");
-                response.sendRedirect(request.getContextPath() + request.getServletPath() + "/something_went_wrong");
+        if (build != null) {
+
+            try {
+                if (productService.create(build) != null) {
+                    response.sendRedirect(request.getContextPath() + request.getServletPath() + "/admin/product-list");
+                } else {
+                    request.setAttribute("unknown_error", "true");
+                    response.sendRedirect(referrer);
+                }
+            } catch (ServiceException e) {
+                request.setAttribute("unknown_error", "true");
+                response.sendRedirect(referrer);
             }
-        } catch (NumberFormatException | NullPointerException | ServiceException e) {
-            log.debug("e: ", e);
-            response.sendRedirect(request.getContextPath() + request.getServletPath() + "/something_went_wrong");
+        } else {
+            response.sendRedirect(referrer);
+            request.getSession().setAttribute(REDIRECTED_INFO, redirect);
         }
 
     }
 
-    private Product buildProduct(HttpServletRequest request) {
+
+    private Product validateAndTakeParams(HttpServletRequest request, Map<String, String> redirect) {
         String productGroup = request.getParameter("product_group");
         String price = request.getParameter("price");
         String weight = request.getParameter("weight");
 
-        return Product.newBuilder()
-                .price(Integer.valueOf(price))
-                .weight(Integer.valueOf(weight))
-                .productGroup(
-                        productGroup == null || productGroup.isEmpty() ?
-                                null :
-                                ProductGroup.newBuilder().id(Integer.valueOf(productGroup)).build()
-                )
-                .build();
+        return productParser.parseProduct(redirect, productGroup, price, weight);
     }
 }
