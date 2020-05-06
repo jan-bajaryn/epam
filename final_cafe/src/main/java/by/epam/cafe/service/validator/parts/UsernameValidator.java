@@ -2,12 +2,14 @@ package by.epam.cafe.service.validator.parts;
 
 import by.epam.cafe.service.validator.Validator;
 
+import java.util.regex.Pattern;
+
 public class UsernameValidator implements Validator<String> {
 
-    private static final String USERNAME_REGEX = "\\w{1,20}";
+    private static final String USERNAME_REGEX = "[\\p{javaAlphabetic}\\d]{1,20}";
 
     @Override
     public boolean isValid(String input) {
-        return input.matches(USERNAME_REGEX);
+        return Pattern.compile(USERNAME_REGEX, Pattern.UNICODE_CASE).matcher(input).matches();
     }
 }

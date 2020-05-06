@@ -1,13 +1,15 @@
 package by.epam.cafe.service.validator.parts;
 
 
+import java.util.regex.Pattern;
+
 public class SurnameValidator implements by.epam.cafe.service.validator.Validator<String> {
     //language=RegExp
-    public static final String SURNAME_REGEX = "\\w{1,20}";
+    public static final String SURNAME_REGEX = "\\p{javaAlphabetic}{1,20}";
 
 
     @Override
     public boolean isValid(String input) {
-        return input == null || input.matches(SURNAME_REGEX);
+        return input == null || Pattern.compile(SURNAME_REGEX, Pattern.UNICODE_CASE).matcher(input).matches();
     }
 }
