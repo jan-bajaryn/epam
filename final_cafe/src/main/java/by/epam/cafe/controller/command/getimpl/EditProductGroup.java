@@ -1,6 +1,7 @@
 package by.epam.cafe.controller.command.getimpl;
 
 import by.epam.cafe.dao.exception.NullParamDaoException;
+import by.epam.cafe.entity.enums.ProductType;
 import by.epam.cafe.entity.impl.Product;
 import by.epam.cafe.entity.impl.ProductGroup;
 import by.epam.cafe.service.ProductGroupService;
@@ -32,6 +33,7 @@ public class EditProductGroup extends by.epam.cafe.controller.command.Command {
 
             if (productGroup != null) {
                 request.setAttribute("group", productGroup);
+                request.setAttribute("types", ProductType.values());
 
                 putProducts(request);
 

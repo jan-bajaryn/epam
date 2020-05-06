@@ -21,7 +21,7 @@ public class DeliveryInfServiceImpl implements by.epam.cafe.service.DeliveryInfS
         try (final Transaction transaction = dAOFactory.createTransaction()) {
             return deliveryInfMysqlDao.findAll(transaction);
         } catch (DaoException e) {
-            throw new ServiceException();
+            throw new ServiceException(e);
         }
     }
 
@@ -31,7 +31,7 @@ public class DeliveryInfServiceImpl implements by.epam.cafe.service.DeliveryInfS
         try (final Transaction transaction = dAOFactory.createTransaction()) {
             return deliveryInfMysqlDao.findEntityById(integer, transaction);
         } catch (DaoException e) {
-            throw new ServiceException();
+            throw new ServiceException(e);
         }
     }
 
@@ -47,7 +47,7 @@ public class DeliveryInfServiceImpl implements by.epam.cafe.service.DeliveryInfS
             }
             return result;
         } catch (DaoException e) {
-            throw new ServiceException();
+            throw new ServiceException(e);
         }
     }
 
@@ -63,7 +63,7 @@ public class DeliveryInfServiceImpl implements by.epam.cafe.service.DeliveryInfS
             }
             return result;
         } catch (DaoException e) {
-            throw new ServiceException();
+            throw new ServiceException(e);
         }
     }
 
@@ -79,7 +79,7 @@ public class DeliveryInfServiceImpl implements by.epam.cafe.service.DeliveryInfS
             }
             return deliveryInf;
         } catch (DaoException e) {
-            throw new ServiceException();
+            throw new ServiceException(e);
         }
     }
 
@@ -96,7 +96,7 @@ public class DeliveryInfServiceImpl implements by.epam.cafe.service.DeliveryInfS
             return result;
 
         } catch (DaoException e) {
-            throw new ServiceException();
+            throw new ServiceException(e);
         }
     }
 }

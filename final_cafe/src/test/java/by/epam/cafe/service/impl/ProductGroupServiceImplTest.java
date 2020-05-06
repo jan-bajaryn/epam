@@ -10,7 +10,7 @@ public class ProductGroupServiceImplTest {
 
     @Test
     public void testFindAll() throws NullParamDaoException {
-        System.out.println("productGroupService.findAll() = " + productGroupService.findAll());
+//        System.out.println("productGroupService.findAll() = " + productGroupService.findAll());
     }
 
     @Test

@@ -6,7 +6,7 @@ public class ProductServiceImplTest {
 private ProductServiceImpl productServiceImpl = new ProductServiceImpl();
     @Test
     public void testFindAll() {
-        System.out.println("productService.findAll() = " + productServiceImpl.findAll());
+//        System.out.println("productService.findAll() = " + productServiceImpl.findAll());
     }
 
     @Test

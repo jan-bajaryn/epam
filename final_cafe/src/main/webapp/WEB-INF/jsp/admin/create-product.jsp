@@ -37,7 +37,7 @@
                 <c:if test="${not empty redirect_product_group_error}">
                     <span class="error__message"
                           title="<fmt:message key="web.inputs.err-value" bundle="${ rb }"/>: <c:out value="${redirect_product_group}"/>">
-                        <fmt:message key="web.errors.username" bundle="${ rb }"/>
+                        <fmt:message key="web.errors.field" bundle="${ rb }"/>
                     </span>
                 </c:if>
                 <select class="form-control" id="product_group" name="product_group">
@@ -56,7 +56,7 @@
                 </label>
                 <c:if test="${not empty redirect_price_error}">
                     <span class="error__message">
-                        <fmt:message key="web.errors.username" bundle="${ rb }"/>
+                        <fmt:message key="web.errors.field" bundle="${ rb }"/>
                     </span>
                 </c:if>
                 <input type="number" id="price" name="price"
@@ -71,7 +71,7 @@
                 </label>
                 <c:if test="${not empty redirect_weight_error}">
                     <span class="error__message">
-                        <fmt:message key="web.errors.username" bundle="${ rb }"/>
+                        <fmt:message key="web.errors.field" bundle="${ rb }"/>
                     </span>
                 </c:if>
                 <input type="number" id="weight" name="weight"

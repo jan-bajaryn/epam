@@ -27,7 +27,7 @@ public class ProductServiceImpl implements by.epam.cafe.service.ProductService {
             all.forEach(p -> buildProduct(p, transaction));
             return all;
         } catch (DaoException e) {
-            throw new ServiceException();
+            throw new ServiceException(e);
         }
 
     }
@@ -48,7 +48,7 @@ public class ProductServiceImpl implements by.epam.cafe.service.ProductService {
             buildProduct(entityById, transaction);
             return entityById;
         } catch (DaoException e) {
-            throw new ServiceException();
+            throw new ServiceException(e);
         }
 
     }
@@ -64,7 +64,7 @@ public class ProductServiceImpl implements by.epam.cafe.service.ProductService {
             }
             return result;
         } catch (DaoException e) {
-            throw new ServiceException();
+            throw new ServiceException(e);
         }
     }
 
@@ -79,7 +79,7 @@ public class ProductServiceImpl implements by.epam.cafe.service.ProductService {
             }
             return result;
         } catch (DaoException e) {
-            throw new ServiceException();
+            throw new ServiceException(e);
         }
     }
 
@@ -94,7 +94,7 @@ public class ProductServiceImpl implements by.epam.cafe.service.ProductService {
             }
             return product;
         } catch (DaoException e) {
-            throw new ServiceException();
+            throw new ServiceException(e);
         }
     }
 
@@ -109,7 +109,7 @@ public class ProductServiceImpl implements by.epam.cafe.service.ProductService {
             }
             return result;
         } catch (DaoException e) {
-            throw new ServiceException();
+            throw new ServiceException(e);
         }
     }
  

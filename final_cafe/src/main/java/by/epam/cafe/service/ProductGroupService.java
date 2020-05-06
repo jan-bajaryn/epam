@@ -21,7 +21,7 @@ public interface ProductGroupService {
 
     ProductGroup create(ProductGroup entity) throws ServiceException;
 
-    boolean update(ProductGroup entity) throws NullParamDaoException, ServiceException;
+    boolean update(ProductGroup entity) throws ServiceException;
 
     List<ProductGroup> findAllByProductTypeNotDisabled(ProductType type) throws NullServiceException, ServiceException;
 

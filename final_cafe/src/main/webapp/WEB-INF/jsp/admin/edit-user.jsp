@@ -79,7 +79,7 @@
                     <c:if test="${not empty redirect_role_error}">
                     <span class="error__message"
                           title="<fmt:message key="web.inputs.err-value" bundle="${ rb }"/>: <c:out value="${redirect_role}"/>">
-                        <fmt:message key="web.errors.name" bundle="${ rb }"/>
+                        <fmt:message key="web.errors.field" bundle="${ rb }"/>
                     </span>
                     </c:if>
                     <select class="form-control" id="role" name="role">

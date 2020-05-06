@@ -42,7 +42,7 @@ public class OrderServiceImpl implements by.epam.cafe.service.OrderService {
                     .collect(Collectors.toList());
 
         } catch (DaoException e) {
-            throw new ServiceException();
+            throw new ServiceException(e);
         }
     }
 
@@ -83,7 +83,7 @@ public class OrderServiceImpl implements by.epam.cafe.service.OrderService {
             }
             return order;
         } catch (DaoException e) {
-            throw new ServiceException();
+            throw new ServiceException(e);
         }
 
     }
@@ -99,7 +99,7 @@ public class OrderServiceImpl implements by.epam.cafe.service.OrderService {
             }
             return result;
         } catch (DaoException e) {
-            throw new ServiceException();
+            throw new ServiceException(e);
         }
     }
 
@@ -115,7 +115,7 @@ public class OrderServiceImpl implements by.epam.cafe.service.OrderService {
             }
             return result;
         } catch (DaoException e) {
-            throw new ServiceException();
+            throw new ServiceException(e);
         }
     }
 
@@ -142,7 +142,7 @@ public class OrderServiceImpl implements by.epam.cafe.service.OrderService {
 
             return order;
         } catch (DaoException e) {
-            throw new ServiceException();
+            throw new ServiceException(e);
         }
 
     }
@@ -152,7 +152,7 @@ public class OrderServiceImpl implements by.epam.cafe.service.OrderService {
         try (final Transaction transaction = dAOFactory.createTransaction()) {
             orderMysqlDao.addProductsOnCreate(products, order, transaction);
         } catch (DaoException e) {
-            throw new ServiceException();
+            throw new ServiceException(e);
         }
     }
 
@@ -178,7 +178,7 @@ public class OrderServiceImpl implements by.epam.cafe.service.OrderService {
             }
             return result;
         } catch (DaoException e) {
-            throw new ServiceException();
+            throw new ServiceException(e);
         }
 
     }
@@ -202,7 +202,7 @@ public class OrderServiceImpl implements by.epam.cafe.service.OrderService {
             log.debug("executed first");
 
         } catch (DaoException e) {
-            throw new ServiceException();
+            throw new ServiceException(e);
         }
     }
 
@@ -220,7 +220,7 @@ public class OrderServiceImpl implements by.epam.cafe.service.OrderService {
                 transaction.commit();
             }
         } catch (DaoException e) {
-            throw new ServiceException();
+            throw new ServiceException(e);
         }
 
     }
@@ -239,7 +239,7 @@ public class OrderServiceImpl implements by.epam.cafe.service.OrderService {
                 transaction.commit();
             }
         } catch (DaoException e) {
-            throw new ServiceException();
+            throw new ServiceException(e);
         }
     }
 
@@ -266,7 +266,7 @@ public class OrderServiceImpl implements by.epam.cafe.service.OrderService {
             }
             return current;
         } catch (DaoException e) {
-            throw new ServiceException();
+            throw new ServiceException(e);
         }
     }
 
@@ -280,7 +280,7 @@ public class OrderServiceImpl implements by.epam.cafe.service.OrderService {
             }
             return current;
         } catch (DaoException e) {
-            throw new ServiceException();
+            throw new ServiceException(e);
         }
     }
 

@@ -18,7 +18,7 @@ public class Transaction implements AutoCloseable {
         try {
             connection.setAutoCommit(false);
         } catch (SQLException e) {
-            throw new DaoException();
+            throw new DaoException(e);
         }
     }
 
@@ -30,7 +30,7 @@ public class Transaction implements AutoCloseable {
         try {
             connection.commit();
         } catch (SQLException e) {
-            throw new DaoException();
+            throw new DaoException(e);
         }
     }
 
@@ -38,7 +38,7 @@ public class Transaction implements AutoCloseable {
         try {
             connection.rollback();
         } catch (SQLException e) {
-            throw new DaoException();
+            throw new DaoException(e);
         }
     }
 
@@ -48,7 +48,7 @@ public class Transaction implements AutoCloseable {
             connection.setAutoCommit(true);
             connectionPool.release(connection);
         } catch (SQLException e) {
-            throw new DaoException();
+            throw new DaoException(e);
         }
     }
 }

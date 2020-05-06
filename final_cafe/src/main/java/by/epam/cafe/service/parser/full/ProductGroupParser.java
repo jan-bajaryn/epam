@@ -3,6 +3,7 @@ package by.epam.cafe.service.parser.full;
 import by.epam.cafe.entity.enums.ProductType;
 import by.epam.cafe.entity.impl.Product;
 import by.epam.cafe.entity.impl.ProductGroup;
+import by.epam.cafe.entity.struct.ValueHolder;
 import by.epam.cafe.service.impl.ImageWriterService;
 import by.epam.cafe.service.parser.helper.ValidateAndPutter;
 import by.epam.cafe.service.parser.parts.*;
@@ -38,14 +39,14 @@ public class ProductGroupParser {
     private final BooleanParser booleanParser = new BooleanParser();
 
 
-    public boolean fillFields(ProductGroup productGroup, FileItem part, Map<String, String> redirect) {
+    public boolean fillFields(ProductGroup productGroup, FileItem part, Map<String, String> redirect, ValueHolder<String> fileNameOpt) {
 
         File file = null;
 
         try {
             switch (part.getFieldName()) {
                 case NAME:
-                    String name = part.getString();
+                    String name = part.getString("UTF-8");
                     Optional<String> nameOpt = productGroupNameParser.parse(name);
                     if (validateAndPutter.validateAndPut(redirect, nameOpt, NAME, name)) {
                         productGroup.setName(nameOpt.get());
@@ -54,7 +55,7 @@ public class ProductGroupParser {
                         return false;
                     }
                 case TYPE:
-                    String type = part.getString();
+                    String type = part.getString("UTF-8");
                     Optional<ProductType> typeOpt = productTypeParser.parse(type);
                     if (validateAndPutter.validateAndPut(redirect, typeOpt, TYPE, type)) {
                         productGroup.setType(typeOpt.get());
@@ -63,7 +64,8 @@ public class ProductGroupParser {
                         return false;
                     }
                 case DESCRIPTION:
-                    String description = part.getString();
+                    String description = part.getString("UTF-8");
+                    log.debug("description = {}", description);
                     Optional<String> descriptionOpt = productGroupDescriptionParser.parse(description);
                     if (validateAndPutter.validateAndPut(redirect, descriptionOpt, DESCRIPTION, description)) {
                         productGroup.setDescription(descriptionOpt.get());
@@ -72,7 +74,7 @@ public class ProductGroupParser {
                         return false;
                     }
                 case PRODUCTS:
-                    String product = part.getString();
+                    String product = part.getString("UTF-8");
                     Optional<Integer> productOpt = idParser.parse(product);
                     if (validateAndPutter.validateAndPut(redirect, productOpt, PRODUCTS, product)) {
                         productGroup.getProducts().add(
@@ -85,6 +87,7 @@ public class ProductGroupParser {
                 case FILE:
                     file = imageWriterService.downloadFile(part);
                     String fileName = file.getName();
+                    fileNameOpt.setValue(fileName);
                     Optional<String> parse = photoNameParser.parse(fileName);
                     if (validateAndPutter.validateAndPut(redirect, parse, FILE, fileName)) {
                         productGroup.setPhotoName(fileName);
@@ -93,7 +96,7 @@ public class ProductGroupParser {
                         return false;
                     }
                 case ID:
-                    String id = part.getString();
+                    String id = part.getString("UTF-8");
                     Optional<Integer> idOpt = idParser.parse(id);
                     if (validateAndPutter.validateAndPut(redirect, idOpt, ID, id)) {
                         productGroup.setId(idOpt.get());
@@ -102,7 +105,7 @@ public class ProductGroupParser {
                         return false;
                     }
                 case DISABLED:
-                    String isDisabled = part.getString();
+                    String isDisabled = part.getString("UTF-8");
                     Optional<Boolean> isDisabledOpt = booleanParser.parse(isDisabled);
                     if (validateAndPutter.validateAndPut(redirect, isDisabledOpt, DISABLED, isDisabled)) {
                         productGroup.setDisabled(isDisabledOpt.get());

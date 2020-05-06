@@ -8,7 +8,7 @@
 <html lang="en">
 <head>
     <title>Edit user</title>
-    <tag:imphead footer="${true}" navbar="${true}" btns="${true}"/>
+    <tag:imphead footer="${true}" navbar="${true}" btns="${true}" err="${true}"/>
 
     <link rel="stylesheet" href="<c:url value='/static/css/admin/create_product_group/main.css' />">
 
@@ -34,22 +34,39 @@
                 <label for="name">
                     <fmt:message key="web.inputs.name" bundle="${ rb }"/>
                 </label>
+                <c:if test="${not empty redirect_name_error}">
+                    <span class="error__message">
+                        <fmt:message key="web.errors.field" bundle="${ rb }"/>
+                    </span>
+                </c:if>
                 <input type="text" id="name" name="name"
                        placeholder="<fmt:message key="web.inputs.name" bundle="${ rb }"/>"
-                       class="form-control">
+                       class="form-control"
+                       value="<c:out value="${redirect_name}"/>">
             </div>
 
             <div class="description">
                 <label for="description">
                     <fmt:message key="web.inputs.description" bundle="${ rb }"/>
                 </label>
+                <c:if test="${not empty redirect_description_error}">
+                    <span class="error__message">
+                        <fmt:message key="web.errors.field" bundle="${ rb }"/>
+                    </span>
+                </c:if>
                 <input type="text" id="description" name="description"
                        placeholder="<fmt:message key="web.inputs.description" bundle="${ rb }"/>"
-                       class="form-control">
+                       class="form-control"
+                       value="<c:out value="${redirect_description}"/>">
             </div>
 
             <div class="custom-file">
                 <label class="custom-file-label">
+                    <c:if test="${not empty redirect_file_error}">
+                    <span class="error__message">
+                        <fmt:message key="web.errors.field" bundle="${ rb }"/>
+                    </span>
+                    </c:if>
                     <input id="file" type="file" name="file">
                 </label>
             </div>
@@ -58,6 +75,12 @@
                 <label for="type">
                     <fmt:message key="web.inputs.type" bundle="${ rb }"/>
                 </label>
+                <c:if test="${not empty redirect_type_error}">
+                    <span class="error__message"
+                          title="<fmt:message key="web.inputs.err-value" bundle="${ rb }"/>: <c:out value="${redirect_type}"/>">
+                        <fmt:message key="web.errors.field" bundle="${ rb }"/>
+                    </span>
+                </c:if>
                 <select class="form-control" id="type" name="type">
                     <c:forEach var="t" items="${types}">
                         <option><c:out value="${t}"/></option>
@@ -66,6 +89,11 @@
             </div>
 
             <div class="items">
+                <c:if test="${not empty redirect_products_error}">
+                    <span class="error__message">
+                        <fmt:message key="web.errors.field" bundle="${ rb }"/>
+                    </span>
+                </c:if>
                 <c:forEach items="${products}" var="p">
                     <div>
                         <label>

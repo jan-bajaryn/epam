@@ -47,7 +47,7 @@ public class ProductGroupServiceImpl implements by.epam.cafe.service.ProductGrou
             }
             return all;
         } catch (DaoException e) {
-            throw new ServiceException();
+            throw new ServiceException(e);
         }
     }
 
@@ -58,7 +58,7 @@ public class ProductGroupServiceImpl implements by.epam.cafe.service.ProductGrou
             buildProductGroup(entityById, transaction);
             return entityById;
         } catch (DaoException e) {
-            throw new ServiceException();
+            throw new ServiceException(e);
         }
     }
 
@@ -74,7 +74,7 @@ public class ProductGroupServiceImpl implements by.epam.cafe.service.ProductGrou
             }
             return result;
         } catch (DaoException e) {
-            throw new ServiceException();
+            throw new ServiceException(e);
         }
     }
 
@@ -89,7 +89,7 @@ public class ProductGroupServiceImpl implements by.epam.cafe.service.ProductGrou
             }
             return result;
         } catch (DaoException e) {
-            throw new ServiceException();
+            throw new ServiceException(e);
         }
     }
 
@@ -106,7 +106,7 @@ public class ProductGroupServiceImpl implements by.epam.cafe.service.ProductGrou
             return productGroup;
 
         } catch (DaoException e) {
-            throw new ServiceException();
+            throw new ServiceException(e);
         }
     }
 
@@ -122,13 +122,13 @@ public class ProductGroupServiceImpl implements by.epam.cafe.service.ProductGrou
             }
 
         } catch (DaoException e) {
-            throw new ServiceException();
+            throw new ServiceException(e);
         }
 
     }
 
     @Override
-    public boolean update(ProductGroup entity) throws NullParamDaoException, ServiceException {
+    public boolean update(ProductGroup entity) throws ServiceException {
 
         try (final Transaction transaction = dAOFactory.createTransaction()) {
 
@@ -147,40 +147,46 @@ public class ProductGroupServiceImpl implements by.epam.cafe.service.ProductGrou
             }
 
         } catch (DaoException e) {
-            throw new ServiceException();
+            throw new ServiceException(e);
         }
     }
 
-    private void insertAndDeleteOthers(ProductGroup entity) throws NullParamDaoException, ServiceException {
+    private void insertAndDeleteOthers(ProductGroup entity) throws ServiceException {
 
         try (final Transaction transaction = dAOFactory.createTransaction()) {
-            final List<Product> products = entity.getProducts();
-            final List<Product> allByProductGroupId = productMysqlDao.findAllByProductGroupId(entity.getId(), transaction);
+            try {
 
-            List<Product> toDelete = allByProductGroupId.stream()
-                    .filter(p -> {
-                        for (Product product : products) {
-                            if (product.getId().equals(p.getId())) {
-                                return false;
+                final List<Product> products = entity.getProducts();
+                final List<Product> allByProductGroupId = productMysqlDao.findAllByProductGroupId(entity.getId(), transaction);
+
+                List<Product> toDelete = allByProductGroupId.stream()
+                        .filter(p -> {
+                            for (Product product : products) {
+                                if (product.getId().equals(p.getId())) {
+                                    return false;
+                                }
                             }
-                        }
-                        return true;
-                    })
-                    .collect(Collectors.toList());
-            deleteAll(toDelete);
-            List<Product> toAdd = products.stream()
-                    .filter(p -> {
-                        for (Product product : allByProductGroupId) {
-                            if (product.getId().equals(p.getId())) {
-                                return false;
+                            return true;
+                        })
+                        .collect(Collectors.toList());
+                deleteAll(toDelete);
+                List<Product> toAdd = products.stream()
+                        .filter(p -> {
+                            for (Product product : allByProductGroupId) {
+                                if (product.getId().equals(p.getId())) {
+                                    return false;
+                                }
                             }
-                        }
-                        return true;
-                    })
-                    .collect(Collectors.toList());
-            insertAll(toAdd, entity);
+                            return true;
+                        })
+                        .collect(Collectors.toList());
+                insertAll(toAdd, entity);
+            } catch (NullParamDaoException e) {
+                transaction.rollBack();
+                throw new ServiceException(e);
+            }
         } catch (DaoException e) {
-            throw new ServiceException();
+            throw new ServiceException(e);
         }
     }
 
@@ -192,7 +198,7 @@ public class ProductGroupServiceImpl implements by.epam.cafe.service.ProductGrou
                 productMysqlDao.update(entityById, transaction);
             }
         } catch (DaoException e) {
-            throw new ServiceException();
+            throw new ServiceException(e);
         }
     }
 
@@ -207,7 +213,7 @@ public class ProductGroupServiceImpl implements by.epam.cafe.service.ProductGrou
             }
 
         } catch (DaoException e) {
-            throw new ServiceException();
+            throw new ServiceException(e);
         }
 
     }
@@ -226,7 +232,7 @@ public class ProductGroupServiceImpl implements by.epam.cafe.service.ProductGrou
                 throw new NullServiceException(e);
             }
         } catch (DaoException e) {
-            throw new ServiceException();
+            throw new ServiceException(e);
         }
     }
 
@@ -237,7 +243,7 @@ public class ProductGroupServiceImpl implements by.epam.cafe.service.ProductGrou
         try (final Transaction transaction = dAOFactory.createTransaction()) {
             return productGroupMysqlDao.findAllEmpty(transaction);
         } catch (DaoException e) {
-            throw new ServiceException();
+            throw new ServiceException(e);
         }
     }
 
@@ -253,7 +259,6 @@ public class ProductGroupServiceImpl implements by.epam.cafe.service.ProductGrou
     }
 
 
-
     @Override
     public void disableById(Integer id) throws ServiceException {
 
@@ -266,7 +271,7 @@ public class ProductGroupServiceImpl implements by.epam.cafe.service.ProductGrou
                 transaction.commit();
             }
         } catch (DaoException e) {
-            throw new ServiceException();
+            throw new ServiceException(e);
         }
     }
 
@@ -282,7 +287,7 @@ public class ProductGroupServiceImpl implements by.epam.cafe.service.ProductGrou
                 transaction.commit();
             }
         } catch (DaoException e) {
-            throw new ServiceException();
+            throw new ServiceException(e);
         }
 
     }

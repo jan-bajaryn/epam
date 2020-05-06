@@ -3,6 +3,7 @@ package by.epam.cafe.controller.command.postimpl;
 import by.epam.cafe.controller.command.PermissionDeniedException;
 import by.epam.cafe.dao.exception.NullParamDaoException;
 import by.epam.cafe.entity.impl.ProductGroup;
+import by.epam.cafe.entity.struct.ValueHolder;
 import by.epam.cafe.service.ProductGroupService;
 import by.epam.cafe.service.exception.ServiceException;
 import by.epam.cafe.service.factory.ServiceFactory;
@@ -24,6 +25,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static by.epam.cafe.controller.filter.RedirectFilter.REDIRECTED_INFO;
+
 public class EditProductGroup extends by.epam.cafe.controller.command.Command {
     private static final Logger log = LogManager.getLogger(EditProductGroup.class);
 
@@ -37,27 +40,46 @@ public class EditProductGroup extends by.epam.cafe.controller.command.Command {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PermissionDeniedException {
+        String referrer = request.getHeader("referer");
 
-        Map<String ,String > redirect = new HashMap<>();
-        ProductGroup productGroup = parseRequest(request,redirect);
+        Map<String, String> redirect = new HashMap<>();
+        ValueHolder<String> fileNameHolder = new ValueHolder<>();
 
-        boolean valid = productGroupValidator.isValid(productGroup);
-        log.debug("valid = {}", valid);
-        try {
-            if (valid && productGroupService.update(productGroup)) {
-                response.sendRedirect(request.getContextPath() + request.getServletPath() + "/admin/product-group-list");
-            } else {
-                imageWriterService.deleteImageIfNeed(productGroup.getPhotoName());
-                response.sendRedirect(request.getContextPath() + request.getServletPath() + "/something_went_wrong");
+        ProductGroup build = parseRequest(request, redirect, fileNameHolder);
+
+        if (build != null) {
+
+            try {
+                if (productGroupService.update(build)) {
+                    response.sendRedirect(request.getContextPath() + request.getServletPath() + "/admin/product-group-list");
+                } else {
+                    imageWriterService.deleteImageIfNeed(fileNameHolder.getValue());
+                    request.setAttribute("unknown_error", "true");
+                    response.sendRedirect(referrer);
+                }
+            } catch (ServiceException e) {
+                imageWriterService.deleteImageIfNeed(fileNameHolder.getValue());
+                request.setAttribute("unknown_error", "true");
+                response.sendRedirect(referrer);
             }
-        } catch (NullParamDaoException | ServiceException e) {
-            response.sendRedirect(request.getContextPath() + request.getServletPath() + "/something_went_wrong");
+        } else {
+            imageWriterService.deleteImageIfNeed(fileNameHolder.getValue());
+            response.sendRedirect(referrer);
+            request.getSession().setAttribute(REDIRECTED_INFO, redirect);
         }
+
+//            if (withoutId && productGroupService.create(productGroup) != null) {
+//                response.sendRedirect(request.getContextPath() + request.getServletPath() + "/admin/product-group-list");
+//            } else {
+//                imageWriterService.deleteImageIfNeed(productGroup.getPhotoName());
+//                response.sendRedirect(request.getContextPath() + request.getServletPath() + "/something_went_wrong");
+//            }
 
     }
 
-    public ProductGroup parseRequest(HttpServletRequest request, Map<String ,String > redirect) {
+    public ProductGroup parseRequest(HttpServletRequest request, Map<String, String> redirect, ValueHolder<String> holderFileName) {
         try {
+            boolean isRight = true;
 
             ProductGroup productGroup = new ProductGroup();
 
@@ -65,8 +87,12 @@ public class EditProductGroup extends by.epam.cafe.controller.command.Command {
             List<FileItem> parts = fileUpload.parseRequest(request);
 
             for (FileItem part : parts) {
-
-                productGroupParser.fillFields(productGroup, part,redirect);
+                if (!productGroupParser.fillFields(productGroup, part, redirect, holderFileName)) {
+                    isRight = false;
+                }
+            }
+            if (!isRight){
+                return null;
             }
             return productGroup;
         } catch (FileUploadException e) {

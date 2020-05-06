@@ -20,7 +20,7 @@ public class UserServiceImpl implements by.epam.cafe.service.UserService {
         try (Transaction transaction = dAOFactory.createTransaction()) {
             return userMysqlDao.findAll(transaction);
         } catch (DaoException e) {
-            throw new ServiceException();
+            throw new ServiceException(e);
         }
     }
 
@@ -29,7 +29,7 @@ public class UserServiceImpl implements by.epam.cafe.service.UserService {
         try (Transaction transaction = dAOFactory.createTransaction()) {
             return userMysqlDao.findEntityById(integer, transaction);
         } catch (DaoException e) {
-            throw new ServiceException();
+            throw new ServiceException(e);
         }
     }
 
@@ -44,7 +44,7 @@ public class UserServiceImpl implements by.epam.cafe.service.UserService {
             }
             return result;
         } catch (DaoException e) {
-            throw new ServiceException();
+            throw new ServiceException(e);
         }
     }
 
@@ -59,7 +59,7 @@ public class UserServiceImpl implements by.epam.cafe.service.UserService {
             }
             return result;
         } catch (DaoException e) {
-            throw new ServiceException();
+            throw new ServiceException(e);
         }
     }
 
@@ -74,7 +74,7 @@ public class UserServiceImpl implements by.epam.cafe.service.UserService {
             }
             return user;
         } catch (DaoException e) {
-            throw new ServiceException();
+            throw new ServiceException(e);
         }
 
 
@@ -91,7 +91,7 @@ public class UserServiceImpl implements by.epam.cafe.service.UserService {
             }
             return result;
         } catch (DaoException e) {
-            throw new ServiceException();
+            throw new ServiceException(e);
         }
     }
 
@@ -129,7 +129,7 @@ public class UserServiceImpl implements by.epam.cafe.service.UserService {
                 }
             }
         } catch (DaoException e) {
-            throw new ServiceException();
+            throw new ServiceException(e);
         }
 
     }
@@ -157,7 +157,7 @@ public class UserServiceImpl implements by.epam.cafe.service.UserService {
                 }
             }
         } catch (DaoException e) {
-            throw new ServiceException();
+            throw new ServiceException(e);
         }
     }
 }

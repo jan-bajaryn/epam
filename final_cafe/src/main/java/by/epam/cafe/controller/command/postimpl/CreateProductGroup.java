@@ -2,12 +2,12 @@ package by.epam.cafe.controller.command.postimpl;
 
 import by.epam.cafe.controller.command.PermissionDeniedException;
 import by.epam.cafe.entity.impl.ProductGroup;
+import by.epam.cafe.entity.struct.ValueHolder;
 import by.epam.cafe.service.ProductGroupService;
 import by.epam.cafe.service.exception.ServiceException;
 import by.epam.cafe.service.factory.ServiceFactory;
 import by.epam.cafe.service.impl.ImageWriterService;
 import by.epam.cafe.service.parser.full.ProductGroupParser;
-import by.epam.cafe.service.validator.ProductGroupValidator;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -23,6 +23,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static by.epam.cafe.controller.filter.RedirectFilter.REDIRECTED_INFO;
+
 public class CreateProductGroup extends by.epam.cafe.controller.command.Command {
 
     private static final Logger log = LogManager.getLogger(CreateProductGroup.class);
@@ -30,36 +32,53 @@ public class CreateProductGroup extends by.epam.cafe.controller.command.Command 
     private final ServiceFactory serviceFactory = ServiceFactory.getInstance();
     private final ProductGroupService productGroupService = serviceFactory.getProductGroupService();
     private final ImageWriterService imageWriterService = serviceFactory.getImageWriterService();
-    private final ProductGroupValidator productGroupValidator = serviceFactory.getProductGroupValidator();
     private static final DiskFileItemFactory FILE_ITEM_FACTORY = new DiskFileItemFactory();
+
+
     private final ProductGroupParser productGroupParser = serviceFactory.getProductGroupParser();
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PermissionDeniedException {
+        String referrer = request.getHeader("referer");
 
-        try {
+        Map<String, String> redirect = new HashMap<>();
+        ValueHolder<String> fileNameHolder = new ValueHolder<>();
 
-            Map<String, String> redirect = new HashMap<>();
+        ProductGroup build = parseRequest(request, redirect, fileNameHolder);
 
-            ProductGroup productGroup = parseRequest(request, redirect);
+        if (build != null) {
 
-            boolean withoutId = productGroupValidator.validWithoutId(productGroup);
-            log.debug("withoutId = {}", withoutId);
-            if (withoutId && productGroupService.create(productGroup) != null) {
-                response.sendRedirect(request.getContextPath() + request.getServletPath() + "/admin/product-group-list");
-            } else {
-                imageWriterService.deleteImageIfNeed(productGroup.getPhotoName());
-                response.sendRedirect(request.getContextPath() + request.getServletPath() + "/something_went_wrong");
+            try {
+                if (productGroupService.create(build) != null) {
+                    response.sendRedirect(request.getContextPath() + request.getServletPath() + "/admin/product-group-list");
+                } else {
+                    imageWriterService.deleteImageIfNeed(fileNameHolder.getValue());
+                    request.setAttribute("unknown_error", "true");
+                    response.sendRedirect(referrer);
+                }
+            } catch (ServiceException e) {
+                imageWriterService.deleteImageIfNeed(fileNameHolder.getValue());
+                request.setAttribute("unknown_error", "true");
+                response.sendRedirect(referrer);
             }
-        } catch (ServiceException e) {
-            response.sendRedirect(request.getContextPath() + request.getServletPath() + "/something_went_wrong");
+        } else {
+            imageWriterService.deleteImageIfNeed(fileNameHolder.getValue());
+            response.sendRedirect(referrer);
+            request.getSession().setAttribute(REDIRECTED_INFO, redirect);
         }
+
+//            if (withoutId && productGroupService.create(productGroup) != null) {
+//                response.sendRedirect(request.getContextPath() + request.getServletPath() + "/admin/product-group-list");
+//            } else {
+//                imageWriterService.deleteImageIfNeed(productGroup.getPhotoName());
+//                response.sendRedirect(request.getContextPath() + request.getServletPath() + "/something_went_wrong");
+//            }
 
     }
 
-    public ProductGroup parseRequest(HttpServletRequest request, Map<String, String> redirect) {
+    public ProductGroup parseRequest(HttpServletRequest request, Map<String, String> redirect, ValueHolder<String> holderFileName) {
         try {
-
+            boolean isRight = true;
             ProductGroup productGroup = new ProductGroup();
 
             ServletFileUpload fileUpload = new ServletFileUpload(FILE_ITEM_FACTORY);
@@ -67,7 +86,12 @@ public class CreateProductGroup extends by.epam.cafe.controller.command.Command 
 
             for (FileItem part : parts) {
 
-                productGroupParser.fillFields(productGroup, part, redirect);
+                if (!productGroupParser.fillFields(productGroup, part, redirect, holderFileName)) {
+                    isRight = false;
+                }
+            }
+            if (!isRight){
+                return null;
             }
             return productGroup;
         } catch (FileUploadException e) {

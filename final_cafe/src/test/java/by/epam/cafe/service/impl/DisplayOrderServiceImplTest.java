@@ -11,15 +11,15 @@ public class DisplayOrderServiceImplTest {
     public void setUp() {
     }
 
-    @Test
-    public void testFindAll() {
-        System.out.println("orderService.findAll() = " + orderServiceImpl.findAll());
-    }
+//    @Test
+//    public void testFindAll() {
+//        System.out.println("orderService.findAll() = " + orderServiceImpl.findAll());
+//    }
 
-    @Test
-    public void testFindEntityById() {
-        System.out.println("orderService.findEntityById(1) = " + orderServiceImpl.findEntityById(1));
-    }
+//    @Test
+//    public void testFindEntityById() {
+//        System.out.println("orderService.findEntityById(1) = " + orderServiceImpl.findEntityById(1));
+//    }
 
     @Test
     public void testDeleteById() {
