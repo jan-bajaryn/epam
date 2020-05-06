@@ -24,6 +24,7 @@ import java.util.stream.Collectors;
 public class OrderMysqlDao extends AbstractMysqlDao<Integer, Order> {
 
     private static final Logger log = LogManager.getLogger(OrderMysqlDao.class);
+    private static final String FIND_CURRENT = "SELECT id, client_name, creation, payment_type, price, status, delivery_inf_id, user_id FROM `order` WHERE `status` = ? AND  user_id = ?;";
 
     private final DaoHelper daoHelper = DaoHelper.getInstance();
 //    public static final String ID_COL = "id";
@@ -281,7 +282,7 @@ public class OrderMysqlDao extends AbstractMysqlDao<Integer, Order> {
 
 
         try (PreparedStatement statement =
-                     cn.prepareStatement("SELECT id, client_name, creation, payment_type, price, status, delivery_inf_id, user_id FROM `order` WHERE `status` = ? AND  user_id = ?;")) {
+                     cn.prepareStatement(FIND_CURRENT)) {
 
 
             statement.setInt(1, OrderStatus.WAITING.ordinal());

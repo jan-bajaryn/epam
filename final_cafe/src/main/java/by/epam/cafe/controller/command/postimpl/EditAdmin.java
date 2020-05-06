@@ -39,7 +39,7 @@ public class EditAdmin extends by.epam.cafe.controller.command.Command {
         log.debug("Begin  EditAdminCommand");
 
 
-        String referrer = request.getHeader("referer");
+        String referer = request.getHeader("referer");
 
         Map<String, String> redirect = new HashMap<>();
         User user = validateAndTakeParams(request, redirect);
@@ -51,14 +51,14 @@ public class EditAdmin extends by.epam.cafe.controller.command.Command {
                     response.sendRedirect(request.getContextPath() + request.getServletPath() + "/admin/user-list");
                 } else {
                     request.setAttribute("unknown_error", "true");
-                    response.sendRedirect(referrer);
+                    response.sendRedirect(referer);
                 }
             } catch (ServiceException e) {
                 request.setAttribute("unknown_error", "true");
-                response.sendRedirect(referrer);
+                response.sendRedirect(referer);
             }
         } else {
-            response.sendRedirect(referrer);
+            response.sendRedirect(referer);
             request.getSession().setAttribute(REDIRECTED_INFO, redirect);
         }
 

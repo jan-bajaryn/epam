@@ -33,7 +33,7 @@ public class EditProduct extends by.epam.cafe.controller.command.Command {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PermissionDeniedException {
 
-        String referrer = request.getHeader("referer");
+        String referer = request.getHeader("referer");
 
 
         log.debug("begin method");
@@ -48,14 +48,14 @@ public class EditProduct extends by.epam.cafe.controller.command.Command {
                     response.sendRedirect(request.getContextPath() + request.getServletPath() + "/admin/product-list");
                 } else {
                     request.setAttribute("unknown_error", "true");
-                    response.sendRedirect(referrer);
+                    response.sendRedirect(referer);
                 }
             } catch (ServiceException e) {
                 request.setAttribute("unknown_error", "true");
-                response.sendRedirect(referrer);
+                response.sendRedirect(referer);
             }
         } else {
-            response.sendRedirect(referrer);
+            response.sendRedirect(referer);
             request.getSession().setAttribute(REDIRECTED_INFO, redirect);
         }
 

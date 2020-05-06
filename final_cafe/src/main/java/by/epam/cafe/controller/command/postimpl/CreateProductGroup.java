@@ -39,7 +39,7 @@ public class CreateProductGroup extends by.epam.cafe.controller.command.Command 
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PermissionDeniedException {
-        String referrer = request.getHeader("referer");
+        String referer = request.getHeader("referer");
 
         Map<String, String> redirect = new HashMap<>();
         ValueHolder<String> fileNameHolder = new ValueHolder<>();
@@ -54,16 +54,16 @@ public class CreateProductGroup extends by.epam.cafe.controller.command.Command 
                 } else {
                     imageWriterService.deleteImageIfNeed(fileNameHolder.getValue());
                     request.setAttribute("unknown_error", "true");
-                    response.sendRedirect(referrer);
+                    response.sendRedirect(referer);
                 }
             } catch (ServiceException e) {
                 imageWriterService.deleteImageIfNeed(fileNameHolder.getValue());
                 request.setAttribute("unknown_error", "true");
-                response.sendRedirect(referrer);
+                response.sendRedirect(referer);
             }
         } else {
             imageWriterService.deleteImageIfNeed(fileNameHolder.getValue());
-            response.sendRedirect(referrer);
+            response.sendRedirect(referer);
             request.getSession().setAttribute(REDIRECTED_INFO, redirect);
         }
 
@@ -85,12 +85,9 @@ public class CreateProductGroup extends by.epam.cafe.controller.command.Command 
             List<FileItem> parts = fileUpload.parseRequest(request);
 
             for (FileItem part : parts) {
-
-                if (!productGroupParser.fillFields(productGroup, part, redirect, holderFileName)) {
-                    isRight = false;
-                }
+                isRight = isRight && productGroupParser.fillFields(productGroup, part, redirect, holderFileName);
             }
-            if (!isRight){
+            if (!isRight) {
                 return null;
             }
             return productGroup;

@@ -25,9 +25,9 @@ public class PermissionDenied extends by.epam.cafe.controller.command.Command {
         if (role == Role.ANON) {
             // TODO take from session
             String requestURI = request.getRequestURI();
-//            String referrer = request.getHeader("referer");
+//            String referer = request.getHeader("referer");
 
-            log.debug("referrer = {}", requestURI);
+            log.debug("referer = {}", requestURI);
             HttpSession session = request.getSession();
             session.setAttribute("target_url", requestURI);
             response.sendRedirect(request.getContextPath() + request.getServletPath() + CommandGetFactory.LOGIN_PAGE);

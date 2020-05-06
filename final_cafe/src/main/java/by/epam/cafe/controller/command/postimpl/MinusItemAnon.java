@@ -29,7 +29,7 @@ public class MinusItemAnon extends by.epam.cafe.controller.command.Command {
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PermissionDeniedException {
         try {
 
-            String referrer = request.getHeader("referer");
+            String referer = request.getHeader("referer");
 
 
             String id = request.getParameter("variant");
@@ -44,8 +44,8 @@ public class MinusItemAnon extends by.epam.cafe.controller.command.Command {
                 minusProduct(basket, entityById);
                 commitSession(basket, session);
 
-                log.info("referrer = {}", referrer);
-                response.sendRedirect(referrer);
+                log.info("referer = {}", referer);
+                response.sendRedirect(referer);
             } else {
                 //TODO LOGIC
                 response.sendRedirect(request.getContextPath() + request.getServletPath() + "/something_went_wrong");

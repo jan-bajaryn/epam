@@ -29,7 +29,7 @@ public class DeleteAllProdFromBasketAnon extends by.epam.cafe.controller.command
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PermissionDeniedException {
         try {
 
-            String referrer = request.getHeader("referer");
+            String referer = request.getHeader("referer");
 
 
             String id = request.getParameter("id");
@@ -44,8 +44,8 @@ public class DeleteAllProdFromBasketAnon extends by.epam.cafe.controller.command
                 deleteAll(basket, entityById);
                 commitSession(basket, session);
 
-                log.info("referrer = {}", referrer);
-                response.sendRedirect(referrer);
+                log.info("referer = {}", referer);
+                response.sendRedirect(referer);
             } else {
                 //TODO LOGIC
                 response.sendRedirect(request.getContextPath() + request.getServletPath() + "/something_went_wrong");

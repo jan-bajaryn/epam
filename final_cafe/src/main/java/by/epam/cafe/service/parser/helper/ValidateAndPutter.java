@@ -10,7 +10,7 @@ import java.util.Optional;
 public class ValidateAndPutter {
 
     private static final Logger log = LogManager.getLogger(ValidateAndPutter.class);
-    private static final String POSTFIX = "_error";
+    public static final String POSTFIX = "_error";
 
 
     public static final ValidateAndPutter INSTANCE = new ValidateAndPutter();

@@ -10,6 +10,7 @@ import by.epam.cafe.entity.impl.User;
 import by.epam.cafe.service.OrderService;
 import by.epam.cafe.service.exception.ServiceException;
 import by.epam.cafe.service.factory.ServiceFactory;
+import by.epam.cafe.service.parser.full.OrderParser;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -24,36 +25,61 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.*;
 
+import static by.epam.cafe.controller.filter.RedirectFilter.REDIRECTED_INFO;
+
 public class MakeOrderClient extends by.epam.cafe.controller.command.Command {
 
     private static final Logger log = LogManager.getLogger(MakeOrderClient.class);
 
     private final ServiceFactory serviceFactory = ServiceFactory.getInstance();
     private final OrderService orderService = serviceFactory.getOrderService();
+    private final OrderParser orderParser = serviceFactory.getOrderParser();
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PermissionDeniedException {
+        String referer = request.getHeader("referer");
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+        Map<String, String> redirect = new HashMap<>();
+
         try {
-            Order order = buildOrder(request);
-            log.debug("order = {}", order);
-            boolean isUpdated = orderService.update(order);
-
-            if (isUpdated) {
-                response.sendRedirect(request.getContextPath() + request.getServletPath() + "/your-order/" + order.getId());
+            Order order = orderService.findCurrentByUserId(user.getId());
+            if (order != null) {
+                update(request, response, referer, redirect, order);
+            } else {
+                redirect.put("no_products_error", "true");
+                response.sendRedirect(referer);
             }
-
-        } catch (ParseException | ServiceException e) {
-            log.debug("e: ", e);
-            response.sendRedirect(request.getContextPath() + request.getServletPath() + "/something_went_wrong");
+        } catch (ServiceException e) {
+            redirect.put("no_products_error", "true");
+            session.setAttribute(REDIRECTED_INFO, redirect);
+            response.sendRedirect(referer);
         }
 
     }
 
-    private Order buildOrder(HttpServletRequest request) throws ParseException, ServiceException {
+    private void update(HttpServletRequest request, HttpServletResponse response, String referer, Map<String, String> redirect, Order order) throws IOException {
+        if (buildOrder(request, order, redirect)) {
 
-        HttpSession session = request.getSession();
+            try {
+                if (orderService.update(order)) {
+                    response.sendRedirect(request.getContextPath() + request.getServletPath() + "/your-order/" + order.getId());
+                } else {
+                    request.setAttribute("unknown_error", "true");
+                    response.sendRedirect(referer);
+                }
+            } catch (ServiceException e) {
+                request.setAttribute("unknown_error", "true");
+                response.sendRedirect(referer);
+            }
+        } else {
+            response.sendRedirect(referer);
+            request.getSession().setAttribute(REDIRECTED_INFO, redirect);
+        }
+    }
 
-        User user = (User) session.getAttribute("user");
+    private boolean buildOrder(HttpServletRequest request, Order order, Map<String, String> redirect) {
+
 
         String street = request.getParameter("street");
         String comments = request.getParameter("comments");
@@ -66,50 +92,8 @@ public class MakeOrderClient extends by.epam.cafe.controller.command.Command {
         String email = request.getParameter("email");
         String time = request.getParameter("time");
 
-        LocalDateTime dateTime = parseToLocalDateTime(time);
-
-
-        log.debug("dateTime = {}", dateTime);
-        DeliveryInf deliveryInf = DeliveryInf.newBuilder()
-                .porch(Integer.valueOf(porch))
-                .deliveryTime(dateTime)
-                .comments(comments)
-                .email(email)
-                .phone(tel)
-                .floor(Integer.valueOf(floor))
-                .house(house)
-                .room(room)
-                .street(street)
-                .build();
-
-        Order order = orderService.findOrCreateCurrentByUserId(user.getId());
-        order.setCreation(LocalDateTime.now());
-        order.setClientName(name);
-        order.setPaymentType(PaymentType.CASH);
-        order.setDeliveryInf(deliveryInf);
-        order.setStatus(OrderStatus.CONFIRMED);
-        order.setPrice(calcSum(order.getProducts()));
-        order.setUser(user);
-
-        return order;
+        return orderParser.parseWithBase(redirect, order, street, comments, floor, porch, room, house, name, tel, email, time);
     }
 
-    private LocalDateTime parseToLocalDateTime(String time) throws ParseException {
-        DateFormat dateFormat = new SimpleDateFormat("hh:mm");
-        Date parse = dateFormat.parse(time);
-
-        Calendar calendar = GregorianCalendar.getInstance();
-        calendar.setTime(parse);
-
-        return LocalDateTime.now().withHour(calendar.get(Calendar.HOUR_OF_DAY))
-                .withMinute(calendar.get(Calendar.MINUTE))
-                .withSecond(0);
-    }
-
-    private Integer calcSum(Map<Product, Integer> basket) {
-        return basket.entrySet().stream()
-                .map(e -> e.getKey().getPrice() * e.getValue())
-                .reduce(0, Integer::sum);
-    }
 
 }

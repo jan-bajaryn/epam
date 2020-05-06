@@ -5,6 +5,7 @@ import by.epam.cafe.service.*;
 import by.epam.cafe.service.impl.*;
 import by.epam.cafe.service.parser.NullIfEmptyService;
 import by.epam.cafe.service.parser.PathVarCalculator;
+import by.epam.cafe.service.parser.full.OrderParser;
 import by.epam.cafe.service.parser.full.ProductGroupParser;
 import by.epam.cafe.service.parser.full.ProductParser;
 import by.epam.cafe.service.parser.full.UserParser;
@@ -18,13 +19,13 @@ import by.epam.cafe.service.validator.UserValidator;
 
 public class ServiceFactory {
     private static ServiceFactory instance = new ServiceFactory();
-
     public static ServiceFactory getInstance() {
         return instance;
     }
 
     private ServiceFactory() {
     }
+
 
     private final ProductValidator productValidator = new ProductValidator();
     private final DeliveryInfService deliveryInfService = new DeliveryInfServiceImpl();
@@ -55,6 +56,7 @@ public class ServiceFactory {
     private  final UserParser userParser = new UserParser();
     private final ProductParser productParser = new ProductParser();
     private final ProductGroupParser productGroupParser = new ProductGroupParser();
+    private final OrderParser orderParser = new OrderParser();
 
     private final ImageWriterService imageWriterService = new ImageWriterService();
 
@@ -172,5 +174,9 @@ public class ServiceFactory {
 
     public ProductGroupParser getProductGroupParser() {
         return productGroupParser;
+    }
+
+    public OrderParser getOrderParser() {
+        return orderParser;
     }
 }

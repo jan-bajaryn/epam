@@ -35,9 +35,9 @@ public class ChangeLanguage extends by.epam.cafe.controller.command.Command {
             request.setAttribute("locerr", true);
         }
 
-        String referrer = request.getHeader("referer");
-        log.info("referrer = {}", referrer);
-        response.sendRedirect(referrer);
+        String referer = request.getHeader("referer");
+        log.info("referer = {}", referer);
+        response.sendRedirect(referer);
 
     }
 }
