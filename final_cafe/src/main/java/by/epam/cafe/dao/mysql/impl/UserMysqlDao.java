@@ -13,7 +13,9 @@ public class UserMysqlDao extends AbstractMysqlDao<Integer, User> {
 
     public static final ZoneId DEFAULT_ZONE = ZoneId.systemDefault();
     // language=SQL
-    public static final String FIND_ALL_SQL = "SELECT id, creation, name, password, phone, role, surname, username, email, floor, house, porch, room, street, is_blocked FROM user;";
+    public static final String FIND_ALL_SQL = "SELECT id, creation, name, password, phone, role, surname, username, email, floor, house, porch, room, street, is_blocked FROM user ORDER BY id;";
+    // language=SQL
+    private static final String findAllByPart = "SELECT id, creation, name, password, phone, role, surname, username, email, floor, house, porch, room, street, is_blocked FROM user ORDER BY id LIMIT ? OFFSET ?;";
 
 
     // language=SQL
@@ -30,7 +32,7 @@ public class UserMysqlDao extends AbstractMysqlDao<Integer, User> {
 
 
     public UserMysqlDao() {
-        super(FIND_ALL_SQL, FIND_ENTITY_BY_ID_SQL, DELETE_BY_ID_SQL, CREATE_SQL, UPDATE_SQL);
+        super(FIND_ALL_SQL, FIND_ENTITY_BY_ID_SQL, DELETE_BY_ID_SQL, CREATE_SQL, UPDATE_SQL, findAllByPart);
     }
 
 

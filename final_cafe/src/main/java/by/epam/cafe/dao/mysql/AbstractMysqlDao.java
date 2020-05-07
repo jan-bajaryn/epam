@@ -1,6 +1,7 @@
 package by.epam.cafe.dao.mysql;
 
 import by.epam.cafe.dao.AbstractDao;
+import by.epam.cafe.dao.exception.DaoException;
 import by.epam.cafe.dao.pool.ConnectionPool;
 import by.epam.cafe.entity.Entity;
 import org.apache.logging.log4j.LogManager;
@@ -17,23 +18,26 @@ public abstract class AbstractMysqlDao<ID, T extends Entity<ID>> implements Abst
     private static final Logger log = LogManager.getLogger(AbstractMysqlDao.class);
 
 
-    private String findAllSql;
-    private String findEntityByIdSql;
-    private String deleteByIdSql;
-    private String createSql;
-    private String updateSql;
+    private final String findAllSql;
+    private final String findEntityByIdSql;
+    private final String deleteByIdSql;
+    private final String createSql;
+    private final String updateSql;
+    private final String findAllByPart;
 
     public AbstractMysqlDao(
             String findAllSql,
             String findEntityByIdSql,
             String deleteByIdSql,
             String createSql,
-            String updateSql) {
+            String updateSql,
+            String findAllByPart) {
         this.findAllSql = findAllSql;
         this.findEntityByIdSql = findEntityByIdSql;
         this.deleteByIdSql = deleteByIdSql;
         this.createSql = createSql;
         this.updateSql = updateSql;
+        this.findAllByPart = findAllByPart;
     }
 
     @Override
@@ -52,6 +56,31 @@ public abstract class AbstractMysqlDao<ID, T extends Entity<ID>> implements Abst
             }
         } catch (SQLException e) {
             log.info("e: ", e);
+        }
+        return entities;
+    }
+
+    @Override
+    public List<T> findAllByPart(Transaction transaction, int begin, int count) throws DaoException {
+
+        Connection cn = transaction.getConnection();
+
+
+        List<T> entities = new ArrayList<>();
+
+        try (PreparedStatement statement = cn.prepareStatement(findAllByPart)) {
+
+            statement.setInt(1, count);
+            statement.setInt(2, begin);
+
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                T entity = findEntity(resultSet);
+                entities.add(entity);
+            }
+        } catch (SQLException e) {
+            log.info("e: ", e);
+            throw new DaoException();
         }
         return entities;
     }

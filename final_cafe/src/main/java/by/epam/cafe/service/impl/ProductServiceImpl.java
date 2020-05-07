@@ -33,6 +33,18 @@ public class ProductServiceImpl implements by.epam.cafe.service.ProductService {
     }
 
     @Override
+    public List<Product> findAllByPart(int begin, int count) throws ServiceException {
+
+        try (final Transaction transaction = dAOFactory.createTransaction()) {
+            List<Product> all = userMysqlDao.findAllByPart(transaction, begin, count);
+            all.forEach(p -> buildProduct(p, transaction));
+            return all;
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
     public void buildProduct(Product p, Transaction transaction) {
         ProductGroup productGroup = p.getProductGroup();
         if (productGroup != null) {
@@ -112,7 +124,7 @@ public class ProductServiceImpl implements by.epam.cafe.service.ProductService {
             throw new ServiceException(e);
         }
     }
- 
+
 
     //TODO make additional query for that if teacher say
     @Override

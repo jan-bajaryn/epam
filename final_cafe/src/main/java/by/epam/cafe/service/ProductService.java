@@ -9,6 +9,8 @@ import java.util.List;
 public interface ProductService {
     List<Product> findAll() throws ServiceException;
 
+    List<Product> findAllByPart(int begin, int count) throws ServiceException;
+
     Product findEntityById(Integer integer) throws ServiceException;
 
     boolean deleteById(Integer integer) throws ServiceException;

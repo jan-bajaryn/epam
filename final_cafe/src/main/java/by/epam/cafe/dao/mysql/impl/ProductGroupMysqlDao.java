@@ -18,7 +18,10 @@ public class ProductGroupMysqlDao extends AbstractMysqlDao<Integer, ProductGroup
 
 
     // language=SQL
-    private static final String findAllSql = "SELECT id, description, name, photo_name, type, disabled FROM product_group;";
+    private static final String findAllSql = "SELECT id, description, name, photo_name, type, disabled FROM product_group ORDER BY id;";
+    // language=SQL
+    private static final String findAllByPart = "SELECT id, description, name, photo_name, type, disabled FROM product_group ORDER BY id LIMIT ? OFFSET ?;";
+
     // language=SQL
     private static final String findEntityByIdSql = "SELECT id, description, name, photo_name, type, disabled FROM product_group WHERE id = ?;";
     // language=SQL
@@ -34,7 +37,7 @@ public class ProductGroupMysqlDao extends AbstractMysqlDao<Integer, ProductGroup
     public static final String findEmpty = "SELECT id, description, name, photo_name, type, disabled FROM product_group LEFT JOIN product ON product_group.id = product.product_group_id WHERE product_group_id IS NULL;";
 
     public ProductGroupMysqlDao() {
-        super(findAllSql, findEntityByIdSql, deleteByIdSql, createSql, updateSql);
+        super(findAllSql, findEntityByIdSql, deleteByIdSql, createSql, updateSql, findAllByPart);
     }
 
 

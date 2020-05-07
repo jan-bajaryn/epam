@@ -27,20 +27,12 @@ public class OrderMysqlDao extends AbstractMysqlDao<Integer, Order> {
     private static final String FIND_CURRENT = "SELECT id, client_name, creation, payment_type, price, status, delivery_inf_id, user_id FROM `order` WHERE `status` = ? AND  user_id = ?;";
 
     private final DaoHelper daoHelper = DaoHelper.getInstance();
-//    public static final String ID_COL = "id";
-//    private static final String CLIENT_NAME_COL = "client_name";
-//    private static final String CREATION_COL = "creation";
-//    private static final String PAYMENT_TYPE_COL = "payment_type";
-//    private static final String PRICE_COL = "price";
-//    private static final String STATUS_ID_COL = "status";
-//    private static final String DELIVERY_INF_ID_COL = "delivery_inf_id";
-//    private static final String USER_ID_COL = "user_id";
-//    private static final String TABLE_NAME = "`order`";
-
 
     /*language=SQL*/
-    private static final String FIND_ALL_SQL = "SELECT id, client_name, creation, payment_type, price, status, delivery_inf_id, user_id FROM `order`;";
-    //    private static final String FIND_ALL_SQL = "SELECT id, creation, price, status, payment_type FROM `order`;";
+    private static final String FIND_ALL_SQL = "SELECT id, client_name, creation, payment_type, price, status, delivery_inf_id, user_id FROM `order` ORDER BY id;";
+    /*language=SQL*/
+    private static final String findAllByPart = "SELECT id, client_name, creation, payment_type, price, status, delivery_inf_id, user_id FROM `order` ORDER BY id LIMIT ? OFFSET ?;";
+
     /*language=SQL*/
     private static final String FIND_BY_ID_SQL = "SELECT id, client_name, creation, payment_type, price, status, delivery_inf_id, user_id FROM `order` WHERE id = ?;";
     /*language=SQL*/
@@ -62,7 +54,7 @@ public class OrderMysqlDao extends AbstractMysqlDao<Integer, Order> {
     private static final String MINUS_PRODUCT = "UPDATE order_product SET count = count -1 WHERE product_id=? and order_id = ?;";
 
     public OrderMysqlDao() {
-        super(FIND_ALL_SQL, FIND_BY_ID_SQL, DELETE_BY_ID, CREATE_SQL, UPDATE_SQL);
+        super(FIND_ALL_SQL, FIND_BY_ID_SQL, DELETE_BY_ID, CREATE_SQL, UPDATE_SQL, findAllByPart);
     }
 
 

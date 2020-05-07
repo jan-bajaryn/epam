@@ -52,6 +52,20 @@ public class ProductGroupServiceImpl implements by.epam.cafe.service.ProductGrou
     }
 
     @Override
+    public List<ProductGroup> findAllByPart(int begin, int count) throws NullParamDaoException, ServiceException {
+
+        try (Transaction transaction = dAOFactory.createTransaction()) {
+            List<ProductGroup> all = productGroupMysqlDao.findAllByPart(transaction, begin, count);
+            for (ProductGroup productGroup : all) {
+                buildProductGroup(productGroup, transaction);
+            }
+            return all;
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
     public ProductGroup findEntityById(Integer integer) throws NullParamDaoException, ServiceException {
         try (Transaction transaction = dAOFactory.createTransaction()) {
             ProductGroup entityById = productGroupMysqlDao.findEntityById(integer, transaction);

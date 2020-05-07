@@ -12,6 +12,7 @@ import java.util.List;
 public interface ProductGroupService {
 
     List<ProductGroup> findAll() throws NullParamDaoException, ServiceException;
+    List<ProductGroup> findAllByPart(int begin, int count) throws NullParamDaoException, ServiceException;
 
     ProductGroup findEntityById(Integer integer) throws NullParamDaoException, ServiceException;
 

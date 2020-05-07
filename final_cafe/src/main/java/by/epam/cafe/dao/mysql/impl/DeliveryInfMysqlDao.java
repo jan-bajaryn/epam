@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 public class DeliveryInfMysqlDao extends AbstractMysqlDao<Integer, DeliveryInf> {
 
     // language=SQL
-    private static final String findAllSql = "SELECT id, comments, delivery_time, email, floor, house, phone, porch, room, street FROM delivery_inf;";
+    private static final String findAllSql = "SELECT id, comments, delivery_time, email, floor, house, phone, porch, room, street FROM delivery_inf ORDER BY id;";
     // language=SQL
     private static final String findEntityByIdSql = "SELECT id, comments, delivery_time, email, floor, house, phone, porch, room, street FROM delivery_inf WHERE id = ?;";
     // language=SQL
@@ -18,10 +18,12 @@ public class DeliveryInfMysqlDao extends AbstractMysqlDao<Integer, DeliveryInf> 
     private static final String createSql = "INSERT INTO delivery_inf (comments, delivery_time, email, floor, house, phone, porch, room, street) VALUES (?,?,?,?,?,?,?,?,?);";
     // language=SQL
     private static final String updateSql = "UPDATE delivery_inf SET  comments = ?, delivery_time = ?, email = ?, floor = ?, house = ?, phone = ?, porch = ?, room = ?, street = ? WHERE id = ?;";
+    // language=SQL
+    private static final String findAllByPart = "SELECT id, comments, delivery_time, email, floor, house, phone, porch, room, street FROM delivery_inf ORDER BY id LIMIT ? OFFSET ?;";
 
 
     public DeliveryInfMysqlDao() {
-        super(findAllSql, findEntityByIdSql, deleteByIdSql, createSql, updateSql);
+        super(findAllSql, findEntityByIdSql, deleteByIdSql, createSql, updateSql, findAllByPart);
     }
 
 

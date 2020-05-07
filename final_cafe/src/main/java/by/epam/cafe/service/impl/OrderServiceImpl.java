@@ -46,6 +46,18 @@ public class OrderServiceImpl implements by.epam.cafe.service.OrderService {
         }
     }
 
+    @Override
+    public List<Order> findAllByPart(int begin, int count) throws ServiceException {
+        try (final Transaction transaction = dAOFactory.createTransaction()) {
+            return orderMysqlDao.findAllByPart(transaction, begin, count).stream()
+                    .peek(o -> buildOrder(o, transaction))
+                    .collect(Collectors.toList());
+
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+    }
+
     private void buildOrder(Order o, Transaction transaction) {
         log.debug("buildOrder: o = {}", o);
         Map<Product, Integer> products =
@@ -133,7 +145,7 @@ public class OrderServiceImpl implements by.epam.cafe.service.OrderService {
             log.debug("create2");
 
             Map<Product, Integer> products = order.getProducts();
-            saveProducts(products, order,transaction);
+            saveProducts(products, order, transaction);
 
             log.debug("create3");
             if (deliveryInf == null) {

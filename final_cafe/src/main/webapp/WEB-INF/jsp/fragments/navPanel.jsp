@@ -46,18 +46,18 @@
                     </a></li>
                 </c:if>
                 <c:if test="${role eq 'ADMIN'}">
-                    <li><a href="<c:url value="/page/admin/user-list"/>">
+                    <li><a href="<c:url value="/page/admin/user-list?pagination=1"/>">
                         <fmt:message key="web.links.user-list" bundle="${ rb }"/>
                     </a></li>
-                    <li><a href="<c:url value="/page/admin/product-list"/>">
+                    <li><a href="<c:url value="/page/admin/product-list?pagination=1"/>">
                         <fmt:message key="web.links.products" bundle="${ rb }"/>
                     </a></li>
-                    <li><a href="<c:url value="/page/admin/product-group-list"/>">
+                    <li><a href="<c:url value="/page/admin/product-group-list?pagination=1"/>">
                         <fmt:message key="web.links.product-groups" bundle="${ rb }"/>
                     </a></li>
                 </c:if>
                 <c:if test="${role eq 'OPERATOR'}">
-                    <li><a href="<c:url value="/page/order-list"/>">
+                    <li><a href="<c:url value="/page/order-list?pagination=1"/>">
                         <fmt:message key="web.links.orders" bundle="${ rb }"/>
                     </a></li>
                 </c:if>

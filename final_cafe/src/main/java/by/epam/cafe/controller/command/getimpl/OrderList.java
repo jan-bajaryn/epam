@@ -4,6 +4,7 @@ import by.epam.cafe.entity.impl.Order;
 import by.epam.cafe.service.OrderService;
 import by.epam.cafe.service.exception.ServiceException;
 import by.epam.cafe.service.factory.ServiceFactory;
+import by.epam.cafe.service.parser.PaginationCalculator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -20,11 +21,16 @@ public class OrderList extends by.epam.cafe.controller.command.Command {
     private final ServiceFactory serviceFactory = ServiceFactory.getInstance();
     private final OrderService orderService = serviceFactory.getOrderService();
 
+    private final PaginationCalculator paginationCalculator = serviceFactory.getPaginationCalculator();
+
+
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         try {
-            List<Order> all = orderService.findAll();
+            int part = paginationCalculator.calculatePartParam(request.getParameter("pagination"));
+
+            List<Order> all = orderService.findAllByPart((part - 1) * 10, 10);
             log.info("execute: all = {}", all);
             request.setAttribute("orders", all);
             request.getRequestDispatcher("/WEB-INF/jsp/order-list.jsp").forward(request, response);

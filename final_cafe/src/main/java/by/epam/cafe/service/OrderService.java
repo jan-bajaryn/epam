@@ -8,6 +8,8 @@ import java.util.List;
 public interface OrderService {
     List<Order> findAll() throws ServiceException;
 
+    List<Order> findAllByPart(int begin, int count) throws ServiceException;
+
     Order findEntityById(Integer integer) throws ServiceException;
 
     boolean deleteById(Integer integer) throws ServiceException;

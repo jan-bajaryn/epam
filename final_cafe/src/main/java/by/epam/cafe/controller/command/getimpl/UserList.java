@@ -4,6 +4,8 @@ import by.epam.cafe.entity.impl.User;
 import by.epam.cafe.service.UserService;
 import by.epam.cafe.service.exception.ServiceException;
 import by.epam.cafe.service.factory.ServiceFactory;
+import by.epam.cafe.service.parser.PaginationCalculator;
+import by.epam.cafe.service.parser.impl.PaginationCalculatorImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -22,11 +24,14 @@ public class UserList extends by.epam.cafe.controller.command.Command {
 
     private final UserService userService = serviceFactory.getUserService();
 
+    private final PaginationCalculator paginationCalculator = serviceFactory.getPaginationCalculator();
+
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         try {
-            List<User> all = userService.findAll();
+            int part = paginationCalculator.calculatePartParam(request.getParameter("pagination"));
+            List<User> all = userService.findAllByPart((part - 1) * 10, 10);
             log.info("execute: all = {}", all);
             request.setAttribute("users", all);
             request.getRequestDispatcher("/WEB-INF/jsp/admin/user-list.jsp").forward(request, response);

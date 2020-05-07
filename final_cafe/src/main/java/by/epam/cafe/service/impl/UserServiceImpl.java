@@ -25,6 +25,15 @@ public class UserServiceImpl implements by.epam.cafe.service.UserService {
     }
 
     @Override
+    public List<User> findAllByPart(int begin, int count) throws ServiceException {
+        try (Transaction transaction = dAOFactory.createTransaction()) {
+            return userMysqlDao.findAllByPart(transaction, begin, count);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
     public User findEntityById(Integer integer) throws ServiceException {
         try (Transaction transaction = dAOFactory.createTransaction()) {
             return userMysqlDao.findEntityById(integer, transaction);

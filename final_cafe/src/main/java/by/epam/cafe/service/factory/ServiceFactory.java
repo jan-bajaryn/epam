@@ -1,9 +1,10 @@
 package by.epam.cafe.service.factory;
 
-import by.epam.cafe.entity.impl.ProductGroup;
 import by.epam.cafe.service.*;
 import by.epam.cafe.service.impl.*;
 import by.epam.cafe.service.parser.NullIfEmptyService;
+import by.epam.cafe.service.parser.PaginationCalculator;
+import by.epam.cafe.service.parser.impl.PaginationCalculatorImpl;
 import by.epam.cafe.service.parser.PathVarCalculator;
 import by.epam.cafe.service.parser.full.OrderParser;
 import by.epam.cafe.service.parser.full.ProductGroupParser;
@@ -19,6 +20,7 @@ import by.epam.cafe.service.validator.UserValidator;
 
 public class ServiceFactory {
     private static ServiceFactory instance = new ServiceFactory();
+
     public static ServiceFactory getInstance() {
         return instance;
     }
@@ -53,10 +55,13 @@ public class ServiceFactory {
     private final UsernameParser usernameParser = new UsernameParser();
     private final SurnameParser surnameParser = new SurnameParser();
 
-    private  final UserParser userParser = new UserParser();
+    private final UserParser userParser = new UserParser();
     private final ProductParser productParser = new ProductParser();
     private final ProductGroupParser productGroupParser = new ProductGroupParser();
     private final OrderParser orderParser = new OrderParser();
+
+
+    private final PaginationCalculator paginationCalculator = new PaginationCalculatorImpl();
 
     private final ImageWriterService imageWriterService = new ImageWriterService();
 
@@ -179,4 +184,9 @@ public class ServiceFactory {
     public OrderParser getOrderParser() {
         return orderParser;
     }
+
+    public PaginationCalculator getPaginationCalculator() {
+        return paginationCalculator;
+    }
+
 }

@@ -21,7 +21,10 @@ public class ProductMysqlDao extends AbstractMysqlDao<Integer, Product> {
 
 
     // language=SQL
-    private static final String FIND_ALL_SQL = "SELECT id, price, weight, product_group_id FROM product;";
+    private static final String FIND_ALL_SQL = "SELECT id, price, weight, product_group_id FROM product ORDER BY id;";
+    // language=SQL
+    private static final String findAllByPart = "SELECT id, price, weight, product_group_id FROM product ORDER BY id LIMIT ? OFFSET ?;";
+
     // language=SQL
     private static final String FIND_BY_ID_SQL = "SELECT id, price, weight, product_group_id FROM product WHERE id = ?;";
     // language=SQL
@@ -36,7 +39,7 @@ public class ProductMysqlDao extends AbstractMysqlDao<Integer, Product> {
 
 
     public ProductMysqlDao() {
-        super(FIND_ALL_SQL, FIND_BY_ID_SQL, DELETE_BY_ID, CREATE_SQL, UPDATE_SQL);
+        super(FIND_ALL_SQL, FIND_BY_ID_SQL, DELETE_BY_ID, CREATE_SQL, UPDATE_SQL, findAllByPart);
     }
 
 

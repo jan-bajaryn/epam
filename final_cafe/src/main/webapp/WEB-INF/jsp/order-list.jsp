@@ -94,7 +94,7 @@
                         </a>
                     </td>
                     <td>
-                        <a href="<c:url value="/page/add-products/${order.id}"/>">
+                        <a href="<c:url value="/page/add-products/${order.id}?pagination=1"/>">
                             <button class="btn orange__bg">
                                 <fmt:message key="web.tab.add-product" bundle="${ rb }"/>
                             </button>
