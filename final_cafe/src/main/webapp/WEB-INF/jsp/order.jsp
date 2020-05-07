@@ -368,6 +368,7 @@
                                                 <%--@elvariable id="redirect_tel_error" type="java.lang.String"--%>
                                                 <%--@elvariable id="redirect_tel" type="java.lang.String"--%>
                                             <c:if test="${not empty redirect_tel_error}">
+                                            <c:if test="${not empty redirect_tel_error}">
                                                 <span class="error__message">
                                                     <fmt:message key="web.errors.field" bundle="${ rb }"/>
                                                 </span>
