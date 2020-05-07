@@ -20,7 +20,7 @@ public class EnableProductGroup extends by.epam.cafe.controller.command.Command 
 
         try {
             productGroupService.enableById(Integer.valueOf(id));
-            response.sendRedirect(request.getContextPath() + request.getServletPath() + "/admin/product-group-list");
+            response.sendRedirect(request.getContextPath() + request.getServletPath() + "/admin/product-group-list?pagination=1");
         } catch (NumberFormatException | ServiceException e) {
             response.sendRedirect(request.getContextPath() + request.getServletPath() + "/something_went_wrong");
         }

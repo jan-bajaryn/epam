@@ -30,7 +30,7 @@ public class CancelOrder extends by.epam.cafe.controller.command.Command {
 
             boolean update = orderService.cancelOrDeleteById(idInt);
             log.debug("execute: update = {}", update);
-            response.sendRedirect(request.getContextPath()+request.getServletPath()+"/order-list");
+            response.sendRedirect(request.getContextPath()+request.getServletPath()+"/order-list?pagination=1");
         } catch (NumberFormatException | ServiceException e) {
             log.debug("e: ",e);
             response.sendRedirect(request.getContextPath()+request.getServletPath()+"/something_went_wrong");

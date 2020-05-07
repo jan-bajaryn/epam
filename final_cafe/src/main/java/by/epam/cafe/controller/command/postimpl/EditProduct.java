@@ -45,7 +45,7 @@ public class EditProduct extends by.epam.cafe.controller.command.Command {
 
             try {
                 if (productService.update(build)) {
-                    response.sendRedirect(request.getContextPath() + request.getServletPath() + "/admin/product-list");
+                    response.sendRedirect(request.getContextPath() + request.getServletPath() + "/admin/product-list?pagination=1");
                 } else {
                     request.setAttribute("unknown_error", "true");
                     response.sendRedirect(referer);

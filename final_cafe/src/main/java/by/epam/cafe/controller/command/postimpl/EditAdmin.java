@@ -48,7 +48,7 @@ public class EditAdmin extends by.epam.cafe.controller.command.Command {
 
             try {
                 if (userService.update(user)) {
-                    response.sendRedirect(request.getContextPath() + request.getServletPath() + "/admin/user-list");
+                    response.sendRedirect(request.getContextPath() + request.getServletPath() + "/admin/user-list?pagination=1");
                 } else {
                     request.setAttribute("unknown_error", "true");
                     response.sendRedirect(referer);

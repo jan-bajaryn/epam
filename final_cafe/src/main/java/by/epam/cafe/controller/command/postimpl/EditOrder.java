@@ -49,12 +49,12 @@ public class EditOrder extends by.epam.cafe.controller.command.Command {
             } else {
                 redirect.put("fatal_id", "true");
                 session.setAttribute(REDIRECTED_INFO, redirect);
-                response.sendRedirect(request.getContextPath() + request.getServletPath() + "/order-list");
+                response.sendRedirect(request.getContextPath() + request.getServletPath() + "/order-list?pagination=1");
             }
         } catch (ServiceException e) {
             redirect.put("fatal_id", "true");
             session.setAttribute(REDIRECTED_INFO, redirect);
-            response.sendRedirect(request.getContextPath() + request.getServletPath() + "/order-list");
+            response.sendRedirect(request.getContextPath() + request.getServletPath() + "/order-list?pagination=1");
         }
     }
 
@@ -82,7 +82,7 @@ public class EditOrder extends by.epam.cafe.controller.command.Command {
         if (buildOrder(request, order, redirect)) {
             try {
                 if (orderService.update(order)) {
-                    response.sendRedirect(request.getContextPath() + request.getServletPath() + "/order-list");
+                    response.sendRedirect(request.getContextPath() + request.getServletPath() + "/order-list?pagination=1");
                 } else {
                     request.setAttribute("unknown_error", "true");
                     response.sendRedirect(referer);

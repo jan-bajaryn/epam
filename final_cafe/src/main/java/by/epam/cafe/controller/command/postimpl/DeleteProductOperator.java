@@ -34,7 +34,7 @@ public class DeleteProductOperator extends by.epam.cafe.controller.command.Comma
 
             orderService.deleteProduct(orderId, prodId);
 
-            response.sendRedirect(request.getContextPath() + request.getServletPath() + "/add-products/" + orderIdSt);
+            response.sendRedirect(request.getContextPath() + request.getServletPath() + "/add-products/" + orderIdSt + "?pagination=1");
         } catch (NumberFormatException | ServiceException e) {
             response.sendRedirect(request.getContextPath() + request.getServletPath() + "/something_went_wrong");
         }

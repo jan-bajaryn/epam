@@ -9,6 +9,7 @@ import by.epam.cafe.service.ProductService;
 import by.epam.cafe.service.exception.IllegalPathParamException;
 import by.epam.cafe.service.exception.ServiceException;
 import by.epam.cafe.service.factory.ServiceFactory;
+import by.epam.cafe.service.parser.PaginationCalculator;
 import by.epam.cafe.service.parser.PathVarCalculator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -33,10 +34,13 @@ public class AddProducts extends by.epam.cafe.controller.command.Command {
 //    private final ProductGroupService productGroupService = serviceFactory.getProductGroupService();
     private final OrderService orderService = serviceFactory.getOrderService();
 
+    private final PaginationCalculator paginationCalculator = serviceFactory.getPaginationCalculator();
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PermissionDeniedException {
         try {
+            int part = paginationCalculator.calculatePartParam(request.getParameter("pagination"));
+
             Integer pathVar = pathVarCalculator.findLastInteger(request.getPathInfo());
             Order order = orderService.findEntityById(pathVar);
 

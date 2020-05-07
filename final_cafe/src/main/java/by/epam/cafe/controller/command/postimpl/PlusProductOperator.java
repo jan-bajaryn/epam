@@ -35,7 +35,7 @@ public class PlusProductOperator extends by.epam.cafe.controller.command.Command
 
             orderService.plusProduct(orderId, prodId);
 
-            response.sendRedirect(request.getContextPath() + request.getServletPath() + "/add-products/" + orderIdSt);
+            response.sendRedirect(request.getContextPath() + request.getServletPath() + "/add-products/" + orderIdSt + "?pagination=1");
         } catch (NumberFormatException | ServiceException e) {
             response.sendRedirect(request.getContextPath() + request.getServletPath() + "/something_went_wrong");
         }

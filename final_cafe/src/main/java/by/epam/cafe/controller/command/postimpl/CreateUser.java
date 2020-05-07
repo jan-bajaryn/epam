@@ -42,7 +42,7 @@ public class CreateUser extends by.epam.cafe.controller.command.Command {
 
             try {
                 if (userService.create(build) != null) {
-                    response.sendRedirect(request.getContextPath() + request.getServletPath() + "/admin/user-list");
+                    response.sendRedirect(request.getContextPath() + request.getServletPath() + "/admin/user-list?pagination=1");
                 } else {
                     request.setAttribute("unknown_error", "true");
                     response.sendRedirect(referer);

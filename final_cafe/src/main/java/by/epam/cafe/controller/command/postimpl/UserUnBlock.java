@@ -30,7 +30,7 @@ public class UserUnBlock extends by.epam.cafe.controller.command.Command {
             Integer id = pathVarCalculator.findLastInteger(request.getPathInfo());
             userService.unBlockById(id);
 
-            response.sendRedirect(request.getContextPath() + request.getServletPath() + "/admin/user-list");
+            response.sendRedirect(request.getContextPath() + request.getServletPath() + "/admin/user-list?pagination=1");
 
         } catch (IllegalPathParamException | IllegalIdException | ServiceException e) {
             log.error("e: ", e);

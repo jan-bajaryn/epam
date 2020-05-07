@@ -12,6 +12,6 @@ public class PhotoNameParser extends ParamsParser<String> {
 
     @Override
     protected String modify(String input) throws Exception {
-        return input.strip();
+        return input;
     }
 }
