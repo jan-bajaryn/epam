@@ -12,12 +12,8 @@ public class EncodingFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-//        log.debug("request.getCharacterEncoding() = {}", request.getCharacterEncoding());
-//        log.debug("response.getCharacterEncoding() = {}", response.getCharacterEncoding());
         request.setCharacterEncoding("UTF-8");
-//        response.setCharacterEncoding("UTF-8");
-//        log.debug("request.getCharacterEncoding() = {}", request.getCharacterEncoding());
-//        log.debug("response.getCharacterEncoding() = {}", response.getCharacterEncoding());
+        response.setCharacterEncoding("UTF-8");
         chain.doFilter(request, response);
     }
 

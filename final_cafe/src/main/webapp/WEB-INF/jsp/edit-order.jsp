@@ -9,7 +9,7 @@
 <html lang="en">
 <head>
     <title>Edit single order</title>
-    <tag:imphead footer="${true}" navbar="${true}" btns="${true}"/>
+    <tag:imphead footer="${true}" navbar="${true}" btns="${true}" err="${true}"/>
 
     <link rel="stylesheet" href="<c:url value='/static/css/edit-order/main.css' />">
 
@@ -44,6 +44,13 @@
                         <label for="status">
                             <fmt:message key="web.inputs.order-status" bundle="${ rb }"/>
                         </label>
+
+                        <c:if test="${not empty redirect_status_error}">
+                            <span class="error__message"
+                                  title="<fmt:message key="web.inputs.err-value" bundle="${ rb }"/>: <c:out value="${redirect_status}"/>">
+                                <fmt:message key="web.errors.field" bundle="${ rb }"/>
+                            </span>
+                        </c:if>
                         <select class="form-control" id="status" name="status">
                             <option><c:out value="${order.status}"/></option>
                             <c:forEach var="stat" items="${statuses}">
@@ -56,6 +63,13 @@
                         <label for="payment_type">
                             <fmt:message key="web.inputs.payment-type" bundle="${ rb }"/>
                         </label>
+                        <c:if test="${not empty redirect_payment_type_error}">
+                            <span class="error__message"
+                                  title="<fmt:message key="web.inputs.err-value" bundle="${ rb }"/>: <c:out value="${redirect_payment_type}"/>">
+                                <fmt:message key="web.errors.field" bundle="${ rb }"/>
+                            </span>
+                        </c:if>
+
                         <select class="form-control" id="payment_type" name="payment_type">
                             <option>${order.paymentType}</option>
                             <c:forEach var="type" items="${types}">
@@ -67,6 +81,12 @@
                         <label for="price">
                             <fmt:message key="web.inputs.order-price" bundle="${ rb }"/>
                         </label>
+                        <c:if test="${not empty redirect_price_error}">
+                            <span class="error__message"
+                                  title="<fmt:message key="web.inputs.err-value" bundle="${ rb }"/>: <c:out value="${redirect_price}"/>">
+                                <fmt:message key="web.errors.field" bundle="${ rb }"/>
+                            </span>
+                        </c:if>
                         <input type="number" value="${order.price}" class="form-control" id="price" name="price">
                     </div>
                     <div class="name__row">
@@ -74,6 +94,14 @@
                             <fmt:message key="web.inputs.name" bundle="${ rb }"/>
                             :
                         </label>
+
+                        <c:if test="${not empty redirect_name_error}">
+                            <span class="error__message"
+                                  title="<fmt:message key="web.inputs.err-value" bundle="${ rb }"/>: <c:out value="${redirect_name}"/>">
+                                <fmt:message key="web.errors.field" bundle="${ rb }"/>
+                            </span>
+                        </c:if>
+
                         <input type="text" id="name" name="name" placeholder="Имя"
                                class="form-control" value="<c:out value="${order.clientName}"/>">
                     </div>
@@ -82,6 +110,12 @@
                             <fmt:message key="web.inputs.time" bundle="${ rb }"/>
                             :
                         </label>
+                        <c:if test="${not empty redirect_time_error}">
+                            <span class="error__message"
+                                  title="<fmt:message key="web.inputs.err-value" bundle="${ rb }"/>: <c:out value="${redirect_time}"/>">
+                                <fmt:message key="web.errors.field" bundle="${ rb }"/>
+                            </span>
+                        </c:if>
                         <input type="time" id="time" name="time"
                                placeholder="<fmt:message key="web.inputs.date-deliver" bundle="${ rb }"/>"
                                class="form-control" value="${time}">
@@ -91,11 +125,23 @@
                             <fmt:message key="web.inputs.street" bundle="${ rb }"/>
                             :
                         </label>
+                        <c:if test="${not empty redirect_street_error}">
+                            <span class="error__message"
+                                  title="<fmt:message key="web.inputs.err-value" bundle="${ rb }"/>: <c:out value="${redirect_street}"/>">
+                                <fmt:message key="web.errors.field" bundle="${ rb }"/>
+                            </span>
+                        </c:if>
                         <input type="text" class="form-control" placeholder="Улица" id="street"
                                name="street" value="<c:out value="${order.deliveryInf.street}"/>">
                         <label for="house">
                             <fmt:message key="web.inputs.house" bundle="${ rb }"/>
                         </label>
+                        <c:if test="${not empty redirect_house_error}">
+                            <span class="error__message"
+                                  title="<fmt:message key="web.inputs.err-value" bundle="${ rb }"/>: <c:out value="${redirect_house}"/>">
+                                <fmt:message key="web.errors.field" bundle="${ rb }"/>
+                            </span>
+                        </c:if>
                         <input type="text" class="form-control"
                                placeholder="<fmt:message key="web.inputs.house" bundle="${ rb }"/>"
                                id="house" name="house"
@@ -105,6 +151,12 @@
                         <label for="room">
                             <fmt:message key="web.inputs.room" bundle="${ rb }"/>
                         </label>
+                        <c:if test="${not empty redirect_room_error}">
+                            <span class="error__message"
+                                  title="<fmt:message key="web.inputs.err-value" bundle="${ rb }"/>: <c:out value="${redirect_room}"/>">
+                                <fmt:message key="web.errors.field" bundle="${ rb }"/>
+                            </span>
+                        </c:if>
                         <input type="text" class="form-control"
                                placeholder="<fmt:message key="web.inputs.room" bundle="${ rb }"/>"
                                id="room"
@@ -112,6 +164,12 @@
                         <label for="porch">
                             <fmt:message key="web.inputs.porch" bundle="${ rb }"/>
                         </label>
+                        <c:if test="${not empty redirect_porch_error}">
+                            <span class="error__message"
+                                  title="<fmt:message key="web.inputs.err-value" bundle="${ rb }"/>: <c:out value="${redirect_porch}"/>">
+                                <fmt:message key="web.errors.field" bundle="${ rb }"/>
+                            </span>
+                        </c:if>
                         <input type="text" class="form-control"
                                placeholder="<fmt:message key="web.inputs.porch" bundle="${ rb }"/>"
                                id="porch"
@@ -119,6 +177,12 @@
                         <label for="floor">
                             <fmt:message key="web.inputs.floor" bundle="${ rb }"/>
                         </label>
+                        <c:if test="${not empty redirect_floor_error}">
+                            <span class="error__message"
+                                  title="<fmt:message key="web.inputs.err-value" bundle="${ rb }"/>: <c:out value="${redirect_floor}"/>">
+                                <fmt:message key="web.errors.field" bundle="${ rb }"/>
+                            </span>
+                        </c:if>
                         <input type="text" class="form-control"
                                placeholder="<fmt:message key="web.inputs.floor" bundle="${ rb }"/>"
                                id="floor" name="floor"
@@ -128,6 +192,12 @@
                         <label for="tel">
                             <fmt:message key="web.inputs.phone" bundle="${ rb }"/>
                         </label>
+                        <c:if test="${not empty redirect_tel_error}">
+                            <span class="error__message"
+                                  title="<fmt:message key="web.inputs.err-value" bundle="${ rb }"/>: <c:out value="${redirect_tel}"/>">
+                                <fmt:message key="web.errors.field" bundle="${ rb }"/>
+                            </span>
+                        </c:if>
                         <input type="tel" class="form-control"
                                placeholder="<fmt:message key="web.inputs.phone" bundle="${ rb }"/>"
                                id="tel" name="tel"
@@ -137,6 +207,12 @@
                         <label for="email">
                             <fmt:message key="web.inputs.email" bundle="${ rb }"/>
                         </label>
+                        <c:if test="${not empty redirect_email_error}">
+                            <span class="error__message"
+                                  title="<fmt:message key="web.inputs.err-value" bundle="${ rb }"/>: <c:out value="${redirect_email}"/>">
+                                <fmt:message key="web.errors.field" bundle="${ rb }"/>
+                            </span>
+                        </c:if>
                         <input type="email" class="form-control"
                                placeholder="<fmt:message key="web.inputs.email" bundle="${ rb }"/>"
                                id="email"
@@ -146,6 +222,12 @@
                         <label for="comments">
                             <fmt:message key="web.inputs.comments" bundle="${ rb }"/>
                         </label>
+                        <c:if test="${not empty redirect_comments_error}">
+                            <span class="error__message"
+                                  title="<fmt:message key="web.inputs.err-value" bundle="${ rb }"/>: <c:out value="${redirect_comments}"/>">
+                                <fmt:message key="web.errors.field" bundle="${ rb }"/>
+                            </span>
+                        </c:if>
                         <textarea class="form-control" id="comments" name="comments"
                                   placeholder="<fmt:message key="web.inputs.comments" bundle="${ rb }"/>">
                             <c:out value="${order.deliveryInf.comments}"/>

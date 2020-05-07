@@ -45,10 +45,12 @@ public class MakeOrderAnon extends by.epam.cafe.controller.command.Command {
         Order build = buildOrder(request, session, redirect);
 
 
+        log.debug("first0");
         if (build != null) {
-
+            log.debug("first1");
             try {
                 if (orderService.create(build) != null) {
+                    log.debug("first2");
                     session.setAttribute("basket", null);
                     response.sendRedirect(request.getContextPath() + request.getServletPath() + "/your-order/" + build.getId());
                 } else {

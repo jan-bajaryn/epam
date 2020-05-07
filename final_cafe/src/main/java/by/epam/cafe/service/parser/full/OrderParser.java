@@ -53,7 +53,7 @@ public class OrderParser {
                 validateAndPutter.validateAndPut(redirect, room, "room", roomParam) &
                 validateAndPutter.validateAndPut(redirect, porch, "porch", porchParam) &
                 validateAndPutter.validateAndPut(redirect, floor, "floor", floorParam) &
-                validateAndPutter.validateAndPut(redirect, phone, "phone", phoneParam) &
+                validateAndPutter.validateAndPut(redirect, phone, "tel", phoneParam) &
                 validateAndPutter.validateAndPut(redirect, email, "email", emailParam) &
                 validateAndPutter.validateAndPut(redirect, comments, "comments", commentsParam) &
                 validateAndPutter.validateAndPut(redirect, time, "time", timeParam) &
@@ -112,7 +112,7 @@ public class OrderParser {
                 validateAndPutter.validateAndPut(redirect, room, "room", roomParam) &
                 validateAndPutter.validateAndPut(redirect, porch, "porch", porchParam) &
                 validateAndPutter.validateAndPut(redirect, floor, "floor", floorParam) &
-                validateAndPutter.validateAndPut(redirect, phone, "phone", phoneParam) &
+                validateAndPutter.validateAndPut(redirect, phone, "tel", phoneParam) &
                 validateAndPutter.validateAndPut(redirect, email, "email", emailParam) &
                 validateAndPutter.validateAndPut(redirect, comments, "comments", commentsParam) &
                 validateAndPutter.validateAndPut(redirect, time, "time", timeParam) &
@@ -165,14 +165,14 @@ public class OrderParser {
                 validateAndPutter.validateAndPut(redirect, room, "room", roomParam) &
                 validateAndPutter.validateAndPut(redirect, porch, "porch", porchParam) &
                 validateAndPutter.validateAndPut(redirect, floor, "floor", floorParam) &
-                validateAndPutter.validateAndPut(redirect, phone, "phone", phoneParam) &
+                validateAndPutter.validateAndPut(redirect, phone, "tel", phoneParam) &
                 validateAndPutter.validateAndPut(redirect, email, "email", emailParam) &
                 validateAndPutter.validateAndPut(redirect, comments, "comments", commentsParam) &
                 validateAndPutter.validateAndPut(redirect, time, "time", timeParam) &
                 validateAndPutter.validateAndPut(redirect, street, "street", streetParam) &
                 validateAndPutter.validateAndPut(redirect, price, "price", priceParam) &
                 validateAndPutter.validateAndPut(redirect, status, "status", statusParam) &
-                validateAndPutter.validateAndPut(redirect, paymentType, "type", paymentTypeParam);
+                validateAndPutter.validateAndPut(redirect, paymentType, "payment_type", paymentTypeParam);
 
         if (result && basketValidator.isValid(order.getProducts(), redirect, "basket")) {
 

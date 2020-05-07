@@ -82,7 +82,7 @@ public class EditOrder extends by.epam.cafe.controller.command.Command {
         if (buildOrder(request, order, redirect)) {
             try {
                 if (orderService.update(order)) {
-                    response.sendRedirect(request.getContextPath() + request.getServletPath() + "/your-order/" + order.getId());
+                    response.sendRedirect(request.getContextPath() + request.getServletPath() + "/order-list");
                 } else {
                     request.setAttribute("unknown_error", "true");
                     response.sendRedirect(referer);

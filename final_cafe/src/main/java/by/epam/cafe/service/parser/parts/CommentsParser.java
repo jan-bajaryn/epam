@@ -1,6 +1,5 @@
 package by.epam.cafe.service.parser.parts;
 
-import by.epam.cafe.service.validator.Validator;
 import by.epam.cafe.service.validator.parts.CommentsValidator;
 
 public class CommentsParser extends ParamsParser<String> {

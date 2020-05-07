@@ -3,6 +3,10 @@
     margin-left: 20px;
 }
 
-.error__message:not([hidden]) + input, .error__message:not([hidden]) + select {
+.error__message:not([hidden]) + input, .error__message:not([hidden]) + select, .error__message:not([hidden]) + textarea {
+    border-color: red;
+}
+
+.hid[hidden] + input, .hid[hidden] + select {
     border-color: red;
 }

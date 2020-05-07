@@ -124,22 +124,26 @@ public class OrderServiceImpl implements by.epam.cafe.service.OrderService {
     public Order create(Order entity) throws ServiceException {
 
         try (final Transaction transaction = dAOFactory.createTransaction()) {
-
+            log.debug("create1");
             DeliveryInf deliveryInf = deliveryInfMysqlDao.create(entity.getDeliveryInf(), transaction);
             entity.setDeliveryInf(deliveryInf);
 
             Order order = orderMysqlDao.create(entity, transaction);
 
+            log.debug("create2");
 
             Map<Product, Integer> products = order.getProducts();
-            saveProducts(products, order);
+            saveProducts(products, order,transaction);
 
+            log.debug("create3");
             if (deliveryInf == null) {
+                log.debug("create4");
                 transaction.rollBack();
+                log.debug("create5");
             } else {
+                log.debug("create6");
                 transaction.commit();
             }
-
             return order;
         } catch (DaoException e) {
             throw new ServiceException(e);
@@ -147,13 +151,8 @@ public class OrderServiceImpl implements by.epam.cafe.service.OrderService {
 
     }
 
-    private void saveProducts(Map<Product, Integer> products, Order order) throws ServiceException {
-
-        try (final Transaction transaction = dAOFactory.createTransaction()) {
-            orderMysqlDao.addProductsOnCreate(products, order, transaction);
-        } catch (DaoException e) {
-            throw new ServiceException(e);
-        }
+    private void saveProducts(Map<Product, Integer> products, Order order, Transaction transaction) throws ServiceException {
+        orderMysqlDao.addProductsOnCreate(products, order, transaction);
     }
 
     @Override

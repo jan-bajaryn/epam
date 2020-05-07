@@ -1,14 +1,16 @@
+<%--@elvariable id="sum" type="java.lang.Integer"--%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--<jsp:useBean id="productMap" scope="request" type="java.util.Map<by.epam.cafe.entity.impl.Product,java.lang.Integer>"/>--%>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="tag" %>
 
+
 <!doctype html>
 <html lang="en">
 <head>
     <title>Title</title>
-    <tag:imphead/>
+    <tag:imphead err="${true}"/>
 
     <link rel="stylesheet" href="<c:url value='/static/css/order/main.css' />">
     <link rel="stylesheet" href="<c:url value='/static/css/order/modals.css' />">
@@ -37,6 +39,7 @@
         </div>
 
         <div class="product-list">
+            <%--@elvariable id="productMap" type="java.util.Map<by.epam.cafe.entity.impl.Product,java.lang.Integer>"--%>
             <c:if test="${productMap!=null}">
                 <c:forEach var="product" items="${productMap}">
 
@@ -54,6 +57,7 @@
                         </div>
                         <div class="flex-part">
                             <c:choose>
+                                <%--@elvariable id="role" type="by.epam.cafe.entity.enums.Role"--%>
                                 <c:when test="${role eq 'ANON'}">
                                     <form action="<c:url value="/page/anon/minus-item"/>" method="post">
                                         <input type="hidden" value="${product.key.id}" name="variant">
@@ -153,49 +157,111 @@
 
 
                                         <div class="name__row">
-                                            <input type="text" name="name"
+                                                <%--@elvariable id="redirect_name_error" type="java.lang.String"--%>
+                                                <%--@elvariable id="redirect_name" type="java.lang.String"--%>
+                                            <c:if test="${not empty redirect_name_error}">
+                                                <span class="error__message">
+                                                    <fmt:message key="web.errors.field" bundle="${ rb }"/>
+                                                </span>
+                                            </c:if>
+                                            <input type="text" name="name" id="name"
                                                    placeholder="<fmt:message key="web.inputs.your-name" bundle="${ rb }"/>"
-                                                   class="form-control">
+                                                   class="form-control"
+                                                   value="<c:out value="${redirect_name}"/>">
                                         </div>
                                         <div class="time__row">
-                                            <input type="time" name="time"
+                                                <%--@elvariable id="redirect_time_error" type="java.lang.String"--%>
+                                                <%--@elvariable id="redirect_time" type="java.lang.String"--%>
+                                            <c:if test="${not empty redirect_time_error}">
+                                                <span class="error__message">
+                                                    <fmt:message key="web.errors.field" bundle="${ rb }"/>
+                                                </span>
+                                            </c:if>
+                                            <input type="time" name="time" id="time"
                                                    placeholder="<fmt:message key="web.inputs.date-deliver" bundle="${ rb }"/>"
-                                                   class="form-control">
+                                                   class="form-control" value="<c:out value="${redirect_time}"/>">
                                         </div>
                                         <div class="first__row">
-                                            <input type="text" class="form-control"
+                                                <%--@elvariable id="redirect_street_error" type="java.lang.String"--%>
+                                                <%--@elvariable id="redirect_street" type="java.lang.String"--%>
+                                            <c:if test="${not empty redirect_street_error}">
+                                                <span class="error__message hid" hidden></span>
+                                            </c:if>
+                                            <input type="text" class="form-control" id="street"
                                                    placeholder="<fmt:message key="web.inputs.street" bundle="${ rb }"/>"
-                                                   name="street">
-                                            <input type="text" class="form-control"
+                                                   name="street" value="<c:out value="${redirect_street}"/>">
+                                                <%--@elvariable id="redirect_house_error" type="java.lang.String"--%>
+                                                <%--@elvariable id="redirect_house" type="java.lang.String"--%>
+                                            <c:if test="${not empty redirect_house_error}">
+                                                <span class="error__message hid" hidden></span>
+                                            </c:if>
+                                            <input type="text" class="form-control" id="house"
                                                    placeholder="<fmt:message key="web.inputs.house" bundle="${ rb }"/>"
-                                                   name="house">
+                                                   name="house" value="<c:out value="${redirect_house}"/>">
                                         </div>
                                         <div class="sec__row">
-                                            <input type="text" class="form-control"
+                                                <%--@elvariable id="redirect_room_error" type="java.lang.String"--%>
+                                                <%--@elvariable id="redirect_room" type="java.lang.String"--%>
+                                            <c:if test="${not empty redirect_room_error}">
+                                                <span class="error__message hid" hidden></span>
+                                            </c:if>
+                                            <input type="text" class="form-control" id="room"
                                                    placeholder="<fmt:message key="web.inputs.room" bundle="${ rb }"/>"
+                                                   name="room" value="<c:out value="${redirect_room}"/>">
+                                                <%--@elvariable id="redirect_porch_error" type="java.lang.String"--%>
+                                                <%--@elvariable id="redirect_porch" type="java.lang.String"--%>
+                                            <c:if test="${not empty redirect_porch_error}">
+                                                <span class="error__message hid" hidden></span>
+                                            </c:if>
 
-                                                   name="room">
-                                            <input type="number" class="form-control"
+                                            <input type="number" class="form-control" id="porch"
                                                    placeholder="<fmt:message key="web.inputs.porch" bundle="${ rb }"/>"
-
-                                                   name="porch">
-                                            <input type="number" class="form-control"
+                                                   name="porch" value="<c:out value="${redirect_porch}"/>">
+                                                <%--@elvariable id="redirect_floor_error" type="java.lang.String"--%>
+                                                <%--@elvariable id="redirect_floor" type="java.lang.String"--%>
+                                            <c:if test="${not empty redirect_floor_error}">
+                                                <span class="error__message hid" hidden></span>
+                                            </c:if>
+                                            <input type="number" class="form-control" id="floor"
                                                    placeholder="<fmt:message key="web.inputs.floor" bundle="${ rb }"/>"
-                                                   name="floor">
+                                                   name="floor" value="<c:out value="${redirect_floor}"/>">
                                         </div>
                                         <div class="phone__row">
-                                            <input type="tel" class="form-control"
+                                                <%--@elvariable id="redirect_tel_error" type="java.lang.String"--%>
+                                                <%--@elvariable id="redirect_tel" type="java.lang.String"--%>
+                                            <c:if test="${not empty redirect_tel_error}">
+                                                <span class="error__message">
+                                                    <fmt:message key="web.errors.field" bundle="${ rb }"/>
+                                                </span>
+                                            </c:if>
+                                            <input type="tel" class="form-control" id="tel"
                                                    placeholder="<fmt:message key="web.inputs.phone" bundle="${ rb }"/>"
-                                                   name="tel">
+                                                   name="tel" value="<c:out value="${redirect_tel}"/>">
                                         </div>
                                         <div class="email__row">
-                                            <input type="email" class="form-control"
+                                                <%--@elvariable id="redirect_email_error" type="java.lang.String"--%>
+                                                <%--@elvariable id="redirect_email" type="java.lang.String"--%>
+                                            <c:if test="${not empty redirect_email_error}">
+                                                <span class="error__message">
+                                                    <fmt:message key="web.errors.field" bundle="${ rb }"/>
+                                                </span>
+                                            </c:if>
+                                            <input type="email" class="form-control" id="email"
                                                    placeholder="<fmt:message key="web.inputs.email" bundle="${ rb }"/>"
-                                                   name="email">
+                                                   name="email" value="<c:out value="${redirect_email}"/>">
                                         </div>
                                         <div class="comments__row">
-                                    <textarea class="form-control" name="comments"
-                                              placeholder="<fmt:message key="web.inputs.comments" bundle="${ rb }"/>"></textarea>
+                                                <%--@elvariable id="redirect_comments_error" type="java.lang.String"--%>
+                                                <%--@elvariable id="redirect_comments" type="java.lang.String"--%>
+                                            <c:if test="${not empty redirect_comments_error}">
+                                                <span class="error__message">
+                                                    <fmt:message key="web.errors.field" bundle="${ rb }"/>
+                                                </span>
+                                            </c:if>
+                                            <textarea class="form-control" name="comments" id="comments"
+                                                      placeholder="<fmt:message key="web.inputs.comments" bundle="${ rb }"/>">
+                                                <c:out value="${redirect_comments}"/>
+                                            </textarea>
                                         </div>
                                     </div>
                                     <button class="btn orange__bg accept__btn" type="submit">
@@ -203,6 +269,7 @@
                                     </button>
                                 </form>
                             </c:when>
+                            <%--@elvariable id="role" type="by.epam.cafe.entity.enums.Role"--%>
                             <c:when test="${role eq 'CLIENT'}">
 
                                 <jsp:useBean id="info" scope="request" type="by.epam.cafe.controller.dto.UserDTO"/>
@@ -222,49 +289,114 @@
 
 
                                         <div class="name__row">
+                                                <%--@elvariable id="redirect_name_error" type="java.lang.String"--%>
+                                                <%--@elvariable id="redirect_name" type="java.lang.String"--%>
+                                            <c:if test="${not empty redirect_name_error}">
+                                                <span class="error__message">
+                                                    <fmt:message key="web.errors.field" bundle="${ rb }"/>
+                                                </span>
+                                            </c:if>
                                             <input type="text" id="name" name="name"
                                                    placeholder="<fmt:message key="web.inputs.your-name" bundle="${ rb }"/>"
-                                                   class="form-control" value="<c:out value="${info.name}"/>">
+                                                   class="form-control" value="<c:out value="${info.name}"/>"
+                                                   title="<c:out value="${redirect_name}"/>">
                                         </div>
                                         <div class="time__row">
+                                                <%--@elvariable id="redirect_time_error" type="java.lang.String"--%>
+                                                <%--@elvariable id="redirect_time" type="java.lang.String"--%>
+                                            <c:if test="${not empty redirect_time_error}">
+                                                <span class="error__message">
+                                                    <fmt:message key="web.errors.field" bundle="${ rb }"/>
+                                                </span>
+                                            </c:if>
                                             <input type="time" id="time" name="time"
                                                    placeholder="<fmt:message key="web.inputs.date-deliver" bundle="${ rb }"/>"
-                                                   class="form-control">
+                                                   class="form-control" value="<c:out value="${redirect_time}"/>">
                                         </div>
                                         <div class="first__row">
+                                                <%--@elvariable id="redirect_street_error" type="java.lang.String"--%>
+                                                <%--@elvariable id="redirect_street" type="java.lang.String"--%>
+                                            <c:if test="${not empty redirect_street_error}">
+                                                <span class="error__message hid" hidden></span>
+                                            </c:if>
                                             <input type="text" class="form-control"
                                                    placeholder="<fmt:message key="web.inputs.street" bundle="${ rb }"/>"
                                                    id="street"
-                                                   name="street"
+                                                   name="street" title="<c:out value="${redirect_street}"/>"
                                                    value="<c:out value="${info.street}"/>">
+                                                <%--@elvariable id="redirect_house_error" type="java.lang.String"--%>
+                                                <%--@elvariable id="redirect_house" type="java.lang.String"--%>
+                                            <c:if test="${not empty redirect_house_error}">
+                                                <span class="error__message hid" hidden></span>
+                                            </c:if>
                                             <input type="text" class="form-control"
                                                    placeholder="<fmt:message key="web.inputs.house" bundle="${ rb }"/>"
-                                                   id="house" name="house" value="<c:out value="${info.house}"/>">
+                                                   id="house" name="house" value="<c:out value="${info.house}"/>"
+                                                   title="<c:out value="${redirect_house}"/>">
                                         </div>
                                         <div class="sec__row">
+                                                <%--@elvariable id="redirect_room_error" type="java.lang.String"--%>
+                                                <%--@elvariable id="redirect_room" type="java.lang.String"--%>
+                                            <c:if test="${not empty redirect_room_error}">
+                                                <span class="error__message hid" hidden></span>
+                                            </c:if>
                                             <input type="text" class="form-control"
                                                    placeholder="<fmt:message key="web.inputs.room" bundle="${ rb }"/>"
-                                                   id="room" name="room" value="<c:out value="${info.room}"/>">
+                                                   id="room" name="room" value="<c:out value="${info.room}"/>"
+                                                   title="<c:out value="${redirect_room}"/>">
+                                                <%--@elvariable id="redirect_porch_error" type="java.lang.String"--%>
+                                                <%--@elvariable id="redirect_porch" type="java.lang.String"--%>
+                                            <c:if test="${not empty redirect_porch_error}">
+                                                <span class="error__message hid" hidden></span>
+                                            </c:if>
                                             <input type="number" class="form-control"
                                                    placeholder="<fmt:message key="web.inputs.porch" bundle="${ rb }"/>"
-                                                   id="porch" name="porch" value="<c:out value="${info.porch}"/>">
+                                                   id="porch" name="porch" value="<c:out value="${info.porch}"/>"
+                                                   title="<c:out value="${redirect_porch}"/>">
+
+                                                <%--@elvariable id="redirect_floor_error" type="java.lang.String"--%>
+                                                <%--@elvariable id="redirect_floor" type="java.lang.String"--%>
+                                            <c:if test="${not empty redirect_floor_error}">
+                                                <span class="error__message hid" hidden></span>
+                                            </c:if>
                                             <input type="number" class="form-control"
                                                    placeholder="<fmt:message key="web.inputs.floor" bundle="${ rb }"/>"
-                                                   id="floor" name="floor" value="<c:out value="${info.floor}"/>">
+                                                   id="floor" name="floor" value="<c:out value="${info.floor}"/>"
+                                                   title="<c:out value="${redirect_floor}"/>">
                                         </div>
                                         <div class="phone__row">
+                                                <%--@elvariable id="redirect_tel_error" type="java.lang.String"--%>
+                                                <%--@elvariable id="redirect_tel" type="java.lang.String"--%>
+                                            <c:if test="${not empty redirect_tel_error}">
+                                                <span class="error__message">
+                                                    <fmt:message key="web.errors.field" bundle="${ rb }"/>
+                                                </span>
+                                            </c:if>
                                             <input type="tel" class="form-control"
                                                    placeholder="<fmt:message key="web.inputs.phone" bundle="${ rb }"/>"
-                                                   id="tel" name="tel" value="<c:out value="${info.phone}"/>">
+                                                   id="tel" name="tel" value="<c:out value="${info.phone}"/>"
+                                                   title="<c:out value="${redirect_tel}"/>">
                                         </div>
+
                                         <div class="email__row">
+                                                <%--@elvariable id="redirect_email_error" type="java.lang.String"--%>
+                                                <%--@elvariable id="redirect_email" type="java.lang.String"--%>
+                                            <c:if test="${not empty redirect_email_error}">
+                                                <span class="error__message">
+                                                    <fmt:message key="web.errors.field" bundle="${ rb }"/>
+                                                </span>
+                                            </c:if>
                                             <input type="email" class="form-control"
                                                    placeholder="<fmt:message key="web.inputs.email" bundle="${ rb }"/>"
-                                                   id="email" name="email" value="<c:out value="${info.email}"/>">
+                                                   id="email" name="email" value="<c:out value="${info.email}"/>"
+                                                   title="<c:out value="${redirect_email}"/>">
                                         </div>
                                         <div class="comments__row">
-                                    <textarea class="form-control" id="comments" name="comments"
-                                              placeholder="<fmt:message key="web.inputs.comments" bundle="${ rb }"/>"></textarea>
+                                    <textarea class="form-control" name="comments"
+                                              placeholder="<fmt:message key="web.inputs.comments" bundle="${ rb }"/>">
+                                        <%--@elvariable id="redirect_comments" type="java.lang.String"--%>
+                                        <c:out value="${redirect_comments}"/>
+                                    </textarea>
                                         </div>
                                     </div>
                                     <button class="btn orange__bg accept__btn" type="submit">

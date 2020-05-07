@@ -52,7 +52,8 @@
                     </c:if>
                     <select class="form-control" id="product_group" name="product_group">
                         <c:if test="${product.productGroup!=null}">
-                            <option value="${product.productGroup.id}"><c:out value="${product.productGroup.name}"/></option>
+                            <option value="${product.productGroup.id}"><c:out
+                                    value="${product.productGroup.name}"/></option>
                             <option value="">
                                 <fmt:message key="web.text.empty" bundle="${ rb }"/>
                             </option>

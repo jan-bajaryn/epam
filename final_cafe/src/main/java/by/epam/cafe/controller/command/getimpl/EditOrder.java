@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class EditOrder extends by.epam.cafe.controller.command.Command {
 
@@ -26,6 +27,8 @@ public class EditOrder extends by.epam.cafe.controller.command.Command {
 
     private final PathVarCalculator pathVarCalculator = serviceFactory.getPathVarCalculator();
     private final OrderService orderService = serviceFactory.getOrderService();
+
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm");
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -52,6 +55,9 @@ public class EditOrder extends by.epam.cafe.controller.command.Command {
     }
 
     private String parseToTime(LocalDateTime deliveryTime) {
-        return deliveryTime.getHour() + ":" + deliveryTime.getMinute();
+        log.debug("deliveryTime = {}", deliveryTime);
+        String timeSt = deliveryTime.format(formatter);
+        log.debug("timeSt = {}", timeSt);
+        return timeSt;
     }
 }

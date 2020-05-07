@@ -4,7 +4,7 @@ import by.epam.cafe.service.validator.Validator;
 
 public class PriceValidator implements Validator<Integer> {
 
-    private static final int MAX_VALUE = 10000;
+    private static final int MAX_VALUE = 1_000_000_000;
     private static final int MIN_VALUE = 0;
 
     @Override

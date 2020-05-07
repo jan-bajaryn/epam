@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 
 public class CommentsValidator implements Validator<String> {
 
-    private static final Pattern COMPILE = Pattern.compile("[\\s\\S]{1,200}");
+    private static final Pattern COMPILE = Pattern.compile("[\\s\\S]{0,200}");
 
     @Override
     public boolean isValid(String input) {
