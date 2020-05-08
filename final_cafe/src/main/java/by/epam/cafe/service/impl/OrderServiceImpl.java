@@ -120,6 +120,7 @@ public class OrderServiceImpl implements by.epam.cafe.service.OrderService {
         try (final Transaction transaction = dAOFactory.createTransaction()) {
 
             boolean result = orderMysqlDao.delete(entity, transaction);
+            log.debug("result = {}", result);
             if (result) {
                 transaction.commit();
             } else {
@@ -299,8 +300,9 @@ public class OrderServiceImpl implements by.epam.cafe.service.OrderService {
     public boolean cancelOrDeleteById(Integer idInt) throws ServiceException {
         log.debug("cancelOrDeleteById working...");
         Order entityById = findEntityById(idInt);
+        log.debug("cancelOrDeleteById: entityById = {}", entityById);
         if (entityById.getStatus() == OrderStatus.WAITING) {
-
+            log.debug("deleting...");
             return delete(entityById);
 
         } else {
