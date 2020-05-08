@@ -37,10 +37,11 @@ public class ProductMysqlDao extends AbstractMysqlDao<Integer, Product> {
     // language=SQL
     private static final String findProductsByOrder = "SELECT id, price, weight, product_group_id, count FROM product INNER JOIN order_product ON product.id = order_product.product_id WHERE order_id = ?;";
     private static final String FIND_ALL_BY_PRODUCT_ID_NOT_DISABLED = "SELECT prod.id as id, prod.price as price, prod.weight as weight, prod.product_group_id as product_group_id FROM product as prod INNER JOIN product_group as prodgr ON prod.product_group_id = prodgr.id WHERE prodgr.disabled = FALSE ORDER BY prod.id;";
-
+    // language=SQL
+    private static final String countSql = "SELECT count(id) FROM product;";
 
     public ProductMysqlDao() {
-        super(FIND_ALL_SQL, FIND_BY_ID_SQL, DELETE_BY_ID, CREATE_SQL, UPDATE_SQL, findAllByPart);
+        super(FIND_ALL_SQL, FIND_BY_ID_SQL, DELETE_BY_ID, CREATE_SQL, UPDATE_SQL, findAllByPart, countSql);
     }
 
 

@@ -26,4 +26,7 @@ public interface ProductService {
     List<Product> findAllByProductGroupNotDisabled() throws ServiceException;
 
     List<Product> findAllByProductGroupNull() throws ServiceException;
+
+    int count() throws ServiceException;
+
 }

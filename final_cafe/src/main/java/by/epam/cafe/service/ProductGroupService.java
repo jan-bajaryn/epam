@@ -33,4 +33,7 @@ public interface ProductGroupService {
     void disableById(Integer id) throws ServiceException;
 
     void enableById(Integer id) throws ServiceException;
+
+    int count() throws ServiceException;
+
 }

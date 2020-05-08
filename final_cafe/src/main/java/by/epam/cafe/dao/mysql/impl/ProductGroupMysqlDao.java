@@ -35,9 +35,11 @@ public class ProductGroupMysqlDao extends AbstractMysqlDao<Integer, ProductGroup
 
     // language=SQL
     public static final String findEmpty = "SELECT id, description, name, photo_name, type, disabled FROM product_group LEFT JOIN product ON product_group.id = product.product_group_id WHERE product_group_id IS NULL;";
+    // language=SQL
+    private static final String countSql = "SELECT count(id) FROM product_group;";
 
     public ProductGroupMysqlDao() {
-        super(findAllSql, findEntityByIdSql, deleteByIdSql, createSql, updateSql, findAllByPart);
+        super(findAllSql, findEntityByIdSql, deleteByIdSql, createSql, updateSql, findAllByPart, countSql);
     }
 
 

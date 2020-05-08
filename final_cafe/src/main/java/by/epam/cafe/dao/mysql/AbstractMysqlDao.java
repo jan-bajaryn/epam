@@ -24,6 +24,7 @@ public abstract class AbstractMysqlDao<ID, T extends Entity<ID>> implements Abst
     private final String createSql;
     private final String updateSql;
     private final String findAllByPart;
+    private final String countSql;
 
     public AbstractMysqlDao(
             String findAllSql,
@@ -31,13 +32,14 @@ public abstract class AbstractMysqlDao<ID, T extends Entity<ID>> implements Abst
             String deleteByIdSql,
             String createSql,
             String updateSql,
-            String findAllByPart) {
+            String findAllByPart, String countSql) {
         this.findAllSql = findAllSql;
         this.findEntityByIdSql = findEntityByIdSql;
         this.deleteByIdSql = deleteByIdSql;
         this.createSql = createSql;
         this.updateSql = updateSql;
         this.findAllByPart = findAllByPart;
+        this.countSql = countSql;
     }
 
     @Override
@@ -135,7 +137,7 @@ public abstract class AbstractMysqlDao<ID, T extends Entity<ID>> implements Abst
 
         try (PreparedStatement statement = cn.prepareStatement(deleteByIdSql)) {
             idParam(statement, entity.getId());
-            return statement.executeUpdate()==1;
+            return statement.executeUpdate() == 1;
         } catch (SQLException e) {
             log.info("e: ", e);
         }
@@ -190,4 +192,19 @@ public abstract class AbstractMysqlDao<ID, T extends Entity<ID>> implements Abst
 
     protected abstract void updateParams(T entity, PreparedStatement statement) throws SQLException;
 
+    @Override
+    public int count(Transaction transaction) throws DaoException {
+
+        Connection cn = transaction.getConnection();
+
+        try (Statement statement = cn.createStatement()) {
+            ResultSet resultSet = statement.executeQuery(countSql);
+            if (resultSet.next()) {
+                return resultSet.getInt(1);
+            }
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
+        throw new DaoException();
+    }
 }

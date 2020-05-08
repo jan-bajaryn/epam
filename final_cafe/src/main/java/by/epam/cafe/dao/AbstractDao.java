@@ -21,4 +21,5 @@ public interface AbstractDao<ID, T extends Entity<ID>> {
     T create(T entity, Transaction transaction);
 
     boolean update(T entity, Transaction transaction);
+    int count(Transaction transaction) throws DaoException;
 }

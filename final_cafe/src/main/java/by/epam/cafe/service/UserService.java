@@ -29,4 +29,7 @@ public interface UserService {
     void blockById(Integer id) throws IllegalIdException, ServiceException;
 
     void unBlockById(Integer id) throws IllegalIdException, ServiceException;
+
+    int count() throws ServiceException;
+
 }

@@ -31,4 +31,6 @@ public interface OrderService {
     Order findCurrentByUserId(Integer id) throws ServiceException;
 
     boolean cancelOrDeleteById(Integer idInt) throws ServiceException;
+
+    int count() throws ServiceException;
 }

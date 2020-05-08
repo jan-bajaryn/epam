@@ -20,10 +20,12 @@ public class DeliveryInfMysqlDao extends AbstractMysqlDao<Integer, DeliveryInf> 
     private static final String updateSql = "UPDATE delivery_inf SET  comments = ?, delivery_time = ?, email = ?, floor = ?, house = ?, phone = ?, porch = ?, room = ?, street = ? WHERE id = ?;";
     // language=SQL
     private static final String findAllByPart = "SELECT id, comments, delivery_time, email, floor, house, phone, porch, room, street FROM delivery_inf ORDER BY id LIMIT ? OFFSET ?;";
+    // language=SQL
+    private static final String countSql = "SELECT count(id) FROM delivery_inf;";
 
 
     public DeliveryInfMysqlDao() {
-        super(findAllSql, findEntityByIdSql, deleteByIdSql, createSql, updateSql, findAllByPart);
+        super(findAllSql, findEntityByIdSql, deleteByIdSql, createSql, updateSql, findAllByPart, countSql);
     }
 
 

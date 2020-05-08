@@ -40,7 +40,7 @@ public class UserList extends by.epam.cafe.controller.command.Command {
             List<User> all = userService.findAllByPart(part);
             log.info("execute: all = {}", all);
             request.setAttribute("users", all);
-            request.setAttribute("paginationMap", paginationService.calculate(userService.findAll().size(), part, MAX_PAGINATION_ELEMENTS));
+            request.setAttribute("paginationMap", paginationService.calculate(userService.count(), part, MAX_PAGINATION_ELEMENTS));
             request.getRequestDispatcher("/WEB-INF/jsp/admin/user-list.jsp").forward(request, response);
         } catch (ServiceException e) {
             response.sendRedirect(request.getContextPath() + request.getServletPath() + "/something_went_wrong");

@@ -171,4 +171,13 @@ public class UserServiceImpl implements by.epam.cafe.service.UserService {
             throw new ServiceException(e);
         }
     }
+
+    @Override
+    public int count() throws ServiceException {
+        try (final Transaction transaction = dAOFactory.createTransaction()) {
+            return userMysqlDao.count(transaction);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+    }
 }

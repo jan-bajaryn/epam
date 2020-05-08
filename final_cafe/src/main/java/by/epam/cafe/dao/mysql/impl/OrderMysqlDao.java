@@ -44,6 +44,9 @@ public class OrderMysqlDao extends AbstractMysqlDao<Integer, Order> {
     private static final String UPDATE_SQL = "UPDATE `order` SET  client_name = ?, creation = ?, payment_type = ?, price = ?, status = ?, delivery_inf_id = ?, user_id = ?" +
             " WHERE id = ?;";
 
+    // language=SQL
+    private static final String countSql = "SELECT count(id) FROM `order`;";
+
 
     /*language=SQL*/
     private static final String FIND_PRODUCTS_BY_ORDER_SQL = "SELECT product_id from `order` INNER JOIN order_product ON `order`.id = order_product.order_id WHERE order_id = ?;";
@@ -54,7 +57,7 @@ public class OrderMysqlDao extends AbstractMysqlDao<Integer, Order> {
     private static final String MINUS_PRODUCT = "UPDATE order_product SET count = count -1 WHERE product_id=? and order_id = ?;";
 
     public OrderMysqlDao() {
-        super(FIND_ALL_SQL, FIND_BY_ID_SQL, DELETE_BY_ID, CREATE_SQL, UPDATE_SQL, findAllByPart);
+        super(FIND_ALL_SQL, FIND_BY_ID_SQL, DELETE_BY_ID, CREATE_SQL, UPDATE_SQL, findAllByPart, countSql);
     }
 
 

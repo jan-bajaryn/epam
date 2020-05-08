@@ -35,7 +35,7 @@ public class ProductGroupList extends by.epam.cafe.controller.command.Command {
 
             List<ProductGroup> all = productGroupService.findAllByPart(part);
             request.setAttribute("groups", all);
-            request.setAttribute("paginationMap", paginationService.calculate(productGroupService.findAll().size(), part, MAX_PAGINATION_ELEMENTS));
+            request.setAttribute("paginationMap", paginationService.calculate(productGroupService.count(), part, MAX_PAGINATION_ELEMENTS));
             request.getRequestDispatcher("/WEB-INF/jsp/admin/product-group-list.jsp").forward(request, response);
         } catch (NullParamDaoException | ServiceException e) {
             request.getRequestDispatcher("/WEB-INF/jsp/errors/something_went_wrong.jsp").forward(request, response);

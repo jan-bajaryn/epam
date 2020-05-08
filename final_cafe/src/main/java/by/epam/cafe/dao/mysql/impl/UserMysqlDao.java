@@ -29,10 +29,11 @@ public class UserMysqlDao extends AbstractMysqlDao<Integer, User> {
 
     // language=SQL
     public static final String UPDATE_SQL = "UPDATE user SET  creation = ?, name = ?, password = ?, phone = ?, role = ?, surname = ?, username = ?, email = ?, floor = ?, house = ?, porch = ?, room = ?, street = ?, is_blocked = ? WHERE id = ?;";
-
+    // language=SQL
+    private static final String countSql = "SELECT count(id) FROM user;";
 
     public UserMysqlDao() {
-        super(FIND_ALL_SQL, FIND_ENTITY_BY_ID_SQL, DELETE_BY_ID_SQL, CREATE_SQL, UPDATE_SQL, findAllByPart);
+        super(FIND_ALL_SQL, FIND_ENTITY_BY_ID_SQL, DELETE_BY_ID_SQL, CREATE_SQL, UPDATE_SQL, findAllByPart, countSql);
     }
 
 

@@ -312,4 +312,13 @@ public class OrderServiceImpl implements by.epam.cafe.service.OrderService {
             return update(entityById);
         }
     }
+
+    @Override
+    public int count() throws ServiceException {
+        try (final Transaction transaction = dAOFactory.createTransaction()) {
+            return orderMysqlDao.count(transaction);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+    }
 }

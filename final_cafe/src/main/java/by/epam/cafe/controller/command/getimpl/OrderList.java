@@ -38,7 +38,7 @@ public class OrderList extends by.epam.cafe.controller.command.Command {
             List<Order> all = orderService.findAllByPart(part);
             log.info("execute: all = {}", all);
             request.setAttribute("orders", all);
-            request.setAttribute("paginationMap", paginationService.calculate(orderService.findAll().size(), part, MAX_PAGINATION_ELEMENTS));
+            request.setAttribute("paginationMap", paginationService.calculate(orderService.count(), part, MAX_PAGINATION_ELEMENTS));
             request.getRequestDispatcher("/WEB-INF/jsp/order-list.jsp").forward(request, response);
         } catch (ServiceException e) {
             response.sendRedirect(request.getContextPath() + request.getServletPath() + "/something_went_wrong");

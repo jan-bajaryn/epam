@@ -7,6 +7,7 @@ import by.epam.cafe.dao.mysql.Transaction;
 import by.epam.cafe.dao.mysql.impl.ProductGroupMysqlDao;
 import by.epam.cafe.dao.mysql.impl.ProductMysqlDao;
 import by.epam.cafe.entity.enums.ProductType;
+import by.epam.cafe.entity.impl.Order;
 import by.epam.cafe.entity.impl.Product;
 import by.epam.cafe.entity.impl.ProductGroup;
 import by.epam.cafe.service.exception.NullServiceException;
@@ -332,5 +333,14 @@ public class ProductGroupServiceImpl implements by.epam.cafe.service.ProductGrou
             log.debug("part = {}", part);
         }
 
+    }
+
+    @Override
+    public int count() throws ServiceException {
+        try (final Transaction transaction = dAOFactory.createTransaction()) {
+            return productGroupMysqlDao.count(transaction);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
     }
 }
