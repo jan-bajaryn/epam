@@ -1,9 +1,6 @@
 package by.epam.cafe.controller.command.postimpl;
 
 import by.epam.cafe.controller.command.PermissionDeniedException;
-import by.epam.cafe.entity.enums.OrderStatus;
-import by.epam.cafe.entity.enums.PaymentType;
-import by.epam.cafe.entity.impl.DeliveryInf;
 import by.epam.cafe.entity.impl.Order;
 import by.epam.cafe.service.OrderService;
 import by.epam.cafe.service.exception.ServiceException;
@@ -17,10 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.*;
 
 import static by.epam.cafe.controller.filter.RedirectFilter.REDIRECTED_INFO;
@@ -75,7 +68,7 @@ public class EditOrder extends by.epam.cafe.controller.command.Command {
         String email = request.getParameter("email");
         String comments = request.getParameter("comments");
 
-        return orderParser.parseForClientWithBase(redirect, order, street, comments, floor, porch, room, house, name, tel, email, time, status, paymentType, price);
+        return orderParser.parseForOperatorWithBase(redirect, order, street, comments, floor, porch, room, house, name, tel, email, time, status, paymentType, price);
     }
 
     private void update(HttpServletRequest request, HttpServletResponse response, String referer, Map<String, String> redirect, Order order) throws IOException {

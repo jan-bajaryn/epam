@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.EnumSet;
 
 public class EditOrder extends by.epam.cafe.controller.command.Command {
 
@@ -39,7 +40,7 @@ public class EditOrder extends by.epam.cafe.controller.command.Command {
             Order order = orderService.findEntityById(id);
             if (order != null) {
                 request.setAttribute("order", order);
-                request.setAttribute("statuses", OrderStatus.values());
+                request.setAttribute("statuses", EnumSet.complementOf(EnumSet.of(OrderStatus.WAITING)));
                 request.setAttribute("types", PaymentType.values());
                 request.setAttribute("time", parseToTime(order.getDeliveryInf().getDeliveryTime()));
                 request.getRequestDispatcher("/WEB-INF/jsp/edit-order.jsp").forward(request, response);

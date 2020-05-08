@@ -3,9 +3,9 @@ package by.epam.cafe.service.validator.parts;
 import by.epam.cafe.entity.enums.OrderStatus;
 import by.epam.cafe.service.validator.Validator;
 
-public class OrderStatusValidator implements Validator<OrderStatus> {
+public class OrderStatusForOperatorValidator implements Validator<OrderStatus> {
     @Override
     public boolean isValid(OrderStatus input) {
-        return input != null;
+        return input != null && input!=OrderStatus.WAITING;
     }
 }

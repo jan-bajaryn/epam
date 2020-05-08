@@ -28,7 +28,7 @@ public class OrderParser {
     private final PriceParser priceParser = new PriceParser();
     private final IdParser idParser = new IdParser();
 
-    private final OrderStatusParser orderStatusParser = new OrderStatusParser();
+    private final OrderStatusForOperatorParser orderStatusForOperatorParser = new OrderStatusForOperatorParser();
     private final PaymentTypeParser paymentTypeParser = new PaymentTypeParser();
 
     private final BasketValidator basketValidator = new BasketValidator();
@@ -145,7 +145,7 @@ public class OrderParser {
         }
     }
 
-    public boolean parseForClientWithBase(Map<String, String> redirect, Order order, String streetParam, String commentsParam, String floorParam, String porchParam, String roomParam, String houseParam, String nameParam, String phoneParam, String emailParam, String timeParam, String statusParam, String paymentTypeParam, String priceParam) {
+    public boolean parseForOperatorWithBase(Map<String, String> redirect, Order order, String streetParam, String commentsParam, String floorParam, String porchParam, String roomParam, String houseParam, String nameParam, String phoneParam, String emailParam, String timeParam, String statusParam, String paymentTypeParam, String priceParam) {
         Optional<String> name = nameParser.parse(nameParam);
         Optional<String> house = houseParser.parse(houseParam);
         Optional<String> room = roomParser.parse(roomParam);
@@ -157,7 +157,7 @@ public class OrderParser {
         Optional<String> comments = commentsParser.parse(commentsParam);
         Optional<LocalDateTime> time = timeParser.parse(timeParam);
         Optional<Integer> price = priceParser.parse(priceParam);
-        Optional<OrderStatus> status = orderStatusParser.parse(statusParam);
+        Optional<OrderStatus> status = orderStatusForOperatorParser.parse(statusParam);
         Optional<PaymentType> paymentType = paymentTypeParser.parse(paymentTypeParam);
 
         boolean result = validateAndPutter.validateAndPut(redirect, name, "name", nameParam) &

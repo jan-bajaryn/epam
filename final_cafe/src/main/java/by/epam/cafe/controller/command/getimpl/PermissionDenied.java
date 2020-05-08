@@ -18,18 +18,16 @@ public class PermissionDenied extends by.epam.cafe.controller.command.Command {
     private static final Logger log = LogManager.getLogger(PermissionDenied.class);
 
 
-
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PermissionDeniedException {
         Role role = ((Role) request.getAttribute("role"));
         if (role == Role.ANON) {
             // TODO take from session
-            String requestURI = request.getRequestURI();
-//            String referer = request.getHeader("referer");
+            String referer = request.getRequestURI() + "?" + request.getQueryString();
 
-            log.debug("referer = {}", requestURI);
+            log.debug("referer = {}", referer);
             HttpSession session = request.getSession();
-            session.setAttribute("target_url", requestURI);
+            session.setAttribute("target_url", referer);
             response.sendRedirect(request.getContextPath() + request.getServletPath() + CommandGetFactory.LOGIN_PAGE);
         } else {
             String path = request.getContextPath() + request.getServletPath();
