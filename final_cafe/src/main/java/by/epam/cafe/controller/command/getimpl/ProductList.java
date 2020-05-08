@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+import static by.epam.cafe.config.Configuration.MAX_PAGINATION_ELEMENTS;
+
 public class ProductList extends by.epam.cafe.controller.command.Command {
 
     private final ServiceFactory serviceFactory = ServiceFactory.getInstance();
@@ -22,15 +24,17 @@ public class ProductList extends by.epam.cafe.controller.command.Command {
 
     private final PaginationService paginationService = serviceFactory.getPaginationService();
 
+
+
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         try {
             int part = paginationCalculator.calculatePartParam(request.getParameter("pagination"));
 
-            List<Product> all = productService.findAllByPart((part - 1) * 10, 10);
+            List<Product> all = productService.findAllByPart((part - 1) * MAX_PAGINATION_ELEMENTS, MAX_PAGINATION_ELEMENTS);
             request.setAttribute("products", all);
-            request.setAttribute("paginationMap", paginationService.calculate(productService.findAll().size(), part, 10));
+            request.setAttribute("paginationMap", paginationService.calculate(productService.findAll().size(), part, MAX_PAGINATION_ELEMENTS));
             request.getRequestDispatcher("/WEB-INF/jsp/admin/product-list.jsp").forward(request, response);
         } catch (ServiceException e) {
             response.sendRedirect(request.getContextPath() + request.getServletPath() + "/something_went_wrong");

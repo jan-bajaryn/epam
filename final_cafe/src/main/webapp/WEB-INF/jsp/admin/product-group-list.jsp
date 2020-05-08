@@ -111,6 +111,7 @@
         </c:forEach>
         </tbody>
     </table>
+    <tag:pagination paginationMap="${paginationMap}" url="/page/admin/product-group-list" current="${param.pagination}"/>
 </main>
 
 <c:import url="../fragments/footer.jsp"/>

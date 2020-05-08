@@ -34,8 +34,15 @@ public class PaginationServiceImpl implements PaginationService {
         } else {
             markLess(current, map, barCount);
         }
+        markActive(current, map, barCount);
         markPreviousAndNext(current, map, barCount);
         return map;
+    }
+
+    private void markActive(int current, Map<Integer, PaginationStatus> map, int barCount) {
+        if (current > 0 && current <= barCount) {
+            map.put(current, ACTIVE);
+        }
     }
 
     private void moreToEnd(Map<Integer, PaginationStatus> map, int barCount) {
@@ -85,9 +92,6 @@ public class PaginationServiceImpl implements PaginationService {
     private void markLess(int current, Map<Integer, PaginationStatus> map, int barCount) {
         for (int i = 1; i <= barCount; i++) {
             map.put(i, NORMAL);
-        }
-        if (current > 0 && current <= barCount) {
-            map.put(current, ACTIVE);
         }
     }
 

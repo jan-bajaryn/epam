@@ -119,6 +119,7 @@
             </tbody>
         </table>
     </div>
+    <tag:pagination paginationMap="${paginationMap}" url="/page/admin/user-list" current="${param.pagination}"/>
 </main>
 <c:import url="../fragments/footer.jsp"/>
 

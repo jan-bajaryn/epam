@@ -297,6 +297,7 @@ public class OrderServiceImpl implements by.epam.cafe.service.OrderService {
 
     @Override
     public boolean cancelOrDeleteById(Integer idInt) throws ServiceException {
+        log.debug("cancelOrDeleteById working...");
         Order entityById = findEntityById(idInt);
         if (entityById.getStatus() == OrderStatus.WAITING) {
 
