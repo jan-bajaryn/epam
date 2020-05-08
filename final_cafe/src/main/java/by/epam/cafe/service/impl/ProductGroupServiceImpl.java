@@ -23,6 +23,8 @@ import java.io.File;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static by.epam.cafe.config.Configuration.MAX_PAGINATION_ELEMENTS;
+
 public class ProductGroupServiceImpl implements by.epam.cafe.service.ProductGroupService {
 
     private static final DiskFileItemFactory FILE_ITEM_FACTORY = new DiskFileItemFactory();
@@ -52,10 +54,10 @@ public class ProductGroupServiceImpl implements by.epam.cafe.service.ProductGrou
     }
 
     @Override
-    public List<ProductGroup> findAllByPart(int begin, int count) throws NullParamDaoException, ServiceException {
+    public List<ProductGroup> findAllByPart(int part) throws NullParamDaoException, ServiceException {
 
         try (Transaction transaction = dAOFactory.createTransaction()) {
-            List<ProductGroup> all = productGroupMysqlDao.findAllByPart(transaction, begin, count);
+            List<ProductGroup> all = productGroupMysqlDao.findAllByPart(transaction, (part - 1) * MAX_PAGINATION_ELEMENTS, MAX_PAGINATION_ELEMENTS);
             for (ProductGroup productGroup : all) {
                 buildProductGroup(productGroup, transaction);
             }

@@ -33,7 +33,7 @@ public class ProductGroupList extends by.epam.cafe.controller.command.Command {
             int part = paginationCalculator.calculatePartParam(request.getParameter("pagination"));
 
 
-            List<ProductGroup> all = productGroupService.findAllByPart((part - 1) * MAX_PAGINATION_ELEMENTS, MAX_PAGINATION_ELEMENTS);
+            List<ProductGroup> all = productGroupService.findAllByPart(part);
             request.setAttribute("groups", all);
             request.setAttribute("paginationMap", paginationService.calculate(productGroupService.findAll().size(), part, MAX_PAGINATION_ELEMENTS));
             request.getRequestDispatcher("/WEB-INF/jsp/admin/product-group-list.jsp").forward(request, response);

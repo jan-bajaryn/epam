@@ -32,7 +32,7 @@ public class ProductList extends by.epam.cafe.controller.command.Command {
         try {
             int part = paginationCalculator.calculatePartParam(request.getParameter("pagination"));
 
-            List<Product> all = productService.findAllByPart((part - 1) * MAX_PAGINATION_ELEMENTS, MAX_PAGINATION_ELEMENTS);
+            List<Product> all = productService.findAllByPart(part);
             request.setAttribute("products", all);
             request.setAttribute("paginationMap", paginationService.calculate(productService.findAll().size(), part, MAX_PAGINATION_ELEMENTS));
             request.getRequestDispatcher("/WEB-INF/jsp/admin/product-list.jsp").forward(request, response);

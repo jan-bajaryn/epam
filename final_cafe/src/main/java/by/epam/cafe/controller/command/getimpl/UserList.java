@@ -37,7 +37,7 @@ public class UserList extends by.epam.cafe.controller.command.Command {
 
         try {
             int part = paginationCalculator.calculatePartParam(request.getParameter("pagination"));
-            List<User> all = userService.findAllByPart((part - 1) * MAX_PAGINATION_ELEMENTS, MAX_PAGINATION_ELEMENTS);
+            List<User> all = userService.findAllByPart(part);
             log.info("execute: all = {}", all);
             request.setAttribute("users", all);
             request.setAttribute("paginationMap", paginationService.calculate(userService.findAll().size(), part, MAX_PAGINATION_ELEMENTS));

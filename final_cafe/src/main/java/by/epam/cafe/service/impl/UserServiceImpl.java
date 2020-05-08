@@ -10,6 +10,8 @@ import by.epam.cafe.service.exception.ServiceException;
 
 import java.util.List;
 
+import static by.epam.cafe.config.Configuration.MAX_PAGINATION_ELEMENTS;
+
 public class UserServiceImpl implements by.epam.cafe.service.UserService {
 
     private final DAOFactory dAOFactory = DAOFactory.getInstance();
@@ -25,9 +27,9 @@ public class UserServiceImpl implements by.epam.cafe.service.UserService {
     }
 
     @Override
-    public List<User> findAllByPart(int begin, int count) throws ServiceException {
+    public List<User> findAllByPart(int part) throws ServiceException {
         try (Transaction transaction = dAOFactory.createTransaction()) {
-            return userMysqlDao.findAllByPart(transaction, begin, count);
+            return userMysqlDao.findAllByPart(transaction, (part - 1) * MAX_PAGINATION_ELEMENTS, MAX_PAGINATION_ELEMENTS);
         } catch (DaoException e) {
             throw new ServiceException(e);
         }

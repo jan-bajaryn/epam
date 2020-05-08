@@ -21,6 +21,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import static by.epam.cafe.config.Configuration.MAX_PAGINATION_ELEMENTS;
+
 public class OrderServiceImpl implements by.epam.cafe.service.OrderService {
 
     private static final Logger log = LogManager.getLogger(OrderServiceImpl.class);
@@ -47,9 +49,9 @@ public class OrderServiceImpl implements by.epam.cafe.service.OrderService {
     }
 
     @Override
-    public List<Order> findAllByPart(int begin, int count) throws ServiceException {
+    public List<Order> findAllByPart(int part) throws ServiceException {
         try (final Transaction transaction = dAOFactory.createTransaction()) {
-            return orderMysqlDao.findAllByPart(transaction, begin, count).stream()
+            return orderMysqlDao.findAllByPart(transaction, (part - 1) * MAX_PAGINATION_ELEMENTS, MAX_PAGINATION_ELEMENTS).stream()
                     .peek(o -> buildOrder(o, transaction))
                     .collect(Collectors.toList());
 

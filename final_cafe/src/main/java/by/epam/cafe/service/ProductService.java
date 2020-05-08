@@ -9,7 +9,7 @@ import java.util.List;
 public interface ProductService {
     List<Product> findAll() throws ServiceException;
 
-    List<Product> findAllByPart(int begin, int count) throws ServiceException;
+    List<Product> findAllByPart(int part) throws ServiceException;
 
     Product findEntityById(Integer integer) throws ServiceException;
 

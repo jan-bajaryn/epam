@@ -12,7 +12,7 @@ import java.util.List;
 public interface UserService {
     List<User> findAll() throws ServiceException;
 
-    List<User> findAllByPart(int begin, int count) throws ServiceException;
+    List<User> findAllByPart(int part) throws ServiceException;
 
     User findEntityById(Integer integer) throws ServiceException;
 

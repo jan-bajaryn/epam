@@ -35,7 +35,7 @@ public class OrderList extends by.epam.cafe.controller.command.Command {
         try {
             int part = paginationCalculator.calculatePartParam(request.getParameter("pagination"));
 
-            List<Order> all = orderService.findAllByPart((part - 1) * MAX_PAGINATION_ELEMENTS, MAX_PAGINATION_ELEMENTS);
+            List<Order> all = orderService.findAllByPart(part);
             log.info("execute: all = {}", all);
             request.setAttribute("orders", all);
             request.setAttribute("paginationMap", paginationService.calculate(orderService.findAll().size(), part, MAX_PAGINATION_ELEMENTS));
