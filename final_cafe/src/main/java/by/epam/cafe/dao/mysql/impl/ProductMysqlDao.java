@@ -36,6 +36,7 @@ public class ProductMysqlDao extends AbstractMysqlDao<Integer, Product> {
     private static final String findProductByProductGroup = "SELECT id, price, weight, product_group_id FROM product WHERE product_group_id = ?;";
     // language=SQL
     private static final String findProductsByOrder = "SELECT id, price, weight, product_group_id, count FROM product INNER JOIN order_product ON product.id = order_product.product_id WHERE order_id = ?;";
+    private static final String FIND_ALL_BY_PRODUCT_ID_NOT_DISABLED = "SELECT prod.id as id, prod.price as price, prod.weight as weight, prod.product_group_id as product_group_id FROM product as prod INNER JOIN product_group as prodgr ON prod.product_group_id = prodgr.id WHERE prodgr.disabled = FALSE ORDER BY prod.id;";
 
 
     public ProductMysqlDao() {
@@ -142,5 +143,22 @@ public class ProductMysqlDao extends AbstractMysqlDao<Integer, Product> {
 
     private Integer findCount(ResultSet resultSet) throws SQLException {
         return resultSet.getInt("count");
+    }
+
+    public List<Product> findAllByProductGroupNotDisabled(Transaction transaction) {
+        Connection cn = transaction.getConnection();
+
+        List<Product> entities = new ArrayList<>();
+
+        try (Statement statement = cn.createStatement()) {
+            ResultSet resultSet = statement.executeQuery(FIND_ALL_BY_PRODUCT_ID_NOT_DISABLED);
+            while (resultSet.next()) {
+                Product entity = findEntity(resultSet);
+                entities.add(entity);
+            }
+        } catch (SQLException e) {
+            log.info("e: ", e);
+        }
+        return entities;
     }
 }

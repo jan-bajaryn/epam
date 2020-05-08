@@ -31,7 +31,7 @@ public class AddProducts extends by.epam.cafe.controller.command.Command {
     private final ServiceFactory serviceFactory = ServiceFactory.getInstance();
     private final PathVarCalculator pathVarCalculator = serviceFactory.getPathVarCalculator();
     private final ProductService productService = serviceFactory.getProductService();
-//    private final ProductGroupService productGroupService = serviceFactory.getProductGroupService();
+    //    private final ProductGroupService productGroupService = serviceFactory.getProductGroupService();
     private final OrderService orderService = serviceFactory.getOrderService();
 
     private final PaginationCalculator paginationCalculator = serviceFactory.getPaginationCalculator();
@@ -46,12 +46,12 @@ public class AddProducts extends by.epam.cafe.controller.command.Command {
 
             Map<Product, Integer> products = order.getProducts();
 
-            Comparator<Map.Entry<Product,Integer>> fstComparator = Comparator.comparing(e -> e.getKey().getProductGroup().getId());
-            Comparator<Map.Entry<Product,Integer>> sec = Comparator.comparing(e -> e.getKey().getWeight());
-            Comparator<Map.Entry<Product,Integer>> fin = fstComparator.thenComparing(sec);
+            Comparator<Map.Entry<Product, Integer>> fstComparator = Comparator.comparing(e -> e.getKey().getProductGroup().getId());
+            Comparator<Map.Entry<Product, Integer>> sec = Comparator.comparing(e -> e.getKey().getWeight());
+            Comparator<Map.Entry<Product, Integer>> fin = fstComparator.thenComparing(sec);
 
-            List<Map.Entry<Product,Integer>> all = productService.findAll().stream()
-                    .filter(p -> p.getProductGroup()!=null)
+            List<Map.Entry<Product, Integer>> all = productService.findAllByProductGroupNotDisabled().stream()
+                    .filter(p -> p.getProductGroup() != null)
                     .filter(p -> {
                         for (Product product : products.keySet()) {
                             if (product.getId().equals(p.getId())) {
@@ -60,7 +60,7 @@ public class AddProducts extends by.epam.cafe.controller.command.Command {
                         }
                         return true;
                     })
-                    .map(p ->Map.entry(p,0))
+                    .map(p -> Map.entry(p, 0))
                     .sorted(fin)
                     .collect(Collectors.toList());
 

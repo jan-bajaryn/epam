@@ -133,4 +133,15 @@ public class ProductServiceImpl implements by.epam.cafe.service.ProductService {
                 .filter(p -> p.getProductGroup() == null)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public List<Product> findAllByProductGroupNotDisabled() throws ServiceException {
+        try (final Transaction transaction = dAOFactory.createTransaction()) {
+            List<Product> all = userMysqlDao.findAllByProductGroupNotDisabled(transaction);
+            all.forEach(p -> buildProduct(p, transaction));
+            return all;
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+    }
 }

@@ -23,5 +23,7 @@ public interface ProductService {
 
     void buildProduct(Product p, Transaction transaction);
 
+    List<Product> findAllByProductGroupNotDisabled() throws ServiceException;
+
     List<Product> findAllByProductGroupNull() throws ServiceException;
 }
