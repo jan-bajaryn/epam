@@ -60,6 +60,7 @@ public class ServiceFactory {
     private final ProductGroupParser productGroupParser = new ProductGroupParser();
     private final OrderParser orderParser = new OrderParser();
 
+    private final PaginationService paginationService = new PaginationServiceImpl();
 
     private final PaginationCalculator paginationCalculator = new PaginationCalculatorImpl();
 
@@ -189,4 +190,7 @@ public class ServiceFactory {
         return paginationCalculator;
     }
 
+    public PaginationService getPaginationService() {
+        return paginationService;
+    }
 }
