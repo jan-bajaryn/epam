@@ -126,7 +126,7 @@ public abstract class AbstractMysqlDao<ID, T extends Entity<ID>> implements Abst
             idParam(statement, id);
             return statement.execute();
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("e: ", e);
         }
         return false;
     }
@@ -151,8 +151,6 @@ public abstract class AbstractMysqlDao<ID, T extends Entity<ID>> implements Abst
         try (PreparedStatement statement =
                      cn.prepareStatement(createSql, Statement.RETURN_GENERATED_KEYS)) {
             createParams(entity, statement);
-//                return statement.execute();
-//                return statement.executeUpdate() == 1;
             int affectedRows = statement.executeUpdate();
 
             if (affectedRows == 0) {
