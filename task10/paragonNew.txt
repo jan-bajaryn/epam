@@ -1,5 +1,0 @@
-0. size: 50, colorGREEN
-	Sweets: 
-	0. name: Alenka, count-->2	Sweets: 
-	1. name: Karona, count-->1	Sweets: 
-	2. name: Alisa, count-->3

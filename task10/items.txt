@@ -1,6 +1,0 @@
-Alenka---10---3
-Karona---3---1
-Alisa---20---5
-SMALL---RED
-MIDDLE---GREEN
-BIG---BLUE
