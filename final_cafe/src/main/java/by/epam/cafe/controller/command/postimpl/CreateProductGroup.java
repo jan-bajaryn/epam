@@ -50,7 +50,7 @@ public class CreateProductGroup extends by.epam.cafe.controller.command.Command 
 
             try {
                 if (productGroupService.create(build) != null) {
-                    response.sendRedirect(request.getContextPath() + request.getServletPath() + "/admin/product-group-list");
+                    response.sendRedirect(request.getContextPath() + request.getServletPath() + "/admin/product-group-list?pagination=1");
                 } else {
                     imageWriterService.deleteImageIfNeed(fileNameHolder.getValue());
                     request.setAttribute("unknown_error", "true");

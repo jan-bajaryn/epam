@@ -1,6 +1,8 @@
 package by.epam.cafe.service.validator.parts;
 
-public class HouseValidator implements by.epam.cafe.service.validator.Validator<String> {
+import by.epam.cafe.service.Validator;
+
+public class HouseValidator implements Validator<String> {
     @Override
     public boolean isValid(String input) {
         return true;

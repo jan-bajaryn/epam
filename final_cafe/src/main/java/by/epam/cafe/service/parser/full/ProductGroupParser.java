@@ -7,7 +7,7 @@ import by.epam.cafe.entity.struct.ValueHolder;
 import by.epam.cafe.service.impl.ImageWriterService;
 import by.epam.cafe.service.parser.helper.ValidateAndPutter;
 import by.epam.cafe.service.parser.parts.*;
-import by.epam.cafe.service.parser.parts.impl.IdParser;
+import by.epam.cafe.service.parser.parts.IdParser;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

@@ -1,6 +1,8 @@
 package by.epam.cafe.service.validator.parts;
 
-public class EmailValidator implements by.epam.cafe.service.validator.Validator<String> {
+import by.epam.cafe.service.Validator;
+
+public class EmailValidator implements Validator<String> {
 
     private final org.apache.commons.validator.routines.EmailValidator emailValidator =
             org.apache.commons.validator.routines.EmailValidator.getInstance();

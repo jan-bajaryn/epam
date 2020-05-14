@@ -3,8 +3,7 @@ package by.epam.cafe.service.parser.full;
 import by.epam.cafe.entity.enums.Role;
 import by.epam.cafe.entity.impl.User;
 import by.epam.cafe.service.parser.helper.ValidateAndPutter;
-import by.epam.cafe.service.parser.parts.BooleanParser;
-import by.epam.cafe.service.parser.parts.impl.*;
+import by.epam.cafe.service.parser.parts.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

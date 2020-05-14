@@ -1,6 +1,8 @@
 package by.epam.cafe.service.validator.parts;
 
-public class RoomValidator implements by.epam.cafe.service.validator.Validator<String> {
+import by.epam.cafe.service.Validator;
+
+public class RoomValidator implements Validator<String> {
     @Override
     public boolean isValid(String input) {
         return true;

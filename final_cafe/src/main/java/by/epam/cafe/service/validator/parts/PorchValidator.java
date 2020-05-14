@@ -1,6 +1,8 @@
 package by.epam.cafe.service.validator.parts;
 
-public class PorchValidator implements by.epam.cafe.service.validator.Validator<Integer> {
+import by.epam.cafe.service.Validator;
+
+public class PorchValidator implements Validator<Integer> {
 
     private static final int MIN_VALUE = 0;
 

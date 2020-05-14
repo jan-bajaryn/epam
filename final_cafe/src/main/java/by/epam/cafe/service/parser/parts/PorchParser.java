@@ -1,7 +1,5 @@
-package by.epam.cafe.service.parser.parts.impl;
+package by.epam.cafe.service.parser.parts;
 
-import by.epam.cafe.service.parser.parts.ParamsParser;
-import by.epam.cafe.service.validator.Validator;
 import by.epam.cafe.service.validator.parts.PorchValidator;
 
 public class PorchParser extends ParamsParser<Integer> {

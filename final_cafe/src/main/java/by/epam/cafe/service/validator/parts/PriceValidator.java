@@ -1,6 +1,6 @@
 package by.epam.cafe.service.validator.parts;
 
-import by.epam.cafe.service.validator.Validator;
+import by.epam.cafe.service.Validator;
 
 public class PriceValidator implements Validator<Integer> {
 

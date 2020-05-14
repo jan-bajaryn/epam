@@ -155,5 +155,4 @@ public class SortByChildSizeTest {
         assertEquals(composite.operation(), finalData);
     }
 
-
 }

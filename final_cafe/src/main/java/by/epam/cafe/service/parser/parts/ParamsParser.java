@@ -1,6 +1,6 @@
 package by.epam.cafe.service.parser.parts;
 
-import by.epam.cafe.service.validator.Validator;
+import by.epam.cafe.service.Validator;
 
 import java.util.Optional;
 

@@ -1,7 +1,5 @@
-package by.epam.cafe.service.parser.parts.impl;
+package by.epam.cafe.service.parser.parts;
 
-import by.epam.cafe.service.parser.parts.ParamsParser;
-import by.epam.cafe.service.validator.Validator;
 import by.epam.cafe.service.validator.parts.NameValidator;
 
 public class NameParser extends ParamsParser<String> {

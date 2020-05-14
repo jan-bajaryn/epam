@@ -45,8 +45,6 @@ public class YourOrder extends by.epam.cafe.controller.command.Command {
                 request.setAttribute("order", order);
                 request.setAttribute("sum", sum);
 
-                // TODO there changes 1
-
                 log.debug("order.getProducts() = {}", order.getProducts());
                 request.setAttribute("productMap", order.getProducts());
                 request.getRequestDispatcher("/WEB-INF/jsp/your-order.jsp").forward(request, response);

@@ -79,7 +79,7 @@ public class ConnectionPool {
         } catch (InterruptedException | SQLException e) {
             log.error("e: ", e);
             return null;
-        }finally {
+        } finally {
             locker.unlock();
         }
     }
@@ -121,7 +121,13 @@ public class ConnectionPool {
 //            if (passive.size() + inUse.size() >= MAX_COUNT) {
 //                return null;
 //            }
-        return DriverManager.getConnection(properties.getProperty("url"), properties);
+        Connection connection = DriverManager.getConnection(properties.getProperty("url"), properties);
+
+        // new data. check if works correctly
+        connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
+
+
+        return connection;
     }
 
     public void destroy() throws SQLException {

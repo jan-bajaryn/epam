@@ -1,7 +1,6 @@
 package by.epam.cafe.service.validator.parts;
 
-import by.epam.cafe.service.parser.parts.impl.NameParser;
-import by.epam.cafe.service.validator.Validator;
+import by.epam.cafe.service.Validator;
 
 import java.util.regex.Pattern;
 

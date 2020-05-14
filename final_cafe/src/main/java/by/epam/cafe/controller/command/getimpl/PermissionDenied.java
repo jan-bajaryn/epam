@@ -22,7 +22,6 @@ public class PermissionDenied extends by.epam.cafe.controller.command.Command {
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PermissionDeniedException {
         Role role = ((Role) request.getAttribute("role"));
         if (role == Role.ANON) {
-            // TODO take from session
             String targetUrl = request.getRequestURI() + "?" + request.getQueryString();
 
             log.debug("targetUrl = {}", targetUrl);

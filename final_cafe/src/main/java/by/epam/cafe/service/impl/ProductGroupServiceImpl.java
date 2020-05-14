@@ -115,11 +115,13 @@ public class ProductGroupServiceImpl implements by.epam.cafe.service.ProductGrou
 
         try (Transaction transaction = dAOFactory.createTransaction()) {
             ProductGroup productGroup = productGroupMysqlDao.create(entity, transaction);
-            insertProductsIfPossible(productGroup);
 
-// TODO insert rollback somewhere may be
-
-            transaction.commit();
+            if (productGroup != null) {
+                insertProductsIfPossible(productGroup, transaction);
+                transaction.commit();
+            } else {
+                transaction.rollBack();
+            }
             return productGroup;
 
         } catch (DaoException e) {
@@ -127,20 +129,16 @@ public class ProductGroupServiceImpl implements by.epam.cafe.service.ProductGrou
         }
     }
 
-    private void insertProductsIfPossible(ProductGroup entity) throws ServiceException {
+    private void insertProductsIfPossible(ProductGroup entity, Transaction transaction) throws ServiceException {
 
-        try (final Transaction transaction = dAOFactory.createTransaction()) {
-            List<Product> products = entity.getProducts();
-            if (products != null) {
-                products.stream()
-                        .map(p -> productMysqlDao.findEntityById(p.getId(), transaction))
-                        .peek(p -> p.setProductGroup(entity))
-                        .forEach(ent -> productMysqlDao.update(ent, transaction));
-            }
-
-        } catch (DaoException e) {
-            throw new ServiceException(e);
+        List<Product> products = entity.getProducts();
+        if (products != null) {
+            products.stream()
+                    .map(p -> productMysqlDao.findEntityById(p.getId(), transaction))
+                    .peek(p -> p.setProductGroup(entity))
+                    .forEach(ent -> productMysqlDao.update(ent, transaction));
         }
+
 
     }
 
