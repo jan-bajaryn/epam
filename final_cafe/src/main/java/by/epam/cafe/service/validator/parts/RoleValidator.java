@@ -6,6 +6,6 @@ import by.epam.cafe.service.Validator;
 public class RoleValidator implements Validator<Role> {
     @Override
     public boolean isValid(Role input) {
-        return input!=null;
+        return input != null && input != Role.ANON;
     }
 }

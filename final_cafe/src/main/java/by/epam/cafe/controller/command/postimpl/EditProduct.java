@@ -7,7 +7,6 @@ import by.epam.cafe.service.ProductService;
 import by.epam.cafe.service.exception.ServiceException;
 import by.epam.cafe.service.factory.ServiceFactory;
 import by.epam.cafe.service.parser.full.ProductParser;
-import by.epam.cafe.service.validator.ProductValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -26,7 +25,6 @@ public class EditProduct extends by.epam.cafe.controller.command.Command {
 
     private final ServiceFactory serviceFactory = ServiceFactory.getInstance();
     private final ProductService productService = serviceFactory.getProductService();
-    private final ProductValidator productValidator = serviceFactory.getProductValidator();
     private final ProductParser productParser = serviceFactory.getProductParser();
 
 

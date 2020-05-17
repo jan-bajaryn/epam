@@ -1,7 +1,6 @@
 package by.epam.cafe.controller.command.postimpl;
 
 import by.epam.cafe.controller.command.PermissionDeniedException;
-import by.epam.cafe.dao.exception.NullParamDaoException;
 import by.epam.cafe.entity.impl.ProductGroup;
 import by.epam.cafe.entity.struct.ValueHolder;
 import by.epam.cafe.service.ProductGroupService;
@@ -9,7 +8,6 @@ import by.epam.cafe.service.exception.ServiceException;
 import by.epam.cafe.service.factory.ServiceFactory;
 import by.epam.cafe.service.impl.ImageWriterService;
 import by.epam.cafe.service.parser.full.ProductGroupParser;
-import by.epam.cafe.service.validator.ProductGroupValidator;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -34,7 +32,6 @@ public class EditProductGroup extends by.epam.cafe.controller.command.Command {
     private final ServiceFactory serviceFactory = ServiceFactory.getInstance();
     private final ProductGroupService productGroupService = serviceFactory.getProductGroupService();
     private final ImageWriterService imageWriterService = serviceFactory.getImageWriterService();
-    private final ProductGroupValidator productGroupValidator = serviceFactory.getProductGroupValidator();
     private final ProductGroupParser productGroupParser = serviceFactory.getProductGroupParser();
 
 

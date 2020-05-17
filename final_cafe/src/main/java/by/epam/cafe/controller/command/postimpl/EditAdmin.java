@@ -1,13 +1,10 @@
 package by.epam.cafe.controller.command.postimpl;
 
-import by.epam.cafe.entity.enums.Role;
 import by.epam.cafe.entity.impl.User;
 import by.epam.cafe.service.UserService;
 import by.epam.cafe.service.exception.ServiceException;
 import by.epam.cafe.service.factory.ServiceFactory;
-import by.epam.cafe.service.parser.NullIfEmptyService;
 import by.epam.cafe.service.parser.full.UserParser;
-import by.epam.cafe.service.validator.UserValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -15,7 +12,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,7 +24,6 @@ public class EditAdmin extends by.epam.cafe.controller.command.Command {
     private final ServiceFactory serviceFactory = ServiceFactory.getInstance();
 
     private final UserService userService = serviceFactory.getUserService();
-    private final UserValidator userValidator = serviceFactory.getUserValidator();
 
 
     private final UserParser userParser = serviceFactory.getUserParser();

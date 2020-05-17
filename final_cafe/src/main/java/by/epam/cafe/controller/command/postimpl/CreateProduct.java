@@ -8,7 +8,6 @@ import by.epam.cafe.service.ProductService;
 import by.epam.cafe.service.exception.ServiceException;
 import by.epam.cafe.service.factory.ServiceFactory;
 import by.epam.cafe.service.parser.full.ProductParser;
-import by.epam.cafe.service.validator.ProductValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

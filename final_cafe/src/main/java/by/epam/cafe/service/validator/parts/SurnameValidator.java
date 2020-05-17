@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 public class SurnameValidator implements Validator<String> {
     //language=RegExp
-    public static final String SURNAME_REGEX = "\\p{javaAlphabetic}{1,20}";
+    public static final String SURNAME_REGEX = "[\\p{javaAlphabetic}-]{1,20}";
 
 
     @Override

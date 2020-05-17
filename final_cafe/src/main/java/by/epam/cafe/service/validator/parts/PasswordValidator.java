@@ -6,10 +6,10 @@ import java.util.regex.Pattern;
 
 public class PasswordValidator implements Validator<String> {
 
-    public static final String CAPITAL_REGEX = ".*\\p{javaUpperCase}";
+    public static final String CAPITAL_REGEX = ".*\\p{javaUpperCase}.*";
     private static final Pattern CAPITAL_PATTERN = Pattern.compile(CAPITAL_REGEX, Pattern.UNICODE_CASE);
 
-    public static final String LOVER_REGEX = ".*\\p{javaLowerCase}";
+    public static final String LOVER_REGEX = ".*\\p{javaLowerCase}.*";
     private static final Pattern LOVER_PATTERN = Pattern.compile(LOVER_REGEX, Pattern.UNICODE_CASE);
 
     public static final String DIGIT_REGEX = ".*\\d.*";

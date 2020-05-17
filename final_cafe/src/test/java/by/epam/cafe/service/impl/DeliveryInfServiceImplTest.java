@@ -2,7 +2,6 @@ package by.epam.cafe.service.impl;
 
 import by.epam.cafe.entity.impl.DeliveryInf;
 import by.epam.cafe.entity.impl.Order;
-import by.epam.cafe.entity.impl.Product;
 import by.epam.cafe.service.DatabaseManager;
 import by.epam.cafe.service.DeliveryInfService;
 import by.epam.cafe.service.exception.ServiceException;
@@ -11,11 +10,11 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.*;
-
-import java.sql.SQLException;
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.List;
+
+import static org.testng.Assert.*;
 
 public class DeliveryInfServiceImplTest {
 
@@ -181,7 +180,7 @@ public class DeliveryInfServiceImplTest {
     }
 
     @Test
-    public void testNullCreate() throws ServiceException {
+    public void testNullCreate() {
         try {
             assertThrows(NullPointerException.class, () -> deliveryInfService.create(null));
         } finally {
@@ -189,7 +188,79 @@ public class DeliveryInfServiceImplTest {
         }
     }
 
+    @DataProvider(name = "update")
+    public Object[][] updateProvider
+            () {
+        return new Object[][]{
+                {
+                        DeliveryInf.newBuilder()
+                                .id(1000)
+                                .porch(null)
+                                .deliveryTime(LocalDateTime.now().plus(Duration.ofMinutes(30)))
+                                .floor(null)
+                                .phone("555444333")
+                                .email("abceii@gmail.com")
+                                .house("3A")
+                                .room("4Б")
+                                .street("Ленина")
+                                .build()
+                        ,
+                        false
+                },
+                {
+                        DeliveryInf.newBuilder()
+                                .id(-1)
+                                .porch(null)
+                                .deliveryTime(LocalDateTime.now().plus(Duration.ofMinutes(30)))
+                                .floor(null)
+                                .phone("555444333")
+                                .email("abceii@gmail.com")
+                                .house("3A")
+                                .room("4Б")
+                                .street("Ленина")
+                                .build(),
+                        false
+                },
+                {
+                        DeliveryInf.newBuilder()
+                                .id(3)
+                                .porch(1)
+                                .deliveryTime(LocalDateTime.now().plus(Duration.ofMinutes(30)))
+                                .floor(3)
+                                .phone("555444333")
+                                .email("abceii@gmail.com")
+                                .house("3A")
+                                .room("4Б")
+                                .street("Ленина")
+                                .build(),
+                        true
+                }
+        };
+    }
+
+    @Test(description = "",
+            dataProvider = "update")
+    public void testUpdate(DeliveryInf deliveryInf, Boolean result) throws ServiceException {
+        try {
+            assertEquals(deliveryInfService.update(deliveryInf), (boolean) result);
+        } finally {
+            databaseManager.reset();
+        }
+    }
+
     @Test
-    public void testUpdate() {
+    public void testUpdateNullId() {
+        DeliveryInf deliveryInf = DeliveryInf.newBuilder()
+                .porch(null)
+                .deliveryTime(LocalDateTime.now())
+                .floor(null)
+                .phone("555444333")
+                .email("abceii@gmail.com")
+                .house("3A")
+                .room("4Б")
+                .street("Ленина")
+                .build();
+
+        assertThrows(NullPointerException.class, () -> deliveryInfService.update(deliveryInf));
     }
 }

@@ -9,6 +9,6 @@ public class WeightValidator implements Validator<Integer> {
 
     @Override
     public boolean isValid(Integer input) {
-        return input > MIN && input < MAX;
+        return input > MIN && input <= MAX;
     }
 }

@@ -13,10 +13,7 @@ import by.epam.cafe.service.parser.full.UserParser;
 import by.epam.cafe.service.parser.impl.NullIfEmptyServiceImpl;
 import by.epam.cafe.service.parser.impl.PathVarCalculatorImpl;
 import by.epam.cafe.service.parser.parts.*;
-import by.epam.cafe.service.validator.ProductGroupValidator;
-import by.epam.cafe.service.validator.ProductValidator;
 import by.epam.cafe.service.validator.parts.LoginValidator;
-import by.epam.cafe.service.validator.UserValidator;
 
 public class ServiceFactory {
     private static ServiceFactory instance = new ServiceFactory();
@@ -29,7 +26,6 @@ public class ServiceFactory {
     }
 
 
-    private final ProductValidator productValidator = new ProductValidator();
     private final DeliveryInfService deliveryInfService = new DeliveryInfServiceImpl();
     private final OrderService orderService = new OrderServiceImpl();
     private final ProductGroupService productGroupService = new ProductGroupServiceImpl();
@@ -37,9 +33,7 @@ public class ServiceFactory {
     private final UserService userService = new UserServiceImpl();
     private final PathVarCalculator pathVarCalculator = new PathVarCalculatorImpl();
     private final LoginValidator loginValidator = new LoginValidator();
-    private final UserValidator userValidator = new UserValidator();
     private final NullIfEmptyService nullIfEmptyService = new NullIfEmptyServiceImpl();
-    private final ProductGroupValidator productGroupValidator = new ProductGroupValidator();
     private final PutItemService putItemService = new PutItemServiceImpl();
 
     private final EmailParser emailParser = new EmailParser();
@@ -94,25 +88,16 @@ public class ServiceFactory {
         return loginValidator;
     }
 
-    public UserValidator getUserValidator() {
-        return userValidator;
-    }
 
     public NullIfEmptyService getNullIfEmptyService() {
         return nullIfEmptyService;
     }
 
-    public ProductValidator getProductValidator() {
-        return productValidator;
-    }
 
     public ImageWriterService getImageWriterService() {
         return imageWriterService;
     }
 
-    public ProductGroupValidator getProductGroupValidator() {
-        return productGroupValidator;
-    }
 
     public PutItemService getPutItemService() {
         return putItemService;
