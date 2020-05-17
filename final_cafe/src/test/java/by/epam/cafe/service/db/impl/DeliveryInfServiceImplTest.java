@@ -180,9 +180,9 @@ public class DeliveryInfServiceImplTest {
     }
 
     @Test
-    public void testNullCreate() {
+    public void testNullCreate() throws ServiceException {
         try {
-            assertThrows(NullPointerException.class, () -> deliveryInfService.create(null));
+            assertNull(deliveryInfService.create(null));
         } finally {
             databaseManager.reset();
         }
@@ -249,7 +249,7 @@ public class DeliveryInfServiceImplTest {
     }
 
     @Test
-    public void testUpdateNullId() {
+    public void testUpdateNullId() throws ServiceException {
         DeliveryInf deliveryInf = DeliveryInf.newBuilder()
                 .porch(null)
                 .deliveryTime(LocalDateTime.now())
@@ -260,7 +260,6 @@ public class DeliveryInfServiceImplTest {
                 .room("4Б")
                 .street("Ленина")
                 .build();
-
-        assertThrows(NullPointerException.class, () -> deliveryInfService.update(deliveryInf));
+        assertFalse(deliveryInfService.update(deliveryInf));
     }
 }

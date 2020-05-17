@@ -6,7 +6,7 @@ import by.epam.cafe.entity.struct.ValueHolder;
 import by.epam.cafe.service.db.ProductGroupService;
 import by.epam.cafe.service.exception.ServiceException;
 import by.epam.cafe.service.factory.ServiceFactory;
-import by.epam.cafe.service.db.impl.ImageWriterService;
+import by.epam.cafe.helper.ImageWriterService;
 import by.epam.cafe.service.parser.full.ProductGroupParser;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;

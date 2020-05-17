@@ -2,11 +2,11 @@ package by.epam.cafe.controller.command.getimpl;
 
 import by.epam.cafe.dao.exception.NullParamDaoException;
 import by.epam.cafe.entity.db.impl.ProductGroup;
-import by.epam.cafe.service.PaginationService;
+import by.epam.cafe.service.pagination.PaginationService;
 import by.epam.cafe.service.db.ProductGroupService;
 import by.epam.cafe.service.exception.ServiceException;
 import by.epam.cafe.service.factory.ServiceFactory;
-import by.epam.cafe.service.parser.helper.PaginationCalculator;
+import by.epam.cafe.service.pagination.PaginationCalculator;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

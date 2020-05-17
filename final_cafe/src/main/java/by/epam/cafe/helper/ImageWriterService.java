@@ -1,4 +1,4 @@
-package by.epam.cafe.service.db.impl;
+package by.epam.cafe.helper;
 
 import by.epam.cafe.dao.DAOFactory;
 import by.epam.cafe.dao.ImageWriterDao;

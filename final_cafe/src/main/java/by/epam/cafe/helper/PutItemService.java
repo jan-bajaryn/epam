@@ -1,4 +1,4 @@
-package by.epam.cafe.service;
+package by.epam.cafe.helper;
 
 import by.epam.cafe.entity.db.impl.Product;
 

@@ -1,11 +1,15 @@
 package by.epam.cafe.service.factory;
 
-import by.epam.cafe.service.*;
+import by.epam.cafe.helper.ImageWriterService;
+import by.epam.cafe.helper.PutItemService;
+import by.epam.cafe.helper.impl.PutItemServiceImpl;
 import by.epam.cafe.service.db.*;
 import by.epam.cafe.service.db.impl.*;
+import by.epam.cafe.service.pagination.PaginationService;
+import by.epam.cafe.service.pagination.impl.PaginationServiceImpl;
 import by.epam.cafe.service.parser.helper.NullIfEmptyService;
-import by.epam.cafe.service.parser.helper.PaginationCalculator;
-import by.epam.cafe.service.parser.helper.impl.PaginationCalculatorImpl;
+import by.epam.cafe.service.pagination.PaginationCalculator;
+import by.epam.cafe.service.pagination.impl.PaginationCalculatorImpl;
 import by.epam.cafe.service.parser.helper.PathVarCalculator;
 import by.epam.cafe.service.parser.full.OrderParser;
 import by.epam.cafe.service.parser.full.ProductGroupParser;

@@ -5,7 +5,7 @@ import by.epam.cafe.entity.db.impl.Product;
 import by.epam.cafe.entity.db.impl.ProductGroup;
 import by.epam.cafe.entity.struct.OptionalNullable;
 import by.epam.cafe.entity.struct.ValueHolder;
-import by.epam.cafe.service.db.impl.ImageWriterService;
+import by.epam.cafe.helper.ImageWriterService;
 import by.epam.cafe.service.parser.helper.impl.ValidateAndPutter;
 import by.epam.cafe.service.parser.parts.impl.*;
 import org.apache.commons.fileupload.FileItem;

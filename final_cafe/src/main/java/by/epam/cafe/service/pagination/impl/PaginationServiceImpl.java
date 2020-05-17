@@ -1,12 +1,12 @@
-package by.epam.cafe.service.db.impl;
+package by.epam.cafe.service.pagination.impl;
 
-import by.epam.cafe.service.PaginationService;
-import by.epam.cafe.service.PaginationStatus;
+import by.epam.cafe.service.pagination.PaginationService;
+import by.epam.cafe.service.pagination.PaginationStatus;
 
 import java.util.Map;
 import java.util.TreeMap;
 
-import static by.epam.cafe.service.PaginationStatus.*;
+import static by.epam.cafe.service.pagination.PaginationStatus.*;
 
 public class PaginationServiceImpl implements PaginationService {
 

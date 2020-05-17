@@ -1,4 +1,4 @@
-package by.epam.cafe.service.parser.helper;
+package by.epam.cafe.service.pagination;
 
 import by.epam.cafe.service.exception.PaginationException;
 

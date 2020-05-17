@@ -1,4 +1,4 @@
-package by.epam.cafe.service;
+package by.epam.cafe.service.pagination;
 
 import java.util.Map;
 

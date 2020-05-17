@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ attribute name="paginationMap" required="true"
-              type="java.util.Map<java.lang.Integer,by.epam.cafe.service.PaginationStatus>"
+              type="java.util.Map<java.lang.Integer,by.epam.cafe.service.pagination.PaginationStatus>"
               description="Count of all elements" %>
 <%@ attribute name="url" required="true"
               type="java.lang.String"

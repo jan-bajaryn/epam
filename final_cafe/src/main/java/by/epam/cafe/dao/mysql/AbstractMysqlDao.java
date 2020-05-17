@@ -56,7 +56,7 @@ public abstract class AbstractMysqlDao<ID, T extends Entity<ID>> implements Abst
                 T entity = findEntity(resultSet);
                 entities.add(entity);
             }
-        } catch (SQLException e) {
+        } catch (SQLException | NullPointerException e) {
             log.info("e: ", e);
         }
         return entities;
@@ -80,9 +80,9 @@ public abstract class AbstractMysqlDao<ID, T extends Entity<ID>> implements Abst
                 T entity = findEntity(resultSet);
                 entities.add(entity);
             }
-        } catch (SQLException e) {
+        } catch (SQLException | NullPointerException e) {
             log.info("e: ", e);
-            throw new DaoException();
+//            throw new DaoException(e);
         }
         return entities;
     }
@@ -109,7 +109,7 @@ public abstract class AbstractMysqlDao<ID, T extends Entity<ID>> implements Abst
             if (resultSet.next()) {
                 entity = findEntity(resultSet);
             }
-        } catch (SQLException e) {
+        } catch (SQLException | NullPointerException e) {
             log.info("e: ", e);
         }
         return entity;
@@ -124,8 +124,8 @@ public abstract class AbstractMysqlDao<ID, T extends Entity<ID>> implements Abst
 
         try (PreparedStatement statement = cn.prepareStatement(deleteByIdSql)) {
             idParam(statement, id);
-            return statement.execute();
-        } catch (SQLException e) {
+            return statement.executeUpdate() == 1;
+        } catch (SQLException | NullPointerException e) {
             log.error("e: ", e);
         }
         return false;
@@ -138,7 +138,7 @@ public abstract class AbstractMysqlDao<ID, T extends Entity<ID>> implements Abst
         try (PreparedStatement statement = cn.prepareStatement(deleteByIdSql)) {
             idParam(statement, entity.getId());
             return statement.executeUpdate() == 1;
-        } catch (SQLException e) {
+        } catch (SQLException | NullPointerException e) {
             log.info("e: ", e);
         }
         return false;
@@ -164,7 +164,7 @@ public abstract class AbstractMysqlDao<ID, T extends Entity<ID>> implements Abst
                 }
             }
 
-        } catch (SQLException e) {
+        } catch (SQLException | NullPointerException e) {
             log.info("e: ", e);
         }
         return null;
@@ -182,7 +182,7 @@ public abstract class AbstractMysqlDao<ID, T extends Entity<ID>> implements Abst
 
             updateParams(entity, statement);
             return statement.executeUpdate() == 1;
-        } catch (SQLException e) {
+        } catch (SQLException | NullPointerException e) {
             log.info("e: ", e);
         }
         return false;
@@ -200,7 +200,7 @@ public abstract class AbstractMysqlDao<ID, T extends Entity<ID>> implements Abst
             if (resultSet.next()) {
                 return resultSet.getInt(1);
             }
-        } catch (SQLException e) {
+        } catch (SQLException | NullPointerException e) {
             throw new DaoException(e);
         }
         throw new DaoException();

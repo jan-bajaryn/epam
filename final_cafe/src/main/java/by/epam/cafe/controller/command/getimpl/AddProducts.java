@@ -8,7 +8,7 @@ import by.epam.cafe.service.db.ProductService;
 import by.epam.cafe.service.exception.IllegalPathParamException;
 import by.epam.cafe.service.exception.ServiceException;
 import by.epam.cafe.service.factory.ServiceFactory;
-import by.epam.cafe.service.parser.helper.PaginationCalculator;
+import by.epam.cafe.service.pagination.PaginationCalculator;
 import by.epam.cafe.service.parser.helper.PathVarCalculator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

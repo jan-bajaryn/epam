@@ -1,11 +1,11 @@
 package by.epam.cafe.controller.command.getimpl;
 
 import by.epam.cafe.entity.db.impl.Product;
-import by.epam.cafe.service.PaginationService;
+import by.epam.cafe.service.pagination.PaginationService;
 import by.epam.cafe.service.db.ProductService;
 import by.epam.cafe.service.exception.ServiceException;
 import by.epam.cafe.service.factory.ServiceFactory;
-import by.epam.cafe.service.parser.helper.PaginationCalculator;
+import by.epam.cafe.service.pagination.PaginationCalculator;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

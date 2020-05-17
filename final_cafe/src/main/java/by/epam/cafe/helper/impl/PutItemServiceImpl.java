@@ -1,7 +1,7 @@
-package by.epam.cafe.service.db.impl;
+package by.epam.cafe.helper.impl;
 
 import by.epam.cafe.entity.db.impl.Product;
-import by.epam.cafe.service.PutItemService;
+import by.epam.cafe.helper.PutItemService;
 
 import java.util.Map;
 import java.util.Optional;

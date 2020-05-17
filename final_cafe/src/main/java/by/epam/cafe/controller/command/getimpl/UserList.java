@@ -1,11 +1,11 @@
 package by.epam.cafe.controller.command.getimpl;
 
 import by.epam.cafe.entity.db.impl.User;
-import by.epam.cafe.service.PaginationService;
+import by.epam.cafe.service.pagination.PaginationService;
 import by.epam.cafe.service.db.UserService;
 import by.epam.cafe.service.exception.ServiceException;
 import by.epam.cafe.service.factory.ServiceFactory;
-import by.epam.cafe.service.parser.helper.PaginationCalculator;
+import by.epam.cafe.service.pagination.PaginationCalculator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

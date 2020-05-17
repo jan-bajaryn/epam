@@ -73,7 +73,7 @@ public class OrderMysqlDao extends AbstractMysqlDao<Integer, Order> {
                 int product_id = resultSet.getInt("product_id");
                 ids.add(product_id);
             }
-        } catch (SQLException e) {
+        } catch (SQLException | NullPointerException e) {
             log.info("e: ", e);
         }
         return ids;
@@ -179,7 +179,7 @@ public class OrderMysqlDao extends AbstractMysqlDao<Integer, Order> {
                     return false;
                 }
 
-            } catch (SQLException e) {
+            } catch (SQLException | NullPointerException e) {
                 log.info("e: ", e);
                 return false;
             }
@@ -206,7 +206,7 @@ public class OrderMysqlDao extends AbstractMysqlDao<Integer, Order> {
             int affectedRows = statement.executeUpdate();
             return affectedRows == 1;
 
-        } catch (SQLException e) {
+        } catch (SQLException | NullPointerException e) {
             log.info("e: ", e);
             return false;
         }
@@ -225,7 +225,7 @@ public class OrderMysqlDao extends AbstractMysqlDao<Integer, Order> {
             int affectedRows = statement.executeUpdate();
             return affectedRows == 1;
 
-        } catch (SQLException e) {
+        } catch (SQLException | NullPointerException e) {
             log.info("e: ", e);
             return false;
         }
@@ -244,7 +244,7 @@ public class OrderMysqlDao extends AbstractMysqlDao<Integer, Order> {
             int affectedRows = statement.executeUpdate();
             return affectedRows == 1;
 
-        } catch (SQLException e) {
+        } catch (SQLException | NullPointerException e) {
             log.info("e: ", e);
             return false;
         }
@@ -263,7 +263,7 @@ public class OrderMysqlDao extends AbstractMysqlDao<Integer, Order> {
             int affectedRows = statement.executeUpdate();
             return affectedRows == 1;
 
-        } catch (SQLException e) {
+        } catch (SQLException | NullPointerException e) {
             log.info("e: ", e);
             return false;
         }
@@ -289,7 +289,7 @@ public class OrderMysqlDao extends AbstractMysqlDao<Integer, Order> {
                 return findEntity(resultSet);
             }
             return null;
-        } catch (SQLException e) {
+        } catch (SQLException | NullPointerException e) {
             log.info("e: ", e);
             return null;
         }

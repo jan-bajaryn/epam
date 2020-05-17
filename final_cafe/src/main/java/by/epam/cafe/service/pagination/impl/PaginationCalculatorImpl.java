@@ -1,7 +1,7 @@
-package by.epam.cafe.service.parser.helper.impl;
+package by.epam.cafe.service.pagination.impl;
 
 import by.epam.cafe.service.exception.PaginationException;
-import by.epam.cafe.service.parser.helper.PaginationCalculator;
+import by.epam.cafe.service.pagination.PaginationCalculator;
 
 public class PaginationCalculatorImpl implements PaginationCalculator {
 

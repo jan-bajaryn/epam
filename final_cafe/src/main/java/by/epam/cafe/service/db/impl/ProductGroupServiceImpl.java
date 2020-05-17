@@ -9,6 +9,7 @@ import by.epam.cafe.dao.mysql.impl.ProductMysqlDao;
 import by.epam.cafe.entity.enums.ProductType;
 import by.epam.cafe.entity.db.impl.Product;
 import by.epam.cafe.entity.db.impl.ProductGroup;
+import by.epam.cafe.helper.ImageWriterService;
 import by.epam.cafe.service.db.ProductGroupService;
 import by.epam.cafe.service.exception.NullServiceException;
 import by.epam.cafe.service.exception.ServiceException;

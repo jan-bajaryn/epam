@@ -100,7 +100,7 @@ public class ProductGroupMysqlDao extends AbstractMysqlDao<Integer, ProductGroup
                 ProductGroup entity = findEntity(resultSet);
                 productGroups.add(entity);
             }
-        } catch (SQLException e) {
+        } catch (SQLException | NullPointerException e) {
             log.info("e: ", e);
         }
 
@@ -120,7 +120,7 @@ public class ProductGroupMysqlDao extends AbstractMysqlDao<Integer, ProductGroup
                 ProductGroup entity = findEntity(resultSet);
                 entities.add(entity);
             }
-        } catch (SQLException e) {
+        } catch (SQLException | NullPointerException e) {
             log.info("e: ", e);
         }
         return entities;
