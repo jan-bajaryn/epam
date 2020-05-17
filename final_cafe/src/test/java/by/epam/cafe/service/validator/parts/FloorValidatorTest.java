@@ -16,8 +16,12 @@ public class FloorValidatorTest {
                 {0, true},
                 {1, true},
                 {-1, true},
+                {-99, true},
                 {-100, false},
+                {99, true},
                 {100, false},
+                {50, true},
+                {-50, true},
                 {10000000, false},
                 {-10000000, false},
         };
