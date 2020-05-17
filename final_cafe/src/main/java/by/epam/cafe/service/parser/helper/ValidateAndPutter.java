@@ -1,5 +1,6 @@
 package by.epam.cafe.service.parser.helper;
 
+import by.epam.cafe.entity.struct.OptionalNullable;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -22,7 +23,7 @@ public class ValidateAndPutter {
     private ValidateAndPutter() {
     }
 
-    public boolean validateAndPut(Map<String, String> redirect, Optional<?> optional, String label, String param) {
+    public boolean validateAndPut(Map<String, String> redirect, OptionalNullable<?> optional, String label, String param) {
         redirect.put(label, param);
         if (optional.isEmpty()) {
             redirect.put(label + POSTFIX, "true");

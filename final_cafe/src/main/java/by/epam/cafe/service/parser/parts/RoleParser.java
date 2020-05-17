@@ -1,6 +1,7 @@
 package by.epam.cafe.service.parser.parts;
 
 import by.epam.cafe.entity.enums.Role;
+import by.epam.cafe.service.parser.ParamsParser;
 import by.epam.cafe.service.validator.parts.RoleValidator;
 
 public class RoleParser extends ParamsParser<Role> {

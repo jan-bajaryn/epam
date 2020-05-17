@@ -1,6 +1,6 @@
 package by.epam.cafe.service.parser.parts;
 
-import by.epam.cafe.service.parser.parts.ParamsParser;
+import by.epam.cafe.service.parser.ParamsParser;
 import by.epam.cafe.service.validator.parts.UsernameValidator;
 
 public class UsernameParser extends ParamsParser<String> {

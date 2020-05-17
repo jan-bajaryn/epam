@@ -1,5 +1,6 @@
-package by.epam.cafe.service.parser.parts;
+package by.epam.cafe.service.parser;
 
+import by.epam.cafe.entity.struct.OptionalNullable;
 import by.epam.cafe.service.Validator;
 
 import java.util.Optional;
@@ -13,15 +14,15 @@ public abstract class ParamsParser<T> {
 
     protected abstract T modify(String input) throws Exception;
 
-    public Optional<T> parse(String input) {
+    public OptionalNullable<T> parse(String input) {
         try {
             T modify = modify(input);
             if (validator.isValid(modify)) {
-                return Optional.of(modify);
+                return OptionalNullable.of(modify);
             }
-            return Optional.empty();
+            return OptionalNullable.empty();
         } catch (Exception e) {
-            return Optional.empty();
+            return OptionalNullable.empty();
         }
     }
 }

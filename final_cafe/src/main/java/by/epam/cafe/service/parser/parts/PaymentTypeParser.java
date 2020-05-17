@@ -1,9 +1,10 @@
 package by.epam.cafe.service.parser.parts;
 
 import by.epam.cafe.entity.enums.PaymentType;
+import by.epam.cafe.service.parser.ParamsParser;
 import by.epam.cafe.service.validator.parts.PaymentTypeValidator;
 
-public class PaymentTypeParser extends ParamsParser<PaymentType>{
+public class PaymentTypeParser extends ParamsParser<PaymentType> {
 
     private static final PaymentTypeValidator VALIDATOR = new PaymentTypeValidator();
 

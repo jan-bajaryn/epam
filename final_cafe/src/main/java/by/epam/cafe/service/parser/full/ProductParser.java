@@ -2,6 +2,7 @@ package by.epam.cafe.service.parser.full;
 
 import by.epam.cafe.entity.impl.Product;
 import by.epam.cafe.entity.impl.ProductGroup;
+import by.epam.cafe.entity.struct.OptionalNullable;
 import by.epam.cafe.service.parser.helper.ValidateAndPutter;
 import by.epam.cafe.service.parser.parts.PriceParser;
 import by.epam.cafe.service.parser.parts.WeightParser;
@@ -21,9 +22,9 @@ public class ProductParser {
     private final WeightParser weightParser = new WeightParser();
 
     public Product parseProduct(Map<String, String> redirect, String productGroup, String price, String weight) {
-        Optional<Integer> productGroupOpt = productGroupInProductParser.parse(productGroup);
-        Optional<Integer> priceOpt = priceParser.parse(price);
-        Optional<Integer> weightOpt = weightParser.parse(weight);
+        OptionalNullable<Integer> productGroupOpt = productGroupInProductParser.parse(productGroup);
+        OptionalNullable<Integer> priceOpt = priceParser.parse(price);
+        OptionalNullable<Integer> weightOpt = weightParser.parse(weight);
 
         boolean result = validateAndPutter.validateAndPut(redirect, productGroupOpt, "product_group", productGroup) &
                 validateAndPutter.validateAndPut(redirect, priceOpt, "price", price) &
@@ -48,7 +49,7 @@ public class ProductParser {
         Product product = parseProduct(redirect, productGroup, price, weight);
         if (product != null) {
 
-            Optional<Integer> idOpt = idParser.parse(id);
+            OptionalNullable<Integer> idOpt = idParser.parse(id);
             boolean result = validateAndPutter.validateAndPut(redirect, idOpt, "id", id);
             if (result) {
                 product.setId(idOpt.get());

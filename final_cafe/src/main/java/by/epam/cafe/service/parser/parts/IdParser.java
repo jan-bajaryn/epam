@@ -1,6 +1,6 @@
 package by.epam.cafe.service.parser.parts;
 
-import by.epam.cafe.service.parser.parts.ParamsParser;
+import by.epam.cafe.service.parser.ParamsParser;
 import by.epam.cafe.service.validator.parts.IdValidator;
 
 public class IdParser extends ParamsParser<Integer> {

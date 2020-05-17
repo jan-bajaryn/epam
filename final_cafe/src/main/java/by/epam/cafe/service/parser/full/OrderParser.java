@@ -5,6 +5,7 @@ import by.epam.cafe.entity.enums.PaymentType;
 import by.epam.cafe.entity.impl.DeliveryInf;
 import by.epam.cafe.entity.impl.Order;
 import by.epam.cafe.entity.impl.Product;
+import by.epam.cafe.entity.struct.OptionalNullable;
 import by.epam.cafe.service.parser.helper.ValidateAndPutter;
 import by.epam.cafe.service.parser.parts.*;
 
@@ -36,16 +37,16 @@ public class OrderParser {
 
 
     public Order parse(Map<String, String> redirect, String streetParam, String commentsParam, String floorParam, String porchParam, String roomParam, String houseParam, String nameParam, String phoneParam, String emailParam, String timeParam, Map<Product, Integer> basket) {
-        Optional<String> name = nameParser.parse(nameParam);
-        Optional<String> house = houseParser.parse(houseParam);
-        Optional<String> room = roomParser.parse(roomParam);
-        Optional<Integer> porch = porchParser.parse(porchParam);
-        Optional<Integer> floor = floorParser.parse(floorParam);
-        Optional<String> phone = phoneParser.parse(phoneParam);
-        Optional<String> email = emailParser.parse(emailParam);
-        Optional<String> street = streetParser.parse(streetParam);
-        Optional<String> comments = commentsParser.parse(commentsParam);
-        Optional<LocalDateTime> time = timeParser.parse(timeParam);
+        OptionalNullable<String> name = nameParser.parse(nameParam);
+        OptionalNullable<String> house = houseParser.parse(houseParam);
+        OptionalNullable<String> room = roomParser.parse(roomParam);
+        OptionalNullable<Integer> porch = porchParser.parse(porchParam);
+        OptionalNullable<Integer> floor = floorParser.parse(floorParam);
+        OptionalNullable<String> phone = phoneParser.parse(phoneParam);
+        OptionalNullable<String> email = emailParser.parse(emailParam);
+        OptionalNullable<String> street = streetParser.parse(streetParam);
+        OptionalNullable<String> comments = commentsParser.parse(commentsParam);
+        OptionalNullable<LocalDateTime> time = timeParser.parse(timeParam);
 
         boolean result = validateAndPutter.validateAndPut(redirect, name, "name", nameParam) &
                 validateAndPutter.validateAndPut(redirect, house, "house", houseParam) &
@@ -95,16 +96,16 @@ public class OrderParser {
     }
 
     public boolean parseWithBase(Map<String, String> redirect, Order order, String streetParam, String commentsParam, String floorParam, String porchParam, String roomParam, String houseParam, String nameParam, String phoneParam, String emailParam, String timeParam) {
-        Optional<String> name = nameParser.parse(nameParam);
-        Optional<String> house = houseParser.parse(houseParam);
-        Optional<String> room = roomParser.parse(roomParam);
-        Optional<Integer> porch = porchParser.parse(porchParam);
-        Optional<Integer> floor = floorParser.parse(floorParam);
-        Optional<String> phone = phoneParser.parse(phoneParam);
-        Optional<String> email = emailParser.parse(emailParam);
-        Optional<String> street = streetParser.parse(streetParam);
-        Optional<String> comments = commentsParser.parse(commentsParam);
-        Optional<LocalDateTime> time = timeParser.parse(timeParam);
+        OptionalNullable<String> name = nameParser.parse(nameParam);
+        OptionalNullable<String> house = houseParser.parse(houseParam);
+        OptionalNullable<String> room = roomParser.parse(roomParam);
+        OptionalNullable<Integer> porch = porchParser.parse(porchParam);
+        OptionalNullable<Integer> floor = floorParser.parse(floorParam);
+        OptionalNullable<String> phone = phoneParser.parse(phoneParam);
+        OptionalNullable<String> email = emailParser.parse(emailParam);
+        OptionalNullable<String> street = streetParser.parse(streetParam);
+        OptionalNullable<String> comments = commentsParser.parse(commentsParam);
+        OptionalNullable<LocalDateTime> time = timeParser.parse(timeParam);
 
         boolean result = validateAndPutter.validateAndPut(redirect, name, "name", nameParam) &
                 validateAndPutter.validateAndPut(redirect, house, "house", houseParam) &
@@ -145,19 +146,19 @@ public class OrderParser {
     }
 
     public boolean parseForOperatorWithBase(Map<String, String> redirect, Order order, String streetParam, String commentsParam, String floorParam, String porchParam, String roomParam, String houseParam, String nameParam, String phoneParam, String emailParam, String timeParam, String statusParam, String paymentTypeParam, String priceParam) {
-        Optional<String> name = nameParser.parse(nameParam);
-        Optional<String> house = houseParser.parse(houseParam);
-        Optional<String> room = roomParser.parse(roomParam);
-        Optional<Integer> porch = porchParser.parse(porchParam);
-        Optional<Integer> floor = floorParser.parse(floorParam);
-        Optional<String> phone = phoneParser.parse(phoneParam);
-        Optional<String> email = emailParser.parse(emailParam);
-        Optional<String> street = streetParser.parse(streetParam);
-        Optional<String> comments = commentsParser.parse(commentsParam);
-        Optional<LocalDateTime> time = timeParser.parse(timeParam);
-        Optional<Integer> price = priceParser.parse(priceParam);
-        Optional<OrderStatus> status = orderStatusForOperatorParser.parse(statusParam);
-        Optional<PaymentType> paymentType = paymentTypeParser.parse(paymentTypeParam);
+        OptionalNullable<String> name = nameParser.parse(nameParam);
+        OptionalNullable<String> house = houseParser.parse(houseParam);
+        OptionalNullable<String> room = roomParser.parse(roomParam);
+        OptionalNullable<Integer> porch = porchParser.parse(porchParam);
+        OptionalNullable<Integer> floor = floorParser.parse(floorParam);
+        OptionalNullable<String> phone = phoneParser.parse(phoneParam);
+        OptionalNullable<String> email = emailParser.parse(emailParam);
+        OptionalNullable<String> street = streetParser.parse(streetParam);
+        OptionalNullable<String> comments = commentsParser.parse(commentsParam);
+        OptionalNullable<LocalDateTime> time = timeParser.parse(timeParam);
+        OptionalNullable<Integer> price = priceParser.parse(priceParam);
+        OptionalNullable<OrderStatus> status = orderStatusForOperatorParser.parse(statusParam);
+        OptionalNullable<PaymentType> paymentType = paymentTypeParser.parse(paymentTypeParam);
 
         boolean result = validateAndPutter.validateAndPut(redirect, name, "name", nameParam) &
                 validateAndPutter.validateAndPut(redirect, house, "house", houseParam) &
