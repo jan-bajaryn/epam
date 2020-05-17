@@ -15,17 +15,11 @@ public interface ProductGroupService {
 
     ProductGroup findEntityById(Integer integer) throws NullParamDaoException, ServiceException;
 
-    boolean deleteById(Integer integer) throws ServiceException;
-
-    boolean delete(ProductGroup entity) throws ServiceException;
-
     ProductGroup create(ProductGroup entity) throws ServiceException;
 
     boolean update(ProductGroup entity) throws ServiceException;
 
     List<ProductGroup> findAllByProductTypeNotDisabled(ProductType type) throws NullServiceException, ServiceException;
-
-    List<ProductGroup> findAllEmpty() throws ServiceException;
 
     List<ProductGroup> findAllExcept(ProductGroup productGroup) throws NullParamDaoException, ServiceException;
 

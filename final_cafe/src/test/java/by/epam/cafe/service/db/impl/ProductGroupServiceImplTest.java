@@ -1,35 +1,234 @@
 package by.epam.cafe.service.db.impl;
 
 import by.epam.cafe.dao.exception.NullParamDaoException;
+import by.epam.cafe.entity.db.impl.Product;
+import by.epam.cafe.entity.db.impl.ProductGroup;
+import by.epam.cafe.entity.enums.ProductType;
+import by.epam.cafe.service.DatabaseManager;
 import by.epam.cafe.service.db.ProductGroupService;
+import by.epam.cafe.service.exception.NullServiceException;
+import by.epam.cafe.service.exception.ServiceException;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import static by.epam.cafe.config.Configuration.MAX_PAGINATION_ELEMENTS;
+import static org.testng.Assert.*;
 
 public class ProductGroupServiceImplTest {
 
-    private ProductGroupService productGroupService = new ProductGroupServiceImpl();
+    private final ProductGroupService productGroupService = new ProductGroupServiceImpl();
+    private final DatabaseManager databaseManager = new DatabaseManager();
+    private final ProductServiceImpl productServiceImpl = new ProductServiceImpl();
 
     @Test
-    public void testFindAll() throws NullParamDaoException {
-//        System.out.println("productGroupService.findAll() = " + productGroupService.findAll());
+    public void testFindAll() throws ServiceException, NullParamDaoException {
+        assertEquals(productGroupService.findAll().size(), productGroupService.count());
     }
 
     @Test
-    public void testFindEntityById() {
+    public void testFindAllNotNullParams() throws ServiceException, NullParamDaoException {
+        List<ProductGroup> all = productGroupService.findAll();
+        for (ProductGroup productGroup : all) {
+            assertNotNull(productGroup.getId());
+            assertNotNull(productGroup.getDescription());
+            assertNotNull(productGroup.getName());
+            assertNotNull(productGroup.getPhotoName());
+            assertNotNull(productGroup.getType());
+
+        }
     }
 
     @Test
-    public void testDeleteById() {
+    public void testFindAllByPart() throws ServiceException, NullParamDaoException {
+        List<ProductGroup> allByPart = productGroupService.findAllByPart(1);
+        assertEquals(allByPart.size(), MAX_PAGINATION_ELEMENTS);
     }
 
     @Test
-    public void testDelete() {
+    public void testFindEntityById() throws ServiceException, NullParamDaoException {
+        ProductGroup entityById = productGroupService.findEntityById(1);
+        assertNotNull(entityById);
     }
 
     @Test
-    public void testCreate() {
+    public void testFindEntityByIdNotExists() throws ServiceException, NullParamDaoException {
+        ProductGroup entityById = productGroupService.findEntityById(1000);
+        assertNull(entityById);
     }
 
     @Test
-    public void testUpdate() {
+    public void testFindAllByProductTypeNotDisabledNullINput() throws ServiceException {
+        assertThrows(ServiceException.class, () -> productGroupService.findAllByProductTypeNotDisabled(null));
     }
+
+    @DataProvider(name = "byType")
+    public Object[][] byTypeProvider
+            () throws ServiceException, NullParamDaoException {
+        List<ProductGroup> forSnack = productGroupService.findAll().stream()
+                .filter(p -> p.getType() == ProductType.SNACK)
+                .collect(Collectors.toList());
+        List<ProductGroup> forPizza = productGroupService.findAll().stream()
+                .filter(p -> p.getType() == ProductType.PIZZA)
+                .collect(Collectors.toList());
+        List<ProductGroup> forDrink = productGroupService.findAll().stream()
+                .filter(p -> p.getType() == ProductType.DRINK)
+                .collect(Collectors.toList());
+        List<ProductGroup> forDessert = productGroupService.findAll().stream()
+                .filter(p -> p.getType() == ProductType.DESSERT)
+                .collect(Collectors.toList());
+        return new Object[][]{
+                {ProductType.SNACK, forSnack},
+                {ProductType.PIZZA, forPizza},
+                {ProductType.DRINK, forDrink},
+                {ProductType.DESSERT, forDessert},
+        };
+    }
+
+    @Test(description = "",
+            dataProvider = "byType")
+    public void testFindAllByProductTypeNotDisabled(ProductType type, List<ProductGroup> list) throws ServiceException {
+        assertEquals(productGroupService.findAllByProductTypeNotDisabled(type), list);
+    }
+
+    @Test
+    public void testFindAllExcept() throws ServiceException, NullParamDaoException {
+        final ProductGroup build = ProductGroup.newBuilder().id(1).build();
+        List<ProductGroup> allExcept = productGroupService.findAllExcept(build);
+        List<ProductGroup> collect = productGroupService.findAll().stream()
+                .filter(p -> !p.getId().equals(build.getId()))
+                .collect(Collectors.toList());
+        assertEquals(allExcept, collect);
+    }
+
+    @Test
+    public void testDisableById() throws ServiceException, NullParamDaoException {
+        try {
+            productGroupService.disableById(1);
+            ProductGroup entityById = productGroupService.findEntityById(1);
+            assertTrue(entityById.isDisabled());
+        } finally {
+            databaseManager.reset();
+        }
+    }
+
+    @Test
+    public void testDisableByIdNull() {
+        try {
+            assertThrows(NullServiceException.class, () -> productGroupService.disableById(null));
+        } finally {
+            databaseManager.reset();
+        }
+    }
+
+    @Test
+    public void testEnableById() throws ServiceException, NullParamDaoException {
+        try {
+            productGroupService.enableById(32);
+            ProductGroup entityById = productGroupService.findEntityById(32);
+            assertFalse(entityById.isDisabled());
+        } finally {
+            databaseManager.reset();
+        }
+    }
+
+    @Test
+    public void testEnableByIdNull() {
+        try {
+            assertThrows(NullServiceException.class, () -> productGroupService.enableById(null));
+        } finally {
+            databaseManager.reset();
+        }
+    }
+
+    @Test
+    public void testCreateNull() throws ServiceException {
+        try {
+            ProductGroup productGroup = productGroupService.create(null);
+            assertNull(productGroup);
+        } finally {
+            databaseManager.reset();
+        }
+    }
+
+    @Test
+    public void testCreate() throws ServiceException {
+        try {
+            ProductGroup build = ProductGroup.newBuilder()
+                    .description("Some description")
+                    .name("Some name")
+                    .photoName("Hahaha.jpg")
+                    .type(ProductType.PIZZA)
+                    .products(new ArrayList<>(Collections.singletonList(Product.newBuilder().id(24).build())))
+                    .build();
+            ProductGroup productGroup = productGroupService.create(build);
+            assertNotNull(productGroup);
+        } finally {
+            databaseManager.reset();
+        }
+    }
+
+    @Test
+    public void testCreateCheckProduct() throws ServiceException {
+        try {
+            ProductGroup build = ProductGroup.newBuilder()
+                    .description("Some description")
+                    .name("Some name")
+                    .photoName("Hahaha.jpg")
+                    .type(ProductType.PIZZA)
+                    .products(new ArrayList<>(Collections.singletonList(Product.newBuilder().id(24).build())))
+                    .build();
+            ProductGroup productGroup = productGroupService.create(build);
+            Product entityById = productServiceImpl.findEntityById(24);
+            assertEquals(productGroup.getId(), entityById.getProductGroup().getId());
+        } finally {
+            databaseManager.reset();
+        }
+    }
+
+    @Test
+    public void testUpdateNull() throws ServiceException {
+        try {
+            boolean result = productGroupService.update(null);
+            assertFalse(result);
+        } finally {
+            databaseManager.reset();
+        }
+    }
+
+    @Test
+    public void testUpdate() throws ServiceException, NullParamDaoException {
+        try {
+            ProductGroup entityById = productGroupService.findEntityById(31);
+            entityById.getProducts().add(Product.newBuilder().id(24).build());
+            boolean result = productGroupService.update(entityById);
+            assertTrue(result);
+        } finally {
+            databaseManager.reset();
+        }
+    }
+
+
+    @Test
+    public void testUpdateResultInDb() throws ServiceException, NullParamDaoException {
+        try {
+            ProductGroup entityById = productGroupService.findEntityById(31);
+            entityById.getProducts().add(Product.newBuilder().id(24).build());
+            boolean result = productGroupService.update(entityById);
+            entityById = productGroupService.findEntityById(31);
+            boolean match = entityById.getProducts().stream()
+                    .anyMatch(p -> p.getId().equals(24));
+
+            assertTrue(match);
+        } finally {
+            databaseManager.reset();
+        }
+    }
+
+
 }
