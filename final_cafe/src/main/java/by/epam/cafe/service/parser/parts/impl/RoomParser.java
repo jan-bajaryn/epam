@@ -10,6 +10,6 @@ public class RoomParser extends ParamsParser<String> {
 
     @Override
     protected String modify(String input) throws Exception {
-        return input.isEmpty()? null:input.strip();
+        return (input == null || input.isEmpty()) ? null : input.strip();
     }
 }

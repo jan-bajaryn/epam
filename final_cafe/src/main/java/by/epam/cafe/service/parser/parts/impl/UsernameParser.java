@@ -14,6 +14,6 @@ public class UsernameParser extends ParamsParser<String> {
 
     @Override
     protected String modify(String input) {
-        return input.isEmpty()? null:input.strip();
+        return (input == null || input.isEmpty()) ? null : input.strip();
     }
 }
