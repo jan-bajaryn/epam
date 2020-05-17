@@ -6,6 +6,9 @@ import static org.testng.Assert.*;
 
 public class WeightParserTest {
 
+    private final WeightParser weightParser = new WeightParser();
+    
+
     @Test
     public void testModify() {
     }

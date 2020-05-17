@@ -6,6 +6,8 @@ import static org.testng.Assert.*;
 
 public class PasswordParserTest {
 
+    private final PasswordParser passwordParser = new PasswordParser();
+
     @Test
     public void testModify() {
     }

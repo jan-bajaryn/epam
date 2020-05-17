@@ -6,6 +6,9 @@ import static org.testng.Assert.*;
 
 public class ProductGroupDescriptionParserTest {
 
+    private final ProductGroupDescriptionParser productGroupDescriptionParser =
+            new ProductGroupDescriptionParser();
+
     @Test
     public void testModify() {
     }

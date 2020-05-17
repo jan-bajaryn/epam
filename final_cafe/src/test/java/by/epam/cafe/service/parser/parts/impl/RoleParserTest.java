@@ -6,6 +6,8 @@ import static org.testng.Assert.*;
 
 public class RoleParserTest {
 
+    private final RoleParser roleParser = new RoleParser();
+
     @Test
     public void testModify() {
     }

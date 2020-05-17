@@ -6,6 +6,8 @@ import static org.testng.Assert.*;
 
 public class PorchParserTest {
 
+    private final PorchParser porchParser = new PorchParser();
+
     @Test
     public void testModify() {
     }

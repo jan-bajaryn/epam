@@ -6,6 +6,9 @@ import static org.testng.Assert.*;
 
 public class TimeParserTest {
 
+    private final TimeParser timeParser = new TimeParser();
+
+
     @Test
     public void testModify() {
     }

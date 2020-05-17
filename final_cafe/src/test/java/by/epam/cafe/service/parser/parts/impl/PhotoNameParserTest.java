@@ -6,6 +6,8 @@ import static org.testng.Assert.*;
 
 public class PhotoNameParserTest {
 
+    private final PhotoNameParser photoNameParser = new PhotoNameParser();
+
     @Test
     public void testModify() {
     }

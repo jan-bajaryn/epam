@@ -6,6 +6,8 @@ import static org.testng.Assert.*;
 
 public class HouseParserTest {
 
+    private final HouseParser houseParser = new HouseParser();
+
     @Test
     public void testModify() {
     }

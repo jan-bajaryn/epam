@@ -6,6 +6,8 @@ import static org.testng.Assert.*;
 
 public class EmailParserTest {
 
+    private final EmailParser emailParser = new EmailParser();
+
     @Test
     public void testModify() {
     }

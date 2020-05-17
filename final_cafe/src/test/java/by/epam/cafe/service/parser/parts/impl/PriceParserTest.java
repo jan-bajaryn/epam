@@ -6,6 +6,8 @@ import static org.testng.Assert.*;
 
 public class PriceParserTest {
 
+    private final PriceParser priceParser = new PriceParser();
+
     @Test
     public void testModify() {
     }

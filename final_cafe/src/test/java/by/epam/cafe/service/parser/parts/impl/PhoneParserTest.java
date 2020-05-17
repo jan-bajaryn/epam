@@ -6,6 +6,9 @@ import static org.testng.Assert.*;
 
 public class PhoneParserTest {
 
+    private final PhoneParser phoneParser = new PhoneParser();
+
+
     @Test
     public void testModify() {
     }

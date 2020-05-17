@@ -6,6 +6,9 @@ import static org.testng.Assert.*;
 
 public class SurnameParserTest {
 
+    private final SurnameParser surnameParser = new SurnameParser();
+
+
     @Test
     public void testModify() {
     }

@@ -6,6 +6,8 @@ import static org.testng.Assert.*;
 
 public class PaymentTypeParserTest {
 
+    private final PaymentTypeParser paymentTypeParser = new PaymentTypeParser();
+
     @Test
     public void testModify() {
     }

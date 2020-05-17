@@ -6,6 +6,8 @@ import static org.testng.Assert.*;
 
 public class FloorParserTest {
 
+    private final FloorParser floorParser = new FloorParser();
+
     @Test
     public void testModify() {
     }
