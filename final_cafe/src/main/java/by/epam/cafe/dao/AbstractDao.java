@@ -2,7 +2,7 @@ package by.epam.cafe.dao;
 
 import by.epam.cafe.dao.exception.DaoException;
 import by.epam.cafe.dao.mysql.Transaction;
-import by.epam.cafe.entity.Entity;
+import by.epam.cafe.entity.db.Entity;
 
 import java.util.List;
 

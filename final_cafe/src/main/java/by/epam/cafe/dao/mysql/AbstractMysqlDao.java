@@ -3,7 +3,7 @@ package by.epam.cafe.dao.mysql;
 import by.epam.cafe.dao.AbstractDao;
 import by.epam.cafe.dao.exception.DaoException;
 import by.epam.cafe.dao.pool.ConnectionPool;
-import by.epam.cafe.entity.Entity;
+import by.epam.cafe.entity.db.Entity;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

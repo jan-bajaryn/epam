@@ -1,7 +1,7 @@
 package by.epam.cafe.controller.command.postimpl;
 
 import by.epam.cafe.controller.command.PermissionDeniedException;
-import by.epam.cafe.service.ProductGroupService;
+import by.epam.cafe.service.db.ProductGroupService;
 import by.epam.cafe.service.exception.ServiceException;
 import by.epam.cafe.service.factory.ServiceFactory;
 

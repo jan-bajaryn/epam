@@ -1,7 +1,6 @@
 package by.epam.cafe.service.validator.parts;
 
 import by.epam.cafe.entity.enums.OrderStatus;
-import by.epam.cafe.entity.impl.Order;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 

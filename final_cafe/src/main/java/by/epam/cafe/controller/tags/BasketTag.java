@@ -1,19 +1,16 @@
 package by.epam.cafe.controller.tags;
 
-import by.epam.cafe.entity.enums.OrderStatus;
 import by.epam.cafe.entity.enums.Role;
-import by.epam.cafe.entity.impl.Order;
-import by.epam.cafe.entity.impl.Product;
-import by.epam.cafe.entity.impl.User;
-import by.epam.cafe.service.OrderService;
+import by.epam.cafe.entity.db.impl.Order;
+import by.epam.cafe.entity.db.impl.Product;
+import by.epam.cafe.entity.db.impl.User;
+import by.epam.cafe.service.db.OrderService;
 import by.epam.cafe.service.exception.ServiceException;
 import by.epam.cafe.service.factory.ServiceFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;

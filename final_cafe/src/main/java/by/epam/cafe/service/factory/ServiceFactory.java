@@ -1,18 +1,20 @@
 package by.epam.cafe.service.factory;
 
 import by.epam.cafe.service.*;
+import by.epam.cafe.service.db.*;
+import by.epam.cafe.service.db.impl.*;
 import by.epam.cafe.service.impl.*;
-import by.epam.cafe.service.parser.NullIfEmptyService;
-import by.epam.cafe.service.parser.PaginationCalculator;
-import by.epam.cafe.service.parser.impl.PaginationCalculatorImpl;
-import by.epam.cafe.service.parser.PathVarCalculator;
+import by.epam.cafe.service.parser.helper.NullIfEmptyService;
+import by.epam.cafe.service.parser.helper.PaginationCalculator;
+import by.epam.cafe.service.parser.helper.impl.PaginationCalculatorImpl;
+import by.epam.cafe.service.parser.helper.PathVarCalculator;
 import by.epam.cafe.service.parser.full.OrderParser;
 import by.epam.cafe.service.parser.full.ProductGroupParser;
 import by.epam.cafe.service.parser.full.ProductParser;
 import by.epam.cafe.service.parser.full.UserParser;
-import by.epam.cafe.service.parser.impl.NullIfEmptyServiceImpl;
-import by.epam.cafe.service.parser.impl.PathVarCalculatorImpl;
-import by.epam.cafe.service.parser.parts.*;
+import by.epam.cafe.service.parser.helper.impl.NullIfEmptyServiceImpl;
+import by.epam.cafe.service.parser.helper.impl.PathVarCalculatorImpl;
+import by.epam.cafe.service.parser.parts.impl.*;
 import by.epam.cafe.service.validator.parts.LoginValidator;
 
 public class ServiceFactory {

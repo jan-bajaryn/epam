@@ -1,6 +1,6 @@
 package by.epam.cafe.service;
 
-import by.epam.cafe.entity.impl.Product;
+import by.epam.cafe.entity.db.impl.Product;
 
 import java.util.Map;
 

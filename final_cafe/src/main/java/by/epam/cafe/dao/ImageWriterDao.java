@@ -1,7 +1,5 @@
 package by.epam.cafe.dao;
 
-import by.epam.cafe.service.impl.ImageWriterService;
-import by.epam.cafe.service.impl.ProductGroupServiceImpl;
 import org.apache.commons.fileupload.FileItem;
 
 import java.io.File;

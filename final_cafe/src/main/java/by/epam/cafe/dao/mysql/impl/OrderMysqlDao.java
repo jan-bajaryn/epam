@@ -5,10 +5,10 @@ import by.epam.cafe.dao.mysql.AbstractMysqlDao;
 import by.epam.cafe.dao.mysql.Transaction;
 import by.epam.cafe.entity.enums.OrderStatus;
 import by.epam.cafe.entity.enums.PaymentType;
-import by.epam.cafe.entity.impl.DeliveryInf;
-import by.epam.cafe.entity.impl.Order;
-import by.epam.cafe.entity.impl.Product;
-import by.epam.cafe.entity.impl.User;
+import by.epam.cafe.entity.db.impl.DeliveryInf;
+import by.epam.cafe.entity.db.impl.Order;
+import by.epam.cafe.entity.db.impl.Product;
+import by.epam.cafe.entity.db.impl.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

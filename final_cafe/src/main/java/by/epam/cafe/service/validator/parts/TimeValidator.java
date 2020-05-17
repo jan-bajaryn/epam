@@ -1,10 +1,9 @@
 package by.epam.cafe.service.validator.parts;
 
-import by.epam.cafe.service.Validator;
+import by.epam.cafe.service.validator.Validator;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
-import java.time.temporal.TemporalAmount;
 
 public class TimeValidator implements Validator<LocalDateTime> {
 

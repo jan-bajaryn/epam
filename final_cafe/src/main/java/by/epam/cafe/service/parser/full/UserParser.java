@@ -1,16 +1,15 @@
 package by.epam.cafe.service.parser.full;
 
 import by.epam.cafe.entity.enums.Role;
-import by.epam.cafe.entity.impl.User;
+import by.epam.cafe.entity.db.impl.User;
 import by.epam.cafe.entity.struct.OptionalNullable;
-import by.epam.cafe.service.parser.helper.ValidateAndPutter;
-import by.epam.cafe.service.parser.parts.*;
+import by.epam.cafe.service.parser.helper.impl.ValidateAndPutter;
+import by.epam.cafe.service.parser.parts.impl.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.time.LocalDateTime;
 import java.util.Map;
-import java.util.Optional;
 
 public class UserParser {
 

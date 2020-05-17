@@ -3,8 +3,8 @@ package by.epam.cafe.dao.mysql.impl;
 import by.epam.cafe.dao.exception.NullParamDaoException;
 import by.epam.cafe.dao.mysql.AbstractMysqlDao;
 import by.epam.cafe.dao.mysql.Transaction;
-import by.epam.cafe.entity.impl.Product;
-import by.epam.cafe.entity.impl.ProductGroup;
+import by.epam.cafe.entity.db.impl.Product;
+import by.epam.cafe.entity.db.impl.ProductGroup;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

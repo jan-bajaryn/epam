@@ -1,7 +1,7 @@
 package by.epam.cafe.service.validator.parts;
 
 import by.epam.cafe.entity.enums.Role;
-import by.epam.cafe.service.Validator;
+import by.epam.cafe.service.validator.Validator;
 
 public class RoleValidator implements Validator<Role> {
     @Override

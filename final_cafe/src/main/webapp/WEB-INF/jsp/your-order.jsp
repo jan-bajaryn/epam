@@ -1,8 +1,8 @@
-<jsp:useBean id="order" scope="request" type="by.epam.cafe.entity.impl.Order"/>
+<jsp:useBean id="order" scope="request" type="by.epam.cafe.entity.db.impl.Order"/>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<jsp:useBean id="productMap" scope="request" type="java.util.Map<by.epam.cafe.entity.impl.Product,java.lang.Integer>"/>
+<jsp:useBean id="productMap" scope="request" type="java.util.Map<by.epam.cafe.entity.db.impl.Product,java.lang.Integer>"/>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="tag" %>
 
 

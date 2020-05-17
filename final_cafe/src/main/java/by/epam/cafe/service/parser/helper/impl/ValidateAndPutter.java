@@ -1,0 +1,34 @@
+package by.epam.cafe.service.parser.helper.impl;
+
+import by.epam.cafe.entity.struct.OptionalNullable;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import java.util.Map;
+
+public class ValidateAndPutter {
+
+    private static final Logger log = LogManager.getLogger(ValidateAndPutter.class);
+    public static final String POSTFIX = "_error";
+
+
+    public static final ValidateAndPutter INSTANCE = new ValidateAndPutter();
+
+    public static ValidateAndPutter getInstance() {
+        return INSTANCE;
+    }
+
+    private ValidateAndPutter() {
+    }
+
+    public boolean validateAndPut(Map<String, String> redirect, OptionalNullable<?> optional, String label, String param) {
+        redirect.put(label, param);
+        if (optional.isEmpty()) {
+            redirect.put(label + POSTFIX, "true");
+            return false;
+        }
+        log.debug("label = {}", label);
+        log.debug("param = {}", param);
+        return true;
+    }
+}

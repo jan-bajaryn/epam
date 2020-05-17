@@ -2,11 +2,11 @@ package by.epam.cafe.controller.command.getimpl;
 
 import by.epam.cafe.controller.dto.UserDTO;
 import by.epam.cafe.entity.enums.Role;
-import by.epam.cafe.entity.impl.Order;
-import by.epam.cafe.entity.impl.Product;
-import by.epam.cafe.entity.impl.User;
-import by.epam.cafe.service.OrderService;
-import by.epam.cafe.service.UserService;
+import by.epam.cafe.entity.db.impl.Order;
+import by.epam.cafe.entity.db.impl.Product;
+import by.epam.cafe.entity.db.impl.User;
+import by.epam.cafe.service.db.OrderService;
+import by.epam.cafe.service.db.UserService;
 import by.epam.cafe.service.exception.ServiceException;
 import by.epam.cafe.service.factory.ServiceFactory;
 import org.apache.logging.log4j.LogManager;

@@ -1,7 +1,7 @@
 package by.epam.cafe.controller.filter;
 
 import by.epam.cafe.entity.enums.Role;
-import by.epam.cafe.entity.impl.User;
+import by.epam.cafe.entity.db.impl.User;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;

@@ -1,13 +1,9 @@
 package by.epam.cafe.controller.command.postimpl;
 
 import by.epam.cafe.controller.command.PermissionDeniedException;
-import by.epam.cafe.entity.enums.OrderStatus;
-import by.epam.cafe.entity.enums.PaymentType;
-import by.epam.cafe.entity.impl.DeliveryInf;
-import by.epam.cafe.entity.impl.Order;
-import by.epam.cafe.entity.impl.Product;
-import by.epam.cafe.entity.impl.User;
-import by.epam.cafe.service.OrderService;
+import by.epam.cafe.entity.db.impl.Order;
+import by.epam.cafe.entity.db.impl.Product;
+import by.epam.cafe.service.db.OrderService;
 import by.epam.cafe.service.exception.ServiceException;
 import by.epam.cafe.service.factory.ServiceFactory;
 import by.epam.cafe.service.parser.full.OrderParser;
@@ -19,10 +15,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.*;
 
 import static by.epam.cafe.controller.filter.RedirectFilter.REDIRECTED_INFO;

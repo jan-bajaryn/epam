@@ -1,7 +1,7 @@
 package by.epam.cafe.dao.mysql.impl;
 
 import by.epam.cafe.dao.mysql.AbstractMysqlDao;
-import by.epam.cafe.entity.impl.DeliveryInf;
+import by.epam.cafe.entity.db.impl.DeliveryInf;
 
 import java.sql.*;
 import java.time.LocalDateTime;

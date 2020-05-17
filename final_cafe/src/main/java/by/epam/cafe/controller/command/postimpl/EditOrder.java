@@ -1,8 +1,8 @@
 package by.epam.cafe.controller.command.postimpl;
 
 import by.epam.cafe.controller.command.PermissionDeniedException;
-import by.epam.cafe.entity.impl.Order;
-import by.epam.cafe.service.OrderService;
+import by.epam.cafe.entity.db.impl.Order;
+import by.epam.cafe.service.db.OrderService;
 import by.epam.cafe.service.exception.ServiceException;
 import by.epam.cafe.service.factory.ServiceFactory;
 import by.epam.cafe.service.parser.full.OrderParser;

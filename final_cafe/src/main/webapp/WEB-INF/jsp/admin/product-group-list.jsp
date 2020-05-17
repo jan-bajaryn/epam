@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<jsp:useBean id="groups" scope="request" type="java.util.List<by.epam.cafe.entity.impl.ProductGroup>"/>
+<jsp:useBean id="groups" scope="request" type="java.util.List<by.epam.cafe.entity.db.impl.ProductGroup>"/>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="tag" %>
 
 <!doctype html>

@@ -1,12 +1,12 @@
 package by.epam.cafe.controller.command.getimpl;
 
 import by.epam.cafe.entity.enums.Role;
-import by.epam.cafe.entity.impl.User;
-import by.epam.cafe.service.UserService;
+import by.epam.cafe.entity.db.impl.User;
+import by.epam.cafe.service.db.UserService;
 import by.epam.cafe.service.exception.IllegalPathParamException;
 import by.epam.cafe.service.exception.ServiceException;
 import by.epam.cafe.service.factory.ServiceFactory;
-import by.epam.cafe.service.parser.PathVarCalculator;
+import by.epam.cafe.service.parser.helper.PathVarCalculator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

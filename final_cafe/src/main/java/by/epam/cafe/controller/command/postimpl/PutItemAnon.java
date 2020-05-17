@@ -1,8 +1,8 @@
 package by.epam.cafe.controller.command.postimpl;
 
 import by.epam.cafe.controller.command.PermissionDeniedException;
-import by.epam.cafe.entity.impl.Product;
-import by.epam.cafe.service.ProductService;
+import by.epam.cafe.entity.db.impl.Product;
+import by.epam.cafe.service.db.ProductService;
 import by.epam.cafe.service.PutItemService;
 import by.epam.cafe.service.exception.ServiceException;
 import by.epam.cafe.service.factory.ServiceFactory;
@@ -16,7 +16,6 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 
 public class PutItemAnon extends by.epam.cafe.controller.command.Command {
 

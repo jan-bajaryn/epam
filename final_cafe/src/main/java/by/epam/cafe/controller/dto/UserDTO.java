@@ -1,9 +1,7 @@
 package by.epam.cafe.controller.dto;
 
 import by.epam.cafe.entity.enums.Role;
-import by.epam.cafe.entity.impl.User;
-
-import java.time.LocalDateTime;
+import by.epam.cafe.entity.db.impl.User;
 
 public class UserDTO {
     private Integer id;

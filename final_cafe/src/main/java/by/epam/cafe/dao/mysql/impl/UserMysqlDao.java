@@ -2,7 +2,7 @@ package by.epam.cafe.dao.mysql.impl;
 
 import by.epam.cafe.dao.mysql.AbstractMysqlDao;
 import by.epam.cafe.entity.enums.Role;
-import by.epam.cafe.entity.impl.User;
+import by.epam.cafe.entity.db.impl.User;
 
 import java.sql.*;
 import java.time.ZoneId;

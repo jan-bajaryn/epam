@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%--<jsp:useBean id="productMap" scope="request" type="java.util.Map<by.epam.cafe.entity.impl.Product,java.lang.Integer>"/>--%>
+<%--<jsp:useBean id="productMap" scope="request" type="java.util.Map<Product,java.lang.Integer>"/>--%>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="tag" %>
 
 
@@ -39,7 +39,7 @@
         </div>
 
         <div class="product-list">
-            <%--@elvariable id="productMap" type="java.util.Map<by.epam.cafe.entity.impl.Product,java.lang.Integer>"--%>
+            <%--@elvariable id="productMap" type="java.util.Map<by.epam.cafe.entity.db.impl.Product,java.lang.Integer>"--%>
             <c:if test="${productMap!=null}">
                 <c:forEach var="product" items="${productMap}">
 

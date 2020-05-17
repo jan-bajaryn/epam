@@ -1,11 +1,10 @@
 package by.epam.cafe.controller.command.getimpl;
 
 import by.epam.cafe.entity.enums.ProductType;
-import by.epam.cafe.entity.impl.Product;
-import by.epam.cafe.entity.impl.ProductGroup;
-import by.epam.cafe.service.ProductGroupService;
-import by.epam.cafe.service.ProductService;
-import by.epam.cafe.service.exception.NullServiceException;
+import by.epam.cafe.entity.db.impl.Product;
+import by.epam.cafe.entity.db.impl.ProductGroup;
+import by.epam.cafe.service.db.ProductGroupService;
+import by.epam.cafe.service.db.ProductService;
 import by.epam.cafe.service.exception.ServiceException;
 import by.epam.cafe.service.factory.ServiceFactory;
 import org.apache.logging.log4j.LogManager;

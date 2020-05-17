@@ -1,7 +1,7 @@
 package by.epam.cafe.controller.command.postimpl;
 
-import by.epam.cafe.entity.impl.User;
-import by.epam.cafe.service.UserService;
+import by.epam.cafe.entity.db.impl.User;
+import by.epam.cafe.service.db.UserService;
 import by.epam.cafe.service.exception.ServiceException;
 import by.epam.cafe.service.factory.ServiceFactory;
 import by.epam.cafe.service.validator.parts.LoginValidator;

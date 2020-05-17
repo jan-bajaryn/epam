@@ -1,16 +1,15 @@
 package by.epam.cafe.service.parser.full;
 
-import by.epam.cafe.entity.impl.Product;
-import by.epam.cafe.entity.impl.ProductGroup;
+import by.epam.cafe.entity.db.impl.Product;
+import by.epam.cafe.entity.db.impl.ProductGroup;
 import by.epam.cafe.entity.struct.OptionalNullable;
-import by.epam.cafe.service.parser.helper.ValidateAndPutter;
-import by.epam.cafe.service.parser.parts.PriceParser;
-import by.epam.cafe.service.parser.parts.WeightParser;
-import by.epam.cafe.service.parser.parts.IdParser;
-import by.epam.cafe.service.parser.parts.ProductGroupInProductParser;
+import by.epam.cafe.service.parser.helper.impl.ValidateAndPutter;
+import by.epam.cafe.service.parser.parts.impl.PriceParser;
+import by.epam.cafe.service.parser.parts.impl.WeightParser;
+import by.epam.cafe.service.parser.parts.impl.IdParser;
+import by.epam.cafe.service.parser.parts.impl.ProductGroupInProductParser;
 
 import java.util.Map;
-import java.util.Optional;
 
 public class ProductParser {
 
