@@ -69,7 +69,9 @@ public class ProductGroupServiceImpl implements ProductGroupService {
     public ProductGroup findEntityById(Integer integer) throws NullParamDaoException, ServiceException {
         try (Transaction transaction = dAOFactory.createTransaction()) {
             ProductGroup entityById = productGroupMysqlDao.findEntityById(integer, transaction);
-            buildProductGroup(entityById, transaction);
+            if (entityById != null) {
+                buildProductGroup(entityById, transaction);
+            }
             return entityById;
         } catch (DaoException e) {
             throw new ServiceException(e);
@@ -111,6 +113,10 @@ public class ProductGroupServiceImpl implements ProductGroupService {
     @Override
     public boolean update(ProductGroup entity) throws ServiceException {
 
+        if (entity == null) {
+            return false;
+        }
+
         try (final Transaction transaction = dAOFactory.createTransaction()) {
 
             try {
@@ -148,7 +154,7 @@ public class ProductGroupServiceImpl implements ProductGroupService {
                         return true;
                     })
                     .collect(Collectors.toList());
-            deleteAll(toDelete,transaction);
+            deleteAll(toDelete, transaction);
             List<Product> toAdd = products.stream()
                     .filter(p -> {
                         for (Product product : allByProductGroupId) {

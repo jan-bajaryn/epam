@@ -72,15 +72,19 @@ public class ProductGroupServiceImplTest {
             () throws ServiceException, NullParamDaoException {
         List<ProductGroup> forSnack = productGroupService.findAll().stream()
                 .filter(p -> p.getType() == ProductType.SNACK)
+                .filter(p -> !p.isDisabled())
                 .collect(Collectors.toList());
         List<ProductGroup> forPizza = productGroupService.findAll().stream()
                 .filter(p -> p.getType() == ProductType.PIZZA)
+                .filter(p -> !p.isDisabled())
                 .collect(Collectors.toList());
         List<ProductGroup> forDrink = productGroupService.findAll().stream()
                 .filter(p -> p.getType() == ProductType.DRINK)
+                .filter(p -> !p.isDisabled())
                 .collect(Collectors.toList());
         List<ProductGroup> forDessert = productGroupService.findAll().stream()
                 .filter(p -> p.getType() == ProductType.DESSERT)
+                .filter(p -> !p.isDisabled())
                 .collect(Collectors.toList());
         return new Object[][]{
                 {ProductType.SNACK, forSnack},
@@ -129,8 +133,8 @@ public class ProductGroupServiceImplTest {
     @Test
     public void testEnableById() throws ServiceException, NullParamDaoException {
         try {
-            productGroupService.enableById(32);
-            ProductGroup entityById = productGroupService.findEntityById(32);
+            productGroupService.enableById(31);
+            ProductGroup entityById = productGroupService.findEntityById(31);
             assertFalse(entityById.isDisabled());
         } finally {
             databaseManager.reset();
