@@ -22,9 +22,11 @@ public class OrderServiceImplTest {
     public void testFindEntityById() {
     }
 
+
     @Test
-    public void testDeleteById() {
+    public void testFindCurrentByUserId() {
     }
+
 
     @Test
     public void testDelete() {
@@ -55,14 +57,7 @@ public class OrderServiceImplTest {
     }
 
     @Test
-    public void testFindCurrentByUserId() {
-    }
-
-    @Test
     public void testCancelOrDeleteById() {
     }
 
-    @Test
-    public void testCount() {
-    }
 }

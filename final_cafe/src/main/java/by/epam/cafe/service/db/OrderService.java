@@ -12,8 +12,6 @@ public interface OrderService {
 
     Order findEntityById(Integer integer) throws ServiceException;
 
-    boolean deleteById(Integer integer) throws ServiceException;
-
     boolean delete(Order entity) throws ServiceException;
 
     Order create(Order entity) throws ServiceException;

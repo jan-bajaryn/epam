@@ -99,20 +99,6 @@ public class OrderServiceImpl implements OrderService {
 
     }
 
-    @Override
-    public boolean deleteById(Integer integer) throws ServiceException {
-        try (final Transaction transaction = dAOFactory.createTransaction()) {
-            boolean result = orderMysqlDao.deleteById(integer, transaction);
-            if (result) {
-                transaction.commit();
-            } else {
-                transaction.rollBack();
-            }
-            return result;
-        } catch (DaoException e) {
-            throw new ServiceException(e);
-        }
-    }
 
     @Override
     public boolean delete(Order entity) throws ServiceException {
@@ -131,7 +117,6 @@ public class OrderServiceImpl implements OrderService {
         }
     }
 
-    //
     @Override
     public Order create(Order entity) throws ServiceException {
 
