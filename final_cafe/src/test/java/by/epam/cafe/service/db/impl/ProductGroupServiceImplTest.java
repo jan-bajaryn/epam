@@ -219,7 +219,7 @@ public class ProductGroupServiceImplTest {
         try {
             ProductGroup entityById = productGroupService.findEntityById(31);
             entityById.getProducts().add(Product.newBuilder().id(24).build());
-            boolean result = productGroupService.update(entityById);
+            productGroupService.update(entityById);
             entityById = productGroupService.findEntityById(31);
             boolean match = entityById.getProducts().stream()
                     .anyMatch(p -> p.getId().equals(24));

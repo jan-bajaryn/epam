@@ -120,25 +120,34 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Order create(Order entity) throws ServiceException {
 
+        if (entity == null) {
+            return null;
+        }
+
         try (final Transaction transaction = dAOFactory.createTransaction()) {
             log.debug("create1");
             DeliveryInf deliveryInf = deliveryInfMysqlDao.create(entity.getDeliveryInf(), transaction);
+
+            if (deliveryInf == null) {
+                transaction.rollBack();
+                return null;
+            }
+
             entity.setDeliveryInf(deliveryInf);
 
             Order order = orderMysqlDao.create(entity, transaction);
 
-            log.debug("create2");
+            if (order == null) {
+                transaction.rollBack();
+                return null;
+            }
 
             Map<Product, Integer> products = order.getProducts();
-            saveProducts(products, order, transaction);
-
-            log.debug("create3");
-            if (deliveryInf == null) {
-                log.debug("create4");
+            boolean result = saveProducts(products, order, transaction);
+            if (!result) {
                 transaction.rollBack();
-                log.debug("create5");
+                return null;
             } else {
-                log.debug("create6");
                 transaction.commit();
             }
             return order;
@@ -148,24 +157,27 @@ public class OrderServiceImpl implements OrderService {
 
     }
 
-    private void saveProducts(Map<Product, Integer> products, Order order, Transaction transaction) throws ServiceException {
-        orderMysqlDao.addProductsOnCreate(products, order, transaction);
+    private boolean saveProducts(Map<Product, Integer> products, Order order, Transaction transaction) {
+        return orderMysqlDao.addProductsOnCreate(products, order, transaction);
     }
 
     @Override
     public boolean update(Order entity) throws ServiceException {
 
+        if (entity == null || entity.getId() == null) {
+            return false;
+        }
+
         try (final Transaction transaction = dAOFactory.createTransaction()) {
 
+            Order oldOrder = orderMysqlDao.findEntityById(entity.getId(), transaction);
             DeliveryInf curDeliveryInf = entity.getDeliveryInf();
-            if (curDeliveryInf != null) {
-                if (curDeliveryInf.getId() != null) {
-                    deliveryInfMysqlDao.update(curDeliveryInf, transaction);
-                } else {
-                    deliveryInfMysqlDao.create(curDeliveryInf, transaction);
-                }
-            }
 
+            setIdToDeliveryInf(oldOrder, curDeliveryInf);
+
+            if (!saveDeliveryInf(transaction, curDeliveryInf, entity)) {
+                return false;
+            }
             boolean result = orderMysqlDao.update(entity, transaction);
             if (result) {
                 transaction.commit();
@@ -179,6 +191,32 @@ public class OrderServiceImpl implements OrderService {
 
     }
 
+    private boolean saveDeliveryInf(Transaction transaction, DeliveryInf curDeliveryInf, Order order) throws DaoException {
+        if (curDeliveryInf != null && curDeliveryInf.getId() != null) {
+            boolean update = deliveryInfMysqlDao.update(curDeliveryInf, transaction);
+            if (!update) {
+                transaction.rollBack();
+                return false;
+            }
+
+        } else {
+            DeliveryInf deliveryInf = deliveryInfMysqlDao.create(curDeliveryInf, transaction);
+            if (deliveryInf == null) {
+                transaction.rollBack();
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private void setIdToDeliveryInf(Order oldOrder, DeliveryInf curDeliveryInf) {
+        if (oldOrder != null &&
+                oldOrder.getDeliveryInf() != null &&
+                oldOrder.getDeliveryInf().getId() != null) {
+            curDeliveryInf.setId(oldOrder.getDeliveryInf().getId());
+        }
+    }
+
     @Override
     public void plusProduct(final Integer orderId, final Integer prodId) throws ServiceException {
         try (final Transaction transaction = dAOFactory.createTransaction()) {
@@ -188,7 +226,6 @@ public class OrderServiceImpl implements OrderService {
                 if (!orderMysqlDao.plusExistingProduct(orderId, prodId, transaction)) {
                     transaction.rollBack();
                     throw new ServiceException();
-
                 } else {
                     transaction.commit();
                 }
@@ -269,7 +306,6 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Order findCurrentByUserId(Integer id) throws ServiceException {
         try (final Transaction transaction = dAOFactory.createTransaction()) {
-
             Order current = orderMysqlDao.findCurrentByUserId(id, transaction);
             if (current != null) {
                 buildOrder(current, transaction);
@@ -283,8 +319,18 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public boolean cancelOrDeleteById(Integer idInt) throws ServiceException {
         log.debug("cancelOrDeleteById working...");
+
+        if (idInt == null) {
+            throw new ServiceException("Input is null");
+        }
+
         Order entityById = findEntityById(idInt);
         log.debug("cancelOrDeleteById: entityById = {}", entityById);
+
+        if (entityById == null) {
+            throw new ServiceException("No order with so id. id = " + idInt);
+        }
+
         if (entityById.getStatus() == OrderStatus.WAITING) {
             log.debug("deleting...");
             return delete(entityById);

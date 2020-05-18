@@ -290,7 +290,7 @@ public class UserServiceImplTest {
     }
 
     @Test
-    public void testBlockByIdNull() throws IllegalIdException, ServiceException {
+    public void testBlockByIdNull() {
         try {
 
             assertThrows(IllegalIdException.class, () -> userService.blockById(null));

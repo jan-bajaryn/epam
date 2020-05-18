@@ -284,7 +284,6 @@ public class OrderMysqlDao extends AbstractMysqlDao<Integer, Order> {
             statement.setInt(2, userId);
 
             ResultSet resultSet = statement.executeQuery();
-
             if (resultSet.next()) {
                 return findEntity(resultSet);
             }
