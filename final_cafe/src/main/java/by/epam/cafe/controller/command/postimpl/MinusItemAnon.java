@@ -47,11 +47,9 @@ public class MinusItemAnon extends by.epam.cafe.controller.command.Command {
                 log.info("referer = {}", referer);
                 response.sendRedirect(referer);
             } else {
-                //TODO LOGIC
                 response.sendRedirect(request.getContextPath() + request.getServletPath() + "/something_went_wrong");
             }
         } catch (NumberFormatException | ServiceException e) {
-            //TODO LOGIC
             response.sendRedirect(request.getContextPath() + request.getServletPath() + "/something_went_wrong");
         }
 

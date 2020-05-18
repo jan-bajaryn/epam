@@ -24,7 +24,6 @@ public class ImageWriterDao {
         if (temp.exists()) {
             int counter = 0;
             while (temp.exists()) {
-                // TODO think about the best way to generate counter for unique file name
                 temp = new File(DOWNLOAD_LOCATION + counter + temp.getName());
             }
         }

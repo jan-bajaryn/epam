@@ -119,7 +119,6 @@ public class ProductGroupParser {
             }
         } catch (Exception e) {
             if (file != null) {
-                // TODO check security
                 file.delete();
             }
             return false;

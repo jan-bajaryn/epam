@@ -108,7 +108,6 @@ public class UserServiceImpl implements UserService {
     }
 
 
-    //    TODO complete this method with dao
     @Override
     public User findUserByUsername(String username) throws ServiceException {
         return findAll().stream()

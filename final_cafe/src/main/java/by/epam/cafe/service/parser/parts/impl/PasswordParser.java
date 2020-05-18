@@ -6,7 +6,6 @@ import by.epam.cafe.service.validator.parts.PasswordValidator;
 
 public class PasswordParser extends ParamsParser<String> {
 
-    // TODO enable validation before answer
     public static final PasswordValidator VALIDATOR = new PasswordValidator();
 
     public PasswordParser() {

@@ -258,24 +258,6 @@ public class ProductGroupServiceImpl implements ProductGroupService {
     }
 
 
-    private void log(FileItem part) {
-        if (part.isFormField()) {
-            log.debug("--------------------------");
-            log.debug("part.getName() = {}", part.getName());
-            log.debug("part.getContentType() = {}", part.getContentType());
-            log.debug("part.getFieldName() = {}", part.getFieldName());
-            log.debug("part = {}", part);
-            log.debug("part.getString() = {}", part.getString());
-        } else {
-            log.debug("===============================");
-            log.debug("part.getName() = {}", part.getName());
-            log.debug("part.getContentType() = {}", part.getContentType());
-            log.debug("part.getFieldName() = {}", part.getFieldName());
-            log.debug("part = {}", part);
-        }
-
-    }
-
     @Override
     public int count() throws ServiceException {
         try (final Transaction transaction = dAOFactory.createTransaction()) {

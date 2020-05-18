@@ -131,7 +131,6 @@ public class ProductServiceImpl implements ProductService {
     }
 
 
-    //TODO make additional query for that if teacher say
     @Override
     public List<Product> findAllByProductGroupNull() throws ServiceException {
         return findAll().stream()

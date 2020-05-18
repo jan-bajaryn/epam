@@ -31,7 +31,6 @@ public class ChangeLanguage extends by.epam.cafe.controller.command.Command {
             HttpSession session = request.getSession();
             Config.set(session, Config.FMT_LOCALE, any.get().getLocale());
         } else {
-            // TODO realize locerr if need
             request.setAttribute("locerr", true);
         }
 

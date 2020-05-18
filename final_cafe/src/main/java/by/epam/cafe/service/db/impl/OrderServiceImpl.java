@@ -75,9 +75,6 @@ public class OrderServiceImpl implements OrderService {
         o.setProducts(buildingProducts);
         log.debug("buildOrder: o = {}", o);
 
-//                o.getProducts().stream()
-//                .map(p -> productMysqlDao.findEntityById(p.getId()))
-//                .collect(Collectors.toList());
         if (o.getDeliveryInf() != null) {
 
             DeliveryInf delInf = deliveryInfMysqlDao
@@ -85,7 +82,6 @@ public class OrderServiceImpl implements OrderService {
 
             o.setDeliveryInf(delInf);
         }
-        // TODO find product group and build
     }
 
     @Override
