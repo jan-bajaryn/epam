@@ -16,6 +16,10 @@ public class PaginationServiceImpl implements PaginationService {
     public Map<Integer, PaginationStatus> calculate(int allCount, int current, int pageLimit) {
         Map<Integer, PaginationStatus> map = new TreeMap<>();
 
+        if (allCount < 0 || current < 0 || pageLimit < 0) {
+            return map;
+        }
+
         int barCount = (allCount + pageLimit - 1) / pageLimit;
 
 
