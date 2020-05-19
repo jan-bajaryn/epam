@@ -5,12 +5,10 @@ import by.epam.cafe.dao.exception.DaoException;
 import by.epam.cafe.dao.mysql.Transaction;
 import by.epam.cafe.dao.mysql.impl.DeliveryInfMysqlDao;
 import by.epam.cafe.dao.mysql.impl.OrderMysqlDao;
+import by.epam.cafe.dao.mysql.impl.ProductGroupMysqlDao;
 import by.epam.cafe.dao.mysql.impl.ProductMysqlDao;
+import by.epam.cafe.entity.db.impl.*;
 import by.epam.cafe.entity.enums.OrderStatus;
-import by.epam.cafe.entity.db.impl.DeliveryInf;
-import by.epam.cafe.entity.db.impl.Order;
-import by.epam.cafe.entity.db.impl.Product;
-import by.epam.cafe.entity.db.impl.User;
 import by.epam.cafe.service.db.ProductService;
 import by.epam.cafe.service.db.OrderService;
 import by.epam.cafe.service.exception.ServiceException;
@@ -34,6 +32,8 @@ public class OrderServiceImpl implements OrderService {
     private final OrderMysqlDao orderMysqlDao = dAOFactory.getOrderMysqlDao();
     private final ProductMysqlDao productMysqlDao = dAOFactory.getProductMysqlDao();
     private final DeliveryInfMysqlDao deliveryInfMysqlDao = dAOFactory.getDeliveryInfMysqlDao();
+    private final ProductGroupMysqlDao productGroupMysqlDao = dAOFactory.getProductGroupMysqlDao();
+
 
     private final ProductService productService = new ProductServiceImpl();
 
@@ -78,7 +78,7 @@ public class OrderServiceImpl implements OrderService {
                 productMysqlDao.findAllByOrderId(o.getId(), transaction);
         Map<Product, Integer> buildingProducts = products.entrySet().stream()
                 .map(p -> {
-                    productService.buildProduct(p.getKey(), transaction);
+                    buildProduct(p.getKey(), transaction);
                     return Map.entry(p.getKey(), p.getValue());
                 })
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
@@ -92,6 +92,14 @@ public class OrderServiceImpl implements OrderService {
                     .findEntityById(o.getDeliveryInf().getId(), transaction);
 
             o.setDeliveryInf(delInf);
+        }
+    }
+
+    private void buildProduct(Product p, Transaction transaction) {
+        ProductGroup productGroup = p.getProductGroup();
+        if (productGroup != null) {
+            Integer id = productGroup.getId();
+            p.setProductGroup(productGroupMysqlDao.findEntityById(id, transaction));
         }
     }
 

@@ -1,6 +1,5 @@
 package by.epam.cafe.service.db;
 
-import by.epam.cafe.entity.db.impl.DeliveryInf;
 import by.epam.cafe.entity.db.impl.Order;
 import by.epam.cafe.service.exception.ServiceException;
 
@@ -38,7 +37,7 @@ public interface OrderService {
     Order findEntityById(Integer id) throws ServiceException;
 
     /**
-     * @param entity what dedicated to delete {@link DeliveryInf}
+     * @param entity what dedicated to delete {@link Order}
      * @return true if entity successfully deleted,
      * otherwise return false
      * @throws ServiceException if service can't connect to the database

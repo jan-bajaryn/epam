@@ -49,8 +49,7 @@ public class ProductServiceImpl implements ProductService {
         }
     }
 
-    @Override
-    public void buildProduct(Product p, Transaction transaction) {
+    private void buildProduct(Product p, Transaction transaction) {
         ProductGroup productGroup = p.getProductGroup();
         if (productGroup != null) {
             Integer id = productGroup.getId();
