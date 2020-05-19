@@ -1,11 +1,17 @@
 package by.epam.cafe.service.db;
 
 import by.epam.cafe.dao.mysql.Transaction;
+import by.epam.cafe.entity.db.impl.DeliveryInf;
 import by.epam.cafe.entity.db.impl.Product;
 import by.epam.cafe.service.exception.ServiceException;
 
 import java.util.List;
 
+
+/**
+ * Service interface to working with {@link Product}
+ * Gives abilities for CRUD operations with {@link Product}
+ */
 public interface ProductService {
     List<Product> findAll() throws ServiceException;
 

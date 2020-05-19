@@ -1,6 +1,7 @@
 package by.epam.cafe.service.db;
 
 import by.epam.cafe.dao.exception.NullParamDaoException;
+import by.epam.cafe.entity.db.impl.DeliveryInf;
 import by.epam.cafe.entity.enums.ProductType;
 import by.epam.cafe.entity.db.impl.ProductGroup;
 import by.epam.cafe.service.exception.NullServiceException;
@@ -8,9 +9,15 @@ import by.epam.cafe.service.exception.ServiceException;
 
 import java.util.List;
 
+
+/**
+ * Service interface to working with {@link ProductGroup}
+ * Gives abilities for CRUD operations with {@link ProductGroup}
+ */
 public interface ProductGroupService {
 
     List<ProductGroup> findAll() throws NullParamDaoException, ServiceException;
+
     List<ProductGroup> findAllByPart(int begin) throws NullParamDaoException, ServiceException;
 
     ProductGroup findEntityById(Integer integer) throws NullParamDaoException, ServiceException;

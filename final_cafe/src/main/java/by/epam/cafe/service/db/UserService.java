@@ -1,5 +1,6 @@
 package by.epam.cafe.service.db;
 
+import by.epam.cafe.entity.db.impl.DeliveryInf;
 import by.epam.cafe.entity.db.impl.User;
 import by.epam.cafe.service.exception.IllegalIdException;
 import by.epam.cafe.service.exception.ServiceException;
@@ -7,7 +8,8 @@ import by.epam.cafe.service.exception.ServiceException;
 import java.util.List;
 
 /**
- * Dedicated to service necessary CRUD operations for class {@link User}
+ * Service interface to working with {@link User}
+ * Gives abilities for CRUD operations with {@link User}
  */
 public interface UserService {
     List<User> findAll() throws ServiceException;

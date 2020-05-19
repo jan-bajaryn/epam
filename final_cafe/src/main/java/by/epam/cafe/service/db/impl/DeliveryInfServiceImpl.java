@@ -10,6 +10,9 @@ import by.epam.cafe.service.exception.ServiceException;
 
 import java.util.List;
 
+/**
+ * implementation of interface {@link DeliveryInfService}
+ */
 public class DeliveryInfServiceImpl implements DeliveryInfService {
 
     private final DAOFactory dAOFactory = DAOFactory.getInstance();
@@ -17,6 +20,10 @@ public class DeliveryInfServiceImpl implements DeliveryInfService {
     private DeliveryInfMysqlDao deliveryInfMysqlDao = dAOFactory.getDeliveryInfMysqlDao();
 
 
+    /**
+     * @return List of all {@link DeliveryInf} in base
+     * @throws ServiceException if service can't connect to the database
+     */
     @Override
     public List<DeliveryInf> findAll() throws ServiceException {
         try (final Transaction transaction = dAOFactory.createTransaction()) {
@@ -27,20 +34,32 @@ public class DeliveryInfServiceImpl implements DeliveryInfService {
     }
 
 
+    /**
+     * @param id identifier of {@link DeliveryInf}
+     * @return entity from database identified by id, or {@code null} if
+     * there no entity with so id
+     * @throws ServiceException if service can't connect to the database
+     * @see by.epam.cafe.entity.db.Entity
+     */
     @Override
-    public DeliveryInf findEntityById(Integer integer) throws ServiceException {
+    public DeliveryInf findEntityById(Integer id) throws ServiceException {
         try (final Transaction transaction = dAOFactory.createTransaction()) {
-            return deliveryInfMysqlDao.findEntityById(integer, transaction);
+            return deliveryInfMysqlDao.findEntityById(id, transaction);
         } catch (DaoException e) {
             throw new ServiceException(e);
         }
     }
 
-
+    /**
+     * @param id identifier of {@link DeliveryInf}
+     * @return true if entity successfully deleted,
+     * otherwise return false
+     * @throws ServiceException if service can't connect to the database
+     */
     @Override
-    public boolean deleteById(Integer integer) throws ServiceException {
+    public boolean deleteById(Integer id) throws ServiceException {
         try (final Transaction transaction = dAOFactory.createTransaction()) {
-            boolean result = deliveryInfMysqlDao.deleteById(integer, transaction);
+            boolean result = deliveryInfMysqlDao.deleteById(id, transaction);
             if (!result) {
                 transaction.rollBack();
             } else {
@@ -53,6 +72,12 @@ public class DeliveryInfServiceImpl implements DeliveryInfService {
     }
 
 
+    /**
+     * @param entity what dedicated to delete {@link DeliveryInf}
+     * @return true if entity successfully deleted,
+     * otherwise return false
+     * @throws ServiceException if service can't connect to the database
+     */
     @Override
     public boolean delete(DeliveryInf entity) throws ServiceException {
         try (final Transaction transaction = dAOFactory.createTransaction()) {
@@ -69,6 +94,11 @@ public class DeliveryInfServiceImpl implements DeliveryInfService {
     }
 
 
+    /**
+     * @param entity {@link DeliveryInf} dedicated to create
+     * @return created entity with new id, or {@code null} if entity can't be created
+     * @throws ServiceException if service can't connect to the database
+     */
     @Override
     public DeliveryInf create(DeliveryInf entity) throws ServiceException {
         try (final Transaction transaction = dAOFactory.createTransaction()) {
@@ -85,6 +115,12 @@ public class DeliveryInfServiceImpl implements DeliveryInfService {
     }
 
 
+    /**
+     * @param entity {@link DeliveryInf} dedicated to update identified by id
+     *               {@link by.epam.cafe.entity.db.Entity}
+     * @return true if entity successfully updated otherwise returns false
+     * @throws ServiceException if service can't connect to the database
+     */
     @Override
     public boolean update(DeliveryInf entity) throws ServiceException {
         try (final Transaction transaction = dAOFactory.createTransaction()) {
