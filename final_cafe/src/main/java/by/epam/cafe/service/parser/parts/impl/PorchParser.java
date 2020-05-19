@@ -13,6 +13,6 @@ public class PorchParser extends ParamsParser<Integer> {
 
     @Override
     protected Integer modify(String input) throws Exception {
-        return input.isEmpty() ? null : Integer.valueOf(input);
+        return input == null || input.isEmpty() ? null : Integer.valueOf(input);
     }
 }

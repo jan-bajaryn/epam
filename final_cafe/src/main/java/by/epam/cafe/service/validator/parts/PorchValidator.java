@@ -9,6 +9,6 @@ public class PorchValidator implements Validator<Integer> {
 
     @Override
     public boolean isValid(Integer input) {
-        return input > MIN_VALUE && input < MAX_VALUE;
+        return input == null || (input > MIN_VALUE && input < MAX_VALUE);
     }
 }

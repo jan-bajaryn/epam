@@ -14,14 +14,14 @@ public class PaginationCalculatorImplTest {
     public Object[][] checkProvider
             () {
         return new Object[][]{
-                {null,false,null},
-                {"-1",false,null},
-                {"0",false,null},
-                {"-20000",false,null},
-                {"asd",false,null},
-                {"",false,null},
-                {"12",true,12},
-                {"1",true,1},
+                {null, false, null},
+                {"-1", false, null},
+                {"0", false, null},
+                {"-20000", false, null},
+                {"asd", false, null},
+                {"", false, null},
+                {"12", true, 12},
+                {"1", true, 1},
         };
     }
 
