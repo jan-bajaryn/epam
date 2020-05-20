@@ -1,7 +1,6 @@
 package by.epam.cafe.controller.command.postimpl;
 
 import by.epam.cafe.service.db.UserService;
-import by.epam.cafe.service.exception.IllegalIdException;
 import by.epam.cafe.service.exception.IllegalPathParamException;
 import by.epam.cafe.service.exception.ServiceException;
 import by.epam.cafe.service.factory.ServiceFactory;
@@ -32,7 +31,7 @@ public class UserUnBlock extends by.epam.cafe.controller.command.Command {
 
             response.sendRedirect(request.getContextPath() + request.getServletPath() + "/admin/user-list?pagination=1");
 
-        } catch (IllegalPathParamException | IllegalIdException | ServiceException e) {
+        } catch (IllegalPathParamException | ServiceException e) {
             log.error("e: ", e);
             response.sendRedirect(request.getContextPath() + request.getServletPath() + "/something_went_wrong");
         }

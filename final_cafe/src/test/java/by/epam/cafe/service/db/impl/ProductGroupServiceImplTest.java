@@ -1,6 +1,5 @@
 package by.epam.cafe.service.db.impl;
 
-import by.epam.cafe.dao.exception.NullParamDaoException;
 import by.epam.cafe.entity.db.impl.Product;
 import by.epam.cafe.entity.db.impl.ProductGroup;
 import by.epam.cafe.entity.enums.ProductType;
@@ -27,12 +26,12 @@ public class ProductGroupServiceImplTest {
     private final ProductServiceImpl productServiceImpl = new ProductServiceImpl();
 
     @Test
-    public void testFindAll() throws ServiceException, NullParamDaoException {
+    public void testFindAll() throws ServiceException {
         assertEquals(productGroupService.findAll().size(), productGroupService.count());
     }
 
     @Test
-    public void testFindAllNotNullParams() throws ServiceException, NullParamDaoException {
+    public void testFindAllNotNullParams() throws ServiceException {
         List<ProductGroup> all = productGroupService.findAll();
         for (ProductGroup productGroup : all) {
             assertNotNull(productGroup.getId());
@@ -45,19 +44,19 @@ public class ProductGroupServiceImplTest {
     }
 
     @Test
-    public void testFindAllByPart() throws ServiceException, NullParamDaoException {
+    public void testFindAllByPart() throws ServiceException {
         List<ProductGroup> allByPart = productGroupService.findAllByPart(1);
         assertEquals(allByPart.size(), MAX_PAGINATION_ELEMENTS);
     }
 
     @Test
-    public void testFindEntityById() throws ServiceException, NullParamDaoException {
+    public void testFindEntityById() throws ServiceException {
         ProductGroup entityById = productGroupService.findEntityById(1);
         assertNotNull(entityById);
     }
 
     @Test
-    public void testFindEntityByIdNotExists() throws ServiceException, NullParamDaoException {
+    public void testFindEntityByIdNotExists() throws ServiceException {
         ProductGroup entityById = productGroupService.findEntityById(1000);
         assertNull(entityById);
     }
@@ -69,7 +68,7 @@ public class ProductGroupServiceImplTest {
 
     @DataProvider(name = "byType")
     public Object[][] byTypeProvider
-            () throws ServiceException, NullParamDaoException {
+            () throws ServiceException {
         List<ProductGroup> forSnack = productGroupService.findAll().stream()
                 .filter(p -> p.getType() == ProductType.SNACK)
                 .filter(p -> !p.isDisabled())
@@ -101,7 +100,7 @@ public class ProductGroupServiceImplTest {
     }
 
     @Test
-    public void testFindAllExcept() throws ServiceException, NullParamDaoException {
+    public void testFindAllExcept() throws ServiceException {
         final ProductGroup build = ProductGroup.newBuilder().id(1).build();
         List<ProductGroup> allExcept = productGroupService.findAllExcept(build);
         List<ProductGroup> collect = productGroupService.findAll().stream()
@@ -111,7 +110,7 @@ public class ProductGroupServiceImplTest {
     }
 
     @Test
-    public void testDisableById() throws ServiceException, NullParamDaoException {
+    public void testDisableById() throws ServiceException {
         try {
             productGroupService.disableById(1);
             ProductGroup entityById = productGroupService.findEntityById(1);
@@ -131,7 +130,7 @@ public class ProductGroupServiceImplTest {
     }
 
     @Test
-    public void testEnableById() throws ServiceException, NullParamDaoException {
+    public void testEnableById() throws ServiceException {
         try {
             productGroupService.enableById(31);
             ProductGroup entityById = productGroupService.findEntityById(31);
@@ -206,7 +205,7 @@ public class ProductGroupServiceImplTest {
     }
 
     @Test
-    public void testUpdate() throws ServiceException, NullParamDaoException {
+    public void testUpdate() throws ServiceException {
         try {
             ProductGroup entityById = productGroupService.findEntityById(31);
             entityById.getProducts().add(Product.newBuilder().id(24).build());
@@ -219,7 +218,7 @@ public class ProductGroupServiceImplTest {
 
 
     @Test
-    public void testUpdateResultInDb() throws ServiceException, NullParamDaoException {
+    public void testUpdateResultInDb() throws ServiceException {
         try {
             ProductGroup entityById = productGroupService.findEntityById(31);
             entityById.getProducts().add(Product.newBuilder().id(24).build());

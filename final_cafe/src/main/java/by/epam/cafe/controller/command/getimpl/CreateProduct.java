@@ -1,6 +1,5 @@
 package by.epam.cafe.controller.command.getimpl;
 
-import by.epam.cafe.dao.exception.NullParamDaoException;
 import by.epam.cafe.entity.db.impl.ProductGroup;
 import by.epam.cafe.service.db.ProductGroupService;
 import by.epam.cafe.service.exception.ServiceException;
@@ -28,7 +27,7 @@ public class CreateProduct extends by.epam.cafe.controller.command.Command {
 
             request.getRequestDispatcher("/WEB-INF/jsp/admin/create-product.jsp").forward(request, response);
 
-        } catch (NullParamDaoException | ServiceException e) {
+        } catch ( ServiceException e) {
             request.getRequestDispatcher("/WEB-INF/jsp/errors/something_went_wrong.jsp").forward(request, response);
         }
 

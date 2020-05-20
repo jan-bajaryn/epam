@@ -6,15 +6,12 @@ import by.epam.cafe.dao.exception.NullParamDaoException;
 import by.epam.cafe.dao.mysql.Transaction;
 import by.epam.cafe.dao.mysql.impl.ProductGroupMysqlDao;
 import by.epam.cafe.dao.mysql.impl.ProductMysqlDao;
-import by.epam.cafe.entity.enums.ProductType;
 import by.epam.cafe.entity.db.impl.Product;
 import by.epam.cafe.entity.db.impl.ProductGroup;
-import by.epam.cafe.helper.ImageWriterService;
+import by.epam.cafe.entity.enums.ProductType;
 import by.epam.cafe.service.db.ProductGroupService;
 import by.epam.cafe.service.exception.NullServiceException;
 import by.epam.cafe.service.exception.ServiceException;
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -25,20 +22,19 @@ import static by.epam.cafe.config.Configuration.MAX_PAGINATION_ELEMENTS;
 
 public class ProductGroupServiceImpl implements ProductGroupService {
 
-    private static final DiskFileItemFactory FILE_ITEM_FACTORY = new DiskFileItemFactory();
-
-
     private static final Logger log = LogManager.getLogger(ProductGroupServiceImpl.class);
-
 
     private final DAOFactory dAOFactory = DAOFactory.getInstance();
     private final ProductMysqlDao productMysqlDao = dAOFactory.getProductMysqlDao();
     private final ProductGroupMysqlDao productGroupMysqlDao = dAOFactory.getProductGroupMysqlDao();
 
-    private final ImageWriterService imageWriterService = new ImageWriterService();
 
+    /**
+     * @return List of all {@link ProductGroup} in base
+     * @throws ServiceException if service can't connect to the database
+     */
     @Override
-    public List<ProductGroup> findAll() throws NullParamDaoException, ServiceException {
+    public List<ProductGroup> findAll() throws ServiceException {
 
         try (Transaction transaction = dAOFactory.createTransaction()) {
             List<ProductGroup> all = productGroupMysqlDao.findAll(transaction);
@@ -51,8 +47,16 @@ public class ProductGroupServiceImpl implements ProductGroupService {
         }
     }
 
+    /**
+     * @param part number of part of all entities {@link ProductGroup} from the database,
+     *             where maximum number of entities in one part is
+     *             {@value by.epam.cafe.config.Configuration#MAX_PAGINATION_ELEMENTS}
+     * @return List of {@link ProductGroup} from the database related to part from input
+     * or empty list if there no so part in database
+     * @throws ServiceException if service can't connect to the database
+     */
     @Override
-    public List<ProductGroup> findAllByPart(int part) throws NullParamDaoException, ServiceException {
+    public List<ProductGroup> findAllByPart(int part) throws ServiceException {
 
         try (Transaction transaction = dAOFactory.createTransaction()) {
             List<ProductGroup> all = productGroupMysqlDao.findAllByPart(transaction, (part - 1) * MAX_PAGINATION_ELEMENTS, MAX_PAGINATION_ELEMENTS);
@@ -65,10 +69,17 @@ public class ProductGroupServiceImpl implements ProductGroupService {
         }
     }
 
+    /**
+     * @param id identifier of {@link ProductGroup}
+     * @return entity from database identified by id, or {@code null} if
+     * there no entity with so id
+     * @throws ServiceException if service can't connect to the database
+     * @see by.epam.cafe.entity.db.Entity
+     */
     @Override
-    public ProductGroup findEntityById(Integer integer) throws NullParamDaoException, ServiceException {
+    public ProductGroup findEntityById(Integer id) throws ServiceException {
         try (Transaction transaction = dAOFactory.createTransaction()) {
-            ProductGroup entityById = productGroupMysqlDao.findEntityById(integer, transaction);
+            ProductGroup entityById = productGroupMysqlDao.findEntityById(id, transaction);
             if (entityById != null) {
                 buildProductGroup(entityById, transaction);
             }
@@ -78,6 +89,11 @@ public class ProductGroupServiceImpl implements ProductGroupService {
         }
     }
 
+    /**
+     * @param entity {@link ProductGroup} dedicated to create
+     * @return created entity with new id, or {@code null} if entity can't be created
+     * @throws ServiceException if service can't connect to the database
+     */
     @Override
     public ProductGroup create(ProductGroup entity) throws ServiceException {
 
@@ -97,7 +113,7 @@ public class ProductGroupServiceImpl implements ProductGroupService {
         }
     }
 
-    private void insertProductsIfPossible(ProductGroup entity, Transaction transaction) throws ServiceException {
+    private void insertProductsIfPossible(ProductGroup entity, Transaction transaction) {
 
         List<Product> products = entity.getProducts();
         if (products != null) {
@@ -110,6 +126,12 @@ public class ProductGroupServiceImpl implements ProductGroupService {
 
     }
 
+    /**
+     * @param entity {@link ProductGroup} dedicated to update identified by id
+     *               {@link by.epam.cafe.entity.db.Entity}
+     * @return true if entity successfully updated otherwise returns false
+     * @throws ServiceException if service can't connect to the database
+     */
     @Override
     public boolean update(ProductGroup entity) throws ServiceException {
 
@@ -172,7 +194,7 @@ public class ProductGroupServiceImpl implements ProductGroupService {
         }
     }
 
-    private void deleteAll(List<Product> toDelete, Transaction transaction) throws ServiceException {
+    private void deleteAll(List<Product> toDelete, Transaction transaction) {
         for (Product product : toDelete) {
             Product entityById = productMysqlDao.findEntityById(product.getId(), transaction);
             entityById.setProductGroup(null);
@@ -180,7 +202,7 @@ public class ProductGroupServiceImpl implements ProductGroupService {
         }
     }
 
-    private void insertAll(List<Product> toAdd, ProductGroup entity, Transaction transaction) throws ServiceException {
+    private void insertAll(List<Product> toAdd, ProductGroup entity, Transaction transaction) {
         for (Product product : toAdd) {
             Product entityById = productMysqlDao.findEntityById(product.getId(), transaction);
             entityById.setProductGroup(entity);
@@ -189,8 +211,13 @@ public class ProductGroupServiceImpl implements ProductGroupService {
 
     }
 
+    /**
+     * @return List of {@link ProductGroup} from the database
+     * where method {@link ProductGroup#isDisabled()} returns false
+     * @throws ServiceException if service can't connect to the database
+     */
     @Override
-    public List<ProductGroup> findAllByProductTypeNotDisabled(ProductType type) throws NullServiceException, ServiceException {
+    public List<ProductGroup> findAllByProductTypeNotDisabled(ProductType type) throws ServiceException {
 
         try (final Transaction transaction = dAOFactory.createTransaction()) {
             try {
@@ -207,8 +234,14 @@ public class ProductGroupServiceImpl implements ProductGroupService {
         }
     }
 
+    /**
+     * @param productGroup {@link ProductGroup} without what should be return list
+     * @return List of all {@link ProductGroup} from the database
+     * except productGroup from input
+     * @throws ServiceException if service can't connect to the database
+     */
     @Override
-    public List<ProductGroup> findAllExcept(ProductGroup productGroup) throws NullParamDaoException, ServiceException {
+    public List<ProductGroup> findAllExcept(ProductGroup productGroup) throws ServiceException {
         List<ProductGroup> all = findAll();
         if (productGroup != null) {
             all = all.stream()
@@ -219,6 +252,15 @@ public class ProductGroupServiceImpl implements ProductGroupService {
     }
 
 
+    /**
+     * Make {@link ProductGroup} disabled {@link ProductGroup#setDisabled(boolean)} true
+     * and commit to the database
+     *
+     * @param id identifier of {@link ProductGroup}
+     * @throws ServiceException                                    if service can't connect to the database
+     * @throws by.epam.cafe.service.exception.NullServiceException if id is {@code null}
+     * @see by.epam.cafe.entity.db.Entity
+     */
     @Override
     public void disableById(Integer id) throws ServiceException {
         if (id == null) {
@@ -237,6 +279,16 @@ public class ProductGroupServiceImpl implements ProductGroupService {
         }
     }
 
+
+    /**
+     * Make {@link ProductGroup} disabled {@link ProductGroup#setDisabled(boolean)} false
+     * and than commit to the database
+     *
+     * @param id identifier of {@link ProductGroup}
+     * @throws ServiceException                                    if service can't connect to the database
+     * @throws by.epam.cafe.service.exception.NullServiceException if id is {@code null}
+     * @see by.epam.cafe.entity.db.Entity
+     */
     @Override
     public void enableById(Integer id) throws ServiceException {
         if (id == null) {
@@ -256,14 +308,21 @@ public class ProductGroupServiceImpl implements ProductGroupService {
 
     }
 
-    private void buildProductGroup(ProductGroup productGroup, Transaction transaction) throws NullParamDaoException {
-        List<Product> products = productGroup.getProducts();
-        List<Product> allByProductGroupId = productMysqlDao.findAllByProductGroupId(productGroup.getId(), transaction);
-        products.addAll(allByProductGroupId);
-        log.info("buildProductGroup: products = {}", products);
+    private void buildProductGroup(ProductGroup productGroup, Transaction transaction) throws NullServiceException {
+        try {
+            List<Product> products = productGroup.getProducts();
+            List<Product> allByProductGroupId = productMysqlDao.findAllByProductGroupId(productGroup.getId(), transaction);
+            products.addAll(allByProductGroupId);
+            log.info("buildProductGroup: products = {}", products);
+        } catch (NullParamDaoException e) {
+            throw new NullServiceException();
+        }
     }
 
-
+    /**
+     * @return count of {@link ProductGroup} in the database
+     * @throws ServiceException if service can't connect to the database
+     */
     @Override
     public int count() throws ServiceException {
         try (final Transaction transaction = dAOFactory.createTransaction()) {

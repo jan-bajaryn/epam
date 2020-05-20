@@ -1,6 +1,6 @@
 package by.epam.cafe.service.exception;
 
-public class IllegalIdException extends Exception {
+public class IllegalIdException extends ServiceException {
     public IllegalIdException() {
     }
 

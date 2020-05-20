@@ -1,6 +1,5 @@
 package by.epam.cafe.controller.command.getimpl;
 
-import by.epam.cafe.dao.exception.NullParamDaoException;
 import by.epam.cafe.entity.db.impl.Product;
 import by.epam.cafe.entity.db.impl.ProductGroup;
 import by.epam.cafe.service.db.ProductGroupService;
@@ -42,7 +41,7 @@ public class EditProduct extends by.epam.cafe.controller.command.Command {
             } else {
                 request.getRequestDispatcher("/WEB-INF/jsp/errors/something_went_wrong.jsp").forward(request, response);
             }
-        } catch (IllegalPathParamException | NullParamDaoException | ServiceException e) {
+        } catch (IllegalPathParamException | ServiceException e) {
             request.getRequestDispatcher("/WEB-INF/jsp/errors/something_went_wrong.jsp").forward(request, response);
         }
     }
