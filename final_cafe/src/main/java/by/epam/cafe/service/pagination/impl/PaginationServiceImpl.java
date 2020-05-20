@@ -17,6 +17,7 @@ public class PaginationServiceImpl implements PaginationService {
      * @param current   current page, current part of the list
      * @param pageLimit limit of element per page
      * @return {@link Map} with template to fill in the view to create pagination bar
+     * Integer means number of position, {@link PaginationStatus} means how element must behave
      * @see PaginationStatus
      */
     @Override
