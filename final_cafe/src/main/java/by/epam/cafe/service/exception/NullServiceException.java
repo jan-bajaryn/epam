@@ -1,5 +1,8 @@
 package by.epam.cafe.service.exception;
 
+/**
+ * Indicates exceptions connected to {@code null}
+ */
 public class NullServiceException extends ServiceException {
     public NullServiceException() {
     }

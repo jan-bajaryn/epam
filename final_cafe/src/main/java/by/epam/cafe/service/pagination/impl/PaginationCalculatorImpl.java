@@ -5,6 +5,11 @@ import by.epam.cafe.service.pagination.PaginationCalculator;
 
 public class PaginationCalculatorImpl implements PaginationCalculator {
 
+    /**
+     * @param pagination String input to parse
+     * @return int value of input if it can be parsed
+     * @throws PaginationException if pagination is null or can't be parsed to int
+     */
     @Override
     public int calculatePartParam(String pagination) throws PaginationException {
         if (pagination == null) {

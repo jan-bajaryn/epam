@@ -1,6 +1,9 @@
 package by.epam.cafe.service.exception;
 
-public class IllegalPathParamException extends Exception {
+/**
+ * Indicates that path variable is invalid
+ */
+public class IllegalPathParamException extends ServiceException {
     public IllegalPathParamException() {
     }
 

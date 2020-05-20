@@ -72,7 +72,7 @@ public class AddProducts extends by.epam.cafe.controller.command.Command {
 
             log.debug("all = {}", all);
             request.getRequestDispatcher("/WEB-INF/jsp/add-products.jsp").forward(request, response);
-        } catch (IllegalPathParamException | ServiceException e) {
+        } catch (ServiceException e) {
             e.printStackTrace();
         }
     }

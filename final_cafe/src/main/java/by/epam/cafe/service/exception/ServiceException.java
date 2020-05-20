@@ -1,5 +1,8 @@
 package by.epam.cafe.service.exception;
 
+/**
+ * Base class for exceptions what thrown from service
+ */
 public class ServiceException extends Exception {
     public ServiceException() {
     }

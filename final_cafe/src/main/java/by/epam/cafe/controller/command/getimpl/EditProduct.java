@@ -41,7 +41,7 @@ public class EditProduct extends by.epam.cafe.controller.command.Command {
             } else {
                 request.getRequestDispatcher("/WEB-INF/jsp/errors/something_went_wrong.jsp").forward(request, response);
             }
-        } catch (IllegalPathParamException | ServiceException e) {
+        } catch (ServiceException e) {
             request.getRequestDispatcher("/WEB-INF/jsp/errors/something_went_wrong.jsp").forward(request, response);
         }
     }

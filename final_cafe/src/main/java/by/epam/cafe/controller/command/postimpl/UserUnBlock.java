@@ -31,7 +31,7 @@ public class UserUnBlock extends by.epam.cafe.controller.command.Command {
 
             response.sendRedirect(request.getContextPath() + request.getServletPath() + "/admin/user-list?pagination=1");
 
-        } catch (IllegalPathParamException | ServiceException e) {
+        } catch (ServiceException e) {
             log.error("e: ", e);
             response.sendRedirect(request.getContextPath() + request.getServletPath() + "/something_went_wrong");
         }

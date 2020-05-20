@@ -12,6 +12,13 @@ public class PaginationServiceImpl implements PaginationService {
 
     public static final int BAR_LIMIT = 6;
 
+    /**
+     * @param allCount  count of all members in list of displayable objects
+     * @param current   current page, current part of the list
+     * @param pageLimit limit of element per page
+     * @return {@link Map} with template to fill in the view to create pagination bar
+     * @see PaginationStatus
+     */
     @Override
     public Map<Integer, PaginationStatus> calculate(int allCount, int current, int pageLimit) {
         Map<Integer, PaginationStatus> map = new TreeMap<>();

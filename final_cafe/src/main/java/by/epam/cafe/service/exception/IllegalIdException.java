@@ -1,5 +1,10 @@
 package by.epam.cafe.service.exception;
 
+import by.epam.cafe.entity.db.Entity;
+
+/**
+ * Indicates when parameter is invalid id
+ */
 public class IllegalIdException extends ServiceException {
     public IllegalIdException() {
     }

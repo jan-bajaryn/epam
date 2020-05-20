@@ -35,7 +35,7 @@ public class UserBlock extends by.epam.cafe.controller.command.Command {
             log.debug("block executed");
             response.sendRedirect(request.getContextPath() + request.getServletPath() + "/admin/user-list?pagination=1");
 
-        } catch (IllegalPathParamException | ServiceException e) {
+        } catch (ServiceException e) {
             log.error("e: ", e);
             response.sendRedirect(request.getContextPath() + request.getServletPath() + "/something_went_wrong");
         }
