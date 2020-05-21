@@ -1,8 +1,9 @@
 package by.epam.cafe.service.factory;
 
-import by.epam.cafe.helper.ImageWriterService;
-import by.epam.cafe.helper.PutItemService;
-import by.epam.cafe.helper.impl.PutItemServiceImpl;
+import by.epam.cafe.service.helper.ImageWriterService;
+import by.epam.cafe.service.helper.impl.ImageWriterServiceImpl;
+import by.epam.cafe.service.helper.PutItemService;
+import by.epam.cafe.service.helper.impl.PutItemServiceImpl;
 import by.epam.cafe.service.db.*;
 import by.epam.cafe.service.db.impl.*;
 import by.epam.cafe.service.pagination.PaginationService;
@@ -17,7 +18,6 @@ import by.epam.cafe.service.parser.full.ProductParser;
 import by.epam.cafe.service.parser.full.UserParser;
 import by.epam.cafe.service.parser.helper.impl.NullIfEmptyServiceImpl;
 import by.epam.cafe.service.parser.helper.impl.PathVarCalculatorImpl;
-import by.epam.cafe.service.parser.parts.impl.*;
 import by.epam.cafe.service.validator.parts.LoginValidator;
 
 /**
@@ -53,7 +53,7 @@ public class ServiceFactory {
 
     private final PaginationCalculator paginationCalculator = new PaginationCalculatorImpl();
 
-    private final ImageWriterService imageWriterService = new ImageWriterService();
+    private final ImageWriterService imageWriterService = new ImageWriterServiceImpl();
 
     public DeliveryInfService getDeliveryInfService() {
         return deliveryInfService;
@@ -87,7 +87,7 @@ public class ServiceFactory {
         return nullIfEmptyService;
     }
 
-    public ImageWriterService getImageWriterService() {
+    public ImageWriterService getImageWriterServiceImpl() {
         return imageWriterService;
     }
 

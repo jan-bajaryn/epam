@@ -6,7 +6,7 @@ import by.epam.cafe.entity.struct.ValueHolder;
 import by.epam.cafe.service.db.ProductGroupService;
 import by.epam.cafe.service.exception.ServiceException;
 import by.epam.cafe.service.factory.ServiceFactory;
-import by.epam.cafe.helper.ImageWriterService;
+import by.epam.cafe.service.helper.ImageWriterService;
 import by.epam.cafe.service.parser.full.ProductGroupParser;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
@@ -31,7 +31,7 @@ public class CreateProductGroup extends by.epam.cafe.controller.command.Command 
 
     private final ServiceFactory serviceFactory = ServiceFactory.getInstance();
     private final ProductGroupService productGroupService = serviceFactory.getProductGroupService();
-    private final ImageWriterService imageWriterService = serviceFactory.getImageWriterService();
+    private final ImageWriterService imageWriterService = serviceFactory.getImageWriterServiceImpl();
     private static final DiskFileItemFactory FILE_ITEM_FACTORY = new DiskFileItemFactory();
 
 

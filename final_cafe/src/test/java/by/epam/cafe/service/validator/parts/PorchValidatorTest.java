@@ -23,6 +23,7 @@ public class PorchValidatorTest {
                 {-1, false},
                 {-100, false},
                 {-10000000, false},
+                {null, true},
         };
     }
 
@@ -30,10 +31,5 @@ public class PorchValidatorTest {
             dataProvider = "check")
     public void checkInput(Integer input, Boolean result) {
         assertEquals(porchValidator.isValid(input), (boolean) result);
-    }
-
-    @Test(description = "Check for null input")
-    public void checkNullInput() {
-        assertThrows(NullPointerException.class, () -> porchValidator.isValid(null));
     }
 }

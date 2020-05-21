@@ -5,7 +5,8 @@ import by.epam.cafe.entity.db.impl.Product;
 import by.epam.cafe.entity.db.impl.ProductGroup;
 import by.epam.cafe.entity.struct.OptionalNullable;
 import by.epam.cafe.entity.struct.ValueHolder;
-import by.epam.cafe.helper.ImageWriterService;
+import by.epam.cafe.service.helper.ImageWriterService;
+import by.epam.cafe.service.helper.impl.ImageWriterServiceImpl;
 import by.epam.cafe.service.parser.helper.impl.ValidateAndPutter;
 import by.epam.cafe.service.parser.parts.impl.*;
 import org.apache.commons.fileupload.FileItem;
@@ -28,7 +29,7 @@ public class ProductGroupParser {
     private final ValidateAndPutter validateAndPutter = ValidateAndPutter.getInstance();
 
 
-    private final ImageWriterService imageWriterService = new ImageWriterService();
+    private final ImageWriterService imageWriterService = new ImageWriterServiceImpl();
 
     private final ProductGroupNameParser productGroupNameParser = new ProductGroupNameParser();
     private final ProductTypeParser productTypeParser = new ProductTypeParser();
