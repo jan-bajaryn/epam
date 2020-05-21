@@ -4,7 +4,8 @@ import by.epam.cafe.entity.db.impl.Product;
 import by.epam.cafe.entity.db.impl.ProductGroup;
 import by.epam.cafe.entity.struct.OptionalNullable;
 import by.epam.cafe.service.parser.full.ProductParser;
-import by.epam.cafe.service.parser.helper.impl.ValidateAndPutter;
+import by.epam.cafe.service.parser.helper.ValidateAndPutter;
+import by.epam.cafe.service.parser.helper.impl.ValidateAndPutterImpl;
 import by.epam.cafe.service.parser.parts.impl.PriceParser;
 import by.epam.cafe.service.parser.parts.impl.WeightParser;
 import by.epam.cafe.service.parser.parts.impl.IdParser;
@@ -14,7 +15,7 @@ import java.util.Map;
 
 public class ProductParserImpl implements ProductParser {
 
-    private final ValidateAndPutter validateAndPutter = ValidateAndPutter.getInstance();
+    private final ValidateAndPutter validateAndPutter = ValidateAndPutterImpl.getInstance();
 
     private final IdParser idParser = new IdParser();
     private final ProductGroupInProductParser productGroupInProductParser = new ProductGroupInProductParser();

@@ -6,7 +6,8 @@ import by.epam.cafe.entity.db.impl.DeliveryInf;
 import by.epam.cafe.entity.db.impl.Order;
 import by.epam.cafe.entity.db.impl.Product;
 import by.epam.cafe.entity.struct.OptionalNullable;
-import by.epam.cafe.service.parser.helper.impl.ValidateAndPutter;
+import by.epam.cafe.service.parser.helper.ValidateAndPutter;
+import by.epam.cafe.service.parser.helper.impl.ValidateAndPutterImpl;
 import by.epam.cafe.service.parser.parts.impl.*;
 import by.epam.cafe.service.validator.BasketValidator;
 
@@ -33,7 +34,7 @@ public class OrderParserImpl implements by.epam.cafe.service.parser.full.OrderPa
 
     private final BasketValidator basketValidator = new BasketValidator();
 
-    private final ValidateAndPutter validateAndPutter = ValidateAndPutter.getInstance();
+    private final ValidateAndPutter validateAndPutter = ValidateAndPutterImpl.getInstance();
 
     /**
      * @param redirect      Map to return what parameter is valid, and value with

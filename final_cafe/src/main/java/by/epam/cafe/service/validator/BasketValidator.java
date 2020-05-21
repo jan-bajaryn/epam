@@ -4,7 +4,7 @@ import by.epam.cafe.entity.db.impl.Product;
 
 import java.util.Map;
 
-import static by.epam.cafe.service.parser.helper.impl.ValidateAndPutter.POSTFIX;
+import static by.epam.cafe.service.parser.helper.impl.ValidateAndPutterImpl.POSTFIX;
 
 public class BasketValidator {
 

@@ -1,16 +1,16 @@
 package by.epam.cafe.service.parser.helper.impl;
 
 import by.epam.cafe.entity.struct.OptionalNullable;
+import by.epam.cafe.service.parser.helper.ValidateAndPutter;
 import org.testng.annotations.Test;
 
 import java.util.HashMap;
-import java.util.Map;
 
-import static by.epam.cafe.service.parser.helper.impl.ValidateAndPutter.POSTFIX;
+import static by.epam.cafe.service.parser.helper.impl.ValidateAndPutterImpl.POSTFIX;
 import static org.testng.Assert.*;
 
-public class ValidateAndPutterTest {
-    private final ValidateAndPutter validateAndPutter = ValidateAndPutter.getInstance();
+public class ValidateAndPutterImplTest {
+    private final ValidateAndPutter validateAndPutter = ValidateAndPutterImpl.getInstance();
 
     @Test
     public void testValidateAndPutTrue() {

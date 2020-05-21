@@ -3,7 +3,8 @@ package by.epam.cafe.service.parser.full.impl;
 import by.epam.cafe.entity.enums.Role;
 import by.epam.cafe.entity.db.impl.User;
 import by.epam.cafe.entity.struct.OptionalNullable;
-import by.epam.cafe.service.parser.helper.impl.ValidateAndPutter;
+import by.epam.cafe.service.parser.helper.ValidateAndPutter;
+import by.epam.cafe.service.parser.helper.impl.ValidateAndPutterImpl;
 import by.epam.cafe.service.parser.parts.impl.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -17,7 +18,7 @@ public class UserParserImpl implements by.epam.cafe.service.parser.full.UserPars
     private static final Logger log = LogManager.getLogger(UserParserImpl.class);
     private static final String BLOCKED = "blocked";
 
-    private final ValidateAndPutter validateAndPutter = ValidateAndPutter.getInstance();
+    private final ValidateAndPutter validateAndPutter = ValidateAndPutterImpl.getInstance();
 
     private final EmailParser emailParser = new EmailParser();
     private final FloorParser floorParser = new FloorParser();

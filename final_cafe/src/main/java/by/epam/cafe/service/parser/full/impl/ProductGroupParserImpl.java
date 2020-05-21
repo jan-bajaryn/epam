@@ -7,7 +7,8 @@ import by.epam.cafe.entity.struct.OptionalNullable;
 import by.epam.cafe.entity.struct.ValueHolder;
 import by.epam.cafe.service.helper.ImageWriterService;
 import by.epam.cafe.service.helper.impl.ImageWriterServiceImpl;
-import by.epam.cafe.service.parser.helper.impl.ValidateAndPutter;
+import by.epam.cafe.service.parser.helper.ValidateAndPutter;
+import by.epam.cafe.service.parser.helper.impl.ValidateAndPutterImpl;
 import by.epam.cafe.service.parser.parts.impl.*;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.logging.log4j.LogManager;
@@ -19,7 +20,7 @@ import java.util.Map;
 public class ProductGroupParserImpl implements by.epam.cafe.service.parser.full.ProductGroupParser {
     private static final Logger log = LogManager.getLogger(ProductGroupParserImpl.class);
 
-    private final ValidateAndPutter validateAndPutter = ValidateAndPutter.getInstance();
+    private final ValidateAndPutter validateAndPutter = ValidateAndPutterImpl.getInstance();
 
 
     private final ImageWriterService imageWriterService = new ImageWriterServiceImpl();

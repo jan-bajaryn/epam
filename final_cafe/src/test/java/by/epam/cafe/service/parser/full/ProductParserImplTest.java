@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 import java.util.HashMap;
 import java.util.Map;
 
-import static by.epam.cafe.service.parser.helper.impl.ValidateAndPutter.POSTFIX;
+import static by.epam.cafe.service.parser.helper.impl.ValidateAndPutterImpl.POSTFIX;
 import static org.testng.Assert.*;
 
 public class ProductParserImplTest {
