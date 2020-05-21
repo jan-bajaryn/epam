@@ -1,12 +1,11 @@
 package by.epam.cafe.service.parser.parts.impl;
 
-import by.epam.cafe.service.parser.full.ProductGroupParser;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.*;
 
-public class ProductGroupInProductParserTest {
+public class ProductGroupInProductParserImplTest {
 
 private final ProductGroupInProductParser productGroupInProductParser =
         new ProductGroupInProductParser();

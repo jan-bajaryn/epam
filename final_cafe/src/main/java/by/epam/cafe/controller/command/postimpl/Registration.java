@@ -5,8 +5,8 @@ import by.epam.cafe.entity.db.impl.User;
 import by.epam.cafe.service.db.UserService;
 import by.epam.cafe.service.exception.ServiceException;
 import by.epam.cafe.service.factory.ServiceFactory;
-import by.epam.cafe.service.parser.helper.NullIfEmptyService;
 import by.epam.cafe.service.parser.full.UserParser;
+import by.epam.cafe.service.parser.helper.NullIfEmptyService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -28,7 +28,7 @@ public class Registration extends by.epam.cafe.controller.command.Command {
     private final UserService userService = serviceFactory.getUserService();
 
     private final NullIfEmptyService nullEmpt = serviceFactory.getNullIfEmptyService();
-    private final UserParser userParser = serviceFactory.getUserParser();
+    private final UserParser userParser = serviceFactory.getUserParserImpl();
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PermissionDeniedException {

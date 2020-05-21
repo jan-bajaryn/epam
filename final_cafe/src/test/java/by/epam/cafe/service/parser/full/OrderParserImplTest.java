@@ -5,6 +5,7 @@ import by.epam.cafe.entity.db.impl.Order;
 import by.epam.cafe.entity.db.impl.Product;
 import by.epam.cafe.entity.enums.OrderStatus;
 import by.epam.cafe.entity.enums.PaymentType;
+import by.epam.cafe.service.parser.full.impl.OrderParserImpl;
 import org.testng.annotations.Test;
 
 import java.util.HashMap;
@@ -13,8 +14,8 @@ import java.util.Map;
 import static by.epam.cafe.service.parser.helper.impl.ValidateAndPutter.POSTFIX;
 import static org.testng.Assert.*;
 
-public class OrderParserTest {
-    private final OrderParser orderParser = new OrderParser();
+public class OrderParserImplTest {
+    private final OrderParser orderParser = new OrderParserImpl();
 
     @Test
     public void testParse() {

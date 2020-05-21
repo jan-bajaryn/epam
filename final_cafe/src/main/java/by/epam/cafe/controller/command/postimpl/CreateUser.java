@@ -26,7 +26,7 @@ public class CreateUser extends by.epam.cafe.controller.command.Command {
 
     private final UserService userService = serviceFactory.getUserService();
 
-    private final UserParser userParser = serviceFactory.getUserParser();
+    private final UserParser userParser = serviceFactory.getUserParserImpl();
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PermissionDeniedException {

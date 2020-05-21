@@ -32,7 +32,7 @@ public class EditProductGroup extends by.epam.cafe.controller.command.Command {
     private final ServiceFactory serviceFactory = ServiceFactory.getInstance();
     private final ProductGroupService productGroupService = serviceFactory.getProductGroupService();
     private final ImageWriterService imageWriterService = serviceFactory.getImageWriterServiceImpl();
-    private final ProductGroupParser productGroupParser = serviceFactory.getProductGroupParser();
+    private final ProductGroupParser productGroupParser = serviceFactory.getProductGroupParserImpl();
 
 
     @Override

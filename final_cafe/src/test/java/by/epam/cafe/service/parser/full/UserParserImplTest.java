@@ -2,6 +2,7 @@ package by.epam.cafe.service.parser.full;
 
 import by.epam.cafe.entity.db.impl.User;
 import by.epam.cafe.entity.enums.Role;
+import by.epam.cafe.service.parser.full.impl.UserParserImpl;
 import org.testng.annotations.Test;
 
 import java.util.HashMap;
@@ -10,8 +11,8 @@ import java.util.Map;
 import static by.epam.cafe.service.parser.helper.impl.ValidateAndPutter.POSTFIX;
 import static org.testng.Assert.*;
 
-public class UserParserTest {
-    private final UserParser userParser = new UserParser();
+public class UserParserImplTest {
+    private final UserParser userParser = new UserParserImpl();
 
     @Test
     public void testParseUser() {

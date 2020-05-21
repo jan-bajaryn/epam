@@ -24,7 +24,7 @@ public class EditProduct extends by.epam.cafe.controller.command.Command {
 
     private final ServiceFactory serviceFactory = ServiceFactory.getInstance();
     private final ProductService productService = serviceFactory.getProductService();
-    private final ProductParser productParser = serviceFactory.getProductParser();
+    private final ProductParser productParser = serviceFactory.getProductParserImpl();
 
 
     @Override

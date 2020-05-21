@@ -35,7 +35,7 @@ public class CreateProductGroup extends by.epam.cafe.controller.command.Command 
     private static final DiskFileItemFactory FILE_ITEM_FACTORY = new DiskFileItemFactory();
 
 
-    private final ProductGroupParser productGroupParser = serviceFactory.getProductGroupParser();
+    private final ProductGroupParser productGroupParser = serviceFactory.getProductGroupParserImpl();
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PermissionDeniedException {

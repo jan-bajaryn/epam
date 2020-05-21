@@ -1,6 +1,7 @@
 package by.epam.cafe.service.parser.full;
 
 import by.epam.cafe.entity.db.impl.Product;
+import by.epam.cafe.service.parser.full.impl.ProductParserImpl;
 import org.testng.annotations.Test;
 
 import java.util.HashMap;
@@ -9,9 +10,9 @@ import java.util.Map;
 import static by.epam.cafe.service.parser.helper.impl.ValidateAndPutter.POSTFIX;
 import static org.testng.Assert.*;
 
-public class ProductParserTest {
+public class ProductParserImplTest {
 
-    private final ProductParser productParser = new ProductParser();
+    private final ProductParser productParser = new ProductParserImpl();
 
     @Test
     public void testParseProduct() {

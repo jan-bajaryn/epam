@@ -8,14 +8,18 @@ import by.epam.cafe.service.db.*;
 import by.epam.cafe.service.db.impl.*;
 import by.epam.cafe.service.pagination.PaginationService;
 import by.epam.cafe.service.pagination.impl.PaginationServiceImpl;
-import by.epam.cafe.service.parser.helper.NullIfEmptyService;
-import by.epam.cafe.service.pagination.PaginationCalculator;
-import by.epam.cafe.service.pagination.impl.PaginationCalculatorImpl;
-import by.epam.cafe.service.parser.helper.PathVarCalculator;
 import by.epam.cafe.service.parser.full.OrderParser;
 import by.epam.cafe.service.parser.full.ProductGroupParser;
 import by.epam.cafe.service.parser.full.ProductParser;
 import by.epam.cafe.service.parser.full.UserParser;
+import by.epam.cafe.service.parser.helper.NullIfEmptyService;
+import by.epam.cafe.service.pagination.PaginationCalculator;
+import by.epam.cafe.service.pagination.impl.PaginationCalculatorImpl;
+import by.epam.cafe.service.parser.helper.PathVarCalculator;
+import by.epam.cafe.service.parser.full.impl.OrderParserImpl;
+import by.epam.cafe.service.parser.full.impl.ProductGroupParserImpl;
+import by.epam.cafe.service.parser.full.impl.ProductParserImpl;
+import by.epam.cafe.service.parser.full.impl.UserParserImpl;
 import by.epam.cafe.service.parser.helper.impl.NullIfEmptyServiceImpl;
 import by.epam.cafe.service.parser.helper.impl.PathVarCalculatorImpl;
 import by.epam.cafe.service.validator.parts.LoginValidator;
@@ -44,10 +48,10 @@ public class ServiceFactory {
     private final NullIfEmptyService nullIfEmptyService = new NullIfEmptyServiceImpl();
     private final PutItemService putItemService = new PutItemServiceImpl();
 
-    private final UserParser userParser = new UserParser();
-    private final ProductParser productParser = new ProductParser();
-    private final ProductGroupParser productGroupParser = new ProductGroupParser();
-    private final OrderParser orderParser = new OrderParser();
+    private final UserParser userParser = new UserParserImpl();
+    private final ProductParser productParser = new ProductParserImpl();
+    private final ProductGroupParser productGroupParser = new ProductGroupParserImpl();
+    private final OrderParser orderParser = new OrderParserImpl();
 
     private final PaginationService paginationService = new PaginationServiceImpl();
 
@@ -95,19 +99,19 @@ public class ServiceFactory {
         return putItemService;
     }
 
-    public UserParser getUserParser() {
+    public UserParser getUserParserImpl() {
         return userParser;
     }
 
-    public ProductParser getProductParser() {
+    public ProductParser getProductParserImpl() {
         return productParser;
     }
 
-    public ProductGroupParser getProductGroupParser() {
+    public ProductGroupParser getProductGroupParserImpl() {
         return productGroupParser;
     }
 
-    public OrderParser getOrderParser() {
+    public OrderParser getOrderParserImpl() {
         return orderParser;
     }
 
