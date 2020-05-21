@@ -2,6 +2,9 @@ package by.epam.cafe.service.validator.parts;
 
 import by.epam.cafe.service.validator.Validator;
 
+/**
+ * Dedicated to validate porch
+ */
 public class PorchValidator implements Validator<Integer> {
 
     private static final int MIN_VALUE = 0;

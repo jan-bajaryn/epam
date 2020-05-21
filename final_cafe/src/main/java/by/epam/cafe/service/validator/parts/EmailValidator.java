@@ -1,7 +1,11 @@
 package by.epam.cafe.service.validator.parts;
 
+import by.epam.cafe.entity.db.impl.DeliveryInf;
 import by.epam.cafe.service.validator.Validator;
 
+/**
+ * Dedicated to validate email
+ */
 public class EmailValidator implements Validator<String> {
 
     private final org.apache.commons.validator.routines.EmailValidator emailValidator =

@@ -2,6 +2,9 @@ package by.epam.cafe.service.validator.parts;
 
 import by.epam.cafe.service.validator.Validator;
 
+/**
+ * Dedicated to validate floor
+ */
 public class FloorValidator implements Validator<Integer> {
 
     private static final int MIN = -100;

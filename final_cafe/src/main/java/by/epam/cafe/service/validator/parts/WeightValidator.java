@@ -2,6 +2,9 @@ package by.epam.cafe.service.validator.parts;
 
 import by.epam.cafe.service.validator.Validator;
 
+/**
+ * Dedicated to validate weight
+ */
 public class WeightValidator implements Validator<Integer> {
 
     private static final int MAX = 1_000_000;

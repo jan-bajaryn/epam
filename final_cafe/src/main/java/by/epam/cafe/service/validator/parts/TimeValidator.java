@@ -1,10 +1,14 @@
 package by.epam.cafe.service.validator.parts;
 
+import by.epam.cafe.entity.db.impl.DeliveryInf;
 import by.epam.cafe.service.validator.Validator;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
 
+/**
+ * Dedicated to validate LocalDateTime for {@link DeliveryInf#getDeliveryTime()} value
+ */
 public class TimeValidator implements Validator<LocalDateTime> {
 
     public static final Duration MIN_DIFFERENCE = Duration.ofMinutes(30);

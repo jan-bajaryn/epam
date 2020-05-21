@@ -4,6 +4,9 @@ import by.epam.cafe.service.validator.Validator;
 
 import java.util.regex.Pattern;
 
+/**
+ * Dedicated to validate phone
+ */
 public class PhoneValidator implements Validator<String> {
 
     public static final String PHONE_REGEX = "\\d{9}";

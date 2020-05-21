@@ -1,10 +1,14 @@
 package by.epam.cafe.service.validator.parts;
 
 
+import by.epam.cafe.entity.db.impl.User;
 import by.epam.cafe.service.validator.Validator;
 
 import java.util.regex.Pattern;
 
+/**
+ * Dedicated to validate {@link User#getSurname()}
+ */
 public class SurnameValidator implements Validator<String> {
     //language=RegExp
     public static final String SURNAME_REGEX = "[\\p{javaAlphabetic}-]{1,20}";

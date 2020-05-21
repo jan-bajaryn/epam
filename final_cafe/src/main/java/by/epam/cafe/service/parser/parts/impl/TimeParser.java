@@ -1,5 +1,6 @@
 package by.epam.cafe.service.parser.parts.impl;
 
+import by.epam.cafe.entity.db.impl.DeliveryInf;
 import by.epam.cafe.service.parser.parts.ParamsParser;
 import by.epam.cafe.service.validator.parts.TimeValidator;
 
@@ -7,6 +8,9 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Dedicated to parse String to LocalDateTime for {@link DeliveryInf#getDeliveryTime()} value
+ */
 public class TimeParser extends ParamsParser<LocalDateTime> {
 
     private static final String FORMAT = "HH:mm";

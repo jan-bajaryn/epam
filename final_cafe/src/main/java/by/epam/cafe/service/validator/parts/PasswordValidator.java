@@ -1,9 +1,13 @@
 package by.epam.cafe.service.validator.parts;
 
+import by.epam.cafe.entity.db.impl.Order;
 import by.epam.cafe.service.validator.Validator;
 
 import java.util.regex.Pattern;
 
+/**
+ * Dedicated to validate password
+ */
 public class PasswordValidator implements Validator<String> {
 
     public static final String CAPITAL_REGEX = ".*\\p{javaUpperCase}.*";

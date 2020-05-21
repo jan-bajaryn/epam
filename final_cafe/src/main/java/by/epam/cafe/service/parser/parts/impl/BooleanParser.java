@@ -3,6 +3,9 @@ package by.epam.cafe.service.parser.parts.impl;
 import by.epam.cafe.service.parser.parts.ParamsParser;
 import by.epam.cafe.service.validator.parts.BooleanParamValidator;
 
+/**
+ * Dedicated to parse String to Boolean value
+ */
 public class BooleanParser extends ParamsParser<Boolean> {
 
 
