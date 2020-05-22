@@ -52,7 +52,8 @@
                     </c:if>
                     <input type="text" id="username" name="username"
                            placeholder="<fmt:message key="web.inputs.username" bundle="${ rb }"/>"
-                           class="form-control" value="<c:out value="${user.username}"/>">
+                           class="form-control" value="<c:out value="${user.username}"/>"
+                           required pattern="[A-Za-zА-Яа-яЁё\d]{1,20}">
                 </div>
 
                 <div class="password">
@@ -69,7 +70,8 @@
 
                     <input type="text" id="password" name="password"
                            placeholder="<fmt:message key="web.inputs.password" bundle="${ rb }"/>"
-                           class="form-control" value="<c:out value="${user.password}"/>">
+                           class="form-control" value="<c:out value="${user.password}"/>"
+                           pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" required>
                 </div>
 
                 <div class="role__row">
@@ -103,7 +105,9 @@
                     </c:if>
                     <input type="text" id="name" name="name"
                            placeholder="<fmt:message key="web.inputs.name" bundle="${ rb }"/>"
-                           class="form-control" value="<c:out value="${user.name}"/>">
+                           class="form-control" value="<c:out value="${user.name}"/>"
+                           required
+                           pattern="^[A-Za-zА-Яа-яЁё]+(([',. \\-][A-Za-zА-Яа-яЁё ])?[A-Za-zА-Яа-яЁё]*)*$">
                 </div>
 
                 <div class="surname__row">
@@ -176,7 +180,8 @@
                     </c:if>
                     <input type="text" id="porch" name="porch"
                            placeholder="<fmt:message key="web.inputs.porch" bundle="${ rb }"/>"
-                           class="form-control" value="<c:out value="${user.porch}"/>">
+                           class="form-control" value="<c:out value="${user.porch}"/>"
+                           min="1" max="49">
                 </div>
 
                 <div class="floor">
@@ -191,7 +196,8 @@
                     </c:if>
                     <input type="text" id="floor" name="floor"
                            placeholder="<fmt:message key="web.inputs.floor" bundle="${ rb }"/>"
-                           class="form-control" value="<c:out value="${user.floor}"/>">
+                           class="form-control" value="<c:out value="${user.floor}"/>"
+                           min="-99" max="99">
                 </div>
 
                 <div class="phone">

@@ -1,4 +1,4 @@
-<%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
+<%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
 <jsp:useBean id="group" scope="request" type="by.epam.cafe.entity.db.impl.ProductGroup"/>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--<%@ page contentType="text/html;charset=UTF-8" language="java" %>--%>
@@ -51,7 +51,9 @@
                 </c:if>
                 <input type="text" id="name" name="name"
                        placeholder="<fmt:message key="web.inputs.name" bundle="${ rb }"/>"
-                       class="form-control" value="<c:out value="${group.name}"/>">
+                       class="form-control" value="<c:out value="${group.name}"/>"
+                       pattern="[A-Za-zА-Яа-яЁё\s\d-]{1,30}"
+                       required>
             </div>
 
             <div class="description">
@@ -66,7 +68,8 @@
                 </c:if>
                 <input type="text" id="description" name="description"
                        placeholder="<fmt:message key="web.inputs.description" bundle="${ rb }"/>"
-                       class="form-control" value="<c:out value="${group.description}"/>">
+                       class="form-control" value="<c:out value="${group.description}"/>"
+                       required pattern="[^\n]{1,200}">
             </div>
 
             <div class="custom-file">
@@ -77,7 +80,7 @@
                         <fmt:message key="web.errors.field" bundle="${ rb }"/>
                     </span>
                     </c:if>
-                    <input id="file" type="file" name="file">
+                    <input id="file" type="file" name="file" required>
                 </label>
             </div>
 

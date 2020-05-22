@@ -18,6 +18,7 @@ public class ProductGroupDescriptionValidatorTest {
         return new Object[][]{
                 {"Some text", true},
                 {"Какой-то текст", true},
+                {"Какой-то текс\nт", false},
                 {"", false},
                 {null, false},
                 {MORE_THAN_200_INPUT, false},

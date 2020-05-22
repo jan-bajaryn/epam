@@ -15,8 +15,8 @@ public class HouseParserTest {
             () {
         return new Object[][]{
                 {"Some text", true, "Some text"},
-                {"", true, null},
-                {null, true, null},
+                {"", false, null},
+                {null, false, null},
                 {"any text", true, "any text"},
         };
     }

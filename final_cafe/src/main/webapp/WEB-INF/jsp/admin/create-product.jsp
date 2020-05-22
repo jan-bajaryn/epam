@@ -62,7 +62,8 @@
                 <input type="number" id="price" name="price"
                        placeholder="<fmt:message key="web.inputs.price" bundle="${ rb }"/>"
                        class="form-control"
-                       value="<c:out value="${redirect_price}"/>">
+                       value="<c:out value="${redirect_price}"/>"
+                       min="0" max="1000000000" required>
             </div>
 
             <div class="weight">
@@ -77,7 +78,8 @@
                 <input type="number" id="weight" name="weight"
                        placeholder="<fmt:message key="web.tab.weight" bundle="${ rb }"/>"
                        class="form-control"
-                       value="<c:out value="${redirect_weight}"/>">
+                       value="<c:out value="${redirect_weight}"/>"
+                       required min="1" max="1000000">
             </div>
 
 

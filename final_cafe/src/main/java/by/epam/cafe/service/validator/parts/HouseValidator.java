@@ -8,6 +8,6 @@ import by.epam.cafe.service.validator.Validator;
 public class HouseValidator implements Validator<String> {
     @Override
     public boolean isValid(String input) {
-        return true;
+        return input != null && !input.isEmpty();
     }
 }

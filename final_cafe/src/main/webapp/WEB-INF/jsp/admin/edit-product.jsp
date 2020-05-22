@@ -81,7 +81,8 @@
                     </c:if>
                     <input type="number" id="price" name="price"
                            placeholder="<fmt:message key="web.inputs.price" bundle="${ rb }"/>"
-                           class="form-control" value="${product.price}">
+                           class="form-control" value="${product.price}"
+                           min="0" max="1000000000" required>
                 </div>
 
                 <div class="weight">
@@ -96,7 +97,8 @@
                     </c:if>
                     <input type="number" id="weight" name="weight"
                            placeholder="<fmt:message key="web.tab.weight" bundle="${ rb }"/>"
-                           class="form-control" value="${product.weight}">
+                           class="form-control" value="${product.weight}"
+                           required min="1" max="1000000">
                 </div>
 
 

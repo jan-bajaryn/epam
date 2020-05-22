@@ -64,7 +64,8 @@
                 </c:if>
                 <input type="text" id="phone" name="phone"
                        placeholder="<fmt:message key="web.inputs.phone" bundle="${ rb }"/>"
-                       class="form-control" value="<c:out value="${redirect_phone}"/>">
+                       class="form-control" value="<c:out value="${redirect_phone}"/>"
+                       pattern="\d{9}" required>
             </div>
 
             <div class="username">
@@ -85,7 +86,8 @@
                 </c:if>
                 <input type="text" id="username" name="username"
                        placeholder="<fmt:message key="web.inputs.username" bundle="${ rb }"/>"
-                       class="form-control" value="${redirect_username}">
+                       class="form-control" value="${redirect_username}"
+                       required pattern="[A-Za-zА-Яа-яЁё\d]{1,20}">
             </div>
 
             <div class="password">
@@ -105,7 +107,8 @@
                 </c:if>
                 <input type="text" id="password" name="password"
                        placeholder="<fmt:message key="web.inputs.password" bundle="${ rb }"/>"
-                       class="form-control" value="<c:out value="${redirect_password}"/>">
+                       class="form-control" value="<c:out value="${redirect_password}"/>"
+                       required>
             </div>
 
             <div class="password__repeat">
@@ -120,7 +123,8 @@
                 </label>
                 <input type="text" id="password__repeat" name="password_repeat"
                        placeholder="<fmt:message key="web.inputs.password" bundle="${ rb }"/>"
-                       class="form-control">
+                       class="form-control"
+                       required>
             </div>
             <br>
             <br>
@@ -141,7 +145,9 @@
                 </c:if>
                 <input type="text" id="name" name="name"
                        placeholder="<fmt:message key="web.inputs.name" bundle="${ rb }"/>"
-                       class="form-control" value="<c:out value="${redirect_name}"/>">
+                       class="form-control" value="<c:out value="${redirect_name}"/>"
+                       required
+                       pattern="^[A-Za-zА-Яа-яЁё]+(([',. \\-][A-Za-zА-Яа-яЁё ])?[A-Za-zА-Яа-яЁё]*)*$">
             </div>
 
             <div class="surname__row">
@@ -160,7 +166,8 @@
                 </c:if>
                 <input type="text" id="surname" name="surname"
                        placeholder="<fmt:message key="web.inputs.surname" bundle="${ rb }"/>"
-                       class="form-control" value="<c:out value="${redirect_surname}"/>">
+                       class="form-control" value="<c:out value="${redirect_surname}"/>"
+                       pattern="[A-Za-zА-Яа-яЁё-]{1,20}">
             </div>
 
             <div class="street">
@@ -214,7 +221,8 @@
                 </c:if>
                 <input type="text" id="porch" name="porch"
                        placeholder="<fmt:message key="web.inputs.porch" bundle="${ rb }"/>"
-                       class="form-control" value="<c:out value="${redirect_porch}"/>">
+                       class="form-control" value="<c:out value="${redirect_porch}"/>"
+                       min="1" max="49">
             </div>
 
             <div class="floor">
@@ -228,7 +236,8 @@
                 </c:if>
                 <input type="text" id="floor" name="floor"
                        placeholder="<fmt:message key="web.inputs.floor" bundle="${ rb }"/>"
-                       class="form-control" value="<c:out value="${redirect_floor}"/>">
+                       class="form-control" value="<c:out value="${redirect_floor}"/>"
+                       min="-99" max="99">
             </div>
 
             <div class="submit">
@@ -246,7 +255,6 @@
 
 
 <tag:impfoot/>
-
 
 
 <script src="<c:url value="/static/js/registration/main.js"/>"></script>

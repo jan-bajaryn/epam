@@ -87,7 +87,8 @@
                                 <fmt:message key="web.errors.field" bundle="${ rb }"/>
                             </span>
                         </c:if>
-                        <input type="number" value="${order.price}" class="form-control" id="price" name="price">
+                        <input type="number" value="${order.price}" class="form-control" id="price" name="price"
+                               min="0" max="1000000000" required>
                     </div>
                     <div class="name__row">
                         <label for="name">
@@ -103,7 +104,9 @@
                         </c:if>
 
                         <input type="text" id="name" name="name" placeholder="Имя"
-                               class="form-control" value="<c:out value="${order.clientName}"/>">
+                               class="form-control" value="<c:out value="${order.clientName}"/>"
+                               required
+                               pattern="^[A-Za-zА-Яа-яЁё]+(([',. \\-][A-Za-zА-Яа-яЁё ])?[A-Za-zА-Яа-яЁё]*)*$">
                     </div>
                     <div class="time__row">
                         <label for="time">
@@ -118,7 +121,7 @@
                         </c:if>
                         <input type="time" id="time" name="time"
                                placeholder="<fmt:message key="web.inputs.date-deliver" bundle="${ rb }"/>"
-                               class="form-control" value="${time}">
+                               class="form-control" value="${time}" required>
                     </div>
                     <div class="first__row">
                         <label for="street">
@@ -132,7 +135,8 @@
                             </span>
                         </c:if>
                         <input type="text" class="form-control" placeholder="Улица" id="street"
-                               name="street" value="<c:out value="${order.deliveryInf.street}"/>">
+                               name="street" value="<c:out value="${order.deliveryInf.street}"/>"
+                               required>
                         <label for="house">
                             <fmt:message key="web.inputs.house" bundle="${ rb }"/>
                         </label>
@@ -145,7 +149,8 @@
                         <input type="text" class="form-control"
                                placeholder="<fmt:message key="web.inputs.house" bundle="${ rb }"/>"
                                id="house" name="house"
-                               value="<c:out value="${order.deliveryInf.house}"/>">
+                               value="<c:out value="${order.deliveryInf.house}"/>"
+                               required>
                     </div>
                     <div class="sec__row">
                         <label for="room">
@@ -173,7 +178,8 @@
                         <input type="text" class="form-control"
                                placeholder="<fmt:message key="web.inputs.porch" bundle="${ rb }"/>"
                                id="porch"
-                               name="porch" value="<c:out value="${order.deliveryInf.porch}"/>">
+                               name="porch" value="<c:out value="${order.deliveryInf.porch}"/>"
+                               min="1" max="49">
                         <label for="floor">
                             <fmt:message key="web.inputs.floor" bundle="${ rb }"/>
                         </label>
@@ -186,7 +192,8 @@
                         <input type="text" class="form-control"
                                placeholder="<fmt:message key="web.inputs.floor" bundle="${ rb }"/>"
                                id="floor" name="floor"
-                               value="<c:out value="${order.deliveryInf.floor}"/>">
+                               value="<c:out value="${order.deliveryInf.floor}"/>"
+                               min="-99" max="99">
                     </div>
                     <div class="phone__row">
                         <label for="tel">
@@ -201,7 +208,8 @@
                         <input type="tel" class="form-control"
                                placeholder="<fmt:message key="web.inputs.phone" bundle="${ rb }"/>"
                                id="tel" name="tel"
-                               value="<c:out value="${order.deliveryInf.phone}"/>">
+                               value="<c:out value="${order.deliveryInf.phone}"/>"
+                               pattern="\d{9}" required>
                     </div>
                     <div class="email__row">
                         <label for="email">
@@ -229,7 +237,8 @@
                             </span>
                         </c:if>
                         <textarea class="form-control" id="comments" name="comments"
-                                  placeholder="<fmt:message key="web.inputs.comments" bundle="${ rb }"/>">
+                                  placeholder="<fmt:message key="web.inputs.comments" bundle="${ rb }"/>"
+                                  maxlength="200">
                             <c:out value="${order.deliveryInf.comments}"/>
                         </textarea>
                     </div>

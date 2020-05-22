@@ -167,7 +167,9 @@
                                             <input type="text" name="name" id="name"
                                                    placeholder="<fmt:message key="web.inputs.your-name" bundle="${ rb }"/>"
                                                    class="form-control"
-                                                   value="<c:out value="${redirect_name}"/>">
+                                                   value="<c:out value="${redirect_name}"/>"
+                                                   required
+                                                   pattern="^[A-Za-zА-Яа-яЁё]+(([',. \\-][A-Za-zА-Яа-яЁё ])?[A-Za-zА-Яа-яЁё]*)*$">
                                         </div>
                                         <div class="time__row">
                                                 <%--@elvariable id="redirect_time_error" type="java.lang.String"--%>
@@ -179,7 +181,8 @@
                                             </c:if>
                                             <input type="time" name="time" id="time"
                                                    placeholder="<fmt:message key="web.inputs.date-deliver" bundle="${ rb }"/>"
-                                                   class="form-control" value="<c:out value="${redirect_time}"/>">
+                                                   class="form-control" value="<c:out value="${redirect_time}"/>"
+                                                   required>
                                         </div>
                                         <div class="first__row">
                                                 <%--@elvariable id="redirect_street_error" type="java.lang.String"--%>
@@ -189,7 +192,8 @@
                                             </c:if>
                                             <input type="text" class="form-control" id="street"
                                                    placeholder="<fmt:message key="web.inputs.street" bundle="${ rb }"/>"
-                                                   name="street" value="<c:out value="${redirect_street}"/>">
+                                                   name="street" value="<c:out value="${redirect_street}"/>"
+                                                   required>
                                                 <%--@elvariable id="redirect_house_error" type="java.lang.String"--%>
                                                 <%--@elvariable id="redirect_house" type="java.lang.String"--%>
                                             <c:if test="${not empty redirect_house_error}">
@@ -197,7 +201,8 @@
                                             </c:if>
                                             <input type="text" class="form-control" id="house"
                                                    placeholder="<fmt:message key="web.inputs.house" bundle="${ rb }"/>"
-                                                   name="house" value="<c:out value="${redirect_house}"/>">
+                                                   name="house" value="<c:out value="${redirect_house}"/>"
+                                                   required>
                                         </div>
                                         <div class="sec__row">
                                                 <%--@elvariable id="redirect_room_error" type="java.lang.String"--%>
@@ -216,7 +221,8 @@
 
                                             <input type="number" class="form-control" id="porch"
                                                    placeholder="<fmt:message key="web.inputs.porch" bundle="${ rb }"/>"
-                                                   name="porch" value="<c:out value="${redirect_porch}"/>">
+                                                   name="porch" value="<c:out value="${redirect_porch}"/>"
+                                                   min="1" max="49">
                                                 <%--@elvariable id="redirect_floor_error" type="java.lang.String"--%>
                                                 <%--@elvariable id="redirect_floor" type="java.lang.String"--%>
                                             <c:if test="${not empty redirect_floor_error}">
@@ -224,7 +230,8 @@
                                             </c:if>
                                             <input type="number" class="form-control" id="floor"
                                                    placeholder="<fmt:message key="web.inputs.floor" bundle="${ rb }"/>"
-                                                   name="floor" value="<c:out value="${redirect_floor}"/>">
+                                                   name="floor" value="<c:out value="${redirect_floor}"/>"
+                                                   min="-99" max="99">
                                         </div>
                                         <div class="phone__row">
                                                 <%--@elvariable id="redirect_tel_error" type="java.lang.String"--%>
@@ -236,7 +243,8 @@
                                             </c:if>
                                             <input type="tel" class="form-control" id="tel"
                                                    placeholder="<fmt:message key="web.inputs.phone" bundle="${ rb }"/>"
-                                                   name="tel" value="<c:out value="${redirect_tel}"/>">
+                                                   name="tel" value="<c:out value="${redirect_tel}"/>"
+                                                   pattern="\d{9}" required>
                                         </div>
                                         <div class="email__row">
                                                 <%--@elvariable id="redirect_email_error" type="java.lang.String"--%>
@@ -259,7 +267,8 @@
                                                 </span>
                                             </c:if>
                                             <textarea class="form-control" name="comments" id="comments"
-                                                      placeholder="<fmt:message key="web.inputs.comments" bundle="${ rb }"/>">
+                                                      placeholder="<fmt:message key="web.inputs.comments" bundle="${ rb }"/>"
+                                                      maxlength="200">
                                                 <c:out value="${redirect_comments}"/>
                                             </textarea>
                                         </div>
@@ -299,7 +308,9 @@
                                             <input type="text" id="name" name="name"
                                                    placeholder="<fmt:message key="web.inputs.your-name" bundle="${ rb }"/>"
                                                    class="form-control" value="<c:out value="${info.name}"/>"
-                                                   title="<c:out value="${redirect_name}"/>">
+                                                   title="<c:out value="${redirect_name}"/>"
+                                                   required
+                                                   pattern="^[A-Za-zА-Яа-яЁё]+(([',. \\-][A-Za-zА-Яа-яЁё ])?[A-Za-zА-Яа-яЁё]*)*$">
                                         </div>
                                         <div class="time__row">
                                                 <%--@elvariable id="redirect_time_error" type="java.lang.String"--%>
@@ -311,7 +322,8 @@
                                             </c:if>
                                             <input type="time" id="time" name="time"
                                                    placeholder="<fmt:message key="web.inputs.date-deliver" bundle="${ rb }"/>"
-                                                   class="form-control" value="<c:out value="${redirect_time}"/>">
+                                                   class="form-control" value="<c:out value="${redirect_time}"/>"
+                                                   required>
                                         </div>
                                         <div class="first__row">
                                                 <%--@elvariable id="redirect_street_error" type="java.lang.String"--%>
@@ -323,7 +335,8 @@
                                                    placeholder="<fmt:message key="web.inputs.street" bundle="${ rb }"/>"
                                                    id="street"
                                                    name="street" title="<c:out value="${redirect_street}"/>"
-                                                   value="<c:out value="${info.street}"/>">
+                                                   value="<c:out value="${info.street}"/>"
+                                                   required>
                                                 <%--@elvariable id="redirect_house_error" type="java.lang.String"--%>
                                                 <%--@elvariable id="redirect_house" type="java.lang.String"--%>
                                             <c:if test="${not empty redirect_house_error}">
@@ -332,7 +345,8 @@
                                             <input type="text" class="form-control"
                                                    placeholder="<fmt:message key="web.inputs.house" bundle="${ rb }"/>"
                                                    id="house" name="house" value="<c:out value="${info.house}"/>"
-                                                   title="<c:out value="${redirect_house}"/>">
+                                                   title="<c:out value="${redirect_house}"/>"
+                                                   required>
                                         </div>
                                         <div class="sec__row">
                                                 <%--@elvariable id="redirect_room_error" type="java.lang.String"--%>
@@ -352,7 +366,8 @@
                                             <input type="number" class="form-control"
                                                    placeholder="<fmt:message key="web.inputs.porch" bundle="${ rb }"/>"
                                                    id="porch" name="porch" value="<c:out value="${info.porch}"/>"
-                                                   title="<c:out value="${redirect_porch}"/>">
+                                                   title="<c:out value="${redirect_porch}"/>"
+                                                   min="1" max="49">
 
                                                 <%--@elvariable id="redirect_floor_error" type="java.lang.String"--%>
                                                 <%--@elvariable id="redirect_floor" type="java.lang.String"--%>
@@ -362,7 +377,8 @@
                                             <input type="number" class="form-control"
                                                    placeholder="<fmt:message key="web.inputs.floor" bundle="${ rb }"/>"
                                                    id="floor" name="floor" value="<c:out value="${info.floor}"/>"
-                                                   title="<c:out value="${redirect_floor}"/>">
+                                                   title="<c:out value="${redirect_floor}"/>"
+                                                   min="-99" max="99">
                                         </div>
                                         <div class="phone__row">
                                                 <%--@elvariable id="redirect_tel_error" type="java.lang.String"--%>
@@ -375,7 +391,8 @@
                                             <input type="tel" class="form-control"
                                                    placeholder="<fmt:message key="web.inputs.phone" bundle="${ rb }"/>"
                                                    id="tel" name="tel" value="<c:out value="${info.phone}"/>"
-                                                   title="<c:out value="${redirect_tel}"/>">
+                                                   title="<c:out value="${redirect_tel}"/>"
+                                                   pattern="\d{9}" required>
                                         </div>
 
                                         <div class="email__row">
@@ -393,7 +410,8 @@
                                         </div>
                                         <div class="comments__row">
                                     <textarea class="form-control" name="comments"
-                                              placeholder="<fmt:message key="web.inputs.comments" bundle="${ rb }"/>">
+                                              placeholder="<fmt:message key="web.inputs.comments" bundle="${ rb }"/>"
+                                              maxlength="200">
                                         <%--@elvariable id="redirect_comments" type="java.lang.String"--%>
                                         <c:out value="${redirect_comments}"/>
                                     </textarea>

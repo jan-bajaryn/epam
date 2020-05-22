@@ -14,8 +14,8 @@ public class HouseValidatorTest {
             () {
         return new Object[][]{
                 {"Some text", true},
-                {"", true},
-                {null, true},
+                {"", false},
+                {null, false},
                 {"any text", true},
         };
     }

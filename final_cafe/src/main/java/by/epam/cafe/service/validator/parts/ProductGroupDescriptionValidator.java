@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
  * Dedicated to validate {@link ProductGroup#getDescription()}
  */
 public class ProductGroupDescriptionValidator implements Validator<String> {
-    private static final String DESCR_REGEX = "[\\p{javaAlphabetic}\\d\\s-]{1,200}";
+    private static final String DESCR_REGEX = "[^\n]{1,200}";
     private static final Pattern COMPILE = Pattern.compile(DESCR_REGEX, Pattern.UNICODE_CASE);
 
     @Override

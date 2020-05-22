@@ -42,7 +42,9 @@
                 <input type="text" id="name" name="name"
                        placeholder="<fmt:message key="web.inputs.name" bundle="${ rb }"/>"
                        class="form-control"
-                       value="<c:out value="${redirect_name}"/>">
+                       value="<c:out value="${redirect_name}"/>"
+                       pattern="[A-Za-zА-Яа-яЁё\s\d-]{1,30}"
+                       required>
             </div>
 
             <div class="description">
@@ -57,7 +59,8 @@
                 <input type="text" id="description" name="description"
                        placeholder="<fmt:message key="web.inputs.description" bundle="${ rb }"/>"
                        class="form-control"
-                       value="<c:out value="${redirect_description}"/>">
+                       value="<c:out value="${redirect_description}"/>"
+                       required pattern="[^\n]{1,200}">
             </div>
 
             <div class="custom-file">
@@ -67,7 +70,7 @@
                         <fmt:message key="web.errors.field" bundle="${ rb }"/>
                     </span>
                     </c:if>
-                    <input id="file" type="file" name="file">
+                    <input id="file" type="file" name="file" required>
                 </label>
             </div>
 
