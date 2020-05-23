@@ -7,13 +7,17 @@ import by.epam.cafe.service.validator.parts.BooleanParamValidator;
  * Dedicated to parse String to Boolean value
  */
 public class BooleanParser extends ParamsParser<Boolean> {
+    private static BooleanParser INSTANCE = new BooleanParser();
 
+    public static BooleanParser getInstance() {
+        return INSTANCE;
+    }
 
     private static final String TRUE = "1";
 
-    private static final BooleanParamValidator validator = new BooleanParamValidator();
+    private static final BooleanParamValidator validator = BooleanParamValidator.getInstance();
 
-    public BooleanParser() {
+    private BooleanParser() {
         super(validator);
     }
 

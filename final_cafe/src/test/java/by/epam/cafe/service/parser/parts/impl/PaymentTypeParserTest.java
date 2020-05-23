@@ -9,7 +9,7 @@ import static org.testng.Assert.*;
 
 public class PaymentTypeParserTest {
 
-    private final PaymentTypeParser paymentTypeParser = new PaymentTypeParser();
+    private final PaymentTypeParser paymentTypeParser = PaymentTypeParser.getInstance();
 
 
     @DataProvider(name = "check")

@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.*;
 
 public class PasswordValidatorTest {
-    private final PasswordValidator passwordValidator = new PasswordValidator();
+    private final PasswordValidator passwordValidator = PasswordValidator.getInstance();
 
     @DataProvider(name = "check")
     public Object[][] checkProvider

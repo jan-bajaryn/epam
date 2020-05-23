@@ -8,10 +8,14 @@ import by.epam.cafe.service.validator.parts.PhotoNameValidator;
  * Dedicated to parse String to {@link ProductGroup#getPhotoName()} value
  */
 public class PhotoNameParser extends ParamsParser<String> {
+    private static PhotoNameParser INSTANCE = new PhotoNameParser();
 
-    private static final PhotoNameValidator VALIDATOR = new PhotoNameValidator();
+    public static PhotoNameParser getInstance() {
+        return INSTANCE;
+    }
+    private static final PhotoNameValidator VALIDATOR = PhotoNameValidator.getInstance();
 
-    public PhotoNameParser() {
+    private PhotoNameParser() {
         super(VALIDATOR);
     }
 

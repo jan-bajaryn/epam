@@ -7,7 +7,7 @@ import static org.testng.Assert.*;
 
 public class EmailValidatorTest {
 
-    private final EmailValidator emailValidator = new EmailValidator();
+    private final EmailValidator emailValidator = EmailValidator.getInstance();
 
     @DataProvider(name = "check")
     public Object[][] checkProvider

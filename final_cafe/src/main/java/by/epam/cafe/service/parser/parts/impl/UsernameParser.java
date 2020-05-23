@@ -8,10 +8,15 @@ import by.epam.cafe.service.validator.parts.UsernameValidator;
  * Dedicated to parse String to {@link User#getUsername()} value
  */
 public class UsernameParser extends ParamsParser<String> {
+    private static UsernameParser INSTANCE = new UsernameParser();
 
-    private static final UsernameValidator VALIDATOR = new UsernameValidator();
+    public static UsernameParser getInstance() {
+        return INSTANCE;
+    }
 
-    public UsernameParser() {
+    private static final UsernameValidator VALIDATOR = UsernameValidator.getInstance();
+
+    private UsernameParser() {
         super(VALIDATOR);
     }
 

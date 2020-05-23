@@ -6,6 +6,15 @@ import org.apache.commons.codec.digest.DigestUtils;
 
 public class ApplicationEncryptImpl implements ApplicationEncrypt {
 
+    private static ApplicationEncryptImpl INSTANCE = new ApplicationEncryptImpl();
+
+    public static ApplicationEncryptImpl getInstance() {
+        return INSTANCE;
+    }
+
+    private ApplicationEncryptImpl() {
+    }
+
     private static final String REGISTRATION_SECRET = "jdlfkgjneij4lijdfnogijnliu348ilfdjgnlidfjg83";
     private static final String PASSWORD_SECRET = "3lkjfdnligj83ljfdlg38flekLKh3kfuiej84LKDGJ3dlfkgj3";
 

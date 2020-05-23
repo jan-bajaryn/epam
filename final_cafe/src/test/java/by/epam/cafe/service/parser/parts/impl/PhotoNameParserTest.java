@@ -7,7 +7,7 @@ import static org.testng.Assert.*;
 
 public class PhotoNameParserTest {
 
-    private final PhotoNameParser photoNameParser = new PhotoNameParser();
+    private final PhotoNameParser photoNameParser = PhotoNameParser.getInstance();
 
 
     @DataProvider(name = "check")

@@ -7,7 +7,14 @@ import java.util.Map;
 import java.util.Optional;
 
 public class PutItemServiceImpl implements PutItemService {
+    private static PutItemServiceImpl INSTANCE = new PutItemServiceImpl();
 
+    public static PutItemServiceImpl getInstance() {
+        return INSTANCE;
+    }
+
+    private PutItemServiceImpl() {
+    }
 
     /**
      * @param product  {@link Product} to put

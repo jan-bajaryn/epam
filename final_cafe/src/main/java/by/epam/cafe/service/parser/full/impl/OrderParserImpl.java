@@ -16,23 +16,23 @@ import java.util.Map;
 
 public class OrderParserImpl implements by.epam.cafe.service.parser.full.OrderParser {
 
-    private final StreetParser streetParser = new StreetParser();
-    private final CommentsParser commentsParser = new CommentsParser();
-    private final FloorParser floorParser = new FloorParser();
-    private final PorchParser porchParser = new PorchParser();
-    private final RoomParser roomParser = new RoomParser();
-    private final HouseParser houseParser = new HouseParser();
-    private final NameParser nameParser = new NameParser();
-    private final PhoneParser phoneParser = new PhoneParser();
-    private final EmailParser emailParser = new EmailParser();
-    private final TimeParser timeParser = new TimeParser();
-    private final PriceParser priceParser = new PriceParser();
-    private final IdParser idParser = new IdParser();
+    private final StreetParser streetParser = StreetParser.getInstance();
+    private final CommentsParser commentsParser = CommentsParser.getInstance();
+    private final FloorParser floorParser = FloorParser.getInstance();
+    private final PorchParser porchParser = PorchParser.getInstance();
+    private final RoomParser roomParser = RoomParser.getInstance();
+    private final HouseParser houseParser = HouseParser.getInstance();
+    private final NameParser nameParser = NameParser.getInstance();
+    private final PhoneParser phoneParser = PhoneParser.getInstance();
+    private final EmailParser emailParser = EmailParser.getInstance();
+    private final TimeParser timeParser = TimeParser.getInstance();
+    private final PriceParser priceParser = PriceParser.getInstance();
+    private final IdParser idParser = IdParser.getInstance();
 
-    private final OrderStatusForOperatorParser orderStatusForOperatorParser = new OrderStatusForOperatorParser();
-    private final PaymentTypeParser paymentTypeParser = new PaymentTypeParser();
+    private final OrderStatusForOperatorParser orderStatusForOperatorParser = OrderStatusForOperatorParser.getInstance();
+    private final PaymentTypeParser paymentTypeParser = PaymentTypeParser.getInstance();
 
-    private final BasketValidator basketValidator = new BasketValidator();
+    private final BasketValidator basketValidator = BasketValidator.getInstance();
 
     private final ValidateAndPutter validateAndPutter = ValidateAndPutterImpl.getInstance();
 

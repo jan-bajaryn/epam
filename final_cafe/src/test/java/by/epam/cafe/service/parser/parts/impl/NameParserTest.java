@@ -7,7 +7,7 @@ import static org.testng.Assert.*;
 
 public class NameParserTest {
 
-    private final NameParser nameParser = new NameParser();
+    private final NameParser nameParser = NameParser.getInstance();
 
 
     @DataProvider(name = "check")

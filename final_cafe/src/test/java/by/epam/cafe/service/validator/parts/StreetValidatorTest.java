@@ -7,7 +7,7 @@ import static org.testng.Assert.*;
 
 public class StreetValidatorTest {
 
-    private final StreetValidator streetValidator = new StreetValidator();
+    private final StreetValidator streetValidator = StreetValidator.getInstance();
 
 
     @DataProvider(name = "check")

@@ -7,7 +7,7 @@ import static org.testng.Assert.*;
 
 public class StreetParserTest {
 
-    private final StreetParser streetParser = new StreetParser();
+    private final StreetParser streetParser = StreetParser.getInstance();
 
 
     @DataProvider(name = "check")

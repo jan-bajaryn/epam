@@ -8,12 +8,16 @@ import by.epam.cafe.service.validator.parts.PasswordValidator;
  * Dedicated to parse String to password value
  */
 public class PasswordParser extends ParamsParser<String> {
+    private static PasswordParser INSTANCE = new PasswordParser();
 
-    public static final PasswordValidator VALIDATOR = new PasswordValidator();
+    public static PasswordParser getInstance() {
+        return INSTANCE;
+    }
+    public static final PasswordValidator VALIDATOR = PasswordValidator.getInstance();
 
-    public PasswordParser() {
+    private PasswordParser() {
 //        super(VALIDATOR);
-        super(new NoValidatorString());
+        super(NoValidatorString.getInstance());
     }
 
     @Override

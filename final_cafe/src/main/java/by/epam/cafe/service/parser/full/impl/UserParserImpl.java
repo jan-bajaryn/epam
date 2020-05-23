@@ -22,21 +22,21 @@ public class UserParserImpl implements by.epam.cafe.service.parser.full.UserPars
 
     private final ValidateAndPutter validateAndPutter = ValidateAndPutterImpl.getInstance();
 
-    private final ApplicationEncrypt applicationEncrypt = new ApplicationEncryptImpl();
-    private final EmailParser emailParser = new EmailParser();
-    private final FloorParser floorParser = new FloorParser();
-    private final HouseParser houseParser = new HouseParser();
-    private final NameParser nameParser = new NameParser();
-    private final PasswordParser passwordParser = new PasswordParser();
-    private final PhoneParser phoneParser = new PhoneParser();
-    private final PorchParser porchParser = new PorchParser();
-    private final RoleParser roleParser = new RoleParser();
-    private final RoomParser roomParser = new RoomParser();
-    private final StreetParser streetParser = new StreetParser();
-    private final UsernameParser usernameParser = new UsernameParser();
-    private final SurnameParser surnameParser = new SurnameParser();
-    private final IdParser idParser = new IdParser();
-    private final BooleanParser booleanParser = new BooleanParser();
+    private final ApplicationEncrypt applicationEncrypt = ApplicationEncryptImpl.getInstance();
+    private final EmailParser emailParser = EmailParser.getInstance();
+    private final FloorParser floorParser = FloorParser.getInstance();
+    private final HouseParser houseParser = HouseParser.getInstance();
+    private final NameParser nameParser = NameParser.getInstance();
+    private final PasswordParser passwordParser = PasswordParser.getInstance();
+    private final PhoneParser phoneParser = PhoneParser.getInstance();
+    private final PorchParser porchParser = PorchParser.getInstance();
+    private final RoleParser roleParser = RoleParser.getInstance();
+    private final RoomParser roomParser = RoomParser.getInstance();
+    private final StreetParser streetParser = StreetParser.getInstance();
+    private final UsernameParser usernameParser = UsernameParser.getInstance();
+    private final SurnameParser surnameParser = SurnameParser.getInstance();
+    private final IdParser idParser = IdParser.getInstance();
+    private final BooleanParser booleanParser = BooleanParser.getInstance();
 
     /**
      * @param redirect      Map to return what parameter is valid, and value with

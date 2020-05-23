@@ -12,12 +12,17 @@ import java.time.format.DateTimeFormatter;
  * Dedicated to parse String to LocalDateTime for {@link DeliveryInf#getDeliveryTime()} value
  */
 public class TimeParser extends ParamsParser<LocalDateTime> {
+    private static TimeParser INSTANCE = new TimeParser();
+
+    public static TimeParser getInstance() {
+        return INSTANCE;
+    }
 
     private static final String FORMAT = "HH:mm";
 
-    private static final TimeValidator VALIDATOR = new TimeValidator();
+    private static final TimeValidator VALIDATOR = TimeValidator.getInstance();
 
-    public TimeParser() {
+    private TimeParser() {
         super(VALIDATOR);
     }
 

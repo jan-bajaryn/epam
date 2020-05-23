@@ -8,10 +8,14 @@ import by.epam.cafe.service.validator.parts.FloorValidator;
  * Dedicated to parse String to floor value
  */
 public class FloorParser extends ParamsParser<Integer> {
+    private static FloorParser INSTANCE = new FloorParser();
 
-    private static final FloorValidator VALIDATOR = new FloorValidator();
+    public static FloorParser getInstance() {
+        return INSTANCE;
+    }
+    private static final FloorValidator VALIDATOR = FloorValidator.getInstance();
 
-    public FloorParser() {
+    private FloorParser() {
         super(VALIDATOR);
     }
 

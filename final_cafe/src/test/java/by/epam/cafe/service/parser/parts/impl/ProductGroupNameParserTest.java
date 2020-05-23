@@ -7,7 +7,7 @@ import static org.testng.Assert.*;
 
 public class ProductGroupNameParserTest {
 
-    private final ProductGroupNameParser productGroupNameParser = new ProductGroupNameParser();
+    private final ProductGroupNameParser productGroupNameParser = ProductGroupNameParser.getInstance();
 
 
     @DataProvider(name = "check")

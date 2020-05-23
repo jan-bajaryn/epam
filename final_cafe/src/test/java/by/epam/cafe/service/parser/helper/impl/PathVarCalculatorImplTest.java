@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.*;
 
 public class PathVarCalculatorImplTest {
-    private final PathVarCalculatorImpl pathVarCalculatorImpl = new PathVarCalculatorImpl();
+    private final PathVarCalculatorImpl pathVarCalculatorImpl = PathVarCalculatorImpl.getInstance();
 
     @DataProvider(name = "forErrors")
     public Object[][] forErrorsProvider

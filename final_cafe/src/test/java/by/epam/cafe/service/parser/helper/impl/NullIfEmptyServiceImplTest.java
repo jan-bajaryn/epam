@@ -9,7 +9,7 @@ import static org.testng.Assert.*;
 
 public class NullIfEmptyServiceImplTest {
 
-    private final NullIfEmptyServiceImpl nullIfEmptyServiceImpl = new NullIfEmptyServiceImpl();
+    private final NullIfEmptyServiceImpl nullIfEmptyServiceImpl = NullIfEmptyServiceImpl.getInstance();
 
     @DataProvider(name = "checkString")
     public Object[][] checkStringProvider

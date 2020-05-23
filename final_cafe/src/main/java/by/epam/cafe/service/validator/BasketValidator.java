@@ -10,6 +10,14 @@ import static by.epam.cafe.service.parser.helper.impl.ValidateAndPutterImpl.POST
  * Dedicated to validate basket
  */
 public class BasketValidator {
+    private static BasketValidator INSTANCE = new BasketValidator();
+
+    public static BasketValidator getInstance() {
+        return INSTANCE;
+    }
+
+    private BasketValidator() {
+    }
 
     private static final int MIN_VALUE = 1;
 

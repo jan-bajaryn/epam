@@ -7,7 +7,7 @@ import static org.testng.Assert.*;
 
 public class PhotoNameValidatorTest {
 
-    private final PhotoNameValidator photoNameValidator = new PhotoNameValidator();
+    private final PhotoNameValidator photoNameValidator = PhotoNameValidator.getInstance();
 
     @DataProvider(name = "check")
     public Object[][] checkProvider

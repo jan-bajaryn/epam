@@ -46,10 +46,10 @@ public class ServiceFactory {
     private final ProductGroupService productGroupService = new ProductGroupServiceImpl();
     private final ProductService productServiceImpl = new ProductServiceImpl();
     private final UserService userService = new UserServiceImpl();
-    private final PathVarCalculator pathVarCalculator = new PathVarCalculatorImpl();
-    private final LoginValidator loginValidator = new LoginValidator();
-    private final NullIfEmptyService nullIfEmptyService = new NullIfEmptyServiceImpl();
-    private final PutItemService putItemService = new PutItemServiceImpl();
+    private final PathVarCalculator pathVarCalculator = PathVarCalculatorImpl.getInstance();
+    private final LoginValidator loginValidator = LoginValidator.getInstance();
+    private final NullIfEmptyService nullIfEmptyService = NullIfEmptyServiceImpl.getInstance();
+    private final PutItemService putItemService = PutItemServiceImpl.getInstance();
 
     private final UserParser userParser = new UserParserImpl();
     private final ProductParser productParser = new ProductParserImpl();
@@ -57,13 +57,13 @@ public class ServiceFactory {
     private final OrderParser orderParser = new OrderParserImpl();
     private final MailSender mailSender = new MailSenderImpl();
 
-    private final ApplicationEncrypt applicationEncrypt = new ApplicationEncryptImpl();
+    private final ApplicationEncrypt applicationEncrypt = ApplicationEncryptImpl.getInstance();
 
     private final PaginationService paginationService = new PaginationServiceImpl();
 
     private final PaginationCalculator paginationCalculator = new PaginationCalculatorImpl();
 
-    private final ImageWriterService imageWriterService = new ImageWriterServiceImpl();
+    private final ImageWriterService imageWriterService = ImageWriterServiceImpl.getInstance();
 
     public DeliveryInfService getDeliveryInfService() {
         return deliveryInfService;
@@ -97,7 +97,7 @@ public class ServiceFactory {
         return nullIfEmptyService;
     }
 
-    public ImageWriterService getImageWriterServiceImpl() {
+    public ImageWriterService getImageWriterService() {
         return imageWriterService;
     }
 
@@ -105,19 +105,19 @@ public class ServiceFactory {
         return putItemService;
     }
 
-    public UserParser getUserParserImpl() {
+    public UserParser getUserParser() {
         return userParser;
     }
 
-    public ProductParser getProductParserImpl() {
+    public ProductParser getProductParser() {
         return productParser;
     }
 
-    public ProductGroupParser getProductGroupParserImpl() {
+    public ProductGroupParser getProductGroupParser() {
         return productGroupParser;
     }
 
-    public OrderParser getOrderParserImpl() {
+    public OrderParser getOrderParser() {
         return orderParser;
     }
 

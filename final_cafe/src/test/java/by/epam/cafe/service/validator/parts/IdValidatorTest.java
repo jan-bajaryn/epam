@@ -7,7 +7,7 @@ import static org.testng.Assert.*;
 
 public class IdValidatorTest {
 
-    private final IdValidator idValidator = new IdValidator();
+    private final IdValidator idValidator = IdValidator.getInstance();
 
     @DataProvider(name = "check")
     public Object[][] checkProvider

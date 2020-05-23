@@ -7,7 +7,7 @@ import static org.testng.Assert.*;
 
 public class HouseParserTest {
 
-    private final HouseParser houseParser = new HouseParser();
+    private final HouseParser houseParser = HouseParser.getInstance();
 
 
     @DataProvider(name = "check")

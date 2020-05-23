@@ -7,7 +7,7 @@ import static org.testng.Assert.*;
 
 public class FloorParserTest {
 
-    private final FloorParser floorParser = new FloorParser();
+    private final FloorParser floorParser = FloorParser.getInstance();
 
 
     @DataProvider(name = "check")

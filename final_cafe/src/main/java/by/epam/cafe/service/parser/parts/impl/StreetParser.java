@@ -7,8 +7,14 @@ import by.epam.cafe.service.validator.parts.StreetValidator;
  * Dedicated to parse String to street value
  */
 public class StreetParser extends ParamsParser<String> {
-    public StreetParser() {
-        super(new StreetValidator());
+    private static final StreetValidator VALIDATOR = StreetValidator.getInstance();
+    private static StreetParser INSTANCE = new StreetParser();
+
+    public static StreetParser getInstance() {
+        return INSTANCE;
+    }
+    private StreetParser() {
+        super(VALIDATOR);
     }
 
     @Override

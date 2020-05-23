@@ -9,6 +9,14 @@ import java.util.regex.Pattern;
  * Dedicated to validate {@link User#getName()}
  */
 public class NameValidator implements Validator<String> {
+    private static NameValidator INSTANCE = new NameValidator();
+
+    public static NameValidator getInstance() {
+        return INSTANCE;
+    }
+
+    private NameValidator() {
+    }
     //language=RegExp
     public static final String NAME_REGEX = "^[\\p{javaAlphabetic}]+(([',. \\-][\\p{javaAlphabetic} ])?[\\p{javaAlphabetic}]*)*$";
     private static final Pattern COMPILE = Pattern.compile(NAME_REGEX, Pattern.UNICODE_CASE);

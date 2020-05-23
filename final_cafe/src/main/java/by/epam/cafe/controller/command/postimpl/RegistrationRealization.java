@@ -29,7 +29,7 @@ public class RegistrationRealization extends by.epam.cafe.controller.command.Com
     private final UserService userService = serviceFactory.getUserService();
 
     private final NullIfEmptyService nullEmpt = serviceFactory.getNullIfEmptyService();
-    private final UserParser userParser = serviceFactory.getUserParserImpl();
+    private final UserParser userParser = serviceFactory.getUserParser();
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

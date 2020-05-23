@@ -7,7 +7,7 @@ import static org.testng.Assert.*;
 
 public class FloorValidatorTest {
 
-    private final FloorValidator floorValidator = new FloorValidator();
+    private final FloorValidator floorValidator = FloorValidator.getInstance();
 
     @DataProvider(name = "check")
     public Object[][] checkProvider

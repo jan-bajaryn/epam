@@ -7,7 +7,7 @@ import static org.testng.Assert.*;
 
 public class PorchValidatorTest {
 
-    private final PorchValidator porchValidator = new PorchValidator();
+    private final PorchValidator porchValidator = PorchValidator.getInstance();
 
     @DataProvider(name = "check")
     public Object[][] checkProvider

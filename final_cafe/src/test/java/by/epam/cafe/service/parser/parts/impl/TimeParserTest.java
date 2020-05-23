@@ -6,7 +6,7 @@ import static org.testng.Assert.*;
 
 public class TimeParserTest {
 
-    private final TimeParser timeParser = new TimeParser();
+    private final TimeParser timeParser = TimeParser.getInstance();
 
 
     @Test

@@ -7,7 +7,7 @@ import static org.testng.Assert.*;
 
 public class PriceParserTest {
 
-    private final PriceParser priceParser = new PriceParser();
+    private final PriceParser priceParser = PriceParser.getInstance();
 
 
     @DataProvider(name = "check")

@@ -8,10 +8,14 @@ import by.epam.cafe.service.validator.parts.ProductGroupInProductValidator;
  * Dedicated to parse String to {@link Product#getProductGroup()} id value
  */
 public class ProductGroupInProductParser extends ParamsParser<Integer> {
+    private static ProductGroupInProductParser INSTANCE = new ProductGroupInProductParser();
 
-    private static final ProductGroupInProductValidator validator = new ProductGroupInProductValidator();
+    public static ProductGroupInProductParser getInstance() {
+        return INSTANCE;
+    }
+    private static final ProductGroupInProductValidator validator = ProductGroupInProductValidator.getInstance();
 
-    public ProductGroupInProductParser() {
+    private ProductGroupInProductParser() {
         super(validator);
     }
 

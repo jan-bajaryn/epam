@@ -10,7 +10,7 @@ import static org.testng.Assert.*;
 
 public class ProductTypeParserTest {
 
-    private final ProductTypeParser productTypeParser = new ProductTypeParser();
+    private final ProductTypeParser productTypeParser = ProductTypeParser.getInstance();
 
 
     @DataProvider(name = "check")

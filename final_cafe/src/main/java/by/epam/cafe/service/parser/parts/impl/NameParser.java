@@ -7,10 +7,15 @@ import by.epam.cafe.service.validator.parts.NameValidator;
  * Dedicated to parse String to name value
  */
 public class NameParser extends ParamsParser<String> {
+    private static NameParser INSTANCE = new NameParser();
 
-    private static final NameValidator VALIDATOR = new NameValidator();
+    public static NameParser getInstance() {
+        return INSTANCE;
+    }
 
-    public NameParser() {
+    private static final NameValidator VALIDATOR = NameValidator.getInstance();
+
+    private NameParser() {
         super(VALIDATOR);
     }
 

@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import static org.testng.Assert.*;
 
 public class TimeValidatorTest {
-    private final TimeValidator timeValidator = new TimeValidator();
+    private final TimeValidator timeValidator = TimeValidator.getInstance();
 
     @DataProvider(name = "check")
     public Object[][] checkProvider

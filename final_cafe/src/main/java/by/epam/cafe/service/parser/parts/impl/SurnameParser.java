@@ -7,10 +7,15 @@ import by.epam.cafe.service.validator.parts.SurnameValidator;
  * Dedicated to parse String to surname value
  */
 public class SurnameParser extends ParamsParser<String> {
+    private static SurnameParser INSTANCE = new SurnameParser();
 
-    private static final SurnameValidator VALIDATOR = new SurnameValidator();
+    public static SurnameParser getInstance() {
+        return INSTANCE;
+    }
 
-    public SurnameParser() {
+    private static final SurnameValidator VALIDATOR = SurnameValidator.getInstance();
+
+    private SurnameParser() {
         super(VALIDATOR);
     }
 

@@ -8,10 +8,14 @@ import by.epam.cafe.service.validator.parts.PaymentTypeValidator;
  * Dedicated to parse String to {@link PaymentType}
  */
 public class PaymentTypeParser extends ParamsParser<PaymentType> {
+    private static PaymentTypeParser INSTANCE = new PaymentTypeParser();
 
-    private static final PaymentTypeValidator VALIDATOR = new PaymentTypeValidator();
+    public static PaymentTypeParser getInstance() {
+        return INSTANCE;
+    }
+    private static final PaymentTypeValidator VALIDATOR = PaymentTypeValidator.getInstance();
 
-    public PaymentTypeParser() {
+    private PaymentTypeParser() {
         super(VALIDATOR);
     }
 

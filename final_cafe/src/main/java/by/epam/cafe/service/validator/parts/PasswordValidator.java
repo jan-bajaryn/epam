@@ -9,6 +9,14 @@ import java.util.regex.Pattern;
  * Dedicated to validate password
  */
 public class PasswordValidator implements Validator<String> {
+    private static PasswordValidator INSTANCE = new PasswordValidator();
+
+    public static PasswordValidator getInstance() {
+        return INSTANCE;
+    }
+
+    private PasswordValidator() {
+    }
 
     public static final String CAPITAL_REGEX = ".*\\p{javaUpperCase}.*";
     private static final Pattern CAPITAL_PATTERN = Pattern.compile(CAPITAL_REGEX, Pattern.UNICODE_CASE);

@@ -3,7 +3,14 @@ package by.epam.cafe.service.parser.helper.impl;
 import by.epam.cafe.service.parser.helper.NullIfEmptyService;
 
 public class NullIfEmptyServiceImpl implements NullIfEmptyService {
+    private static NullIfEmptyServiceImpl INSTANCE = new NullIfEmptyServiceImpl();
 
+    public static NullIfEmptyServiceImpl getInstance() {
+        return INSTANCE;
+    }
+
+    private NullIfEmptyServiceImpl() {
+    }
     /**
      * @param param parameter to parse
      * @return String value of input

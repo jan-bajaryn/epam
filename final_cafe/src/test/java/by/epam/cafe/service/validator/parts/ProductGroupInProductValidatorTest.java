@@ -8,7 +8,7 @@ import static org.testng.Assert.*;
 public class ProductGroupInProductValidatorTest {
 
     private final ProductGroupInProductValidator productGroupInProductValidator =
-            new ProductGroupInProductValidator();
+            ProductGroupInProductValidator.getInstance();
 
     @DataProvider(name = "check")
     public Object[][] checkProvider

@@ -11,7 +11,7 @@ import static org.testng.Assert.*;
 
 public class BasketValidatorTest {
 
-    private final BasketValidator basketValidator = new BasketValidator();
+    private final BasketValidator basketValidator = BasketValidator.getInstance();
 
     @Test
     public void testIsValid() {

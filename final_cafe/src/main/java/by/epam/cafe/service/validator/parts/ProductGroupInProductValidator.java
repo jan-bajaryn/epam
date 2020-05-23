@@ -7,6 +7,14 @@ import by.epam.cafe.service.validator.Validator;
  * Dedicated to validate {@link Product#getProductGroup()} id
  */
 public class ProductGroupInProductValidator implements Validator<Integer> {
+    private static ProductGroupInProductValidator INSTANCE = new ProductGroupInProductValidator();
+
+    public static ProductGroupInProductValidator getInstance() {
+        return INSTANCE;
+    }
+
+    private ProductGroupInProductValidator() {
+    }
 
     private static final int MIN_VALUE = 0;
 

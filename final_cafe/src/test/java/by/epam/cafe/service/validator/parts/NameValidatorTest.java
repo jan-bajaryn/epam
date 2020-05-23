@@ -8,7 +8,7 @@ import static org.testng.Assert.*;
 
 public class NameValidatorTest {
 
-    private final NameValidator nameValidator = new NameValidator();
+    private final NameValidator nameValidator = NameValidator.getInstance();
 
     @DataProvider(name = "check")
     public Object[][] checkProvider

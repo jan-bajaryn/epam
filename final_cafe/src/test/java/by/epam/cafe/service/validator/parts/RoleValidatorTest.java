@@ -9,7 +9,7 @@ import static org.testng.Assert.*;
 
 public class RoleValidatorTest {
 
-    private final RoleValidator roleValidator = new RoleValidator();
+    private final RoleValidator roleValidator = RoleValidator.getInstance();
 
     @DataProvider(name = "check")
     public Object[][] checkProvider

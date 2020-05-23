@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.*;
 
 public class BooleanParamValidatorTest {
-    private final BooleanParamValidator booleanParamValidator = new BooleanParamValidator();
+    private final BooleanParamValidator booleanParamValidator = BooleanParamValidator.getInstance();
 
     @DataProvider(name = "check")
     public Object[][] checkProvider

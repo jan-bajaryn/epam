@@ -9,7 +9,7 @@ import static org.testng.Assert.*;
 public class OrderStatusForOperatorValidatorTest {
 
     private final OrderStatusForOperatorValidator orderStatusForOperatorValidator =
-            new OrderStatusForOperatorValidator();
+            OrderStatusForOperatorValidator.getInstance();
 
     @DataProvider(name = "check")
     public Object[][] checkProvider

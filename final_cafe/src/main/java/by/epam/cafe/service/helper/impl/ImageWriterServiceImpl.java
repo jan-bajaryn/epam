@@ -8,7 +8,14 @@ import org.apache.commons.fileupload.FileItem;
 import java.io.File;
 
 public class ImageWriterServiceImpl implements ImageWriterService {
+    private static ImageWriterServiceImpl INSTANCE = new ImageWriterServiceImpl();
 
+    public static ImageWriterServiceImpl getInstance() {
+        return INSTANCE;
+    }
+
+    private ImageWriterServiceImpl() {
+    }
     private final DAOFactory dAOFactory = DAOFactory.getInstance();
 
     final ImageWriterDao imageWriterDao = dAOFactory.getImageWriterDao();

@@ -7,7 +7,7 @@ import static org.testng.Assert.*;
 
 public class BooleanParserTest {
 
-    private final BooleanParser booleanParser = new BooleanParser();
+    private final BooleanParser booleanParser = BooleanParser.getInstance();
 
 
     @DataProvider(name = "check")

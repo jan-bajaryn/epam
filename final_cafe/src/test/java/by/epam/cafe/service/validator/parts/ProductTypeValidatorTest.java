@@ -9,7 +9,7 @@ import static org.testng.Assert.*;
 
 public class ProductTypeValidatorTest {
 
-    private final ProductTypeValidator productTypeValidator = new ProductTypeValidator();
+    private final ProductTypeValidator productTypeValidator = ProductTypeValidator.getInstance();
 
     @DataProvider(name = "check")
     public Object[][] checkProvider

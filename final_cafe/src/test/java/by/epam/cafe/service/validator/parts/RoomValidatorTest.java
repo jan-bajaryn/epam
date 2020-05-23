@@ -7,7 +7,7 @@ import static org.testng.Assert.*;
 
 public class RoomValidatorTest {
 
-    private final RoomValidator roomValidator = new RoomValidator();
+    private final RoomValidator roomValidator = RoomValidator.getInstance();
 
 
     @DataProvider(name = "check")

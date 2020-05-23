@@ -10,7 +10,7 @@ import static org.testng.Assert.*;
 public class OrderStatusForOperatorParserTest {
 
     private final OrderStatusForOperatorParser orderStatusForOperatorParser =
-            new OrderStatusForOperatorParser();
+            OrderStatusForOperatorParser.getInstance();
 
 
     @DataProvider(name = "check")

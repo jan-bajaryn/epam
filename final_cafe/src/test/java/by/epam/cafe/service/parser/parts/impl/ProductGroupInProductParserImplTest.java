@@ -8,7 +8,7 @@ import static org.testng.Assert.*;
 public class ProductGroupInProductParserImplTest {
 
 private final ProductGroupInProductParser productGroupInProductParser =
-        new ProductGroupInProductParser();
+        ProductGroupInProductParser.getInstance();
 
 
     @DataProvider(name = "check")

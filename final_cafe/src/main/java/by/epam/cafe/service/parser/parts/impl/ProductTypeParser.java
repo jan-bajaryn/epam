@@ -8,10 +8,14 @@ import by.epam.cafe.service.validator.parts.ProductTypeValidator;
  * Dedicated to parse String to {@link ProductType} value
  */
 public class ProductTypeParser extends ParamsParser<ProductType> {
+    private static ProductTypeParser INSTANCE = new ProductTypeParser();
 
-    private static final ProductTypeValidator VALIDATOR = new ProductTypeValidator();
+    public static ProductTypeParser getInstance() {
+        return INSTANCE;
+    }
+    private static final ProductTypeValidator VALIDATOR = ProductTypeValidator.getInstance();
 
-    public ProductTypeParser() {
+    private ProductTypeParser() {
         super(VALIDATOR);
     }
 

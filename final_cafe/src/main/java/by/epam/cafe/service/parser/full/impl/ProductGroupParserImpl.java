@@ -23,14 +23,14 @@ public class ProductGroupParserImpl implements by.epam.cafe.service.parser.full.
     private final ValidateAndPutter validateAndPutter = ValidateAndPutterImpl.getInstance();
 
 
-    private final ImageWriterService imageWriterService = new ImageWriterServiceImpl();
+    private final ImageWriterService imageWriterService = ImageWriterServiceImpl.getInstance();
 
-    private final ProductGroupNameParser productGroupNameParser = new ProductGroupNameParser();
-    private final ProductTypeParser productTypeParser = new ProductTypeParser();
-    private final ProductGroupDescriptionParser productGroupDescriptionParser = new ProductGroupDescriptionParser();
-    private final IdParser idParser = new IdParser();
-    private final PhotoNameParser photoNameParser = new PhotoNameParser();
-    private final BooleanParser booleanParser = new BooleanParser();
+    private final ProductGroupNameParser productGroupNameParser = ProductGroupNameParser.getInstance();
+    private final ProductTypeParser productTypeParser = ProductTypeParser.getInstance();
+    private final ProductGroupDescriptionParser productGroupDescriptionParser = ProductGroupDescriptionParser.getInstance();
+    private final IdParser idParser = IdParser.getInstance();
+    private final PhotoNameParser photoNameParser = PhotoNameParser.getInstance();
+    private final BooleanParser booleanParser = BooleanParser.getInstance();
 
 
     /**

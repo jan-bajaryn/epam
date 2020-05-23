@@ -7,7 +7,7 @@ import static org.testng.Assert.*;
 
 public class PriceValidatorTest {
 
-    private final PriceValidator priceValidator = new PriceValidator();
+    private final PriceValidator priceValidator = PriceValidator.getInstance();
 
     @DataProvider(name = "check")
     public Object[][] checkProvider

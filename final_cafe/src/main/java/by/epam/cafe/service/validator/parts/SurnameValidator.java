@@ -10,6 +10,14 @@ import java.util.regex.Pattern;
  * Dedicated to validate {@link User#getSurname()}
  */
 public class SurnameValidator implements Validator<String> {
+    private static SurnameValidator INSTANCE = new SurnameValidator();
+
+    public static SurnameValidator getInstance() {
+        return INSTANCE;
+    }
+
+    private SurnameValidator() {
+    }
     //language=RegExp
     public static final String SURNAME_REGEX = "[\\p{javaAlphabetic}-]{1,20}";
 

@@ -7,7 +7,7 @@ import static org.testng.Assert.*;
 
 public class UsernameValidatorTest {
 
-    private final UsernameValidator usernameValidator = new UsernameValidator();
+    private final UsernameValidator usernameValidator = UsernameValidator.getInstance();
 
 
     @DataProvider(name = "check")

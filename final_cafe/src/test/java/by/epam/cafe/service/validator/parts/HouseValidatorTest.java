@@ -7,7 +7,7 @@ import static org.testng.Assert.*;
 
 public class HouseValidatorTest {
 
-    private final HouseValidator houseValidator = new HouseValidator();
+    private final HouseValidator houseValidator = HouseValidator.getInstance();
 
     @DataProvider(name = "check")
     public Object[][] checkProvider

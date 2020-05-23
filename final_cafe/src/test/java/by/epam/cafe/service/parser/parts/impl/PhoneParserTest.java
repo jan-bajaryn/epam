@@ -7,7 +7,7 @@ import static org.testng.Assert.*;
 
 public class PhoneParserTest {
 
-    private final PhoneParser phoneParser = new PhoneParser();
+    private final PhoneParser phoneParser = PhoneParser.getInstance();
 
 
     @DataProvider(name = "check")

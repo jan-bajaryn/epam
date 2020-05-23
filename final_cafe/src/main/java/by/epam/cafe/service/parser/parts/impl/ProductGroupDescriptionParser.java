@@ -8,10 +8,14 @@ import by.epam.cafe.service.validator.parts.ProductGroupDescriptionValidator;
  * Dedicated to parse String to {@link ProductGroup#getDescription()} value
  */
 public class ProductGroupDescriptionParser extends ParamsParser<String> {
+    private static ProductGroupDescriptionParser INSTANCE = new ProductGroupDescriptionParser();
 
-    private static final ProductGroupDescriptionValidator validator = new ProductGroupDescriptionValidator();
+    public static ProductGroupDescriptionParser getInstance() {
+        return INSTANCE;
+    }
+    private static final ProductGroupDescriptionValidator validator = ProductGroupDescriptionValidator.getInstance();
 
-    public ProductGroupDescriptionParser() {
+    private ProductGroupDescriptionParser() {
         super(validator);
     }
 

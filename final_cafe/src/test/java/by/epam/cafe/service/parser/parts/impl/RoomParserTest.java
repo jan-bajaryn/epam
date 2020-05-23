@@ -7,7 +7,7 @@ import static org.testng.Assert.*;
 
 public class RoomParserTest {
 
-    private final RoomParser roomParser = new RoomParser();
+    private final RoomParser roomParser = RoomParser.getInstance();
 
 
     @DataProvider(name = "check")

@@ -7,10 +7,14 @@ import by.epam.cafe.service.validator.parts.PhoneValidator;
  * Dedicated to parse String to phone value
  */
 public class PhoneParser extends ParamsParser<String> {
+    private static PhoneParser INSTANCE = new PhoneParser();
 
-    private static final PhoneValidator VALIDATOR = new PhoneValidator();
+    public static PhoneParser getInstance() {
+        return INSTANCE;
+    }
+    private static final PhoneValidator VALIDATOR = PhoneValidator.getInstance();
 
-    public PhoneParser() {
+    private PhoneParser() {
         super(VALIDATOR);
     }
 

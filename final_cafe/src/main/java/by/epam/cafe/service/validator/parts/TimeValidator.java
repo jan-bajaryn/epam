@@ -10,6 +10,14 @@ import java.time.LocalDateTime;
  * Dedicated to validate LocalDateTime for {@link DeliveryInf#getDeliveryTime()} value
  */
 public class TimeValidator implements Validator<LocalDateTime> {
+    private static TimeValidator INSTANCE = new TimeValidator();
+
+    public static TimeValidator getInstance() {
+        return INSTANCE;
+    }
+
+    private TimeValidator() {
+    }
 
     public static final Duration MIN_DIFFERENCE = Duration.ofMinutes(30);
     private static final Duration MAX_DIFFERENCE = Duration.ofHours(24);

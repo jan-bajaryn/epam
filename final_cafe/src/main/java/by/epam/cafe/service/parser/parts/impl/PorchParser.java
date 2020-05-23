@@ -7,10 +7,15 @@ import by.epam.cafe.service.validator.parts.PorchValidator;
  * Dedicated to parse String to porch value
  */
 public class PorchParser extends ParamsParser<Integer> {
+    private static PorchParser INSTANCE = new PorchParser();
 
-    private static final PorchValidator VALIDATOR = new PorchValidator();
+    public static PorchParser getInstance() {
+        return INSTANCE;
+    }
 
-    public PorchParser() {
+    private static final PorchValidator VALIDATOR = PorchValidator.getInstance();
+
+    private PorchParser() {
         super(VALIDATOR);
     }
 

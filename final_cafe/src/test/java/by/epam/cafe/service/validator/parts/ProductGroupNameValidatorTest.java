@@ -7,7 +7,7 @@ import static org.testng.Assert.*;
 
 public class ProductGroupNameValidatorTest {
 
-    private final ProductGroupNameValidator productGroupNameValidator = new ProductGroupNameValidator();
+    private final ProductGroupNameValidator productGroupNameValidator = ProductGroupNameValidator.getInstance();
 
     @DataProvider(name = "check")
     public Object[][] checkProvider

@@ -33,7 +33,7 @@ public class RegistrationBegin extends by.epam.cafe.controller.command.Command {
     private final UserService userService = serviceFactory.getUserService();
 
     private final NullIfEmptyService nullEmpt = serviceFactory.getNullIfEmptyService();
-    private final UserParser userParser = serviceFactory.getUserParserImpl();
+    private final UserParser userParser = serviceFactory.getUserParser();
     private final ApplicationEncrypt applicationEncrypt = serviceFactory.getApplicationEncrypt();
     private final MailSender mailSender = serviceFactory.getMailSender();
 

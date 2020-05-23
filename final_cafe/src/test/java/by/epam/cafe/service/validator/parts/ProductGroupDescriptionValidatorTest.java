@@ -7,7 +7,7 @@ import static org.testng.Assert.*;
 
 public class ProductGroupDescriptionValidatorTest {
 
-    private final ProductGroupDescriptionValidator productGroupDescriptionValidator = new ProductGroupDescriptionValidator();
+    private final ProductGroupDescriptionValidator productGroupDescriptionValidator = ProductGroupDescriptionValidator.getInstance();
 
 
     private static final String MORE_THAN_200_INPUT = "jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj ";

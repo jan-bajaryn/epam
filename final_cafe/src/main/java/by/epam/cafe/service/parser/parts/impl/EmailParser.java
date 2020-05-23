@@ -8,10 +8,14 @@ import by.epam.cafe.service.validator.parts.EmailValidator;
  * Dedicated to parse String to {@link DeliveryInf#getEmail()}
  */
 public class EmailParser extends ParamsParser<String> {
+    private static EmailParser INSTANCE = new EmailParser();
 
-    private static final EmailValidator VALIDATOR = new EmailValidator();
+    public static EmailParser getInstance() {
+        return INSTANCE;
+    }
+    private static final EmailValidator VALIDATOR = EmailValidator.getInstance();
 
-    public EmailParser() {
+    private EmailParser() {
         super(VALIDATOR);
     }
 

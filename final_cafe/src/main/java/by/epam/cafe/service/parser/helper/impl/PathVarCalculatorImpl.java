@@ -4,7 +4,14 @@ import by.epam.cafe.service.exception.IllegalPathParamException;
 import by.epam.cafe.service.parser.helper.PathVarCalculator;
 
 public class PathVarCalculatorImpl implements PathVarCalculator {
+    private static PathVarCalculatorImpl INSTANCE = new PathVarCalculatorImpl();
 
+    public static PathVarCalculatorImpl getInstance() {
+        return INSTANCE;
+    }
+
+    private PathVarCalculatorImpl() {
+    }
 
     /**
      * @param path url from query {@code url}

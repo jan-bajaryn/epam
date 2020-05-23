@@ -7,10 +7,14 @@ import by.epam.cafe.service.validator.parts.PriceValidator;
  * Dedicated to parse String to price value
  */
 public class PriceParser extends ParamsParser<Integer> {
+    private static PriceParser INSTANCE = new PriceParser();
 
-    private static final PriceValidator VALIDATOR = new PriceValidator();
+    public static PriceParser getInstance() {
+        return INSTANCE;
+    }
+    private static final PriceValidator VALIDATOR = PriceValidator.getInstance();
 
-    public PriceParser() {
+    private PriceParser() {
         super(VALIDATOR);
     }
 

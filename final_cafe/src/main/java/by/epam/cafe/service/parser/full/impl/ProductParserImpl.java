@@ -17,10 +17,10 @@ public class ProductParserImpl implements ProductParser {
 
     private final ValidateAndPutter validateAndPutter = ValidateAndPutterImpl.getInstance();
 
-    private final IdParser idParser = new IdParser();
-    private final ProductGroupInProductParser productGroupInProductParser = new ProductGroupInProductParser();
-    private final PriceParser priceParser = new PriceParser();
-    private final WeightParser weightParser = new WeightParser();
+    private final IdParser idParser = IdParser.getInstance();
+    private final ProductGroupInProductParser productGroupInProductParser = ProductGroupInProductParser.getInstance();
+    private final PriceParser priceParser = PriceParser.getInstance();
+    private final WeightParser weightParser = WeightParser.getInstance();
 
     /**
      * @param redirect     Map to return what parameter is valid, and value with

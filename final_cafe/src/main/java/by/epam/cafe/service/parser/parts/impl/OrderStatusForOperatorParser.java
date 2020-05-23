@@ -10,9 +10,16 @@ import by.epam.cafe.service.validator.parts.OrderStatusForOperatorValidator;
  * with operator calling
  */
 public class OrderStatusForOperatorParser extends ParamsParser<OrderStatus> {
-    private static final OrderStatusForOperatorValidator VALIDATOR = new OrderStatusForOperatorValidator();
 
-    public OrderStatusForOperatorParser() {
+    private static OrderStatusForOperatorParser INSTANCE = new OrderStatusForOperatorParser();
+
+    public static OrderStatusForOperatorParser getInstance() {
+        return INSTANCE;
+    }
+
+    private static final OrderStatusForOperatorValidator VALIDATOR = OrderStatusForOperatorValidator.getInstance();
+
+    private OrderStatusForOperatorParser() {
         super(VALIDATOR);
     }
 

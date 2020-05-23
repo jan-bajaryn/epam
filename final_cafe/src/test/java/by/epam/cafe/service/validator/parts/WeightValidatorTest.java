@@ -7,7 +7,7 @@ import static org.testng.Assert.*;
 
 public class WeightValidatorTest {
 
-    private final WeightValidator weightValidator = new WeightValidator();
+    private final WeightValidator weightValidator = WeightValidator.getInstance();
 
     @DataProvider(name = "check")
     public Object[][] checkProvider

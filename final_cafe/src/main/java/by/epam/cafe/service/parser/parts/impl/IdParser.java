@@ -7,10 +7,14 @@ import by.epam.cafe.service.validator.parts.IdValidator;
  * Dedicated to parse String to id of Integer
  */
 public class IdParser extends ParamsParser<Integer> {
+    private static IdParser INSTANCE = new IdParser();
 
-    public static final IdValidator VALIDATOR = new IdValidator();
+    public static IdParser getInstance() {
+        return INSTANCE;
+    }
+    public static final IdValidator VALIDATOR = IdValidator.getInstance();
 
-    public IdParser() {
+    private IdParser() {
         super(VALIDATOR);
     }
 

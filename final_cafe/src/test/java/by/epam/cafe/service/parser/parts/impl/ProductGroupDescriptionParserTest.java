@@ -8,7 +8,7 @@ import static org.testng.Assert.*;
 public class ProductGroupDescriptionParserTest {
 
     private final ProductGroupDescriptionParser productGroupDescriptionParser =
-            new ProductGroupDescriptionParser();
+            ProductGroupDescriptionParser.getInstance();
 
     private static final String MORE_THAN_200_INPUT = "jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj ";
 

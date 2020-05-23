@@ -31,11 +31,11 @@ public class CreateProductGroup extends by.epam.cafe.controller.command.Command 
 
     private final ServiceFactory serviceFactory = ServiceFactory.getInstance();
     private final ProductGroupService productGroupService = serviceFactory.getProductGroupService();
-    private final ImageWriterService imageWriterService = serviceFactory.getImageWriterServiceImpl();
+    private final ImageWriterService imageWriterService = serviceFactory.getImageWriterService();
     private static final DiskFileItemFactory FILE_ITEM_FACTORY = new DiskFileItemFactory();
 
 
-    private final ProductGroupParser productGroupParser = serviceFactory.getProductGroupParserImpl();
+    private final ProductGroupParser productGroupParser = serviceFactory.getProductGroupParser();
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PermissionDeniedException {

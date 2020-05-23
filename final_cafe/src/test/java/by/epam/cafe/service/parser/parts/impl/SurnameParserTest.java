@@ -7,7 +7,7 @@ import static org.testng.Assert.*;
 
 public class SurnameParserTest {
 
-    private final SurnameParser surnameParser = new SurnameParser();
+    private final SurnameParser surnameParser = SurnameParser.getInstance();
     private static final String MORE_THAN_20 = "ффффффффффффффффффффф";
 
 

@@ -9,7 +9,7 @@ import static org.testng.Assert.*;
 
 public class PaymentTypeValidatorTest {
 
-    private final PaymentTypeValidator paymentTypeValidator = new PaymentTypeValidator();
+    private final PaymentTypeValidator paymentTypeValidator = PaymentTypeValidator.getInstance();
 
     @DataProvider(name = "check")
     public Object[][] checkProvider

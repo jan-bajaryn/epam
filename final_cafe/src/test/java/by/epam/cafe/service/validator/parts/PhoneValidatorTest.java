@@ -7,7 +7,7 @@ import static org.testng.Assert.*;
 
 public class PhoneValidatorTest {
 
-    private final PhoneValidator phoneValidator = new PhoneValidator();
+    private final PhoneValidator phoneValidator = PhoneValidator.getInstance();
 
     @DataProvider(name = "check")
     public Object[][] checkProvider

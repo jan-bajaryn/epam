@@ -25,7 +25,7 @@ public class MakeOrderAnon extends by.epam.cafe.controller.command.Command {
 
     private final ServiceFactory serviceFactory = ServiceFactory.getInstance();
     private final OrderService orderService = serviceFactory.getOrderService();
-    private final OrderParser orderParser = serviceFactory.getOrderParserImpl();
+    private final OrderParser orderParser = serviceFactory.getOrderParser();
 
 
     @Override

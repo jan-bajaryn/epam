@@ -8,10 +8,14 @@ import by.epam.cafe.service.validator.parts.CommentsValidator;
  * Dedicated to parse String to {@link DeliveryInf#getComments()}
  */
 public class CommentsParser extends ParamsParser<String> {
+    private static CommentsParser INSTANCE = new CommentsParser();
 
-    private static final CommentsValidator validator = new CommentsValidator();
+    public static CommentsParser getInstance() {
+        return INSTANCE;
+    }
+    private static final CommentsValidator validator = CommentsValidator.getInstance();
 
-    public CommentsParser() {
+    private CommentsParser() {
         super(validator);
     }
 

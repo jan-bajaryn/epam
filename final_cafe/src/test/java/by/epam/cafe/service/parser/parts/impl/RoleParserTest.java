@@ -10,7 +10,7 @@ import static org.testng.Assert.*;
 
 public class RoleParserTest {
 
-    private final RoleParser roleParser = new RoleParser();
+    private final RoleParser roleParser = RoleParser.getInstance();
 
 
     @DataProvider(name = "check")

@@ -7,10 +7,15 @@ import by.epam.cafe.service.validator.parts.WeightValidator;
  * Dedicated to parse String to weight value
  */
 public class WeightParser extends ParamsParser<Integer> {
+    private static WeightParser INSTANCE = new WeightParser();
 
-    private static final WeightValidator VALIDATOR = new WeightValidator();
+    public static WeightParser getInstance() {
+        return INSTANCE;
+    }
 
-    public WeightParser() {
+    private static final WeightValidator VALIDATOR = WeightValidator.getInstance();
+
+    private WeightParser() {
         super(VALIDATOR);
     }
 

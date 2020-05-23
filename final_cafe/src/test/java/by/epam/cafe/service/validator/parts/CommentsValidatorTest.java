@@ -7,7 +7,7 @@ import static org.testng.Assert.*;
 
 public class CommentsValidatorTest {
 
-    private final CommentsValidator commentsValidator = new CommentsValidator();
+    private final CommentsValidator commentsValidator = CommentsValidator.getInstance();
     private static final String MORE_THAN_200_INPUT = "jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj ";
 
     @DataProvider(name = "check")

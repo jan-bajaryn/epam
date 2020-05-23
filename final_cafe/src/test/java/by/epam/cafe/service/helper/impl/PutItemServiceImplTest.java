@@ -10,7 +10,7 @@ import static org.testng.Assert.*;
 
 public class PutItemServiceImplTest {
 
-    private final PutItemServiceImpl putItemServiceImpl = new PutItemServiceImpl();
+    private final PutItemServiceImpl putItemServiceImpl = PutItemServiceImpl.getInstance();
 
     @Test
     public void testPutProductThrowsException() {

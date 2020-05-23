@@ -8,10 +8,14 @@ import by.epam.cafe.service.validator.parts.RoleValidator;
  * Dedicated to parse String to {@link Role} value
  */
 public class RoleParser extends ParamsParser<Role> {
+    private static RoleParser INSTANCE = new RoleParser();
 
-    private static final RoleValidator VALIDATOR = new RoleValidator();
+    public static RoleParser getInstance() {
+        return INSTANCE;
+    }
+    private static final RoleValidator VALIDATOR = RoleValidator.getInstance() ;
 
-    public RoleParser() {
+    private RoleParser() {
         super(VALIDATOR);
     }
 

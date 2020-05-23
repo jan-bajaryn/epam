@@ -7,7 +7,7 @@ import static org.testng.Assert.*;
 
 public class WeightParserTest {
 
-    private final WeightParser weightParser = new WeightParser();
+    private final WeightParser weightParser = WeightParser.getInstance();
 
 
     @DataProvider(name = "check")

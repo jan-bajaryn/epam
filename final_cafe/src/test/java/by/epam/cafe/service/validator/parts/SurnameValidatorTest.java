@@ -8,7 +8,7 @@ import static org.testng.Assert.*;
 public class SurnameValidatorTest {
 
     private static final String MORE_THAN_20 = "ффффффффффффффффффффф";
-    private final SurnameValidator surnameValidator = new SurnameValidator();
+    private final SurnameValidator surnameValidator = SurnameValidator.getInstance();
 
 
     @DataProvider(name = "check")

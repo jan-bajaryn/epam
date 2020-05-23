@@ -10,7 +10,7 @@ import static org.testng.Assert.*;
 
 public class EmailParserTest {
 
-    private final EmailParser emailParser = new EmailParser();
+    private final EmailParser emailParser = EmailParser.getInstance();
 
 
     @DataProvider(name = "check")

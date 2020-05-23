@@ -7,7 +7,7 @@ import static org.testng.Assert.*;
 
 public class IdParserTest {
 
-    private final IdParser idParser = new IdParser();
+    private final IdParser idParser = IdParser.getInstance();
 
 
     @DataProvider(name = "check")

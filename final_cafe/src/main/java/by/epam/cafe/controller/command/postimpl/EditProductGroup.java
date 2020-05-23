@@ -31,8 +31,8 @@ public class EditProductGroup extends by.epam.cafe.controller.command.Command {
     private static final DiskFileItemFactory FILE_ITEM_FACTORY = new DiskFileItemFactory();
     private final ServiceFactory serviceFactory = ServiceFactory.getInstance();
     private final ProductGroupService productGroupService = serviceFactory.getProductGroupService();
-    private final ImageWriterService imageWriterService = serviceFactory.getImageWriterServiceImpl();
-    private final ProductGroupParser productGroupParser = serviceFactory.getProductGroupParserImpl();
+    private final ImageWriterService imageWriterService = serviceFactory.getImageWriterService();
+    private final ProductGroupParser productGroupParser = serviceFactory.getProductGroupParser();
 
 
     @Override
