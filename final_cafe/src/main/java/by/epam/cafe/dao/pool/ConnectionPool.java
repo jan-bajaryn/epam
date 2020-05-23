@@ -28,7 +28,7 @@ public class ConnectionPool {
     private ConnectionPool() {
     }
 
-    public static final int MAX_COUNT = 100;
+    public static final int MAX_COUNT = 30;
     private static Properties properties = new Properties();
 
     private List<Connection> passive = new ArrayList<>();
@@ -37,10 +37,10 @@ public class ConnectionPool {
 
     private static final String RESOURCE = "/property/database.properties";
 
-    private ReentrantLock locker = new ReentrantLock(true);
+    private ReentrantLock locker = new ReentrantLock(false);
     private Condition condition = locker.newCondition();
 
-    private Semaphore semaphore = new Semaphore(MAX_COUNT, true);
+    private Semaphore semaphore = new Semaphore(MAX_COUNT, false);
 
     static {
         init();
@@ -58,14 +58,6 @@ public class ConnectionPool {
     }
 
     public Connection takeConnection() {
-//        try {
-//            String url = properties.getProperty("url");
-//            log.info("url = {}", url);
-//            return DriverManager.getConnection(url, properties);
-//        } catch (SQLException e) {
-//            log.error("Exception in takeConnection: ", e);
-//            return null;
-//        }
         try {
             semaphore.acquire();
 
@@ -89,14 +81,10 @@ public class ConnectionPool {
     }
 
     public void release(Connection cn) {
-//        try {
-//            cn.close();
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-
         try {
             locker.lock();
+            log.debug("release: passive.size() = {}", passive.size());
+            log.debug("release: inUse.size() = {}", inUse.size());
             if (cn != null) {
                 inUse.remove(cn);
                 passive.add(cn);
@@ -110,6 +98,9 @@ public class ConnectionPool {
     }
 
     private Connection createOrAccess() throws SQLException {
+        log.debug("createOrAccess: passive.size() = {}", passive.size());
+        log.debug("createOrAccess: inUse.size() = {}", inUse.size());
+
         if (!passive.isEmpty()) {
 
             Connection remove = passive.remove(0);
@@ -118,14 +109,9 @@ public class ConnectionPool {
             return remove;
         }
 
-//            if (passive.size() + inUse.size() >= MAX_COUNT) {
-//                return null;
-//            }
         Connection connection = DriverManager.getConnection(properties.getProperty("url"), properties);
 
-        // new data. check if works correctly
         connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
-
 
         return connection;
     }
