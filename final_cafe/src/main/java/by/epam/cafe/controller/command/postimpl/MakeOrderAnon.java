@@ -54,8 +54,8 @@ public class MakeOrderAnon extends by.epam.cafe.controller.command.Command {
                 response.sendRedirect(referer);
             }
         } else {
-            response.sendRedirect(referer);
             session.setAttribute(REDIRECTED_INFO, redirect);
+            response.sendRedirect(referer);
         }
     }
 

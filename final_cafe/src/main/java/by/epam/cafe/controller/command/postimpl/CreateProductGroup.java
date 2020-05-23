@@ -63,8 +63,8 @@ public class CreateProductGroup extends by.epam.cafe.controller.command.Command 
             }
         } else {
             imageWriterService.deleteImageIfNeed(fileNameHolder.getValue());
-            response.sendRedirect(referer);
             request.getSession().setAttribute(REDIRECTED_INFO, redirect);
+            response.sendRedirect(referer);
         }
 
 //            if (withoutId && productGroupService.create(productGroup) != null) {

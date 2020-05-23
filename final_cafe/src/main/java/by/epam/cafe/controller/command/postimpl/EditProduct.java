@@ -52,8 +52,8 @@ public class EditProduct extends by.epam.cafe.controller.command.Command {
                 response.sendRedirect(referer);
             }
         } else {
-            response.sendRedirect(referer);
             request.getSession().setAttribute(REDIRECTED_INFO, redirect);
+            response.sendRedirect(referer);
         }
 
     }

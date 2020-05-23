@@ -8,6 +8,11 @@
     <artifactId>cafe</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
+
     <packaging>war</packaging>
 
     <dependencies>
@@ -126,7 +131,9 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+
                 <configuration>
+                    <encoding>UTF-8</encoding>
                     <source>11</source>
                     <target>11</target>
                 </configuration>

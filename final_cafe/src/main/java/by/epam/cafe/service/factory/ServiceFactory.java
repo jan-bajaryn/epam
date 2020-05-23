@@ -1,5 +1,9 @@
 package by.epam.cafe.service.factory;
 
+import by.epam.cafe.service.email.MailSender;
+import by.epam.cafe.service.email.impl.MailSenderImpl;
+import by.epam.cafe.service.encryption.ApplicationEncrypt;
+import by.epam.cafe.service.encryption.impl.ApplicationEncryptImpl;
 import by.epam.cafe.service.helper.ImageWriterService;
 import by.epam.cafe.service.helper.impl.ImageWriterServiceImpl;
 import by.epam.cafe.service.helper.PutItemService;
@@ -37,7 +41,6 @@ public class ServiceFactory {
     private ServiceFactory() {
     }
 
-
     private final DeliveryInfService deliveryInfService = new DeliveryInfServiceImpl();
     private final OrderService orderService = new OrderServiceImpl();
     private final ProductGroupService productGroupService = new ProductGroupServiceImpl();
@@ -52,6 +55,9 @@ public class ServiceFactory {
     private final ProductParser productParser = new ProductParserImpl();
     private final ProductGroupParser productGroupParser = new ProductGroupParserImpl();
     private final OrderParser orderParser = new OrderParserImpl();
+    private final MailSender mailSender = new MailSenderImpl();
+
+    private final ApplicationEncrypt applicationEncrypt = new ApplicationEncryptImpl();
 
     private final PaginationService paginationService = new PaginationServiceImpl();
 
@@ -121,5 +127,13 @@ public class ServiceFactory {
 
     public PaginationService getPaginationService() {
         return paginationService;
+    }
+
+    public ApplicationEncrypt getApplicationEncrypt() {
+        return applicationEncrypt;
+    }
+
+    public MailSender getMailSender() {
+        return mailSender;
     }
 }

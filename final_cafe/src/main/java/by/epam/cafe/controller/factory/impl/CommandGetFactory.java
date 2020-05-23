@@ -3,6 +3,8 @@ package by.epam.cafe.controller.factory.impl;
 import by.epam.cafe.controller.command.Command;
 import by.epam.cafe.controller.command.CommandDecorator;
 import by.epam.cafe.controller.command.getimpl.*;
+import by.epam.cafe.controller.command.postimpl.RegistrationBegin;
+import by.epam.cafe.controller.command.postimpl.RegistrationRealization;
 import by.epam.cafe.controller.factory.CommandFactory;
 import by.epam.cafe.controller.factory.exception.PageNotFoundException;
 import org.apache.logging.log4j.LogManager;
@@ -68,6 +70,8 @@ public class CommandGetFactory implements CommandFactory {
         commandMap.put("/logout", new CommandDecorator(new LogOut(), EnumSet.complementOf(EnumSet.of(ANON))));
 
 //        commandMap.put("/permission-denied", new PermissionDeniedCommand());
+
+
     }
 
     @Override

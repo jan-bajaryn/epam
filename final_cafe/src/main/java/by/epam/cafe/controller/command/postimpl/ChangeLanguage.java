@@ -27,7 +27,6 @@ public class ChangeLanguage extends by.epam.cafe.controller.command.Command {
                 .findAny();
 
         if (any.isPresent()) {
-            //logic
             HttpSession session = request.getSession();
             Config.set(session, Config.FMT_LOCALE, any.get().getLocale());
         } else {

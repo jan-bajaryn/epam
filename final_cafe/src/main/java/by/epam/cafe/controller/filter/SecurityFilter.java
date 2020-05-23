@@ -5,6 +5,8 @@ import by.epam.cafe.entity.enums.Role;
 import by.epam.cafe.service.db.UserService;
 import by.epam.cafe.service.exception.ServiceException;
 import by.epam.cafe.service.factory.ServiceFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -13,11 +15,13 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class SecurityFilter implements Filter {
+    private static final Logger log = LogManager.getLogger(SecurityFilter.class);
 
     private final ServiceFactory serviceFactory = ServiceFactory.getInstance();
     private final UserService userService = serviceFactory.getUserService();
 
     protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {
+
         HttpSession session = req.getSession();
         User user = (User) session.getAttribute("user");
         if (user != null) {

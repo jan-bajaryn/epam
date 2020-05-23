@@ -91,4 +91,7 @@ public interface UserParser {
      * is invalid
      */
     User parseRegistrationUser(Map<String, String> redirect, String emailParam, String phoneParam, String usernameParam, String passwordParam, String nameParam, String surnameParam, String streetParam, String houseParam, String roomParam, String porchParam, String floorParam);
+
+    User parseRegistrationUserWithToken(Map<String, String> redirect, String emailParam, String phoneParam, String usernameParam, String passwordParam, String nameParam, String surnameParam, String streetParam, String houseParam, String roomParam, String porchParam, String floorParam, String token);
+
 }

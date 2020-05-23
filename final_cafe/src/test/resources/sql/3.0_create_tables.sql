@@ -2,14 +2,14 @@ use pizzeria_test;
 
 CREATE TABLE delivery_inf
 (
-    id            integer NOT NULL auto_increment,
+    id            integer      NOT NULL auto_increment,
     comments      varchar(255),
     delivery_time datetime(6),
     email         varchar(255),
     floor         integer,
     phone         varchar(255),
-    street        varchar(255) NOT NULL ,
-    house         varchar(10) NOT NULL,
+    street        varchar(255) NOT NULL,
+    house         varchar(10)  NOT NULL,
     room          varchar(10),
     porch         integer,
     CONSTRAINT pk_delivery_inf PRIMARY KEY (id)
@@ -34,6 +34,7 @@ CREATE TABLE user
     is_blocked BOOL    NOT NULL,
     CONSTRAINT pk_user PRIMARY KEY (id),
     CONSTRAINT uk UNIQUE (username),
+    CONSTRAINT uk_email UNIQUE (email),
     INDEX (username, password)
 );
 

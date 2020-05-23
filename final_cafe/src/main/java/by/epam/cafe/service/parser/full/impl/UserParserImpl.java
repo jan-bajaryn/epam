@@ -3,6 +3,8 @@ package by.epam.cafe.service.parser.full.impl;
 import by.epam.cafe.entity.enums.Role;
 import by.epam.cafe.entity.db.impl.User;
 import by.epam.cafe.entity.struct.OptionalNullable;
+import by.epam.cafe.service.encryption.ApplicationEncrypt;
+import by.epam.cafe.service.encryption.impl.ApplicationEncryptImpl;
 import by.epam.cafe.service.parser.helper.ValidateAndPutter;
 import by.epam.cafe.service.parser.helper.impl.ValidateAndPutterImpl;
 import by.epam.cafe.service.parser.parts.impl.*;
@@ -20,6 +22,7 @@ public class UserParserImpl implements by.epam.cafe.service.parser.full.UserPars
 
     private final ValidateAndPutter validateAndPutter = ValidateAndPutterImpl.getInstance();
 
+    private final ApplicationEncrypt applicationEncrypt = new ApplicationEncryptImpl();
     private final EmailParser emailParser = new EmailParser();
     private final FloorParser floorParser = new FloorParser();
     private final HouseParser houseParser = new HouseParser();
@@ -228,6 +231,23 @@ public class UserParserImpl implements by.epam.cafe.service.parser.full.UserPars
         } else {
             return null;
         }
+    }
+
+    @Override
+    public User parseRegistrationUserWithToken(Map<String, String> redirect, String emailParam, String phoneParam, String usernameParam, String passwordParam, String nameParam, String surnameParam, String streetParam, String houseParam, String roomParam, String porchParam, String floorParam, String token) {
+        User user = parseRegistrationUser(redirect, emailParam, phoneParam, usernameParam, passwordParam, nameParam, surnameParam, streetParam, houseParam, roomParam, porchParam, floorParam);
+        log.debug("parseRegistrationUserWithToken: user = {}", user);
+        log.debug("redirect = {}", redirect);
+        OptionalNullable<String> tokenOpt = OptionalNullable.empty();
+        if (user != null && applicationEncrypt.calcRegistrationToken(user).equals(token)) {
+            tokenOpt = OptionalNullable.of(token);
+        }
+        boolean tokenResult = validateAndPutter.validateAndPut(redirect, tokenOpt, "token", token);
+
+        if (user != null && tokenResult) {
+            return user;
+        }
+        return null;
     }
 
 

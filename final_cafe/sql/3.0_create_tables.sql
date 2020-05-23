@@ -34,6 +34,7 @@ CREATE TABLE user
     is_blocked BOOL    NOT NULL,
     CONSTRAINT pk_user PRIMARY KEY (id),
     CONSTRAINT uk UNIQUE (username),
+    CONSTRAINT uk_email UNIQUE (email),
     INDEX (username, password)
 );
 

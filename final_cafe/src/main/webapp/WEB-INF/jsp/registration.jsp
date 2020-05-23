@@ -30,7 +30,19 @@
 
 <main class="container">
     <div class="create__data">
-        <form action="<c:url value="/page/registration"/>" method="post">
+        <c:if test="${not empty redirect_check_email}">
+            <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <fmt:message key="web.check.email" bundle="${ rb }"/>
+            </div>
+        </c:if>
+        <c:if test="${not empty redirect_email_send_error}">
+            <div class="alert alert-info alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <fmt:message key="web.check.email-error" bundle="${ rb }"/>
+            </div>
+        </c:if>
+        <form action="<c:url value="/page/registration-begin"/>" method="post">
             <div class="email">
                 <label for="email">
                     <fmt:message key="web.inputs.email" bundle="${ rb }"/>
