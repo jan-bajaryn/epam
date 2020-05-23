@@ -57,7 +57,7 @@ public class MailSenderImpl implements MailSender {
             message.addRecipient(Message.RecipientType.TO, toAddress);
             message.setSubject("Confirm registration email");
             message.setContent(message(url, msg, parameters), "text/html; charset=UTF-8");
-            try (Transport transport = session.getTransport("smtps");) {
+            try (Transport transport = session.getTransport("smtps")) {
                 transport.connect(host, LOGIN, PASSWORD);
                 transport.sendMessage(message, message.getAllRecipients());
             }
@@ -71,14 +71,14 @@ public class MailSenderImpl implements MailSender {
     private String message(String url, String msg, TreeMap<String, String> parameters) {
         StringBuilder sb = new StringBuilder();
         //language=HTML
-        sb.append("<div>" +
-                msg +
-                "</div>");
+        sb.append("<div>").append(msg).append("</div>");
         //language=HTML
-        sb.append("<form method='post' action='" + url + "'>");
+        sb.append("<form method='post' action='").append(url).append("'>");
         //language=HTML
         for (Map.Entry<String, String> entry : parameters.entrySet()) {
-            sb.append("<input name='" + entry.getKey() + "' type='hidden' value='" + entry.getValue() + "'>");
+            sb.append("<input name='").append(entry.getKey())
+                    .append("' type='hidden' value='")
+                    .append(entry.getValue()).append("'>");
         }
         //language=HTML
         sb.append("<button type='submit'>Submit</button>");
