@@ -32,7 +32,8 @@ public class EditOrder extends by.epam.cafe.controller.command.Command {
     private final PathVarCalculator pathVarCalculator = serviceFactory.getPathVarCalculator();
     private final OrderService orderService = serviceFactory.getOrderService();
 
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm");
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'hh:mm");
+//    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-mm-ddThh:mm");
 
     @Override
     public ResponseObject execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

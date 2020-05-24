@@ -58,6 +58,7 @@ public class EditOrder extends by.epam.cafe.controller.command.Command {
         String price = request.getParameter("price");
         String name = request.getParameter("name");
         String time = request.getParameter("time");
+        log.debug("buildOrder: time = {}", time);
         String street = request.getParameter("street");
         String house = request.getParameter("house");
         String room = request.getParameter("room");

@@ -10,11 +10,16 @@ import by.epam.cafe.service.parser.helper.ValidateAndPutter;
 import by.epam.cafe.service.parser.helper.impl.ValidateAndPutterImpl;
 import by.epam.cafe.service.parser.parts.impl.*;
 import by.epam.cafe.service.validator.BasketValidator;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.time.LocalDateTime;
 import java.util.Map;
 
 public class OrderParserImpl implements by.epam.cafe.service.parser.full.OrderParser {
+
+    private static final Logger log = LogManager.getLogger(OrderParserImpl.class);
+
 
     private final StreetParserOrder streetParserOrder = StreetParserOrder.getInstance();
     private final CommentsParser commentsParser = CommentsParser.getInstance();
@@ -25,6 +30,7 @@ public class OrderParserImpl implements by.epam.cafe.service.parser.full.OrderPa
     private final NameParser nameParser = NameParser.getInstance();
     private final PhoneParser phoneParser = PhoneParser.getInstance();
     private final EmailParser emailParser = EmailParser.getInstance();
+    private final DateTimeParser dateTimeParser = DateTimeParser.getInstance();
     private final TimeParser timeParser = TimeParser.getInstance();
     private final PriceParser priceParser = PriceParser.getInstance();
     private final IdParser idParser = IdParser.getInstance();
@@ -241,10 +247,11 @@ public class OrderParserImpl implements by.epam.cafe.service.parser.full.OrderPa
         OptionalNullable<String> email = emailParser.parse(emailParam);
         OptionalNullable<String> street = streetParserOrder.parse(streetParam);
         OptionalNullable<String> comments = commentsParser.parse(commentsParam);
-        OptionalNullable<LocalDateTime> time = timeParser.parse(timeParam);
+        OptionalNullable<LocalDateTime> time = dateTimeParser.parse(timeParam);
         OptionalNullable<Integer> price = priceParser.parse(priceParam);
         OptionalNullable<OrderStatus> status = orderStatusForOperatorParser.parse(statusParam);
         OptionalNullable<PaymentType> paymentType = paymentTypeParser.parse(paymentTypeParam);
+        log.debug("dateTimeParser = {}", dateTimeParser);
 
         boolean result = validateAndPutter.validateAndPut(redirect, name, "name", nameParam) &
                 validateAndPutter.validateAndPut(redirect, house, "house", houseParam) &
