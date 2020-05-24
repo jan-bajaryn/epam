@@ -131,7 +131,6 @@
                         </label>
                     </div>
                 </c:forEach>
-                <%--                </c:if>--%>
                 <c:forEach items="${products}" var="p">
                     <div>
                         <label>

@@ -117,8 +117,8 @@
             <div class="sum-text">
                 <fmt:message key="web.text.sum-order" bundle="${ rb }"/>
             </div>
-            <div class="sum-price"><tag:money input="${sum}"/>
-<%--                <fmt:message key="web.text.rub" bundle="${ rb }"/>--%>
+            <div class="sum-price">
+                <tag:money input="${sum}"/>
             </div>
         </div>
 

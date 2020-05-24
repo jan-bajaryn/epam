@@ -107,7 +107,7 @@
                     <div>
                         <label>
                             <span>${p.weight} <fmt:message key="web.gram" bundle="${ rb }"/>,</span>
-                            <span>${p.price} <fmt:message key="web.text.rub" bundle="${ rb }"/></span>
+                            <span><tag:money input="${p.price}"/></span>
                             <input type="checkbox" value="${p.id}" name="products">
                         </label>
                     </div>

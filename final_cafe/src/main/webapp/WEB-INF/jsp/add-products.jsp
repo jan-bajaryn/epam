@@ -39,7 +39,7 @@
                             <img src="<c:url value="/static/img/${product.key.productGroup.photoName}"/>" alt="">
                         </div>
                         <div class="product-name">
-                                <c:out value="${product.key.productGroup.name}"/>
+                            <c:out value="${product.key.productGroup.name}"/>
                         </div>
                         <div class="product-type text-muted">
                                 ${product.key.weight} гр.
@@ -58,8 +58,7 @@
                             <button type="submit" class="btn mx-3 white__bg__black plus"> +</button>
                         </form>
                         <div class="prise mr-3">
-                                ${String.format("%.2f",(product.key.price*product.value)/100)}
-                            <fmt:message key="web.text.rub" bundle="${ rb }"/>
+                            <tag:money input="${product.key.price*product.value}"/>
                         </div>
                         <form action="<c:url value="/page/operator/delete-product"/>" method="post">
                             <input type="hidden" value="${id}" name="order_id">
@@ -84,7 +83,7 @@
                             <img src="<c:url value="/static/img/${product.key.productGroup.photoName}"/>" alt="">
                         </div>
                         <div class="product-name">
-                                <c:out value="${product.key.productGroup.name}"/>
+                            <c:out value="${product.key.productGroup.name}"/>
                         </div>
                         <div class="product-type text-muted">
                                 ${product.key.weight} гр.
@@ -103,8 +102,7 @@
                             <button type="submit" class="btn mx-3 white__bg__black plus"> +</button>
                         </form>
                         <div class="prise mr-3">
-                                ${String.format("%.2f",(product.key.price*product.value)/100)}
-                            <fmt:message key="web.text.rub" bundle="${ rb }"/>
+                            <tag:money input="${product.key.price*product.value}"/>
                         </div>
                         <form action="?" method="get">
                             <button class="abc" type="submit" disabled>
@@ -125,8 +123,11 @@
         <div class="sum-text">
             <fmt:message key="web.text.sum-order" bundle="${ rb }"/>
         </div>
-        <div class="sum-price"> <c:out value="${sum}"/>
-            <fmt:message key="web.text.rub" bundle="${ rb }"/>
+        <%--        <div class="sum-price"> <c:out value="${sum}"/>--%>
+        <%--            <fmt:message key="web.text.rub" bundle="${ rb }"/>--%>
+        <%--        </div>--%>
+        <div class="sum-price">
+            <tag:money input="${sum}"/>
         </div>
     </div>
 
