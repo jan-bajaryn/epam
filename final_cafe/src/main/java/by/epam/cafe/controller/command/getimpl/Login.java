@@ -1,5 +1,8 @@
 package by.epam.cafe.controller.command.getimpl;
 
+import by.epam.cafe.controller.utils.ResponseObject;
+import by.epam.cafe.controller.utils.impl.Forward;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -8,7 +11,7 @@ import java.io.IOException;
 
 public class Login extends by.epam.cafe.controller.command.Command {
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public ResponseObject execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         String tarUrl = (String) session.getAttribute("target_url");
         if (tarUrl != null && !tarUrl.isEmpty()) {
@@ -19,6 +22,6 @@ public class Login extends by.epam.cafe.controller.command.Command {
 
             session.removeAttribute("target_url");
         }
-        request.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(request, response);
+        return new Forward("/login.jsp");
     }
 }

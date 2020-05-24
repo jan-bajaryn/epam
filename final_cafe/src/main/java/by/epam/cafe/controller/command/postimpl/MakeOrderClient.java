@@ -1,6 +1,8 @@
 package by.epam.cafe.controller.command.postimpl;
 
 import by.epam.cafe.controller.command.PermissionDeniedException;
+import by.epam.cafe.controller.utils.ResponseObject;
+import by.epam.cafe.controller.utils.impl.Redirect;
 import by.epam.cafe.entity.db.impl.Order;
 import by.epam.cafe.entity.db.impl.User;
 import by.epam.cafe.service.db.OrderService;
@@ -28,7 +30,7 @@ public class MakeOrderClient extends by.epam.cafe.controller.command.Command {
     private final OrderParser orderParser = serviceFactory.getOrderParser();
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PermissionDeniedException {
+    public ResponseObject execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PermissionDeniedException {
         String referer = request.getHeader("referer");
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
@@ -37,37 +39,29 @@ public class MakeOrderClient extends by.epam.cafe.controller.command.Command {
         try {
             Order order = orderService.findCurrentByUserId(user.getId());
             if (order != null) {
-                update(request, response, referer, redirect, order);
-            } else {
-                redirect.put("no_products_error", "true");
-                response.sendRedirect(referer);
+                return update(request, response, referer, redirect, order);
             }
         } catch (ServiceException e) {
-            redirect.put("no_products_error", "true");
-            session.setAttribute(REDIRECTED_INFO, redirect);
-            response.sendRedirect(referer);
+            log.debug("e: ", e);
         }
-
+        redirect.put("no_products_error", "true");
+        session.setAttribute(REDIRECTED_INFO, redirect);
+        return new Redirect(referer, false);
     }
 
-    private void update(HttpServletRequest request, HttpServletResponse response, String referer, Map<String, String> redirect, Order order) throws IOException {
+    private ResponseObject update(HttpServletRequest request, HttpServletResponse response, String referer, Map<String, String> redirect, Order order) throws IOException {
         if (buildOrder(request, order, redirect)) {
-
             try {
                 if (orderService.update(order)) {
-                    response.sendRedirect(request.getContextPath() + request.getServletPath() + "/your-order/" + order.getId());
-                } else {
-                    request.setAttribute("unknown_error", "true");
-                    response.sendRedirect(referer);
+                    return new Redirect("/your-order/" + order.getId());
                 }
             } catch (ServiceException e) {
-                request.setAttribute("unknown_error", "true");
-                response.sendRedirect(referer);
+                log.debug("e: ", e);
             }
-        } else {
-            request.getSession().setAttribute(REDIRECTED_INFO, redirect);
-            response.sendRedirect(referer);
+            redirect.put("unknown_error", "true");
         }
+        request.getSession().setAttribute(REDIRECTED_INFO, redirect);
+        return new Redirect(referer, false);
     }
 
     private boolean buildOrder(HttpServletRequest request, Order order, Map<String, String> redirect) {

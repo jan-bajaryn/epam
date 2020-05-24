@@ -1,6 +1,9 @@
 package by.epam.cafe.controller.command.getimpl;
 
 import by.epam.cafe.controller.dto.UserDTO;
+import by.epam.cafe.controller.utils.ResponseObject;
+import by.epam.cafe.controller.utils.impl.Forward;
+import by.epam.cafe.controller.utils.impl.SendError;
 import by.epam.cafe.entity.enums.Role;
 import by.epam.cafe.entity.db.impl.Order;
 import by.epam.cafe.entity.db.impl.Product;
@@ -28,7 +31,7 @@ public class DisplayOrder extends by.epam.cafe.controller.command.Command {
     private final UserService userService = serviceFactory.getUserService();
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public ResponseObject execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 
         try {
@@ -38,9 +41,9 @@ public class DisplayOrder extends by.epam.cafe.controller.command.Command {
             request.setAttribute("sum", calcSum(basket));
             sendUserDTO(request);
 
-            request.getRequestDispatcher("/WEB-INF/jsp/order.jsp").forward(request, response);
+            return new Forward("/order.jsp");
         } catch (ServiceException e) {
-            response.sendRedirect(request.getContextPath() + request.getServletPath() + "/something_went_wrong");
+            return new SendError(500);
         }
     }
 

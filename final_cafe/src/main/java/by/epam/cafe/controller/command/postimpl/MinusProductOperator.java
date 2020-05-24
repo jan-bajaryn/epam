@@ -1,6 +1,9 @@
 package by.epam.cafe.controller.command.postimpl;
 
 import by.epam.cafe.controller.command.PermissionDeniedException;
+import by.epam.cafe.controller.utils.ResponseObject;
+import by.epam.cafe.controller.utils.impl.Redirect;
+import by.epam.cafe.controller.utils.impl.SendError;
 import by.epam.cafe.service.db.OrderService;
 import by.epam.cafe.service.exception.ServiceException;
 import by.epam.cafe.service.factory.ServiceFactory;
@@ -21,7 +24,7 @@ public class MinusProductOperator extends by.epam.cafe.controller.command.Comman
     OrderService orderService = serviceFactory.getOrderService();
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PermissionDeniedException {
+    public ResponseObject execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PermissionDeniedException {
         log.debug("begin method");
         try {
             String orderIdSt = request.getParameter("order_id");
@@ -34,10 +37,9 @@ public class MinusProductOperator extends by.epam.cafe.controller.command.Comman
             Integer prodId = Integer.valueOf(productIdSt);
 
             orderService.minusOrDelete(orderId, prodId);
-
-            response.sendRedirect(request.getContextPath() + request.getServletPath() + "/add-products/" + orderIdSt+"?pagination=1");
+            return new Redirect("/add-products/" + orderIdSt + "?pagination=1");
         } catch (NumberFormatException | ServiceException e) {
-            response.sendRedirect(request.getContextPath() + request.getServletPath() + "/something_went_wrong");
+            return new SendError(500);
         }
     }
 }

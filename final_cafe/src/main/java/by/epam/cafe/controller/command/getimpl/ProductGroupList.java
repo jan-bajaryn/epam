@@ -1,5 +1,8 @@
 package by.epam.cafe.controller.command.getimpl;
 
+import by.epam.cafe.controller.utils.ResponseObject;
+import by.epam.cafe.controller.utils.impl.Forward;
+import by.epam.cafe.controller.utils.impl.SendError;
 import by.epam.cafe.dao.exception.NullParamDaoException;
 import by.epam.cafe.entity.db.impl.ProductGroup;
 import by.epam.cafe.service.pagination.PaginationService;
@@ -27,7 +30,7 @@ public class ProductGroupList extends by.epam.cafe.controller.command.Command {
 
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public ResponseObject execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
 
             int part = paginationCalculator.calculatePartParam(request.getParameter("pagination"));
@@ -36,9 +39,9 @@ public class ProductGroupList extends by.epam.cafe.controller.command.Command {
             List<ProductGroup> all = productGroupService.findAllByPart(part);
             request.setAttribute("groups", all);
             request.setAttribute("paginationMap", paginationService.calculate(productGroupService.count(), part, MAX_PAGINATION_ELEMENTS));
-            request.getRequestDispatcher("/WEB-INF/jsp/admin/product-group-list.jsp").forward(request, response);
+            return new Forward("/admin/product-group-list.jsp");
         } catch (ServiceException e) {
-            request.getRequestDispatcher("/WEB-INF/jsp/errors/something_went_wrong.jsp").forward(request, response);
+            return new SendError(500);
         }
 
     }

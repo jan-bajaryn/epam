@@ -1,5 +1,7 @@
 package by.epam.cafe.controller.command.postimpl;
 
+import by.epam.cafe.controller.utils.ResponseObject;
+import by.epam.cafe.controller.utils.impl.Redirect;
 import by.epam.cafe.entity.db.impl.User;
 import by.epam.cafe.service.db.UserService;
 import by.epam.cafe.service.exception.ServiceException;
@@ -25,14 +27,12 @@ public class EditAdmin extends by.epam.cafe.controller.command.Command {
 
     private final UserService userService = serviceFactory.getUserService();
 
-
     private final UserParser userParser = serviceFactory.getUserParser();
 
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public ResponseObject execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         log.debug("Begin  EditAdminCommand");
-
 
         String referer = request.getHeader("referer");
 
@@ -40,23 +40,17 @@ public class EditAdmin extends by.epam.cafe.controller.command.Command {
         User user = validateAndTakeParams(request, redirect);
 
         if (user != null) {
-
             try {
                 if (userService.update(user)) {
-                    response.sendRedirect(request.getContextPath() + request.getServletPath() + "/admin/user-list?pagination=1");
-                } else {
-                    request.setAttribute("unknown_error", "true");
-                    response.sendRedirect(referer);
+                    return new Redirect("/admin/user-list?pagination=1");
                 }
             } catch (ServiceException e) {
-                request.setAttribute("unknown_error", "true");
-                response.sendRedirect(referer);
+                log.debug("e: ", e);
             }
-        } else {
-            request.getSession().setAttribute(REDIRECTED_INFO, redirect);
-            response.sendRedirect(referer);
+            redirect.put("unknown_error", "true");
         }
-
+        request.getSession().setAttribute(REDIRECTED_INFO, redirect);
+        return new Redirect(referer, false);
     }
 
 

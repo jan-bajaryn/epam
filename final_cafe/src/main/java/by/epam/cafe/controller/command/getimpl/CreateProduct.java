@@ -1,5 +1,7 @@
 package by.epam.cafe.controller.command.getimpl;
 
+import by.epam.cafe.controller.utils.ResponseObject;
+import by.epam.cafe.controller.utils.impl.Forward;
 import by.epam.cafe.entity.db.impl.ProductGroup;
 import by.epam.cafe.service.db.ProductGroupService;
 import by.epam.cafe.service.exception.ServiceException;
@@ -18,17 +20,17 @@ public class CreateProduct extends by.epam.cafe.controller.command.Command {
     private final ProductGroupService productGroupService = serviceFactory.getProductGroupService();
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public ResponseObject execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         try {
             List<ProductGroup> all = productGroupService.findAll();
 
             request.setAttribute("groups", all);
 
-            request.getRequestDispatcher("/WEB-INF/jsp/admin/create-product.jsp").forward(request, response);
+            return new Forward("/admin/create-product.jsp");
 
         } catch ( ServiceException e) {
-            request.getRequestDispatcher("/WEB-INF/jsp/errors/something_went_wrong.jsp").forward(request, response);
+            return new Forward("/errors/something_went_wrong.jsp");
         }
 
     }

@@ -1,6 +1,9 @@
 package by.epam.cafe.controller.command.postimpl;
 
 import by.epam.cafe.controller.command.PermissionDeniedException;
+import by.epam.cafe.controller.utils.ResponseObject;
+import by.epam.cafe.controller.utils.impl.Redirect;
+import by.epam.cafe.controller.utils.impl.SendError;
 import by.epam.cafe.entity.db.impl.Product;
 import by.epam.cafe.service.db.ProductService;
 import by.epam.cafe.service.helper.PutItemService;
@@ -27,7 +30,7 @@ public class PutItemAnon extends by.epam.cafe.controller.command.Command {
     private final PutItemService putItemService = serviceFactory.getPutItemService();
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PermissionDeniedException {
+    public ResponseObject execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PermissionDeniedException {
         try {
 
             String referer = request.getHeader("referer");
@@ -44,16 +47,12 @@ public class PutItemAnon extends by.epam.cafe.controller.command.Command {
                 putItemService.putProduct(entityById, basket);
                 commitSession(basket, session);
 
-                log.info("referer = {}", referer);
-                response.sendRedirect(referer);
-            } else {
-                response.sendRedirect(request.getContextPath() + request.getServletPath() + "/something_went_wrong");
+                return new Redirect(referer, false);
             }
         } catch (NumberFormatException | ServiceException e) {
-            response.sendRedirect(request.getContextPath() + request.getServletPath() + "/something_went_wrong");
+            log.debug("e: ", e);
         }
-
-
+        return new SendError(500);
     }
 
     private void commitSession(Map<Product, Integer> basket, HttpSession session) {

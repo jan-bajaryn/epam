@@ -1,6 +1,9 @@
 package by.epam.cafe.controller.command.postimpl;
 
 import by.epam.cafe.controller.command.PermissionDeniedException;
+import by.epam.cafe.controller.utils.ResponseObject;
+import by.epam.cafe.controller.utils.impl.Redirect;
+import by.epam.cafe.controller.utils.impl.SendError;
 import by.epam.cafe.entity.db.impl.Product;
 import by.epam.cafe.service.db.ProductService;
 import by.epam.cafe.service.exception.ServiceException;
@@ -26,12 +29,9 @@ public class MinusItemAnon extends by.epam.cafe.controller.command.Command {
     private final ProductService productService = serviceFactory.getProductService();
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PermissionDeniedException {
+    public ResponseObject execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PermissionDeniedException {
         try {
-
             String referer = request.getHeader("referer");
-
-
             String id = request.getParameter("variant");
             Integer prodId = Integer.valueOf(id);
 
@@ -44,17 +44,14 @@ public class MinusItemAnon extends by.epam.cafe.controller.command.Command {
                 minusProduct(basket, entityById);
                 commitSession(basket, session);
 
-                log.info("referer = {}", referer);
-                response.sendRedirect(referer);
-            } else {
-                response.sendRedirect(request.getContextPath() + request.getServletPath() + "/something_went_wrong");
+                return new Redirect(referer, false);
             }
         } catch (NumberFormatException | ServiceException e) {
-            response.sendRedirect(request.getContextPath() + request.getServletPath() + "/something_went_wrong");
+            log.debug("e: ", e);
         }
+        return new SendError(500);
 
     }
-
 
 
     private void commitSession(Map<Product, Integer> basket, HttpSession session) {
@@ -70,7 +67,7 @@ public class MinusItemAnon extends by.epam.cafe.controller.command.Command {
             Product product = any.get();
             int resultNum = basket.get(product) - 1;
 
-            if (resultNum == 0){
+            if (resultNum == 0) {
                 basket.remove(product);
             } else {
                 basket.put(product, resultNum);

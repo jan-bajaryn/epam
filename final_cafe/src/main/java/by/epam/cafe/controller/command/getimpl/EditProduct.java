@@ -1,5 +1,8 @@
 package by.epam.cafe.controller.command.getimpl;
 
+import by.epam.cafe.controller.utils.ResponseObject;
+import by.epam.cafe.controller.utils.impl.Forward;
+import by.epam.cafe.controller.utils.impl.SendError;
 import by.epam.cafe.entity.db.impl.Product;
 import by.epam.cafe.entity.db.impl.ProductGroup;
 import by.epam.cafe.service.db.ProductGroupService;
@@ -8,6 +11,8 @@ import by.epam.cafe.service.exception.IllegalPathParamException;
 import by.epam.cafe.service.exception.ServiceException;
 import by.epam.cafe.service.factory.ServiceFactory;
 import by.epam.cafe.service.parser.helper.PathVarCalculator;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +22,9 @@ import java.util.List;
 
 public class EditProduct extends by.epam.cafe.controller.command.Command {
 
+    private static final Logger log = LogManager.getLogger(EditProduct.class);
+
+
     private final ServiceFactory serviceFactory = ServiceFactory.getInstance();
     private final PathVarCalculator pathVarCalculator = serviceFactory.getPathVarCalculator();
     private final ProductService productService = serviceFactory.getProductService();
@@ -24,7 +32,7 @@ public class EditProduct extends by.epam.cafe.controller.command.Command {
 
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public ResponseObject execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             Integer id = pathVarCalculator.findLastInteger(request.getPathInfo());
             Product product = productService.findEntityById(id);
@@ -36,13 +44,12 @@ public class EditProduct extends by.epam.cafe.controller.command.Command {
 
                 request.setAttribute("groups", allExcept);
 
-                request.getRequestDispatcher("/WEB-INF/jsp/admin/edit-product.jsp").forward(request, response);
+                return new Forward("/admin/edit-product.jsp");
 
-            } else {
-                request.getRequestDispatcher("/WEB-INF/jsp/errors/something_went_wrong.jsp").forward(request, response);
             }
         } catch (ServiceException e) {
-            request.getRequestDispatcher("/WEB-INF/jsp/errors/something_went_wrong.jsp").forward(request, response);
+            log.debug("e: ", e);
         }
+        return new SendError(500);
     }
 }

@@ -1,6 +1,8 @@
 package by.epam.cafe.controller.command.postimpl;
 
 import by.epam.cafe.controller.command.PermissionDeniedException;
+import by.epam.cafe.controller.utils.ResponseObject;
+import by.epam.cafe.controller.utils.impl.Redirect;
 import by.epam.cafe.entity.db.impl.User;
 import by.epam.cafe.service.db.UserService;
 import by.epam.cafe.service.email.MailSender;
@@ -38,7 +40,7 @@ public class RegistrationBegin extends by.epam.cafe.controller.command.Command {
     private final MailSender mailSender = serviceFactory.getMailSender();
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PermissionDeniedException {
+    public ResponseObject execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PermissionDeniedException {
         log.info("execute: begin");
         String referer = request.getHeader("referer");
 
@@ -50,26 +52,18 @@ public class RegistrationBegin extends by.epam.cafe.controller.command.Command {
         if (build != null) {
 
             String resultUrl = getUrl(request, queryString, build, parameters);
-            log.debug("resultUrl = {}", resultUrl);
-            log.debug("build.getEmail() = {}", build.getEmail());
             Locale locale = request.getLocale();
-            log.debug("locale = {}", locale);
 
-            boolean result = mailSender.sendRegistration(build.getEmail(), resultUrl, locale,parameters);
+            boolean result = mailSender.sendRegistration(build.getEmail(), resultUrl, locale, parameters);
             log.debug("execute: result = {}", result);
             if (result) {
                 redirect.put("check_email", "true");
-                request.getSession().setAttribute(REDIRECTED_INFO, redirect);
-                response.sendRedirect(referer);
             } else {
                 redirect.put("email_send_error", "true");
-                request.getSession().setAttribute(REDIRECTED_INFO, redirect);
-                response.sendRedirect(referer);
             }
-        } else {
-            request.getSession().setAttribute(REDIRECTED_INFO, redirect);
-            response.sendRedirect(referer);
         }
+        request.getSession().setAttribute(REDIRECTED_INFO, redirect);
+        return new Redirect(referer, false);
     }
 
     private String getUrl(HttpServletRequest request, StringBuilder queryString, User build, TreeMap<String, String> parameters) {
@@ -95,7 +89,6 @@ public class RegistrationBegin extends by.epam.cafe.controller.command.Command {
         String password = request.getParameter("password");
         parameters.put("password", password);
         String name = request.getParameter("name");
-//        sb.append("&name=").append(encodeValue(name));
         parameters.put("name", name);
         String surname = request.getParameter("surname");
         parameters.put("surname", surname);
@@ -111,14 +104,6 @@ public class RegistrationBegin extends by.epam.cafe.controller.command.Command {
         parameters.put("floor", floor);
 
         return userParser.parseRegistrationUser(redirect, email, phone, username, password, name, surname, street, house, room, porch, floor);
-    }
-
-    private String encodeValue(String value) {
-        try {
-            return URLEncoder.encode(value, StandardCharsets.UTF_8.toString());
-        } catch (Exception ex) {
-            return null;
-        }
     }
 
 }

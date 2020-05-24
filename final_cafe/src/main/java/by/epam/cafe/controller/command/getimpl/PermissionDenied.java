@@ -2,6 +2,9 @@ package by.epam.cafe.controller.command.getimpl;
 
 import by.epam.cafe.controller.command.PermissionDeniedException;
 import by.epam.cafe.controller.factory.impl.CommandGetFactory;
+import by.epam.cafe.controller.utils.ResponseObject;
+import by.epam.cafe.controller.utils.impl.Redirect;
+import by.epam.cafe.controller.utils.impl.SendError;
 import by.epam.cafe.entity.enums.Role;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -19,7 +22,7 @@ public class PermissionDenied extends by.epam.cafe.controller.command.Command {
 
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PermissionDeniedException {
+    public ResponseObject execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PermissionDeniedException {
         Role role = ((Role) request.getAttribute("role"));
         if (role == Role.ANON) {
             String targetUrl = request.getRequestURI() + "?" + request.getQueryString();
@@ -27,10 +30,9 @@ public class PermissionDenied extends by.epam.cafe.controller.command.Command {
             log.debug("targetUrl = {}", targetUrl);
             HttpSession session = request.getSession();
             session.setAttribute("target_url", targetUrl);
-            response.sendRedirect(request.getContextPath() + request.getServletPath() + CommandGetFactory.LOGIN_PAGE);
+            return new Redirect(CommandGetFactory.LOGIN_PAGE);
         } else {
-            String path = request.getContextPath() + request.getServletPath();
-            response.sendRedirect(path + "/something_went_wrong");
+            return new SendError(500);
         }
     }
 }

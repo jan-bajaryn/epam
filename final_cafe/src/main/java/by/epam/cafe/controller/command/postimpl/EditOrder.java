@@ -1,6 +1,8 @@
 package by.epam.cafe.controller.command.postimpl;
 
 import by.epam.cafe.controller.command.PermissionDeniedException;
+import by.epam.cafe.controller.utils.ResponseObject;
+import by.epam.cafe.controller.utils.impl.Redirect;
 import by.epam.cafe.entity.db.impl.Order;
 import by.epam.cafe.service.db.OrderService;
 import by.epam.cafe.service.exception.ServiceException;
@@ -28,7 +30,7 @@ public class EditOrder extends by.epam.cafe.controller.command.Command {
     private final OrderParser orderParser = serviceFactory.getOrderParser();
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PermissionDeniedException {
+    public ResponseObject execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PermissionDeniedException {
         String referer = request.getHeader("referer");
 
         HttpSession session = request.getSession();
@@ -38,17 +40,14 @@ public class EditOrder extends by.epam.cafe.controller.command.Command {
             String id = request.getParameter("id");
             Order order = orderService.findEntityById(Integer.valueOf(id));
             if (order != null) {
-                update(request, response, referer, redirect, order);
-            } else {
-                redirect.put("fatal_id", "true");
-                session.setAttribute(REDIRECTED_INFO, redirect);
-                response.sendRedirect(request.getContextPath() + request.getServletPath() + "/order-list?pagination=1");
+                return update(request, response, referer, redirect, order);
             }
         } catch (ServiceException e) {
-            redirect.put("fatal_id", "true");
-            session.setAttribute(REDIRECTED_INFO, redirect);
-            response.sendRedirect(request.getContextPath() + request.getServletPath() + "/order-list?pagination=1");
+            log.debug("e: ", e);
         }
+        redirect.put("fatal_id", "true");
+        session.setAttribute(REDIRECTED_INFO, redirect);
+        return new Redirect("/order-list?pagination=1");
     }
 
 
@@ -71,23 +70,19 @@ public class EditOrder extends by.epam.cafe.controller.command.Command {
         return orderParser.parseForOperatorWithBase(redirect, order, street, comments, floor, porch, room, house, name, tel, email, time, status, paymentType, price);
     }
 
-    private void update(HttpServletRequest request, HttpServletResponse response, String referer, Map<String, String> redirect, Order order) throws IOException {
+    private ResponseObject update(HttpServletRequest request, HttpServletResponse response, String referer, Map<String, String> redirect, Order order) throws IOException {
         if (buildOrder(request, order, redirect)) {
             try {
                 if (orderService.update(order)) {
-                    response.sendRedirect(request.getContextPath() + request.getServletPath() + "/order-list?pagination=1");
-                } else {
-                    request.setAttribute("unknown_error", "true");
-                    response.sendRedirect(referer);
+                    return new Redirect("/order-list?pagination=1");
                 }
             } catch (ServiceException e) {
-                request.setAttribute("unknown_error", "true");
-                response.sendRedirect(referer);
+                log.debug("e: ", e);
             }
-        } else {
-            request.getSession().setAttribute(REDIRECTED_INFO, redirect);
-            response.sendRedirect(referer);
+            redirect.put("unknown_error", "true");
         }
+        request.getSession().setAttribute(REDIRECTED_INFO, redirect);
+        return new Redirect(referer, false);
     }
 
 }

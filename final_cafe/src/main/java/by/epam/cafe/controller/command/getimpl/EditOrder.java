@@ -1,5 +1,8 @@
 package by.epam.cafe.controller.command.getimpl;
 
+import by.epam.cafe.controller.utils.ResponseObject;
+import by.epam.cafe.controller.utils.impl.Forward;
+import by.epam.cafe.controller.utils.impl.SendError;
 import by.epam.cafe.entity.enums.OrderStatus;
 import by.epam.cafe.entity.enums.PaymentType;
 import by.epam.cafe.entity.db.impl.Order;
@@ -32,7 +35,7 @@ public class EditOrder extends by.epam.cafe.controller.command.Command {
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm");
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public ResponseObject execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         try {
             Integer id = pathVarCalculator.findLastInteger(request.getPathInfo());
@@ -43,14 +46,14 @@ public class EditOrder extends by.epam.cafe.controller.command.Command {
                 request.setAttribute("statuses", EnumSet.complementOf(EnumSet.of(OrderStatus.WAITING)));
                 request.setAttribute("types", PaymentType.values());
                 request.setAttribute("time", parseToTime(order.getDeliveryInf().getDeliveryTime()));
-                request.getRequestDispatcher("/WEB-INF/jsp/edit-order.jsp").forward(request, response);
+                return new Forward("/edit-order.jsp");
             } else {
                 log.info("order is null");
-                request.getRequestDispatcher("/WEB-INF/jsp/errors/something_went_wrong.jsp").forward(request, response);
+                return new SendError(500);
             }
         } catch (ServiceException e) {
             log.info("Problem in parsing");
-            request.getRequestDispatcher("/WEB-INF/jsp/edit-order.jsp").forward(request, response);
+            return new Forward("/edit-order.jsp");
         }
 
     }

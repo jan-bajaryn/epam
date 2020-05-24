@@ -1,5 +1,8 @@
 package by.epam.cafe.controller.command.getimpl;
 
+import by.epam.cafe.controller.utils.ResponseObject;
+import by.epam.cafe.controller.utils.impl.Forward;
+import by.epam.cafe.controller.utils.impl.SendError;
 import by.epam.cafe.entity.enums.Role;
 import by.epam.cafe.entity.db.impl.User;
 import by.epam.cafe.service.db.UserService;
@@ -25,7 +28,7 @@ public class EditUser extends by.epam.cafe.controller.command.Command {
     private final UserService userService = serviceFactory.getUserService();
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public ResponseObject execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             Integer id = pathVarCalculator.findLastInteger(request.getPathInfo());
             log.info("execute: id = {}", id);
@@ -34,12 +37,11 @@ public class EditUser extends by.epam.cafe.controller.command.Command {
             if (user != null) {
                 request.setAttribute("user", user);
                 request.setAttribute("roles", Role.values());
-                request.getRequestDispatcher("/WEB-INF/jsp/admin/edit-user.jsp").forward(request, response);
-            } else {
-                request.getRequestDispatcher("/WEB-INF/jsp/errors/something_went_wrong.jsp").forward(request, response);
+                return new Forward("/admin/edit-user.jsp");
             }
         } catch (ServiceException e) {
-            request.getRequestDispatcher("/WEB-INF/jsp/errors/something_went_wrong.jsp").forward(request, response);
+            log.debug("e: ", e);
         }
+        return new SendError(500);
     }
 }

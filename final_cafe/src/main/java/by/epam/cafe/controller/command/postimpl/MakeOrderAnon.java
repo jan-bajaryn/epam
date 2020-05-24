@@ -1,6 +1,8 @@
 package by.epam.cafe.controller.command.postimpl;
 
 import by.epam.cafe.controller.command.PermissionDeniedException;
+import by.epam.cafe.controller.utils.ResponseObject;
+import by.epam.cafe.controller.utils.impl.Redirect;
 import by.epam.cafe.entity.db.impl.Order;
 import by.epam.cafe.entity.db.impl.Product;
 import by.epam.cafe.service.db.OrderService;
@@ -29,34 +31,27 @@ public class MakeOrderAnon extends by.epam.cafe.controller.command.Command {
 
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PermissionDeniedException {
+    public ResponseObject execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PermissionDeniedException {
         String referer = request.getHeader("referer");
 
         Map<String, String> redirect = new HashMap<>();
         HttpSession session = request.getSession();
         Order build = buildOrder(request, session, redirect);
 
-
-        log.debug("first0");
         if (build != null) {
-            log.debug("first1");
             try {
                 if (orderService.create(build) != null) {
                     log.debug("first2");
                     session.setAttribute("basket", null);
-                    response.sendRedirect(request.getContextPath() + request.getServletPath() + "/your-order/" + build.getId());
-                } else {
-                    request.setAttribute("unknown_error", "true");
-                    response.sendRedirect(referer);
+                    return new Redirect("/your-order/" + build.getId());
                 }
             } catch (ServiceException e) {
-                request.setAttribute("unknown_error", "true");
-                response.sendRedirect(referer);
+                log.debug("e: ", e);
             }
-        } else {
-            session.setAttribute(REDIRECTED_INFO, redirect);
-            response.sendRedirect(referer);
+            redirect.put("unknown_error", "true");
         }
+        session.setAttribute(REDIRECTED_INFO, redirect);
+        return new Redirect(referer, false);
     }
 
     private Order buildOrder(HttpServletRequest request, HttpSession session, Map<String, String> redirect) {

@@ -1,5 +1,8 @@
 package by.epam.cafe.controller.command.postimpl;
 
+import by.epam.cafe.controller.utils.ResponseObject;
+import by.epam.cafe.controller.utils.impl.Redirect;
+import by.epam.cafe.controller.utils.impl.SendError;
 import by.epam.cafe.entity.db.impl.User;
 import by.epam.cafe.service.db.UserService;
 import by.epam.cafe.service.exception.ServiceException;
@@ -25,40 +28,35 @@ public class Login extends by.epam.cafe.controller.command.Command {
     private final UserService userService = serviceFactory.getUserService();
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public ResponseObject execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
         if (!loginValidator.isValid(username, password)) {
-            response.sendRedirect(request.getContextPath() +
-                    request.getServletPath() + "/something_went_wrong");
+            return new SendError(500);
         }
-
 
         try {
             User user = userService.findUserByUsername(username);
 
             if (user != null && user.getPassword().equals(password)) {
                 putUser(request, user);
-                redirect(request, response);
-            } else {
-                response.sendRedirect(request.getContextPath() +
-                        request.getServletPath() + "/something_went_wrong");
+                return redirect(request, response);
             }
         } catch (ServiceException e) {
-            response.sendRedirect(request.getContextPath() + request.getServletPath() + "/something_went_wrong");
+            log.debug("e: ", e);
         }
+        return new SendError(500);
 
     }
 
-    private void redirect(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    private ResponseObject redirect(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String targetUrl = request.getParameter("target_url");
         log.debug("targetUrl = {}", targetUrl);
         if (targetUrl != null && !targetUrl.isEmpty() && targetUrl.startsWith(request.getContextPath())) {
-            response.sendRedirect(targetUrl);
-        } else {
-            response.sendRedirect(request.getContextPath() + request.getServletPath() + "/");
+            return new Redirect(targetUrl, false);
         }
+        return new Redirect("/");
     }
 
     private void putUser(HttpServletRequest request, User user) {

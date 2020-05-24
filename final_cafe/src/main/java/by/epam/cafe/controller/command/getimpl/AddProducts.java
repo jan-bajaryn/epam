@@ -1,6 +1,9 @@
 package by.epam.cafe.controller.command.getimpl;
 
 import by.epam.cafe.controller.command.PermissionDeniedException;
+import by.epam.cafe.controller.utils.ResponseObject;
+import by.epam.cafe.controller.utils.impl.Forward;
+import by.epam.cafe.controller.utils.impl.SendError;
 import by.epam.cafe.entity.db.impl.Order;
 import by.epam.cafe.entity.db.impl.Product;
 import by.epam.cafe.service.db.OrderService;
@@ -36,7 +39,7 @@ public class AddProducts extends by.epam.cafe.controller.command.Command {
     private final PaginationCalculator paginationCalculator = serviceFactory.getPaginationCalculator();
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PermissionDeniedException {
+    public ResponseObject execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PermissionDeniedException {
         try {
             int part = paginationCalculator.calculatePartParam(request.getParameter("pagination"));
 
@@ -71,9 +74,9 @@ public class AddProducts extends by.epam.cafe.controller.command.Command {
             request.setAttribute("id", order.getId());
 
             log.debug("all = {}", all);
-            request.getRequestDispatcher("/WEB-INF/jsp/add-products.jsp").forward(request, response);
+            return new Forward("/add-products.jsp");
         } catch (ServiceException e) {
-            e.printStackTrace();
+            return new SendError(500);
         }
     }
 }

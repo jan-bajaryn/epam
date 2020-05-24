@@ -1,5 +1,8 @@
 package by.epam.cafe.controller.command.getimpl;
 
+import by.epam.cafe.controller.utils.ResponseObject;
+import by.epam.cafe.controller.utils.impl.Forward;
+import by.epam.cafe.controller.utils.impl.SendError;
 import by.epam.cafe.entity.db.impl.User;
 import by.epam.cafe.service.pagination.PaginationService;
 import by.epam.cafe.service.db.UserService;
@@ -32,7 +35,7 @@ public class UserList extends by.epam.cafe.controller.command.Command {
 
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public ResponseObject execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         try {
             int part = paginationCalculator.calculatePartParam(request.getParameter("pagination"));
@@ -40,9 +43,9 @@ public class UserList extends by.epam.cafe.controller.command.Command {
             log.info("execute: all = {}", all);
             request.setAttribute("users", all);
             request.setAttribute("paginationMap", paginationService.calculate(userService.count(), part, MAX_PAGINATION_ELEMENTS));
-            request.getRequestDispatcher("/WEB-INF/jsp/admin/user-list.jsp").forward(request, response);
+            return new Forward("/admin/user-list.jsp");
         } catch (ServiceException e) {
-            response.sendRedirect(request.getContextPath() + request.getServletPath() + "/something_went_wrong");
+            return new SendError(500);
         }
     }
 }

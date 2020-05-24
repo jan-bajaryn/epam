@@ -1,6 +1,9 @@
 package by.epam.cafe.controller.command.postimpl;
 
 import by.epam.cafe.controller.command.PermissionDeniedException;
+import by.epam.cafe.controller.utils.ResponseObject;
+import by.epam.cafe.controller.utils.impl.Redirect;
+import by.epam.cafe.controller.utils.impl.SendError;
 import by.epam.cafe.entity.db.impl.Order;
 import by.epam.cafe.entity.db.impl.User;
 import by.epam.cafe.service.db.OrderService;
@@ -25,7 +28,7 @@ public class PutItemClient extends by.epam.cafe.controller.command.Command {
     private final UserService userService = serviceFactory.getUserService();
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PermissionDeniedException {
+    public ResponseObject execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PermissionDeniedException {
         log.debug("begin method");
         try {
             String productIdSt = request.getParameter("variant");
@@ -42,9 +45,9 @@ public class PutItemClient extends by.epam.cafe.controller.command.Command {
 
             orderService.plusProduct(orderId, prodId);
 
-            response.sendRedirect(request.getHeader("referer"));
+            return new Redirect(request.getHeader("referer"), false);
         } catch (NumberFormatException | ServiceException e) {
-            response.sendRedirect(request.getContextPath() + request.getServletPath() + "/something_went_wrong");
+            return new SendError(500);
         }
     }
 }

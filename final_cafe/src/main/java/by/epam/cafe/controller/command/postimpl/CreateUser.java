@@ -1,6 +1,8 @@
 package by.epam.cafe.controller.command.postimpl;
 
 import by.epam.cafe.controller.command.PermissionDeniedException;
+import by.epam.cafe.controller.utils.ResponseObject;
+import by.epam.cafe.controller.utils.impl.Redirect;
 import by.epam.cafe.entity.db.impl.User;
 import by.epam.cafe.service.db.UserService;
 import by.epam.cafe.service.exception.ServiceException;
@@ -29,34 +31,29 @@ public class CreateUser extends by.epam.cafe.controller.command.Command {
     private final UserParser userParser = serviceFactory.getUserParser();
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PermissionDeniedException {
+    public ResponseObject execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PermissionDeniedException {
         String referer = request.getHeader("referer");
 
         Map<String, String> redirect = new HashMap<>();
 
-        User build = validateAndTakeParams(request,redirect);
+        User build = validateAndTakeParams(request, redirect);
 
         if (build != null) {
 
             try {
                 if (userService.create(build) != null) {
-                    response.sendRedirect(request.getContextPath() + request.getServletPath() + "/admin/user-list?pagination=1");
-                } else {
-                    request.setAttribute("unknown_error", "true");
-                    response.sendRedirect(referer);
+                    return new Redirect("/admin/user-list?pagination=1");
                 }
             } catch (ServiceException e) {
-                request.setAttribute("unknown_error", "true");
-                response.sendRedirect(referer);
+                log.debug("e: ", e);
             }
-        } else {
-            request.getSession().setAttribute(REDIRECTED_INFO, redirect);
-            response.sendRedirect(referer);
+            redirect.put("unknown_error", "true");
         }
-
+        request.getSession().setAttribute(REDIRECTED_INFO, redirect);
+        return new Redirect(referer, false);
     }
 
-    private User validateAndTakeParams(HttpServletRequest req, Map<String ,String > redirect) {
+    private User validateAndTakeParams(HttpServletRequest req, Map<String, String> redirect) {
 
         String usernameParam = req.getParameter("username");
         String passwordParam = req.getParameter("password");

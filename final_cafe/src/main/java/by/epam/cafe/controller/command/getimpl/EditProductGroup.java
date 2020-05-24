@@ -1,5 +1,8 @@
 package by.epam.cafe.controller.command.getimpl;
 
+import by.epam.cafe.controller.utils.ResponseObject;
+import by.epam.cafe.controller.utils.impl.Forward;
+import by.epam.cafe.controller.utils.impl.SendError;
 import by.epam.cafe.dao.exception.NullParamDaoException;
 import by.epam.cafe.entity.enums.ProductType;
 import by.epam.cafe.entity.db.impl.Product;
@@ -10,6 +13,8 @@ import by.epam.cafe.service.exception.IllegalPathParamException;
 import by.epam.cafe.service.exception.ServiceException;
 import by.epam.cafe.service.factory.ServiceFactory;
 import by.epam.cafe.service.parser.helper.PathVarCalculator;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -19,13 +24,15 @@ import java.util.List;
 
 public class EditProductGroup extends by.epam.cafe.controller.command.Command {
 
+    private static final Logger log = LogManager.getLogger(EditProductGroup.class);
+
     private final ServiceFactory serviceFactory = ServiceFactory.getInstance();
     private final ProductService productService = serviceFactory.getProductService();
     private final PathVarCalculator pathVarCalculator = serviceFactory.getPathVarCalculator();
     private final ProductGroupService productGroupService = serviceFactory.getProductGroupService();
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public ResponseObject execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         try {
             Integer id = pathVarCalculator.findLastInteger(request.getPathInfo());
@@ -37,14 +44,13 @@ public class EditProductGroup extends by.epam.cafe.controller.command.Command {
 
                 putProducts(request);
 
-                request.getRequestDispatcher("/WEB-INF/jsp/admin/edit-product-group.jsp").forward(request, response);
+                return new Forward("/admin/edit-product-group.jsp");
 
-            } else {
-                request.getRequestDispatcher("/WEB-INF/jsp/errors/something_went_wrong.jsp").forward(request, response);
             }
         } catch (ServiceException e) {
-            request.getRequestDispatcher("/WEB-INF/jsp/errors/something_went_wrong.jsp").forward(request, response);
+            log.debug("e: ", e);
         }
+        return new SendError(500);
     }
 
     private void putProducts(HttpServletRequest request) throws ServiceException {

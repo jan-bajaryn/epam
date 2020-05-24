@@ -1,6 +1,9 @@
 package by.epam.cafe.controller.command.postimpl;
 
 import by.epam.cafe.controller.command.PermissionDeniedException;
+import by.epam.cafe.controller.utils.ResponseObject;
+import by.epam.cafe.controller.utils.impl.Redirect;
+import by.epam.cafe.controller.utils.impl.SendError;
 import by.epam.cafe.entity.db.impl.Order;
 import by.epam.cafe.entity.db.impl.User;
 import by.epam.cafe.service.db.OrderService;
@@ -24,7 +27,7 @@ public class DeleteAllProdFromBasketClient extends by.epam.cafe.controller.comma
     OrderService orderService = serviceFactory.getOrderService();
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PermissionDeniedException {
+    public ResponseObject execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PermissionDeniedException {
         log.debug("begin method");
         try {
             String productIdSt = request.getParameter("id");
@@ -38,9 +41,9 @@ public class DeleteAllProdFromBasketClient extends by.epam.cafe.controller.comma
 
             orderService.deleteProduct(orderId, prodId);
 
-            response.sendRedirect(request.getContextPath() + request.getServletPath() + "/order");
+            return new Redirect("/order");
         } catch (NumberFormatException | ServiceException e) {
-            response.sendRedirect(request.getContextPath() + request.getServletPath() + "/something_went_wrong");
+            return new SendError(500);
         }
     }
 }

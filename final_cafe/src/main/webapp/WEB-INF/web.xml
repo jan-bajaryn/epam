@@ -81,6 +81,10 @@
         <error-code>403</error-code>
         <location>/WEB-INF/jsp/errors/something_went_wrong.jsp</location>
     </error-page>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/WEB-INF/jsp/errors/something_went_wrong.jsp</location>
+    </error-page>
 
     <jsp-config>
         <taglib>

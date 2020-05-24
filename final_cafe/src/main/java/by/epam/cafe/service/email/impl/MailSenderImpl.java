@@ -39,7 +39,7 @@ public class MailSenderImpl implements MailSender {
     public boolean sendRegistration(String email, String url, Locale locale, TreeMap<String, String> parameters) {
         log.debug("parameters = {}", parameters);
         try {
-            locale = Locale.getDefault();
+//            locale = Locale.getDefault();
             ResourceBundle rb = ResourceBundle.getBundle("property.text", locale);
             String msg = rb.getString("email.registration.confirm");
 

@@ -1,5 +1,8 @@
 package by.epam.cafe.controller.command.getimpl;
 
+import by.epam.cafe.controller.utils.ResponseObject;
+import by.epam.cafe.controller.utils.impl.Forward;
+import by.epam.cafe.controller.utils.impl.SendError;
 import by.epam.cafe.entity.db.impl.Order;
 import by.epam.cafe.service.db.OrderService;
 import by.epam.cafe.service.pagination.PaginationService;
@@ -30,7 +33,7 @@ public class OrderList extends by.epam.cafe.controller.command.Command {
 
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public ResponseObject execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         try {
             int part = paginationCalculator.calculatePartParam(request.getParameter("pagination"));
@@ -39,9 +42,9 @@ public class OrderList extends by.epam.cafe.controller.command.Command {
             log.info("execute: all = {}", all);
             request.setAttribute("orders", all);
             request.setAttribute("paginationMap", paginationService.calculate(orderService.count(), part, MAX_PAGINATION_ELEMENTS));
-            request.getRequestDispatcher("/WEB-INF/jsp/order-list.jsp").forward(request, response);
+            return new Forward("/order-list.jsp");
         } catch (ServiceException e) {
-            response.sendRedirect(request.getContextPath() + request.getServletPath() + "/something_went_wrong");
+            return new SendError(500);
         }
     }
 }

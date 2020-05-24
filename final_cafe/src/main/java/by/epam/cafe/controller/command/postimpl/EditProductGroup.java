@@ -1,6 +1,8 @@
 package by.epam.cafe.controller.command.postimpl;
 
 import by.epam.cafe.controller.command.PermissionDeniedException;
+import by.epam.cafe.controller.utils.ResponseObject;
+import by.epam.cafe.controller.utils.impl.Redirect;
 import by.epam.cafe.entity.db.impl.ProductGroup;
 import by.epam.cafe.entity.struct.ValueHolder;
 import by.epam.cafe.service.db.ProductGroupService;
@@ -36,42 +38,27 @@ public class EditProductGroup extends by.epam.cafe.controller.command.Command {
 
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PermissionDeniedException {
+    public ResponseObject execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PermissionDeniedException {
         String referer = request.getHeader("referer");
 
         Map<String, String> redirect = new HashMap<>();
         ValueHolder<String> fileNameHolder = new ValueHolder<>();
-
         ProductGroup build = parseRequest(request, redirect, fileNameHolder);
 
         if (build != null) {
 
             try {
                 if (productGroupService.update(build)) {
-                    response.sendRedirect(request.getContextPath() + request.getServletPath() + "/admin/product-group-list?pagination=1");
-                } else {
-                    imageWriterService.deleteImageIfNeed(fileNameHolder.getValue());
-                    request.setAttribute("unknown_error", "true");
-                    response.sendRedirect(referer);
+                    return new Redirect("/admin/product-group-list?pagination=1");
                 }
             } catch (ServiceException e) {
-                imageWriterService.deleteImageIfNeed(fileNameHolder.getValue());
-                request.setAttribute("unknown_error", "true");
-                response.sendRedirect(referer);
+                log.debug("e: ", e);
             }
-        } else {
-            imageWriterService.deleteImageIfNeed(fileNameHolder.getValue());
-            request.getSession().setAttribute(REDIRECTED_INFO, redirect);
-            response.sendRedirect(referer);
+            redirect.put("unknown_error", "true");
         }
-
-//            if (withoutId && productGroupService.create(productGroup) != null) {
-//                response.sendRedirect(request.getContextPath() + request.getServletPath() + "/admin/product-group-list");
-//            } else {
-//                imageWriterService.deleteImageIfNeed(productGroup.getPhotoName());
-//                response.sendRedirect(request.getContextPath() + request.getServletPath() + "/something_went_wrong");
-//            }
-
+        imageWriterService.deleteImageIfNeed(fileNameHolder.getValue());
+        request.getSession().setAttribute(REDIRECTED_INFO, redirect);
+        return new Redirect(referer, false);
     }
 
     public ProductGroup parseRequest(HttpServletRequest request, Map<String, String> redirect, ValueHolder<String> holderFileName) {
@@ -86,7 +73,7 @@ public class EditProductGroup extends by.epam.cafe.controller.command.Command {
             for (FileItem part : parts) {
                 isRight = isRight && productGroupParser.fillFields(productGroup, part, redirect, holderFileName);
             }
-            if (!isRight){
+            if (!isRight) {
                 return null;
             }
             return productGroup;

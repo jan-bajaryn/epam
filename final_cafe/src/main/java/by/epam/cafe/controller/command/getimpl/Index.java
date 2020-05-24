@@ -1,5 +1,8 @@
 package by.epam.cafe.controller.command.getimpl;
 
+import by.epam.cafe.controller.utils.ResponseObject;
+import by.epam.cafe.controller.utils.impl.Forward;
+import by.epam.cafe.controller.utils.impl.SendError;
 import by.epam.cafe.entity.enums.ProductType;
 import by.epam.cafe.entity.db.impl.Product;
 import by.epam.cafe.entity.db.impl.ProductGroup;
@@ -28,7 +31,7 @@ public class Index extends by.epam.cafe.controller.command.Command {
     private final ProductService productService = serviceFactory.getProductService();
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public ResponseObject execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         ProductType prodType = calcVariables(request);
         log.info("execute: prodType = {}", prodType);
@@ -38,9 +41,10 @@ public class Index extends by.epam.cafe.controller.command.Command {
                     .collect(Collectors.toMap(p -> p, p -> String.format("%.2f", getMinPrice(p) / 100.0)));
             request.setAttribute("products", result);
             log.info("execute: result = {}", result);
-            request.getRequestDispatcher("/WEB-INF/jsp/index.jsp").forward(request, response);
+            return new Forward("/index.jsp");
         } catch (ServiceException e) {
             log.error("Error:", e);
+            return new SendError(500);
         }
 
     }

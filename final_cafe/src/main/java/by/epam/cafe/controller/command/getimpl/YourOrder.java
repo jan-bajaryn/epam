@@ -1,5 +1,8 @@
 package by.epam.cafe.controller.command.getimpl;
 
+import by.epam.cafe.controller.utils.ResponseObject;
+import by.epam.cafe.controller.utils.impl.Forward;
+import by.epam.cafe.controller.utils.impl.SendError;
 import by.epam.cafe.entity.db.impl.Order;
 import by.epam.cafe.service.db.OrderService;
 import by.epam.cafe.service.exception.IllegalPathParamException;
@@ -25,15 +28,11 @@ public class YourOrder extends by.epam.cafe.controller.command.Command {
 
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public ResponseObject execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             Integer id = pathVarCalculator.findLastInteger(request.getPathInfo());
             Order order = orderService.findEntityById(id);
             if (order != null) {
-
-//                Map<Product, Long> productMap = order.getProducts().stream()
-//                        .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
-
 
                 log.info("productMap = {}", order.getProducts());
                 log.info("order.getProducts() = {}", order.getProducts());
@@ -47,12 +46,11 @@ public class YourOrder extends by.epam.cafe.controller.command.Command {
 
                 log.debug("order.getProducts() = {}", order.getProducts());
                 request.setAttribute("productMap", order.getProducts());
-                request.getRequestDispatcher("/WEB-INF/jsp/your-order.jsp").forward(request, response);
-            } else {
-                request.getRequestDispatcher("/WEB-INF/jsp/errors/something_went_wrong.jsp").forward(request, response);
+                return new Forward("/your-order.jsp");
             }
         } catch (ServiceException e) {
-            request.getRequestDispatcher("/WEB-INF/jsp/errors/something_went_wrong.jsp").forward(request, response);
+            log.debug("e:", e);
         }
+        return new SendError(500);
     }
 }

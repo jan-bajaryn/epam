@@ -1,5 +1,6 @@
 package by.epam.cafe.controller.command;
 
+import by.epam.cafe.controller.utils.ResponseObject;
 import by.epam.cafe.entity.enums.Role;
 
 import javax.servlet.ServletException;
@@ -19,11 +20,10 @@ public class CommandDecorator extends Command {
 
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PermissionDeniedException {
-//        HttpSession session = request.getSession();
+    public ResponseObject execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PermissionDeniedException {
         Role role = ((Role) request.getAttribute("role"));
         if (roles.contains(role)) {
-            command.execute(request, response);
+            return command.execute(request, response);
         } else {
             throw new PermissionDeniedException();
         }

@@ -1,6 +1,8 @@
 package by.epam.cafe.controller.command.postimpl;
 
 import by.epam.cafe.controller.command.PermissionDeniedException;
+import by.epam.cafe.controller.utils.ResponseObject;
+import by.epam.cafe.controller.utils.impl.Redirect;
 import by.epam.cafe.entity.db.impl.Product;
 import by.epam.cafe.service.db.ProductService;
 import by.epam.cafe.service.exception.ServiceException;
@@ -28,13 +30,10 @@ public class EditProduct extends by.epam.cafe.controller.command.Command {
 
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PermissionDeniedException {
+    public ResponseObject execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PermissionDeniedException {
 
         String referer = request.getHeader("referer");
-
-
         log.debug("begin method");
-
         Map<String, String> redirect = new HashMap<>();
         Product build = validateAndTakeParams(request, redirect);
 
@@ -42,20 +41,15 @@ public class EditProduct extends by.epam.cafe.controller.command.Command {
 
             try {
                 if (productService.update(build)) {
-                    response.sendRedirect(request.getContextPath() + request.getServletPath() + "/admin/product-list?pagination=1");
-                } else {
-                    request.setAttribute("unknown_error", "true");
-                    response.sendRedirect(referer);
+                    return new Redirect("/admin/product-list?pagination=1");
                 }
             } catch (ServiceException e) {
-                request.setAttribute("unknown_error", "true");
-                response.sendRedirect(referer);
+                log.debug("e: ", e);
             }
-        } else {
-            request.getSession().setAttribute(REDIRECTED_INFO, redirect);
-            response.sendRedirect(referer);
+            redirect.put("unknown_error", "true");
         }
-
+        request.getSession().setAttribute(REDIRECTED_INFO, redirect);
+        return new Redirect(referer, false);
     }
 
 

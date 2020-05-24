@@ -1,5 +1,8 @@
 package by.epam.cafe.controller.command.postimpl;
 
+import by.epam.cafe.controller.utils.ResponseObject;
+import by.epam.cafe.controller.utils.impl.Redirect;
+import by.epam.cafe.controller.utils.impl.SendError;
 import by.epam.cafe.service.db.UserService;
 import by.epam.cafe.service.exception.IllegalPathParamException;
 import by.epam.cafe.service.exception.ServiceException;
@@ -23,7 +26,7 @@ public class UserBlock extends by.epam.cafe.controller.command.Command {
     private final UserService userService = serviceFactory.getUserService();
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public ResponseObject execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             log.debug("UserBlockCommand begin");
 
@@ -33,11 +36,11 @@ public class UserBlock extends by.epam.cafe.controller.command.Command {
             userService.blockById(id);
 
             log.debug("block executed");
-            response.sendRedirect(request.getContextPath() + request.getServletPath() + "/admin/user-list?pagination=1");
+            return new Redirect("/admin/user-list?pagination=1");
 
         } catch (ServiceException e) {
             log.error("e: ", e);
-            response.sendRedirect(request.getContextPath() + request.getServletPath() + "/something_went_wrong");
+            return new SendError(500);
         }
     }
 }

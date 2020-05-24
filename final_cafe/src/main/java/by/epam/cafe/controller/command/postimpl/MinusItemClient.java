@@ -1,6 +1,9 @@
 package by.epam.cafe.controller.command.postimpl;
 
 import by.epam.cafe.controller.command.PermissionDeniedException;
+import by.epam.cafe.controller.utils.ResponseObject;
+import by.epam.cafe.controller.utils.impl.Redirect;
+import by.epam.cafe.controller.utils.impl.SendError;
 import by.epam.cafe.entity.db.impl.Order;
 import by.epam.cafe.entity.db.impl.User;
 import by.epam.cafe.service.db.OrderService;
@@ -21,10 +24,10 @@ public class MinusItemClient extends by.epam.cafe.controller.command.Command {
 
 
     private final ServiceFactory serviceFactory = ServiceFactory.getInstance();
-    OrderService orderService = serviceFactory.getOrderService();
+    private final OrderService orderService = serviceFactory.getOrderService();
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PermissionDeniedException {
+    public ResponseObject execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PermissionDeniedException {
         log.debug("begin method");
         try {
             String productIdSt = request.getParameter("variant");
@@ -34,16 +37,13 @@ public class MinusItemClient extends by.epam.cafe.controller.command.Command {
             User user = (User) session.getAttribute("user");
 
             Order currentByUserId = orderService.findOrCreateCurrentByUserId(user.getId());
-
             Integer orderId = currentByUserId.getId();
-
             Integer prodId = Integer.valueOf(productIdSt);
 
             orderService.minusOrDelete(orderId, prodId);
-
-            response.sendRedirect(request.getContextPath() + request.getServletPath() + "/order");
+            return new Redirect("/order");
         } catch (NumberFormatException | ServiceException e) {
-            response.sendRedirect(request.getContextPath() + request.getServletPath() + "/something_went_wrong");
+            return new SendError(500);
         }
     }
 }

@@ -2,6 +2,8 @@ package by.epam.cafe.controller.command.postimpl;
 
 import by.epam.cafe.controller.command.Languages;
 import by.epam.cafe.controller.command.PermissionDeniedException;
+import by.epam.cafe.controller.utils.ResponseObject;
+import by.epam.cafe.controller.utils.impl.Redirect;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -20,7 +22,7 @@ public class ChangeLanguage extends by.epam.cafe.controller.command.Command {
 
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PermissionDeniedException {
+    public ResponseObject execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PermissionDeniedException {
         String lang = request.getParameter("lang");
         Optional<Languages> any = Arrays.stream(Languages.values())
                 .filter(l -> l.getKey().equals(lang))
@@ -35,7 +37,6 @@ public class ChangeLanguage extends by.epam.cafe.controller.command.Command {
 
         String referer = request.getHeader("referer");
         log.info("referer = {}", referer);
-        response.sendRedirect(referer);
-
+        return new Redirect(referer, false);
     }
 }
