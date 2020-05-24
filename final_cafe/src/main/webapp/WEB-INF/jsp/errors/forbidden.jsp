@@ -7,7 +7,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Something went wrong</title>
+    <title>Forbidden</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
           integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 
@@ -29,11 +29,11 @@
 
 <c:import url="../fragments/navPanel.jsp"/>
 <header>
-    <h1>Something went wrong</h1>
+    <h1>Resource you try to access is forbidden</h1>
 </header>
 
 <main class="container">
-    <div>Something went wrong. Please, try later</div>
+    <div>You can't do this operation</div>
 </main>
 
 <c:import url="../fragments/footer.jsp"/>

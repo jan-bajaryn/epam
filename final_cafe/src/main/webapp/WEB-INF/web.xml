@@ -79,7 +79,7 @@
     <!--    </error-page>-->
     <error-page>
         <error-code>403</error-code>
-        <location>/WEB-INF/jsp/errors/something_went_wrong.jsp</location>
+        <location>/WEB-INF/jsp/errors/forbidden.jsp</location>
     </error-page>
     <error-page>
         <error-code>500</error-code>

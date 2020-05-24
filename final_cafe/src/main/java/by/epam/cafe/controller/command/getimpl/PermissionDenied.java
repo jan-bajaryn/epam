@@ -14,6 +14,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
+import static by.epam.cafe.controller.filter.RedirectFilter.REDIRECTED_INFO;
 
 
 public class PermissionDenied extends by.epam.cafe.controller.command.Command {
@@ -24,15 +28,19 @@ public class PermissionDenied extends by.epam.cafe.controller.command.Command {
     @Override
     public ResponseObject execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PermissionDeniedException {
         Role role = ((Role) request.getAttribute("role"));
+        HttpSession session = request.getSession();
+        Map<String ,String > redirect = new HashMap<>();
+
         if (role == Role.ANON) {
             String targetUrl = request.getRequestURI() + "?" + request.getQueryString();
 
             log.debug("targetUrl = {}", targetUrl);
-            HttpSession session = request.getSession();
-            session.setAttribute("target_url", targetUrl);
+            redirect.put("target_url",targetUrl);
+            session.setAttribute(REDIRECTED_INFO, redirect);
+
             return new Redirect(CommandGetFactory.LOGIN_PAGE);
         } else {
-            return new SendError(500);
+            return new SendError(403);
         }
     }
 }

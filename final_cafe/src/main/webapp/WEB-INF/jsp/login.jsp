@@ -31,8 +31,13 @@
 
 
 <main class="container">
+    <c:if test="${not empty redirect_authentication_error}">
+        <div class="alert alert-info alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <fmt:message key="web.errors.authentication" bundle="${ rb }"/>
+        </div>
+    </c:if>
     <form action="<c:url value="/page/login"/>" method="post">
-        <%--        enctype="application/x-www-form-urlencoded"--%>
         <div class="username__group">
             <label for="username">
                 <fmt:message key="web.inputs.username" bundle="${ rb }"/>:
@@ -49,10 +54,10 @@
         </div>
 
 
-        <c:if test="${not empty target_url}">
+        <c:if test="${not empty redirect_target_url}">
             <input type="hidden"
                    name="target_url"
-                   value="<c:out value="${target_url}"/>"/>
+                   value="<c:out value="${redirect_target_url}"/>"/>
         </c:if>
         <%--        <input type="hidden"--%>
         <%--               name="${_csrf.parameterName}"--%>

@@ -2,7 +2,6 @@ package by.epam.cafe.controller.command.postimpl;
 
 import by.epam.cafe.controller.utils.ResponseObject;
 import by.epam.cafe.controller.utils.impl.Redirect;
-import by.epam.cafe.controller.utils.impl.SendError;
 import by.epam.cafe.entity.db.impl.User;
 import by.epam.cafe.service.db.UserService;
 import by.epam.cafe.service.exception.ServiceException;
@@ -16,6 +15,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
+import static by.epam.cafe.controller.filter.RedirectFilter.REDIRECTED_INFO;
 
 public class Login extends by.epam.cafe.controller.command.Command {
 
@@ -31,27 +34,28 @@ public class Login extends by.epam.cafe.controller.command.Command {
     public ResponseObject execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
+        String targetUrl = request.getParameter("target_url");
 
-        if (!loginValidator.isValid(username, password)) {
-            return new SendError(500);
-        }
+        HttpSession session = request.getSession();
+        Map<String, String> redirect = new HashMap<>();
 
         try {
             User user = userService.findUserByUsername(username);
 
             if (user != null && user.getPassword().equals(password)) {
                 putUser(request, user);
-                return redirect(request, response);
+                return redirect(request, targetUrl);
             }
         } catch (ServiceException e) {
             log.debug("e: ", e);
         }
-        return new SendError(500);
-
+        redirect.put("authentication_error", "true");
+        redirect.put("target_url",targetUrl);
+        session.setAttribute(REDIRECTED_INFO, redirect);
+        return new Redirect("/login");
     }
 
-    private ResponseObject redirect(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String targetUrl = request.getParameter("target_url");
+    private ResponseObject redirect(HttpServletRequest request, String targetUrl) {
         log.debug("targetUrl = {}", targetUrl);
         if (targetUrl != null && !targetUrl.isEmpty() && targetUrl.startsWith(request.getContextPath())) {
             return new Redirect(targetUrl, false);
