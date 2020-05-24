@@ -25,18 +25,20 @@
             <h1>
                 <fmt:message key="web.links.basket" bundle="${ rb }"/>
             </h1>
-        </header>
-        <div class="promo">
-            <form action="?">
-                <div class="form-group promo-group">
-                    <label for="promo"></label>
-                    <input class="form-control" placeholder="Promo" type="text" id="promo">
-                    <button class="btn white__bg__orange">
-                        <fmt:message key="web.btn.execute" bundle="${ rb }"/>
-                    </button>
+            <c:if test="${not empty redirect_unknown_error}">
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <fmt:message key="web.errors.unknown-error" bundle="${ rb }"/>
                 </div>
-            </form>
-        </div>
+            </c:if>
+            <c:if test="${not empty redirect_basket_error}">
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <fmt:message key="web.errors.no-products" bundle="${ rb }"/>
+                </div>
+            </c:if>
+        </header>
+
 
         <div class="product-list">
             <%--@elvariable id="productMap" type="java.util.Map<by.epam.cafe.entity.db.impl.Product,java.lang.Integer>"--%>
@@ -69,8 +71,7 @@
                                         <button type="submit" class="btn mx-3 white__bg__black plus"> +</button>
                                     </form>
                                     <div class="prise mr-3">
-                                            ${String.format("%.2f",(product.key.price*product.value)/100)}
-                                        <fmt:message key="web.text.rub" bundle="${ rb }"/>
+                                        <tag:money input="${product.key.price*product.value}"/>
                                     </div>
                                     <form action="<c:url value="/page/anon/delete-all"/>" method="post">
                                         <button class="abc" type="submit">
@@ -93,8 +94,7 @@
                                         <button type="submit" class="btn mx-3 white__bg__black plus"> +</button>
                                     </form>
                                     <div class="prise mr-3">
-                                            ${String.format("%.2f",(product.key.price*product.value)/100)}
-                                        <fmt:message key="web.text.rub" bundle="${ rb }"/>
+                                        <tag:money input="${product.key.price*product.value}"/>
                                     </div>
                                     <form action="<c:url value="/page/client/delete-all"/>" method="post">
                                         <button class="abc" type="submit">
@@ -117,8 +117,8 @@
             <div class="sum-text">
                 <fmt:message key="web.text.sum-order" bundle="${ rb }"/>
             </div>
-            <div class="sum-price"> ${sum}
-                <fmt:message key="web.text.rub" bundle="${ rb }"/>
+            <div class="sum-price"><tag:money input="${sum}"/>
+<%--                <fmt:message key="web.text.rub" bundle="${ rb }"/>--%>
             </div>
         </div>
 
@@ -256,7 +256,7 @@
                                             </c:if>
                                             <input type="email" class="form-control" id="email"
                                                    placeholder="<fmt:message key="web.inputs.email" bundle="${ rb }"/>"
-                                                   name="email" value="<c:out value="${redirect_email}"/>">
+                                                   name="email" value="<c:out value="${redirect_email}"/>" required>
                                         </div>
                                         <div class="payment_type_row">
                                             <label for="payment_type">
@@ -423,7 +423,7 @@
                                             <input type="email" class="form-control"
                                                    placeholder="<fmt:message key="web.inputs.email" bundle="${ rb }"/>"
                                                    id="email" name="email" value="<c:out value="${info.email}"/>"
-                                                   title="<c:out value="${redirect_email}"/>">
+                                                   title="<c:out value="${redirect_email}"/>" required>
                                         </div>
                                         <div class="payment_type_row">
                                             <label for="payment_type">

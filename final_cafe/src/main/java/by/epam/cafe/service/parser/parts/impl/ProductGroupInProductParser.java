@@ -20,6 +20,6 @@ public class ProductGroupInProductParser extends ParamsParser<Integer> {
 
     @Override
     protected Integer modify(String input) throws Exception {
-        return input == null ? null : Integer.valueOf(input);
+        return (input == null || input.isEmpty()) ? null : Integer.valueOf(input);
     }
 }

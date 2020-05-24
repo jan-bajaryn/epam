@@ -2,7 +2,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<jsp:useBean id="productMap" scope="request" type="java.util.Map<by.epam.cafe.entity.db.impl.Product,java.lang.Integer>"/>
+<jsp:useBean id="productMap" scope="request"
+             type="java.util.Map<by.epam.cafe.entity.db.impl.Product,java.lang.Integer>"/>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="tag" %>
 
 
@@ -87,7 +88,7 @@
             <td>
                 <fmt:message key="web.tab.sum-order" bundle="${ rb }"/>
             </td>
-            <td>${order.price}</td>
+            <td><tag:money input="${order.price}"/></td>
         </tr>
     </table>
     <button type="button" class="btn orange__bg" data-toggle="collapse" data-target="#demo">
@@ -102,7 +103,7 @@
                             <img src="<c:url value="/static/img/${product.key.productGroup.photoName}"/>" alt="">
                         </div>
                         <div class="product-name">
-                                <c:out value="${product.key.productGroup.name}"/>
+                            <c:out value="${product.key.productGroup.name}"/>
                         </div>
                         <div class="product-type text-muted">
                                 ${product.key.weight} <fmt:message key="web.gram" bundle="${ rb }"/>.
@@ -111,7 +112,7 @@
                     <div class="flex-part">
                         <span class="text-danger">${product.value}</span>
                         <div class="prise mr-3 ml-5">
-                                ${product.key.price*product.value/100} руб.
+                            <tag:money input="${product.key.price*product.value}"/>
                         </div>
                     </div>
                 </div>

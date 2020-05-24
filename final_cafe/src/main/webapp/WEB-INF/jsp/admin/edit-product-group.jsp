@@ -30,6 +30,12 @@
 
 <main class="container">
     <div class="create__data">
+        <c:if test="${not empty redirect_unknown_error}">
+            <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <fmt:message key="web.errors.unknown-error" bundle="${ rb }"/>
+            </div>
+        </c:if>
         <form action="<c:url value="/page/admin/edit-product-group"/>" method="post" enctype="multipart/form-data">
 
             <div class="id_row">
@@ -119,8 +125,7 @@
                                 ,
                             </span>
                             <span>
-                                    ${p.price}
-                                    <fmt:message key="web.text.rub" bundle="${ rb }"/>
+                                    <tag:money input="${p.price}"/>
                             </span>
                             <input type="checkbox" value="${p.id}" checked name="products">
                         </label>
@@ -131,7 +136,7 @@
                     <div>
                         <label>
                             <span>${p.weight} <fmt:message key="web.gram" bundle="${ rb }"/>,</span>
-                            <span>${p.price} <fmt:message key="web.text.rub" bundle="${ rb }"/></span>
+                            <span><tag:money input="${p.price}"/></span>
                             <input type="checkbox" value="${p.id}" name="products">
                         </label>
                     </div>

@@ -30,6 +30,13 @@
 <main class="container">
     <c:if test="${user!=null}">
         <div class="create__data">
+            <c:if test="${not empty redirect_unknown_error}">
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <fmt:message key="web.errors.unknown-error" bundle="${ rb }"/>
+                    <fmt:message key="web.errors.user-error" bundle="${ rb }"/>
+                </div>
+            </c:if>
             <form action="<c:url value="/page/admin/edit-user"/>" method="post">
                 <div class="id">
                     <label for="id">

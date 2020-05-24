@@ -29,6 +29,12 @@
 
 <main class="container">
     <div class="create__data">
+        <c:if test="${not empty redirect_unknown_error}">
+            <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <fmt:message key="web.errors.unknown.product" bundle="${ rb }"/>
+            </div>
+        </c:if>
         <form action="<c:url value="/page/admin/create-product"/>" method="post">
             <div class="product_group">
                 <label for="product_group">
@@ -50,6 +56,10 @@
                 </select>
             </div>
 
+            <div class="alert alert-warning alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <fmt:message key="web.warning.price-integer" bundle="${ rb }"/>
+            </div>
             <div class="price">
                 <label for="price">
                     <fmt:message key="web.inputs.price" bundle="${ rb }"/>

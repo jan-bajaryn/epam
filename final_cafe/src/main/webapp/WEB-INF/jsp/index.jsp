@@ -46,7 +46,7 @@
                     </div>
                     <div class="p_card-footer md-2">
                     <span>
-                        <fmt:message key="web.text.from" bundle="${ rb }"/> ${product_group.value} <fmt:message key="web.text.rub" bundle="${ rb }"/>.
+                        <fmt:message key="web.text.from" bundle="${ rb }"/> <tag:money input="${product_group.value}"/>
                     </span>
                         <button class="btn mr-5 myBtn">
                             <fmt:message key="web.btn.choose" bundle="${ rb }"/>
@@ -76,7 +76,7 @@
                                                                         ${product.weight}
                                                                     <fmt:message key="web.gram" bundle="${ rb }"/>
                                                                     -
-                                                                    <span> ${String.format("%.2f", product.price/100.0)}р</span>
+                                                                    <span> <tag:money input="${product.price}"/></span>
                                                                 </label>
                                                             </div>
                                                         </c:forEach>

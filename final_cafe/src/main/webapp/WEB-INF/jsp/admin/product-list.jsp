@@ -61,7 +61,7 @@
             <c:forEach items="${products}" var="p">
                 <tr>
                     <td>${p.id}</td>
-                    <td>${p.price}</td>
+                    <td><tag:money input="${p.price}"/></td>
                     <td>${p.weight}</td>
                     <td><c:out value="${p.productGroup.name}"/></td>
                     <td>

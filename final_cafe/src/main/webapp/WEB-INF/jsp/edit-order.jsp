@@ -30,6 +30,12 @@
 
 <main class="container">
     <c:if test="${order!=null}">
+        <c:if test="${not empty redirect_unknown_error}">
+            <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <fmt:message key="web.errors.unknown-error" bundle="${ rb }"/>
+            </div>
+        </c:if>
         <form action="<c:url value="/page/edit-order"/>" method="post">
             <div class="modal__main__content">
                 <div class="body__form">
