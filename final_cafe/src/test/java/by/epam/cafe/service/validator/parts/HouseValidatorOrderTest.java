@@ -5,9 +5,9 @@ import org.testng.annotations.Test;
 
 import static org.testng.Assert.*;
 
-public class HouseValidatorTest {
+public class HouseValidatorOrderTest {
 
-    private final HouseValidator houseValidator = HouseValidator.getInstance();
+    private final HouseValidatorOrder houseValidatorOrder = HouseValidatorOrder.getInstance();
 
     @DataProvider(name = "check")
     public Object[][] checkProvider
@@ -23,6 +23,6 @@ public class HouseValidatorTest {
     @Test(description = "Test for HouseValidator",
             dataProvider = "check")
     public void checkInput(String input, Boolean result) {
-        assertEquals(houseValidator.isValid(input), (boolean) result);
+        assertEquals(houseValidatorOrder.isValid(input), (boolean) result);
     }
 }

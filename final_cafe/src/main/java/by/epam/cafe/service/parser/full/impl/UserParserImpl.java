@@ -25,14 +25,14 @@ public class UserParserImpl implements by.epam.cafe.service.parser.full.UserPars
     private final ApplicationEncrypt applicationEncrypt = ApplicationEncryptImpl.getInstance();
     private final EmailParser emailParser = EmailParser.getInstance();
     private final FloorParser floorParser = FloorParser.getInstance();
-    private final HouseParser houseParser = HouseParser.getInstance();
+    private final HouseParserUser houseParserOrder = HouseParserUser.getInstance();
     private final NameParser nameParser = NameParser.getInstance();
     private final PasswordParser passwordParser = PasswordParser.getInstance();
     private final PhoneParser phoneParser = PhoneParser.getInstance();
     private final PorchParser porchParser = PorchParser.getInstance();
     private final RoleParser roleParser = RoleParser.getInstance();
     private final RoomParser roomParser = RoomParser.getInstance();
-    private final StreetParser streetParser = StreetParser.getInstance();
+    private final StreetParserUser streetParserOrder = StreetParserUser.getInstance();
     private final UsernameParser usernameParser = UsernameParser.getInstance();
     private final SurnameParser surnameParser = SurnameParser.getInstance();
     private final IdParser idParser = IdParser.getInstance();
@@ -70,13 +70,13 @@ public class UserParserImpl implements by.epam.cafe.service.parser.full.UserPars
         OptionalNullable<Role> role = roleParser.parse(roleParam);
         OptionalNullable<String> name = nameParser.parse(nameParam);
         OptionalNullable<String> surname = surnameParser.parse(surnameParam);
-        OptionalNullable<String> house = houseParser.parse(houseParam);
+        OptionalNullable<String> house = houseParserOrder.parse(houseParam);
         OptionalNullable<String> room = roomParser.parse(roomParam);
         OptionalNullable<Integer> porch = porchParser.parse(porchParam);
         OptionalNullable<Integer> floor = floorParser.parse(floorParam);
         OptionalNullable<String> phone = phoneParser.parse(phoneParam);
         OptionalNullable<String> email = emailParser.parse(emailParam);
-        OptionalNullable<String> street = streetParser.parse(streetParam);
+        OptionalNullable<String> street = streetParserOrder.parse(streetParam);
 
         boolean result = validateAndPutter.validateAndPut(redirect, username, "username", usernameParam) &
                 validateAndPutter.validateAndPut(redirect, password, "password", passwordParam) &
@@ -191,13 +191,13 @@ public class UserParserImpl implements by.epam.cafe.service.parser.full.UserPars
         OptionalNullable<String> password = passwordParser.parse(passwordParam);
         OptionalNullable<String> name = nameParser.parse(nameParam);
         OptionalNullable<String> surname = surnameParser.parse(surnameParam);
-        OptionalNullable<String> house = houseParser.parse(houseParam);
+        OptionalNullable<String> house = houseParserOrder.parse(houseParam);
         OptionalNullable<String> room = roomParser.parse(roomParam);
         OptionalNullable<Integer> porch = porchParser.parse(porchParam);
         OptionalNullable<Integer> floor = floorParser.parse(floorParam);
         OptionalNullable<String> phone = phoneParser.parse(phoneParam);
         OptionalNullable<String> email = emailParser.parse(emailParam);
-        OptionalNullable<String> street = streetParser.parse(streetParam);
+        OptionalNullable<String> street = streetParserOrder.parse(streetParam);
 
         boolean result = validateAndPutter.validateAndPut(redirect, username, "username", usernameParam) &
                 validateAndPutter.validateAndPut(redirect, password, "password", passwordParam) &

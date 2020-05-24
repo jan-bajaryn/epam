@@ -5,9 +5,9 @@ import org.testng.annotations.Test;
 
 import static org.testng.Assert.*;
 
-public class StreetValidatorTest {
+public class StreetValidatorOrderTest {
 
-    private final StreetValidator streetValidator = StreetValidator.getInstance();
+    private final StreetValidatorOrder streetValidatorOrder = StreetValidatorOrder.getInstance();
 
 
     @DataProvider(name = "check")
@@ -24,7 +24,7 @@ public class StreetValidatorTest {
     @Test(description = "Test for StreetValidator",
             dataProvider = "check")
     public void checkInput(String input, Boolean result) {
-        assertEquals(streetValidator.isValid(input), (boolean) result);
+        assertEquals(streetValidatorOrder.isValid(input), (boolean) result);
     }
 
 }

@@ -16,12 +16,12 @@ import java.util.Map;
 
 public class OrderParserImpl implements by.epam.cafe.service.parser.full.OrderParser {
 
-    private final StreetParser streetParser = StreetParser.getInstance();
+    private final StreetParserOrder streetParserOrder = StreetParserOrder.getInstance();
     private final CommentsParser commentsParser = CommentsParser.getInstance();
     private final FloorParser floorParser = FloorParser.getInstance();
     private final PorchParser porchParser = PorchParser.getInstance();
     private final RoomParser roomParser = RoomParser.getInstance();
-    private final HouseParser houseParser = HouseParser.getInstance();
+    private final HouseParserOrder houseParserOrder = HouseParserOrder.getInstance();
     private final NameParser nameParser = NameParser.getInstance();
     private final PhoneParser phoneParser = PhoneParser.getInstance();
     private final EmailParser emailParser = EmailParser.getInstance();
@@ -63,13 +63,13 @@ public class OrderParserImpl implements by.epam.cafe.service.parser.full.OrderPa
     @Override
     public Order parse(Map<String, String> redirect, String streetParam, String commentsParam, String floorParam, String porchParam, String roomParam, String houseParam, String nameParam, String phoneParam, String emailParam, String timeParam, Map<Product, Integer> basket) {
         OptionalNullable<String> name = nameParser.parse(nameParam);
-        OptionalNullable<String> house = houseParser.parse(houseParam);
+        OptionalNullable<String> house = houseParserOrder.parse(houseParam);
         OptionalNullable<String> room = roomParser.parse(roomParam);
         OptionalNullable<Integer> porch = porchParser.parse(porchParam);
         OptionalNullable<Integer> floor = floorParser.parse(floorParam);
         OptionalNullable<String> phone = phoneParser.parse(phoneParam);
         OptionalNullable<String> email = emailParser.parse(emailParam);
-        OptionalNullable<String> street = streetParser.parse(streetParam);
+        OptionalNullable<String> street = streetParserOrder.parse(streetParam);
         OptionalNullable<String> comments = commentsParser.parse(commentsParam);
         OptionalNullable<LocalDateTime> time = timeParser.parse(timeParam);
 
@@ -147,13 +147,13 @@ public class OrderParserImpl implements by.epam.cafe.service.parser.full.OrderPa
     @Override
     public boolean parseWithBase(Map<String, String> redirect, Order order, String streetParam, String commentsParam, String floorParam, String porchParam, String roomParam, String houseParam, String nameParam, String phoneParam, String emailParam, String timeParam) {
         OptionalNullable<String> name = nameParser.parse(nameParam);
-        OptionalNullable<String> house = houseParser.parse(houseParam);
+        OptionalNullable<String> house = houseParserOrder.parse(houseParam);
         OptionalNullable<String> room = roomParser.parse(roomParam);
         OptionalNullable<Integer> porch = porchParser.parse(porchParam);
         OptionalNullable<Integer> floor = floorParser.parse(floorParam);
         OptionalNullable<String> phone = phoneParser.parse(phoneParam);
         OptionalNullable<String> email = emailParser.parse(emailParam);
-        OptionalNullable<String> street = streetParser.parse(streetParam);
+        OptionalNullable<String> street = streetParserOrder.parse(streetParam);
         OptionalNullable<String> comments = commentsParser.parse(commentsParam);
         OptionalNullable<LocalDateTime> time = timeParser.parse(timeParam);
 
@@ -225,13 +225,13 @@ public class OrderParserImpl implements by.epam.cafe.service.parser.full.OrderPa
     @Override
     public boolean parseForOperatorWithBase(Map<String, String> redirect, Order order, String streetParam, String commentsParam, String floorParam, String porchParam, String roomParam, String houseParam, String nameParam, String phoneParam, String emailParam, String timeParam, String statusParam, String paymentTypeParam, String priceParam) {
         OptionalNullable<String> name = nameParser.parse(nameParam);
-        OptionalNullable<String> house = houseParser.parse(houseParam);
+        OptionalNullable<String> house = houseParserOrder.parse(houseParam);
         OptionalNullable<String> room = roomParser.parse(roomParam);
         OptionalNullable<Integer> porch = porchParser.parse(porchParam);
         OptionalNullable<Integer> floor = floorParser.parse(floorParam);
         OptionalNullable<String> phone = phoneParser.parse(phoneParam);
         OptionalNullable<String> email = emailParser.parse(emailParam);
-        OptionalNullable<String> street = streetParser.parse(streetParam);
+        OptionalNullable<String> street = streetParserOrder.parse(streetParam);
         OptionalNullable<String> comments = commentsParser.parse(commentsParam);
         OptionalNullable<LocalDateTime> time = timeParser.parse(timeParam);
         OptionalNullable<Integer> price = priceParser.parse(priceParam);

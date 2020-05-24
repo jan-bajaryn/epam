@@ -163,13 +163,8 @@
             </div>
 
             <div class="surname__row">
-                <label for="surname"><fmt:message key="web.inputs.surname" bundle="${ rb }"/>:
-                    <span class="obligatory">
-                        <a href="#" data-toggle="tooltip"
-                           data-placement="top"
-                           title="<fmt:message key="web.inputs.obligatory" bundle="${ rb }"/>"> *
-                        </a>
-                    </span>
+                <label for="surname">
+                    <fmt:message key="web.inputs.surname" bundle="${ rb }"/>:
                 </label>
                 <c:if test="${not empty redirect_surname_error}">
                     <span class="error__message">

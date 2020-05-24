@@ -5,18 +5,18 @@ import org.testng.annotations.Test;
 
 import static org.testng.Assert.*;
 
-public class HouseParserTest {
+public class StreetParserOrderTest {
 
-    private final HouseParser houseParser = HouseParser.getInstance();
+    private final StreetParserOrder streetParserOrder = StreetParserOrder.getInstance();
 
 
     @DataProvider(name = "check")
     public Object[][] checkProvider
             () {
         return new Object[][]{
-                {"Some text", true, "Some text"},
-                {"", false, null},
-                {null, false, null},
+                {"Some text  ", true, "Some text"},
+                {"", true, null},
+                {null, true, null},
                 {"any text", true, "any text"},
         };
     }
@@ -25,9 +25,9 @@ public class HouseParserTest {
             dataProvider = "check")
     public void checkInput(String input, Boolean result, String endValue) {
         if (result) {
-            assertEquals(houseParser.parse(input).get(), endValue);
+            assertEquals(streetParserOrder.parse(input).get(), endValue);
         } else {
-            assertFalse(houseParser.parse(input).isPresent());
+            assertFalse(streetParserOrder.parse(input).isPresent());
         }
     }
 }
