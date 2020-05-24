@@ -13,10 +13,9 @@ public class ProductGroupDescriptionParser extends ParamsParser<String> {
     public static ProductGroupDescriptionParser getInstance() {
         return INSTANCE;
     }
-    private static final ProductGroupDescriptionValidator validator = ProductGroupDescriptionValidator.getInstance();
 
     private ProductGroupDescriptionParser() {
-        super(validator);
+        super(ProductGroupDescriptionValidator.getInstance());
     }
 
     @Override

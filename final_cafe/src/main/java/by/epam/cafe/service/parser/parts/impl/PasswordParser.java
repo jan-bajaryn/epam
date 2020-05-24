@@ -13,10 +13,9 @@ public class PasswordParser extends ParamsParser<String> {
     public static PasswordParser getInstance() {
         return INSTANCE;
     }
-    public static final PasswordValidator VALIDATOR = PasswordValidator.getInstance();
 
     private PasswordParser() {
-//        super(VALIDATOR);
+//        super(PasswordValidator.getInstance());
         super(NoValidatorString.getInstance());
     }
 

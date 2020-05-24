@@ -20,10 +20,9 @@ public class TimeParser extends ParamsParser<LocalDateTime> {
 
     private static final String FORMAT = "HH:mm";
 
-    private static final TimeValidator VALIDATOR = TimeValidator.getInstance();
 
     private TimeParser() {
-        super(VALIDATOR);
+        super(TimeValidator.getInstance());
     }
 
     @Override

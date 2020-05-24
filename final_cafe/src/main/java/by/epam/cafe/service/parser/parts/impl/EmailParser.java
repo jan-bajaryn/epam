@@ -13,10 +13,9 @@ public class EmailParser extends ParamsParser<String> {
     public static EmailParser getInstance() {
         return INSTANCE;
     }
-    private static final EmailValidator VALIDATOR = EmailValidator.getInstance();
 
     private EmailParser() {
-        super(VALIDATOR);
+        super(EmailValidator.getInstance());
     }
 
     @Override

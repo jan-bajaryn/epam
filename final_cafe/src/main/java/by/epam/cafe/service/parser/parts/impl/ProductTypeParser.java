@@ -13,10 +13,9 @@ public class ProductTypeParser extends ParamsParser<ProductType> {
     public static ProductTypeParser getInstance() {
         return INSTANCE;
     }
-    private static final ProductTypeValidator VALIDATOR = ProductTypeValidator.getInstance();
 
     private ProductTypeParser() {
-        super(VALIDATOR);
+        super(ProductTypeValidator.getInstance());
     }
 
     @Override

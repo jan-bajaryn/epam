@@ -12,10 +12,9 @@ public class PriceParser extends ParamsParser<Integer> {
     public static PriceParser getInstance() {
         return INSTANCE;
     }
-    private static final PriceValidator VALIDATOR = PriceValidator.getInstance();
 
     private PriceParser() {
-        super(VALIDATOR);
+        super(PriceValidator.getInstance());
     }
 
     @Override

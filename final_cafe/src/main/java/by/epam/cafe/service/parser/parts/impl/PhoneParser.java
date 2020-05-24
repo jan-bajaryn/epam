@@ -12,10 +12,9 @@ public class PhoneParser extends ParamsParser<String> {
     public static PhoneParser getInstance() {
         return INSTANCE;
     }
-    private static final PhoneValidator VALIDATOR = PhoneValidator.getInstance();
 
     private PhoneParser() {
-        super(VALIDATOR);
+        super(PhoneValidator.getInstance());
     }
 
     @Override

@@ -13,10 +13,9 @@ public class CommentsParser extends ParamsParser<String> {
     public static CommentsParser getInstance() {
         return INSTANCE;
     }
-    private static final CommentsValidator validator = CommentsValidator.getInstance();
 
     private CommentsParser() {
-        super(validator);
+        super(CommentsValidator.getInstance());
     }
 
     @Override

@@ -13,10 +13,9 @@ public class NameParser extends ParamsParser<String> {
         return INSTANCE;
     }
 
-    private static final NameValidator VALIDATOR = NameValidator.getInstance();
 
     private NameParser() {
-        super(VALIDATOR);
+        super(NameValidator.getInstance());
     }
 
     @Override

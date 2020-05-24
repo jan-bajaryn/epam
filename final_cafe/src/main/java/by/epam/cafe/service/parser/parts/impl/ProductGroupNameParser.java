@@ -13,10 +13,9 @@ public class ProductGroupNameParser extends ParamsParser<String> {
     public static ProductGroupNameParser getInstance() {
         return INSTANCE;
     }
-    private static final ProductGroupNameValidator VALIDATOR = ProductGroupNameValidator.getInstance();
 
     private ProductGroupNameParser() {
-        super(VALIDATOR);
+        super(ProductGroupNameValidator.getInstance());
     }
 
     @Override

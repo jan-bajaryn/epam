@@ -14,10 +14,9 @@ public class UsernameParser extends ParamsParser<String> {
         return INSTANCE;
     }
 
-    private static final UsernameValidator VALIDATOR = UsernameValidator.getInstance();
 
     private UsernameParser() {
-        super(VALIDATOR);
+        super(UsernameValidator.getInstance());
     }
 
 

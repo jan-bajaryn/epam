@@ -13,10 +13,9 @@ public class FloorParser extends ParamsParser<Integer> {
     public static FloorParser getInstance() {
         return INSTANCE;
     }
-    private static final FloorValidator VALIDATOR = FloorValidator.getInstance();
 
     private FloorParser() {
-        super(VALIDATOR);
+        super(FloorValidator.getInstance());
     }
 
     @Override

@@ -13,10 +13,9 @@ public class PhotoNameParser extends ParamsParser<String> {
     public static PhotoNameParser getInstance() {
         return INSTANCE;
     }
-    private static final PhotoNameValidator VALIDATOR = PhotoNameValidator.getInstance();
 
     private PhotoNameParser() {
-        super(VALIDATOR);
+        super(PhotoNameValidator.getInstance());
     }
 
     @Override

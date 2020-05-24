@@ -13,10 +13,9 @@ public class ProductGroupInProductParser extends ParamsParser<Integer> {
     public static ProductGroupInProductParser getInstance() {
         return INSTANCE;
     }
-    private static final ProductGroupInProductValidator validator = ProductGroupInProductValidator.getInstance();
 
     private ProductGroupInProductParser() {
-        super(validator);
+        super(ProductGroupInProductValidator.getInstance());
     }
 
     @Override

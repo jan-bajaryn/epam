@@ -12,10 +12,9 @@ public class IdParser extends ParamsParser<Integer> {
     public static IdParser getInstance() {
         return INSTANCE;
     }
-    public static final IdValidator VALIDATOR = IdValidator.getInstance();
 
     private IdParser() {
-        super(VALIDATOR);
+        super(IdValidator.getInstance());
     }
 
     @Override

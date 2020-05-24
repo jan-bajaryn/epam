@@ -13,10 +13,8 @@ public class PorchParser extends ParamsParser<Integer> {
         return INSTANCE;
     }
 
-    private static final PorchValidator VALIDATOR = PorchValidator.getInstance();
-
     private PorchParser() {
-        super(VALIDATOR);
+        super(PorchValidator.getInstance());
     }
 
     @Override

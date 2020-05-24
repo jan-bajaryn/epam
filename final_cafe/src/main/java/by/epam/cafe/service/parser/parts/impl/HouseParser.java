@@ -7,7 +7,6 @@ import by.epam.cafe.service.validator.parts.HouseValidator;
  * Dedicated to parse String to floor value
  */
 public class HouseParser extends ParamsParser<String> {
-    private static final HouseValidator VALIDATOR = HouseValidator.getInstance();
     private static HouseParser INSTANCE = new HouseParser();
 
     public static HouseParser getInstance() {
@@ -15,7 +14,7 @@ public class HouseParser extends ParamsParser<String> {
     }
 
     private HouseParser() {
-        super(VALIDATOR);
+        super(HouseValidator.getInstance());
     }
 
     @Override

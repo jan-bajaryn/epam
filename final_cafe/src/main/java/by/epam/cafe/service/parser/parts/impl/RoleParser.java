@@ -13,10 +13,9 @@ public class RoleParser extends ParamsParser<Role> {
     public static RoleParser getInstance() {
         return INSTANCE;
     }
-    private static final RoleValidator VALIDATOR = RoleValidator.getInstance() ;
 
     private RoleParser() {
-        super(VALIDATOR);
+        super(RoleValidator.getInstance());
     }
 
     @Override

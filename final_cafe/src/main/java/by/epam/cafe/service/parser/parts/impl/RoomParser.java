@@ -7,7 +7,6 @@ import by.epam.cafe.service.validator.parts.RoomValidator;
  * Dedicated to parse String to room value
  */
 public class RoomParser extends ParamsParser<String> {
-    private static final RoomValidator VALIDATOR = RoomValidator.getInstance();
     private static RoomParser INSTANCE = new RoomParser();
 
     public static RoomParser getInstance() {
@@ -15,7 +14,7 @@ public class RoomParser extends ParamsParser<String> {
     }
 
     private RoomParser() {
-        super(VALIDATOR);
+        super(RoomValidator.getInstance());
     }
 
     @Override

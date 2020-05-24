@@ -13,10 +13,9 @@ public class WeightParser extends ParamsParser<Integer> {
         return INSTANCE;
     }
 
-    private static final WeightValidator VALIDATOR = WeightValidator.getInstance();
 
     private WeightParser() {
-        super(VALIDATOR);
+        super(WeightValidator.getInstance());
     }
 
     @Override

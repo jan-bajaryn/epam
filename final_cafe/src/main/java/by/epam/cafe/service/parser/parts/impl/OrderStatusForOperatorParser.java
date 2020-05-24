@@ -17,10 +17,8 @@ public class OrderStatusForOperatorParser extends ParamsParser<OrderStatus> {
         return INSTANCE;
     }
 
-    private static final OrderStatusForOperatorValidator VALIDATOR = OrderStatusForOperatorValidator.getInstance();
-
     private OrderStatusForOperatorParser() {
-        super(VALIDATOR);
+        super(OrderStatusForOperatorValidator.getInstance());
     }
 
     @Override

@@ -13,10 +13,9 @@ public class SurnameParser extends ParamsParser<String> {
         return INSTANCE;
     }
 
-    private static final SurnameValidator VALIDATOR = SurnameValidator.getInstance();
 
     private SurnameParser() {
-        super(VALIDATOR);
+        super(SurnameValidator.getInstance());
     }
 
     @Override

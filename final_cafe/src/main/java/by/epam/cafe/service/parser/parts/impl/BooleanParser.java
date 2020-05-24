@@ -15,10 +15,8 @@ public class BooleanParser extends ParamsParser<Boolean> {
 
     private static final String TRUE = "1";
 
-    private static final BooleanParamValidator validator = BooleanParamValidator.getInstance();
-
     private BooleanParser() {
-        super(validator);
+        super(BooleanParamValidator.getInstance());
     }
 
     @Override

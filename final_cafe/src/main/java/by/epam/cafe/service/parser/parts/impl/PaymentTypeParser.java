@@ -13,10 +13,9 @@ public class PaymentTypeParser extends ParamsParser<PaymentType> {
     public static PaymentTypeParser getInstance() {
         return INSTANCE;
     }
-    private static final PaymentTypeValidator VALIDATOR = PaymentTypeValidator.getInstance();
 
     private PaymentTypeParser() {
-        super(VALIDATOR);
+        super(PaymentTypeValidator.getInstance());
     }
 
     @Override
