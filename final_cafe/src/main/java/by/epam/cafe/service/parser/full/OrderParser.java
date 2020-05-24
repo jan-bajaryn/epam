@@ -32,10 +32,11 @@ public interface OrderParser {
      * @param emailParam    Email parameter {@link DeliveryInf#getEmail()}
      * @param timeParam     Time parameter {@link DeliveryInf#getDeliveryTime()}
      * @param basket        count of products identified by ids {@link Order#getProducts()}
+     * @param paymentTypeParam
      * @return {@link Order} if all parameters was valid, and {@code null} if any
      * parameter wasn't valid
      */
-    Order parse(Map<String, String> redirect, String streetParam, String commentsParam, String floorParam, String porchParam, String roomParam, String houseParam, String nameParam, String phoneParam, String emailParam, String timeParam, Map<Product, Integer> basket);
+    Order parse(Map<String, String> redirect, String streetParam, String commentsParam, String floorParam, String porchParam, String roomParam, String houseParam, String nameParam, String phoneParam, String emailParam, String timeParam, Map<Product, Integer> basket, String paymentTypeParam);
 
     /**
      * Parse parameters and put after parsing parameters into base entity
@@ -60,10 +61,11 @@ public interface OrderParser {
      * @param phoneParam    Phone parameter {@link DeliveryInf#getPhone()}
      * @param emailParam    Email parameter {@link DeliveryInf#getEmail()}
      * @param timeParam     Time parameter {@link DeliveryInf#getDeliveryTime()}
+     * @param paymentTypeParam
      * @return true if parsing is successfully executed and all params is valid
      * otherwise returns false
      */
-    boolean parseWithBase(Map<String, String> redirect, Order order, String streetParam, String commentsParam, String floorParam, String porchParam, String roomParam, String houseParam, String nameParam, String phoneParam, String emailParam, String timeParam);
+    boolean parseWithBase(Map<String, String> redirect, Order order, String streetParam, String commentsParam, String floorParam, String porchParam, String roomParam, String houseParam, String nameParam, String phoneParam, String emailParam, String timeParam, String paymentTypeParam);
 
     /**
      * Parse parameters and put after parsing parameters into base entity for Operator

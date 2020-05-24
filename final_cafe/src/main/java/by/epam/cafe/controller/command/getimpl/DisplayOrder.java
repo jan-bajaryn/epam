@@ -4,6 +4,7 @@ import by.epam.cafe.controller.dto.UserDTO;
 import by.epam.cafe.controller.utils.ResponseObject;
 import by.epam.cafe.controller.utils.impl.Forward;
 import by.epam.cafe.controller.utils.impl.SendError;
+import by.epam.cafe.entity.enums.PaymentType;
 import by.epam.cafe.entity.enums.Role;
 import by.epam.cafe.entity.db.impl.Order;
 import by.epam.cafe.entity.db.impl.Product;
@@ -37,6 +38,7 @@ public class DisplayOrder extends by.epam.cafe.controller.command.Command {
         try {
             Map<Product, Integer> basket = takeBasket(request);
             request.setAttribute("productMap", basket);
+            request.setAttribute("types", PaymentType.values());
 
             request.setAttribute("sum", calcSum(basket));
             sendUserDTO(request);

@@ -37,31 +37,32 @@ public class OrderParserImpl implements by.epam.cafe.service.parser.full.OrderPa
     private final ValidateAndPutter validateAndPutter = ValidateAndPutterImpl.getInstance();
 
     /**
-     * @param redirect      Map to return what parameter is valid, and value with
-     *                      what parameter was in input
-     *                      First String in the map is the name of parameter
-     *                      Second String in the map is value of input in parameter
-     *                      or information about existing error in the map
-     *                      For example {street, abcde} means that input for
-     *                      parameter of name "street" was "abcde"
-     *                      {street_error, true} means that in parameter
-     *                      of name "street" was error.
-     * @param streetParam   Street parameter {@link DeliveryInf#getStreet()}
-     * @param commentsParam Comments parameter {@link DeliveryInf#getComments()}
-     * @param floorParam    Floor parameter {@link DeliveryInf#getFloor()}
-     * @param porchParam    Porch parameter {@link DeliveryInf#getPorch()}
-     * @param roomParam     Room parameter {@link DeliveryInf#getRoom()}
-     * @param houseParam    House parameter {@link DeliveryInf#getHouse()}
-     * @param nameParam     Name of client parameter {@link Order#getClientName()}
-     * @param phoneParam    Phone parameter {@link DeliveryInf#getPhone()}
-     * @param emailParam    Email parameter {@link DeliveryInf#getEmail()}
-     * @param timeParam     Time parameter {@link DeliveryInf#getDeliveryTime()}
-     * @param basket        count of products identified by ids {@link Order#getProducts()}
+     * @param redirect         Map to return what parameter is valid, and value with
+     *                         what parameter was in input
+     *                         First String in the map is the name of parameter
+     *                         Second String in the map is value of input in parameter
+     *                         or information about existing error in the map
+     *                         For example {street, abcde} means that input for
+     *                         parameter of name "street" was "abcde"
+     *                         {street_error, true} means that in parameter
+     *                         of name "street" was error.
+     * @param streetParam      Street parameter {@link DeliveryInf#getStreet()}
+     * @param commentsParam    Comments parameter {@link DeliveryInf#getComments()}
+     * @param floorParam       Floor parameter {@link DeliveryInf#getFloor()}
+     * @param porchParam       Porch parameter {@link DeliveryInf#getPorch()}
+     * @param roomParam        Room parameter {@link DeliveryInf#getRoom()}
+     * @param houseParam       House parameter {@link DeliveryInf#getHouse()}
+     * @param nameParam        Name of client parameter {@link Order#getClientName()}
+     * @param phoneParam       Phone parameter {@link DeliveryInf#getPhone()}
+     * @param emailParam       Email parameter {@link DeliveryInf#getEmail()}
+     * @param timeParam        Time parameter {@link DeliveryInf#getDeliveryTime()}
+     * @param basket           count of products identified by ids {@link Order#getProducts()}
+     * @param paymentTypeParam
      * @return {@link Order} if all parameters was valid, and {@code null} if any
      * parameter wasn't valid
      */
     @Override
-    public Order parse(Map<String, String> redirect, String streetParam, String commentsParam, String floorParam, String porchParam, String roomParam, String houseParam, String nameParam, String phoneParam, String emailParam, String timeParam, Map<Product, Integer> basket) {
+    public Order parse(Map<String, String> redirect, String streetParam, String commentsParam, String floorParam, String porchParam, String roomParam, String houseParam, String nameParam, String phoneParam, String emailParam, String timeParam, Map<Product, Integer> basket, String paymentTypeParam) {
         OptionalNullable<String> name = nameParser.parse(nameParam);
         OptionalNullable<String> house = houseParserOrder.parse(houseParam);
         OptionalNullable<String> room = roomParser.parse(roomParam);
@@ -72,6 +73,8 @@ public class OrderParserImpl implements by.epam.cafe.service.parser.full.OrderPa
         OptionalNullable<String> street = streetParserOrder.parse(streetParam);
         OptionalNullable<String> comments = commentsParser.parse(commentsParam);
         OptionalNullable<LocalDateTime> time = timeParser.parse(timeParam);
+        OptionalNullable<PaymentType> paymentType = paymentTypeParser.parse(paymentTypeParam);
+
 
         boolean result = validateAndPutter.validateAndPut(redirect, name, "name", nameParam) &
                 validateAndPutter.validateAndPut(redirect, house, "house", houseParam) &
@@ -82,7 +85,8 @@ public class OrderParserImpl implements by.epam.cafe.service.parser.full.OrderPa
                 validateAndPutter.validateAndPut(redirect, email, "email", emailParam) &
                 validateAndPutter.validateAndPut(redirect, comments, "comments", commentsParam) &
                 validateAndPutter.validateAndPut(redirect, time, "time", timeParam) &
-                validateAndPutter.validateAndPut(redirect, street, "street", streetParam);
+                validateAndPutter.validateAndPut(redirect, street, "street", streetParam) &
+                validateAndPutter.validateAndPut(redirect, paymentType, "payment_type", paymentTypeParam);
 
         if (result && basketValidator.isValid(basket, redirect, "basket")) {
 
@@ -100,8 +104,8 @@ public class OrderParserImpl implements by.epam.cafe.service.parser.full.OrderPa
 
             return Order.newBuilder()
                     .creation(LocalDateTime.now())
+                    .paymentType(paymentType.get())
                     .clientName(name.get())
-                    .paymentType(PaymentType.CASH)
                     .deliveryInf(deliveryInf)
                     .status(OrderStatus.CONFIRMED)
                     .price(calcSum(basket))
@@ -121,31 +125,32 @@ public class OrderParserImpl implements by.epam.cafe.service.parser.full.OrderPa
     }
 
     /**
-     * @param redirect      Map to return what parameter is valid, and value with
-     *                      what parameter was in input
-     *                      First String in the map is the name of parameter
-     *                      Second String in the map is value of input in parameter
-     *                      or information about existing error in the map
-     *                      For example {street, abcde} means that input for
-     *                      parameter of name "street" was "abcde"
-     *                      {street_error, true} means that in parameter
-     *                      of name "street" was error.
-     * @param order         base to in what after parsing should be put results of parsing params
-     * @param streetParam   Street parameter {@link DeliveryInf#getStreet()}
-     * @param commentsParam Comments parameter {@link DeliveryInf#getComments()}
-     * @param floorParam    Floor parameter {@link DeliveryInf#getFloor()}
-     * @param porchParam    Porch parameter {@link DeliveryInf#getPorch()}
-     * @param roomParam     Room parameter {@link DeliveryInf#getRoom()}
-     * @param houseParam    House parameter {@link DeliveryInf#getHouse()}
-     * @param nameParam     Name of client parameter {@link Order#getClientName()}
-     * @param phoneParam    Phone parameter {@link DeliveryInf#getPhone()}
-     * @param emailParam    Email parameter {@link DeliveryInf#getEmail()}
-     * @param timeParam     Time parameter {@link DeliveryInf#getDeliveryTime()}
+     * @param redirect         Map to return what parameter is valid, and value with
+     *                         what parameter was in input
+     *                         First String in the map is the name of parameter
+     *                         Second String in the map is value of input in parameter
+     *                         or information about existing error in the map
+     *                         For example {street, abcde} means that input for
+     *                         parameter of name "street" was "abcde"
+     *                         {street_error, true} means that in parameter
+     *                         of name "street" was error.
+     * @param order            base to in what after parsing should be put results of parsing params
+     * @param streetParam      Street parameter {@link DeliveryInf#getStreet()}
+     * @param commentsParam    Comments parameter {@link DeliveryInf#getComments()}
+     * @param floorParam       Floor parameter {@link DeliveryInf#getFloor()}
+     * @param porchParam       Porch parameter {@link DeliveryInf#getPorch()}
+     * @param roomParam        Room parameter {@link DeliveryInf#getRoom()}
+     * @param houseParam       House parameter {@link DeliveryInf#getHouse()}
+     * @param nameParam        Name of client parameter {@link Order#getClientName()}
+     * @param phoneParam       Phone parameter {@link DeliveryInf#getPhone()}
+     * @param emailParam       Email parameter {@link DeliveryInf#getEmail()}
+     * @param timeParam        Time parameter {@link DeliveryInf#getDeliveryTime()}
+     * @param paymentTypeParam
      * @return true if parsing is successfully executed and all params is valid
      * otherwise returns false
      */
     @Override
-    public boolean parseWithBase(Map<String, String> redirect, Order order, String streetParam, String commentsParam, String floorParam, String porchParam, String roomParam, String houseParam, String nameParam, String phoneParam, String emailParam, String timeParam) {
+    public boolean parseWithBase(Map<String, String> redirect, Order order, String streetParam, String commentsParam, String floorParam, String porchParam, String roomParam, String houseParam, String nameParam, String phoneParam, String emailParam, String timeParam, String paymentTypeParam) {
         OptionalNullable<String> name = nameParser.parse(nameParam);
         OptionalNullable<String> house = houseParserOrder.parse(houseParam);
         OptionalNullable<String> room = roomParser.parse(roomParam);
@@ -156,6 +161,8 @@ public class OrderParserImpl implements by.epam.cafe.service.parser.full.OrderPa
         OptionalNullable<String> street = streetParserOrder.parse(streetParam);
         OptionalNullable<String> comments = commentsParser.parse(commentsParam);
         OptionalNullable<LocalDateTime> time = timeParser.parse(timeParam);
+        OptionalNullable<PaymentType> paymentType = paymentTypeParser.parse(paymentTypeParam);
+
 
         boolean result = validateAndPutter.validateAndPut(redirect, name, "name", nameParam) &
                 validateAndPutter.validateAndPut(redirect, house, "house", houseParam) &
@@ -166,7 +173,8 @@ public class OrderParserImpl implements by.epam.cafe.service.parser.full.OrderPa
                 validateAndPutter.validateAndPut(redirect, email, "email", emailParam) &
                 validateAndPutter.validateAndPut(redirect, comments, "comments", commentsParam) &
                 validateAndPutter.validateAndPut(redirect, time, "time", timeParam) &
-                validateAndPutter.validateAndPut(redirect, street, "street", streetParam);
+                validateAndPutter.validateAndPut(redirect, street, "street", streetParam) &
+                validateAndPutter.validateAndPut(redirect, paymentType, "payment_type", paymentTypeParam);
 
         if (result && basketValidator.isValid(order.getProducts(), redirect, "basket")) {
 
@@ -184,7 +192,7 @@ public class OrderParserImpl implements by.epam.cafe.service.parser.full.OrderPa
 
             order.setCreation(LocalDateTime.now());
             order.setClientName(name.get());
-            order.setPaymentType(PaymentType.CASH);
+            order.setPaymentType(paymentType.get());
             order.setDeliveryInf(deliveryInf);
             order.setStatus(OrderStatus.CONFIRMED);
             order.setPrice(calcSum(order.getProducts()));

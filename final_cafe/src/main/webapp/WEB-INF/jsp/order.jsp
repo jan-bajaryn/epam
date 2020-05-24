@@ -258,6 +258,23 @@
                                                    placeholder="<fmt:message key="web.inputs.email" bundle="${ rb }"/>"
                                                    name="email" value="<c:out value="${redirect_email}"/>">
                                         </div>
+                                        <div class="payment_type_row">
+                                            <label for="payment_type">
+                                                <fmt:message key="web.inputs.payment-type" bundle="${ rb }"/>
+                                            </label>
+                                            <c:if test="${not empty redirect_payment_type_error}">
+                                                <span class="error__message"
+                                                      title="<fmt:message key="web.inputs.err-value" bundle="${ rb }"/>: <c:out value="${redirect_payment_type}"/>">
+                                                    <fmt:message key="web.errors.field" bundle="${ rb }"/>
+                                                </span>
+                                            </c:if>
+                                            <select class="form-control" id="payment_type" name="payment_type">
+                                                <c:forEach var="type" items="${types}">
+                                                    <option>${type}</option>
+                                                </c:forEach>
+                                            </select>
+                                        </div>
+
                                         <div class="comments__row">
                                                 <%--@elvariable id="redirect_comments_error" type="java.lang.String"--%>
                                                 <%--@elvariable id="redirect_comments" type="java.lang.String"--%>
@@ -408,6 +425,23 @@
                                                    id="email" name="email" value="<c:out value="${info.email}"/>"
                                                    title="<c:out value="${redirect_email}"/>">
                                         </div>
+                                        <div class="payment_type_row">
+                                            <label for="payment_type">
+                                                <fmt:message key="web.inputs.payment-type" bundle="${ rb }"/>
+                                            </label>
+                                            <c:if test="${not empty redirect_payment_type_error}">
+                                                <span class="error__message"
+                                                      title="<fmt:message key="web.inputs.err-value" bundle="${ rb }"/>: <c:out value="${redirect_payment_type}"/>">
+                                                    <fmt:message key="web.errors.field" bundle="${ rb }"/>
+                                                </span>
+                                            </c:if>
+                                            <select class="form-control" id="payment_type" name="payment_type">
+                                                <c:forEach var="type" items="${types}">
+                                                    <option>${type}</option>
+                                                </c:forEach>
+                                            </select>
+                                        </div>
+
                                         <div class="comments__row">
                                     <textarea class="form-control" name="comments"
                                               placeholder="<fmt:message key="web.inputs.comments" bundle="${ rb }"/>"

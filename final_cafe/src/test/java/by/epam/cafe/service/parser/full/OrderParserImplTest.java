@@ -34,7 +34,7 @@ public class OrderParserImplTest {
         Product build = Product.newBuilder().id(1).weight(100).price(1004).build();
         basket.put(build, 3);
 
-        Order parse = orderParser.parse(redirect, street, comments, floor, porch, room, house, name, phone, email, time, basket);
+        Order parse = orderParser.parse(redirect, street, comments, floor, porch, room, house, name, phone, email, time, basket, paymentType);
         assertNotNull(parse);
     }
 
@@ -55,7 +55,7 @@ public class OrderParserImplTest {
         Product build = Product.newBuilder().id(1).weight(100).price(1004).build();
         basket.put(build, 3);
 
-        Order parse = orderParser.parse(redirect, street, comments, floor, porch, room, house, name, phone, email, time, basket);
+        Order parse = orderParser.parse(redirect, street, comments, floor, porch, room, house, name, phone, email, time, basket, paymentType);
         assertNull(parse);
     }
 
@@ -76,7 +76,7 @@ public class OrderParserImplTest {
         Product build = Product.newBuilder().id(1).weight(100).price(1004).build();
         basket.put(build, 3);
 
-        orderParser.parse(redirect, street, comments, floor, porch, room, house, name, phone, email, time, basket);
+        orderParser.parse(redirect, street, comments, floor, porch, room, house, name, phone, email, time, basket, paymentType);
         assertTrue(redirect.containsKey("floor" + POSTFIX));
     }
 
@@ -97,7 +97,7 @@ public class OrderParserImplTest {
         Product build = Product.newBuilder().id(1).weight(100).price(1004).build();
         basket.put(build, 3);
 
-        orderParser.parse(redirect, street, comments, floor, porch, room, house, name, phone, email, time, basket);
+        orderParser.parse(redirect, street, comments, floor, porch, room, house, name, phone, email, time, basket, paymentType);
         assertTrue(redirect.containsKey("floor"));
     }
 
@@ -128,7 +128,7 @@ public class OrderParserImplTest {
                 .products(basket)
                 .build();
 
-        boolean parse = orderParser.parseWithBase(redirect, order, street, comments, floor, porch, room, house, name, phone, email, time);
+        boolean parse = orderParser.parseWithBase(redirect, order, street, comments, floor, porch, room, house, name, phone, email, time, payment_type);
         assertTrue(parse);
     }
 
@@ -159,7 +159,7 @@ public class OrderParserImplTest {
                 .products(basket)
                 .build();
 
-        boolean parse = orderParser.parseWithBase(redirect, order, street, comments, floor, porch, room, house, name, phone, email, time);
+        boolean parse = orderParser.parseWithBase(redirect, order, street, comments, floor, porch, room, house, name, phone, email, time, payment_type);
         assertFalse(parse);
     }
 
@@ -190,7 +190,7 @@ public class OrderParserImplTest {
                 .products(basket)
                 .build();
 
-        orderParser.parseWithBase(redirect, order, street, comments, floor, porch, room, house, name, phone, email, time);
+        orderParser.parseWithBase(redirect, order, street, comments, floor, porch, room, house, name, phone, email, time, payment_type);
         assertTrue(redirect.containsKey("floor" + POSTFIX));
     }
 
@@ -221,7 +221,7 @@ public class OrderParserImplTest {
                 .products(basket)
                 .build();
 
-        orderParser.parseWithBase(redirect, order, street, comments, floor, porch, room, house, name, phone, email, time);
+        orderParser.parseWithBase(redirect, order, street, comments, floor, porch, room, house, name, phone, email, time, payment_type);
         assertTrue(redirect.containsKey("floor"));
     }
 

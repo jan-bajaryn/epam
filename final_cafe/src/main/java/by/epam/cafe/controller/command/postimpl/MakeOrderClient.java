@@ -77,8 +77,9 @@ public class MakeOrderClient extends by.epam.cafe.controller.command.Command {
         String tel = request.getParameter("tel");
         String email = request.getParameter("email");
         String time = request.getParameter("time");
+        String paymentType = request.getParameter("payment_type");
 
-        return orderParser.parseWithBase(redirect, order, street, comments, floor, porch, room, house, name, tel, email, time);
+        return orderParser.parseWithBase(redirect, order, street, comments, floor, porch, room, house, name, tel, email, time,paymentType);
     }
 
 
