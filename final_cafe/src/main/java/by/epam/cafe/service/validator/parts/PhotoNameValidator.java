@@ -24,6 +24,6 @@ public class PhotoNameValidator implements Validator<String> {
 
     @Override
     public boolean isValid(String input) {
-        return input != null && COMPILE.matcher(input).matches();
+        return input == null || COMPILE.matcher(input).matches();
     }
 }

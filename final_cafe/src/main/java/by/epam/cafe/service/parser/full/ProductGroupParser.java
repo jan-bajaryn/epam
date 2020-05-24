@@ -66,5 +66,7 @@ public interface ProductGroupParser {
      * @param fileNameOpt  if file will be downloaded the value should be put there
      * @return true if parameter successfully parsed, and otherwise returns false
      */
-    boolean fillFields(ProductGroup productGroup, FileItem part, Map<String, String> redirect, ValueHolder<String> fileNameOpt);
+    boolean fillFieldsOnCreate(ProductGroup productGroup, FileItem part, Map<String, String> redirect, ValueHolder<String> fileNameOpt);
+
+    boolean fillFieldsOnUpdate(ProductGroup productGroup, FileItem part, Map<String, String> redirect, ValueHolder<String> fileNameOpt);
 }

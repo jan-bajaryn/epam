@@ -71,7 +71,7 @@ public class EditProductGroup extends by.epam.cafe.controller.command.Command {
             List<FileItem> parts = fileUpload.parseRequest(request);
 
             for (FileItem part : parts) {
-                isRight = isRight && productGroupParser.fillFields(productGroup, part, redirect, holderFileName);
+                isRight = isRight && productGroupParser.fillFieldsOnUpdate(productGroup, part, redirect, holderFileName);
             }
             if (!isRight) {
                 return null;

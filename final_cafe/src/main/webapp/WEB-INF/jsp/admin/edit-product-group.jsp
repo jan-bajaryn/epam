@@ -80,7 +80,7 @@
                         <fmt:message key="web.errors.field" bundle="${ rb }"/>
                     </span>
                     </c:if>
-                    <input id="file" type="file" name="file" required>
+                    <input id="file" type="file" name="file">
                 </label>
             </div>
 

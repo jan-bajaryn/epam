@@ -47,6 +47,9 @@ public interface ProductGroupService {
 
 
     /**
+     * Updates {@link ProductGroup} in the database by id. If
+     * {@link ProductGroup#getPhotoName()} is null, than would be use old value
+     *
      * @param entity {@link ProductGroup} dedicated to update identified by id
      *               {@link by.epam.cafe.entity.db.Entity}
      * @return true if entity successfully updated otherwise returns false

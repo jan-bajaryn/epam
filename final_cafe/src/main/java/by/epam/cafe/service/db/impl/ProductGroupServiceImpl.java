@@ -127,6 +127,9 @@ public class ProductGroupServiceImpl implements ProductGroupService {
     }
 
     /**
+     * Updates {@link ProductGroup} in the database by id. If
+     * {@link ProductGroup#getPhotoName()} is null, than would be use old value
+     *
      * @param entity {@link ProductGroup} dedicated to update identified by id
      *               {@link by.epam.cafe.entity.db.Entity}
      * @return true if entity successfully updated otherwise returns false
@@ -135,7 +138,10 @@ public class ProductGroupServiceImpl implements ProductGroupService {
     @Override
     public boolean update(ProductGroup entity) throws ServiceException {
 
-        if (entity == null) {
+        if (entity == null || entity.getId() == null) {
+            return false;
+        }
+        if (!updatePhotoNameIfNeed(entity)) {
             return false;
         }
 
@@ -158,6 +164,18 @@ public class ProductGroupServiceImpl implements ProductGroupService {
         } catch (DaoException e) {
             throw new ServiceException(e);
         }
+    }
+
+    private boolean updatePhotoNameIfNeed(ProductGroup entity) throws ServiceException {
+        if (entity.getPhotoName() == null) {
+            ProductGroup entityById = findEntityById(entity.getId());
+            if (entityById != null) {
+                entity.setPhotoName(entityById.getPhotoName());
+            } else {
+                return false;
+            }
+        }
+        return true;
     }
 
     private void insertAndDeleteOthers(ProductGroup entity, Transaction transaction) throws ServiceException, DaoException {

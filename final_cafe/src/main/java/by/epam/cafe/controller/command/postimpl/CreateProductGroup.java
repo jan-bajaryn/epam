@@ -10,7 +10,6 @@ import by.epam.cafe.service.exception.ServiceException;
 import by.epam.cafe.service.factory.ServiceFactory;
 import by.epam.cafe.service.helper.ImageWriterService;
 import by.epam.cafe.service.parser.full.ProductGroupParser;
-import com.sun.mail.iap.Response;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -74,7 +73,7 @@ public class CreateProductGroup extends by.epam.cafe.controller.command.Command 
             List<FileItem> parts = fileUpload.parseRequest(request);
 
             for (FileItem part : parts) {
-                isRight = isRight && productGroupParser.fillFields(productGroup, part, redirect, holderFileName);
+                isRight = isRight && productGroupParser.fillFieldsOnCreate(productGroup, part, redirect, holderFileName);
             }
             if (!isRight) {
                 return null;

@@ -37,8 +37,8 @@ public class ServletCafe extends HttpServlet {
             executeMethod(commandGetFactory, request, response);
         } catch (PermissionDeniedException e) {
             log.debug("Permission denied e:", e);
-            permDen.execute(request, response);
-            permDen.execute(request, response);
+            ResponseObject execute = permDen.execute(request, response);
+            execute.execute(request, response);
         }
     }
 
