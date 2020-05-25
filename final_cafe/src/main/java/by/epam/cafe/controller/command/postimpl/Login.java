@@ -4,6 +4,7 @@ import by.epam.cafe.controller.utils.ResponseObject;
 import by.epam.cafe.controller.utils.impl.Redirect;
 import by.epam.cafe.entity.db.impl.User;
 import by.epam.cafe.service.db.UserService;
+import by.epam.cafe.service.encryption.ApplicationEncrypt;
 import by.epam.cafe.service.exception.ServiceException;
 import by.epam.cafe.service.factory.ServiceFactory;
 import by.epam.cafe.service.validator.parts.LoginValidator;
@@ -27,7 +28,7 @@ public class Login extends by.epam.cafe.controller.command.Command {
 
     private final ServiceFactory serviceFactory = ServiceFactory.getInstance();
 
-    private final LoginValidator loginValidator = serviceFactory.getLoginValidator();
+    private final ApplicationEncrypt applicationEncrypt = serviceFactory.getApplicationEncrypt();
     private final UserService userService = serviceFactory.getUserService();
 
     @Override
@@ -42,15 +43,16 @@ public class Login extends by.epam.cafe.controller.command.Command {
         try {
             User user = userService.findUserByUsername(username);
 
-            if (user != null && user.getPassword().equals(password)) {
+            if (user != null && user.getPassword().equals(applicationEncrypt.calcUserPasswordHash(password))) {
                 putUser(request, user);
+                session.removeAttribute("basket");
                 return redirect(request, targetUrl);
             }
         } catch (ServiceException e) {
             log.debug("e: ", e);
         }
         redirect.put("authentication_error", "true");
-        redirect.put("target_url",targetUrl);
+        redirect.put("target_url", targetUrl);
         session.setAttribute(REDIRECTED_INFO, redirect);
         return new Redirect("/login");
     }

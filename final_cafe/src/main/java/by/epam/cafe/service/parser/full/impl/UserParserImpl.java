@@ -26,7 +26,6 @@ public class UserParserImpl implements by.epam.cafe.service.parser.full.UserPars
     private final FloorParser floorParser = FloorParser.getInstance();
     private final HouseParserUser houseParserOrder = HouseParserUser.getInstance();
     private final NameParser nameParser = NameParser.getInstance();
-    // make one more password parser nullable. This used
     private final PasswordParser passwordParser = PasswordParser.getInstance();
     private final PhoneParser phoneParser = PhoneParser.getInstance();
     private final PorchParser porchParser = PorchParser.getInstance();
@@ -94,7 +93,8 @@ public class UserParserImpl implements by.epam.cafe.service.parser.full.UserPars
         if (result) {
             return User.newBuilder()
                     .username(username.get())
-                    .password(password.get())
+//                    .password(password.get())
+                    .password(applicationEncrypt.calcUserPasswordHash(password.get()))
                     .role(role.get())
                     .name(name.get())
                     .surname(surname.get())
@@ -272,6 +272,7 @@ public class UserParserImpl implements by.epam.cafe.service.parser.full.UserPars
         boolean tokenResult = validateAndPutter.validateAndPut(redirect, tokenOpt, "token", token);
 
         if (user != null && tokenResult) {
+            user.setPassword(applicationEncrypt.calcUserPasswordHash(passwordParser.parse(passwordParam).get()));
             return user;
         }
         return null;
@@ -316,11 +317,11 @@ public class UserParserImpl implements by.epam.cafe.service.parser.full.UserPars
     @Override
     public boolean parseChangePassword(Map<String, String> redirect, User base, String passwordOld, String passwordNew) {
         String password = base.getPassword();
-//        if (password.equals(applicationEncrypt.calcUserPasswordHash(passwordOld))){
-        if (password.equals(passwordOld)) {
+        if (password.equals(applicationEncrypt.calcUserPasswordHash(passwordOld))){
+//        if (password.equals(passwordOld)) {
             OptionalNullable<String> parse = passwordParser.parse(passwordNew);
             if (parse.isPresent()) {
-                base.setPassword(parse.get());
+                base.setPassword(applicationEncrypt.calcUserPasswordHash(parse.get()));
                 return true;
             } else {
                 redirect.put("new_password_error", "true");

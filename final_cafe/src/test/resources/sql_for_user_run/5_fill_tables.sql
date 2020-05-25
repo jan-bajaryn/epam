@@ -11,15 +11,15 @@ VALUES (3, NULL, '2020-03-13 15:55:52.611265', 'uuu@uuu.com', 2, '1', 'sdf', 1, 
 
 INSERT INTO user (id, creation, name, password, phone, role, surname, username, email, floor, house, porch, room,
                   street, is_blocked)
-VALUES (12, '2020-03-13 15:55:52.611265', 'Anatoliy', '1234', '+375 33 333 33 33', 1, 'Chichivarkin', 'Alex',
+VALUES (12, '2020-03-13 15:55:52.611265', 'Anatoliy', '29609ba0cfb2fc501a3f3ae31d0e4178334d06eacfd99a6cf389e3889867a09f', '+375 33 333 33 33', 1, 'Chichivarkin', 'Alex',
         'toha@gmail.com', NULL, NULL, NULL, NULL, NULL, FALSE),
-       (16, '2020-03-13 20:27:24.898557', 'Георгий', 'asdf', '+48 444 444 444', 2, 'Станкевич', 'Avalon',
+       (16, '2020-03-13 20:27:24.898557', 'Георгий', '29609ba0cfb2fc501a3f3ae31d0e4178334d06eacfd99a6cf389e3889867a09f', '+48 444 444 444', 2, 'Станкевич', 'Avalon',
         'georgiy@uuu.com', 2, '2', 2, '2', 'Михайловский переулок', FALSE),
-       (17, '2020-03-13 20:56:41.920967', 'Алина', '12345', '+375 33 333 33 33', 2, 'Скубарева', 'Alinochka',
+       (17, '2020-03-13 20:56:41.920967', 'Алина', '29609ba0cfb2fc501a3f3ae31d0e4178334d06eacfd99a6cf389e3889867a09f', '+375 33 333 33 33', 2, 'Скубарева', 'Alinochka',
         'abcdefoo@gmail.com', 5, '5', 5, '5', 'Васьняцова', FALSE),
-       (18, '2020-03-14 03:27:34.701067', 'Михаил', 'abcdefg', '+48 333 444 555', 2, 'Семенов', 'nick',
+       (18, '2020-03-14 03:27:34.701067', 'Михаил', '29609ba0cfb2fc501a3f3ae31d0e4178334d06eacfd99a6cf389e3889867a09f', '+48 333 444 555', 2, 'Семенов', 'nick',
         'my_new_email@gmail.com', NULL, NULL, NULL, NULL, NULL, FALSE),
-       (20, '2020-03-14 04:08:03.960329', 'Афанасий', 'password', '+375 29 444 32 34', 2, 'Аркадьевич', 'Alarak',
+       (20, '2020-03-14 04:08:03.960329', 'Афанасий', '29609ba0cfb2fc501a3f3ae31d0e4178334d06eacfd99a6cf389e3889867a09f', '+375 29 444 32 34', 2, 'Аркадьевич', 'Alarak',
         'kkk@kkk.kkk', 1, '23', 1,
         '18', 'Ленина', FALSE);
 
