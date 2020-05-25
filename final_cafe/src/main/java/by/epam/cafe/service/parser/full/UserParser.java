@@ -64,7 +64,7 @@ public interface UserParser {
      * @return entity {@link User} with parsed parameter, or {@code null} if any parameter
      * is invalid
      */
-    User parseUserWithId(Map<String, String> redirect, String id, String usernameParam, String passwordParam, String roleParam, String nameParam, String surnameParam, String houseParam, String roomParam, String porchParam, String floorParam, String phoneParam, String emailParam, String streetParam, String isBlocked);
+    boolean parseUserWithId(Map<String, String> redirect, User base, String usernameParam, String roleParam, String nameParam, String surnameParam, String houseParam, String roomParam, String porchParam, String floorParam, String phoneParam, String emailParam, String streetParam, String isBlocked);
 
     /**
      * @param redirect      Map to return what parameter is valid, and value with

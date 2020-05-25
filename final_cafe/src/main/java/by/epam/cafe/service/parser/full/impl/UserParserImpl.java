@@ -1,10 +1,8 @@
 package by.epam.cafe.service.parser.full.impl;
 
-import by.epam.cafe.entity.enums.Role;
 import by.epam.cafe.entity.db.impl.User;
+import by.epam.cafe.entity.enums.Role;
 import by.epam.cafe.entity.struct.OptionalNullable;
-import by.epam.cafe.service.db.UserService;
-import by.epam.cafe.service.db.impl.UserServiceImpl;
 import by.epam.cafe.service.encryption.ApplicationEncrypt;
 import by.epam.cafe.service.encryption.impl.ApplicationEncryptImpl;
 import by.epam.cafe.service.parser.helper.ValidateAndPutter;
@@ -125,9 +123,7 @@ public class UserParserImpl implements by.epam.cafe.service.parser.full.UserPars
      *                      parameter of name "street" was "abcde"
      *                      {street_error, true} means that in parameter
      *                      of name "street" was error.
-     * @param id            {@link User#getId()}
      * @param usernameParam {@link User#getUsername()}
-     * @param passwordParam {@link User#getPassword()}
      * @param roleParam     {@link User#getRole()}
      * @param nameParam     {@link User#getName()}
      * @param surnameParam  {@link User#getSurname()}
@@ -143,24 +139,53 @@ public class UserParserImpl implements by.epam.cafe.service.parser.full.UserPars
      * is invalid
      */
     @Override
-    public User parseUserWithId(Map<String, String> redirect, String id, String usernameParam, String passwordParam, String roleParam, String nameParam, String surnameParam, String houseParam, String roomParam, String porchParam, String floorParam, String phoneParam, String emailParam, String streetParam, String isBlocked) {
-        User user = parseUser(redirect, usernameParam, passwordParam, roleParam, nameParam, surnameParam, houseParam, roomParam, porchParam, floorParam, phoneParam, emailParam, streetParam);
-        OptionalNullable<Integer> idOpt = idParser.parse(id);
+    public boolean parseUserWithId(Map<String, String> redirect, User base, String usernameParam, String roleParam, String nameParam, String surnameParam, String houseParam, String roomParam, String porchParam, String floorParam, String phoneParam, String emailParam, String streetParam, String isBlocked) {
+
+        OptionalNullable<String> username = usernameParser.parse(usernameParam);
+        OptionalNullable<Role> role = roleParser.parse(roleParam);
+        OptionalNullable<String> name = nameParser.parse(nameParam);
+        OptionalNullable<String> surname = surnameParser.parse(surnameParam);
+        OptionalNullable<String> house = houseParserOrder.parse(houseParam);
+        OptionalNullable<String> room = roomParser.parse(roomParam);
+        OptionalNullable<Integer> porch = porchParser.parse(porchParam);
+        OptionalNullable<Integer> floor = floorParser.parse(floorParam);
+        OptionalNullable<String> phone = phoneParser.parse(phoneParam);
+        OptionalNullable<String> email = emailParser.parse(emailParam);
+        OptionalNullable<String> street = streetParserOrder.parse(streetParam);
         OptionalNullable<Boolean> isBlockedOpt = booleanParser.parse(isBlocked);
-        boolean idCheck = validateAndPutter.validateAndPut(redirect, idOpt, "id", id) &
+
+        boolean result = validateAndPutter.validateAndPut(redirect, username, "username", usernameParam) &
+                validateAndPutter.validateAndPut(redirect, role, "role", roleParam) &
+                validateAndPutter.validateAndPut(redirect, name, "name", nameParam) &
+                validateAndPutter.validateAndPut(redirect, surname, "surname", surnameParam) &
+                validateAndPutter.validateAndPut(redirect, house, "house", houseParam) &
+                validateAndPutter.validateAndPut(redirect, room, "room", roomParam) &
+                validateAndPutter.validateAndPut(redirect, porch, "porch", porchParam) &
+                validateAndPutter.validateAndPut(redirect, floor, "floor", floorParam) &
+                validateAndPutter.validateAndPut(redirect, phone, "phone", phoneParam) &
+                validateAndPutter.validateAndPut(redirect, email, "email", emailParam) &
+                validateAndPutter.validateAndPut(redirect, street, "street", streetParam) &
                 validateAndPutter.validateAndPut(redirect, isBlockedOpt, BLOCKED, isBlocked);
 
-        if (user != null) {
-            if (idCheck) {
-                user.setId(idOpt.get());
-                user.setBlocked(isBlockedOpt.get());
-                return user;
-            } else {
-                return null;
-            }
+        if (result) {
+            base.setUsername(username.get());
+            base.setRole(role.get());
+            base.setName(name.get());
+            base.setSurname(surname.get());
+            base.setHouse(house.get());
+            base.setRoom(room.get());
+            base.setPorch(porch.get());
+            base.setFloor(floor.get());
+            base.setPhone(phone.get());
+            base.setEmail(email.get());
+            base.setStreet(street.get());
+            base.setBlocked(isBlockedOpt.get());
+            return true;
+
         } else {
-            return null;
+            return false;
         }
+
     }
 
     /**

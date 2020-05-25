@@ -26,6 +26,7 @@ import by.epam.cafe.service.parser.full.impl.ProductParserImpl;
 import by.epam.cafe.service.parser.full.impl.UserParserImpl;
 import by.epam.cafe.service.parser.helper.impl.NullIfEmptyServiceImpl;
 import by.epam.cafe.service.parser.helper.impl.PathVarCalculatorImpl;
+import by.epam.cafe.service.parser.parts.impl.IdParser;
 import by.epam.cafe.service.validator.parts.LoginValidator;
 
 /**
@@ -41,6 +42,7 @@ public class ServiceFactory {
     private ServiceFactory() {
     }
 
+    private final IdParser idParser = IdParser.getInstance();
     private final DeliveryInfService deliveryInfService = new DeliveryInfServiceImpl();
     private final OrderService orderService = new OrderServiceImpl();
     private final ProductGroupService productGroupService = new ProductGroupServiceImpl();
@@ -135,5 +137,9 @@ public class ServiceFactory {
 
     public MailSender getMailSender() {
         return mailSender;
+    }
+
+    public IdParser getIdParser() {
+        return idParser;
     }
 }
