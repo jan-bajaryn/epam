@@ -138,6 +138,11 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public boolean update(User entity) throws ServiceException {
+
+//        if (!takeOldIfPasswordNull(entity)) {
+//            return false;
+//        }
+
         try (Transaction transaction = dAOFactory.createTransaction()) {
             boolean result = userMysqlDao.update(entity, transaction);
             if (result) {
@@ -149,6 +154,21 @@ public class UserServiceImpl implements UserService {
         } catch (DaoException e) {
             throw new ServiceException(e);
         }
+    }
+
+    private boolean takeOldIfPasswordNull(User entity) throws ServiceException {
+        if (entity == null || entity.getId() == null) {
+            return false;
+        }
+        if (entity.getPassword() == null) {
+            User entityById = findEntityById(entity.getId());
+            if (entityById != null) {
+                entity.setPassword(entityById.getPassword());
+            } else {
+                return false;
+            }
+        }
+        return true;
     }
 
 

@@ -3,8 +3,6 @@ package by.epam.cafe.controller.factory.impl;
 import by.epam.cafe.controller.command.Command;
 import by.epam.cafe.controller.command.CommandDecorator;
 import by.epam.cafe.controller.command.getimpl.*;
-import by.epam.cafe.controller.command.postimpl.RegistrationBegin;
-import by.epam.cafe.controller.command.postimpl.RegistrationRealization;
 import by.epam.cafe.controller.factory.CommandFactory;
 import by.epam.cafe.controller.factory.exception.PageNotFoundException;
 import org.apache.logging.log4j.LogManager;
@@ -41,7 +39,7 @@ public class CommandGetFactory implements CommandFactory {
         commandMap.put("/?", new Index());
         commandMap.put("/order", new DisplayOrder());
         commandMap.put(LOGIN_PAGE, new CommandDecorator(new Login(), EnumSet.of(ANON)));
-        commandMap.put("/cabinet", new CommandDecorator(new ClientCabinet(), EnumSet.of(CLIENT)));
+        commandMap.put("/cabinet", new CommandDecorator(new Cabinet(), EnumSet.of(CLIENT, OPERATOR, ADMIN)));
         /*language=RegExp*/
         commandMap.put("/edit-order/\\d+", new CommandDecorator(new EditOrder(), EnumSet.of(OPERATOR)));
         commandMap.put("/order-list", new CommandDecorator(new OrderList(), EnumSet.of(OPERATOR)));

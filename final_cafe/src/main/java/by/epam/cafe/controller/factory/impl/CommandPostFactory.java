@@ -77,6 +77,7 @@ public class CommandPostFactory implements CommandFactory {
         commandMap.put("/client/make-order", new MakeOrderClient());
         commandMap.put("/registration-begin", new RegistrationBegin());
         commandMap.put("/registration-realization", new RegistrationRealization());
+        commandMap.put("/change-self-data", new ChangeSelfData());
 
     }
 

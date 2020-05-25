@@ -3,6 +3,8 @@ package by.epam.cafe.service.parser.full.impl;
 import by.epam.cafe.entity.enums.Role;
 import by.epam.cafe.entity.db.impl.User;
 import by.epam.cafe.entity.struct.OptionalNullable;
+import by.epam.cafe.service.db.UserService;
+import by.epam.cafe.service.db.impl.UserServiceImpl;
 import by.epam.cafe.service.encryption.ApplicationEncrypt;
 import by.epam.cafe.service.encryption.impl.ApplicationEncryptImpl;
 import by.epam.cafe.service.parser.helper.ValidateAndPutter;
@@ -21,12 +23,12 @@ public class UserParserImpl implements by.epam.cafe.service.parser.full.UserPars
     private static final String BLOCKED = "blocked";
 
     private final ValidateAndPutter validateAndPutter = ValidateAndPutterImpl.getInstance();
-
     private final ApplicationEncrypt applicationEncrypt = ApplicationEncryptImpl.getInstance();
     private final EmailParser emailParser = EmailParser.getInstance();
     private final FloorParser floorParser = FloorParser.getInstance();
     private final HouseParserUser houseParserOrder = HouseParserUser.getInstance();
     private final NameParser nameParser = NameParser.getInstance();
+    // make one more password parser nullable. This used
     private final PasswordParser passwordParser = PasswordParser.getInstance();
     private final PhoneParser phoneParser = PhoneParser.getInstance();
     private final PorchParser porchParser = PorchParser.getInstance();
@@ -250,5 +252,57 @@ public class UserParserImpl implements by.epam.cafe.service.parser.full.UserPars
         return null;
     }
 
+    @Override
+    public boolean parseWithBaseSelfChange(Map<String, String> redirect, User base, String nameParam, String surnameParam, String houseParam, String roomParam, String porchParam, String floorParam, String phoneParam, String streetParam) {
+        OptionalNullable<String> name = nameParser.parse(nameParam);
+        OptionalNullable<String> surname = surnameParser.parse(surnameParam);
+        OptionalNullable<String> house = houseParserOrder.parse(houseParam);
+        OptionalNullable<String> room = roomParser.parse(roomParam);
+        OptionalNullable<Integer> porch = porchParser.parse(porchParam);
+        OptionalNullable<Integer> floor = floorParser.parse(floorParam);
+        OptionalNullable<String> phone = phoneParser.parse(phoneParam);
+        OptionalNullable<String> street = streetParserOrder.parse(streetParam);
 
+        boolean result =
+                validateAndPutter.validateAndPut(redirect, name, "name", nameParam) &
+                        validateAndPutter.validateAndPut(redirect, surname, "surname", surnameParam) &
+                        validateAndPutter.validateAndPut(redirect, house, "house", houseParam) &
+                        validateAndPutter.validateAndPut(redirect, room, "room", roomParam) &
+                        validateAndPutter.validateAndPut(redirect, porch, "porch", porchParam) &
+                        validateAndPutter.validateAndPut(redirect, floor, "floor", floorParam) &
+                        validateAndPutter.validateAndPut(redirect, phone, "phone", phoneParam) &
+                        validateAndPutter.validateAndPut(redirect, street, "street", streetParam);
+
+        if (result) {
+            base.setName(name.get());
+            base.setSurname(surname.get());
+            base.setHouse(house.get());
+            base.setRoom(room.get());
+            base.setPorch(porch.get());
+            base.setFloor(floor.get());
+            base.setPhone(phone.get());
+            base.setStreet(street.get());
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean parseChangePassword(Map<String, String> redirect, User base, String passwordOld, String passwordNew) {
+        String password = base.getPassword();
+//        if (password.equals(applicationEncrypt.calcUserPasswordHash(passwordOld))){
+        if (password.equals(passwordOld)) {
+            OptionalNullable<String> parse = passwordParser.parse(passwordNew);
+            if (parse.isPresent()) {
+                base.setPassword(parse.get());
+                return true;
+            } else {
+                redirect.put("new_password_error", "true");
+            }
+        } else {
+            redirect.put("old_password_error", "true");
+        }
+        return false;
+    }
 }

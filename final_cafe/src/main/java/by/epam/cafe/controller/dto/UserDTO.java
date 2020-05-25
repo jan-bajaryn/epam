@@ -8,16 +8,21 @@ public class UserDTO {
     private String username;
 
     private Role role;
-
+//
     private String name;
+//
     private String surname;
-
+//
     private String street;
+//
     private String house;
+//
     private String room;
+//
     private Integer porch;
+//
     private Integer floor;
-
+//
     private String phone;
 
     private String email;
