@@ -238,7 +238,7 @@ public class OrderParserImplTest {
         String name = "Антон";
         String phone = "111222333";
         String email = "abc@gmail.com";
-        String time = "10:15";
+        String time = "2020-10-20T10:15";
         Map<Product, Integer> basket = new HashMap<>();
         Product build = Product.newBuilder().id(1).weight(100).price(1004).build();
         basket.put(build, 3);

@@ -21,7 +21,7 @@ public class UserServiceImplTest {
             .id(1)
             .creation(Timestamp.valueOf("2020-03-13 15:52:57.567086").toLocalDateTime())
             .name("Vania")
-            .password("abcdefg")
+            .password("29609ba0cfb2fc501a3f3ae31d0e4178334d06eacfd99a6cf389e3889867a09f")
             .phone("294441111")
             .role(Role.values()[0])
             .surname("Ivanov")
