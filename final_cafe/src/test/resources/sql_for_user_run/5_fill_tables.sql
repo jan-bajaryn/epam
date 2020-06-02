@@ -20,7 +20,7 @@ VALUES (12, '2020-03-13 15:55:52.611265', 'Anatoliy', '29609ba0cfb2fc501a3f3ae31
        (18, '2020-03-14 03:27:34.701067', 'Михаил', '29609ba0cfb2fc501a3f3ae31d0e4178334d06eacfd99a6cf389e3889867a09f', '+48 333 444 555', 2, 'Семенов', 'nick',
         'my_new_email@gmail.com', NULL, NULL, NULL, NULL, NULL, FALSE),
        (20, '2020-03-14 04:08:03.960329', 'Афанасий', '29609ba0cfb2fc501a3f3ae31d0e4178334d06eacfd99a6cf389e3889867a09f', '+375 29 444 32 34', 2, 'Аркадьевич', 'Alarak',
-        'kkk@kkk.kkk', 1, '23', 1,
+        'kkk@mail.ru', 1, '23', 1,
         '18', 'Ленина', FALSE);
 
 INSERT INTO `order` (id, creation, payment_type, price, status, delivery_inf_id, user_id, client_name)

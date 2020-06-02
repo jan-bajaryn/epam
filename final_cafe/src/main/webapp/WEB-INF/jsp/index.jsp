@@ -39,10 +39,10 @@
                         <img src="<c:url value="/static/img/${product_group.key.getPhotoName()}"/>" alt="">
                     </div>
                     <div class="p_card-name">
-                            <c:out value="${product_group.key.getName()}"/>
+                        <c:out value="${product_group.key.getName()}"/>
                     </div>
                     <div class="p_card-description text-muted">
-                            <c:out value="${product_group.key.getDescription()}"/>
+                        <c:out value="${product_group.key.getDescription()}"/>
                     </div>
                     <div class="p_card-footer md-2">
                     <span>
@@ -62,10 +62,10 @@
                                                      alt="Photo"/>
                                                 <div class="content__description">
                                                     <div class="header">
-                                                            <c:out value="${product_group.key.getName()}"/>
+                                                        <c:out value="${product_group.key.getName()}"/>
                                                     </div>
                                                     <div class="description text-muted">
-                                                            <c:out value="${product_group.key.getDescription()}"/>
+                                                        <c:out value="${product_group.key.getDescription()}"/>
                                                     </div>
                                                     <div>
                                                         <c:forEach var="product" items="${product_group.key.products}">
@@ -99,10 +99,10 @@
                                                      alt="Photo"/>
                                                 <div class="content__description">
                                                     <div class="header">
-                                                            <c:out value="${product_group.key.getName()}"/>
+                                                        <c:out value="${product_group.key.getName()}"/>
                                                     </div>
                                                     <div class="description text-muted">
-                                                            <c:out value="${product_group.key.getDescription()}"/>
+                                                        <c:out value="${product_group.key.getDescription()}"/>
                                                     </div>
                                                     <div>
                                                         <c:forEach var="product" items="${product_group.key.products}">
@@ -113,7 +113,7 @@
                                                                         ${product.weight}
                                                                     <fmt:message key="web.gram" bundle="${ rb }"/>
                                                                     -
-                                                                    <span> ${String.format("%.2f", product.price/100.0)}р</span>
+                                                                    <span> <tag:money input="${product.price}"/></span>
                                                                 </label>
                                                             </div>
                                                         </c:forEach>
@@ -136,10 +136,10 @@
                                                      alt="Photo"/>
                                                 <div class="content__description">
                                                     <div class="header">
-                                                            <c:out value="${product_group.key.getName()}"/>
+                                                        <c:out value="${product_group.key.getName()}"/>
                                                     </div>
                                                     <div class="description text-muted">
-                                                            <c:out value="${product_group.key.getDescription()}"/>
+                                                        <c:out value="${product_group.key.getDescription()}"/>
                                                     </div>
                                                     <div>
                                                         <c:forEach var="product" items="${product_group.key.products}">
@@ -150,7 +150,7 @@
                                                                         ${product.weight}
                                                                     <fmt:message key="web.gram" bundle="${ rb }"/>
                                                                     -
-                                                                    <span> ${String.format("%.2f", product.price/100.0)}р</span>
+                                                                    <span><tag:money input="${product.price}"/></span>
                                                                 </label>
                                                             </div>
                                                         </c:forEach>
