@@ -20,7 +20,7 @@ CREATE TABLE user
     id         integer NOT NULL auto_increment,
     creation   datetime(6),
     name       varchar(255),
-    password   varchar(255),
+    password   varchar(64),
     phone      varchar(255),
     role       integer,
     surname    varchar(255),
