@@ -32,7 +32,7 @@ public interface OrderParser {
      * @param emailParam    Email parameter {@link DeliveryInf#getEmail()}
      * @param timeParam     Time parameter {@link DeliveryInf#getDeliveryTime()}
      * @param basket        count of products identified by ids {@link Order#getProducts()}
-     * @param paymentTypeParam
+     * @param paymentTypeParam payment type parameter {@link Order#getPaymentType()}
      * @return {@link Order} if all parameters was valid, and {@code null} if any
      * parameter wasn't valid
      */
@@ -61,7 +61,7 @@ public interface OrderParser {
      * @param phoneParam    Phone parameter {@link DeliveryInf#getPhone()}
      * @param emailParam    Email parameter {@link DeliveryInf#getEmail()}
      * @param timeParam     Time parameter {@link DeliveryInf#getDeliveryTime()}
-     * @param paymentTypeParam
+     * @param paymentTypeParam payment type parameter {@link Order#getPaymentType()}
      * @return true if parsing is successfully executed and all params is valid
      * otherwise returns false
      */

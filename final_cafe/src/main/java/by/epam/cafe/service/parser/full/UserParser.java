@@ -1,6 +1,5 @@
 package by.epam.cafe.service.parser.full;
 
-import by.epam.cafe.entity.db.impl.Product;
 import by.epam.cafe.entity.db.impl.User;
 
 import java.util.Map;
@@ -47,9 +46,7 @@ public interface UserParser {
      *                      parameter of name "street" was "abcde"
      *                      {street_error, true} means that in parameter
      *                      of name "street" was error.
-     * @param id            {@link User#getId()}
      * @param usernameParam {@link User#getUsername()}
-     * @param passwordParam {@link User#getPassword()}
      * @param roleParam     {@link User#getRole()}
      * @param nameParam     {@link User#getName()}
      * @param surnameParam  {@link User#getSurname()}
